@@ -51,6 +51,7 @@ export default function Home() {
 		Router.push(`/summoner/${region}/${summonerName}`);
 		setSummonerName("");
 	}
+
 	function searchHandler(e) {
 		e.preventDefault();
 		sendRequest(
