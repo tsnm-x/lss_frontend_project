@@ -107,10 +107,7 @@ function ProfileUpdate() {
 							<div className=" flex gap-x-3 mb-4 ">
 								{ControlBtnLists.map((item, index) => {
 									return (
-										<button
-											className="btn bg-transparent "
-											key={"btn-" + index}
-										>
+										<button className="btn bg-transparent " key={index}>
 											{item}
 										</button>
 									);
