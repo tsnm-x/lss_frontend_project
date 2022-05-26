@@ -35,6 +35,7 @@ export default function Home() {
 	const loading = useSelector((state) => state.loader.loader);
 	const dispatch = useDispatch();
 	const { hasError, sendRequest } = useHttp();
+
 	function classNames(...classes) {
 		return classes.filter(Boolean).join(" ");
 	}
