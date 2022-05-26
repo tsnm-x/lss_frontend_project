@@ -63,6 +63,7 @@ export default function Home() {
 			requestHandler
 		);
 	}
+
 	return (
 		<div
 			className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
