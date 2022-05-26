@@ -1,0 +1,16 @@
+.card_content {
+    background: transparent
+        linear-gradient(108deg, #484c5e0f 0%, var(--small-text-icons) 100%) 0%
+        0% no-repeat padding-box;
+    background: transparent linear-gradient(108deg, #484c5e0f 0%, #47516c 100%)
+        0% 0% no-repeat padding-box;
+    border-radius: 24px;
+    opacity: 1;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    /* height: 80px; */
+}
+
+.indicator {
+  @apply absolute w-20 rounded-tl-[24px] rounded-bl-[24px] h-[210px] ;
+}

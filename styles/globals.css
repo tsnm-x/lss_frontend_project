@@ -1,0 +1,129 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #0f121d;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+/* custom font family  */
+@font-face {
+    font-family: "Gotham";
+    src: url("../public/assets/fonts/gotham-medium.ttf");
+}
+@font-face {
+    font-family: "sf-pro-text";
+    src: url("../public/assets/fonts/SFProText-Regular.ttf");
+}
+@font-face {
+    font-family: "sf-pro-light";
+    src: url("../public/assets/fonts/SFProDisplay-Thin.ttf");
+}
+
+/* default style variable  */
+:root {
+    /* Colors: */
+    --unnamed-color-fc2300: #fc2300;
+    --unnamed-color-8d919f: #8d919f;
+    --f3f4f8: #f3f4f8;
+    --sidebars: #0a0c14;
+    --background: #0f121d;
+    --overlay: #141726;
+    --special: #fc5900;
+    --small-text-icons: #47516c;
+    --unnamed-color-ffffff: #ffffff;
+    --unnamed-color-3a425a: #3a425a;
+    --unnamed-color-f58034: #f58034;
+    --unnamed-color-000000: #000000;
+
+    /* Font/text values */
+    --unnamed-font-family-gotham: "Gotham";
+    --unnamed-font-family-sf-pro-display: "sf-pro-light";
+    --unnamed-font-family-sf-ui-text: "sf-pro-text";
+    --unnamed-font-style-normal: normal;
+    --unnamed-font-weight-200: 200px;
+    --unnamed-font-weight-medium: medium;
+    --unnamed-font-weight-normal: normal;
+    --unnamed-font-size-8: 8px;
+    --unnamed-font-size-10: 10px;
+    --unnamed-font-size-16: 16px;
+    --unnamed-font-size-21: 21px;
+    --unnamed-font-size-27: 27px;
+    --unnamed-font-size-32: 32px;
+    --unnamed-character-spacing-0: 0px;
+    --unnamed-line-spacing-11: 11px;
+    --unnamed-line-spacing-14: 14px;
+    --unnamed-line-spacing-21: 21px;
+    --unnamed-line-spacing-28: 28px;
+    --unnamed-line-spacing-36: 36px;
+    --unnamed-line-spacing-43: 43px;
+}
+
+/* global style class  */
+
+@layer components {
+    /* fonts and texts */
+    .gotham-14px {
+        @apply font-medium text-[14px] leading-[19px] font-gotham tracking-normal;
+    }
+    .gotham-12px-mid {
+        @apply font-gotham font-medium normal-case text-[12px] leading-4 tracking-normal;
+    }
+    .gotham-10px-mid {
+        @apply font-medium text-[12px] leading-[10px] font-gotham tracking-[0px];
+    }
+    .gotham-7px-mid {
+        @apply font-medium text-[7px] text-liquid-white leading-[10px] ;
+    }
+
+    .sf-10px-regular {
+        @apply font-sf-pro font-normal text-[10px] tracking-normal leading-[14px] ;
+    }
+    .sf-7px-regular {
+        @apply font-sf-pro font-normal text-[10px] tracking-normal leading-[14px] ;
+    }
+
+    /* chat btn  */
+    .feedback_btn_wrap {
+        @apply absolute left-20 bottom-10;
+    }
+    .btn_img {
+        @apply absolute left-[30px] -top-[40px] w-[85px];
+    }
+    .feedback_btn {
+        @apply bg-white p-[18px] pt-[25px] py-5 flex flex-col items-center rounded-2xl;
+    }
+    .feedback_btn_icon {
+        @apply text-[28px] text-white-blue mb-[18px];
+    }
+
+    .feedback_btn_txt {
+        @apply text-white-blue capitalize text-center text-[10px] leading-[12px] w-[50px];
+    }
+
+    /* btn style  */
+    .btn {
+        @apply font-sf-pro font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
+        border-mix-white-black rounded-7px px-5 py-4 ;
+    }
+
+    /* card wrapper  */
+    .card_wrap {
+        @apply py-5 px-5 bg-card-border rounded-md border border-[#70707029];
+    }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

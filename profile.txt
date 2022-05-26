@@ -1,0 +1,17 @@
+[{
+   championName:info.participants[5].championName ==>http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${'Thresh'}.png
+   perks:???????
+   kills:info.participants[5].kills
+   deaths:info.participants[5].deaths
+   assists:info.participants[5].assists
+   items:items[info.participants.[x].item0,info.participants.[x].item1,info.participants.[x].item2,....,7]
+   spells:???? 
+   bestKill:"triple || .."
+   win:info.participants[5].win) (true/false)
+   gameDuration:(info.gameDuration) / 60,
+   participants:[{
+      nummonerName:info.participants.[x].championName,
+      championId:info.participants.[x].championId
+      items:[]
+   },{},...]
+},{},{},{}..10]

@@ -1,0 +1,24 @@
+:root { 
+    --dodger-blue: #198cff;
+    --dove-gray: #707070;
+    --dove-gray-2: #70707045;
+    --fiord: #47516c;
+    --international-orange: #fc5900;
+    --manatee: #8d919f;
+    --mirage: #141726;
+    --scarlet: #fc2300;
+    --bgCard: #0f121d;
+    --wild-sand: #f3f4f8;
+   
+    --font-size-l: 9px;
+    --font-size-m: 5px;
+    --font-size-s: 4px;
+    --font-size-xl: 10px;
+    --font-size-xs: 3px;
+    --font-size-xxl: 11px;
+    --font-size-xxs: 2px;
+   
+    --font-family-gore: "Gore", Helvetica;
+    --font-family-gotham: "Gotham", Helvetica;
+    --font-family-sf_pro_display: "SF Pro Display", Helvetica;
+  }

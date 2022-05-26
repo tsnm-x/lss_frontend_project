@@ -1,0 +1,6 @@
+.listWrap .list:nth-child(3n+1) .kdaTitle {
+  @apply text-white-blue ;
+}
+.listWrap .list:nth-child(3n+2) .kdaTitle  {
+  @apply text-red-yellow;
+}

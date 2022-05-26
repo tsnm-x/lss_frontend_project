@@ -1,0 +1,96 @@
+.container{
+  background-color: #0f121d;
+}
+.warapper {
+  height: 135px;
+}
+
+.looserRightBorder{
+  border-right: 20px solid #ee2202;
+  border-radius: 15px;
+}
+.successRightBorder{
+  border-right: 20px solid #198cff;
+  border-radius: 15px;
+}
+.success {
+  border-left: 4px solid #198cff;
+  border-radius: 15px 0px 0px 15px;
+
+}
+.success > div:first-child{
+  background: rgb(23, 61, 106);
+  background: linear-gradient(
+    90deg,
+    rgba(23, 61, 106, 1) 0%,
+    rgba(71, 81, 108, 1) 61%
+  );
+}
+.looser {
+  border-left: 4px solid #ee2202;
+  border-radius: 15px 0px 0px 15px;
+
+}
+.looser >div:first-child{
+  background: rgb(237, 97, 74);
+  background: linear-gradient(
+    90deg,
+    rgba(237, 97, 74, 1) 0%,
+    rgba(71, 81, 108, 1) 62%
+  );
+}
+
+
+.gameDetails > div:last-child {
+  background-color: #0f121d;
+}
+.gameDetails> div:first-of-type >div  {
+  background-color: #0f121d;
+}
+.gameDetails label {
+  background-color: #fc5900;
+}
+.gameDetails h1 {
+  color: #8d919f;
+}
+.looserRightBorder button:first-child {
+  
+  background-color: #198cff;
+  color: black;
+}
+.looserRightBorder button:first-child {
+  position: relative;
+  bottom: -35%;
+  background-color: #ee2202;
+  color: black;
+}
+.summonerDetails-header{
+  border-bottom: 2px solid #198cff; 
+}
+.show{
+  animation: show 1s 2;
+  animation-direction: alternate;
+}
+
+.summonersGameDetails-enter {
+  opacity: 0;
+  transform:translateY(100%);
+  border: 3px solid white;
+}
+.summonersGameDetails-enter-active {
+  opacity: 1;
+  border: 3px solid white;
+  transform:translateY(0);
+  transition: opacity 3000ms, transform 3000ms ease-in;
+}
+.summonersGameDetails-exit {
+  opacity: 1;
+  border: 1px solid blue;
+  transform:translateY(0);
+}
+.summonersGameDetails-exit-active {
+  opacity: 0;
+  border: 1px solid white;
+  transform:translateY(-100%);
+  transition: opacity 300ms, transform 3000ms ease-in;
+}
