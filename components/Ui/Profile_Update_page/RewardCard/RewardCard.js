@@ -81,7 +81,7 @@ const RewardCard = (props) => {
 			<div className=" flex gap-x-3 mb-4 ">
 				{props.items.map((item, index) => {
 					return (
-						<div className=" w-8 h-8 " key={"reward" + index}>
+						<div className=" w-8 h-8 " key={index}>
 							<img
 								className=" rounded-full "
 								src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
