@@ -41,7 +41,11 @@ export default function Home() {
 	}
 
 	function requestHandler(res) {
-		console.log(res, "========<");
+		if (!res) {
+			console.log(res, "no response from the server");
+			return;
+		}
+
 		dispatch(
 			profileAction.setProfileDataPage({
 				profile: res.data.matches,

@@ -28,9 +28,10 @@ function ProfileUpdate() {
 	const [ranks, setRanks] = useState([]);
 
 	useEffect(() => {
+		const { region } = router.query;
 		axiosInstance
 			.post("/summonerRanks", {
-				region: "euw1",
+				region,
 				summonerRiotId: mainPlayer?.summonerRiotId,
 			})
 			.then((res) => {
