@@ -1,0 +1,17 @@
+  /* chat btn  */
+    .feedback_btn_wrap {
+       @apply z-50;
+    }
+    .btn_img {
+        @apply absolute left-[35px] -top-[60px] w-[122px];
+    }
+    .feedback_btn {
+        @apply bg-white flex flex-col items-center pb-[31px] pt-[38px] rounded-[14px] w-[126px];
+    }
+    .feedback_btn_icon {
+        @apply text-[43px] text-white-blue mb-[28px];
+    }
+
+    .feedback_btn_txt {
+        @apply text-white-blue capitalize text-center text-[11px] leading-[12px] w-[50px];
+    }

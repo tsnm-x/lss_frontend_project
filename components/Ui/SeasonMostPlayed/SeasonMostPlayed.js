@@ -23,41 +23,47 @@ const SeasonMostPlayed = () => {
     return (
         <React.Fragment>
             {/* <aside className="card_wrap "> */}
-                {/* top slider  */}
-                <div className=" pb-6 ">
-                    <div className=" flex mb-6 justify-between  ">
-                        {player.map((player, index) => {
-                            return (
-                                <div key={"player" + index}>
-                                    <div className=" mx-auto w-10 h-10 border border-mix-white-black rounded-full mb-3 ">
-                                        <Image
-                                            src={player.img}
-                                            alt="player image"
-                                        />
-                                    </div>
-                                    <p className=" gotham-10px-mid text-[#8D919F] ">
-                                        {player.name}
-                                    </p>
+            {/* top slider  */}
+            <div className=" pb-6 ">
+                <div className=" flex mb-6 justify-between  ">
+                    {player.map((player, index) => {
+                        return (
+                            <div key={"player" + index}>
+                                <div className=" relative mx-auto w-[61px] h-[61px] border border-mix-white-black rounded-full mb-[15px]">
+                                    <Image
+                                        src={player.img}
+                                        alt="player image"
+                                        layout="fill"
+                                    />
                                 </div>
-                            );
-                        })}
-                    </div>
-                    <div className=" flex gap-x-[2px] justify-end">
-                        <div className=" w-10 h-[3px] bg-liquid-white rounded-full"></div>
-                        <div className=" w-6 h-[3px] bg-mix-white-black rounded-full"></div>
-                        <div className=" w-6 h-[3px] bg-mix-white-black rounded-full"></div>
-                        <div className=" w-6 h-[3px] bg-mix-white-black rounded-full"></div>
-                    </div>
+                                <p className=" gotham-15px-book text-[#8D919F] ">
+                                    {player.name}
+                                </p>
+                            </div>
+                        );
+                    })}
                 </div>
-                {/* player champ list  */}
-                {expand && <ChampList title="season most played champs" />}
-                {/* bottom button  */}
-                <button
-                    onClick={expandHandler}
-                    className=" btn rounded-full w-12 h-12 p-0 flex justify-center items-center border-0 cursor-pointer mx-auto mt-5 hover:bg-btn-hover hover:rotate-45 "
-                >
-                    <HiArrowDown className=" text-[22px]" />
-                </button>
+                <div className=" flex gap-x-[2px] justify-end">
+                    <div className=" w-10 h-[3px] bg-liquid-white rounded-full"></div>
+                    <div className=" w-6 h-[3px] bg-mix-white-black rounded-full"></div>
+                    <div className=" w-6 h-[3px] bg-mix-white-black rounded-full"></div>
+                    <div className=" w-6 h-[3px] bg-mix-white-black rounded-full"></div>
+                </div>
+            </div>
+            {/* player champ list  */}
+            {expand && (
+                <ChampList
+                    title="season most played champs"
+                    className=" -mx-[16px] pt-[14px] pb-[30px] px-[27px] "
+                />
+            )}
+            {/* bottom button  */}
+            <button
+                onClick={expandHandler}
+                className=" btn rounded-full w-[55px] h-[55px] p-0 flex justify-center items-center border-0 cursor-pointer mx-auto mt-5 hover:bg-btn-hover hover:rotate-45 "
+            >
+                <HiArrowDown className=" text-[20px]" />
+            </button>
             {/* </aside> */}
         </React.Fragment>
     );

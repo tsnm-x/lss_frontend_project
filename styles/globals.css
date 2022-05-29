@@ -2,8 +2,6 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background-color: #0f121d;
 }
 
@@ -19,16 +17,13 @@ a {
 }
 /* custom font family  */
 @font-face {
-    font-family: "Gotham";
-    src: url("../public/assets/fonts/gotham-medium.ttf");
+    font-family: "gotham-book";
+    src: url("../public/assets/fonts/GothamBook.ttf");
 }
+
 @font-face {
-    font-family: "sf-pro-text";
-    src: url("../public/assets/fonts/SFProText-Regular.ttf");
-}
-@font-face {
-    font-family: "sf-pro-light";
-    src: url("../public/assets/fonts/SFProDisplay-Thin.ttf");
+    font-family: "gotham-mid";
+    src: url("../public/assets/fonts/GothamMedium.ttf");
 }
 
 /* default style variable  */
@@ -74,24 +69,54 @@ a {
 
 @layer components {
     /* fonts and texts */
-    .gotham-14px {
-        @apply font-medium text-[14px] leading-[19px] font-gotham tracking-normal;
+    .gotham-35px-mid {
+        @apply text-[35px] leading-[47px] font-gotham-mid font-medium;
+    }
+    .gotham-20px-book {
+        @apply font-gotham-book text-xl;
+    }
+    .gotham-17px-book {
+        @apply font-gotham-book text-[17px] leading-[22px];
+    }
+    .gotham-15px-book {
+        @apply font-gotham-book text-[15px] leading-5 font-medium;
+    }
+
+
+
+    .gotham-13px-mid {
+        @apply font-medium text-[13px] leading-[17px] tracking-normal;
     }
     .gotham-12px-mid {
-        @apply font-gotham font-medium normal-case text-[12px] leading-4 tracking-normal;
+        @apply font-medium normal-case text-[12px] leading-4 tracking-normal;
     }
     .gotham-10px-mid {
-        @apply font-medium text-[12px] leading-[10px] font-gotham tracking-[0px];
+        @apply text-[12px] leading-[10px]  tracking-[0px];
+    }
+    .gotham-9px-mid {
+        @apply text-[9px] leading-[10px]  tracking-[0px];
     }
     .gotham-7px-mid {
-        @apply font-medium text-[7px] text-liquid-white leading-[10px] ;
+        @apply text-[10px] text-liquid-white leading-[12px];
+    }
+    .gotham-6px-mid {
+        @apply text-[10px]  leading-[12px];
+    }
+    .gotham-5px-mid {
+        @apply text-[10px] text-liquid-white leading-[12px];
+    }
+    .gotham-4px-mid {
+        @apply text-[12px] text-liquid-white leading-[15px];
+    }
+    .gotham-2px-mid {
+        @apply text-[8px] text-liquid-white leading-[10px];
     }
 
     .sf-10px-regular {
-        @apply font-sf-pro font-normal text-[10px] tracking-normal leading-[14px] ;
+        @apply font-normal text-[10px] tracking-normal leading-[14px];
     }
     .sf-7px-regular {
-        @apply font-sf-pro font-normal text-[10px] tracking-normal leading-[14px] ;
+        @apply font-normal text-[7px] tracking-normal leading-[10px];
     }
 
     /* chat btn  */
@@ -114,14 +139,12 @@ a {
 
     /* btn style  */
     .btn {
-        @apply font-sf-pro font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
-        border-mix-white-black rounded-7px px-5 py-4 ;
+        @apply font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
+        border-mix-white-black rounded-7px px-5 py-4;
     }
 
     /* card wrapper  */
-    .card_wrap {
-        @apply py-5 px-5 bg-card-border rounded-md border border-[#70707029];
-    }
+    
 }
 
 @tailwind base;

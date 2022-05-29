@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./ProfileCardWrapHoc.module.css";
+import classes from './ProfileCardWrapHoc.module.css'
 
 const ProfileCardWrapHoc = (PushedElement) => {
     return class NewComponent extends React.Component {

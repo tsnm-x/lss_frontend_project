@@ -12,5 +12,5 @@
 }
 
 .indicator {
-  @apply absolute w-20 rounded-tl-[24px] rounded-bl-[24px] h-[210px] ;
+  @apply absolute w-20 rounded-tl-[24px] rounded-bl-[24px] h-[206px] ;
 }

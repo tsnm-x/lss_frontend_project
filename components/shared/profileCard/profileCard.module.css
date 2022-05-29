@@ -3,17 +3,16 @@
 }
 
 .profile {
-    @apply relative w-[88px] h-[88px] 2xl:w-[105px] 2xl:h-[105px];
+    @apply relative w-[130px] h-[130px];
 }
 
 .profile_img {
-    @apply rounded-[23px] h-full overflow-hidden border border-mix-white-black;
+    @apply relative rounded-[23px] w-full h-full overflow-hidden border border-mix-white-black;
 }
 
 .profile_number {
-    @apply absolute left-[35px] -bottom-2 2xl:left-[41px] z-10 rounded-full border border-mix-white-black
-    w-5 h-5 flex items-center justify-center text-[7px] text-white bg-almost-dark
-    2xl:text-[10px] 2xl:w-6 2xl:h-6;
+    @apply absolute -bottom-[16px]  left-[41px] z-10 rounded-full border border-mix-white-black
+    w-[33px] h-[33px] flex items-center justify-center text-[10px] text-white bg-almost-dark;
 }
 
 .profile_details {
@@ -24,5 +23,5 @@
 }
 
 .profile_texts {
-    @apply capitalize text-[10px] font-sf-pro text-nav-text mb-2 2xl:text-[12px];
+    @apply capitalize    text-nav-text mb-[14px] text-[14px];
 }

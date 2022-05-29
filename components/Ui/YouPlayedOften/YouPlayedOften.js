@@ -1,10 +1,11 @@
 import React from "react";
-import ProfileCardWrap from "../../HOC/ProfileCardWrapHoc";
+import ProfileCardWrap from "../../HOC/ProfileCardWrapHoc/ProfileCardWrapHoc";
 import Image from "next/image";
 import China from "../../../public/assets/oftenPlayedWith/china.png";
 import Nexos from "../../../public/assets/oftenPlayedWith/nexos.png";
 import SouthKorea from "../../../public/assets/oftenPlayedWith/south-korea.png";
 import classes from "./YouPlayedOften.module.css";
+
 
 const YouPlayedOften = () => {
     const oftenList = [

@@ -10,9 +10,14 @@ module.exports = {
                 bounce200: "bounce 1s infinite 200ms",
                 bounce400: "bounce 1s infinite 400ms",
             },
+            maxWidth: {
+                "max-container": "1370px",
+            },
             colors: {
                 "white-blue": "#198CFF",
                 "liquid-white": "#f3f4f8",
+                "liquid-white-50": "#F3F4F8F2",
+                "liquid-white-100": "#f7f7f9",
                 "mix-white-black": "#707070",
                 "mix-white-black-100": "#8D919F",
                 "mix-white-black-200": "#646e86",
@@ -28,9 +33,8 @@ module.exports = {
                 "20px": "20px",
             },
             fontFamily: {
-                "sf-pro": "sf-pro-text",
-                "sf-light": "sf-pro-light",
-                gotham: "Gotham",
+                "gotham-book": "gotham-book",
+                "gotham-mid": "gotham-mid",
             },
             borderRadius: {
                 "5px": "5px",
