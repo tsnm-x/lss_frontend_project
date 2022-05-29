@@ -18,6 +18,19 @@ import Router from "next/router";
 
 export default function Home() {
 	const servers = [
+		"BR",
+		"EUN",
+		"EUW",
+		"JP",
+		"KR",
+		"LA",
+		"LA",
+		"NA",
+		"OC",
+		"TR",
+		"RU",
+	];
+	const reqServers = [
 		"BR1",
 		"EUN1",
 		"EUW1",
@@ -30,6 +43,7 @@ export default function Home() {
 		"TR1",
 		"RU",
 	];
+	// region: reqServers[servers.indexOf(region)],
 	const [region, setRegion] = useState(servers[2]);
 	const [summonerName, setSummonerName] = useState("");
 	const loading = useSelector((state) => state.loader.loader);
@@ -43,17 +57,24 @@ export default function Home() {
 	function requestHandler(res) {
 		if (!res) {
 			console.log(res, "no response from the server");
+			// console.log(reqServers[servers.indexOf(region)], "no responsezz");
+			setSummonerName("");
 			return;
 		}
+		console.log(region);
+		console.log(reqServers[servers.indexOf(region)]);
 
 		dispatch(
 			profileAction.setProfileDataPage({
 				profile: res.data.matches,
-				region,
+				// region,
+				region: reqServers[servers.indexOf(region)],
 				summonerName,
 			})
 		);
-		Router.push(`/summoner/${region}/${summonerName}`);
+		Router.push(
+			`/summoner/${reqServers[servers.indexOf(region)]}/${summonerName}`
+		);
 		setSummonerName("");
 	}
 
@@ -63,7 +84,7 @@ export default function Home() {
 			{
 				url: "/summonerByName",
 				method: "POST",
-				body: { region, summonerName },
+				body: { region: reqServers[servers.indexOf(region)], summonerName },
 			},
 			requestHandler
 		);
