@@ -41,6 +41,9 @@ function ProfileUpdate() {
 
 	useEffect(() => {
 		const { region, summonerName } = router.query;
+		if (!matches[0]) {
+			return;
+		}
 		if (matches[0].players.length === 0) {
 			sendRequest(
 				{

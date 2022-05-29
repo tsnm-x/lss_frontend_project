@@ -71,6 +71,7 @@ const PlayerCards = (props) => {
 													imgLink={props.mainPlayer?.championName}
 													rune1={props.mainPlayer?.perks.styles[0].style}
 													rune2={props.mainPlayer?.perks.styles[1].style}
+													perks={props.mainPlayer?.perks}
 												/>
 
 												{/* date  */}
