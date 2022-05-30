@@ -12,14 +12,14 @@ const ProfileCard = (props) => {
 				{/* profile img  */}
 				<div className={`${classes.profile_img}`}>
 					<img
-						src={`http://ddragon.leagueoflegends.com/cdn/12.9.1/img/profileicon/${props.profileIcon}.png`}
+						src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${props.profileIcon}.png`}
 						alt="profile image"
 						layout="fill"
 					/>
 					<img src="" alt="" />
 				</div>
 				{/* profile bottom number  */}
-				<div className={`${classes.profile_number}`}>92</div>
+				<div className={`${classes.profile_number}`}>{props.summonerLevel}</div>
 			</div>
 			{/* profile details  */}
 			<div className={`${classes.profile_details}`}>
