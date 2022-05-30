@@ -79,6 +79,9 @@ function ProfileUpdate() {
 	};
 
 	console.log(ranks, "ranks");
+	const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
+	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
+	console.log(rankSolo, rankFlex, "solo", "flez");
 	return (
 		<>
 			<Header />
@@ -92,10 +95,10 @@ function ProfileUpdate() {
 					/>
 					{/* rank status  */}
 					<div className={` flex gap-x-4 items-end ${classes.rank_wrap}`}>
-						{ranks[1] && (
-							<RankStatus title="Ranked Solo/Duo" ranks={ranks[1]} />
+						{rankSolo && (
+							<RankStatus title="Ranked Solo/Duo" ranks={rankSolo} />
 						)}
-						{ranks[0] && <RankStatus title="Ranked Flex" ranks={ranks[0]} />}
+						{rankFlex && <RankStatus title="Ranked Flex" ranks={rankFlex} />}
 					</div>
 				</div>
 			</main>
