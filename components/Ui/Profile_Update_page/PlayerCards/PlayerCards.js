@@ -10,10 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../../../store/profile";
 import Loader from "../../../shared/loader/Loader";
 
-const PlayerCards = () => {
+const PlayerCards = (props) => {
 	const [cardDetailsExpand, setCardDetailsExpand] = useState(false);
 	const [start, setStart] = useState(10);
-	const [selectedMatchType, setSelectedMatchType] = useState("all");
 	const [update, setUpdate] = useState(true);
 	const matches = useSelector((state) => state.profile.profile);
 	const region = useSelector((state) => state.profile.region);
@@ -82,6 +81,17 @@ const PlayerCards = () => {
 		return gameStart;
 	}
 
+	const selectGameType = (queueId) => {
+		switch (queueId) {
+			case 420:
+				return "ranked solo";
+			case 440:
+				return "ranked flex";
+			default:
+				return "normals";
+		}
+	};
+
 	return (
 		<div>
 			{/* lists */}
@@ -94,18 +104,65 @@ const PlayerCards = () => {
 					const matchType = mainPlayer?.win ? "victory" : "defeat";
 					let indicatorTypeColor =
 						matchType === "victory" ? " bg-white-blue" : "bg-red-yellow-gold";
-					return (
-						<PlayerCard
-							key={index}
-							color={indicatorTypeColor}
-							type={matchType}
-							mainPlayer={mainPlayer}
-							playerList={match.players}
-							duration={convertHMS(match.duration)}
-							gameStartDate={getGameStart(match.gameStartTimestamp)}
-							queueId={match.queueId}
-						/>
-					);
+					if (props.selectedMatchType === "all") {
+						return (
+							<PlayerCard
+								key={index}
+								color={indicatorTypeColor}
+								type={matchType}
+								mainPlayer={mainPlayer}
+								playerList={match.players}
+								duration={convertHMS(match.duration)}
+								gameStartDate={getGameStart(match.gameStartTimestamp)}
+								queueId={match.queueId}
+							/>
+						);
+					} else if (props.selectedMatchType === "normals") {
+						if (selectGameType(match.queueId) === "normals") {
+							return (
+								<PlayerCard
+									key={index}
+									color={indicatorTypeColor}
+									type={matchType}
+									mainPlayer={mainPlayer}
+									playerList={match.players}
+									duration={convertHMS(match.duration)}
+									gameStartDate={getGameStart(match.gameStartTimestamp)}
+									queueId={match.queueId}
+								/>
+							);
+						} else return <></>;
+					} else if (props.selectedMatchType === "ranked solo") {
+						if (selectGameType(match.queueId) === "ranked solo") {
+							return (
+								<PlayerCard
+									key={index}
+									color={indicatorTypeColor}
+									type={matchType}
+									mainPlayer={mainPlayer}
+									playerList={match.players}
+									duration={convertHMS(match.duration)}
+									gameStartDate={getGameStart(match.gameStartTimestamp)}
+									queueId={match.queueId}
+								/>
+							);
+						} else return <></>;
+					} else if (props.selectedMatchType === "ranked flex") {
+						if (selectGameType(match.queueId) === "ranked flex") {
+							return (
+								<PlayerCard
+									key={index}
+									color={indicatorTypeColor}
+									type={matchType}
+									mainPlayer={mainPlayer}
+									playerList={match.players}
+									duration={convertHMS(match.duration)}
+									gameStartDate={getGameStart(match.gameStartTimestamp)}
+									queueId={match.queueId}
+								/>
+							);
+						} else return <></>;
+					}
 				})}
 			</div>
 			<div className=" pt-16 pb-24 ">

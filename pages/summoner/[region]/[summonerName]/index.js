@@ -70,7 +70,14 @@ function ProfileUpdate() {
 
 	const rankStatus = [{ title: "Ranked Solo/Duo" }];
 	const ControlBtnLists = ["ranked solo", "normals", "ranked flex"];
-	console.log(mainPlayer);
+	const [selectedMatchType, setSelectedMatchType] = useState("all");
+	const filterMatches = (btn) => {
+		if (btn === selectedMatchType) {
+			setSelectedMatchType("all");
+		} else {
+			setSelectedMatchType(btn);
+		}
+	};
 
 	return (
 		<>
@@ -125,14 +132,21 @@ function ProfileUpdate() {
 							<div className=" flex gap-x-3 mb-4 ">
 								{ControlBtnLists.map((item, index) => {
 									return (
-										<button className="btn bg-transparent " key={index}>
+										<button
+											onClick={() => filterMatches(item)}
+											className="btn bg-transparent "
+											key={index}
+										>
 											{item}
 										</button>
 									);
 								})}
 							</div>
 							{/* player cards  */}
-							<PlayerCards className="pt-[14px] pb-[30px] px-[15px]" />
+							<PlayerCards
+								selectedMatchType={selectedMatchType}
+								className="pt-[14px] pb-[30px] px-[15px]"
+							/>
 						</div>
 					</div>
 				</div>
