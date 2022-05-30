@@ -53,7 +53,6 @@ function ProfileUpdate() {
 					body: { region, summonerName },
 				},
 				(res) => {
-					console.log(res, "===============><");
 					if (res?.status === 200) {
 						dispatch(
 							profileAction.setProfileDataPage({
@@ -79,6 +78,7 @@ function ProfileUpdate() {
 		}
 	};
 
+	console.log(ranks, "ranks");
 	return (
 		<>
 			<Header />
@@ -92,8 +92,10 @@ function ProfileUpdate() {
 					/>
 					{/* rank status  */}
 					<div className={` flex gap-x-4 items-end ${classes.rank_wrap}`}>
-						<RankStatus title="Ranked Solo/Duo" ranks={ranks[0]} />
-						<RankStatus title="Ranked Flex" ranks={ranks[2]} />
+						{ranks[1] && (
+							<RankStatus title="Ranked Solo/Duo" ranks={ranks[1]} />
+						)}
+						{ranks[0] && <RankStatus title="Ranked Flex" ranks={ranks[0]} />}
 					</div>
 				</div>
 			</main>
