@@ -191,7 +191,7 @@ const PlayerCards = (props) => {
 													props.mainPlayer?.item5,
 													props.mainPlayer?.item6,
 												]}
-												level={props.mainPlayer?.largestMultiKill}
+												largestMultiKill={props.mainPlayer?.largestMultiKill}
 												// killReward={[
 												// 	props.mainPlayer?.item0,
 												// 	props.mainPlayer?.item1,

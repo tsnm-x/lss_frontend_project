@@ -56,14 +56,13 @@ const RewardCard = (props) => {
 				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
 		}
 	};
-
-	function largestMultiKill(level) {
-		console.log(level);
-		switch (level) {
+	console.log(props.largestMultiKill);
+	function largestMultiKill(largestMultiKill) {
+		console.log(largestMultiKill);
+		switch (largestMultiKill) {
 			case 0:
-				return "Zero Kill";
 			case 1:
-				return "Single Kill";
+				return "";
 			case 2:
 				return "Double Kill";
 			case 3:
@@ -104,9 +103,13 @@ const RewardCard = (props) => {
 						</div>
 					);
 				})}
-				<button className=" btn bg-red-yellow border-0 text-[12px] h-7 py-0 px-7 rounded-full  ">
-					{largestMultiKill(props.level)}
-				</button>
+				{props.largestMultiKill > 1 ? (
+					<button className=" btn bg-red-yellow border-0 text-[12px] h-7 py-0 px-7 rounded-full  ">
+						{largestMultiKill(props.largestMultiKill)}
+					</button>
+				) : (
+					""
+				)}
 			</div>
 		</div>
 	);
