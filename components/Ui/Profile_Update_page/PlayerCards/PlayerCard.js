@@ -91,11 +91,11 @@ const PlayerCards = (props) => {
 		console.log(props.queueId, "queueId");
 		switch (props.queueId) {
 			case 76:
-				"Ultra Rapid Fire";
+				return "Ultra Rapid Fire";
 			case 100:
-				"5v5 ARAM";
+				return "5v5 ARAM";
 			case 400:
-				"5v5 Draft Pick";
+				return "5v5 Draft Pick";
 			case 420:
 				return "5v5 Ranked Solo";
 			case 430:
@@ -103,9 +103,9 @@ const PlayerCards = (props) => {
 			case 440:
 				return "5v5 Ranked Flex";
 			case 450:
-				"5v5 ARAM";
+				return "5v5 ARAM";
 			case 470:
-				"3v3 Ranked Flex";
+				return "3v3 Ranked Flex";
 			case 900:
 				return "ARURF";
 
