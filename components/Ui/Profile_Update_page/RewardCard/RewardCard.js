@@ -79,6 +79,7 @@ const RewardCard = (props) => {
 			{/* reward  */}
 			<div className=" flex gap-x-3 mb-4 ">
 				{props.items.map((item, index) => {
+					if (item === 0) return <div className=" w-8 h-8 " key={index}></div>;
 					return (
 						<div className=" w-8 h-8 " key={index}>
 							<img

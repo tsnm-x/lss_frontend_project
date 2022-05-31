@@ -6,9 +6,9 @@ import RoundChartTwo from "../../../public/assets/graph/rounded/Sharts - Charts 
 import RoundChartThree from "../../../public/assets/graph/rounded/Sharts - Charts 1.png";
 
 const SummonerHighlights = () => {
-    return (
-        <div className=" flex gap-x-5 ">
-            <div className=" w-[70px] h-[70px] ">
+	return (
+		<div className=" flex gap-x-5 ">
+			{/* <div className=" w-[70px] h-[70px] ">
                 <Image src={RoundChartOne} alt="rounded chart" />
             </div>
             <div className=" w-[70px] h-[70px] ">
@@ -16,9 +16,9 @@ const SummonerHighlights = () => {
             </div>
             <div className=" w-[70px] h-[70px] ">
                 <Image src={RoundChartThree} alt="rounded chart" />
-            </div>
-        </div>
-    );
+            </div> */}
+		</div>
+	);
 };
 
 export default ProfileCardWrapHoc(SummonerHighlights);

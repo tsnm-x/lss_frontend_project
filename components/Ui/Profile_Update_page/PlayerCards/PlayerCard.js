@@ -176,7 +176,7 @@ const PlayerCards = (props) => {
 													<p className=" capitalize ">{props.type}</p>
 													<p className=" capitalize ">{props.duration}</p>
 													<span className=" sf-7px-regular text-mix-white-black uppercase ">
-														23:cs
+														{props.mainPlayer?.totalMinionsKilled}:cs
 													</span>
 												</div>
 											</div>
