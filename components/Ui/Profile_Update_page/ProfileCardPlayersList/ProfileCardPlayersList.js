@@ -19,13 +19,12 @@ const ProfileCardPlayersList = (props) => {
 			{/* left side list  */}
 			<div className=" grid grid-cols-2 gap-y-2 w-[300px] py-5 ">
 				{orderedPlayersList.map((player, index) => {
-					console.log(player, " playeeer", index);
 					return (
 						<div key={"player-" + index} className="flex items-center gap-x-3">
 							<div className=" w-5 h-5 rounded-full border border-mix-white-black-100 relative ">
 								<Image
 									className="rounded-full border border-mix-white-black-100"
-									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/${player.championName}.png`}
+									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/${player?.championName}.png`}
 									alt="player image"
 									layout="fill"
 								/>

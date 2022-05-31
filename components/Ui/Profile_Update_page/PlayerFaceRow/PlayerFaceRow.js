@@ -16,7 +16,6 @@ const PlayerFaceRow = (props) => {
 		<div className={`flex justify-between ${props.className}`}>
 			<div className={`grid content-between gap-y-4 ${props.faceStyle}`}>
 				{props.group.map((player, index) => {
-					console.log(player, index, "player");
 					const items = [
 						player.item0,
 						player.item1,
