@@ -112,7 +112,7 @@ const PlayerCards = (props) => {
 			case 470:
 				return "3v3 Ranked Flex";
 			case 900:
-				return "ARURF";
+				return "URF";
 
 			default:
 				return "Normal Game";
