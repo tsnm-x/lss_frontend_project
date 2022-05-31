@@ -1,9 +1,9 @@
 .wrapper {
     @apply w-full overflow-y-hidden;
     background: url("../public/assets/league-of-legends-bg.png") no-repeat
-        center center;
+        top center;
     background-size: cover;
-    height: calc(100vh - 111px);
+    height: calc(100vh - 80px);
 }
 .bgImg {
     width: 100%;
