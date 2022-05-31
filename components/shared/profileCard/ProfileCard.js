@@ -1,10 +1,42 @@
 import React from "react";
 import classes from "./profileCard.module.css";
 import Image from "next/image";
-import ProfileLargeImg from "../../../public/assets/profile/profile-large.png";
+
+import useHttp from "../../../hook/useHttp";
+import { profileAction } from "../../../store/profile";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import Loader from "../loader/Loader";
+
 import Link from "next/link";
 
 const ProfileCard = (props) => {
+	const router = useRouter();
+	const dispatch = useDispatch();
+	const { sendRequest, hasError } = useHttp();
+	const { region, summonerName } = router.query;
+	const loader = useSelector((state) => state.loader.loader);
+	const refreshHandler = () => {
+		const requestHandler = (res) => {
+			console.log(res, "new res");
+			dispatch(
+				profileAction.setProfileDataPage({
+					profile: res.data.matches,
+					region,
+					summonerName,
+				})
+			);
+		};
+		sendRequest(
+			{
+				url: "/summonerByName",
+				method: "POST",
+				body: { region, summonerName },
+			},
+			requestHandler
+		);
+	};
+
 	return (
 		<div className={`flex items-end gap-x-[18px] ${props.className}`}>
 			{/* profile  */}
@@ -26,9 +58,16 @@ const ProfileCard = (props) => {
 				<h2 className={`${classes.profile_name}`}>{props.summonerName}</h2>
 				<p className={`${classes.profile_texts}`}>ladder rank 2.123</p>
 				<div className=" flex gap-x-2 ">
-					<Link href="/summoner/profile-update" passHref>
-						<button className="btn">{props.btnOne}</button>
-					</Link>
+					{!loader ? (
+						<button className="btn" onClick={refreshHandler}>
+							{props.btnOne}
+						</button>
+					) : (
+						<button className="btn">
+							<Loader />
+						</button>
+					)}
+
 					<button className="btn bg-red-yellow">live simulator</button>
 				</div>
 			</div>

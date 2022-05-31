@@ -1,6 +1,11 @@
 import React, { useState, useReducer } from "react";
 import classes from "./PlayerCards.module.css";
-import ProfileImage from "../../../../public/assets/season most played champs/leeSin.png";
+// import ProfileImage from "../../../../public/assets/season most played champs/leeSin.png";
+// import useHttp from "../../../../hook/useHttp";
+// import { profileAction } from "../../../../store/profile";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useRouter } from "next/router";
+// import Loader from "../../../shared/loader/Loader";
 
 import { BiExpand } from "react-icons/bi";
 import ProfileWithBatch from "../../ProfileWithBatch/ProfileWithBatch";
