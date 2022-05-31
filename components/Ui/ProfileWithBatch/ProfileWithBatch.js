@@ -32,8 +32,6 @@ import PhaseRush from "../../../public/assets/runes/Sorcery/PhaseRush.png";
 import SummonAery from "../../../public/assets/runes/Sorcery/SummonAery.png";
 
 const ProfileWithBatch = (props) => {
-	console.log(props?.perks?.styles[0]?.selections[0]?.perk);
-
 	const select1stRune = (runeId) => {
 		switch (runeId) {
 			// domination
@@ -87,7 +85,6 @@ const ProfileWithBatch = (props) => {
 	};
 
 	const select2ndRune = (runeId) => {
-		console.log(runeId, "rune ID");
 		switch (runeId) {
 			case 8100:
 				return Domination;
@@ -130,7 +127,7 @@ const ProfileWithBatch = (props) => {
 					<div className=" w-[15px] h-[15px] relative rounded-full border border-red-yellow p-[4px] flex justify-center items-center bg-full-dark ">
 						<Image
 							className=" inline-block "
-							src={select2ndRune(props.rune2)}
+							src={select2ndRune(props?.perks?.styles[1]?.style)}
 							alt="rank icon"
 						/>
 					</div>

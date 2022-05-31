@@ -93,7 +93,6 @@ const PlayerCards = (props) => {
 	};
 
 	const selectGameType = () => {
-		console.log(props.queueId, "queueId");
 		switch (props.queueId) {
 			case 76:
 				return "Ultra Rapid Fire";
@@ -227,10 +226,10 @@ const PlayerCards = (props) => {
 						{/* player rank card  */}
 						{cardDetailsExpand && (
 							<div className=" grid grid-cols-2 gap-x-12 pl-6 mr-6 pb-12 max-w-[1000px] ">
-								{<PlayerRankCard firstGroup={props.playerList.slice(0, 5)} />}
+								{<PlayerRankCard firstGroup={props.playerList.slice(5, 10)} />}
 								{
 									<PlayerRankCardReverse
-										secondGroup={props.playerList.slice(5, 10)}
+										secondGroup={props.playerList.slice(0, 5)}
 									/>
 								}
 							</div>

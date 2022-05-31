@@ -78,10 +78,9 @@ function ProfileUpdate() {
 		}
 	};
 
-	console.log(ranks, "ranks");
 	const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
 	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
-	console.log(rankSolo, rankFlex, "solo", "flez");
+
 	return (
 		<>
 			<Header />
