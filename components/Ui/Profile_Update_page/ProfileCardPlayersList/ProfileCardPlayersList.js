@@ -30,7 +30,7 @@ const ProfileCardPlayersList = (props) => {
 								/>
 							</div>
 							<h6 className=" gotham-10px-mid text-[10px] text-mix-white-black-100 capitalize ">
-								{player.summonerName}
+								{player?.summonerName}
 							</h6>
 						</div>
 					);
