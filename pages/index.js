@@ -61,8 +61,6 @@ export default function Home() {
 			setSummonerName("");
 			return;
 		}
-		console.log(region);
-		console.log(reqServers[servers.indexOf(region)]);
 
 		dispatch(
 			profileAction.setProfileDataPage({

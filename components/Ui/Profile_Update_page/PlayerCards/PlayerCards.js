@@ -11,7 +11,6 @@ import { profileAction } from "../../../../store/profile";
 import Loader from "../../../shared/loader/Loader";
 
 const PlayerCards = (props) => {
-	const [cardDetailsExpand, setCardDetailsExpand] = useState(false);
 	const [start, setStart] = useState(10);
 	const [update, setUpdate] = useState(true);
 	const matches = useSelector((state) => state.profile.profile);

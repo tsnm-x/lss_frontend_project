@@ -67,7 +67,6 @@ function ProfileUpdate() {
 		}
 	}, [router]);
 
-	const rankStatus = [{ title: "Ranked Solo/Duo" }];
 	const ControlBtnLists = ["ranked solo", "normals", "ranked flex"];
 	const [selectedMatchType, setSelectedMatchType] = useState("all");
 	const filterMatches = (btn) => {
@@ -78,10 +77,9 @@ function ProfileUpdate() {
 		}
 	};
 
-	console.log(ranks, "ranks");
 	const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
 	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
-	console.log(rankSolo, rankFlex, "solo", "flez");
+
 	return (
 		<>
 			<Header />
@@ -134,12 +132,14 @@ function ProfileUpdate() {
 						{/* bottom cards  */}
 						<div className=" mt-8 ">
 							{/* btn group  */}
-							<div className=" flex gap-x-3 mb-4 ">
+							<div className=" flex gap-x-3 mb-4  ">
 								{ControlBtnLists.map((item, index) => {
 									return (
 										<button
 											onClick={() => filterMatches(item)}
-											className="btn bg-transparent "
+											className={`btn ${
+												item === selectedMatchType ? "" : "bg-transparent"
+											}`}
 											key={index}
 										>
 											{item}

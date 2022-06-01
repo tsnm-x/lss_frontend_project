@@ -100,27 +100,26 @@ const PlayerCards = (props) => {
             : graphDispath({ type: graphElement.nextComponent });
     };
 
-    const selectGameType = () => {
-        console.log(props.queueId, "queueId");
-        switch (props.queueId) {
-            case 76:
-                return "Ultra Rapid Fire";
-            case 100:
-                return "5v5 ARAM";
-            case 400:
-                return "5v5 Draft Pick";
-            case 420:
-                return "5v5 Ranked Solo";
-            case 430:
-                return "5v5 Blind Pick";
-            case 440:
-                return "5v5 Ranked Flex";
-            case 450:
-                return "5v5 ARAM";
-            case 470:
-                return "3v3 Ranked Flex";
-            case 900:
-                return "ARURF";
+	const selectGameType = () => {
+		switch (props.queueId) {
+			case 76:
+				return "Ultra Rapid Fire";
+			case 100:
+				return "5v5 ARAM";
+			case 400:
+				return "5v5 Draft Pick";
+			case 420:
+				return "5v5 Ranked Solo";
+			case 430:
+				return "5v5 Blind Pick";
+			case 440:
+				return "5v5 Ranked Flex";
+			case 450:
+				return "5v5 ARAM";
+			case 470:
+				return "3v3 Ranked Flex";
+			case 900:
+				return "URF";
 
             default:
                 return "Normal Game";
@@ -188,133 +187,97 @@ const PlayerCards = (props) => {
                                                         }
                                                     />
 
-                                                    {/* date  */}
-                                                    <h2 className=" gotham-14px text-[22px] text-mix-white-black-100  ">
-                                                        <span className=" text-white-blue">
-                                                            {
-                                                                props.mainPlayer
-                                                                    ?.kills
-                                                            }
-                                                        </span>
-                                                        /
-                                                        <span className=" text-red-yellow-gold">
-                                                            {
-                                                                props.mainPlayer
-                                                                    ?.deaths
-                                                            }
-                                                        </span>
-                                                        /
-                                                        {
-                                                            props.mainPlayer
-                                                                ?.assists
-                                                        }
-                                                    </h2>
-                                                </div>
-                                                {/* bottom status bar  */}
-                                                <div
-                                                    className={` bg-full-dark rounded-full px-8 ${
-                                                        props.type === "victory"
-                                                            ? "text-white-blue"
-                                                            : "text-red-700"
-                                                    } py-[6px] flex items-center justify-between `}
-                                                >
-                                                    <p className=" capitalize ">
-                                                        {props.type}
-                                                    </p>
-                                                    <p className=" capitalize ">
-                                                        {props.duration}
-                                                    </p>
-                                                    <span className=" sf-7px-regular text-mix-white-black uppercase ">
-                                                        {
-                                                            props.mainPlayer
-                                                                ?.totalMinionsKilled
-                                                        }
-                                                        :cs
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            {/* kill details  */}
-                                            <RewardCard
-                                                items={[
-                                                    props.mainPlayer?.item0,
-                                                    props.mainPlayer?.item1,
-                                                    props.mainPlayer?.item2,
-                                                    props.mainPlayer?.item3,
-                                                    props.mainPlayer?.item4,
-                                                    props.mainPlayer?.item5,
-                                                    props.mainPlayer?.item6,
-                                                ]}
-                                                largestMultiKill={
-                                                    props.mainPlayer
-                                                        ?.largestMultiKill
-                                                }
-                                                // killReward={[
-                                                // 	props.mainPlayer?.item0,
-                                                // 	props.mainPlayer?.item1,
-                                                // ]}
-                                                summonerSpellsId={[
-                                                    props.mainPlayer
-                                                        ?.summoner1Id,
-                                                    props.mainPlayer
-                                                        ?.summoner2Id,
-                                                ]}
-                                                summonerRiotId={
-                                                    props.mainPlayer
-                                                        ?.summonerRiotId
-                                                }
-                                                // still not founded this two images so is fack data
-                                            />
-                                            {/* right side blank  */}
-                                            {cardDetailsExpand && (
-                                                <div className=" bg-full-dark rounded-3xl w-full"></div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* list section  */}
-                            {!cardDetailsExpand && (
-                                <ProfileCardPlayersList
-                                    playerList={props.playerList}
-                                    indicatorColor={props.color}
-                                />
-                            )}
-                        </div>
-                        {/* player rank card  */}
-                        {cardDetailsExpand && (
-                            <div className=" grid grid-cols-2 gap-x-12 pl-6 mr-6 pb-12 max-w-[1000px] ">
-                                {
-                                    <PlayerRankCard
-                                        firstGroup={props.playerList.slice(
-                                            0,
-                                            5
-                                        )}
-                                    />
-                                }
-                                {
-                                    <PlayerRankCardReverse
-                                        secondGroup={props.playerList.slice(
-                                            5,
-                                            10
-                                        )}
-                                    />
-                                }
-                            </div>
-                        )}
-                        {/* expand button  */}
-                        <button
-                            onClick={expandHandler}
-                            className={`w-5 h-5 flex justify-center items-center rounded-full absolute -bottom-2 right-16 text-black ${props.color}`}
-                        >
-                            <BiExpand className=" text-[12px] " />
-                        </button>
-                    </div>
-                    {/* right side indicator  */}
-                    <div
-                        className={` w-4 h-full absolute right-0 top-0 ${props.color}`}
-                    ></div>
-                    {/* bottom button  */}
-                    {/* {cardDetailsExpand && (
+													{/* date  */}
+													<h2 className=" gotham-14px text-[22px] text-mix-white-black-100  ">
+														<span className=" text-white-blue">
+															{props.mainPlayer?.kills}
+														</span>
+														/
+														<span className=" text-red-yellow-gold">
+															{props.mainPlayer?.deaths}
+														</span>
+														/{props.mainPlayer?.assists}
+													</h2>
+												</div>
+												{/* bottom status bar  */}
+												<div
+													className={` bg-full-dark rounded-full px-8 ${
+														props.type === "victory"
+															? "text-white-blue"
+															: "text-red-700"
+													} py-[6px] flex items-center justify-between `}
+												>
+													<p className=" capitalize ">{props.type}</p>
+													<p className=" capitalize ">{props.duration}</p>
+													<span className=" sf-7px-regular text-mix-white-black uppercase ">
+														{props.mainPlayer?.totalMinionsKilled}:cs
+													</span>
+												</div>
+											</div>
+											{/* kill details  */}
+											<RewardCard
+												items={[
+													props.mainPlayer?.item0,
+													props.mainPlayer?.item1,
+													props.mainPlayer?.item2,
+													props.mainPlayer?.item3,
+													props.mainPlayer?.item4,
+													props.mainPlayer?.item5,
+													props.mainPlayer?.item6,
+												]}
+												largestMultiKill={props.mainPlayer?.largestMultiKill}
+												// killReward={[
+												// 	props.mainPlayer?.item0,
+												// 	props.mainPlayer?.item1,
+												// ]}
+												summonerSpellsId={[
+													props.mainPlayer?.summoner1Id,
+													props.mainPlayer?.summoner2Id,
+												]}
+												summonerRiotId={props.mainPlayer?.summonerRiotId}
+												// still not founded this two images so is fack data
+											/>
+											{/* right side blank  */}
+											{cardDetailsExpand && (
+												<div className=" bg-full-dark rounded-3xl w-full"></div>
+											)}
+										</div>
+									</div>
+								</div>
+							</div>
+							{/* list section  */}
+							{!cardDetailsExpand && (
+								<ProfileCardPlayersList
+									playerList={props.playerList}
+									indicatorColor={props.color}
+								/>
+							)}
+						</div>
+						{/* player rank card  */}
+						{cardDetailsExpand && (
+							<div className=" grid grid-cols-2 gap-x-12 pl-6 mr-6 pb-12 max-w-[1000px] ">
+								{<PlayerRankCard firstGroup={props.playerList.slice(5, 10)} />}
+								{
+									<PlayerRankCardReverse
+										secondGroup={props.playerList.slice(0, 5)}
+									/>
+								}
+							</div>
+						)}
+						{/* expand button  */}
+						<button
+							onClick={expandHandler}
+							className={`w-5 h-5 flex justify-center items-center rounded-full absolute -bottom-2 right-16 text-black ${props.color}`}
+						>
+							<BiExpand className=" text-[12px] " />
+						</button>
+					</div>
+					{/* right side indicator  */}
+					<div
+						className={` w-4 h-full absolute right-0 top-0 ${props.color}`}
+					></div>
+					{/* bottom button  */}
+					{/* {cardDetailsExpand && (
                         <button
                             onClick={simulateBtnHanlder}
                             className=" px-5 py-2 rounded-xl bg-[#fc2300] text-white capitalize font-gotham-book text-[10px] absolute -bottom-[12px] left-[470px]  "
