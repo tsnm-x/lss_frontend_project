@@ -148,10 +148,12 @@ function ProfileUpdate() {
 								})}
 							</div>
 							{/* player cards  */}
-							<PlayerCards
-								selectedMatchType={selectedMatchType}
-								className="pt-[14px] pb-[30px] px-[15px]"
-							/>
+							{mainPlayer && (
+								<PlayerCards
+									selectedMatchType={selectedMatchType}
+									className="pt-[14px] pb-[30px] px-[15px]"
+								/>
+							)}
 						</div>
 					</div>
 				</div>
