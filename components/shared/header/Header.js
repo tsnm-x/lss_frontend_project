@@ -21,6 +21,14 @@ function Header() {
 	const navigateToLanding = () => {
 		Router.push(`/`);
 	};
+	const navigateTo = (e, item) => {
+		e.preventDefault();
+		if (item.name === "Home") {
+			Router.push(`/`);
+		} else if (item.name === "1vs1 Simulator") {
+			Router.push(`/game/simulator`);
+		}
+	};
 
 	return (
 		<>
@@ -39,9 +47,9 @@ function Header() {
 							<div className="hidden justify-self-center  sm:block sm:ml-6  ">
 								<div className="flex space-x-4 ">
 									{navigation.map((item) => (
-										<a
+										<button
 											key={item.name}
-											href={item.href}
+											onClick={(e) => navigateTo(e, item)}
 											className={` flex gap-x-3 items-center ${classNames(
 												item.current
 													? " text-white"
@@ -51,7 +59,7 @@ function Header() {
 											aria-current={item.current ? "page" : undefined}
 										>
 											{item.name} {item.icon}
-										</a>
+										</button>
 									))}
 								</div>
 							</div>
