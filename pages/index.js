@@ -109,7 +109,7 @@ export default function Home() {
 							League Of Legends
 						</h3>
 					</div>
-					<p className={`${classes.title} mx-auto flex flex-col `}>
+					<p className={`${classes.title} sf-13px-regular mx-auto flex flex-col `}>
 						<span>
 							Whether you like to dive straight into the fray, support your
 							teammates, or
