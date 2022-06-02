@@ -12,6 +12,14 @@ const nextConfig = {
 		ignoreBuildErrors: true,
 	},
 	future: { webpack5: true },
+	async rewrites() {
+		return [
+			{
+				source: "/riot.txt",
+				destination: "/riot.txt",
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;

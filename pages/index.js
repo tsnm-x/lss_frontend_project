@@ -19,14 +19,14 @@ import Router from "next/router";
 export default function Home() {
 	const servers = [
 		"BR",
-		"EUN",
+		"EUNE",
 		"EUW",
 		"JP",
 		"KR",
-		"LA",
-		"LA2",
+		"LAN",
+		"LAS",
 		"NA",
-		"OC",
+		"OCE",
 		"TR",
 		"RU",
 	];
@@ -245,11 +245,11 @@ export default function Home() {
 				</div>
 				{/* bottom sec  */}
 				<div className=" container max-w-[580px] justify-self-center self-end ">
-					<div className={`${classes.highlight} relative `}>
-						{/* first row  */}
-						<div className={`${classes.row} mb-9 w-[470px] ml-6 `}>
+					{/* <div className={`${classes.highlight} relative `}> */}
+					{/* first row  */}
+					{/* <div className={`${classes.row} mb-9 w-[470px] ml-6 `}>
 							<h4 className={`${classes.header} ${classes.sm_header}`}>
-								what make us{" "}
+								what make us
 								<span className=" text-white-blue">different?</span>{" "}
 							</h4>
 							<div className={`${classes.link_wrap}`}>
@@ -258,9 +258,9 @@ export default function Home() {
 								</a>
 								<div className={`${classes.blue_bg}`}></div>
 							</div>
-						</div>
-						{/* sec row  */}
-						<div className={`${classes.row} max-w-[380px] `}>
+						</div> */}
+					{/* sec row  */}
+					{/* <div className={`${classes.row} max-w-[380px] `}>
 							<div className={`${classes.link_wrap}`}>
 								<a href="#" className={`${classes.link}`}>
 									learn more
@@ -271,14 +271,14 @@ export default function Home() {
 								className={`${classes.header} ${classes.sm_header} flex flex-col `}
 							>
 								<span className=" normal-case">What do we mean by</span>
-								<span className=" text-white-blue">simulating?</span>{" "}
+								<span className=" text-white-blue">simulating?</span>
 							</h4>
-						</div>
-						{/* img wrap  */}
-						<div className=" w-[335px] absolute -right-[165px] -bottom-[6px]">
+						</div> */}
+					{/* img wrap  */}
+					{/* <div className=" w-[335px] absolute -right-[165px] -bottom-[6px]">
 							<Image src={IrealaImg} alt="ireala league of legends" />
-						</div>
-					</div>
+						</div> */}
+					{/* </div> */}
 				</div>
 				{/* left chat  */}
 				<div className={`feedback_btn_wrap`}>

@@ -13,7 +13,6 @@ import Emblem_Grandmaster from "../../../public/assets/ranks/Emblem_Grandmaster.
 import Emblem_Challenger from "../../../public/assets/ranks/Emblem_Challenger.png";
 
 const RankStatus = (props) => {
-	console.log(props.ranks, "ranksss");
 	let RankIcon;
 	switch (props.ranks?.tier) {
 		case "IRON":

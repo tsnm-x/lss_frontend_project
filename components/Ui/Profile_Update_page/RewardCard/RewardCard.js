@@ -56,9 +56,8 @@ const RewardCard = (props) => {
 				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
 		}
 	};
-	console.log(props.largestMultiKill);
+
 	function largestMultiKill(largestMultiKill) {
-		console.log(largestMultiKill);
 		switch (largestMultiKill) {
 			case 0:
 			case 1:
@@ -73,7 +72,7 @@ const RewardCard = (props) => {
 				return "Penta Kill";
 		}
 	}
-	console.log(props.summonerRiotId);
+
 	return (
 		<div className=" bg-full-dark pt-5 pb-4 pl-6 pr-8 rounded-3xl  ">
 			{/* reward  */}
