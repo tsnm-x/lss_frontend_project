@@ -14,7 +14,7 @@ function classNames(...classes) {
 }
 const navigation = [
 	{ name: "Home", href: "#", current: true, icon: null },
-	{ name: "Live", href: "#", current: false, icon: <AiOutlineWifi /> },
+	// { name: "Live", href: "#", current: false, icon: <AiOutlineWifi /> },
 	{ name: "1vs1 Simulator", href: "#", current: false, icon: null },
 ];
 function Header() {
