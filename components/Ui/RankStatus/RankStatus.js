@@ -46,14 +46,14 @@ const RankStatus = (props) => {
 			RankIcon = Emblem_Iron;
 	}
 	return (
-		<div className=" w-full max-w-[250px]">
+		<div className={` w-full ${props.className}`}>
 			<p className=" gotham-10px-mid text-liquid-white mb-2 ml-3">
 				{/* Ranked Solo/Duo */}
 				{props.title}
 			</p>
 			<div className="  flex items-center justify-between  ">
-				<div className={`${classes.imgWrap} w-[60px] h-[60px] mr-2`}>
-					<Image src={RankIcon} alt="rank icon" />
+				<div className={`${classes.imgWrap} relative w-[45px] h-[52px] mr-2`}>
+					<Image src={RankIcon} alt="rank icon" layout="fill" />
 				</div>
 				{/* rank details  */}
 				<div className=" grow   ">

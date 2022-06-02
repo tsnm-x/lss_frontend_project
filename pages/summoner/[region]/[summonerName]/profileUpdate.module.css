@@ -1,5 +1,5 @@
 .main {
-    @apply pt-[74px] pb-[184px] ;
+    @apply pt-[74px] pb-[135px] ;
   background: transparent url("../../../../public/assets/update-profile/background.png") no-repeat center center;
   background-size: cover;
   position: relative;
@@ -9,7 +9,8 @@
   content: "";
   width: 100%;
   height: 100%;
-  background: transparent linear-gradient(0deg, #0F121DF5 0%, #5E606836 100%) 0% 0% no-repeat padding-box;
+  /* background-image: linear-gradient(0deg, #0F121D 0%, #5E6068 100%); */
+  background-image: linear-gradient(0deg, #0f121df2 50%, #5e606880 100%);
   position: absolute;
   z-index: 20;
   left: 0;
@@ -18,5 +19,5 @@
 
 /* player content  */
 .content {
-  @apply grid grid-cols-[minmax(auto,420px)_auto] container mx-auto px-4 gap-x-4 -mt-[100px] relative z-20 ;
+  @apply grid grid-cols-[minmax(auto,420px)_auto] container mx-auto px-4 gap-x-4 -mt-[65px] relative z-20 ;
 }

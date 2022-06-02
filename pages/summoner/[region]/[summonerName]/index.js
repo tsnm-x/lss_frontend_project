@@ -84,7 +84,7 @@ function ProfileUpdate() {
 		<>
 			<Header />
 			<main className={`${classes.main}`}>
-				<div className="container mx-auto z-30 relative pt-11 pb-16 px-4 flex gap-x-32 2xl:gap-x-[250px]  ">
+				<div className="container mx-auto z-30 relative px-4 flex gap-x-32 2xl:gap-x-[250px]  ">
 					<ProfileCard
 						btnOne="Refresh"
 						summonerName={mainPlayer?.summonerName}
@@ -92,9 +92,9 @@ function ProfileUpdate() {
 						summonerLevel={mainPlayer?.summonerLevel}
 					/>
 					{/* rank status  */}
-					<div className={` flex gap-x-4 items-end ${classes.rank_wrap}`}>
+					<div className={` flex items-end w-[550px] ${classes.rank_wrap}`}>
 						{rankSolo && (
-							<RankStatus title="Ranked Solo/Duo" ranks={rankSolo} />
+							<RankStatus className=" mr-4" title="Ranked Solo/Duo" ranks={rankSolo} />
 						)}
 						{rankFlex && <RankStatus title="Ranked Flex" ranks={rankFlex} />}
 					</div>
