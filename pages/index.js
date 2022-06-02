@@ -19,14 +19,14 @@ import Router from "next/router";
 export default function Home() {
 	const servers = [
 		"BR",
-		"EUN",
+		"EUNE",
 		"EUW",
 		"JP",
 		"KR",
-		"LA",
-		"LA2",
+		"LAN",
+		"LAS",
 		"NA",
-		"OC",
+		"OCE",
 		"TR",
 		"RU",
 	];
