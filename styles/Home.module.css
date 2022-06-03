@@ -22,12 +22,11 @@
 }
 
 .header {
-    @apply last:mb-3 text-center tracking-normal text-[33px] capitalize text-white;
+    @apply last:mb-3 text-center tracking-normal text-[33px] leading-[44px] capitalize text-white;
 }
 
 .title {
     @apply text-center mb-[30px] tracking-normal;
-    font: normal normal normal 13px/17px "sf-pro-text";
     color: #8d919f;
 }
 

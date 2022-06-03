@@ -112,6 +112,9 @@ a {
         @apply text-[8px] text-liquid-white leading-[10px];
     }
 
+    .sf-13px-regular {
+        @apply font-normal text-[13px] tracking-normal leading-[17px];
+    }
     .sf-10px-regular {
         @apply font-normal text-[10px] tracking-normal leading-[14px];
     }
