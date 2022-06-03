@@ -136,7 +136,7 @@ const PlayerCards = (props) => {
                         <div className=" flex justify-between">
                             {/* profile section  */}
                             <div
-                                className={` relative grow shrink basis-0 pr-7 max-w-[296px] ${classes.card}`}
+                                className={` relative grow shrink basis-0 pr-7 ${classes.card}`}
                             >
                                 <div
                                     className={` ${"bg-" + props.color} ${
@@ -144,7 +144,7 @@ const PlayerCards = (props) => {
                                     }`}
                                 ></div>
                                 <div
-                                    className={` ml-[8px] py-4 pl-4 pr-12 pb-10 relative  ${
+                                    className={` ml-[3px]  relative w-[296px] ${
                                         classes.card_content
                                     } ${
                                         props.type === "victory"
@@ -194,7 +194,7 @@ const PlayerCards = (props) => {
                                                     />
 
                                                     {/* date  */}
-                                                    <h2 className=" gotham-10px-mid text-[#47516C]  ">
+                                                    <h2 className=" ml-3 gotham-10px-mid text-[#47516C]  ">
                                                         <span className=" text-white-blue">
                                                             {
                                                                 props.mainPlayer

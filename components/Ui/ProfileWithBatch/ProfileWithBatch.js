@@ -108,7 +108,7 @@ const ProfileWithBatch = (props) => {
     if (props.imgLink === "FiddleSticks") championName = "Fiddlesticks";
 
     return (
-        <div className=" relative w-12 ">
+        <div className=" relative ">
             {/* image  */}
             <div
                 className={`border  ${

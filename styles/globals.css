@@ -96,7 +96,7 @@ a {
         @apply font-medium normal-case text-[12px] leading-4 tracking-normal;
     }
     .gotham-10px-mid {
-        @apply text-[10px] leading-[11px] font-medium font-gotham-mid;
+        @apply text-[8px] leading-[11px] font-medium font-gotham-mid;
     }
     .gotham-9px-mid {
         @apply text-[9px] leading-[10px]  tracking-[0px];
