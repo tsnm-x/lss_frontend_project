@@ -91,11 +91,17 @@ const PlayerCards = (props) => {
 		}
 	};
 
+	let sortedMatches = [...matches];
+
+	sortedMatches?.sort(function (x, y) {
+		return y.gameStartTimestamp - x.gameStartTimestamp;
+	});
+
 	return (
 		<div>
 			{/* lists */}
 			<div className=" flex flex-col gap-y-10 ">
-				{matches.map((match, index) => {
+				{sortedMatches.map((match, index) => {
 					const mainPlayer = match.players.find(
 						(player) => player.mainPlayer === true
 					);

@@ -1,7 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Router, { useRouter } from "next/router";
 
 const ProfileCardPlayersList = (props) => {
+	const router = useRouter();
+
 	const orderedPlayersList = [];
 	orderedPlayersList[0] = props.playerList[5];
 	orderedPlayersList[1] = props.playerList[0];
@@ -14,17 +17,32 @@ const ProfileCardPlayersList = (props) => {
 	orderedPlayersList[8] = props.playerList[9];
 	orderedPlayersList[9] = props.playerList[4];
 
+	const playerClickHandler = (e, player) => {
+		e.preventDefault();
+		const { region } = router.query;
+
+		window.location = `/summoner/${region}/${player.summonerName}`;
+	};
+
 	return (
 		<div className=" flex bg-full-dark grow shrink basis-0 justify-between -ml-8 pl-6 ">
 			{/* left side list  */}
 			<div className=" grid grid-cols-2 gap-y-2 w-[300px] py-5 ">
 				{orderedPlayersList.map((player, index) => {
+					let championName = player?.championName;
+					if (player?.championName === "FiddleSticks")
+						championName = "Fiddlesticks";
+
 					return (
-						<div key={"player-" + index} className="flex items-center gap-x-3">
+						<div
+							onClick={(e) => playerClickHandler(e, player)}
+							key={"player-" + index}
+							className="flex items-center gap-x-3 cursor-pointer"
+						>
 							<div className=" w-5 h-5 rounded-full border border-mix-white-black-100 relative ">
 								<Image
 									className="rounded-full border border-mix-white-black-100"
-									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/${player?.championName}.png`}
+									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/${championName}.png`}
 									alt="player image"
 									layout="fill"
 								/>

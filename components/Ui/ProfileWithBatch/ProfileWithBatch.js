@@ -103,13 +103,17 @@ const ProfileWithBatch = (props) => {
 		}
 	};
 
+	let championName = props.imgLink;
+
+	if (props.imgLink === "FiddleSticks") championName = "Fiddlesticks";
+
 	return (
 		<div className=" relative w-12 ">
 			{/* image  */}
 			<div className=" border border-white-blue rounded-full w-10 h-10 relative  ">
 				<Image
 					className=" block rounded-full"
-					src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/${props.imgLink}.png`}
+					src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/${championName}.png`}
 					alt="player image"
 					layout="fill"
 				/>
