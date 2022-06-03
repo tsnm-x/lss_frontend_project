@@ -24,19 +24,19 @@ const PlayerRankCard = (props) => {
         <div className={`w-full bg-full-dark ${props.className}`}>
             <div className=" h-full ">
                 {/* rank title  */}
-                <div className="  border-b border-white-blue pb-1 h-[8%] grid grid-cols-3 ">
-                    <p className=" capitalize text-liquid-white text-[12px] ">
+                <div className="  border-b border-white-blue grid grid-cols-3 ">
+                    <p className=" capitalize text-[#FFFFFF] gotham-5px-mid ">
                         s2021 rank
                     </p>
-                    <p className=" capitalize text-liquid-white text-[12px] ">
+                    <p className=" capitalize text-[#FFFFFF] gotham-5px-mid ">
                         ranked
                     </p>
-                    <p className=" capitalize text-liquid-white text-[12px] ">
+                    <p className=" capitalize text-[#FFFFFF] gotham-5px-mid ">
                         s22 champion
                     </p>
                 </div>
                 {/* rank list  */}
-                <div className=" h-[92%]  flex flex-col justify-between ">
+                <div className=" h-[calc(100%-6px)]  flex flex-col justify-between ">
                     {["", "", "", "", ""].map((item, index) => {
                         return (
                             <div
@@ -45,10 +45,10 @@ const PlayerRankCard = (props) => {
                             >
                                 {/* rank 2021 module  */}
                                 <div className=" flex items-center gap-x-1 ">
-                                    <div className=" w-10 h-10 ">
-                                        <Image src={RankIcon} alt="rank icon" />
+                                    <div className=" relative w-[12px] h-[12px] flex items-center justify-center ">
+                                        <Image src={RankIcon} alt="rank icon" layout="fill" />
                                     </div>
-                                    <p className=" text-[8px] text-liquid-white">
+                                    <p className=" sf-1px-reg text-liquid-white">
                                         IGITeak
                                     </p>
                                     {/* <div className=" flex items-center ">
@@ -61,9 +61,9 @@ const PlayerRankCard = (props) => {
                                     </div> */}
                                 </div>
                                 {/* ranked  */}
-                                <div>
+                                <div className=" flex flex-col flex-wrap justify-end pb-[2px] ">
                                     <div className=" flex flex-col ">
-                                        <p className=" text-[11px] capitalize text-white-blue ">
+                                        <p className=" sf-2px-reg capitalize text-white-blue ">
                                             58%{" "}
                                             <span className=" text-liquid-white ">
                                                 winrate
@@ -73,10 +73,11 @@ const PlayerRankCard = (props) => {
                                             (329 games played)
                                         </p> */}
                                     </div>
-                                    <div className=" w-full -mt-2">
+                                    <div className=" relative w-8 h-[2px]  ">
                                         <Image
                                             src={ProgressGraph}
                                             alt="progress graph"
+                                            layout="fill"
                                         />
                                     </div>
                                 </div>

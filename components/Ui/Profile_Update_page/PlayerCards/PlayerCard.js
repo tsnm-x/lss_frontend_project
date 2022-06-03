@@ -129,24 +129,22 @@ const PlayerCards = (props) => {
 
     return (
         <React.Fragment>
-            <div>
+            <div className=" w-full max-w-[610px]">
                 <div className="relative rounded-bl-[35px]  ">
-                    <div className="relative flex flex-col gap-y-12 bg-full-dark rounded-[24px] ">
+                    <div className="relative flex flex-col gap-y-12 bg-full-dark rounded-[24px] w-[97%] ">
                         {/* top section  */}
-                        <div className=" flex justify-between">
+                        <div className=" flex ">
                             {/* profile section  */}
-                            <div
-                                className={` relative grow shrink basis-0 pr-7 ${classes.card}`}
-                            >
+                            <div className={` relative ${cardDetailsExpand && 'w-full'} ${classes.card}`}>
                                 <div
                                     className={` ${"bg-" + props.color} ${
                                         classes.indicator
                                     }`}
                                 ></div>
                                 <div
-                                    className={` ml-[3px]  relative w-[296px] ${
-                                        classes.card_content
-                                    } ${
+                                    className={` ml-[3px]  relative ${
+                                        !cardDetailsExpand ? "w-[296px]": 'w-full'
+                                    }  ${classes.card_content} ${
                                         props.type === "victory"
                                             ? classes.blue_gradient
                                             : classes.red_gradient
@@ -271,7 +269,7 @@ const PlayerCards = (props) => {
                                             />
                                             {/* right side blank  */}
                                             {cardDetailsExpand && (
-                                                <div className=" bg-full-dark rounded-3xl w-full"></div>
+                                                <div className=" bg-full-dark rounded-8px w-full ml-5"></div>
                                             )}
                                         </div>
                                     </div>
@@ -309,24 +307,28 @@ const PlayerCards = (props) => {
                         {/* expand button  */}
                         <button
                             onClick={expandHandler}
-                            className={`w-5 h-5 flex justify-center items-center rounded-full absolute -bottom-2 right-16 text-black ${props.color}`}
+                            className={`w-[17px] h-[17px] flex justify-center items-center rounded-full absolute -bottom-2 right-[60px] text-black ${
+                                "bg-" + props.color
+                            }`}
                         >
                             <BiExpand className=" text-[12px] " />
                         </button>
                     </div>
                     {/* right side indicator  */}
                     <div
-                        className={` w-4 h-full absolute right-0 top-0 ${props.color}`}
+                        className={` w-[12px] h-full absolute right-0 top-0 ${
+                            "bg-" + props.color
+                        }`}
                     ></div>
                     {/* bottom button  */}
-                    {cardDetailsExpand && (
-                        <button
-                            onClick={simulateBtnHanlder}
-                            className=" px-5 py-2 rounded-xl bg-[#fc2300] text-white capitalize font-gotham-book text-[10px] absolute -bottom-[12px] left-[470px]  "
-                        >
-                            simulate game
-                        </button>
-                    )}
+                    {cardDetailsExpand &&
+                        // <button
+                        //     onClick={simulateBtnHanlder}
+                        //     className=" px-5 py-2 rounded-xl bg-[#fc2300] text-white capitalize font-gotham-book text-[10px] absolute -bottom-[12px] left-[470px]  "
+                        // >
+                        //     simulate game
+                        // </button>
+                        null}
                 </div>
                 {/* bottom chart  */}
                 {simulationDetails && openDetails && (

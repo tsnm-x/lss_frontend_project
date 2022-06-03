@@ -159,7 +159,7 @@ function ProfileUpdate() {
 				</div>
 			</section>
 			{/* feedback btn  */}
-			<FeedBackBtn className=" fixed right-12 bottom-12" />
+			{/* <FeedBackBtn className=" fixed right-12 bottom-12" /> */}
 		</>
 	);
 }

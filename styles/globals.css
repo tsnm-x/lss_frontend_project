@@ -127,9 +127,16 @@ a {
         @apply font-normal text-[7px] tracking-normal leading-[10px];
     }
 
+    .sf-2px-reg {
+        @apply font-sf-pro text-[2px] leading-[3px] font-medium;
+    }
+    .sf-1px-reg {
+        @apply font-sf-pro text-[1px] leading-[1px] font-medium;
+    }
+
     /* chat btn  */
     .feedback_btn_wrap {
-        @apply absolute left-20 bottom-10;
+        @apply absolute left-20 bottom-10 ;
     }
     .btn_img {
         @apply absolute left-[30px] -top-[40px] w-[85px];

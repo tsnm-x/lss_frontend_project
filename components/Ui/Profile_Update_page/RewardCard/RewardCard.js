@@ -74,7 +74,7 @@ const RewardCard = (props) => {
     }
 
     return (
-        <div className=" bg-full-dark w-[165px] ml-5 p-[6px_13px_13px_14px] rounded-8px   ">
+        <div className=" bg-full-dark w-full ml-[19px] p-[6px_13px_13px_14px] rounded-8px   ">
             {/* reward  */}
             <div className=" flex gap-x-[4px] mb-[6px] ">
                 {props.items.map((item, index) => {
@@ -103,8 +103,10 @@ const RewardCard = (props) => {
             {/* kill reward  */}
             <div className=" flex gap-x-[1px] relative ">
                 {props.summonerSpellsId.map((spellId, index) => {
-                    if (!spellId)
+                    console.log(selectSpell(spellId))
+                    if (!spellId) {
                         return <div className=" w-[11px] h-[11px]"></div>;
+                    }
                     return (
                         <div
                             className=" w-[11px] h-[11px] relative rounded-[2px] "
