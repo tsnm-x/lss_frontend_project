@@ -26,6 +26,11 @@ a {
     src: url("../public/assets/fonts/GothamMedium.ttf");
 }
 
+@font-face {
+    font-family: "sf-pro";
+    src: url('../public/assets/fonts/SFPRODISPLAYMEDIUM.OTF');
+}
+
 /* default style variable  */
 :root {
     /* Colors: */
@@ -91,7 +96,7 @@ a {
         @apply font-medium normal-case text-[12px] leading-4 tracking-normal;
     }
     .gotham-10px-mid {
-        @apply text-[12px] leading-[10px]  tracking-[0px];
+        @apply text-[10px] leading-[11px] font-medium font-gotham-mid;
     }
     .gotham-9px-mid {
         @apply text-[9px] leading-[10px]  tracking-[0px];
@@ -103,13 +108,13 @@ a {
         @apply text-[10px]  leading-[12px];
     }
     .gotham-5px-mid {
-        @apply text-[10px] text-liquid-white leading-[12px];
+        @apply font-gotham-mid text-[5px] leading-[6px];
     }
     .gotham-4px-mid {
         @apply text-[12px] text-liquid-white leading-[15px];
     }
     .gotham-2px-mid {
-        @apply text-[8px] text-liquid-white leading-[10px];
+        @apply text-[2px] leading-[2px] font-gotham-mid;
     }
 
     .sf-13px-regular {

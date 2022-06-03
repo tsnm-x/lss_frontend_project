@@ -108,7 +108,7 @@ const PlayerCards = (props) => {
 
 					const matchType = mainPlayer?.win ? "victory" : "defeat";
 					let indicatorTypeColor =
-						matchType === "victory" ? " bg-white-blue" : "bg-red-yellow-gold";
+						matchType === "victory" ? "white-blue" : "red-yellow-gold";
 					if (props.selectedMatchType === "all") {
 						return (
 							<PlayerCard
