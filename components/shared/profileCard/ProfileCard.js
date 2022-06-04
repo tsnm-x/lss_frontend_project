@@ -37,6 +37,14 @@ const ProfileCard = (props) => {
 		);
 	};
 
+	function changePage(){
+		if(!props.btnState){
+			router.push(
+				`${router.asPath}/livesimulator`
+			)
+		}
+	}
+
 	return (
 		<div className={`flex items-end gap-x-[18px] ${props.className}`}>
 			{/* profile  */}
@@ -68,7 +76,7 @@ const ProfileCard = (props) => {
 						</button>
 					)}
 
-					<button className="btn bg-red-yellow">live simulator</button>
+					<button className="btn bg-red-yellow" onClick={changePage}>{props.btnState ? 'Historic Games' : 'live simulator' }</button>
 				</div>
 			</div>
 		</div>
