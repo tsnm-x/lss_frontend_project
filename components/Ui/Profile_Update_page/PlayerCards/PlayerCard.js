@@ -344,12 +344,12 @@ const PlayerCards = (props) => {
                         <div className=" relative w-[85%] mx-auto ">
                             {/* {graphElement.component} */}
                             <p
-                                className="ml-[330px] 
+                                className="
                             text-white 
                             font-extrabold 
                             rounded-full
                             p-5
-                            border-red-900 w-[250px] border-2"
+                            border-red-900 w-[250px] border-2 mx-auto"
                             >
                                 Feature is coming soon!
                             </p>
