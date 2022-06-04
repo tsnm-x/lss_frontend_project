@@ -117,10 +117,10 @@ function ProfileUpdate() {
                         {/* season players  */}
                         <SeasonMostPlayed
                             title="season most played songs"
-                            className=" pt-[14px] pb-[30px] px-[27px] "
+                            className=" pt-[10px] pb-[30px] px-[18px] "
                         />
                         <YouPlayedOften
-                            className=" pt-[14px] pb-[30px] px-[27px]"
+                            className=" pt-[10px] pb-[30px] px-[18px] "
                             title="you play often with: "
                         />
                     </div>
