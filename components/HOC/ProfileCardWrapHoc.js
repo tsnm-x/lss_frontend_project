@@ -9,11 +9,13 @@ const ProfileCardWrapHoc = (PushedElement) => {
                     className={` ${classes.card_wrap} ${this.props.className} `}
                 >
                     {/* top slider  */}
-                    <div className=" pb-8 ">
-                        <h6 className=" gotham-15px-book text-liquid-white capitalize text-[] ">
-                            {this.props.title}
-                        </h6>
-                    </div>
+                    {this.props.title && (
+                        <div className=" mb-[26px] ">
+                            <h6 className=" font-gotham-book text-[8px] leading-[11px] font-medium text-liquid-white capitalize text-[] ">
+                                {this.props.title}
+                            </h6>
+                        </div>
+                    )}
                     <PushedElement {...this.props} />
                 </aside>
             );

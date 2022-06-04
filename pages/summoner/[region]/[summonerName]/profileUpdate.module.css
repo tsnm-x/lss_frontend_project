@@ -19,5 +19,5 @@
 
 /* player content  */
 .content {
-  @apply grid grid-cols-[minmax(auto,420px)_auto] container mx-auto px-4 gap-x-4 -mt-[65px] relative z-20 ;
+  @apply grid grid-cols-[385px_618px] container max-w-[1080px] mx-auto px-4 gap-x-4 -mt-[65px] relative z-20 ;
 }
