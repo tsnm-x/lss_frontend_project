@@ -2,18 +2,11 @@
     @apply bg-[url("../../../public/assets/profile/profile-bg.png")] bg-no-repeat bg-center bg-cover;
 }
 
-.profile {
-    @apply relative w-[130px] h-[130px];
-}
 
-.profile_img {
-    @apply relative rounded-[23px] w-full h-full overflow-hidden border border-mix-white-black;
-}
 
-.profile_number {
-    @apply absolute -bottom-[16px]  left-[41px] z-10 rounded-full border border-mix-white-black
-    w-[33px] h-[33px] flex items-center justify-center text-[10px] text-white bg-almost-dark;
-}
+
+
+
 
 .profile_details {
 }

@@ -157,8 +157,10 @@ a {
 
     /* btn style  */
     .btn {
-        @apply font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
-        border-mix-white-black rounded-7px px-5 py-4;
+        /* @apply font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
+        border-mix-white-black rounded-7px px-5 py-4; */
+        @apply font-gotham-book capitalize text-[10px] leading-[14px] font-medium px-[14px] py-[10px] text-liquid-white bg-white-blue border
+        border-mix-white-black rounded-[5px];
     }
 
     /* card wrapper  */

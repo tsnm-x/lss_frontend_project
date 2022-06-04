@@ -170,7 +170,7 @@ const PlayerCards = (props) => {
 					}
 				})}
 			</div>
-			<div className=" pt-16 pb-24 ">
+			<div className=" pt-[56px] pb-[228px] ">
 				{!hasError?.msg && (
 					<button
 						onClick={getMoreMatches}

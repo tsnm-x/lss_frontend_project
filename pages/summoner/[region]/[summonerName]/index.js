@@ -84,8 +84,9 @@ function ProfileUpdate() {
         <>
             <Header />
             <main className={`${classes.main}`}>
-                <div className="container mx-auto z-30 relative px-4 flex gap-x-32 2xl:gap-x-[250px]  ">
+                <div className="container max-w-[915px] mx-auto z-30 relative flex ">
                     <ProfileCard
+                        className="mb-[20px]"
                         btnOne="Refresh"
                         summonerName={mainPlayer?.summonerName}
                         profileIcon={mainPlayer?.profileIcon}
@@ -93,11 +94,10 @@ function ProfileUpdate() {
                     />
                     {/* rank status  */}
                     <div
-                        className={` flex items-end w-[550px] ${classes.rank_wrap}`}
+                        className={` flex gap-x-4 items-end w-[370px] ml-[140px] ${classes.rank_wrap}`}
                     >
                         {rankSolo && (
                             <RankStatus
-                                className=" mr-4"
                                 title="Ranked Solo/Duo"
                                 ranks={rankSolo}
                             />
@@ -169,7 +169,7 @@ function ProfileUpdate() {
                 </div>
             </section>
             {/* feedback btn  */}
-            {/* <FeedBackBtn className=" fixed right-12 bottom-12" /> */}
+            <FeedBackBtn className=" fixed right-12 bottom-12" />
         </>
     );
 }
