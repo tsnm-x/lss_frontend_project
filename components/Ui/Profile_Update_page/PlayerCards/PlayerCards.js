@@ -100,7 +100,7 @@ const PlayerCards = (props) => {
 	return (
 		<div>
 			{/* lists */}
-			<div className=" flex flex-col gap-y-10 ">
+			<div className=" flex flex-col gap-y-5 ">
 				{sortedMatches.map((match, index) => {
 					const mainPlayer = match.players.find(
 						(player) => player.mainPlayer === true
