@@ -111,7 +111,11 @@ const ProfileWithBatchSmall = (props) => {
         <div className=" relative ">
             {/* image  */}
             <div
-                className={`border border-white-blue rounded-full w-[17px] h-[17px] relative`}
+                className={`border ${
+                    props.profileBatchBorder
+                        ? props.profileBatchBorder
+                        : "border-white-blue"
+                }  rounded-full w-[17px] h-[17px] relative`}
             >
                 <Image
                     className=" block rounded-full"
@@ -122,7 +126,13 @@ const ProfileWithBatchSmall = (props) => {
             </div>
             {/* batchs  */}
             <div className=" flex justify-start items-end absolute -right-[6px] bottom-0 w-[10px]  ">
-                <div className=" relative w-[6px] h-[6px] rounded-full border-[0.3px] border-white-blue bg-full-dark flex justify-center items-center    ">
+                <div
+                    className={`relative w-[6px] h-[6px] rounded-full border-[0.3px] ${
+                        props.profileBatchBorder
+                            ? props.profileBatchBorder
+                            : "border-white-blue"
+                    } bg-full-dark flex justify-center items-center`}
+                >
                     <Image
                         className=" inline-block "
                         src={select1stRune(
@@ -132,7 +142,13 @@ const ProfileWithBatchSmall = (props) => {
                         layout="fill"
                     />
                 </div>
-                <div className=" relative w-[3px] h-[3px] rounded-full border-[0.3px] border-white-blue bg-full-dark flex justify-center items-center  ">
+                <div
+                    className={` relative w-[3px] h-[3px] rounded-full border-[0.3px] ${
+                        props.profileBatchBorder
+                            ? props.profileBatchBorder
+                            : "border-white-blue"
+                    } bg-full-dark flex justify-center items-center`}
+                >
                     <Image
                         className=" inline-block "
                         src={select2ndRune(props?.perks?.styles[1]?.style)}

@@ -28,12 +28,7 @@ const PlayerFaceRow = (props) => {
                         <div key={index} className=" flex items-center ">
                             {items.map((item, index) => {
                                 if (item === 0) {
-                                    return (
-                                        <div
-                                            className=" w-3 h-3 relative  "
-                                            key={index}
-                                        ></div>
-                                    );
+                                    return null;
                                 }
                                 return (
                                     <div
@@ -63,6 +58,7 @@ const PlayerFaceRow = (props) => {
                             summoner1Id={player.summoner1Id}
                             summoner2Id={player.summoner2Id}
                             perks={player.perks}
+                            profileBatchBorder={props.profileBatchBorder}
                         />
                     );
                 })}

@@ -9,6 +9,9 @@ import SummonerHighlights from "../../../../components/Ui/SummonerHighlights/Sum
 import TierGraph from "../../../../components/Ui/Profile_Update_page/TierGraph/TierGraph";
 import PlayerCards from "../../../../components/Ui/Profile_Update_page/PlayerCards/PlayerCards";
 import FeedBackBtn from "../../../../components/shared/FeedbackBtn/FeedBackBtn";
+import leaveFeedback from '../../../../public/assets/leave-feedback.png';
+import Image from 'next/image'
+import { BsFillChatSquareTextFill } from "react-icons/bs"; 
 import useHttp from "../../../../hook/useHttp";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -169,7 +172,8 @@ function ProfileUpdate() {
                 </div>
             </section>
             {/* feedback btn  */}
-            <FeedBackBtn className=" fixed right-12 bottom-12" />
+            <FeedBackBtn className=" fixed right-14 bottom-12 z-50" />
+            
         </>
     );
 }

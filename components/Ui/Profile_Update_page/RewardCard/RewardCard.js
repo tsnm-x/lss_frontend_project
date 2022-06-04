@@ -79,12 +79,7 @@ const RewardCard = (props) => {
             <div className=" flex gap-x-[4px] mb-[6px] ">
                 {props.items.map((item, index) => {
                     if (item === 0)
-                        return (
-                            <div
-                                className=" w-[15px] h-[15px] "
-                                key={index}
-                            ></div>
-                        );
+                        return null;
                     return (
                         <div
                             className=" w-[15px] h-[16px] relative "

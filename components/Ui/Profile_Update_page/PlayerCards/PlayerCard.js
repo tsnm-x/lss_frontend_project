@@ -227,10 +227,10 @@ const PlayerCards = (props) => {
                                                             : "text-red-700"
                                                     } py-[3px] flex items-center justify-between `}
                                                 >
-                                                    <p className=" capitalize gotham-5px-mid text-white-blue mr-[15px] ">
+                                                    <p className=" capitalize gotham-5px-mid mr-[15px] ">
                                                         {props.type}
                                                     </p>
-                                                    <p className=" capitalize gotham-5px-mid text-white-blue mr-[7px] ">
+                                                    <p className=" capitalize gotham-5px-mid mr-[7px] ">
                                                         {props.duration}
                                                     </p>
                                                     <span className=" gotham-2px-mid text-mix-white-black uppercase ">
