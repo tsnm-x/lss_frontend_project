@@ -6,7 +6,7 @@ const PlayerRankCard = (props) => {
 	return (
 		<div className=" grid grid-cols-[55%_39%] justify-between">
 			{/* left side  */}
-			<PlayerRankRow />
+			<PlayerRankRow group={props.firstGroup} />
 			{/* right side  */}
 			<PlayerFaceRow group={props.firstGroup} />
 		</div>

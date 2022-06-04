@@ -94,7 +94,11 @@ function ProfileUpdate() {
 					{/* rank status  */}
 					<div className={` flex items-end w-[550px] ${classes.rank_wrap}`}>
 						{rankSolo && (
-							<RankStatus className=" mr-4" title="Ranked Solo/Duo" ranks={rankSolo} />
+							<RankStatus
+								className=" mr-4"
+								title="Ranked Solo/Duo"
+								ranks={rankSolo}
+							/>
 						)}
 						{rankFlex && <RankStatus title="Ranked Flex" ranks={rankFlex} />}
 					</div>

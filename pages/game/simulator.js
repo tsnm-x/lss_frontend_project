@@ -16,13 +16,13 @@ export default function Simulator() {
 			<Header />
 			<Unity
 				style={{
-					width: "800px",
-					height: "600px",
+					width: "80%",
+					// height: "600px",
 					background: "#231F20",
 					justifySelf: "center",
 					alignSelf: "center",
 				}}
-				className="ml-[25%]"
+				className="ml-[10%]"
 				unityContext={unityContext}
 			/>
 		</>

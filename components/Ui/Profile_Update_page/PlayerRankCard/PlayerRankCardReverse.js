@@ -8,7 +8,7 @@ const PlayerRankCard = (props) => {
 			{/* right side  */}
 			<PlayerFaceRow group={props.secondGroup} faceStyle=" order-2 " />
 			{/* left side  */}
-			<PlayerRankRow />
+			<PlayerRankRow group={props.secondGroup} />
 		</div>
 	);
 };
