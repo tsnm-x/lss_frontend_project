@@ -131,11 +131,15 @@ const PlayerCards = (props) => {
         <React.Fragment>
             <div className=" w-full max-w-[610px]">
                 <div className="relative rounded-bl-[35px]  ">
-                    <div className="relative flex flex-col gap-y-12 bg-full-dark rounded-[24px] w-[97%] ">
+                    <div className="relative flex flex-col bg-full-dark rounded-[24px] w-[97%] ">
                         {/* top section  */}
-                        <div className=" flex ">
+                        <div className={`flex ${cardDetailsExpand && 'mb-6'}`}>
                             {/* profile section  */}
-                            <div className={` relative ${cardDetailsExpand && 'w-full'} ${classes.card}`}>
+                            <div
+                                className={` relative ${
+                                    cardDetailsExpand && "w-full"
+                                } ${classes.card}`}
+                            >
                                 <div
                                     className={` ${"bg-" + props.color} ${
                                         classes.indicator
@@ -143,7 +147,9 @@ const PlayerCards = (props) => {
                                 ></div>
                                 <div
                                     className={` ml-[3px]  relative ${
-                                        !cardDetailsExpand ? "w-[296px]": 'w-full'
+                                        !cardDetailsExpand
+                                            ? "w-[296px]"
+                                            : "w-full"
                                     }  ${classes.card_content} ${
                                         props.type === "victory"
                                             ? classes.blue_gradient
@@ -285,7 +291,7 @@ const PlayerCards = (props) => {
                         </div>
                         {/* player rank card  */}
                         {cardDetailsExpand && (
-                            <div className=" grid grid-cols-2 gap-x-12 pl-6 mr-6 pb-12 max-w-[1000px] ">
+                            <div className=" grid grid-cols-2 gap-x-[22px]  pl-[14px] mr-2 pb-6 max-w-[1000px] ">
                                 {
                                     <PlayerRankCard
                                         firstGroup={props.playerList.slice(
@@ -307,7 +313,7 @@ const PlayerCards = (props) => {
                         {/* expand button  */}
                         <button
                             onClick={expandHandler}
-                            className={`w-[17px] h-[17px] flex justify-center items-center rounded-full absolute -bottom-2 right-[60px] text-black ${
+                            className={`w-[17px] h-[17px] flex justify-center items-center rounded-full absolute -bottom-2 right-[60px] text-black z-20 ${
                                 "bg-" + props.color
                             }`}
                         >
@@ -321,14 +327,16 @@ const PlayerCards = (props) => {
                         }`}
                     ></div>
                     {/* bottom button  */}
-                    {cardDetailsExpand &&
-                        // <button
-                        //     onClick={simulateBtnHanlder}
-                        //     className=" px-5 py-2 rounded-xl bg-[#fc2300] text-white capitalize font-gotham-book text-[10px] absolute -bottom-[12px] left-[470px]  "
-                        // >
-                        //     simulate game
-                        // </button>
-                        null}
+                    {cardDetailsExpand && (
+                        <div className=" w-full absolute left-0 -bottom-[6px] flex justify-center z-10">
+                            <button
+                                onClick={simulateBtnHanlder}
+                                className=" rounded-[5px] sf-5px-reg px-2 py-[3px] bg-[#FC2300] text-center text-liquid-white "
+                            >
+                                simulate game
+                            </button>
+                        </div>
+                    )}
                 </div>
                 {/* bottom chart  */}
                 {simulationDetails && openDetails && (

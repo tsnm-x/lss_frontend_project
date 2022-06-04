@@ -127,6 +127,9 @@ a {
         @apply font-normal text-[7px] tracking-normal leading-[10px];
     }
 
+    .sf-5px-reg {
+        @apply font-sf-pro text-[5px] leading-[6px] font-medium;
+    }
     .sf-2px-reg {
         @apply font-sf-pro text-[2px] leading-[3px] font-medium;
     }
