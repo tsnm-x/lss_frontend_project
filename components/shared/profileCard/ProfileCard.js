@@ -42,6 +42,10 @@ const ProfileCard = (props) => {
 			router.push(
 				`${router.asPath}/livesimulator`
 			)
+		} else {
+			router.push(
+				`summoner/${props.region}/${props.summonerName}`
+			)
 		}
 	}
 

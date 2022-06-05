@@ -25,10 +25,10 @@ const LiveSimulator = () => {
 						summonerName={mainPlayer?.summonerName}
 						profileIcon={mainPlayer?.profileIcon}
 						summonerLevel={mainPlayer?.summonerLevel}
+						region={mainPlayer?.region}
 					/>
 				</div>
 			</main>
-            <LiveContentWrap/>
             <LiveWhiteCardWrapHoc/>
         </>
     )
