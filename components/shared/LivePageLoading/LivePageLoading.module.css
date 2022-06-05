@@ -1,0 +1,3 @@
+.card {
+    @apply container mx-auto border-4 border-red-yellow-gold rounded-[29px] bg-white ;
+}
