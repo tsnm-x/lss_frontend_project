@@ -1,7 +1,7 @@
 import Header from "../../../../components/shared/header/Header";
 import SummonerCard from "../../../../components/shared/summonerCard/SummonerCard";
 import ProfileCard from "../../../../components/shared/profileCard/ProfileCard";
-import classes from "./profileUpdate.module.css";
+import classes from "../../../../styles/profileUpdate.module.css";
 import RankStatus from "../../../../components/Ui/RankStatus/RankStatus";
 import SeasonMostPlayed from "../../../../components/Ui/SeasonMostPlayed/SeasonMostPlayed";
 import YouPlayedOften from "../../../../components/Ui/YouPlayedOften/YouPlayedOften";
@@ -27,6 +27,11 @@ function ProfileUpdate() {
 		return player.mainPlayer == true;
 	});
 	const [ranks, setRanks] = useState([]);
+
+	const btnDetails = [
+        { text: "refresh", url: "" },
+        { text: "live simulator", url: `${router.asPath}/livesimulator` },
+    ];
 
 	useEffect(() => {
 		const { region } = router.query;
@@ -86,10 +91,11 @@ function ProfileUpdate() {
 			<main className={`${classes.main}`}>
 				<div className="container mx-auto z-30 relative px-4 flex gap-x-32 2xl:gap-x-[250px]  ">
 					<ProfileCard
-						btnOne="Refresh"
+						btn={btnDetails}
 						summonerName={mainPlayer?.summonerName}
 						profileIcon={mainPlayer?.profileIcon}
 						summonerLevel={mainPlayer?.summonerLevel}
+						region={router.query?.region}
 					/>
 					{/* rank status  */}
 					<div className={` flex items-end w-[550px] ${classes.rank_wrap}`}>

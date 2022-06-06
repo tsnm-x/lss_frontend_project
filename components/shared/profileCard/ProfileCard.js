@@ -37,18 +37,6 @@ const ProfileCard = (props) => {
 		);
 	};
 
-	function changePage(){
-		if(!props.btnState){
-			router.push(
-				`${router.asPath}/livesimulator`
-			)
-		} else {
-			router.push(
-				`summoner/${props.region}/${props.summonerName}`
-			)
-		}
-	}
-
 	return (
 		<div className={`flex items-end gap-x-[18px] ${props.className}`}>
 			{/* profile  */}
@@ -72,7 +60,7 @@ const ProfileCard = (props) => {
 				<div className=" flex gap-x-2 ">
 					{!loader ? (
 						<button className="btn" onClick={refreshHandler}>
-							{props.btnOne}
+							{props.btn[0].text}
 						</button>
 					) : (
 						<button className="btn">
@@ -80,7 +68,7 @@ const ProfileCard = (props) => {
 						</button>
 					)}
 
-					<button className="btn bg-red-yellow" onClick={changePage}>{props.btnState ? 'Historic Games' : 'live simulator' }</button>
+					<Link href={props.btn[1].url}><button className="btn bg-red-yellow">{props.btn[1].text}</button></Link>
 				</div>
 			</div>
 		</div>
