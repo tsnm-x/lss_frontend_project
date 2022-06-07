@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './ProfileCardWrapHoc.module.css'
+import classes from "./ProfileCardWrapHoc.module.css";
 
 const ProfileCardWrapHoc = (PushedElement) => {
     return class NewComponent extends React.Component {
@@ -10,7 +10,7 @@ const ProfileCardWrapHoc = (PushedElement) => {
                 >
                     {/* top slider  */}
                     <div className=" pb-8 ">
-                        <h6 className=" gotham-15px-book text-liquid-white capitalize text-[] ">
+                        <h6 className="  font-gotham-book text-[8px] leading-[11px] font-medium text-liquid-white capitalize ">
                             {this.props.title}
                         </h6>
                     </div>

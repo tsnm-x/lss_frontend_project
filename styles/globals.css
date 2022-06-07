@@ -26,6 +26,11 @@ a {
     src: url("../public/assets/fonts/GothamMedium.ttf");
 }
 
+@font-face {
+    font-family: "sf-pro";
+    src: url('../public/assets/fonts/SFPRODISPLAYMEDIUM.OTF');
+}
+
 /* default style variable  */
 :root {
     /* Colors: */
@@ -91,7 +96,7 @@ a {
         @apply font-medium normal-case text-[12px] leading-4 tracking-normal;
     }
     .gotham-10px-mid {
-        @apply text-[12px] leading-[10px]  tracking-[0px];
+        @apply text-[8px] leading-[11px] font-medium font-gotham-mid;
     }
     .gotham-9px-mid {
         @apply text-[9px] leading-[10px]  tracking-[0px];
@@ -103,13 +108,13 @@ a {
         @apply text-[10px]  leading-[12px];
     }
     .gotham-5px-mid {
-        @apply text-[10px] text-liquid-white leading-[12px];
+        @apply font-gotham-mid text-[5px] leading-[6px];
     }
     .gotham-4px-mid {
         @apply text-[12px] text-liquid-white leading-[15px];
     }
     .gotham-2px-mid {
-        @apply text-[8px] text-liquid-white leading-[10px];
+        @apply text-[2px] leading-[2px] font-gotham-mid;
     }
 
     .sf-13px-regular {
@@ -122,9 +127,19 @@ a {
         @apply font-normal text-[7px] tracking-normal leading-[10px];
     }
 
+    .sf-5px-reg {
+        @apply font-sf-pro text-[5px] leading-[6px] font-medium;
+    }
+    .sf-2px-reg {
+        @apply font-sf-pro text-[2px] leading-[3px] font-medium;
+    }
+    .sf-1px-reg {
+        @apply font-sf-pro text-[1px] leading-[1px] font-medium;
+    }
+
     /* chat btn  */
     .feedback_btn_wrap {
-        @apply absolute left-20 bottom-10;
+        @apply absolute left-20 bottom-10 ;
     }
     .btn_img {
         @apply absolute left-[30px] -top-[40px] w-[85px];
@@ -142,8 +157,10 @@ a {
 
     /* btn style  */
     .btn {
-        @apply font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
-        border-mix-white-black rounded-7px px-5 py-4;
+        /* @apply font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
+        border-mix-white-black rounded-7px px-5 py-4; */
+        @apply font-gotham-book capitalize text-[10px] leading-[14px] font-medium px-[14px] py-[10px] text-liquid-white bg-white-blue border
+        border-mix-white-black rounded-[5px];
     }
 
     /* card wrapper  */

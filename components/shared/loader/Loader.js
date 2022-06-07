@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function Loader() {
 	const loading = useSelector((state) => state.loader.loader);
-	let circleCommonClasses = "h-2.5 w-2.5 bg-current   rounded-full";
+	let circleCommonClasses = "h-[6.5px] w-[6.5px] bg-current   rounded-full";
 
 	return (
 		<>

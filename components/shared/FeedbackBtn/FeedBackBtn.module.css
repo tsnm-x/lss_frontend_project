@@ -1,5 +1,5 @@
-  /* chat btn  */
-    .feedback_btn_wrap {
+/* chat btn  */
+/* .feedback_btn_wrap {
        @apply z-50;
     }
     .btn_img {
@@ -14,4 +14,20 @@
 
     .feedback_btn_txt {
         @apply text-white-blue capitalize text-center text-[11px] leading-[12px] w-[50px];
-    }
+    } */
+.feedback_btn_wrap {
+    
+}
+.btn_img {
+    @apply absolute left-[30px] -top-[40px] w-[85px];
+}
+.feedback_btn {
+    @apply bg-white p-[18px] pt-[25px] py-5 flex flex-col items-center rounded-2xl;
+}
+.feedback_btn_icon {
+    @apply text-[28px] text-white-blue mb-[18px];
+}
+
+.feedback_btn_txt {
+    @apply text-white-blue capitalize text-center text-[10px] leading-[12px] w-[50px];
+}

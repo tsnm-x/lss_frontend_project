@@ -31,7 +31,7 @@ import ArcaneComet from "../../../public/assets/runes/Sorcery/ArcaneComet.png";
 import PhaseRush from "../../../public/assets/runes/Sorcery/PhaseRush.png";
 import SummonAery from "../../../public/assets/runes/Sorcery/SummonAery.png";
 
-const ProfileWithBatch = (props) => {
+const ProfileWithBatchSmall = (props) => {
     const select1stRune = (runeId) => {
         switch (runeId) {
             // domination
@@ -111,9 +111,11 @@ const ProfileWithBatch = (props) => {
         <div className=" relative ">
             {/* image  */}
             <div
-                className={`border  ${
-                    "border-" + props.borderColor
-                } rounded-full w-[21px] h-[21px] relative`}
+                className={`border ${
+                    props.profileBatchBorder
+                        ? props.profileBatchBorder
+                        : "border-white-blue"
+                }  rounded-full w-[17px] h-[17px] relative`}
             >
                 <Image
                     className=" block rounded-full"
@@ -123,8 +125,14 @@ const ProfileWithBatch = (props) => {
                 />
             </div>
             {/* batchs  */}
-            <div className=" flex justify-start items-end absolute left-[13px] -bottom-[3px]  ">
-                <div className=" relative w-[6px] h-[6px] rounded-full border border-[#FC2300] flex justify-center items-center mr-[2px]   ">
+            <div className=" flex justify-start items-end absolute -right-[6px] bottom-0 w-[10px]  ">
+                <div
+                    className={`relative w-[6px] h-[6px] rounded-full border-[0.3px] ${
+                        props.profileBatchBorder
+                            ? props.profileBatchBorder
+                            : "border-white-blue"
+                    } bg-full-dark flex justify-center items-center`}
+                >
                     <Image
                         className=" inline-block "
                         src={select1stRune(
@@ -134,7 +142,13 @@ const ProfileWithBatch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <div className=" relative w-[5px] h-[5px] rounded-full border border-[#FC2300] flex justify-center items-center  ">
+                <div
+                    className={` relative w-[3px] h-[3px] rounded-full border-[0.3px] ${
+                        props.profileBatchBorder
+                            ? props.profileBatchBorder
+                            : "border-white-blue"
+                    } bg-full-dark flex justify-center items-center`}
+                >
                     <Image
                         className=" inline-block "
                         src={select2ndRune(props?.perks?.styles[1]?.style)}
@@ -147,4 +161,4 @@ const ProfileWithBatch = (props) => {
     );
 };
 
-export default ProfileWithBatch;
+export default ProfileWithBatchSmall;
