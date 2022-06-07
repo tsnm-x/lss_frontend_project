@@ -210,7 +210,7 @@ export default function Home() {
 							</div>
 						</div>
 						<div className=" text-right">
-							<button type="submit" className="btn" onClick={searchHandler}>
+							<button type="submit" className="font-gotham-book bg-white-blue text-white capitalize rounded-[7px] text-[13px] leading-[17px] px-[35px] py-[16px] " onClick={searchHandler}>
 								{!loading ? (
 									"search"
 								) : (
