@@ -1,14 +1,14 @@
 .card_content {
+    @apply pl-1 pt-1 pr-[22px] pb-[14px] rounded-[8px];
     /* background: transparent
         linear-gradient(108deg, #484c5e0f 0%, var(--small-text-icons) 100%) 0%
         0% no-repeat padding-box;
     background: transparent linear-gradient(108deg, #484c5e0f 0%, #47516c 100%)
-        0% 0% no-repeat padding-box; */
-    border-radius: 24px;
+        0% 0% no-repeat padding-box;
+    border-radius: 8px;
     opacity: 1;
-    /* backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px); */
-    /* height: 80px; */
 }
 
 .red_gradient {
@@ -30,5 +30,5 @@
 }
 
 .indicator {
-    @apply absolute w-20 rounded-tl-[24px] rounded-bl-[24px] h-[206px];
+    @apply absolute w-[29px] rounded-tl-[11px] rounded-bl-[11px] h-[79px];
 }
