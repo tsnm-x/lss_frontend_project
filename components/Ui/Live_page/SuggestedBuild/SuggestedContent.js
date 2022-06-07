@@ -7,7 +7,7 @@ const SuggestedContent = (props) => {
     <div className={`${props.className}`}>
       <div className=''>
         <p className=' capitalize gotham-10px-mid text-full-dark mb-1 '>suggested build</p>
-        <p className=' capitalize gotham-10px-mid text-white-blue'>lee sin</p>
+        <p className=' capitalize gotham-10px-mid text-white-blue'>{props.championName}</p>
       </div>
       {/* bottom line  */}
       <div className=' flex gap-x-2 justify-end'>

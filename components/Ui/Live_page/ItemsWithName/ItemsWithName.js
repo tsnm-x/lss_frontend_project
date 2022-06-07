@@ -8,7 +8,7 @@ const ItemsWithName = (props) => {
               {props.itemList.map((img, index) => {
                   return (
                       <div className=' w-8 h-8 rounded-full ' key={index}>
-                          <Image src={img} alt="item image" />
+                          <Image src={img} alt="item image" width={'100%'} height={'100%'} className="rounded-full" />
                       </div>
                   );
               })}
