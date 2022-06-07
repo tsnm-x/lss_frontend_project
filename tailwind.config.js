@@ -35,10 +35,12 @@ module.exports = {
             fontFamily: {
                 "gotham-book": "gotham-book",
                 "gotham-mid": "gotham-mid",
+                "sf-pro": "sf-pro"
             },
             borderRadius: {
                 "5px": "5px",
                 "7px": "7px",
+                "8px": "8px"
             },
             borderWidth: {
                 DEFAULT: "1px",

@@ -18,123 +18,216 @@ import Emblem_Grandmaster from "../../../../public/assets/ranks/Emblem_Grandmast
 import Emblem_Challenger from "../../../../public/assets/ranks/Emblem_Challenger.png";
 
 const PlayerRankCard = (props) => {
-	const selectRankIcon = (rank) => {
-		switch (rank) {
-			case "IRON":
-				return Emblem_Iron;
+    // const selectRankIcon = (rank) => {
+    //     switch (rank) {
+    //         case "IRON":
+    //             return Emblem_Iron;
 
-			case "BRONZE":
-				return Emblem_Bronze;
+    //         case "BRONZE":
+    //             return Emblem_Bronze;
 
-			case "SILVER":
-				return Emblem_Silver;
+    //         case "SILVER":
+    //             return Emblem_Silver;
 
-			case "GOLD":
-				return Emblem_Gold;
+    //         case "GOLD":
+    //             return Emblem_Gold;
 
-			case "PLATINUM":
-				return Emblem_Platinum;
+    //         case "PLATINUM":
+    //             return Emblem_Platinum;
 
-			case "DIAMOND":
-				return Emblem_Diamond;
+    //         case "DIAMOND":
+    //             return Emblem_Diamond;
 
-			case "MASTER":
-				return Emblem_Master;
+    //         case "MASTER":
+    //             return Emblem_Master;
 
-			case "GRANDMASTER":
-				return Emblem_Grandmaster;
+    //         case "GRANDMASTER":
+    //             return Emblem_Grandmaster;
 
-			case "CHALLENGER":
-				return Emblem_Challenger;
+    //         case "CHALLENGER":
+    //             return Emblem_Challenger;
 
-			default:
-				return;
-		}
-	};
+    //         default:
+    //             return;
+    //     }
+    // };
 
-	const [ranks, setRanks] = useState([]);
+    // const [ranks, setRanks] = useState([]);
 
-	const router = useRouter();
+    // const router = useRouter();
 
-	const { region } = router.query;
-	// let propsPlayer = [...props.group];
+    // const { region } = router.query;
+    // let propsPlayer = [...props.group];
 
-	// todo : deep clone
-	let propsPlayer = JSON.parse(JSON.stringify(props.group));
+    // todo : deep clone
+    // let propsPlayer = JSON.parse(JSON.stringify(props.group));
 
-	let players = propsPlayer.map((player) => {
-		player.ranks = [];
-		return player;
-	});
+    // let players = propsPlayer.map((player) => {
+    //     player.ranks = [];
+    //     return player;
+    // });
 
-	let rankReqs = [];
+    // let rankReqs = [];
 
-	useEffect(() => {
-		players.forEach((player) => {
-			rankReqs.push(
-				axiosInstance.post("/summonerRanks", {
-					region,
-					summonerRiotId: player.summonerId,
-				})
-			);
-		});
+    // useEffect(() => {
+    //     players.forEach((player) => {
+    //         rankReqs.push(
+    //             axiosInstance.post("/summonerRanks", {
+    //                 region,
+    //                 summonerRiotId: player.summonerId,
+    //             })
+    //         );
+    //     });
 
-		axios
-			.all([...rankReqs])
-			.then(
-				axios.spread((...responses) => {
-					setRanks(responses);
-					responses.forEach((res, index) => {
-						if (!res?.data?.ranks) {
-							console.log("ranks not found");
-							return;
-						}
-						// console.log(res.data.ranks);
-					});
-					// use/access the results
-				})
-			)
-			.catch((errors) => {
-				// react on errors.
-				console.log(errors);
-			});
-	}, []);
+    //     axios
+    //         .all([...rankReqs])
+    //         .then(
+    //             axios.spread((...responses) => {
+    //                 setRanks(responses);
+    //                 responses.forEach((res, index) => {
+    //                     if (!res?.data?.ranks) {
+    //                         console.log("ranks not found");
+    //                         return;
+    //                     }
+    //                     // console.log(res.data.ranks);
+    //                 });
+    //                 // use/access the results
+    //             })
+    //         )
+    //         .catch((errors) => {
+    //             // react on errors.
+    //             console.log(errors);
+    //         });
+    // }, []);
 
-	// console.log(players[0].ranks);
-	return (
-		<div className={`w-full bg-full-dark ${props.className}`}>
-			<div className=" h-full ">
-				{/* rank title  */}
-				<div className="  border-b border-white-blue pb-1 h-[8%] grid grid-cols-3 ">
-					<p className=" capitalize text-liquid-white text-[12px] ">
-						s2021 rank
-					</p>
-					<p className=" capitalize text-liquid-white text-[12px] ">ranked</p>
-					<p className=" capitalize text-liquid-white text-[12px] ">
-						s22 champion
-					</p>
-				</div>
-				{/* rank list  */}
-				<div className=" h-[92%]  flex flex-col justify-between ">
-					{players.map((player, index) => {
-						const rankSolo = ranks[index]?.data?.ranks.find(
-							(el) => el.queueType === "RANKED_SOLO_5x5"
-						);
+    // // console.log(players[0].ranks);
+    // return (
+    //     <div className={`w-full bg-full-dark ${props.className}`}>
+    //         <div className=" h-full ">
+    //             {/* rank title  */}
+    //             <div className="  border-b border-white-blue pb-1 h-[8%] grid grid-cols-3 ">
+    //                 <p className=" capitalize text-liquid-white text-[12px] ">
+    //                     s2021 rank
+    //                 </p>
+    //                 <p className=" capitalize text-liquid-white text-[12px] ">
+    //                     ranked
+    //                 </p>
+    //                 <p className=" capitalize text-liquid-white text-[12px] ">
+    //                     s22 champion
+    //                 </p>
+    //             </div>
+    //             {/* rank list  */}
+    //             <div className=" h-[92%]  flex flex-col justify-between ">
+    //                 {players.map((player, index) => {
+    //                     const rankSolo = ranks[index]?.data?.ranks.find(
+    //                         (el) => el.queueType === "RANKED_SOLO_5x5"
+    //                     );
 
-						const rankIcon = selectRankIcon(rankSolo?.tier);
+    //                     const rankIcon = selectRankIcon(rankSolo?.tier);
 
-						return (
-							<div
-								className=" bg-mix-white-black-200 rounded-full grid grid-cols-3 "
-								key={"item" + index}
-							>
-								{/* rank 2021 module  */}
-								<div className=" flex items-center gap-x-1 ">
-									<div className=" w-10 h-10 ">
-										{rankIcon && <Image src={rankIcon} alt="rank icon" />}
-									</div>
-									<p className=" text-[8px] text-liquid-white">IGITeak</p>
-									{/* <div className=" flex items-center ">
+    //                     return (
+    //                         <div
+    //                             className=" bg-mix-white-black-200 rounded-full grid grid-cols-3 "
+    //                             key={"item" + index}
+    //                         >
+    //                             {/* rank 2021 module  */}
+    //                             <div className=" flex items-center gap-x-1 ">
+    //                                 <div className=" w-10 h-10 ">
+    //                                     {rankIcon && (
+    //                                         <Image
+    //                                             src={rankIcon}
+    //                                             alt="rank icon"
+    //                                         />
+    //                                     )}
+    //                                 </div>
+    //                                 <p className=" text-[8px] text-liquid-white">
+    //                                     IGITeak
+    //                                 </p>
+    //                                 {/* <div className=" flex items-center ">
+    //                                     <div className=" w-2 ">
+    //                                         <Image src={LeafIcon} alt="icon" />
+    //                                     </div>
+    //                                     <p className=" ml-1 capitalize text-mix-white-black text-[10px]  ">
+    //                                         main role
+    //                                     </p>
+    //                                 </div> */}
+    //                             </div>
+    //                             {/* ranked  */}
+    //                             <div>
+    //                                 <div className=" flex flex-col ">
+    //                                     <p className=" text-[11px] capitalize text-white-blue ">
+    //                                         58%{" "}
+    //                                         <span className=" text-liquid-white ">
+    //                                             winrate
+    //                                         </span>
+    //                                     </p>
+    //                                     {/* <p className=" ml-4 capitalize text-mix-white-black text-[10px] ">
+    //                                         (329 games played)
+    //                                     </p> */}
+    //                                 </div>
+    //                                 <div className=" w-full -mt-2">
+    //                                     <Image
+    //                                         src={ProgressGraph}
+    //                                         alt="progress graph"
+    //                                     />
+    //                                 </div>
+    //                             </div>
+    //                         </div>
+    //                     );
+    //                 })}
+    //             </div>
+    //         </div>
+    //     </div>
+    // );
+	const rankList = [
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+        { id: 1 },
+    ];
+
+    return (
+        <div className={`w-full bg-full-dark ${props.className}`}>
+            <div className=" h-full ">
+                {/* rank title  */}
+                <div className="  border-b border-white-blue grid grid-cols-3 ">
+                    <p className=" capitalize text-[#FFFFFF] gotham-5px-mid ">
+                        s2021 rank
+                    </p>
+                    <p className=" capitalize text-[#FFFFFF] gotham-5px-mid ">
+                        ranked
+                    </p>
+                    <p className=" capitalize text-[#FFFFFF] gotham-5px-mid ">
+                        s22 champion
+                    </p>
+                </div>
+                {/* rank list  */}
+                <div className=" h-[calc(100%-6px)]  flex flex-col justify-between ">
+                    {["", "", "", "", ""].map((item, index) => {
+                        return (
+                            <div
+                                className=" bg-mix-white-black-200 rounded-full grid grid-cols-3 "
+                                key={"item" + index}
+                            >
+                                {/* rank 2021 module  */}
+                                <div className=" flex items-center gap-x-1 ">
+                                    <div className=" relative w-[12px] h-[12px] flex items-center justify-center ">
+                                        <Image
+                                            src={RankIcon}
+                                            alt="rank icon"
+                                            layout="fill"
+                                        />
+                                    </div>
+                                    <p className=" sf-1px-reg text-liquid-white">
+                                        IGITeak
+                                    </p>
+                                    {/* <div className=" flex items-center ">
                                         <div className=" w-2 ">
                                             <Image src={LeafIcon} alt="icon" />
                                         </div>
@@ -142,28 +235,35 @@ const PlayerRankCard = (props) => {
                                             main role
                                         </p>
                                     </div> */}
-								</div>
-								{/* ranked  */}
-								<div>
-									<div className=" flex flex-col ">
-										<p className=" text-[11px] capitalize text-white-blue ">
-											58% <span className=" text-liquid-white ">winrate</span>
-										</p>
-										{/* <p className=" ml-4 capitalize text-mix-white-black text-[10px] ">
+                                </div>
+                                {/* ranked  */}
+                                <div className=" flex flex-col flex-wrap justify-end pb-[2px] ">
+                                    <div className=" flex flex-col ">
+                                        <p className=" sf-2px-reg capitalize text-white-blue ">
+                                            58%{" "}
+                                            <span className=" text-liquid-white ">
+                                                winrate
+                                            </span>
+                                        </p>
+                                        {/* <p className=" ml-4 capitalize text-mix-white-black text-[10px] ">
                                             (329 games played)
                                         </p> */}
-									</div>
-									<div className=" w-full -mt-2">
-										<Image src={ProgressGraph} alt="progress graph" />
-									</div>
-								</div>
-							</div>
-						);
-					})}
-				</div>
-			</div>
-		</div>
-	);
+                                    </div>
+                                    <div className=" relative w-8 h-[2px]  ">
+                                        <Image
+                                            src={ProgressGraph}
+                                            alt="progress graph"
+                                            layout="fill"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default PlayerRankCard;

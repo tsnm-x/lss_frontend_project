@@ -100,7 +100,7 @@ const PlayerCards = (props) => {
 	return (
 		<div>
 			{/* lists */}
-			<div className=" flex flex-col gap-y-10 ">
+			<div className=" flex flex-col gap-y-5 ">
 				{sortedMatches.map((match, index) => {
 					const mainPlayer = match.players.find(
 						(player) => player.mainPlayer === true
@@ -108,7 +108,7 @@ const PlayerCards = (props) => {
 
 					const matchType = mainPlayer?.win ? "victory" : "defeat";
 					let indicatorTypeColor =
-						matchType === "victory" ? " bg-white-blue" : "bg-red-yellow-gold";
+						matchType === "victory" ? "white-blue" : "red-yellow-gold";
 					if (props.selectedMatchType === "all") {
 						return (
 							<PlayerCard
@@ -170,14 +170,14 @@ const PlayerCards = (props) => {
 					}
 				})}
 			</div>
-			<div className=" pt-16 pb-24 ">
+			<div className=" pt-[56px] pb-[228px] ">
 				{!hasError?.msg && (
 					<button
 						onClick={getMoreMatches}
-						className=" btn rounded-full w-12 h-12 p-0 flex justify-center items-center border-0 cursor-pointer mx-auto mt-5 hover:bg-btn-hover "
+						className=" btn rounded-full w-[40px] h-[40px] p-0 flex justify-center items-center border-0 cursor-pointer mx-auto mt-5 hover:bg-btn-hover "
 					>
 						<Loader />
-						{!loader && <HiArrowDown className="hover:rotate-45 text-[22px]" />}
+						{!loader && <HiArrowDown className="hover:rotate-45 text-[18px]" />}
 					</button>
 				)}
 				{hasError?.msg && (

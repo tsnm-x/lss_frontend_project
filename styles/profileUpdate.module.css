@@ -1,5 +1,5 @@
 .main {
-    @apply pt-[74px] pb-[135px] ;
+    @apply pt-[74px] pb-[90px] ;
   background: transparent url("../public/assets/update-profile/background.png") no-repeat center center;
   background-size: cover;
   position: relative;
@@ -19,5 +19,5 @@
 
 /* player content  */
 .content {
-  @apply grid grid-cols-[minmax(auto,420px)_auto] container mx-auto px-4 gap-x-4 -mt-[65px] relative z-20 ;
+  @apply grid grid-cols-[285px_620px] container max-w-[915px] mx-auto gap-x-4 -mt-[40px] relative z-20 ;
 }

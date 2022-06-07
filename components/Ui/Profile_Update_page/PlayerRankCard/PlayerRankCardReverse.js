@@ -4,13 +4,18 @@ import PlayerFaceRow from "../PlayerFaceRow/PlayerFaceRow";
 
 const PlayerRankCard = (props) => {
 	return (
-		<div className=" grid grid-cols-[39%_55%] justify-between">
-			{/* right side  */}
-			<PlayerFaceRow group={props.secondGroup} faceStyle=" order-2 " />
-			{/* left side  */}
-			<PlayerRankRow group={props.secondGroup} />
-		</div>
-	);
+        <div className=" grid grid-cols-[39%_55%] justify-between">
+            {/* right side  */}
+            <PlayerFaceRow
+                group={props.secondGroup}
+                className=" gap-x-[13px] "
+                faceStyle=" order-2 "
+                profileBatchBorder="border-[#FA361A]"
+            />
+            {/* left side  */}
+            <PlayerRankRow />
+        </div>
+    );
 };
 
 export default PlayerRankCard;
