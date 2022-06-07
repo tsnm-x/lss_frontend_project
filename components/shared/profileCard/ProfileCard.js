@@ -75,7 +75,7 @@ const ProfileCard = (props) => {
                 <div className=" flex ">
                     {!loader ? (
                         <button className="btn mr-[6px]" onClick={refreshHandler}>
-                            {props.btnOne}
+                            {props.btn[0].text}
                         </button>
                     ) : (
                         <button className="btn mr-[6px]">
@@ -83,9 +83,9 @@ const ProfileCard = (props) => {
                         </button>
                     )}
 
-                    <button className="btn bg-red-yellow">
-                        live simulator
-                    </button>
+                    <Link href={`${props.btn[1].url}`}><button className="btn bg-red-yellow">
+                        {props.btn[1].text}
+                    </button></Link>
                 </div>
             </div>
         </div>
