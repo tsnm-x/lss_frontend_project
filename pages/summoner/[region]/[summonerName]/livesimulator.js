@@ -34,6 +34,7 @@ const LiveSimulator = () => {
             <Header />
             <main className={`${classes.main} pt-[70px] pb-10 `}>
                 <ProfileWithRank 
+                    className="mx-auto max-w-[735px] gap-x-0 justify-between "
 					btn={btnDetails}
 					summonerName={mainPlayer?.summonerName}
 					profileIcon={mainPlayer?.profileIcon}

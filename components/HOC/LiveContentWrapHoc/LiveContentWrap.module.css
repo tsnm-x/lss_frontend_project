@@ -1,4 +1,3 @@
 .card {
-  @apply bg-liquid-white-100 border border-[#198CFF3B];
-
+  @apply bg-liquid-white-100 border border-[#198CFF3B] rounded-[29px];
 }

@@ -123,6 +123,9 @@ a {
     .sf-10px-regular {
         @apply font-normal text-[10px] tracking-normal leading-[14px];
     }
+    .sf-8px-regular {
+        @apply font-normal text-[8px] tracking-normal leading-[11px];
+    }
     .sf-7px-regular {
         @apply font-normal text-[7px] tracking-normal leading-[10px];
     }

@@ -11,13 +11,13 @@ const LiveWhiteCardWrapHoc = (PushedElement) => {
                 <React.Fragment>
                     <section>
                         {/* top title  */}
-                        <div className=" container mx-auto relative mb-5 px-4 ">
+                        <div className=" container max-w-[1047px] mx-auto relative mb-5">
                             {/* left side  */}
                             <div>
-                                <h3 className=" text-mix-white-black-100 gotham-15px-mid ">
+                                <h3 className=" text-mix-white-black-100 gotham-15px-book ">
                                     Live-Game found for Suuusanoo
                                 </h3>
-                                <p className=" sf-7px-regular text-mix-white-black ">
+                                <p className=" sf-8px-regular text-mix-white-black ">
                                     Lorem Ipsum
                                 </p>
                             </div>
@@ -28,7 +28,7 @@ const LiveWhiteCardWrapHoc = (PushedElement) => {
                     <section>
                         {/* live icon  */}
                         {true && (
-                            <div className="container mx-auto">
+                            <div className="container max-w-[1047px] mx-auto">
                                 <div className=" flex">
                                     <BsWifi className=" text-[#fc2300] text-[20px] " />
                                     <p className=" gotham-13px-mid capitalize text-[#fc2300] ml-4 ">

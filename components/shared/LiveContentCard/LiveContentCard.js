@@ -53,7 +53,7 @@ const LiveContentCard = (props) => {
             {/* top content  */}
             <div className=" flex items-center w-full justify-between  ">
                 <SuuusanooCard
-                    hocStyle={" px-5 py-4 rounded-[30px] "}
+                    hocStyle={" px-[20px] pt-[12px] pb-[20px] "}
                     summonerName={props.summonerName}
                     profileIcon={props.profileIcon}
                 />
@@ -90,13 +90,9 @@ const LiveContentCard = (props) => {
                 <div className=" px-[50px] pt-7 bg-[#47516c] grid grid-cols-[1fr_2fr_1fr] gap-x-10  ">
                     {/* left rank  */}
 
-                    {/* <PlayerRankRow className=" mb-7 " /> */}
-
                     {/* center content  */}
                     <PredectionCard predictBuildsList={predictBuildsList} vsImg={VS_img} />
                     {/* right rank  */}
-                        
-                    {/* <PlayerRankRow className=" mb-7 " /> */}
                 </div>
             </div>
         </div>

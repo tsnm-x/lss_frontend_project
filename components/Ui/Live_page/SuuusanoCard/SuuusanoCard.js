@@ -6,14 +6,25 @@ import SuuuImg from "../../../../public/assets/Live/suuusanoo.png";
 const SuuusanoCard = (props) => {
     return (
         <>
-            {/* image  */}
-            <div className=" w-[70px] h-[70px] rounded-full p-[3px] border-[5px] border-[#198cff] mb-3 mx-auto ">
-                <Image src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${props.profileIcon}.png`} alt="Suuu image" height={"100%"} width={"100%"} className="rounded-full"/>
+            {/* border  */}
+            <div className=" border-[6px] rounded-full border-white-blue ">
+                {/* image  */}
+                <div className=" relative w-[41px] h-[41px] rounded-full m-[3px] ">
+                    <Image
+                        src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${props.profileIcon}.png`}
+                        alt="Suuu image"
+                        layout="fill"
+                        className=" rounded-full"
+                    />
+                </div>
             </div>
+
             {/* profile name  */}
-            <div>
-                <h6 className=" gotham-10px-mid text-white-blue text-center">{props.summonerName}</h6>
-                <p className=" sf-7px-regular text-nav-text text-center">
+            <div className=" mt-[5px] ">
+                <h6 className=" gotham-10px-mid text-white-blue text-center">
+                    {props.summonerName}
+                </h6>
+                <p className=" gotham-5px-mid text-nav-text text-center">
                     Ladder Rank: 423.211
                 </p>
             </div>

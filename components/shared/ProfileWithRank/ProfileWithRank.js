@@ -32,8 +32,8 @@ const ProfileWithRank = (props) => {
 	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
 
     return (
-        <div className="container mx-auto z-30 relative px-4 flex gap-x-32  ">
-            <ProfileCard 
+        <div className={`container mx-auto z-30 relative px-4 flex ${props.className}`}>
+            <ProfileCard
                 btn={props.btn}
                 summonerName={props.summonerName}
                 profileIcon={props.profileIcon}
@@ -49,7 +49,9 @@ const ProfileWithRank = (props) => {
                         ranks={rankSolo}
                     />
                 )}
-                {rankFlex && <RankStatus title="Ranked Flex" ranks={rankFlex} />}
+                {rankFlex && (
+                    <RankStatus title="Ranked Flex" ranks={rankFlex} />
+                )}
             </div>
         </div>
     );
