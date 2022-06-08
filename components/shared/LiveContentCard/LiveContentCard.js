@@ -57,15 +57,15 @@ const LiveContentCard = (props) => {
                     summonerName={props.summonerName}
                     profileIcon={props.profileIcon}
                 />
-                <div className=" relative ">
-                    <div className=" gotham-6px-mid flex capitalize -top-[20px] absolute px-3 justify-between w-full ">
+                <div className=" w-[190px] ">
+                    <div className=" mb-[3px] text-[6px] leading-[8px] flex capitalize px-3 justify-between w-full ">
                         <p>live-game avg rank</p>
                         <p>ranked solo/duo</p>
                     </div>
-                    <LiveGameAvgRank hocStyle={` px-5 py-4 rounded-[30px] `} />
+                    <LiveGameAvgRank hocStyle={` pl-[15px] pr-[12px] pt-[16px] pb-[19px] `} />
                 </div>
-                <NowPlaying />
-                <SuggestedBuild />
+                <NowPlaying  />
+                {/* <SuggestedBuild /> */}
             </div>
             {/* bottom content  */}
             <div className=" bg-white rounded-[20px] w-full mt-[57px]  ">

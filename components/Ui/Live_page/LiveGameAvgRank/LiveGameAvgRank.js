@@ -77,13 +77,13 @@ const LiveGameAvgRank = () => {
     return (
         <div className=" text-red-800 flex items-center ">
             {/* image  */}
-            <div className=" w-24 ">
-                <Image src={RankIcon} alt="Rank Image Icon" />
+            <div className=" w-[70px] h-[80px] relative ">
+                <Image src={RankIcon} alt="Rank Image Icon" layout="fill" />
             </div>
             {/* texts  */}
             <div>
                 <div className=" flex items-center mb-[2px] ">
-                    <h3 className=" gotham-10px-mid text-full-dark px-2 ">{rankSolo?.tier} {rankSolo?.rank}</h3>
+                    <h3 className=" gotham-10px-mid text-full-dark mr-[3px] ">{rankSolo?.tier} {rankSolo?.rank}</h3>
                     <div className=" flex flex-col gotham-5px-mid mr-1 ">
                         <span className=" uppercase text-white-blue ">
                             +18lp

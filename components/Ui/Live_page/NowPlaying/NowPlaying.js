@@ -4,6 +4,7 @@ import Image from "next/image";
 import NowPlayingContent from "./NowPlayingContent";
 import { useSelector } from "react-redux";
 
+
 const NowPlaying = () => {
 
     const matches = useSelector((state) => state.profile.profile);
@@ -12,12 +13,13 @@ const NowPlaying = () => {
 	});
 
     return (
-        <div className=" relative w-[370px] ">
+        <div className=" relative w-[180px] ">
             {/* Now playing card  */}
-            <NowPlayingContent hocStyle="absolute right-0 top-0 w-[200px] px-10 py-6 rounded-[50px] " championName={mainPlayer?.championName} ingameTime={matches[0]?.duration} />
+            <NowPlayingContent hocStyle="absolute right-0 top-0 w-[200px] px-[24px] py-[16px] w-[100px]  " championName={mainPlayer?.championName} ingameTime={matches[0]?.duration} />
             {/* image  */}
-            <div className=" w-40 ">
-                <Image src={`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/champion/${mainPlayer?.championName}.png`} alt="Playing image" height={"100%"} width={"100%"} />
+            <div className=" relative w-[112px] h-[112px] ">
+                {/* <Image src={`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/champion/${mainPlayer?.championName}.png`} alt="Playing image"  layout="fill" /> */}
+                <Image src={NowPlayingImg} alt=" now playing image" layout="fill" />
             </div>
         </div>
     );
