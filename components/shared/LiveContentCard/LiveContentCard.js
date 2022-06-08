@@ -8,7 +8,7 @@ import SuggestedBuild from "../../Ui/Live_page/SuggestedBuild/SuggestedBuild";
 import Image from "next/image";
 import PlayerRankRow from "../../Ui/Profile_Update_page/PlayerRankRow/PlayerRankRow";
 import ProfileWithBatch from "../../Ui/ProfileWithBatch/ProfileWithBatch";
-import VS_img from '../../../public/assets/Live/suggested-builds/vs.png'
+import VS_img from "../../../public/assets/Live/suggested-builds/vs.png";
 // image links
 import MainImg from "../../../public/assets/Live/profile-face/NoPath - Copy (25).png";
 import Rank1 from "../../../public/assets/playerCard/NoPath - Copy (33).png";
@@ -51,7 +51,7 @@ const LiveContentCard = (props) => {
     return (
         <div className=" w-full px-2 ">
             {/* top content  */}
-            <div className=" flex items-center w-full justify-between  ">
+            <div className=" flex items-end w-full justify-between mb-3 ">
                 <SuuusanooCard
                     hocStyle={" px-[20px] pt-[12px] pb-[20px] "}
                     summonerName={props.summonerName}
@@ -62,26 +62,32 @@ const LiveContentCard = (props) => {
                         <p>live-game avg rank</p>
                         <p>ranked solo/duo</p>
                     </div>
-                    <LiveGameAvgRank hocStyle={` pl-[15px] pr-[12px] pt-[16px] pb-[19px] `} />
+                    <LiveGameAvgRank
+                        hocStyle={` pl-[15px] pr-[12px] pt-[16px] pb-[19px] `}
+                    />
                 </div>
-                <NowPlaying  />
-                <SuggestedBuild hocStyle={' w-[375px] pr-[28px] pl-[32px] pb-[14px] pt-[12px] '} />
+                <NowPlaying />
+                <SuggestedBuild
+                    hocStyle={
+                        " w-[375px] pr-[28px] pl-[32px] pb-[14px] pt-[12px] "
+                    }
+                />
             </div>
             {/* bottom content  */}
-            <div className=" bg-white rounded-[20px] w-full mt-[57px]  ">
+            <div className=" bg-white rounded-[20px] w-full relative   ">
+                {/* timeline  */}
+                <div className=" rounded-tl-[10px] bg-white-blue inline-block absolute z-50 left-0 top-0 ">
+                    <p className=" gotham-9px-mid capitalize text-white py-[7px] px-[28px] ">
+                        timetable
+                    </p>
+                </div>
                 {/* top  */}
                 <div className=" relative w-full ">
-                    {/* timeline  */}
-                    <div className=" rounded-tl-[10px] bg-white-blue inline-block ">
-                        <p className=" gotham-9px-mid capitalize text-white py-[7px] px-[28px] ">
-                            timetable
-                        </p>
-                    </div>
                     {/* team tittle  */}
-                    <div className=" flex justify-center items-center gotham-12px-mid capitalize gap-x-4 py-8 ">
+                    <div className=" flex justify-center items-center gotham-12px-mid capitalize gap-x-4 pt-[53px] pb-[25px] w-[245px] mx-auto ">
                         <h3 className=" text-white-blue ">blue team</h3>
-                        <div className=" w-6 ">
-                            <Image src={VS_img} alt="vs image" />
+                        <div className=" w-[18px] h-[27px] relative ">
+                            <Image src={VS_img} alt="vs image" layout="fill" />
                         </div>
                         <h3 className=" text-red-yellow-gold ">red team</h3>
                     </div>
@@ -91,7 +97,10 @@ const LiveContentCard = (props) => {
                     {/* left rank  */}
 
                     {/* center content  */}
-                    <PredectionCard predictBuildsList={predictBuildsList} vsImg={VS_img} />
+                    <PredectionCard
+                        predictBuildsList={predictBuildsList}
+                        vsImg={VS_img}
+                    />
                     {/* right rank  */}
                 </div>
             </div>

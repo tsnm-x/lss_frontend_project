@@ -13,7 +13,7 @@ const ItemsWithName = (props) => {
                   );
               })}
           </div>
-          <h5 className=" gotham-5px-mid text-[#0A0C14] capitalize text-center ">{props.name}</h5>
+          <h5 className="  font-gotham-book text-[5px] leading-[6px] text-[#0A0C14] capitalize text-center ">{props.name}</h5>
       </div>
   );
 }

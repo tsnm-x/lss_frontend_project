@@ -13,7 +13,7 @@ import BuildItem4 from "../../../../public/assets/Live/suggested-builds/build-it
 import { useSelector } from "react-redux";
 import ItemsWithName from "../ItemsWithName/ItemsWithName";
 import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
-import ProfileImage from '../../../../public/assets/profile-image.png'
+import ProfileImage from "../../../../public/assets/profile-image.png";
 
 const SuggestedBuild = (props) => {
     const matches = useSelector((state) => state.profile.profile);
@@ -53,13 +53,6 @@ const SuggestedBuild = (props) => {
 
     return (
         <div className=" relative ">
-            {/* suggested contents  */}
-            {/* <SuggestedContents items={BuildItems} hocStyle={` px-7 py-6 rounded-[30px] w-[460px] ml-auto  `} championName={mainPlayer?.championName}/> */}
-            {/* suggested build img  */}
-            {/* <div className=" w-48 absolute -left-3 -bottom-[80px] ">
-                <Image src={SuggestedImage} alt="Suggested build image" />
-            </div> */}
-
             <div className={`${props.className}`}>
                 <div className=" font-gotham-book text-[10px] leading-[12px] mb-[6px]  ">
                     <p className=" capitalize text-full-dark ">
