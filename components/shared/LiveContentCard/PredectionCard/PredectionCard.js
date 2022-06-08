@@ -11,7 +11,7 @@ const LeftRankList = (props) => {
                 return (
                     <div
                         className={`flex items-center w-full justify-between pl-[30px] pr-[12px] rounded-tr-xl rounded-br-xl border-[0.1px] border-[#198cff3d] ${
-                            player?.mainPlayer && " bg-white-blue"
+                            player?.mainPlayer && "bg-white-blue"
                         }`}
                         key={index}
                     >
@@ -123,7 +123,7 @@ const RightRankList = (props) => {
                 return (
                     <div
                         className={`flex items-center w-full justify-between pl-[30px] pr-[12px] rounded-tr-xl rounded-br-xl border-[0.1px] border-[#198cff3d]  ${
-                            player?.mainPlayer && " bg-white-blue"
+                            player?.mainPlayer && "bg-white-blue"
                         }`}
                         key={index}
                     >

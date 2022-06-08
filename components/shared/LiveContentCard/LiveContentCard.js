@@ -21,6 +21,10 @@ import PredectionCard from "./PredectionCard/PredectionCard"
 
 const LiveContentCard = (props) => {
 
+    useEffect(()=>{
+        console.log(props.players)
+    }, [])
+
     const predictBuildsList = [
         {
             main: MainImg,
