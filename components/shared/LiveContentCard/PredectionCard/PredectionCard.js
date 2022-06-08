@@ -35,9 +35,7 @@ const LeftRankList = (props) => {
                             })}
                         </div>
 
-                        <div className=" w-[7px] h-[7px] bg-white rounded-full">
-
-                        </div>
+                        <div className=" w-[7px] h-[7px] bg-white border-[0.1px] border-[#707070] rounded-full"></div>
 
                         <div className="">
                             <ProfileWithBatch imgLink={ProfileImage} />

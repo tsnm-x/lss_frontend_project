@@ -55,7 +55,7 @@ const LiveContentCard = (props) => {
     ];
 
     return (
-        <div className=" w-full px-2 ">
+        <div className=" w-full ">
             {/* top content  */}
             <div className=" flex items-end w-full justify-between mb-3 ">
                 <SuuusanooCard
@@ -80,7 +80,7 @@ const LiveContentCard = (props) => {
                 />
             </div>
             {/* bottom content  */}
-            <div className=" bg-white rounded-[20px] w-full relative   ">
+            <div className=" bg-white rounded-[20px] w-full relative pb-[43px] ">
                 {/* timeline  */}
                 <div className=" rounded-tl-[10px] bg-white-blue inline-block absolute z-50 left-0 top-0 ">
                     <p className=" gotham-9px-mid capitalize text-white py-[7px] px-[28px] ">
