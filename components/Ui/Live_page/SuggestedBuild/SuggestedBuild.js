@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import SuggestedImage from "../../../../public/assets/Live/suggestedBuild.png";
 import SuggestedContents from "./SuggestedContent";
@@ -17,13 +17,6 @@ const SuggestedBuild = () => {
 	let mainPlayer = matches[0]?.players.find((player) => {
 		return player.mainPlayer == true;
 	});
-
-    useEffect(()=>{
-
-        console.log(mainPlayer);
-        console.log(matches[0]);
-
-    }, [mainPlayer])
 
     const BuildItems = [
         { name: "starting items", itemsList: [`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item0}.png`, `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item1}.png`] },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./LiveContentCard.module.css";
 import LiveWhiteCardWrapHoc from "../../HOC/LiveWhiteCardWrapHoc/LiveWhiteCardWrapHoc";
 import SuuusanooCard from "../../Ui/Live_page/SuuusanoCard/SuuusanoCard";
@@ -17,9 +17,10 @@ import Rank3 from "../../../public/assets/playerCard/NoPath - Copy (31).png";
 import Rank4 from "../../../public/assets/playerCard/NoPath - Copy (30).png";
 import Rank5 from "../../../public/assets/playerCard/NoPath - Copy (29).png";
 import Rank6 from "../../../public/assets/playerCard/NoPath - Copy (28).png";
-import PredectionCard from "./PredectionCard/PRedectionCard";
+import PredectionCard from "./PredectionCard/PredectionCard"
 
 const LiveContentCard = (props) => {
+
     const predictBuildsList = [
         {
             main: MainImg,
@@ -93,7 +94,7 @@ const LiveContentCard = (props) => {
                     {/* <PlayerRankRow className=" mb-7 " /> */}
 
                     {/* center content  */}
-                    <PredectionCard predictBuildsList={predictBuildsList} vsImg={VS_img} />
+                    <PredectionCard players={props.players} />
                     {/* right rank  */}
                         
                     {/* <PlayerRankRow className=" mb-7 " /> */}
