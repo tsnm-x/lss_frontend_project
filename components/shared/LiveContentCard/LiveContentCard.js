@@ -18,6 +18,7 @@ import Rank5 from "../../../public/assets/playerCard/NoPath - Copy (29).png";
 import Rank6 from "../../../public/assets/playerCard/NoPath - Copy (28).png";
 import PredectionCard from "./PredectionCard/PRedectionCard";
 import PlayerRankRow from "../../Ui/Live_page/PlayerRankRow/PlayerRankRow";
+import BottomChart from "./BottomChart/BottomChart";
 
 const LiveContentCard = (props) => {
     const predictBuildsList = [
@@ -92,11 +93,11 @@ const LiveContentCard = (props) => {
                         <h3 className=" text-red-yellow-gold ">red team</h3>
                     </div>
                 </div>
-                {/* bottom card  */}
+                {/* bottom predection card  */}
                 <div className=" bg-[#47516c] flex ">
                     {/* left rank  */}
-                    <div className=" w-[285px] flex items-center justify-center ">
-                        <PlayerRankRow className=" w-[205px] " />
+                    <div className=" w-[285px] flex items-center justify-center py-[25px] ">
+                        <PlayerRankRow className=" w-[205px] h-[125px] " />
                     </div>
                     {/* center content  */}
                     <div className=" w-[375px] pt-6">
@@ -107,10 +108,12 @@ const LiveContentCard = (props) => {
                     </div>
 
                     {/* right rank  */}
-                    <div className=" w-[285px] flex items-center justify-center ">
-                        <PlayerRankRow className=" w-[205px] " />
+                    <div className=" w-[285px] flex items-center justify-center py-[25px] ">
+                        <PlayerRankRow className=" w-[205px] h-[125px] " />
                     </div>
                 </div>
+                {/* bottom chart card  */}
+                <BottomChart />
             </div>
         </div>
     );
