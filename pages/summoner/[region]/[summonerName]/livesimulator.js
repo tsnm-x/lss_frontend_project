@@ -29,6 +29,10 @@ const LiveSimulator = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        console.log(matches[0]);
+    }, [matches]);
+
     return (
         <>
             <Header />
@@ -48,6 +52,7 @@ const LiveSimulator = () => {
 					className=" bg-liquid-white-50 pb-[70px] "
 					summonerName={mainPlayer?.summonerName}
 					profileIcon={mainPlayer?.profileIcon}
+                    players={matches[0]?.players}
 				/>
             )}
         </>

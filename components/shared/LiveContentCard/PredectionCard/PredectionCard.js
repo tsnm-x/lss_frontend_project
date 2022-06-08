@@ -48,53 +48,11 @@ const LeftRankList = (props) => {
         </div>
     );
 };
-const RightRankList = (props) => {
-    console.log('your predection cards' , props)
-    return (
-        <div
-            className={`w-[170px] flex flex-col mt-3 ${props.className}`}
-        >
-            {props.predictBuildsList.map((item, index) => {
-                return (
-                    <div
-                        className={`flex items-center w-full justify-between rounded-tr-xl rounded-br-xl border-[0.1px] border-[#198cff3d] pl-[15px] mb-[4px] ${
-                            item.active && " bg-white-blue"
-                        }`}
-                        key={index}
-                    >
-                        <div className=" flex bg-full-dark  items-center p-[1px] pr-[3px] rounded-full ">
-                            {item.list.map((item, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className=" relative w-[13px] h-[13px] border-0_3 border-white-blue first:border first:border-[#FFD700] mr-[1px] first:mr-[0] last:mr-[0] first:w-[16px] first:h-[16px] rounded-full   "
-                                    >
-                                        <Image
-                                            src={item}
-                                            alt="award list"
-                                            layout="fill"
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </div>
-
-                        <div className=" w-[7px] h-[7px] bg-white rounded-full">
-
-                        </div>
-
-                        <div className="">
-                            <ProfileWithBatch imgLink={ProfileImage} />
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
-    );
-};
 
 
 const PredectionCard = (props) => {
+
+
     return (
         <div
             className={`flex flex-col bg-white items-start pb-8 rounded-t-lg ${props.className}`}
@@ -116,7 +74,7 @@ const PredectionCard = (props) => {
                     <Image src={VS_img} alt="vs icon" />
                 </div>
                 {/* right  */}
-                <RightRankList {...props} />
+                
             </div>
         </div>
     );

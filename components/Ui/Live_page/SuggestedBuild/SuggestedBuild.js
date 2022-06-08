@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import Image from "next/image";
 import SuggestedImage from "../../../../public/assets/Live/suggestedBuild.png";
 import SuggestedContents from "./SuggestedContent";
