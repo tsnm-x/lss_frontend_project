@@ -18,8 +18,8 @@ const LeftRankList = (props) => {
                         }`}
                         key={index}
                     >
-                        <div className=" order-1 ">
-                            <ProfileWithBatch imgLink={item.main.src} />
+                        <div className=" order-1 p-2 ">
+                            <ProfileWithBatch imgLink={ProfileImage} />
                         </div>
 
                         <div className=" flex bg-full-dark  items-center p-[1px] pr-[3px] rounded-full ">
