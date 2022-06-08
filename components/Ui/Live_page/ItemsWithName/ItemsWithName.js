@@ -7,8 +7,8 @@ const ItemsWithName = (props) => {
           <div className=' flex gap-x-1 pb-2 border-b border-mix-white-black mb-1 '>
               {props.itemList.map((img, index) => {
                   return (
-                      <div className=' w-8 h-8 rounded-full ' key={index}>
-                          <Image src={img} alt="item image" width={'100%'} height={'100%'} className="rounded-full" />
+                      <div className=' w-[30px] h-[30px] relative rounded-full ' key={index}>
+                          <Image src={img} alt="item image" className=' rounded-full' layout='fill' />
                       </div>
                   );
               })}

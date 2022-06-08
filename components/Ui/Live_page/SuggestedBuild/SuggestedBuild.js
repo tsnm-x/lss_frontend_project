@@ -11,39 +11,84 @@ import BuildItem2 from "../../../../public/assets/Live/suggested-builds/build-it
 import BuildItem3 from "../../../../public/assets/Live/suggested-builds/build-items 3.png";
 import BuildItem4 from "../../../../public/assets/Live/suggested-builds/build-items 4.png";
 import { useSelector } from "react-redux";
+import ItemsWithName from "../ItemsWithName/ItemsWithName";
+import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
+import ProfileImage from '../../../../public/assets/profile-image.png'
 
-const SuggestedBuild = () => {
+const SuggestedBuild = (props) => {
     const matches = useSelector((state) => state.profile.profile);
-	let mainPlayer = matches[0]?.players.find((player) => {
-		return player.mainPlayer == true;
-	});
+    let mainPlayer = matches[0]?.players.find((player) => {
+        return player.mainPlayer == true;
+    });
 
-    useEffect(()=>{
-
+    useEffect(() => {
         console.log(mainPlayer);
         console.log(matches[0]);
-
-    }, [mainPlayer])
+    }, [mainPlayer]);
 
     const BuildItems = [
-        { name: "starting items", itemsList: [`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item0}.png`, `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item1}.png`] },
-        { name: "core items", itemsList: [`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item2}.png`, `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item3}.png`] },
+        {
+            name: "starting items",
+            itemsList: [
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item0}.png`,
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item1}.png`,
+            ],
+        },
+        {
+            name: "core items",
+            itemsList: [
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item2}.png`,
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item3}.png`,
+            ],
+        },
         {
             name: "full build path",
-            itemsList: [`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item4}.png`, `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item5}.png`, `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item6}.png`],
+            itemsList: [
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item4}.png`,
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item5}.png`,
+                `http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${mainPlayer?.item6}.png`,
+            ],
         },
     ];
 
     return (
-        <div className=" relative w-[525px] ">
+        <div className=" relative ">
             {/* suggested contents  */}
-            <SuggestedContents items={BuildItems} hocStyle={` px-7 py-6 rounded-[30px] w-[460px] ml-auto  `} championName={mainPlayer?.championName}/>
+            {/* <SuggestedContents items={BuildItems} hocStyle={` px-7 py-6 rounded-[30px] w-[460px] ml-auto  `} championName={mainPlayer?.championName}/> */}
             {/* suggested build img  */}
-            <div className=" w-48 absolute -left-3 -bottom-[80px] ">
+            {/* <div className=" w-48 absolute -left-3 -bottom-[80px] ">
                 <Image src={SuggestedImage} alt="Suggested build image" />
+            </div> */}
+
+            <div className={`${props.className}`}>
+                <div className=" font-gotham-book text-[10px] leading-[12px] mb-[6px]  ">
+                    <p className=" capitalize text-full-dark ">
+                        suggested build
+                    </p>
+                    <p className=" capitalize  text-white-blue">lee sin</p>
+                </div>
+                {/* bottom line  */}
+                <div className=" flex items-center">
+                    {/* profile image  */}
+                    <div className=" w-[50px] h-[50px] relative mr-4">
+                        <Image src={ProfileImage} alt="profile image" />
+                    </div>
+                    {/* rank images  */}
+                    <div className=" flex gap-x-2 justify-end">
+                        {BuildItems.map((items, index) => {
+                            return (
+                                <ItemsWithName
+                                    key={index}
+                                    name={items.name}
+                                    itemList={items.itemsList}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
 
-export default SuggestedBuild;
+export default LiveContentWrap(SuggestedBuild);

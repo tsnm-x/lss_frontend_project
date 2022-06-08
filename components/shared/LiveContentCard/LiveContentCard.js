@@ -65,7 +65,7 @@ const LiveContentCard = (props) => {
                     <LiveGameAvgRank hocStyle={` pl-[15px] pr-[12px] pt-[16px] pb-[19px] `} />
                 </div>
                 <NowPlaying  />
-                {/* <SuggestedBuild /> */}
+                <SuggestedBuild hocStyle={' w-[375px] pr-[28px] pl-[32px] pb-[14px] pt-[12px] '} />
             </div>
             {/* bottom content  */}
             <div className=" bg-white rounded-[20px] w-full mt-[57px]  ">
