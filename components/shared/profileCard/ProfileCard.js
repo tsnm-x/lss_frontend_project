@@ -18,7 +18,6 @@ const ProfileCard = (props) => {
     const loader = useSelector((state) => state.loader.loader);
     const refreshHandler = () => {
         const requestHandler = (res) => {
-            console.log(res, "new res");
             dispatch(
                 profileAction.setProfileDataPage({
                     profile: res.data.matches,

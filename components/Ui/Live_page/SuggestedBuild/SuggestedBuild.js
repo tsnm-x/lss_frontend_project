@@ -22,8 +22,8 @@ const SuggestedBuild = (props) => {
     });
 
     useEffect(() => {
-        console.log(mainPlayer);
-        console.log(matches[0]);
+        // console.log(mainPlayer);
+        // console.log(matches[0]);
     }, [mainPlayer]);
 
     const BuildItems = [

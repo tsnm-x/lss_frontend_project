@@ -4,7 +4,6 @@ import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 function SummonerCard(props) {
 	const [toggle, setToggle] = useState(false);
-	console.log(props.match);
 	const { duration, players } = props.match;
 	const mainPlayer = players.find((player) => player.mainPlayer === true);
 	function toggleSummonersDetails() {
@@ -30,7 +29,6 @@ function SummonerCard(props) {
 		return minutes + ":" + seconds; // Return is MM : SS
 	}
 	function largestMultiKill(level) {
-		console.log(level);
 		switch (level) {
 			case 0:
 				return "Zero Kill";
@@ -46,7 +44,6 @@ function SummonerCard(props) {
 				return "Penta Kill";
 		}
 	}
-	console.log(mainPlayer.profileIcon);
 	return (
 		<section
 			className={`my-4 flex flex-col justify-center items-center ${

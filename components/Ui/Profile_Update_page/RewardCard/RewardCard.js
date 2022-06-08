@@ -98,7 +98,7 @@ const RewardCard = (props) => {
             {/* kill reward  */}
             <div className=" flex gap-x-[1px] relative ">
                 {props.summonerSpellsId.map((spellId, index) => {
-                    console.log(selectSpell(spellId))
+                    // console.log(selectSpell(spellId))
                     if (!spellId) {
                         return <div className=" w-[11px] h-[11px]"></div>;
                     }

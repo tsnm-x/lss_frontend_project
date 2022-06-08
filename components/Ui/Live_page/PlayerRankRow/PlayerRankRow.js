@@ -32,7 +32,7 @@ const PlayerRankCard = (props) => {
     ];
 
     return (
-        <div className={`w-full bg-full-dark ${props.className}`}>
+        <div className={`w-full ${props.className}`}>
             <div className=" h-full ">
                 {/* rank title  */}
                 <div className="  border-b border-white-blue grid grid-cols-3 ">
@@ -56,25 +56,28 @@ const PlayerRankCard = (props) => {
                             >
                                 {/* rank 2021 module  */}
                                 <div className=" flex items-center gap-x-1 ">
-                                    <div className=" relative w-[12px] h-[12px] flex items-center justify-center ">
+                                    <div className=" relative w-[17.5px] h-[16.5px] flex items-center justify-center ">
                                         <Image
                                             src={RankIcon}
                                             alt="rank icon"
                                             layout="fill"
                                         />
                                     </div>
-                                    <p className=" sf-1px-reg text-liquid-white">
+                                    <p className=" font-sf-pro text-[3px] leading-[4px] text-liquid-white">
                                         IGITeak
                                     </p>
                                 </div>
                                 {/* ranked  */}
-                                <div className=" flex flex-col flex-wrap justify-end pb-[2px] ">
+                                <div className=" flex flex-col flex-wrap justify-center pb-[2px] ">
                                     <div className=" flex flex-col ">
-                                        <p className=" sf-2px-reg capitalize text-white-blue ">
+                                        <p className=" font-sf-pro text-[4px] leading-[5px] capitalize text-white-blue ">
                                             58%{" "}
                                             <span className=" text-liquid-white ">
                                                 winrate
                                             </span>
+                                        </p>
+                                        <p className=" text-[#8D919F] text-[2px] font-sf-pro ">
+                                            ( 329 game played )
                                         </p>
                                     </div>
                                     <div className=" relative w-8 h-[2px]  ">

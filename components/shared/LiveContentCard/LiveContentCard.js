@@ -6,7 +6,6 @@ import LiveGameAvgRank from "../../Ui/Live_page/LiveGameAvgRank/LiveGameAvgRank"
 import NowPlaying from "../../Ui/Live_page/NowPlaying/NowPlaying";
 import SuggestedBuild from "../../Ui/Live_page/SuggestedBuild/SuggestedBuild";
 import Image from "next/image";
-import PlayerRankRow from "../../Ui/Profile_Update_page/PlayerRankRow/PlayerRankRow";
 import ProfileWithBatch from "../../Ui/ProfileWithBatch/ProfileWithBatch";
 import VS_img from "../../../public/assets/Live/suggested-builds/vs.png";
 // image links
@@ -18,6 +17,7 @@ import Rank4 from "../../../public/assets/playerCard/NoPath - Copy (30).png";
 import Rank5 from "../../../public/assets/playerCard/NoPath - Copy (29).png";
 import Rank6 from "../../../public/assets/playerCard/NoPath - Copy (28).png";
 import PredectionCard from "./PredectionCard/PRedectionCard";
+import PlayerRankRow from "../../Ui/Live_page/PlayerRankRow/PlayerRankRow";
 
 const LiveContentCard = (props) => {
     const predictBuildsList = [
@@ -84,7 +84,7 @@ const LiveContentCard = (props) => {
                 {/* top  */}
                 <div className=" relative w-full ">
                     {/* team tittle  */}
-                    <div className=" flex justify-center items-center gotham-12px-mid capitalize gap-x-4 pt-[53px] pb-[25px] w-[245px] mx-auto ">
+                    <div className=" flex justify-center items-center font-gotham-mid text-[12px] capitalize gap-x-4 pt-[53px] pb-[35px] w-[245px] mx-auto ">
                         <h3 className=" text-white-blue ">blue team</h3>
                         <div className=" w-[18px] h-[27px] relative ">
                             <Image src={VS_img} alt="vs image" layout="fill" />
@@ -93,15 +93,23 @@ const LiveContentCard = (props) => {
                     </div>
                 </div>
                 {/* bottom card  */}
-                <div className=" px-[50px] pt-7 bg-[#47516c] grid grid-cols-[1fr_2fr_1fr] gap-x-10  ">
+                <div className=" bg-[#47516c] flex ">
                     {/* left rank  */}
-
+                    <div className=" w-[285px] flex items-center justify-center ">
+                        <PlayerRankRow className=" w-[205px] " />
+                    </div>
                     {/* center content  */}
-                    <PredectionCard
-                        predictBuildsList={predictBuildsList}
-                        vsImg={VS_img}
-                    />
+                    <div className=" w-[375px] pt-6">
+                        <PredectionCard
+                            predictBuildsList={predictBuildsList}
+                            VS_img={VS_img}
+                        />
+                    </div>
+
                     {/* right rank  */}
+                    <div className=" w-[285px] flex items-center justify-center ">
+                        <PlayerRankRow className=" w-[205px] " />
+                    </div>
                 </div>
             </div>
         </div>
