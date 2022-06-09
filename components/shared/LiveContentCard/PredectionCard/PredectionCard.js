@@ -52,7 +52,7 @@ const RightRankList = (props) => {
                 return (
                     <div
                         className={` relative py-[2.5px] flex items-center w-full justify-end rounded-tl-xl rounded-bl-xl border-[0.1px] border-[#198cff3d] pr-[15px] pl-[35px] mb-[4px] ${
-                            item.active && " bg-white-blue"
+                            item.active && " bg-[#FC2300]"
                         }`}
                         key={index}
                     >
@@ -89,7 +89,7 @@ const RightRankList = (props) => {
 const PredectionCard = (props) => {
     return (
         <div
-            className={`flex flex-col bg-white items-start pb-8 rounded-t-lg relative ${props.className}`}
+            className={`flex flex-col bg-white items-start pb-[14px] rounded-t-lg relative ${props.className}`}
         >
             {/* top header  */}
             <div
