@@ -58,7 +58,7 @@ const BottomChart = () => {
                             </div>
                             {/* number  */}
                             {item.number && (
-                                <div className=" w-[26px] h-[26px] rounded-full bg-[#fc2300] ml-[8px] flex justify-center items-center ">
+                                <div className=" w-[26px] h-[26px] rounded-full bg-[#fc2300] ml-[14px] flex justify-center items-center ">
                                     <p className=" font-sf-pro text-white text-[15px] ">{item.number}</p>
                                 </div>
                             )}
