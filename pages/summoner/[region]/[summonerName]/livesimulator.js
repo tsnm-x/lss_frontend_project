@@ -49,7 +49,7 @@ const LiveSimulator = () => {
             {/* {!loaded && <LivePageLoading className="bg-white" />} */}
             {true && (
                 <LiveContentCard 
-					className=" bg-liquid-white-50 pb-[70px] "
+					className=" bg-liquid-white-50 pb-[70px] mb-[200px]  "
 					summonerName={mainPlayer?.summonerName}
 					profileIcon={mainPlayer?.profileIcon}
                     players={matches[0]?.players}

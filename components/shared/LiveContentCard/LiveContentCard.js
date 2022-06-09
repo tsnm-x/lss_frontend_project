@@ -19,6 +19,10 @@ import Rank6 from "../../../public/assets/playerCard/NoPath - Copy (28).png";
 import PredectionCard from "./PredectionCard/PredectionCard";
 import PlayerRankRow from "../../Ui/Live_page/PlayerRankRow/PlayerRankRow";
 import BottomChart from "./BottomChart/BottomChart";
+import BottomWhiteShadow from '../../../public/assets/Live_simulator/bottom-element.svg'
+
+
+
 
 const LiveContentCard = (props) => {
 
@@ -105,11 +109,19 @@ const LiveContentCard = (props) => {
                         <PlayerRankRow className=" w-[205px] h-[125px] " />
                     </div>
                     {/* center content  */}
-                    <div className=" w-[375px] pt-6">
+                    <div className=" w-[375px] pt-6 relative ">
                         <PredectionCard
                             predictBuildsList={predictBuildsList}
                             VS_img={VS_img}
                         />
+                        {/* bottom shadow element  */}
+                        {/* <div className=" h-12 absolute ">
+                            <Image
+                                src={BottomWhiteShadow}
+                                alt="bottom white shadow"
+                                layout="fill"
+                            />
+                        </div> */}
                     </div>
 
                     {/* right rank  */}
