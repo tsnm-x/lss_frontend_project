@@ -8,7 +8,7 @@ import classes from "./PlayerCards.module.css";
 // import Loader from "../../../shared/loader/Loader";
 
 import { BiExpand } from "react-icons/bi";
-import ProfileWithBatch from "../../ProfileWithBatch/ProfileWithBatch";
+import ProfileWithBatch from "../../../Ui/ProfileWithBatch/ProfileWithBatch";
 import RewardCard from "../RewardCard/RewardCard";
 import ProfileCardPlayersList from "../ProfileCardPlayersList/ProfileCardPlayersList";
 import PlayerRankCard from "../PlayerRankCard/PlayerRankCard";

@@ -58,13 +58,13 @@ const SuggestedBuild = (props) => {
                     <p className=" capitalize text-full-dark ">
                         suggested build
                     </p>
-                    <p className=" capitalize  text-white-blue">lee sin</p>
+                    <p className=" capitalize  text-white-blue">{mainPlayer?.championName}</p>
                 </div>
                 {/* bottom line  */}
                 <div className=" flex items-center">
                     {/* profile image  */}
                     <div className=" w-[50px] h-[50px] relative mr-4">
-                        <Image src={ProfileImage} alt="profile image" />
+                        <Image className="rounded-full" src={`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/champion/${mainPlayer?.championName}.png`} alt="profile image" width={"100%"} height={"100%"} />
                     </div>
                     {/* rank images  */}
                     <div className=" flex gap-x-2 justify-end">

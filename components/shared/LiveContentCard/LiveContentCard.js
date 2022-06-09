@@ -30,34 +30,6 @@ const LiveContentCard = (props) => {
         console.log(props.players)
     }, [])
 
-    const predictBuildsList = [
-        {
-            main: MainImg,
-            list: [Rank1, Rank2, Rank3, Rank4, Rank5, Rank6],
-            active: true,
-        },
-        {
-            main: MainImg,
-            list: [Rank1, Rank2, Rank3, Rank4, Rank5, Rank6],
-            active: false,
-        },
-        {
-            main: MainImg,
-            list: [Rank1, Rank2, Rank3, Rank4, Rank5, Rank6],
-            active: false,
-        },
-        {
-            main: MainImg,
-            list: [Rank1, Rank2, Rank3, Rank4, Rank5, Rank6],
-            active: false,
-        },
-        {
-            main: MainImg,
-            list: [Rank1, Rank2, Rank3, Rank4, Rank5, Rank6],
-            active: false,
-        },
-    ];
-
     return (
         <div className=" w-full ">
             {/* top content  */}
@@ -111,7 +83,7 @@ const LiveContentCard = (props) => {
                     {/* center content  */}
                     <div className=" w-[375px] pt-6 relative ">
                         <PredectionCard
-                            predictBuildsList={predictBuildsList}
+                            players={props.players}
                             VS_img={VS_img}
                         />
                         {/* bottom shadow element  */}
