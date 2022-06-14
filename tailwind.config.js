@@ -7,35 +7,33 @@ module.exports = {
     theme: {
         extend: {
             animation: {
-                bounce200: "bounce 1s infinite 200ms",
-                bounce400: "bounce 1s infinite 400ms",
+               
             },
             maxWidth: {
-                "max-container": "1370px",
+                
             },
             colors: {
-                "white-blue": "#198CFF",
-                "liquid-white": "#f3f4f8",
-                "liquid-white-50": "#F3F4F8F2",
-                "liquid-white-100": "#f7f7f9",
-                "mix-white-black": "#707070",
-                "mix-white-black-100": "#8D919F",
-                "mix-white-black-200": "#646e86",
-                "full-dark": "#0f121d",
-                "nav-text": "#47516C",
-                "almost-dark": "#0f121d",
-                "red-yellow": "#fc5900",
-                "red-yellow-gold": "#FC2300",
-                "card-border": "#141726",
-                "btn-hover": "#00ccf2",
+                'card-&-content-box': "#241E2C",
+                "user-color": '#D14631',
+                'buttons-gray': '#3E3847',
+                'grayed-text': '#AAA0A8',
+                'accent-color-2': '#5D7CF6',
+                'background': '#140A22',
+                'light-text': '#FFFAFF'
             },
             fontSize: {
-                "20px": "20px",
+                "30px": '30px',
+                "25px": '25px',
+                '15px': '15px',
+                '80px': '80px',
+                '24px': '24px',
+                '20px': '20px',
+                '10px': '10px'
             },
             fontFamily: {
-                "gotham-book": "gotham-book",
-                "gotham-mid": "gotham-mid",
-                "sf-pro": "sf-pro"
+                'gotham': 'Gotham',
+                'NEDGEN': 'NEDGEN',
+                'SF Pro Text': 'SF Pro Text'
             },
             borderRadius: {
                 "5px": "5px",
