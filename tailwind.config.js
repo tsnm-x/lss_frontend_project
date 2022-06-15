@@ -5,6 +5,21 @@ module.exports = {
         "./components/shared/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
+        screens: {
+            'mobile': "360px",
+            'tablet': '768px',
+            'laptop': '1280px',
+            'desktop': '1920px'
+        },
+        container: {
+            center: true,
+            screens: {
+                'mobile': '300px',
+                'tablet': '650px',
+                'laptop': '1280px',
+                'desktop': '1700px'
+            },
+        },
         extend: {
             animation: {
                 // old 1.0
@@ -38,7 +53,8 @@ module.exports = {
                 'grayed-text': '#AAA0A8',
                 'accent-color-2': '#5D7CF6',
                 'background': '#140A22',
-                'light-text': '#FFFAFF'
+                'light-text': '#FFFAFF',
+                'logo': '#FF4656'
             },
             fontSize: {
                 // old 1.0 
