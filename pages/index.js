@@ -14,9 +14,10 @@
 // import { profileAction } from "../store/profile";
 // import Router from "next/router";
 
-import React from 'react';
+import React from "react";
 import Header from "../components/shared/New-Componets/header/Header";
-import Main from '../components/Ui/New-Components/Landing_Page/Main/Main'
+import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
+import AdvertiseAndDownloadNow from "../components/Ui/New-Components/Landing_Page/AdvertiseAndDownloadNow/AdvertiseAndDownloadNow";
 
 export default function Home() {
     // const servers = [
@@ -95,7 +96,9 @@ export default function Home() {
         <div className="bg-[#120924]">
             <Header />
             {/* main section  */}
-						<Main className="mt-16" />
+            <Main className="mt-16" />
+            {/* advertise and download  */}
+            <AdvertiseAndDownloadNow className=" mt-[74px] " />
             {/* 
 			 <div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
