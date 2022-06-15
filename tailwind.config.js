@@ -56,6 +56,7 @@ module.exports = {
                 logo: "#FF4656",
                 "accent-color-2": "#5D7CF6",
                 background: "#140A22",
+                "footer-bg": "#18112b",
             },
             fontSize: {
                 // old 1.0
@@ -84,8 +85,8 @@ module.exports = {
                 "5px": "5px",
                 "7px": "7px",
                 "8px": "8px",
-                // new 2.0 
-                '5px': '5px'
+                // new 2.0
+                "5px": "5px",
             },
             borderWidth: {
                 // old 1.0

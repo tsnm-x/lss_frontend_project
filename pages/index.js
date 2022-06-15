@@ -18,6 +18,7 @@ import React from "react";
 import Header from "../components/shared/New-Componets/header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
 import AdvertiseAndDownloadNow from "../components/Ui/New-Components/Landing_Page/AdvertiseAndDownloadNow/AdvertiseAndDownloadNow";
+import Footer from "../components/shared/New-Componets/Footer/Footer";
 
 export default function Home() {
     // const servers = [
@@ -99,6 +100,8 @@ export default function Home() {
             <Main className="mt-16" />
             {/* advertise and download  */}
             <AdvertiseAndDownloadNow className=" mt-[74px] " />
+            {/* footer section  */}
+            <Footer />
             {/* 
 			 <div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
