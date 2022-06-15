@@ -3,6 +3,7 @@ import { FiSearch } from 'react-icons/fi'
 
 const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
+    const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     const searchInput = (input) => {
         setSearch(input.target.value);
@@ -41,7 +42,7 @@ const ProfileSearch = (props) => {
     ];
 
     const btnActiveHandler = (index) => {
-        console.log(index);
+        setActiveItemIndex(index);
     };
 
     return (
@@ -71,7 +72,7 @@ const ProfileSearch = (props) => {
                                 className={` 
                                     font-sf-pro-text text-[9px] leading-3 font-bold py-[2px]
                                     uppercase rounded-5px ${
-                                        item.active
+                                        activeItemIndex === index
                                             ? "bg-[#D55460] text-white"
                                             : "bg-white text-black"
                                     } `}
