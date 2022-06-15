@@ -1,104 +1,106 @@
-import classes from "../styles/Home.module.css";
-import { Fragment, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { MdOutlineKeyboardArrowDown, MdSearch } from "react-icons/md";
-import useHttp from "../hook/useHttp";
-import Loader from "../components/shared/loader/Loader";
-import { useSelector, useDispatch } from "react-redux";
-import Header from "../components/shared/header/Header";
+// import classes from "../styles/Home.module.css";
+// import { Fragment, useState } from "react";
+// import { Listbox, Transition } from "@headlessui/react";
+// import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+// import { MdOutlineKeyboardArrowDown, MdSearch } from "react-icons/md";
+// import useHttp from "../hook/useHttp";
+// import Loader from "../components/shared/Old-Shared-Components/loader/Loader";
+// import { useSelector, useDispatch } from "react-redux";
+// import { AiFillCaretDown } from "react-icons/ai";
+// import { BsFillChatSquareTextFill } from "react-icons/bs";
+// import leaveFeedback from "../public/assets/leave-feedback.png";
+// import Image from "next/image";
+// import IrealaImg from "../public/assets/Irelia.png";
+// import { profileAction } from "../store/profile";
+// import Router from "next/router";
 
-import { AiFillCaretDown } from "react-icons/ai";
-import { BsFillChatSquareTextFill } from "react-icons/bs";
-import leaveFeedback from "../public/assets/leave-feedback.png";
-import Image from "next/image";
-import IrealaImg from "../public/assets/Irelia.png";
-import { profileAction } from "../store/profile";
-import Router from "next/router";
+import React from 'react';
+import Header from "../components/shared/New-Componets/header/Header";
+import Main from '../components/Ui/New-Components/Landing_Page/Main/Main'
 
 export default function Home() {
-	const servers = [
-		"BR",
-		"EUNE",
-		"EUW",
-		"JP",
-		"KR",
-		"LAN",
-		"LAS",
-		"NA",
-		"OCE",
-		"TR",
-		"RU",
-	];
-	const reqServers = [
-		"BR1",
-		"EUN1",
-		"EUW1",
-		"JP1",
-		"KR",
-		"LA1",
-		"LA2",
-		"NA1",
-		"OC1",
-		"TR1",
-		"RU",
-	];
-	// region: reqServers[servers.indexOf(region)],
-	const [region, setRegion] = useState(servers[2]);
-	const [summonerName, setSummonerName] = useState("");
-	const loading = useSelector((state) => state.loader.loader);
-	const dispatch = useDispatch();
-	const { hasError, sendRequest } = useHttp();
+    // const servers = [
+    //     "BR",
+    //     "EUNE",
+    //     "EUW",
+    //     "JP",
+    //     "KR",
+    //     "LAN",
+    //     "LAS",
+    //     "NA",
+    //     "OCE",
+    //     "TR",
+    //     "RU",
+    // ];
+    // const reqServers = [
+    //     "BR1",
+    //     "EUN1",
+    //     "EUW1",
+    //     "JP1",
+    //     "KR",
+    //     "LA1",
+    //     "LA2",
+    //     "NA1",
+    //     "OC1",
+    //     "TR1",
+    //     "RU",
+    // ];
+    // region: reqServers[servers.indexOf(region)],
+    // const [region, setRegion] = useState(servers[2]);
+    // const [summonerName, setSummonerName] = useState("");
+    // const loading = useSelector((state) => state.loader.loader);
+    // const dispatch = useDispatch();
+    // const { hasError, sendRequest } = useHttp();
 
-	function classNames(...classes) {
-		return classes.filter(Boolean).join(" ");
-	}
+    // function classNames(...classes) {
+    //     return classes.filter(Boolean).join(" ");
+    // }
 
-	function requestHandler(res) {
-		if (!res) {
-			console.log(res, "no response from the server");
-			// console.log(reqServers[servers.indexOf(region)], "no responsezz");
-			setSummonerName("");
-			return;
-		}
+    // function requestHandler(res) {
+    //     if (!res) {
+    //         console.log(res, "no response from the server");
+    //         setSummonerName("");
+    //         return;
+    //     }
 
-		dispatch(
-			profileAction.setProfileDataPage({
-				profile: res.data.matches,
-				// region,
-				region: reqServers[servers.indexOf(region)],
-				summonerName,
-			})
-		);
-		Router.push(
-			`/summoner/${reqServers[servers.indexOf(region)]}/${summonerName}`
-		);
-		setSummonerName("");
-	}
+    //     dispatch(
+    //         profileAction.setProfileDataPage({
+    //             profile: res.data.matches,
+    //             region: reqServers[servers.indexOf(region)],
+    //             summonerName,
+    //         })
+    //     );
+    //     Router.push(
+    //         `/summoner/${reqServers[servers.indexOf(region)]}/${summonerName}`
+    //     );
+    //     setSummonerName("");
+    // }
 
-	function searchHandler(e) {
-		e.preventDefault();
-		sendRequest(
-			{
-				url: "/summonerByName",
-				method: "POST",
-				body: {
-					region: reqServers[servers.indexOf(region)],
-					summonerName,
-				},
-			},
-			requestHandler
-		);
-	}
+    // function searchHandler(e) {
+    //     e.preventDefault();
+    //     sendRequest(
+    //         {
+    //             url: "/summonerByName",
+    //             method: "POST",
+    //             body: {
+    //                 region: reqServers[servers.indexOf(region)],
+    //                 summonerName,
+    //             },
+    //         },
+    //         requestHandler
+    //     );
+    // }
 
-	return (
-		<div>
-			<Header />
-
-			<div
+    return (
+        <div className="bg-[#120924]">
+            <Header />
+            {/* main section  */}
+						<Main />
+            {/* 
+			 <div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
 			>
-				{/* top section  */}
+	
 				<div className=" self-end justify-self-center w-full max-w-[580px] ">
 					<div>
 						<h3 className={`text-white ${classes.header}`}>
@@ -129,7 +131,7 @@ export default function Home() {
 										<div className="relative z-10">
 											<Listbox.Button className=" font-sf-pro flex-shrink-0 z-10 inline-flex items-center h-full px-4 text-[13px] font-medium text-center text-white bg-white-blue rounded-[5px] focus:outline-none">
 												{region}
-												{/* <MdOutlineKeyboardArrowDown className="text-lg" /> */}
+											
 												<AiFillCaretDown className=" text-[13px] ml-1 " />
 											</Listbox.Button>
 
@@ -218,7 +220,7 @@ export default function Home() {
 										<Loader />
 									</span>
 								)}
-								{/* <MdSearch className="w-5 h-5" /> */}
+					
 							</button>
 						</div>
 						{hasError?.error && !summonerName && (
@@ -243,44 +245,11 @@ export default function Home() {
 						)}
 					</form>
 				</div>
-				{/* bottom sec  */}
+
 				<div className=" container max-w-[580px] justify-self-center self-end ">
-					{/* <div className={`${classes.highlight} relative `}> */}
-					{/* first row  */}
-					{/* <div className={`${classes.row} mb-9 w-[470px] ml-6 `}>
-							<h4 className={`${classes.header} ${classes.sm_header}`}>
-								what make us
-								<span className=" text-white-blue">different?</span>{" "}
-							</h4>
-							<div className={`${classes.link_wrap}`}>
-								<a href="#" className={`${classes.link}`}>
-									learn more
-								</a>
-								<div className={`${classes.blue_bg}`}></div>
-							</div>
-						</div> */}
-					{/* sec row  */}
-					{/* <div className={`${classes.row} max-w-[380px] `}>
-							<div className={`${classes.link_wrap}`}>
-								<a href="#" className={`${classes.link}`}>
-									learn more
-								</a>
-								<div className={`${classes.blue_bg}`}></div>
-							</div>
-							<h4
-								className={`${classes.header} ${classes.sm_header} flex flex-col `}
-							>
-								<span className=" normal-case">What do we mean by</span>
-								<span className=" text-white-blue">simulating?</span>
-							</h4>
-						</div> */}
-					{/* img wrap  */}
-					{/* <div className=" w-[335px] absolute -right-[165px] -bottom-[6px]">
-							<Image src={IrealaImg} alt="ireala league of legends" />
-						</div> */}
-					{/* </div> */}
+					
 				</div>
-				{/* left chat  */}
+		
 				<div className={`feedback_btn_wrap`}>
 					<div className={`btn_img`}>
 						<Image src={leaveFeedback} alt="leave feedback img" />
@@ -290,7 +259,8 @@ export default function Home() {
 						<p className={`feedback_btn_txt`}>leave feedback</p>
 					</button>
 				</div>
-			</div>
-		</div>
-	);
+			</div> 
+		 */}
+        </div>
+    );
 }

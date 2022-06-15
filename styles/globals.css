@@ -16,19 +16,19 @@ a {
   font-family: 'Gotham';
   font-style: normal;
   font-weight: 100;
-  src: url('/public/assets/fonts/Gotham/GothamLight.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamLight.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-style: italic;
   font-weight: 100;
-  src: url('/public/assets/fonts/Gotham/GothamLightItalic.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamLightItalic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-style: normal;
   font-weight: 400;
-  src: url('/public/assets/fonts/Gotham/GothamBook.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamBook.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
@@ -40,32 +40,32 @@ a {
   font-family: 'Gotham';
   font-style: normal;
   font-weight: 500;
-  src: url('/public/assets/fonts/Gotham/GothamMedium.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamMedium.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-style: italic;
   font-weight: 500;
-  src: url('/public/assets/fonts/Gotham/GothamMediumItalic.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamMediumItalic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-style: normal;
   font-weight: 700;
-  src: url('/public/assets/fonts/Gotham/GothamBold.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamBold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-style: italic;
   font-weight: 700;
-  src: url('/public/assets/fonts/Gotham/GothamBoldItalic.woff2') format('woff2');
+  src: url('/assets/fonts/Gotham/GothamBoldItalic.woff2') format('woff2');
 }
 
 /* nedgen fonts  */
 @font-face {
   font-family: 'NEDGEN';
   font-style: normal;
-  src: url('/public/assets/fonts/Nedgen/nedgen.woff2') format('woff2');
+  src: url('/assets/fonts/Nedgen/nedgen.woff2') format('woff2');
 }
 
 /* sf pro fonts  */
@@ -73,19 +73,19 @@ a {
   font-family: 'SF Pro Text';
   font-style: normal;
   font-weight: 400;
-  src: url('/public/assets/fonts/Sf-pro-display/Sf-pro-display-regular.woff2') format('woff2');
+  src: url('/assets/fonts/Sf-pro-display/Sf-pro-display-regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'SF Pro Text';
   font-style: normal;
   font-weight: 500;
-  src: url('/public/assets/fonts/Sf-pro-display/Sf-pro-display-medium.woff2') format('woff2');
+  src: url('/assets/fonts/Sf-pro-display/Sf-pro-display-medium.woff2') format('woff2');
 }
 @font-face {
   font-family: 'SF Pro Text';
   font-style: normal;
   font-weight: 700;
-  src: url('/public/assets/fonts/Sf-pro-display/Sf-pro-display-bold.woff2') format('woff2');
+  src: url('/assets/fonts/Sf-pro-display/Sf-pro-display-bold.woff2') format('woff2');
 }
 
 
