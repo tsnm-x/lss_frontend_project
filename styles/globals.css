@@ -65,27 +65,27 @@ a {
 @font-face {
   font-family: 'NEDGEN';
   font-style: normal;
-  src: url('/assets/fonts/Nedgen/nedgen.woff2') format('woff2');
+  src: url('/assets/old-images/fonts/Nedgen/nedgen.woff2') format('woff2');
 }
 
 /* sf pro fonts  */
 @font-face {
-  font-family: 'SF Pro Text';
+  font-family: 'sf-pro-text';
   font-style: normal;
   font-weight: 400;
-  src: url('/assets/fonts/Sf-pro-display/Sf-pro-display-regular.woff2') format('woff2');
+  src: url('/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-regular.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'SF Pro Text';
+  font-family: 'sf-pro-text';
   font-style: normal;
   font-weight: 500;
-  src: url('/assets/fonts/Sf-pro-display/Sf-pro-display-medium.woff2') format('woff2');
+  src: url('/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-medium.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'SF Pro Text';
+  font-family: 'sf-pro-text';
   font-style: normal;
   font-weight: 700;
-  src: url('/assets/fonts/Sf-pro-display/Sf-pro-display-bold.woff2') format('woff2');
+  src: url('/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-bold.woff2') format('woff2');
 }
 
 

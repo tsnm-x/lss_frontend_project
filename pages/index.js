@@ -95,7 +95,7 @@ export default function Home() {
         <div className="bg-[#120924]">
             <Header />
             {/* main section  */}
-						<Main />
+						<Main className="mt-16" />
             {/* 
 			 <div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
