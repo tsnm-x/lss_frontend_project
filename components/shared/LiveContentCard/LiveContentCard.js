@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./LiveContentCard.module.css";
 import LiveWhiteCardWrapHoc from "../../HOC/LiveWhiteCardWrapHoc/LiveWhiteCardWrapHoc";
 import SuuusanooCard from "../../Ui/Live_page/SuuusanoCard/SuuusanoCard";
@@ -26,9 +26,25 @@ import BottomWhiteShadow from '../../../public/assets/Live_simulator/bottom-elem
 
 const LiveContentCard = (props) => {
 
+    const [btnClicked, setBtnClicked] = useState({
+        power: false,
+        goldDiff: false,
+        levelDiff: false
+    });
+
     useEffect(()=>{
         console.log(props.players)
-    }, [])
+    }, []);
+
+    const changeFormat = (btnLabel) => {
+        if(btnLabel === 'power'){
+            setBtnClicked({power: true, goldDiff: false, levelDiff: false})
+        } else if(btnLabel === 'goldDiff'){
+            setBtnClicked({power: false, goldDiff: true, levelDiff: false})
+        } else if(btnLabel == 'levelDiff'){
+            setBtnClicked({power: false, goldDiff: false, levelDiff: true})
+        }
+    }
 
     return (
         <div className=" w-full ">
@@ -103,6 +119,11 @@ const LiveContentCard = (props) => {
                 </div>
                 {/* bottom chart card  */}
                 <BottomChart />
+                <div className=" flex justify-center py-[25px]">
+                    <button className={`rounded-[5px] py-[5px] px-[10px] w-[110px] flex justify-between m-[25px] ${btnClicked.power? "text-white bg-red-500" : "text-gray-800 bg-[#47516c]"}`} onClick={() => changeFormat('power')}><div className="text-[15px] self-center">Power</div><div className={`w-[8px] h-[8px] rounded self-center ${btnClicked.power? "bg-white": "bg-gray-800"}`}></div></button>
+                    <button className={`rounded-[5px] py-[5px] px-[10px] w-[110px] flex justify-between m-[25px] ${btnClicked.goldDiff? "text-white bg-red-500" : "text-gray-800 bg-[#47516c]"}`} onClick={() => changeFormat('goldDiff')}><div className="text-[15px] self-center">Gold Diff</div><div className={`w-[8px] h-[8px] rounded self-center  ${btnClicked.goldDiff? "bg-white": "bg-gray-800"}`}></div></button>
+                    <button className={`rounded-[5px] py-[5px] px-[10px] w-[110px] flex justify-between m-[25px] ${btnClicked.levelDiff? "text-white bg-red-500" : "text-gray-800 bg-[#47516c]"}`} onClick={() => changeFormat('levelDiff')}><div className="text-[15px] self-center">Level Diff</div><div className={`w-[8px] h-[8px] rounded self-center  ${btnClicked.levelDiff? "bg-white": "bg-gray-800"}`}></div></button>
+                </div>
             </div>
         </div>
     );

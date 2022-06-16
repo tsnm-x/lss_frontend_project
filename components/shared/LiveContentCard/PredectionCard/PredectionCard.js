@@ -15,7 +15,7 @@ const LeftRankList = (props) => {
                         key={index}
                     >
                         <div className=" flex bg-full-dark  items-center p-[1px] pr-[3px] rounded-full mr-[20px] ">
-                            {[player.item0, player.item1, player.item2, player.item3, player.item4, player.item5, player.item6].map((item, index) => {
+                            {[player?.item0, player?.item1, player?.item2, player?.item3, player?.item4, player?.item5, player?.item6].map((item, index) => {
                                 return (
                                     <div
                                         key={index}
@@ -39,18 +39,18 @@ const LeftRankList = (props) => {
                                     "red"
                                 }
                                 imgLink={
-                                    player.championName
+                                    player?.championName
                                 }
                                 rune1={
-                                    player.perks
+                                    player?.perks
                                         .styles[0].style
                                 }
                                 rune2={
-                                    player.perks
+                                    player?.perks
                                         .styles[1].style
                                 }
                                 perks={
-                                    player.perks
+                                    player?.perks
                                 } className="border-white-blue" />
                         </div>
                     </div>
@@ -77,25 +77,25 @@ const RightRankList = (props) => {
                                     "red"
                                 }
                                 imgLink={
-                                    player.championName
+                                    player?.championName
                                 }
                                 rune1={
-                                    player.perks
+                                    player?.perks
                                         .styles[0].style
                                 }
                                 rune2={
-                                    player.perks
+                                    player?.perks
                                         .styles[1].style
                                 }
                                 perks={
-                                    player.perks
+                                    player?.perks
                                 }
                                 className="border-[#FC2300] bg-[#FC2300]"
                             />
                         </div>
                         <div className=" w-[7px] h-[7px] bg-white border-[0.1px] border-[#707070] rounded-full mr-[20px] "></div>
                         <div className=" flex bg-full-dark  items-center p-[1px] pr-[3px] rounded-full ">
-                            {[player.item0, player.item1, player.item2, player.item3, player.item4, player.item5, player.item6].map((item, index) => {
+                            {[player?.item0, player?.item1, player?.item2, player?.item3, player?.item4, player?.item5, player?.item6].map((item, index) => {
                                 return (
                                     <div
                                         key={index}

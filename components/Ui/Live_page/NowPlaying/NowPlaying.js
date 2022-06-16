@@ -19,7 +19,7 @@ const NowPlaying = () => {
             {/* image  */}
             <div className=" relative w-[112px] h-[112px] ">
                 {/* <Image src={`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/champion/${mainPlayer?.championName}.png`} alt="Playing image"  layout="fill" /> */}
-                <Image src={`http://ddragon.leagueoflegends.com/cdn/12.8.1/img/champion/${mainPlayer?.championName}.png`} alt="Playing image"  layout="fill" />
+                <Image src={NowPlayingImg} alt="Playing image"  layout="fill" />
             </div>
         </div>
     );
