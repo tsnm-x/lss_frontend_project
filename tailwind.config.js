@@ -44,6 +44,7 @@ module.exports = {
                 "almost-dark": "#0f121d",
                 "red-yellow": "#fc5900",
                 "red-yellow-gold": "#FC2300",
+                'nav-btn': '#D55460',
                 "card-border": "#141726",
                 "btn-hover": "#00ccf2",
                 // new design 2.0
@@ -95,5 +96,25 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addComponents }) {
+            addComponents({
+                '.container': {
+                    '@screen mobile': {
+                        maxWidth: '300px'
+                    },
+                    '@screen tablet': {
+                        maxWidth: '650px'
+                    },
+                    '@screen laptop': {
+                        maxWidth: '1220px'
+                    },
+                    '@screen desktop': {
+                        maxWidth: '1700px'
+                    }
+
+                }
+            })
+        }
+    ],
 };

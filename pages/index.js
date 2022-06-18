@@ -94,14 +94,16 @@ export default function Home() {
     // }
 
     return (
-        <div className="bg-[#120924]">
-            <Header />
-            {/* main section  */}
-            <Main className="mt-16" />
-            {/* advertise and download  */}
-            <AdvertiseAndDownloadNow className=" mt-[74px] " />
-            {/* footer section  */}
-            <Footer />
+        <>
+            <div className="bg-[#120924]">
+                <Header />
+                {/* main section  */}
+                <Main className="mt-16" />
+                {/* advertise and download  */}
+                <AdvertiseAndDownloadNow className=" mt-[74px] " />
+                {/* footer section  */}
+                <Footer />
+            </div>
             {/* 
 			 <div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
@@ -267,6 +269,6 @@ export default function Home() {
 				</div>
 			</div> 
 		 */}
-        </div>
+        </>
     );
 }
