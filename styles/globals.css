@@ -39,7 +39,7 @@
     font-family: "Gotham";
     font-style: italic;
     font-weight: 500;
-    src: url("/assets/fonts/Gotham/GothamMediumItalic.woff2") format("woff2");
+    src: url("/assets/old-images/fonts/Gotham/GothamMediumItalic.woff2") format("woff2");
 }
 @font-face {
     font-family: "Gotham";

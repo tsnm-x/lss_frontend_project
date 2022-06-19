@@ -7,19 +7,10 @@ const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [showCountryList, setShowCountryList] = useState(false);
-
-    const CountryListHandler = () => {
-        setShowCountryList(!showCountryList)
-    }
-
-    const searchInput = (input) => {
-        setSearch(input.target.value);
-    };
-
-    // const selectionNameList = ["na", "euw", "eun", "kr", "jp", "lan", "las"];
-    const selectionNameList = [
+    
+    const [selectionNameList, setSelectionName] = useState([
         {
-            name: "na",
+            name: "NA",
             active: true,
             fullName: "north america",
         },
@@ -53,11 +44,50 @@ const ProfileSearch = (props) => {
             active: false,
             fullName: "Latin America South",
         },
-    ];
+    ])
 
-    const btnActiveHandler = (index) => {
-        setActiveItemIndex(index);
-        console.log(selectionNameList);
+    const [activeListDetails, setActiveListDetails] = useState({
+        selectedItem: selectionNameList[0],
+        showList: false
+    })
+
+    const CountryListShowHideHandler = () => {
+        setActiveListDetails((prevState) => {
+            return {
+                ...prevState,
+                showList: !prevState.showList
+            }
+        })
+    }
+
+    const searchInput = (input) => {
+        setSearch(input.target.value);
+    };
+
+    
+    const btnActiveHandler = (listNo) => {
+        // setActiveItemIndex(index);
+        // console.log(selectionNameList);
+        const oldList = [...selectionNameList];
+        const modifyedList = [];
+        setSelectionName(() => {
+            oldList.forEach((list, listIndex) => {
+                if (listIndex === listNo) {
+                    list.active = true;
+                    // change active item state 
+                    setActiveListDetails((prevState) => {
+                        return {
+                            selectedItem: list,
+                            showList: false
+                        }
+                    } )
+                } else {
+                    list.active = false;
+                }
+                modifyedList.push(list);
+            })
+            return modifyedList;
+        })
     };
 
     return (
@@ -70,7 +100,7 @@ const ProfileSearch = (props) => {
                 <form action="/" className="w-full">
                     <div className="realtive">
                         {/* country box list  */}
-                        {showCountryList && (
+                        {activeListDetails.showList && (
                             <div className={`${classes.countryList}`}>
                                 {selectionNameList.map((country, index) => {
                                     return (
@@ -94,11 +124,11 @@ const ProfileSearch = (props) => {
                             </div>
                         )}
                         {/* country select box  */}
-                        <div onClick={CountryListHandler} className={`${classes.selectedWrap}`}>
+                        <div onClick={CountryListShowHideHandler} className={`${classes.selectedWrap}`}>
                             <h4
-                                className={` desktop:gotham-mid-25 text-white mr-[16px]`}
+                                className={` desktop:gotham-mid-25 text-white mr-[16px] uppercase`}
                             >
-                                NA
+                                {activeListDetails.selectedItem.name}
                             </h4>
                             <BiCaretDown className=" text-white text-[20px] " />
                         </div>
