@@ -9,5 +9,13 @@
 }
 
 .searchBox {
-    @apply w-full py-[10px] pl-[12px] bg-white rounded-[5px] font-sf-pro-text text-[17px] leading-[20px] desktop:py-[32px];    
+ @apply w-full py-[10px] pl-[12px] bg-white rounded-[5px] desktop:py-[32px] desktop:pl-[310px];
+      
+      /* @apply desktop:gotham-mid-25; */
+}
+
+
+.countryList {
+  @apply absolute left-0 top-[100px] bg-light-text rounded w-[250px]
+          p-[10px_12px];
 }

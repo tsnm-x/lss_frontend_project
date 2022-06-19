@@ -15,6 +15,7 @@
 // import Router from "next/router";
 
 import React from "react";
+import classes from '../styles/index.module.css'
 import Header from "../components/shared/New-Componets/header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
 import AdvertiseAndDownloadNow from "../components/Ui/New-Components/Landing_Page/AdvertiseAndDownloadNow/AdvertiseAndDownloadNow";
@@ -95,12 +96,12 @@ export default function Home() {
 
     return (
         <>
-            <div className="bg-[#120924]">
+            <div className={`${classes.mainWrapper}`}>
                 <Header />
                 {/* main section  */}
-                <Main className="mt-16" />
+                <Main className="mt-16 mb-[160px] " />
                 {/* advertise and download  */}
-                <AdvertiseAndDownloadNow className=" mt-[74px] " />
+                <AdvertiseAndDownloadNow className=" mt-[74px] desktop:hidden  " />
                 {/* footer section  */}
                 <Footer />
             </div>
