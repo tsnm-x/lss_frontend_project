@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import classes from './ProfileSearch.module.css'
 import { FiSearch } from 'react-icons/fi'
+import { BiCaretDown, BiCaretUp } from 'react-icons/bi'
 
 const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
@@ -51,20 +53,29 @@ const ProfileSearch = (props) => {
             <div
                 className={`w-full ${props.className ? props.className : null}`}
             >
-                <div className="realtive">
-                    <input
-                        type="text"
-                        onChange={searchInput}
-                        value={search}
-                        placeholder="Search your Summoner Name..."
-                        className={`w-full py-[10px] pl-[12px] bg-white rounded-[5px] font-sf-pro-text text-[17px] leading-[20px]   `}
-                    />
-                    <button className="absolute right-3 top-[10px]">
-                        <FiSearch width={'20px'} size="20px" />
-                    </button>
-                </div>
+                <form action="/" className="w-full">
+                    <div className="realtive">
+                        {/* country select box  */}
+                        <div className={`${classes.selectedWrap}`}>
+                            <h4 className={`${classes.selectedName}`}>NA</h4>
+                            <BiCaretDown className=" text-white text-[20px] " />
+                        </div>
+                        {/* sumonner name box  */}
+                        <input
+                            type="text"
+                            onChange={searchInput}
+                            value={search}
+                            placeholder="Search your Summoner Name..."
+                            className={`${classes.searchBox}`}
+                        />
+                        <button className="absolute right-3 top-[10px] desktop:hidden">
+                            <FiSearch width={"20px"} size="20px" />
+                        </button>
+                    </div>
+                </form>
+
                 {/* search btn lists  */}
-                <div className="grid grid-cols-4 mt-[10px] gap-x-2 gap-y-1">
+                <div className="grid grid-cols-4 mt-[10px] gap-x-2 gap-y-1 desktop:hidden">
                     {selectionNameList.map((item, index) => {
                         return (
                             <button

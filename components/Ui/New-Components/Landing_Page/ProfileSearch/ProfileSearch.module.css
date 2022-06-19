@@ -1,0 +1,13 @@
+.selectedName {
+    @apply font-gotham font-normal text-[25px] leading-[27px] text-white
+          mr-[16px];
+}
+
+.selectedWrap {
+    @apply absolute h-full flex justify-center items-center bg-accent-color w-[250px]
+        py-[32px] rounded cursor-pointer;
+}
+
+.searchBox {
+    @apply w-full py-[10px] pl-[12px] bg-white rounded-[5px] font-sf-pro-text text-[17px] leading-[20px] desktop:py-[32px];    
+}
