@@ -8,7 +8,7 @@ import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
 const Header = (props) => {
     const menuBtnHandler = () => {
-        props.click ? props.click : console.log("no click function available");
+        props.menuBtnClick()
     };
 
     return (

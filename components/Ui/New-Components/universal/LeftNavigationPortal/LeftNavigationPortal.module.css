@@ -1,0 +1,14 @@
+.portal {
+          @apply w-screen h-screen bg-[#140a2272] absolute left-0 top-0 z-[100];
+
+}
+
+.portalWrap {
+  /* @apply w-screen h-screen bg-[#140A22] absolute left-0 top-0 z-[100]; */
+  @apply w-[190px] bg-[#140a22] h-full p-[35px_8px_40px_20px] rounded-l-[10px] relative;
+}
+
+.simulator__app__btn {
+    @apply text-center capitalize text-white
+          bg-[#D55460] rounded-xl p-[6px_11.5px];
+}

@@ -2,9 +2,17 @@ import React from "react";
 
 const Footer = (props) => {
     return (
-        <footer className={`bg-footer-bg mt-9 py-[15px] desktop:py-[43px] ${props.className}`}>
+        <footer
+            className={` ${
+                props.className
+                    ? props.className
+                    : "bg-footer-bg mt-9 py-[15px] desktop:py-[43px]"
+            }`}
+        >
             <div className="container ">
-                <div className=" nedgen-regular-10 text-grayed-text text-center max-w-[722px] mx-auto  bg-footer-bg py-[15px] ">
+                <div
+                    className={` nedgen-regular-5 max-w-[722px] mx-auto py-[15px] smTablet:nedgen-regular-10 ${props.textStyle}`}
+                >
                     <p>Lss.gg © 2022</p>
                     <p>
                         Lss.gg isn’t endorsed by Riot Games and doesn’t reflect

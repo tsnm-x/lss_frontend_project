@@ -14,12 +14,14 @@
 // import { profileAction } from "../store/profile";
 // import Router from "next/router";
 
-import React from "react";
-import classes from '../styles/index.module.css'
+import React, {useState} from "react";
+import classes from "../styles/index.module.css";
 import Header from "../components/shared/New-Componets/header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
 import AdvertiseAndDownloadNow from "../components/Ui/New-Components/Landing_Page/AdvertiseAndDownloadNow/AdvertiseAndDownloadNow";
 import Footer from "../components/shared/New-Componets/Footer/Footer";
+import Portal from "../components/shared/New-Componets/Portal/Portal";
+import LeftNavigationPortal from "../components/Ui/New-Components/universal/LeftNavigationPortal/LeftNavigationPortal";
 
 export default function Home() {
     // const servers = [
@@ -94,17 +96,31 @@ export default function Home() {
     //     );
     // }
 
+    const [leftNav, setLeftNav] = useState(false);
+
+    const leftNavHandler = () => {
+        setLeftNav(!leftNav);
+			console.log('hello')
+    };
+
     return (
         <>
             <div className={`${classes.mainWrapper}`}>
-                <Header />
+                <Header menuBtnClick={leftNavHandler} />
                 {/* main section  */}
-                <Main className="mt-16 mb-[160px] " />
+                <Main className=" mt-10 desktop:mt-16 desktop:mb-[160px] " />
+                {/* sidebar  */}
+                {leftNav && (
+                    <Portal selector="#portal">
+                        <LeftNavigationPortal menuBtnClick={leftNavHandler} />
+                    </Portal>
+                )}
                 {/* advertise and download  */}
-                <AdvertiseAndDownloadNow className=" mt-[74px] desktop:hidden  " />
+                <AdvertiseAndDownloadNow className=" mt-[74px] smTablet:hidden " />
                 {/* footer section  */}
-                <Footer />
+                <Footer textStyle="text-grayed-text" />
             </div>
+
             {/* 
 			 <div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}

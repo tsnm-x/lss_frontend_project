@@ -26,20 +26,21 @@
     font-family: "Gotham";
     font-style: italic;
     font-weight: 400;
-    src: url("/assets/fonts/Gotham/GothamBookItalic.woff2")
-        format("woff2");
+    src: url("/assets/fonts/Gotham/GothamBookItalic.woff2") format("woff2");
 }
 @font-face {
     font-family: "Gotham";
     font-style: normal;
     font-weight: 500;
-    src: url("/assets/old-images/fonts/Gotham/GothamMedium.woff2") format("woff2");
+    src: url("/assets/old-images/fonts/Gotham/GothamMedium.woff2")
+        format("woff2");
 }
 @font-face {
     font-family: "Gotham";
     font-style: italic;
     font-weight: 500;
-    src: url("/assets/old-images/fonts/Gotham/GothamMediumItalic.woff2") format("woff2");
+    src: url("/assets/old-images/fonts/Gotham/GothamMediumItalic.woff2")
+        format("woff2");
 }
 @font-face {
     font-family: "Gotham";
@@ -86,6 +87,7 @@
 
 /* global font component  */
 @layer components {
+    /* typography  */
     .gotham-mid-30 {
         @apply font-gotham font-medium text-[30px] leading-[33px];
     }
@@ -102,6 +104,14 @@
         @apply font-sf-pro-text font-bold text-[15px] leading-[20px];
     }
 
+    .sf-bold-12 {
+        @apply font-sf-pro-text text-[12px] leading-[14px];
+    }
+
+    .sf-bold-10 {
+        @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
+    }
+
     .nedgen-regular-80 {
         @apply font-NEDGEN text-[80px] leading-[92px];
     }
@@ -110,7 +120,20 @@
         @apply font-NEDGEN text-[24px] leading-[27px];
     }
 
+    .nedgen-regular-14 {
+        @apply font-NEDGEN text-[14px] leading-[16px];
+    }
+
     .nedgen-regular-10 {
         @apply font-NEDGEN text-[10px] leading-[12px];
+    }
+
+    .nedgen-regular-5 {
+        @apply font-NEDGEN text-[5px] leading-[6px];
+    }
+
+    /* portal  */
+    #portal {
+        /* @apply w-screen h-screen bg-[#140a2272] absolute left-0 top-0 z-[100]; */
     }
 }

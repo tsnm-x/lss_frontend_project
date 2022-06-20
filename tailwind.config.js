@@ -6,19 +6,24 @@ module.exports = {
     ],
     theme: {
         screens: {
-            mobile: "360px",
-            tablet: "768px",
-            laptop: "1280px",
+            smMobile: "360px",
+            mobile: "640px",
+            smTablet: "768px",
+            tablet: "1024px",
+            smLaptop: "1280px",
+            laptop: "1366px",
+            smDesktop: "1536px",
             desktop: "1800px",
         },
         container: {
             center: true,
-            screens: {
-                mobile: "300px",
-                tablet: "650px",
-                laptop: "1280px",
-                desktop: "1700px",
-            },
+            // screens: {
+            //     smMobile: "300px",
+            //     smTablet: "648px",
+            //     tablet: "884px",
+            //     laptop: "1280px",
+            //     desktop: "1700px",
+            // },
         },
         extend: {
             animation: {
@@ -101,14 +106,23 @@ module.exports = {
         function ({ addComponents }) {
             addComponents({
                 ".container": {
-                    "@screen mobile": {
+                    "@screen smMobile": {
                         maxWidth: "300px",
                     },
-                    "@screen tablet": {
+                    "@screen mobile": {
+                        maxWidth: "600px",
+                    },
+                    "@screen smTablet": {
                         maxWidth: "650px",
                     },
-                    "@screen laptop": {
+                    "@screen tablet": {
+                        maxWidth: "885px",
+                    },
+                    "@screen smLaptop": {
                         maxWidth: "1220px",
+                    },
+                    "@screen smDesktop": {
+                        maxWidth: "1700px",
                     },
                     "@screen desktop": {
                         maxWidth: "1700px",

@@ -4,8 +4,8 @@
 }
 
 .selectedWrap {
-    @apply absolute h-full flex justify-center items-center bg-accent-color w-[250px]
-        py-[32px] rounded cursor-pointer;
+    @apply absolute h-full hidden justify-center items-center bg-accent-color w-[250px]
+        py-[32px] rounded cursor-pointer smTablet:flex;
 }
 
 .searchBox {

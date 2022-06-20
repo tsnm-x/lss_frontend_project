@@ -48,7 +48,8 @@ const ProfileSearch = (props) => {
 
     const [activeListDetails, setActiveListDetails] = useState({
         selectedItem: selectionNameList[0],
-        showList: false
+        showList: false,
+        index: 0
     })
 
     const CountryListShowHideHandler = () => {
@@ -78,7 +79,8 @@ const ProfileSearch = (props) => {
                     setActiveListDetails((prevState) => {
                         return {
                             selectedItem: list,
-                            showList: false
+                            showList: false,
+                            index: listNo,
                         }
                     } )
                 } else {
@@ -97,7 +99,7 @@ const ProfileSearch = (props) => {
                 className={`w-full ${props.className ? props.className : null}`}
             >
                 {/* search form  */}
-                <form action="/" className="w-full">
+                <form action="/" className="w-full ">
                     <div className="realtive">
                         {/* country box list  */}
                         {activeListDetails.showList && (
@@ -138,7 +140,7 @@ const ProfileSearch = (props) => {
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` desktop:gotham-mid-25 tablet:nedgen-regular-10 ${classes.searchBox}`}
+                            className={` desktop:gotham-mid-25 tablet:nedgen-regular-10 ${classes.searchBox} ${props.searchBox}`}
                         />
                         <button className="absolute right-3 top-[10px] desktop:hidden">
                             <FiSearch width={"20px"} size="20px" />
@@ -155,7 +157,7 @@ const ProfileSearch = (props) => {
                                 className={` 
                                     font-sf-pro-text text-[9px] leading-3 font-bold py-[2px]
                                     uppercase rounded-5px ${
-                                        activeItemIndex === index
+                                        activeListDetails.index === index
                                             ? "bg-[#D55460] text-white"
                                             : "bg-white text-black"
                                     } `}
