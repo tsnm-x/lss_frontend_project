@@ -17,7 +17,7 @@ const Header = (props) => {
             <div className={`${classes.header__container}`}>
                 {/* resp menu btn  */}
                 <div className={`  ${classes.btnWrap}`}>
-                    <SkirmishSimulatorAppBtn className=" hidden smTablet:block smTablet:sf-bold-20 smTablet:p-[6px_12px]" />
+                    <SkirmishSimulatorAppBtn className=" hidden smTablet:block smTablet:sf-bold-20 smTablet:p-[6px_12px] smTablet:mr-[45px] tablet:mr-[80px] " />
                     <button
                         onClick={menuBtnHandler}
                         className={` w-full h-full inline-block ${classes.respBtn}`}

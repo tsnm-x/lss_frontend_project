@@ -112,7 +112,7 @@ export default function Home() {
             <div className={`${classes.mainWrapper}`}>
                 <Header menuBtnClick={leftNavHandler} />
                 {/* main section  */}
-                <Main className=" mt-10 desktop:mt-16 desktop:mb-[160px] " />
+                <Main className=" mt-10 tablet:mt-[200px] tablet:mb-[500px] desktop:mt-16 desktop:mb-[160px] " />
                 {/* sidebar  */}
                 {leftNav && (
                     <Portal selector="#portal">

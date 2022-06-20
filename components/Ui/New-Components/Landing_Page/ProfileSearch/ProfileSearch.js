@@ -128,7 +128,7 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] desktop:py-[32px] `}
+                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] tablet:py-[22px] desktop:py-[32px] `}
                         >
                             <h4
                                 className={` text-white mr-[16px] uppercase smTablet:italic smTablet:gotham-mid-15 desktop:gotham-mid-25`}
@@ -143,7 +143,7 @@ const ProfileSearch = (props) => {
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] smTablet:italic tablet:nedgen-regular-10 desktop:gotham-mid-25  ${classes.searchBox} ${props.searchBox}`}
+                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] smTablet:italic desktop:gotham-mid-25  ${classes.searchBox} ${props.searchBox}`}
                         />
                         <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:hidden desktop:hidden">
                             <FiSearch width={"20px"} size="20px" />

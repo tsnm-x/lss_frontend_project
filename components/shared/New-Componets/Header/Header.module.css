@@ -10,7 +10,7 @@
 
 
 .btnWrap {
-    @apply flex order-6 smTablet:justify-between;
+    @apply flex order-6 smTablet:justify-end;
 }
 
 .respBtn {

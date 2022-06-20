@@ -116,7 +116,7 @@ module.exports = {
                         maxWidth: "650px",
                     },
                     "@screen tablet": {
-                        maxWidth: "885px",
+                        maxWidth: "964px",
                     },
                     "@screen smLaptop": {
                         maxWidth: "1220px",
