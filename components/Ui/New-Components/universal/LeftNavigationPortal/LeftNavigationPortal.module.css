@@ -8,7 +8,3 @@
             mobile:w-[250px];
 }
 
-.simulator__app__btn {
-    @apply text-center capitalize text-white
-          bg-[#D55460] rounded-xl p-[6px_11.5px];
-}

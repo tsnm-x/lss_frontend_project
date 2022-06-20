@@ -1,29 +1,26 @@
 .header__container {
-    @apply container mx-auto flex relative
+    @apply container mx-auto flex relative smTablet:grid smTablet:grid-cols-2
           desktop:justify-between;
 }
 
 .logo__wrapper {
-    @apply text-center w-full
+    @apply text-center w-full smTablet:text-left
           desktop:w-[initial] desktop:inline-block;
 }
 
 
 .btnWrap {
-    @apply flex order-6;
+    @apply flex order-6 smTablet:justify-between;
 }
 
 .respBtn {
-    @apply absolute left-0 top-[12px] w-[12px] tablet:w-[35px] 
+    @apply absolute left-0 top-[12px] w-[12px] smTablet:w-[35px] 
             desktop:order-6;
 }
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 768px) {
     .respBtn {
         position: initial;
     }
 }
 
-.simulator__app__btn {
-    @apply hidden desktop:block font-sf-pro-text text-xl leading-6 font-bold text-center capitalize text-white
-          bg-accent-color rounded-xl p-[6px_11.5px] mr-[80px];
-}
+

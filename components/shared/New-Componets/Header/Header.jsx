@@ -3,6 +3,7 @@ import classes from "./Header.module.css";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
 import { AiOutlineMenu } from "react-icons/ai";
+import SkirmishSimulatorAppBtn from "../../../Ui/New-Components/universal/Btn/SkirmishSimulatorAppBtn/SkirmishSimulatorAppBtn";
 // components
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
@@ -15,16 +16,14 @@ const Header = (props) => {
         <header className=" py-[36px] ">
             <div className={`${classes.header__container}`}>
                 {/* resp menu btn  */}
-                <div className={`${classes.btnWrap}`}>
-                    <button className={`${classes.simulator__app__btn}`}>
-                        Skirmish Simulator App
-                    </button>
+                <div className={`  ${classes.btnWrap}`}>
+                    <SkirmishSimulatorAppBtn className=" hidden smTablet:block smTablet:sf-bold-20 smTablet:p-[6px_12px]" />
                     <button
                         onClick={menuBtnHandler}
-                        className={`${classes.respBtn}`}
+                        className={` w-full h-full inline-block ${classes.respBtn}`}
                     >
                         <svg
-                            className=" tablet:hidden"
+                            className=" smTablet:hidden"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 10 13"
                         >
@@ -36,7 +35,7 @@ const Header = (props) => {
                         </svg>
                         {/* <GrMenu size={35} className="bg-red-400" /> */}
                         <svg
-                            className=" hidden tablet:block"
+                            className=" hidden smTablet:block smTablet:w-[35px] smTablet:h-6 "
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 35 26"
                         >
@@ -56,7 +55,9 @@ const Header = (props) => {
 
                 {/* logo  */}
                 <div className={`${classes.logo__wrapper}`}>
-                    <Logo className={` smMobile:text-[24px] smMobile:leading-[27px] mobile:text-[25px] leading-[29px]`} />
+                    <Logo
+                        className={` smMobile:text-[24px] smMobile:leading-[27px] mobile:text-[25px] leading-[29px]`}
+                    />
                 </div>
             </div>
         </header>
