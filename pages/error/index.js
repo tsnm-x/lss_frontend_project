@@ -60,7 +60,6 @@ export default function ErrorPage(){
 			<div
 				className={` grid grid-cols-1 grid-rows-[repeat(2, 50%)] ${classes.wrapper}`}
 			>
-				{/* top section  */}
 				<div className=" self-end justify-self-center self-center w-full max-w-[580px] ">
 					<div>
 						<h3 className={`text-white ${classes.header}`}>
@@ -95,8 +94,8 @@ export default function ErrorPage(){
                                         )
                                     }
                                     return (
-                                        <div key={index}>
-                                        </div>
+                                        <>
+                                        </>
                                     )
                                 })}
                             </div>
