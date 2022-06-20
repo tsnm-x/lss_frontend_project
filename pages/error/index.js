@@ -84,11 +84,11 @@ export default function ErrorPage(){
                     <h1 className={`text-white ${classes.header}`}>{router?.query?.summonerName}</h1>
 				</div>
                 <div>
-                    {router?.query?.reqServers?.map((region) => {
+                    {router?.query?.reqServers?.map((region, index) => {
                         return (
                             <div className="text-white" key={index}>
                                 <div>region: {region}</div>
-                                {summonersFromOtherAreas[0] && summonersFromOtherAreas.map((summonerObj)=>{
+                                {summonersFromOtherAreas[0] && summonersFromOtherAreas.map((summonerObj, index)=>{
                                     if(summonerObj.region === region){
                                         return (
                                             <div className="text-red-500 font-bold" key={index}>{summonerObj.summonerName}</div>
