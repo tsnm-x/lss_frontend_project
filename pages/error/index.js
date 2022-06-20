@@ -86,7 +86,7 @@ export default function ErrorPage(){
                 <div>
                     {router?.query?.reqServers?.map((region) => {
                         return (
-                            <div className="text-white">
+                            <div className="text-white" key={index}>
                                 <div>region: {region}</div>
                                 {summonersFromOtherAreas[0] && summonersFromOtherAreas.map((summonerObj)=>{
                                     if(summonerObj.region === region){
