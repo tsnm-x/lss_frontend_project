@@ -104,6 +104,10 @@
         @apply font-sf-pro-text font-bold text-[15px] leading-[20px];
     }
 
+    .sf-regular-14 {
+        @apply font-sf-pro-text text-[14px] leading-[16px];
+    }
+
     .sf-bold-12 {
         @apply font-sf-pro-text text-[12px] leading-[14px];
     }

@@ -141,7 +141,7 @@ const ProfileSearch = (props) => {
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` desktop:gotham-mid-25 tablet:nedgen-regular-10 ${classes.searchBox} ${props.searchBox}`}
+                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] desktop:gotham-mid-25 tablet:nedgen-regular-10 ${classes.searchBox} ${props.searchBox}`}
                         />
                         <button className="absolute right-3 top-[10px] desktop:hidden">
                             <FiSearch width={"20px"} size="20px" />
@@ -157,7 +157,7 @@ const ProfileSearch = (props) => {
                                 onClick={() => btnActiveHandler(index)}
                                 className={` 
                                     font-sf-pro-text text-[9px] leading-3 font-bold py-[2px]
-                                    uppercase rounded-5px ${
+                                    uppercase rounded-5px mobile:text-[7px] mobile:leading-[10px] ${
                                         activeListDetails.index === index
                                             ? "bg-[#D55460] text-white"
                                             : "bg-white text-black"

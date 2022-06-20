@@ -8,9 +8,6 @@
           desktop:w-[initial] desktop:inline-block;
 }
 
-.logo {
-    @apply text-[24px] leading-[27px];
-}
 
 .btnWrap {
     @apply flex order-6;

@@ -118,7 +118,7 @@ export default function Home() {
                     </Portal>
                 )}
                 {/* advertise and download  */}
-                <AdvertiseAndDownloadNow className=" mt-[74px] smTablet:hidden " />
+                <AdvertiseAndDownloadNow className=" mt-[74px] mobile:hidden " />
                 {/* footer section  */}
                 <Footer textStyle="text-grayed-text" />
             </div>
