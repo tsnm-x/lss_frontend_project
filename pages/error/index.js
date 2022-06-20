@@ -46,7 +46,7 @@ export default function ErrorPage(){
     useEffect(() => {
         setRegions(router.query.reqServers);
         setSummonerName(router.query.summonerName)
-    }, [router.query.reqServers]);
+    }, [router.query.reqServers, router.query.summonerName]);
 
     useEffect(()=>{
         regions.forEach((region)=> getSummonersFromOtherAreas(region, summonerName))
