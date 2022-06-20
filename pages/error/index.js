@@ -91,7 +91,7 @@ export default function ErrorPage(){
                                 {summonersFromOtherAreas[0] && summonersFromOtherAreas.map((summonerObj)=>{
                                     if(summonerObj.region === region){
                                         return (
-                                            <div className="text-red-500 font-bold">{summonerObj.summonerName}</div>
+                                            <div className="text-red-500 font-bold" key={index}>{summonerObj.summonerName}</div>
                                         )
                                     }
                                     return (
