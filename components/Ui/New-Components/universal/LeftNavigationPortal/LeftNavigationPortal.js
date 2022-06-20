@@ -50,7 +50,7 @@ const LeftNavigationPortal = (props) => {
                 </div>
                 {/* footer text  */}
                 <Footer
-                    className=" absolute left-[20px] bottom-[30px] max-w-[145px] "
+                    className=" absolute left-[20px] bottom-[20px] max-w-[145px] "
                     textStyle=" text-left text-white"
                 />
             </div>

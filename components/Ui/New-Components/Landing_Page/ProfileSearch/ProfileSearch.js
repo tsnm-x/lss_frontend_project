@@ -7,7 +7,6 @@ const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [showCountryList, setShowCountryList] = useState(false);
-    
     const [selectionNameList, setSelectionName] = useState([
         {
             name: "NA",
@@ -44,28 +43,27 @@ const ProfileSearch = (props) => {
             active: false,
             fullName: "Latin America South",
         },
-    ])
+    ]);
 
     const [activeListDetails, setActiveListDetails] = useState({
         selectedItem: selectionNameList[0],
         showList: false,
-        index: 0
-    })
+        index: 0,
+    });
 
     const CountryListShowHideHandler = () => {
         setActiveListDetails((prevState) => {
             return {
                 ...prevState,
-                showList: !prevState.showList
-            }
-        })
-    }
+                showList: !prevState.showList,
+            };
+        });
+    };
 
     const searchInput = (input) => {
         setSearch(input.target.value);
     };
 
-    
     const btnActiveHandler = (listNo) => {
         // setActiveItemIndex(index);
         // console.log(selectionNameList);
@@ -75,21 +73,21 @@ const ProfileSearch = (props) => {
             oldList.forEach((list, listIndex) => {
                 if (listIndex === listNo) {
                     list.active = true;
-                    // change active item state 
+                    // change active item state
                     setActiveListDetails((prevState) => {
                         return {
                             selectedItem: list,
                             showList: false,
                             index: listNo,
-                        }
-                    } )
+                        };
+                    });
                 } else {
                     list.active = false;
                 }
                 modifyedList.push(list);
-            })
+            });
             return modifyedList;
-        })
+        });
     };
 
     return (
@@ -126,7 +124,10 @@ const ProfileSearch = (props) => {
                             </div>
                         )}
                         {/* country select box  */}
-                        <div onClick={CountryListShowHideHandler} className={`${classes.selectedWrap}`}>
+                        <div
+                            onClick={CountryListShowHideHandler}
+                            className={`${classes.selectedWrap}`}
+                        >
                             <h4
                                 className={` desktop:gotham-mid-25 text-white mr-[16px] uppercase`}
                             >

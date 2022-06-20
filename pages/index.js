@@ -14,7 +14,7 @@
 // import { profileAction } from "../store/profile";
 // import Router from "next/router";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import classes from "../styles/index.module.css";
 import Header from "../components/shared/New-Componets/header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
@@ -100,7 +100,9 @@ export default function Home() {
 
     const leftNavHandler = () => {
         setLeftNav(!leftNav);
-			console.log('hello')
+        !leftNav
+            ? (document.querySelector("body").style.overflow = "hidden")
+            : (document.querySelector("body").style.overflow = "initial");
     };
 
     return (
