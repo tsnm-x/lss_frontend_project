@@ -33,7 +33,7 @@ function ProfileUpdate() {
 
 	const btnDetails = [
         { text: "refresh", url: "" },
-        { text: "live simulator", url: `${router.asPath}/livesimulator` },
+        { text: "live simulator", url: {pathname: `/summoner/[region]/[summonerName]/livesimulator`, query: {region: router.query?.region, summonerName: router.query?.summonerName}} },
     ];
 
 	useEffect(() => {
@@ -47,6 +47,10 @@ function ProfileUpdate() {
 				setRanks(res.data.ranks);
 			});
 	}, [mainPlayer]);
+
+    useEffect(()=>{
+        console.log(ranks)
+    }, [ranks])
 
     useEffect(() => {
         const { region, summonerName } = router.query;

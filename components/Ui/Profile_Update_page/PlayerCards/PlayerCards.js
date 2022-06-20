@@ -13,6 +13,10 @@ import Loader from "../../../shared/loader/Loader";
 const PlayerCards = (props) => {
 	const [start, setStart] = useState(10);
 	const [update, setUpdate] = useState(true);
+	const [loaderViewer, setLoaderViewer] = useState(true)
+	const [rankedSolo, setRankedSolo] = useState([]);
+	const [normals, setNormals] = useState([]);
+	const [rankedFlex, setRankedFlex] = useState([])
 	const matches = useSelector((state) => state.profile.profile);
 	const region = useSelector((state) => state.profile.region);
 	const summonerName = useSelector((state) => state.profile.summonerName);
@@ -80,28 +84,47 @@ const PlayerCards = (props) => {
 		return gameStart;
 	}
 
-	const selectGameType = (queueId) => {
-		switch (queueId) {
-			case 420:
-				return "ranked solo";
-			case 440:
-				return "ranked flex";
-			default:
-				return "normals";
-		}
-	};
-
 	let sortedMatches = [...matches];
 
-	sortedMatches?.sort(function (x, y) {
-		return y.gameStartTimestamp - x.gameStartTimestamp;
-	});
+	useEffect(()=>{
+
+		sortedMatches?.sort(function (x, y) {
+			return y.gameStartTimestamp - x.gameStartTimestamp;
+		});
+
+		setRankedSolo(sortedMatches?.filter((match)=>{
+			return match.queueId === 420
+		}));
+
+		setNormals(sortedMatches?.filter((match)=>{
+			return (match.queueId !== 420 && match.queueId !== 440)
+		}))
+
+		setRankedFlex(sortedMatches?.filter((match)=>{
+			return match.queueId === 440
+		}))
+
+
+	}, [matches])
+
+	useEffect(()=>{
+		(!rankedSolo.length && (props.selectedMatchType === "all" || props.selectedMatchType === "ranked solo")) ||
+		(!normals.length && props.selectedMatchType === "normals") ||
+		(!rankedFlex.length && props.selectedMatchType === "ranked flex")?
+		setLoaderViewer(false) :
+		setLoaderViewer(true)
+
+	}, [rankedSolo, normals, rankedFlex, props.selectedMatchType])
+
+	useEffect(()=>{
+
+	}, [loaderViewer])
 
 	return (
 		<div>
 			{/* lists */}
 			<div className=" flex flex-col gap-y-5 ">
-				{sortedMatches.map((match, index) => {
+				{rankedSolo[0] && (props.selectedMatchType === "all" || props.selectedMatchType === "ranked solo") && rankedSolo?.map((match, index)=>{
 					const mainPlayer = match.players.find(
 						(player) => player.mainPlayer === true
 					);
@@ -109,9 +132,9 @@ const PlayerCards = (props) => {
 					const matchType = mainPlayer?.win ? "victory" : "defeat";
 					let indicatorTypeColor =
 						matchType === "victory" ? "white-blue" : "red-yellow-gold";
-					if (props.selectedMatchType === "all") {
-						return (
-							<PlayerCard
+
+					return (
+						<PlayerCard
 								key={index}
 								color={indicatorTypeColor}
 								type={matchType}
@@ -120,58 +143,63 @@ const PlayerCards = (props) => {
 								duration={convertHMS(match.duration)}
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
-							/>
-						);
-					} else if (props.selectedMatchType === "normals") {
-						if (selectGameType(match.queueId) === "normals") {
-							return (
-								<PlayerCard
-									key={index}
-									color={indicatorTypeColor}
-									type={matchType}
-									mainPlayer={mainPlayer}
-									playerList={match.players}
-									duration={convertHMS(match.duration)}
-									gameStartDate={getGameStart(match.gameStartTimestamp)}
-									queueId={match.queueId}
-								/>
-							);
-						} else return <></>;
-					} else if (props.selectedMatchType === "ranked solo") {
-						if (selectGameType(match.queueId) === "ranked solo") {
-							return (
-								<PlayerCard
-									key={index}
-									color={indicatorTypeColor}
-									type={matchType}
-									mainPlayer={mainPlayer}
-									playerList={match.players}
-									duration={convertHMS(match.duration)}
-									gameStartDate={getGameStart(match.gameStartTimestamp)}
-									queueId={match.queueId}
-								/>
-							);
-						} else return <></>;
-					} else if (props.selectedMatchType === "ranked flex") {
-						if (selectGameType(match.queueId) === "ranked flex") {
-							return (
-								<PlayerCard
-									key={index}
-									color={indicatorTypeColor}
-									type={matchType}
-									mainPlayer={mainPlayer}
-									playerList={match.players}
-									duration={convertHMS(match.duration)}
-									gameStartDate={getGameStart(match.gameStartTimestamp)}
-									queueId={match.queueId}
-								/>
-							);
-						} else return <></>;
-					}
+						/>
+					)
 				})}
+
+				{normals[0] && props.selectedMatchType === "normals" && normals?.map((match, index)=>{
+					const mainPlayer = match.players.find(
+						(player) => player.mainPlayer === true
+					);
+
+					const matchType = mainPlayer?.win ? "victory" : "defeat";
+					let indicatorTypeColor =
+						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+
+					return (
+						<PlayerCard
+								key={index}
+								color={indicatorTypeColor}
+								type={matchType}
+								mainPlayer={mainPlayer}
+								playerList={match.players}
+								duration={convertHMS(match.duration)}
+								gameStartDate={getGameStart(match.gameStartTimestamp)}
+								queueId={match.queueId}
+						/>
+					)
+				})}
+
+				{rankedFlex[0] && props.selectedMatchType === "ranked flex"&& rankedFlex?.map((match, index)=>{
+					const mainPlayer = match.players.find(
+						(player) => player.mainPlayer === true
+					);
+
+					const matchType = mainPlayer?.win ? "victory" : "defeat";
+					let indicatorTypeColor =
+						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+
+					return (
+						<PlayerCard
+								key={index}
+								color={indicatorTypeColor}
+								type={matchType}
+								mainPlayer={mainPlayer}
+								playerList={match.players}
+								duration={convertHMS(match.duration)}
+								gameStartDate={getGameStart(match.gameStartTimestamp)}
+								queueId={match.queueId}
+						/>
+					)
+				})}
+
+				{!loaderViewer && (
+					<div className="text-white flex justify-center">No #{props.selectedMatchType === "all"? "ranked solo": props.selectedMatchType}# games have een found for this summoner</div>
+				)}
+				
 			</div>
 			<div className=" pt-[56px] pb-[228px] ">
-				{!hasError?.msg && (
+				{loaderViewer && (
 					<button
 						onClick={getMoreMatches}
 						className=" btn rounded-full w-[40px] h-[40px] p-0 flex justify-center items-center border-0 cursor-pointer mx-auto mt-5 hover:bg-btn-hover "

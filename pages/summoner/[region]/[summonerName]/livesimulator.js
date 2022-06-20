@@ -18,7 +18,7 @@ const LiveSimulator = () => {
 	
 	const btnDetails = [
         { text: "refresh", url: "" },
-        { text: "historic games", url: `/` },
+        { text: "historic games", url: {pathname: `/summoner/[region]/[summonerName]`, query: {region: router.query?.region, summonerName: router.query?.summonerName}} },
     ];
     const [loaded, setLoaded] = useState(false);
 

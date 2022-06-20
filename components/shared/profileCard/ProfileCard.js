@@ -82,7 +82,7 @@ const ProfileCard = (props) => {
                         </button>
                     )}
 
-                    <Link href={`${props.btn[1].url}`}><button className="btn bg-red-yellow">
+                    <Link href={props.btn[1].url}><button className="btn bg-red-yellow">
                         {props.btn[1].text}
                     </button></Link>
                 </div>

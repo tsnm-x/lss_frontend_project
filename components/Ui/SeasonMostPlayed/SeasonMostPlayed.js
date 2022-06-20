@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import PlayerOne from "../../../public/assets/players/NoPath - Copy (10).png";
 import PlayerTwo from "../../../public/assets/players/NoPath - Copy (11).png";
@@ -6,9 +6,105 @@ import PlayerThree from "../../../public/assets/players/NoPath - Copy (12).png";
 import { HiArrowDown } from "react-icons/hi";
 import ChampList from "./ChampList";
 import ProfileCardWrapHoc from "../../HOC/ProfileCardWrapHoc";
+import useHttp from "../../../hook/useHttp";
+import { useRouter } from "next/router";
 
 const SeasonMostPlayed = () => {
 	const [expand, setExpand] = useState(false);
+	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
+	const {sendRequest, hasError} = useHttp();
+	const [matches, setMatches] = useState([]);
+	const [mainPlayerChamps, setMainPlayerChamps] = useState([])
+	const router = useRouter();
+	let champions  = [];
+
+	const requestHandler = (res) => {
+		if(!res){
+			console.log("no response from server");
+			return;
+		}
+
+		setMatches(res.data.matches);
+	}
+
+	useEffect(()=>{
+		sendRequest(
+			{
+				url: "/seasonMostPlayed",
+				method: "GET",
+				params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
+			},
+			requestHandler
+		);
+	}, [])
+
+
+	useEffect(() => {
+
+		matches.forEach((match) => {
+			const mainPlayerArr = match.players.filter((player) => player.mainPlayer === true);
+			mainPlayerArr.forEach((obj) => {
+				champions.push(obj)
+			})
+		})
+
+		setMainPlayerChamps(champions)
+	}, [matches])
+
+	useEffect(() => {
+
+		console.log(mainPlayerChamps)
+
+		let maxcount = 0;
+		let deaths = 0;
+		let assists = 0;
+		let kills = 0;
+		let winCount = 0;
+		let lossCount = 0;
+
+		for (let i = 0; i < mainPlayerChamps.length; i++) {
+			let count = 0;
+			for (let j = 0; j < mainPlayerChamps.length; j++) {
+
+				if (mainPlayerChamps[i].championName == mainPlayerChamps[j].championName){
+					count++;
+					deaths = deaths + mainPlayerChamps[j].deaths;
+					assists = assists + mainPlayerChamps[j].assists;
+					kills = kills + mainPlayerChamps[j].kills;
+					mainPlayerChamps[j].win? winCount++ : lossCount++;
+					
+				}
+			}
+
+			if (count > maxcount) {
+				maxcount = count;
+				setSeasonMostPlayedList([...seasonMostPlayedList,{ ...mainPlayerChamps[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount}]);
+			}
+
+			deaths = 0;
+			assists = 0;
+			kills = 0;
+			winCount = 0;
+			lossCount = 0;
+
+
+		}
+
+	}, [mainPlayerChamps])
+
+	useEffect(()=>{
+		// console.log(seasonMostPlayedList)
+		// console.log(mainPlayerChamps)
+		const newChamps = mainPlayerChamps.filter((champion) => {
+			return champion.championName !== seasonMostPlayedList[seasonMostPlayedList.length-1].championName
+		});
+
+		if(newChamps[0]){
+			setMainPlayerChamps(newChamps);
+		}
+
+
+	}, [seasonMostPlayedList])
 
 	const player = [
 		{ name: "141 games", img: PlayerOne },
@@ -25,7 +121,20 @@ const SeasonMostPlayed = () => {
 			{/* <aside className="card_wrap "> */}
 			{/* top slider  */}
 			<div className=" pb-6 ">
-				<div className=" flex mb-6 justify-between  ">
+				<div className="mb-6">
+					{seasonMostPlayedList.length && seasonMostPlayedList.map((player, index) =>{
+						return(
+							<div key={index} className="text-white">
+								<div className="text-red-500 font-bold">{player.championName}</div>
+								<div>Wins: {player.winCount}</div>
+								<div>Losses: {player.lossCount}</div>
+								<div>Assists: {player.totalAssists}</div>
+								<div>Kills: {player.totalKills}</div>
+								<div>Deaths: {player.totalDeaths}</div>
+								<div>KDA: {((player.totalAssists + player.totalKills) / player.totalDeaths).toFixed(2)}:1</div>
+							</div>
+						)
+					})}
 					{/* {player.map((player, index) => {
                         return (
                             <div key={"player" + index}>

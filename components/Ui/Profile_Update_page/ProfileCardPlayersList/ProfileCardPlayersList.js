@@ -47,7 +47,7 @@ const ProfileCardPlayersList = (props) => {
                                     layout="fill"
                                 />
                             </div>
-                            <h6 className=" font-gotham-mid text-[5px] leading-[6px] capitalize text-[#8D919F] ">
+                            <h6 className={`font-gotham-mid text-[5px] leading-[6px] capitalize ${player?.mainPlayer? 'text-red-500 font-bold' : 'text-[#8D919F]'} `}>
                                 {player?.summonerName}
                             </h6>
                         </div>

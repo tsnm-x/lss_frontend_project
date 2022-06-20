@@ -57,7 +57,12 @@ export default function Home() {
 	function requestHandler(res) {
 		if (!res) {
 			console.log(res, "no response from the server");
-			// console.log(reqServers[servers.indexOf(region)], "no responsezz");
+			Router.push(
+				{
+					pathname: "/error",
+					query: {summonerName, reqServers}
+				}
+			);
 			setSummonerName("");
 			return;
 		}
@@ -71,7 +76,13 @@ export default function Home() {
 			})
 		);
 		Router.push(
-			`/summoner/${reqServers[servers.indexOf(region)]}/${summonerName}`
+			{
+				pathname: '/summoner/[region]/[summonerName]',
+				query: {
+					region: reqServers[servers.indexOf(region)],
+					summonerName
+				}
+			}
 		);
 		setSummonerName("");
 	}
