@@ -95,6 +95,12 @@
     .gotham-mid-25 {
         @apply font-gotham text-[25px] leading-[27px] font-medium;
     }
+    .gotham-mid-18 {
+        @apply font-gotham text-[18px] leading-[21px] font-medium;
+    }
+    .gotham-mid-15 {
+        @apply font-gotham text-[15px] leading-[17px] font-medium;
+    }
 
     .sf-bold-20 {
         @apply font-sf-pro-text font-bold text-[20px] leading-[24px];
@@ -112,6 +118,7 @@
         @apply font-sf-pro-text text-[12px] leading-[14px];
     }
 
+    
     .sf-bold-10 {
         @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
     }

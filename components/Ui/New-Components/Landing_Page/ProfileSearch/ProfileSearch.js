@@ -101,7 +101,9 @@ const ProfileSearch = (props) => {
                     <div className="realtive">
                         {/* country box list  */}
                         {activeListDetails.showList && (
-                            <div className={`${classes.countryList}`}>
+                            <div
+                                className={` absolute left-0 top-[100px] bg-light-text rounded w-[250px] p-[10px_12px] smTablet:w-[175px] smTablet:top-[70px] `}
+                            >
                                 {selectionNameList.map((country, index) => {
                                     return (
                                         <div
@@ -109,13 +111,13 @@ const ProfileSearch = (props) => {
                                             onClick={() =>
                                                 btnActiveHandler(index)
                                             }
-                                            className={` py-2 mb-[6px] cursor-pointer last:mb-0 ${
+                                            className={` py-[6px] mb-1 cursor-pointer last:mb-0 desktop:py-2 desktop:mb-[6px] ${
                                                 country.active
                                                     ? " bg-accent-color rounded text-white"
                                                     : " bg-[#AAA0A826] text-[#AAA0A8]"
                                             }`}
                                         >
-                                            <p className=" sf-bold-15 capitalize text-center ">
+                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 ">
                                                 {country.fullName}
                                             </p>
                                         </div>
@@ -126,10 +128,10 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={`${classes.selectedWrap}`}
+                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] desktop:py-[32px] `}
                         >
                             <h4
-                                className={` desktop:gotham-mid-25 text-white mr-[16px] uppercase`}
+                                className={` text-white mr-[16px] uppercase smTablet:italic smTablet:gotham-mid-15 desktop:gotham-mid-25`}
                             >
                                 {activeListDetails.selectedItem.name}
                             </h4>
@@ -141,16 +143,16 @@ const ProfileSearch = (props) => {
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] desktop:gotham-mid-25 tablet:nedgen-regular-10 ${classes.searchBox} ${props.searchBox}`}
+                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] smTablet:italic tablet:nedgen-regular-10 desktop:gotham-mid-25  ${classes.searchBox} ${props.searchBox}`}
                         />
-                        <button className="absolute right-3 top-[10px] mobile:top-[5px] desktop:hidden">
+                        <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:hidden desktop:hidden">
                             <FiSearch width={"20px"} size="20px" />
                         </button>
                     </div>
                 </form>
 
-                {/* search btn lists  */}
-                <div className="grid grid-cols-4 mt-[10px] gap-x-2 gap-y-1 desktop:hidden">
+                {/* search btn lists for small screen  */}
+                <div className="grid grid-cols-4 mt-[10px] gap-x-2 gap-y-1 smTablet:hidden">
                     {selectionNameList.map((item, index) => {
                         return (
                             <button
