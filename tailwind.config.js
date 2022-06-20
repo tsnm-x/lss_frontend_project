@@ -121,7 +121,7 @@ module.exports = {
                         maxWidth: "1396px",
                     },
                     "@screen desktop": {
-                        maxWidth: "1700px",
+                        maxWidth: "1780px",
                     },
                 },
             });
