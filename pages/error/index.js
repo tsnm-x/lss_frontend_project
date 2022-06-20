@@ -95,8 +95,8 @@ export default function ErrorPage(){
                                         )
                                     }
                                     return (
-                                        <>
-                                        </>
+                                        <div key={index}>
+                                        </div>
                                     )
                                 })}
                             </div>
