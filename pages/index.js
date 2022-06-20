@@ -123,7 +123,7 @@ export default function Home() {
                 <AdvertiseAndDownloadNow className=" mt-[74px] mobile:hidden " />
                 <HorizontalAds className=" hidden mobile:block smTablet:hidden" />
                 {/* footer section  */}
-                <Footer textStyle="text-grayed-text text-center smMobile:w-[244px] smTablet:container " />
+                <Footer textStyle="text-grayed-text text-center smMobile:w-[244px] smTablet:container tablet:w-[722px] " />
             </div>
 
             {/* 
