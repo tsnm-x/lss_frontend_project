@@ -10,7 +10,6 @@ module.exports = {
             mobile: "640px",
             smTablet: "768px",
             tablet: "1024px",
-            smLaptop: "1280px",
             laptop: "1366px",
             smDesktop: "1536px",
             desktop: "1800px",
@@ -117,9 +116,6 @@ module.exports = {
                     },
                     "@screen tablet": {
                         maxWidth: "964px",
-                    },
-                    "@screen smLaptop": {
-                        maxWidth: "1220px",
                     },
                     "@screen smDesktop": {
                         maxWidth: "1700px",

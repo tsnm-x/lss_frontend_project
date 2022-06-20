@@ -56,7 +56,8 @@ const Header = (props) => {
                 {/* logo  */}
                 <div className={`${classes.logo__wrapper}`}>
                     <Logo
-                        className={` smMobile:text-[24px] smMobile:leading-[27px] mobile:text-[25px] leading-[29px]`}
+                        className={` smMobile:text-[24px] smMobile:leading-[27px] mobile:text-[24px] mobile:leading-[27px]
+                                    laptop:text-[24px] laptop:leading-[27px] `}
                     />
                 </div>
             </div>

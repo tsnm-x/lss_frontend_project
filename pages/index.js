@@ -112,7 +112,7 @@ export default function Home() {
             <div className={`${classes.mainWrapper}`}>
                 <Header menuBtnClick={leftNavHandler} />
                 {/* main section  */}
-                <Main className=" mt-10 tablet:mt-[200px] tablet:mb-[500px] desktop:mt-16 desktop:mb-[160px] " />
+                <Main className=" mt-10 tablet:mt-[200px] tablet:mb-[500px] desktop:mt-16 desktop:mb-[160px] laptop:mt-[66px] laptop:mb-[170px] " />
                 {/* sidebar  */}
                 {leftNav && (
                     <Portal selector="#portal">
@@ -123,7 +123,7 @@ export default function Home() {
                 <AdvertiseAndDownloadNow className=" mt-[74px] mobile:hidden " />
                 <HorizontalAds className=" hidden mobile:block smTablet:hidden" />
                 {/* footer section  */}
-                <Footer textStyle="text-grayed-text text-center smMobile:w-[244px] smTablet:container tablet:w-[722px] " />
+                <Footer textStyle="text-grayed-text text-center smMobile:w-[244px] smTablet:container tablet:w-[722px] laptop:pb-[25px] " />
             </div>
 
             {/* 

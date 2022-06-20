@@ -11,13 +11,13 @@ const Main = (props) => {
                 className="
                             container mobile:relative  mobile:w-[332px] mobile:h-[206px]
                             mobile:flex mobile:items-end mobile:justify-center smTablet:container smTablet:h-[402px] tablet:max-w-[745px] tablet:h-[463px]
-                            desktop:max-w-[1070px] desktop:h-[666px] "
+                            laptop:items-center desktop:max-w-[1070px] desktop:h-[666px] "
             >
                 {/* hightlight img  */}
                 <div
                     className=" 
                             relative h-[186px] z-10 mobile:absolute mobile:w-full mobile:h-full smTablet:opacity-[36%] smTablet:w-[650px] smTablet:h-[402px] tablet:w-full tablet:h-[463px]
-                            desktop:w-[1035px] desktop:h-[666px] desktop:absolute "
+                            laptop:w-[745px] laptop:h-[464px] desktop:w-[1035px] desktop:h-[666px] desktop:absolute  "
                 >
                     <Image
                         src={AnimatedImage}
@@ -28,8 +28,9 @@ const Main = (props) => {
                 {/* profile search  */}
                 <div
                     className=" 
-                                relative z-30 mobile:mb-[6px] mobile:w-[255px] mobile:mx-auto smTablet:w-full smTablet:max-w-[initial] smTablet:mb-[52px] desktop:pt-[120px]
-                                desktop:max-w-[980px] desktop:ml-11
+                                relative z-30 mobile:mb-[6px] mobile:w-[255px] mobile:mx-auto smTablet:w-full smTablet:max-w-[initial] smTablet:mb-[52px]
+                                laptop:mb-0 laptop:w-[728px] laptop:mr-0 laptop:-ml-12
+                                desktop:pt-[120px] desktop:max-w-[980px] desktop:ml-11
                                 "
                 >
                     <div className=" mb-[39px] hidden smTablet:block smTablet:mb-[30px] ">

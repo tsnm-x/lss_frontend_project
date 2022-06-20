@@ -102,7 +102,10 @@ const ProfileSearch = (props) => {
                         {/* country box list  */}
                         {activeListDetails.showList && (
                             <div
-                                className={` absolute left-0 top-[100px] bg-light-text rounded w-[250px] p-[10px_12px] smTablet:w-[175px] smTablet:top-[70px] `}
+                                className={` 
+                                            absolute left-0 top-[100px] bg-light-text rounded w-[250px] p-[10px_12px] smTablet:w-[175px] smTablet:top-[70px]
+                                            tablet:py-[7px] tablet:px-[10px]
+                                            `}
                             >
                                 {selectionNameList.map((country, index) => {
                                     return (
@@ -117,7 +120,7 @@ const ProfileSearch = (props) => {
                                                     : " bg-[#AAA0A826] text-[#AAA0A8]"
                                             }`}
                                         >
-                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 ">
+                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 laptop:text-[11px] ">
                                                 {country.fullName}
                                             </p>
                                         </div>
