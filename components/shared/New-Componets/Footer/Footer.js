@@ -6,12 +6,12 @@ const Footer = (props) => {
             className={` ${
                 props.className
                     ? props.className
-                    : "bg-footer-bg mt-9 py-[15px] desktop:py-[43px]"
+                    : "bg-footer-bg mt-9 desktop:py-[43px]"
             }`}
         >
             <div className="container ">
                 <div
-                    className={` nedgen-regular-5 max-w-[722px] mx-auto py-[15px] smTablet:nedgen-regular-10 ${props.textStyle}`}
+                    className={` nedgen-regular-5 mx-auto py-[15px] smTablet:nedgen-regular-10 ${props.textStyle}`}
                 >
                     <p>Lss.gg © 2022</p>
                     <p>

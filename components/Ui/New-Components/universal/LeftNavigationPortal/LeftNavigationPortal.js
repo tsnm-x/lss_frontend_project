@@ -5,11 +5,9 @@ import ProfileSearch from "../../Landing_Page/ProfileSearch/ProfileSearch";
 import Footer from "../../../../shared/New-Componets/Footer/Footer";
 
 const LeftNavigationPortal = (props) => {
-
-  const menuBtnHandler = () => {
-        props.menuBtnClick()
+    const menuBtnHandler = () => {
+        props.menuBtnClick();
     };
-
 
     return (
         <div className={`${classes.portal}`}>
@@ -34,25 +32,27 @@ const LeftNavigationPortal = (props) => {
                         </svg>
                     </button>
                 </div>
-                {/* search and list  */}
-                <ProfileSearch searchBox="sf-bold-10 mt-[30px] " />
-                {/* download btn  */}
-                <div>
-                    <button
-                        className={`mt-[75px] sf-bold-12 ${classes.simulator__app__btn}`}
-                    >
-                        Skirmish Simulator App
-                    </button>
-                    <p className=" mt-3 sf-bold-12 text-[#a19aa6] max-w-[125px] ">
-                        Simulate Matchups and Analyze your games with the
-                        Simulator App
-                    </p>
+                <div className=" mobile:mx-[10px]">
+                    {/* search and list  */}
+                    <ProfileSearch searchBox="sf-bold-10 mt-[30px] " />
+                    {/* download btn  */}
+                    <div>
+                        <button
+                            className={`mt-[75px] sf-bold-12 ${classes.simulator__app__btn}`}
+                        >
+                            Skirmish Simulator App
+                        </button>
+                        <p className=" mt-3 sf-bold-12 text-[#a19aa6] max-w-[125px] ">
+                            Simulate Matchups and Analyze your games with the
+                            Simulator App
+                        </p>
+                    </div>
+                    {/* footer text  */}
+                    <Footer
+                        className=" absolute left-[20px] bottom-[20px] max-w-[145px] "
+                        textStyle=" text-left text-white"
+                    />
                 </div>
-                {/* footer text  */}
-                <Footer
-                    className=" absolute left-[20px] bottom-[20px] max-w-[145px] "
-                    textStyle=" text-left text-white"
-                />
             </div>
         </div>
     );

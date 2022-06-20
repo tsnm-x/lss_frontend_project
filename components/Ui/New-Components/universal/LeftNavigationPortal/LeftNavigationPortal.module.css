@@ -4,7 +4,8 @@
 
 .portalWrap {
     /* @apply w-screen h-screen bg-[#140A22] absolute left-0 top-0 z-[100]; */
-    @apply w-[190px] bg-[#140a22] h-full p-[35px_8px_40px_20px] rounded-r-[10px] relative;
+    @apply w-[190px] bg-[#140a22] h-full p-[35px_8px_40px_20px] rounded-r-[10px] relative
+            mobile:w-[250px];
 }
 
 .simulator__app__btn {

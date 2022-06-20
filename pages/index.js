@@ -22,6 +22,7 @@ import AdvertiseAndDownloadNow from "../components/Ui/New-Components/Landing_Pag
 import Footer from "../components/shared/New-Componets/Footer/Footer";
 import Portal from "../components/shared/New-Componets/Portal/Portal";
 import LeftNavigationPortal from "../components/Ui/New-Components/universal/LeftNavigationPortal/LeftNavigationPortal";
+import HorizontalAds from "../components/shared/New-Componets/HorizontalAds/HorizontalAds";
 
 export default function Home() {
     // const servers = [
@@ -119,8 +120,9 @@ export default function Home() {
                 )}
                 {/* advertise and download  */}
                 <AdvertiseAndDownloadNow className=" mt-[74px] mobile:hidden " />
+                <HorizontalAds className=" hidden mobile:block smTablet:hidden" />
                 {/* footer section  */}
-                <Footer textStyle="text-grayed-text" />
+                <Footer textStyle="text-grayed-text text-center smMobile:w-[244px] " />
             </div>
 
             {/* 

@@ -143,7 +143,7 @@ const ProfileSearch = (props) => {
                             placeholder="Find your Summoner name..."
                             className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] desktop:gotham-mid-25 tablet:nedgen-regular-10 ${classes.searchBox} ${props.searchBox}`}
                         />
-                        <button className="absolute right-3 top-[10px] desktop:hidden">
+                        <button className="absolute right-3 top-[10px] mobile:top-[5px] desktop:hidden">
                             <FiSearch width={"20px"} size="20px" />
                         </button>
                     </div>
