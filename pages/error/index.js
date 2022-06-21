@@ -12,6 +12,7 @@ export default function ErrorPage(){
     const [summonersFromOtherAreas, setSummonersFromOtherAreas] = useState([]);
     const summoners = []
     const [regions, setRegions] = useState([]);
+    const [doneStatus, setDoneStatus] = useState(false);
     const [summonerName, setSummonerName] = useState("");
     const { hasError, sendRequest } = useHttp();
 
@@ -22,6 +23,11 @@ export default function ErrorPage(){
         }
 
         summoners.push({region: res.data.region, summonerName: res.data.name})
+
+        if(summoners.length === 11){
+            console.log(summoners)
+            setSummonersFromOtherAreas(summoners)
+        }
 
     }
 
@@ -39,8 +45,6 @@ export default function ErrorPage(){
             },
             requestHandler
         );
-        console.log(region);
-        console.log(summonerName);
     }
 
     useEffect(() => {
@@ -49,9 +53,13 @@ export default function ErrorPage(){
     }, [router.query.reqServers, router.query.summonerName]);
 
     useEffect(()=>{
-        regions.forEach((region)=> getSummonersFromOtherAreas(region, summonerName))
+        regions.forEach((region)=> getSummonersFromOtherAreas(region, summonerName));
+    }, [regions, summonerName]);
+
+    useEffect(()=>{
+        console.log(summoners)
         setSummonersFromOtherAreas(summoners);
-    }, [regions, summonerName])
+    }, [doneStatus])
     
     return (
         <div>
@@ -92,11 +100,10 @@ export default function ErrorPage(){
                                         return (
                                             <div className="text-red-500 font-bold" key={index}>{summonerObj.summonerName}</div>
                                         )
+                                    } else {
+                                        return;
                                     }
-                                    return (
-                                        <>
-                                        </>
-                                    )
+                                    
                                 })}
                             </div>
                         )
