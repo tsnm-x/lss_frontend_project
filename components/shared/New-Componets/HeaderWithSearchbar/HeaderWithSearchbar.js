@@ -1,10 +1,10 @@
 import React from "react";
 import ProfileSearchBox from "../../../Ui/New-Components/universal/ProfileSearchBox/ProfileSearchBox";
 
-const HeaderWithSearchbar = () => {
+const HeaderWithSearchbar = (props) => {
     return (
-        <header>
-            <div className="container flex relative ">
+        <header className=" py-[31px] ">
+            <div className={`container flex relative h-[22px] ${props.className}`}>
                 {/* resp btn  */}
                 <button
                     className={` absolute left-0 inline-block w-[12px] smTablet:w-[35px] desktop:order-6 `}
