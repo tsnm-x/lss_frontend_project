@@ -116,17 +116,19 @@
         @apply font-sf-pro-text font-bold text-[15px] leading-[20px];
     }
 
+    .sf-bold-12 {
+        @apply font-sf-pro-text text-[12px] leading-[14px];
+    }
+    .sf-bold-10 {
+        @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
+    }
+
     .sf-regular-14 {
         @apply font-sf-pro-text text-[14px] leading-[16px];
     }
 
-    .sf-bold-12 {
-        @apply font-sf-pro-text text-[12px] leading-[14px];
-    }
-
-    
-    .sf-bold-10 {
-        @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
+    .sf-regular-10 {
+        @apply font-sf-pro-text text-[10px] leading-[12px];
     }
 
     .nedgen-regular-80 {
@@ -156,5 +158,8 @@
     #portal {
         /* @apply w-screen h-screen bg-[#140a2272] absolute left-0 top-0 z-[100]; */
         @apply smTablet:hidden;
+    }
+    body {
+        @apply bg-background;
     }
 }

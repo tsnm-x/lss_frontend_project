@@ -14,7 +14,7 @@
 }
 
 .respBtn {
-    @apply absolute left-0 top-[12px] w-[12px] smTablet:w-[35px] 
+    @apply absolute left-0 top-0 w-[12px] smTablet:w-[35px] 
             desktop:order-6;
 }
 @media screen and (min-width: 768px) {
