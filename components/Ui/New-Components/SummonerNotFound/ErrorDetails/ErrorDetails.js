@@ -19,24 +19,72 @@ const ErrorDetails = () => {
         },
     ]);
 
+    const selectionNameLargeScreen = [
+        {
+            name: "north america",
+            user: "exampleError",
+        },
+        {
+            name: "europe west",
+        },
+        {
+            name: "EU Nordic and East",
+        },
+        {
+            name: "Korea",
+        },
+        {
+            name: "Japan",
+            user: "exampleError",
+        },
+        {
+            name: "Latin America North",
+        },
+        {
+            name: "Latin America South",
+        },
+    ];
+
     return (
         <div className=" mt-[23px] ">
             <h2 className=" sf-mid-20 text-white mobile:text-[15px] mobile:max-w-[185px] smTablet:hidden ">
                 We found these summoners from other regions for you :)
             </h2>
             {/* summoner details    */}
-            <div className=" grid grid-cols-3 mt-10 mobile:mt-[13px] smTablet:mt-0 ">
+            <div className=" grid grid-cols-3 mt-10 mobile:mt-[13px] smTablet:mt-0 laptop:mt-[70px] laptop:max-w-[550px] ">
+                {/* small screen  */}
                 {selectionNameList.map((item, index) => {
                     return (
-                        <div key={"card" + index}>
+                        <div className=" laptop:hidden" key={"card" + index}>
                             <h2 className=" sf-bold-15 text-white uppercase smTablet:sf-bold-27 ">
                                 {item.name}
                             </h2>
                             <h4
                                 className=" sf-bold-12 text-accent-color mt-[18px] mobile:mt-[12px] 
-                                         smTablet:sf-bold-27 smTablet:mt-0 "
+                                         smTablet:sf-bold-27 smTablet:mt-0"
                             >
                                 example
+                            </h4>
+                        </div>
+                    );
+                })}
+                {/* large screen  */}
+                {selectionNameLargeScreen.map((item, index) => {
+                    return (
+                        <div key={index} className=" hidden laptop:block mb-[50px] ">
+                            <h2
+                                className={`sf-bold-15 text-[14px] capitalize  ${
+                                    item.user
+                                        ? "text-white"
+                                        : "text-grayed-text"
+                                } `}
+                            >
+                                {item.name}
+                            </h2>
+                            <h4
+                                className={`sf-bold-12 text-accent-color mt-[7px] capitalize `}
+                            >
+                                {item.user}
                             </h4>
                         </div>
                     );

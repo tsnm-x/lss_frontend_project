@@ -128,6 +128,9 @@
     .sf-mid-41 {
         @apply font-sf-pro-text font-medium text-[41px] leading-[49px];
     }
+    .sf-mid-31 {
+        @apply font-sf-pro-text font-medium text-[31px] leading-[37px];
+    }
     .sf-mid-20 {
         @apply font-sf-pro-text font-medium text-[20px] leading-[24px];
     }

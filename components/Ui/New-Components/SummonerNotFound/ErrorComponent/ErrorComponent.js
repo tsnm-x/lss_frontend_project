@@ -11,11 +11,12 @@ const ErrorComponent = (props) => {
         >
             <div
                 className="container px-1 pt-[23px] pb-14 mobile:pb-0 mobile:pt-[30px] mobile:flex smTablet:grid smTablet:grid-cols-1 smTablet:grid-rows-1
-                  smTablet:pt-0 "
+                  smTablet:pt-0 laptop:flex "
             >
                 <div
                     className=" mobile:w-[300px] smTablet:w-full smTablet:col-start-1 
-                smTablet:row-start-1 smTablet:relative smTablet:z-20 smTablet:flex smTablet:flex-col smTablet:flex-wrap smTablet:justify-center "
+                smTablet:row-start-1 smTablet:relative smTablet:z-20 smTablet:flex smTablet:flex-col smTablet:flex-wrap
+                 smTablet:justify-center laptop:w-[600px]"
                 >
                     <ErrorMessage />
                     <ErrorDetails />
@@ -30,7 +31,7 @@ const ErrorComponent = (props) => {
                 >
                     <div
                         className=" relative mobile:w-[210px] mobile:h-[210px] smTablet:w-[505px] smTablet:h-[495px] 
-                    tablet:w-[670px] tablet:h-[670px]  "
+                    tablet:w-[670px] tablet:h-[670px] laptop:w-[440px] laptop:h-[440px]  "
                     >
                         <Image
                             src={RightSideImage}
