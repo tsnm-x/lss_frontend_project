@@ -12,7 +12,6 @@ export default function ErrorPage(){
     const [summonersFromOtherAreas, setSummonersFromOtherAreas] = useState([]);
     const summoners = []
     const [regions, setRegions] = useState([]);
-    const [doneStatus, setDoneStatus] = useState(false);
     const [summonerName, setSummonerName] = useState("");
     const { hasError, sendRequest } = useHttp();
 
@@ -24,10 +23,7 @@ export default function ErrorPage(){
 
         summoners.push({region: res.data.region, summonerName: res.data.name})
 
-        if(summoners.length === 11){
-            console.log(summoners)
-            setSummonersFromOtherAreas(summoners)
-        }
+        setSummonersFromOtherAreas(summoners)
 
     }
 
@@ -57,9 +53,8 @@ export default function ErrorPage(){
     }, [regions, summonerName]);
 
     useEffect(()=>{
-        console.log(summoners)
-        setSummonersFromOtherAreas(summoners);
-    }, [doneStatus])
+        console.log(summonersFromOtherAreas)
+    }, [summonersFromOtherAreas])
     
     return (
         <div>
