@@ -19,7 +19,7 @@ const ProfileSearchBox = (props) => {
                 {/* sumonner name box  */}
                 <input
                     type="text"
-                    placeholder="Search your profile"
+                    placeholder="Search your profile ..."
                     className={` bg-white text-black placeholder:text-black rounded sf-regular-10 py-[5px] pl-[40px] absolute left-0 
                     top-0 z-10 w-[160px] smTablet:w-[340px] smTablet:py-[8px] smTablet:sf-bold-15 smTablet:pl-[110px] smTablet:text-[#707070] smTablet:placeholder:text-[#707070]
                     tablet:w-full tablet:sf-mid-18 tablet:py-[12px] tablet:pl-[164px]  ${props.searchBox}`}

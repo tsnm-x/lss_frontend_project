@@ -3,7 +3,7 @@ import React from "react";
 const Footer = (props) => {
     return (
         <footer
-            className={` ${
+            className={` overflow-x-hidden ${
                 props.className
                     ? props.className
                     : "bg-footer-bg mt-9 desktop:py-[43px]"

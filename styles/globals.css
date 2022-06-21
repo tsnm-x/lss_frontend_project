@@ -177,6 +177,6 @@
         @apply smTablet:hidden;
     }
     body {
-        @apply bg-background;
+        @apply bg-background overflow-x-hidden;
     }
 }
