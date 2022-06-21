@@ -17,17 +17,17 @@ const ErrorDetails = () => {
     ];
 
     return (
-        <div>
-            <h2 className=" sf-mid-20 text-white">
+        <div className=" mt-[23px] ">
+            <h2 className=" sf-mid-20 text-white mobile:text-[15px] mobile:max-w-[185px] ">
                 We found these summoners from other regions for you :)
             </h2>
             {/* summoner details    */}
-            <div className=" grid grid-cols-3 mt-10">
+            <div className=" grid grid-cols-3 mt-10 mobile:mt-[13px] ">
                 {errorDetails.map((item, index) => {
                     return (
                         <div key={"card" + index}>
                             <h2 className=" sf-bold-15 text-white uppercase">{item.countryName}</h2>
-                            <h4 className=" sf-bold-12 text-accent-color capitalize mt-[18px] ">{item.summoner}</h4>
+                            <h4 className=" sf-bold-12 text-accent-color capitalize mt-[18px] mobile:mt-[12px] ">{item.summoner}</h4>
                         </div>
                     );
                 })}
