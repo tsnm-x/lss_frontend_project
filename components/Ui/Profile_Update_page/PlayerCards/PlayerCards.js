@@ -108,7 +108,7 @@ const PlayerCards = (props) => {
 	}, [matches])
 
 	useEffect(()=>{
-		(!rankedSolo.length && (props.selectedMatchType === "all" || props.selectedMatchType === "ranked solo")) ||
+		(!rankedSolo.length && props.selectedMatchType === "ranked solo") ||
 		(!normals.length && props.selectedMatchType === "normals") ||
 		(!rankedFlex.length && props.selectedMatchType === "ranked flex")?
 		setLoaderViewer(false) :
@@ -124,7 +124,29 @@ const PlayerCards = (props) => {
 		<div>
 			{/* lists */}
 			<div className=" flex flex-col gap-y-5 ">
-				{rankedSolo[0] && (props.selectedMatchType === "all" || props.selectedMatchType === "ranked solo") && rankedSolo?.map((match, index)=>{
+				{sortedMatches[0] && props.selectedMatchType === "all" && sortedMatches.map((match, index) =>{
+					const mainPlayer = match.players.find(
+						(player) => player.mainPlayer === true
+					);
+
+					const matchType = mainPlayer?.win ? "victory" : "defeat";
+					let indicatorTypeColor =
+						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+
+					return (
+						<PlayerCard
+								key={index}
+								color={indicatorTypeColor}
+								type={matchType}
+								mainPlayer={mainPlayer}
+								playerList={match.players}
+								duration={convertHMS(match.duration)}
+								gameStartDate={getGameStart(match.gameStartTimestamp)}
+								queueId={match.queueId}
+						/>
+					)
+				})}
+				{rankedSolo[0] &&  props.selectedMatchType === "ranked solo" && rankedSolo?.map((match, index)=>{
 					const mainPlayer = match.players.find(
 						(player) => player.mainPlayer === true
 					);
