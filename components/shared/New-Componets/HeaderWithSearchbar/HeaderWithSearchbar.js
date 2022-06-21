@@ -1,13 +1,16 @@
 import React from "react";
 import ProfileSearchBox from "../../../Ui/New-Components/universal/ProfileSearchBox/ProfileSearchBox";
+import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
 const HeaderWithSearchbar = (props) => {
     return (
         <header className=" py-[31px] ">
-            <div className={`container flex relative h-[22px] ${props.className}`}>
+            <div className={`container flex relative h-[22px] smTablet:h-[initial] ${props.className}`}>
+                {/* logo  */}
+                <Logo className=" hidden smTablet:block smTablet:text-[32px] smTablet:leading-[37px] smTablet:order-1 " />
                 {/* resp btn  */}
                 <button
-                    className={` absolute left-0 inline-block w-[12px] smTablet:w-[35px] desktop:order-6 `}
+                    className={` absolute left-0 inline-block w-[12px] smTablet:w-[35px] smTablet:static smTablet:order-3 `}
                 >
                     <svg
                         className=" smTablet:hidden"
@@ -39,7 +42,7 @@ const HeaderWithSearchbar = (props) => {
                     </svg>
                 </button>
                 {/* profile search box  */}
-                <ProfileSearchBox className="" />
+                <ProfileSearchBox className=" smTablet:w-[340px] smTablet:order-2 " />
             </div>
         </header>
     );

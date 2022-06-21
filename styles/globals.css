@@ -108,6 +108,9 @@
         @apply font-gotham text-[15px] leading-[17px] font-medium;
     }
 
+    .sf-bold-27 {
+        @apply font-sf-pro-text font-bold text-[27px] leading-[36px];
+    }
     .sf-bold-20 {
         @apply font-sf-pro-text font-bold text-[20px] leading-[24px];
     }
@@ -122,8 +125,17 @@
     .sf-bold-10 {
         @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
     }
+    .sf-mid-41 {
+        @apply font-sf-pro-text font-medium text-[41px] leading-[49px];
+    }
     .sf-mid-20 {
         @apply font-sf-pro-text font-medium text-[20px] leading-[24px];
+    }
+    .sf-mid-14 {
+        @apply font-sf-pro-text font-medium text-[14px] leading-[16px];
+    }
+    .sf-regular-25 {
+        @apply font-sf-pro-text text-[25px] leading-[30px];
     }
     .sf-regular-14 {
         @apply font-sf-pro-text text-[14px] leading-[16px];
