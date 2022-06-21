@@ -12,10 +12,12 @@ export default function ErrorPage(){
     const [summonersFromOtherAreas, setSummonersFromOtherAreas] = useState([]);
     const summoners = []
     const [regions, setRegions] = useState([]);
+    const [refresher, setRefresher] = useState(false);
     const [summonerName, setSummonerName] = useState("");
     const { hasError, sendRequest } = useHttp();
 
     const requestHandler = (res) => {
+        setRefresher(false);
         if(!res){
             console.log(res, "no response from the server");
             return;
@@ -23,7 +25,10 @@ export default function ErrorPage(){
 
         summoners.push({region: res.data.region, summonerName: res.data.name})
 
+        console.log(summoners)
+
         setSummonersFromOtherAreas(summoners)
+        setRefresher(true);
 
     }
 
@@ -52,9 +57,6 @@ export default function ErrorPage(){
         regions.forEach((region)=> getSummonersFromOtherAreas(region, summonerName));
     }, [regions, summonerName]);
 
-    useEffect(()=>{
-        console.log(summonersFromOtherAreas)
-    }, [summonersFromOtherAreas])
     
     return (
         <div>
