@@ -52,7 +52,10 @@ const HeaderWithSearchbar = (props) => {
                 </div>
 
                 {/* profile search box  */}
-                <ProfileSearchBox className=" smTablet:w-[340px] smTablet:order-2 tablet:w-[450px] " />
+                <ProfileSearchBox
+                    searchBox=" desktop:pl-[200px] "
+                    className=" smTablet:w-[340px] smTablet:order-2 tablet:w-[450px] desktop:w-[650px] "
+                />
             </div>
         </header>
     );

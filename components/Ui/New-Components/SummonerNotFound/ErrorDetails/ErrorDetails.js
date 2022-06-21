@@ -46,12 +46,13 @@ const ErrorDetails = () => {
     ];
 
     return (
-        <div className=" mt-[23px] ">
+        <div className=" mt-[23px] desktop:mt-0 ">
             <h2 className=" sf-mid-20 text-white mobile:text-[15px] mobile:max-w-[185px] smTablet:hidden ">
                 We found these summoners from other regions for you :)
             </h2>
             {/* summoner details    */}
-            <div className=" grid grid-cols-3 mt-10 mobile:mt-[13px] smTablet:mt-0 laptop:mt-[70px] laptop:max-w-[550px] ">
+            <div className=" grid grid-cols-3 mt-10 mobile:mt-[13px] smTablet:mt-0 laptop:mt-[70px] laptop:max-w-[550px]
+                    desktop:mt-[110px] ">
                 {/* small screen  */}
                 {selectionNameList.map((item, index) => {
                     return (
@@ -71,9 +72,9 @@ const ErrorDetails = () => {
                 {/* large screen  */}
                 {selectionNameLargeScreen.map((item, index) => {
                     return (
-                        <div key={index} className=" hidden laptop:block mb-[50px] ">
+                        <div key={index} className=" hidden laptop:block mb-[50px] desktop:mb-[59px] ">
                             <h2
-                                className={`sf-bold-15 text-[14px] capitalize  ${
+                                className={`sf-bold-15 text-[14px] capitalize desktop:text-[18px] desktop:leading-[24px]  ${
                                     item.user
                                         ? "text-white"
                                         : "text-grayed-text"
@@ -82,7 +83,7 @@ const ErrorDetails = () => {
                                 {item.name}
                             </h2>
                             <h4
-                                className={`sf-bold-12 text-accent-color mt-[7px] capitalize `}
+                                className={`sf-bold-12 text-accent-color mt-[7px] capitalize desktop:text-[16px] desktop:leading-[21px] `}
                             >
                                 {item.user}
                             </h4>

@@ -12,9 +12,12 @@ const summonerNotFound = () => {
             <HeaderWithSearchbar className=" tablet:pt-[10px] " />
             <ErrorComponent
                 className=" h-[88vh] absolute left-0 bottom-0 w-screen 
-            smTablet:static smTablet:h-[initial] smTablet:mt-[70px] "
+            smTablet:static smTablet:h-[initial] smTablet:mt-[70px] desktop:mt-[165px] "
             />
-            <Footer textStyle="text-grayed-text text-center smMobile:w-[244px] smTablet:container tablet:w-[722px] tablet:text-[8px] tablet:leading-[10px] laptop:pb-[25px] laptop:bg-[#241e2c41] desktop:py-[0px] " />
+        <Footer textStyle="text-grayed-text text-center smMobile:w-[244px]
+             smTablet:container tablet:w-[722px] tablet:text-[8px] tablet:leading-[10px]
+             laptop:pb-[25px] desktop:py-[0px] desktop:text-[10px]
+             desktop:leading-[12px] " className=" desktop:mt-[73px] " />
         </div>
     );
 };

@@ -32,7 +32,7 @@ const ErrorComponent = (props) => {
                     <div
                         className=" relative mobile:w-[210px] mobile:h-[210px] smTablet:w-[505px] smTablet:h-[495px] 
                     tablet:w-[670px] tablet:h-[670px] laptop:w-[440px] laptop:h-[440px] laptop:-mt-6 
-                     smDesktop:w-[560px] smDesktop:h-[560px] "
+                     smDesktop:w-[560px] smDesktop:h-[560px] desktop:w-[700px] desktop:h-[700px] "
                     >
                         <Image
                             src={RightSideImage}
