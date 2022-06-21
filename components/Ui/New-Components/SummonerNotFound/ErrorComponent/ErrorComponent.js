@@ -11,7 +11,7 @@ const ErrorComponent = (props) => {
         >
             <div
                 className="container px-1 pt-[23px] pb-14 mobile:pb-0 mobile:pt-[30px] mobile:flex smTablet:grid smTablet:grid-cols-1 smTablet:grid-rows-1
-                  smTablet:pt-0 laptop:flex "
+                  smTablet:pt-0 laptop:flex laptop:px-20 "
             >
                 <div
                     className=" mobile:w-[300px] smTablet:w-full smTablet:col-start-1 
@@ -26,12 +26,13 @@ const ErrorComponent = (props) => {
                     className=" 
                                 hidden mobile:w-[calc(100%_-_300px)] mobile:flex mobile:items-center
                                 mobile:justify-center smTablet:w-full smTablet:col-start-1 smTablet:row-start-1 smTablet:opacity-25
-                                laptop:opacity-[1] laptop:items-start
+                                laptop:opacity-[1] laptop:items-start laptop:justify-end
                                 "
                 >
                     <div
                         className=" relative mobile:w-[210px] mobile:h-[210px] smTablet:w-[505px] smTablet:h-[495px] 
-                    tablet:w-[670px] tablet:h-[670px] laptop:w-[440px] laptop:h-[440px] laptop:-mt-6  "
+                    tablet:w-[670px] tablet:h-[670px] laptop:w-[440px] laptop:h-[440px] laptop:-mt-6 
+                     smDesktop:w-[560px] smDesktop:h-[560px] "
                     >
                         <Image
                             src={RightSideImage}
