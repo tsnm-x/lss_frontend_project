@@ -26,12 +26,12 @@ const ErrorComponent = (props) => {
                     className=" 
                                 hidden mobile:w-[calc(100%_-_300px)] mobile:flex mobile:items-center
                                 mobile:justify-center smTablet:w-full smTablet:col-start-1 smTablet:row-start-1 smTablet:opacity-25
-                                
+                                laptop:opacity-[1] laptop:items-start
                                 "
                 >
                     <div
                         className=" relative mobile:w-[210px] mobile:h-[210px] smTablet:w-[505px] smTablet:h-[495px] 
-                    tablet:w-[670px] tablet:h-[670px] laptop:w-[440px] laptop:h-[440px]  "
+                    tablet:w-[670px] tablet:h-[670px] laptop:w-[440px] laptop:h-[440px] laptop:-mt-6  "
                     >
                         <Image
                             src={RightSideImage}
