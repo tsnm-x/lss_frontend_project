@@ -14,7 +14,7 @@ const YouPlayedOften = () => {
 	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
 	
 	useEffect(()=>{
-		matches.forEach((match)=>{
+		matches?.forEach((match)=>{
 			match.players.forEach((player) => {
 				if(!player.mainPlayer){
 					playersArr.push(player)
@@ -24,7 +24,7 @@ const YouPlayedOften = () => {
 		});
 
 		setPlayers(playersArr);
-	}, []);
+	}, [matches]);
 
 
 	useEffect(()=>{

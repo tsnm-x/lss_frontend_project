@@ -26,11 +26,16 @@ const SeasonMostPlayed = () => {
 			console.log("no response from server");
 			return;
 		}
-		
-		dispatch(
-			matchesForCalculationsActions.setMatches({matches: res.data.matches.slice(0, 20)})
-		)
 
+		if(res){
+			const responseMatches = res.data.matches.slice(0, 20)
+		
+			dispatch (
+				matchesForCalculationsActions.setMatches({matches: responseMatches})
+			)
+
+		}
+		
 		setMatches(res.data.matches);
 	}
 
