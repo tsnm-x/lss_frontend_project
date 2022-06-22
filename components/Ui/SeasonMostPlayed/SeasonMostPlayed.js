@@ -8,8 +8,11 @@ import ChampList from "./ChampList";
 import ProfileCardWrapHoc from "../../HOC/ProfileCardWrapHoc";
 import useHttp from "../../../hook/useHttp";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { matchesForCalculationsActions } from "../../../store/matchesForCalculations";
 
 const SeasonMostPlayed = () => {
+	const dispatch = useDispatch();
 	const [expand, setExpand] = useState(false);
 	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
 	const {sendRequest, hasError} = useHttp();
@@ -23,6 +26,10 @@ const SeasonMostPlayed = () => {
 			console.log("no response from server");
 			return;
 		}
+		
+		dispatch(
+			matchesForCalculationsActions.setMatches({matches: res.data.matches.slice(0, 20)})
+		)
 
 		setMatches(res.data.matches);
 	}
@@ -52,9 +59,6 @@ const SeasonMostPlayed = () => {
 	}, [matches])
 
 	useEffect(() => {
-
-		console.log(mainPlayerChamps)
-
 		let maxcount = 0;
 		let deaths = 0;
 		let assists = 0;
@@ -122,9 +126,9 @@ const SeasonMostPlayed = () => {
 			{/* top slider  */}
 			<div className=" pb-6 ">
 				<div className="mb-6">
-					{seasonMostPlayedList.length && seasonMostPlayedList.map((player, index) =>{
+					{seasonMostPlayedList.length > 10 && seasonMostPlayedList.slice(0, 10).map((player, index) =>{
 						return(
-							<div key={index} className="text-white">
+							<small key={index} className="text-white">
 								<div className="text-red-500 font-bold">{player.championName}</div>
 								<div>Wins: {player.winCount}</div>
 								<div>Losses: {player.lossCount}</div>
@@ -132,7 +136,7 @@ const SeasonMostPlayed = () => {
 								<div>Kills: {player.totalKills}</div>
 								<div>Deaths: {player.totalDeaths}</div>
 								<div>KDA: {((player.totalAssists + player.totalKills) / player.totalDeaths).toFixed(2)}:1</div>
-							</div>
+							</small>
 						)
 					})}
 					{/* {player.map((player, index) => {
