@@ -102,17 +102,26 @@
     .gotham-mid-22 {
         @apply font-gotham text-[22px] leading-[26px] font-medium;
     }
+    .gotham-mid-21 {
+        @apply font-gotham text-[21px] leading-[23px] font-medium;
+    }
 
     .gotham-mid-18 {
         @apply font-gotham text-[18px] leading-[21px] font-medium;
     }
 
+    .gotham-mid-16 {
+        @apply font-gotham text-[16px] leading-[18px] font-medium;
+    }
     .gotham-mid-15 {
         @apply font-gotham text-[15px] leading-[17px] font-medium;
     }
 
     .sf-bold-27 {
         @apply font-sf-pro-text font-bold text-[27px] leading-[36px];
+    }
+    .sf-bold-21 {
+        @apply font-sf-pro-text font-bold text-[21px] leading-[25px];
     }
     .sf-bold-20 {
         @apply font-sf-pro-text font-bold text-[20px] leading-[24px];
@@ -189,5 +198,12 @@
     .btn {
         @apply laptop:py-[16px] capitalize italic
         rounded-[5px] laptop:px-[14px] laptop:font-gotham laptop:font-medium laptop:text-[15px] laptop:leading-[17px];
+    }
+
+    /* profile components ------------------- */
+    .coverImg_mask {
+        background: transparent
+            linear-gradient(180deg, #140f1014 0%, #140a22 100%) 0% 0% no-repeat
+            padding-box;
     }
 }

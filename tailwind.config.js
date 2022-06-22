@@ -63,6 +63,7 @@ module.exports = {
                 "accent-color-2": "#5D7CF6",
                 background: "#140A22",
                 "footer-bg": "#18112b",
+                "text-gray-200": "#9D9D9D",
             },
             fontSize: {
                 // old 1.0

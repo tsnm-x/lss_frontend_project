@@ -40,7 +40,7 @@ const Profile = () => {
                     <button className=" btn text-white bg-accent-color laptop:mr-[9px] ">
                         refresh
                     </button>
-                    <button className=" btn bg-white ">refresh</button>
+                    <button className=" btn bg-white ">live simulator</button>
                 </div>
             </div>
         </div>
