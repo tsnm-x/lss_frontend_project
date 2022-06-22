@@ -4,9 +4,9 @@ import ProfileImage from "../../../../../public/assets/new-images/Profile/profil
 
 const Profile = () => {
     return (
-        <div>
+        <div className=" flex ">
             {/* profile image  */}
-            <div className="laptop:w-[140px] laptop:h-[138px] relative">
+            <div className="laptop:w-[140px] laptop:h-[138px] relative laptop:mr-[20px] ">
                 <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
                     <Image
                         src={ProfileImage}
@@ -24,6 +24,25 @@ const Profile = () => {
                 </div>
             </div>
             {/* profile details  */}
+            <div>
+                <h2 className=" laptop:gotham-mid-50 laptop:text-light-text italic  ">
+                    Beanovi
+                </h2>
+                <p
+                    className=" laptop:sf-mid-14 laptop:text-[#AAA0A8] capitalize
+                laptop:mt-[10px] 
+                "
+                >
+                    ladder rank: 42.123
+                </p>
+                {/* buttons  */}
+                <div className=" mt-[13px] ">
+                    <button className=" btn text-white bg-accent-color laptop:mr-[9px] ">
+                        refresh
+                    </button>
+                    <button className=" btn bg-white ">refresh</button>
+                </div>
+            </div>
         </div>
     );
 };

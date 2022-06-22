@@ -88,6 +88,9 @@
 /* global font component  */
 @layer components {
     /* typography  */
+    .gotham-mid-50 {
+        @apply font-gotham font-medium text-[50px] leading-[56px];
+    }
     .gotham-mid-30 {
         @apply font-gotham font-medium text-[30px] leading-[33px];
     }
@@ -181,5 +184,10 @@
     }
     body {
         @apply bg-background overflow-x-hidden;
+    }
+    /* button  */
+    .btn {
+        @apply laptop:py-[16px] capitalize italic
+        rounded-[5px] laptop:px-[14px] laptop:font-gotham laptop:font-medium laptop:text-[15px] laptop:leading-[17px];
     }
 }
