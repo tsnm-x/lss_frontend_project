@@ -1,0 +1,35 @@
+.tableHeaderRow {
+    @apply grid pl-[50px] pr-[25px] 
+    py-5 bg-card-&-content-box rounded-5px;
+    grid-template-columns: repeat(2, 1fr) 1.5fr repeat(2, 1fr) 1fr repeat(
+            2,
+            1fr
+        );
+}
+
+.tableHeaderRow > div {
+    @apply font-sf-pro-text text-lg leading-[21px]
+  font-bold text-light-text;
+}
+
+.tableBodyRow {
+    @apply grid items-center pl-[50px] pr-[25px] 
+    py-5 rounded-5px;
+    grid-template-columns: repeat(2, 1fr) 1.5fr repeat(2, 1fr) 1fr repeat(
+            2,
+            1fr
+        );
+}
+
+.tableBodyRow:nth-child(even) {
+  @apply bg-[#1f1929];
+}
+.tableBodyRow:nth-child(odd) {
+  @apply bg-card-&-content-box;
+}
+
+.tableBodyRow > div {
+    @apply font-sf-pro-text text-[14px] leading-[16px] font-bold last:flex last:justify-center;
+
+  }
+

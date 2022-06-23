@@ -61,6 +61,7 @@ module.exports = {
                 logo: "#FF4656",
                 "accent-color": "#FC4754",
                 "accent-color-2": "#5D7CF6",
+                "accent-color-3": "#E46956",
                 background: "#140A22",
                 "footer-bg": "#18112b",
                 "text-gray-200": "#9D9D9D",
@@ -94,6 +95,7 @@ module.exports = {
                 "8px": "8px",
                 // new 2.0
                 "5px": "5px",
+                "23px": "23px",
             },
             borderWidth: {
                 // old 1.0

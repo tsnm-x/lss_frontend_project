@@ -8,7 +8,7 @@ const PlayerInfo = (props) => {
     return (
         <section className=" laptop:relative">
             <div
-                className=" container laptop:flex laptop:items-center laptop:justify-between
+                className=" container laptop:flex laptop:items-end laptop:justify-between
              laptop:pt-[67px] laptop:pb-[31px] relative z-30 "
             >
                 <Profile />
