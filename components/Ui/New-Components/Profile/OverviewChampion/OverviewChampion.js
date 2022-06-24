@@ -1,42 +1,42 @@
 import React, { useState } from "react";
 
-const OverviewChampion = () => {
-    const [btnActive, setBtnActive] = useState(false);
-
-    const btnHandler = () => {
-        setBtnActive(!btnActive);
-    };
+const OverviewChampion = (props) => {
+    const { controller, currentView } = props;
 
     return (
         <section className=" laptop:mt-[9px] ">
             <div className=" container flex ">
                 <div className=" mr-[21px] ">
                     <button
-                        onClick={btnHandler}
+                        onClick={() => controller("overview")}
                         className={`laptop:sf-mid-21 laptop:capitalize 
                     text-grayed-text ${
-                        !btnActive ? "text-grayed-text" : "text-accent-color"
-                    }`}
+                        currentView === "overview"
+                            ? " text-accent-color"
+                            : "text-grayed-text"
+                    } `}
                     >
                         overview
                     </button>
-                    {btnActive && (
+                    {currentView === "overview" ? (
                         <div className=" bg-accent-color w-3/6 h-[1px] mx-auto mt-[2px] "></div>
-                    )}
+                    ) : null}
                 </div>
                 <div>
                     <button
-                        onClick={btnHandler}
+                        onClick={() => controller("champPool")}
                         className={`laptop:sf-mid-21 laptop:capitalize 
                     text-grayed-text  ${
-                        btnActive ? "text-grayed-text" : "text-accent-color"
-                    }`}
+                        currentView === "champPool"
+                            ? " text-accent-color"
+                            : "text-grayed-text"
+                    } `}
                     >
                         champion pool
                     </button>
-                    {!btnActive && (
+                    {currentView === "champPool" ? (
                         <div className=" bg-accent-color w-3/6 h-[1px] mx-auto mt-[2px] "></div>
-                    )}
+                    ) : null}
                 </div>
             </div>
         </section>

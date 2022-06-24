@@ -12,7 +12,8 @@ import Jhin from "../../../../../../../public/assets/new-images/Profile/card/pla
 import Rell from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Rell.png";
 import Seraphine from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Seraphine.png";
 
-const PlayerList = () => {
+const PlayerList = (props) => {
+    console.log(props)
     const playerList = [
         { name: "Avatorio", img: Atrox, marked: false },
         { name: "ZeroCha", img: Akali, marked: false },
@@ -56,13 +57,16 @@ const PlayerList = () => {
     return (
         <div className=" bg-card-&-content-box w-[335px] flex ">
             {/* player lists  */}
-            <div className=" w-[300px]  h-full relative py-[10px] pl-[18px] pr-[60px] ">
-                <div
-                    className=" font-sf-pro-text text-[10px] leading-3 font-bold text-accent-color bg-[#2F2937] py-[3px] px-[28px]
+            <div className=" w-[305px]  h-full relative py-[10px] pl-[18px] pr-[60px] ">
+                {props.index === 0 ? (
+                    <div
+                        className=" font-sf-pro-text text-[10px] leading-3 font-bold text-accent-color bg-[#2F2937] py-[3px] px-[28px]
                  rounded-bl-[18px] absolute top-0 right-0 "
-                >
-                    Ace
-                </div>
+                    >
+                        Ace
+                    </div>
+                ) : null}
+
                 {/* players  */}
                 <div className=" grid grid-cols-2 gap-x-1">
                     {playerList.map((player, index) => {
@@ -95,7 +99,7 @@ const PlayerList = () => {
             </div>
             {/* right side expand btn  */}
             <div
-                className=" h-full w-[35px] bg-accent-color flex items-center justify-center
+                className=" h-full w-[30px] bg-accent-color flex items-center justify-center
               rounded-tr-5px rounded-br-5px cursor-pointer "
             >
                 <BiExpand

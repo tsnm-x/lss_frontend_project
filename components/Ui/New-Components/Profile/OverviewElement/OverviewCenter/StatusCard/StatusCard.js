@@ -105,7 +105,7 @@ const RightSide = (props) => {
 
 const StatusCard = () => {
     return (
-        <div className=" p-5 pt-[15px] bg-card-&-content-box flex items-center max-w-[300px]  ">
+        <div className=" p-5 pt-[15px] bg-card-&-content-box flex items-center w-[300px] border-r border-background  ">
             {/* left side  */}
             <LeftSide />
             {/* right side  */}

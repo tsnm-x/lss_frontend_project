@@ -1,21 +1,26 @@
-import React from 'react'
-import HeaderWithSearchbar from '../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar'
-import PlayerInfo from '../../components/Ui/New-Components/Profile/PlayerInfo/PlayerInfo'
-import OverviewChampion from '../../components/Ui/New-Components/Profile/OverviewChampion/OverviewChampion'
-import Table from '../../components/Ui/New-Components/Profile/TableElement/Table/Table'
-import Overview from '../../components/Ui/New-Components/Profile/OverviewElement/Overview/Overview'
+import React, { useState } from "react";
+import HeaderWithSearchbar from "../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar";
+import PlayerInfo from "../../components/Ui/New-Components/Profile/PlayerInfo/PlayerInfo";
+import OverviewChampion from "../../components/Ui/New-Components/Profile/OverviewChampion/OverviewChampion";
+import Table from "../../components/Ui/New-Components/Profile/TableElement/Table/Table";
+import Overview from "../../components/Ui/New-Components/Profile/OverviewElement/Overview/Overview";
 
+const Summoner = () => {
+    const [view, setView] = useState("overview");
 
-const summoner = () => {
-  return (
-    <div>
-      <HeaderWithSearchbar className=" laptop:py-[16px] " />
-      <PlayerInfo />
-      <OverviewChampion />
-      {/* <Table /> */}
-      <Overview />
-    </div>
-  )
-}
+    const viewController = (action) => {
+        console.log(action);
+        view === action ? null : setView(action);
+    };
 
-export default summoner
+    return (
+        <div>
+            <HeaderWithSearchbar className=" laptop:py-[16px] " />
+            <PlayerInfo />
+            <OverviewChampion controller={viewController} currentView={view} />
+            {view === "overview" ? <Overview /> : <Table />}
+        </div>
+    );
+};
+
+export default Summoner;

@@ -187,7 +187,10 @@
     .nedgen-regular-5 {
         @apply font-NEDGEN text-[5px] leading-[6px];
     }
-
+    /* container  */
+    .container {
+        @apply laptop:pl-[50px];
+    }
     /* portal  */
     #portal {
         /* @apply w-screen h-screen bg-[#140a2272] absolute left-0 top-0 z-[100]; */

@@ -7,7 +7,7 @@ const HeaderWithSearchbar = (props) => {
     return (
         <header className={`py-[31px] ${props.className}`}>
             <div
-                className={`container flex relative h-[22px] smTablet:h-[45px]`}
+                className={`container pl-0 flex relative h-[22px] smTablet:h-[45px]`}
             >
                 {/* logo  */}
                 <Logo className=" hidden smTablet:block smTablet:text-[32px] smTablet:leading-[37px] smTablet:order-1 " />
