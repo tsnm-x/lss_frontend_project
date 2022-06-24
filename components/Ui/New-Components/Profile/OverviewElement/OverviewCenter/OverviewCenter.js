@@ -1,8 +1,16 @@
 import React from 'react'
+import CardControlBtns from './CardControlBtns/CardControlBtns'
+import Card from './Card/Card'
 
 const OverviewCenter = () => {
   return (
-    <div>OverviewCenter</div>
+    <aside>
+      <CardControlBtns />
+      {/* card container  */}
+      <div className=' mt-5'>
+        <Card />
+      </div>
+    </aside>
   )
 }
 
