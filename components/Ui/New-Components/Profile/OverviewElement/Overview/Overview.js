@@ -6,8 +6,8 @@ import Image from "next/image";
 import { CardContext } from "../../../../../../pages/summoner/summoner";
 
 const Overview = (props) => {
-  const { expand, expandControl } = useContext(CardContext);
-  console.log(expand, expandControl)
+    const { expand, expandControl } = useContext(CardContext);
+    console.log(expand, expandControl);
 
     const cardList = [
         {
@@ -39,12 +39,16 @@ const Overview = (props) => {
     return (
         <section className=" my-[60px] relative ">
             <div
-                className={`container laptop:grid laptop:grid-cols-[220px_825px] laptop:gap-x-[22px] `}
+                className={`container laptop:grid ${
+                    expand
+                        ? "laptop:grid-cols-1"
+                        : "laptop:grid-cols-[220px_825px]"
+                }  laptop:gap-x-[22px] `}
             >
                 {/* left side  */}
-                <OverviewLeft />
+                {!expand && <OverviewLeft />}
                 {/* center  */}
-                <OverviewCards cards={cardList} />
+                <OverviewCards cards={cardList} expand={expand} />
             </div>
             {!expand && (
                 <div className=" absolute right-0 top-[60px] w-[170px] h-full max-h-[1105px] ">

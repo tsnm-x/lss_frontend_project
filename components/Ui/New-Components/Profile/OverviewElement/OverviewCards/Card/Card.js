@@ -6,7 +6,7 @@ import PlayerList from "../PlayerList/PlayerList";
 const Card = (props) => {
     return (
         <div
-            className={`rounded-5px overflow-hidden flex justify-between border-b border-background ${props.className}`}
+            className={`rounded-5px overflow-hidden flex justify-start border-b border-background ${props.className}`}
         >
             <StatusCard {...props} />
             <RankCard />
