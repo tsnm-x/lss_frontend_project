@@ -7,7 +7,7 @@ const LeftPlayers = (props) => {
     return (
         <div className=" w-3/6 ">
             {PlayerRows.map((player, index) => {
-                return <PlayerRow key={index} {...props} />;
+                return <PlayerRow key={index} {...props} index={index} />;
             })}
         </div>
     );
@@ -19,7 +19,7 @@ const RightPlayers = (props) => {
 
 const PlayerCompare = () => {
     return (
-        <div className=" flex gap-x-4 ">
+        <div className=" flex gap-x-4 mt-[37px] ">
             <LeftPlayers />
             <LeftPlayers reverse={true} />
         </div>
