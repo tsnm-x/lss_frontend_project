@@ -121,6 +121,9 @@
     .sf-bold-27 {
         @apply font-sf-pro-text font-bold text-[27px] leading-[36px];
     }
+    .sf-bold-23 {
+        @apply font-sf-pro-text font-bold text-[23px] leading-[28px];
+    }
     .sf-bold-21 {
         @apply font-sf-pro-text font-bold text-[21px] leading-[25px];
     }

@@ -4,6 +4,7 @@ import BuildCard from "../BuildCard/BuildCard";
 import OverviewAndRunBtns from "../OverviewAndRunBtns/OverviewAndRunBtns";
 import LosAndWinRow from "../LosAndWinRow/LosAndWinRow";
 import PlayerCompare from "../PlayerCompare/PlayerCompare";
+import SimulateBtn from "../../../../universal/Btn/SimulateBtn/SimulateBtn";
 
 const ExpandCard = () => {
     return (
@@ -21,6 +22,10 @@ const ExpandCard = () => {
                 <LosAndWinRow />
                 {/* player compare  */}
                 <PlayerCompare />
+                {/* simulate btn  */}
+                <div className=" text-center mt-16 pb-[85px] ">
+                    <SimulateBtn />
+                </div>
             </div>
             <div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color "></div>
         </div>
