@@ -13,7 +13,6 @@ import Rell from "../../../../../../../public/assets/new-images/Profile/card/pla
 import Seraphine from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Seraphine.png";
 
 const PlayerList = (props) => {
-    console.log(props)
     const playerList = [
         { name: "Avatorio", img: Atrox, marked: false },
         { name: "ZeroCha", img: Akali, marked: false },
@@ -86,7 +85,9 @@ const PlayerList = (props) => {
                                 <h6
                                     className={`gotham-mid-15 capitalize ${
                                         player.marked
-                                            ? " text-accent-color"
+                                            ? props.won
+                                                ? "text-accent-color-2"
+                                                : "text-accent-color"
                                             : "text-grayed-text"
                                     }`}
                                 >
@@ -99,8 +100,8 @@ const PlayerList = (props) => {
             </div>
             {/* right side expand btn  */}
             <div
-                className=" h-full w-[30px] bg-accent-color flex items-center justify-center
-              rounded-tr-5px rounded-br-5px cursor-pointer "
+                className={`h-full w-[30px] flex items-center justify-center
+              rounded-tr-5px rounded-br-5px cursor-pointer ${props.won ? 'bg-accent-color-2': 'bg-accent-color'}`}
             >
                 <BiExpand
                     size={18}

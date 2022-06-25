@@ -115,6 +115,9 @@
     .gotham-mid-9 {
         @apply font-gotham text-[9px] leading-[10px] font-medium;
     }
+    .sf-bold-40 {
+        @apply font-sf-pro-text font-bold text-[40px] leading-[48px];
+    }
     .sf-bold-27 {
         @apply font-sf-pro-text font-bold text-[27px] leading-[36px];
     }

@@ -7,10 +7,13 @@ import BatchImg1 from "../../../../../../../public/assets/new-images/Profile/car
 import BatchImg2 from "../../../../../../../public/assets/new-images/Profile/card/batch2.png";
 
 const LeftSide = (props) => {
+    console.log(props);
     return (
         <div className="font-sf-pro-text font-bold mr-[30px] ">
-            <h4 className="  text-accent-color capitalize ">
-                <span className=" text-[17px] leading-[20px] ">Defeat</span>{" "}
+            <h4 className={` capitalize ${props.won ? 'text-accent-color-2': 'text-accent-color'}`}>
+                <span className=" text-[17px] leading-[20px] ">
+                    {props.won ? "Victory" : "Defeat"}
+                </span>{" "}
                 <span className=" text-[12px] leading-[14px] text-light-text ">
                     24:14
                 </span>
@@ -103,11 +106,11 @@ const RightSide = (props) => {
     );
 };
 
-const StatusCard = () => {
+const StatusCard = (props) => {
     return (
         <div className=" p-5 pt-[15px] bg-card-&-content-box flex items-center w-[300px] border-r border-background  ">
             {/* left side  */}
-            <LeftSide />
+            <LeftSide {...props} />
             {/* right side  */}
             <RightSide />
         </div>

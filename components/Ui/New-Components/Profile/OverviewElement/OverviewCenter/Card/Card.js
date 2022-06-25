@@ -6,11 +6,12 @@ import PlayerList from '../PlayerList/PlayerList'
 
 
 const Card = (props) => {
+  console.log(props)
   return (
       <div className={`rounded-5px overflow-hidden flex justify-between border-b border-background ${props.className}`} >
-          <StatusCard />
+          <StatusCard {...props} />
           <RankCard />
-          <PlayerList index={props.index} />
+          <PlayerList index={props.index} {...props} />
       </div>
   );
 }

@@ -8,14 +8,19 @@ import Five from "../../../../../../../public/assets/new-images/Profile/card/fiv
 import Six from "../../../../../../../public/assets/new-images/Profile/card/six.png";
 
 const RankCard = () => {
-    const imageList = [One, Two, Three, Four, Five, Six];
+    const imageList = [One, Two, Three, Four, Five, Six, null];
 
     return (
         <div className=" px-[17px] py-[27px] grid grid-cols-4 grid-rows-2 gap-3 bg-card-&-content-box w-[200px] border-r border-background  ">
             {imageList.map((img, index) => {
                 return (
-                    <div className=" w-[32px] h-[32px] relative  " key={index}>
-                        <Image src={img} alt="batch image" layout="fill" />
+                    <div
+                        className=" w-[32px] h-[32px] relative rounded-full bg-[#2f2936] "
+                        key={index}
+                    >
+                        {img && (
+                            <Image src={img} alt="batch image" layout="fill" />
+                        )}
                     </div>
                 );
             })}
