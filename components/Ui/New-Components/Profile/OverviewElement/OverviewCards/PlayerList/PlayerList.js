@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BiExpand } from "react-icons/bi";
 import Image from "next/image";
+import { CardContext } from "../../../../../../../pages/summoner/summoner";
 // player list
 import Atrox from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Aatrox.png";
 import Akali from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Akali.png";
@@ -13,6 +14,8 @@ import Rell from "../../../../../../../public/assets/new-images/Profile/card/pla
 import Seraphine from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Seraphine.png";
 
 const PlayerList = (props) => {
+    const CardExpand = useContext(CardContext);
+
     const playerList = [
         { name: "Avatorio", img: Atrox, marked: false },
         { name: "ZeroCha", img: Akali, marked: false },
@@ -100,8 +103,11 @@ const PlayerList = (props) => {
             </div>
             {/* right side expand btn  */}
             <div
+                onClick={CardExpand.expandControl}
                 className={`h-full w-[30px] flex items-center justify-center
-              rounded-tr-5px rounded-br-5px cursor-pointer ${props.won ? 'bg-accent-color-2': 'bg-accent-color'}`}
+              rounded-tr-5px rounded-br-5px cursor-pointer ${
+                  props.won ? "bg-accent-color-2" : "bg-accent-color"
+              }`}
             >
                 <BiExpand
                     size={18}

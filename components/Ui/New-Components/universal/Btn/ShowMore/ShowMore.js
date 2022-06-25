@@ -1,14 +1,18 @@
-import React from 'react'
+import React from "react";
 import { BsChevronDown } from "react-icons/bs";
-import Classes from './ShowMore.module.css'
+import Classes from "./ShowMore.module.css";
 
-const ShowMore = () => {
-  return (
-      <button className={`${Classes.BtnWrap}`}>
-          <h3 className={`${Classes.BtnTxt}`}>Show more</h3>
-          <BsChevronDown className=" text-[20px]  text-white mx-auto " />
-      </button>
-  );
-}
+const ShowMore = (props) => {
+  const ClickHandler = () => {
+        props.click();
+    };
 
-export default ShowMore
+    return (
+        <button onClick={ClickHandler} className={`${Classes.BtnWrap}`}>
+            <h3 className={` sf-bold-40 ${Classes.BtnTxt}`}>Show more</h3>
+            <BsChevronDown className=" text-[20px]  text-white mx-auto " />
+        </button>
+    );
+};
+
+export default ShowMore;

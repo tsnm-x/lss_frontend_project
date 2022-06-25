@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const OverviewChampion = (props) => {
+const OverviewChampionBtns = (props) => {
     const { controller, currentView } = props;
 
     return (
@@ -43,4 +43,4 @@ const OverviewChampion = (props) => {
     );
 };
 
-export default OverviewChampion;
+export default OverviewChampionBtns;

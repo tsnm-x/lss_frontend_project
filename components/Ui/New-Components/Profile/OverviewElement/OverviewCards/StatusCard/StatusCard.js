@@ -7,7 +7,6 @@ import BatchImg1 from "../../../../../../../public/assets/new-images/Profile/car
 import BatchImg2 from "../../../../../../../public/assets/new-images/Profile/card/batch2.png";
 
 const LeftSide = (props) => {
-    console.log(props);
     return (
         <div className="font-sf-pro-text font-bold mr-[30px] ">
             <h4 className={` capitalize ${props.won ? 'text-accent-color-2': 'text-accent-color'}`}>

@@ -5,8 +5,8 @@ import CardControlBtns from "./CardControlBtns/CardControlBtns";
 import Card from "./Card/Card";
 import ShowMore from "../../../universal/Btn/ShowMore/ShowMore";
 
-const OverviewCenter = (props) => {
-  const { cards } = props;
+const OverviewCards = (props) => {
+    const { cards } = props;
     return (
         <aside className=" w-full ">
             <CardControlBtns />
@@ -24,4 +24,4 @@ const OverviewCenter = (props) => {
     );
 };
 
-export default OverviewCenter;
+export default OverviewCards;

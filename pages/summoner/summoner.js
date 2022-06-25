@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import HeaderWithSearchbar from "../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar";
 import PlayerInfo from "../../components/Ui/New-Components/Profile/PlayerInfo/PlayerInfo";
-import OverviewChampion from "../../components/Ui/New-Components/Profile/OverviewChampion/OverviewChampion";
+import OverviewChampion from "../../components/Ui/New-Components/Profile/OverviewChampionBtns/OverviewChampionBtns";
 import Table from "../../components/Ui/New-Components/Profile/TableElement/Table/Table";
 import Overview from "../../components/Ui/New-Components/Profile/OverviewElement/Overview/Overview";
 
+// contexts
+export const CardContext = React.createContext();
+
 const Summoner = () => {
     const [view, setView] = useState("overview");
+    const [cardExpand, setCardExpand] = useState(false);
 
     const viewController = (action) => {
         console.log(action);
         view === action ? null : setView(action);
+    };
+
+    const CardsExpandHandler = () => {
+        console.log("card expand handler");
+        cardExpand ? null : setCardExpand(true);
     };
 
     return (
@@ -18,7 +27,18 @@ const Summoner = () => {
             <HeaderWithSearchbar className=" laptop:py-[16px] " />
             <PlayerInfo />
             <OverviewChampion controller={viewController} currentView={view} />
-            {view === "overview" ? <Overview /> : <Table />}
+            {view === "overview" ? (
+                <CardContext.Provider
+                    value={{
+                        expand: cardExpand,
+                        expandControl: CardsExpandHandler,
+                    }}
+                >
+                    <Overview />
+                </CardContext.Provider>
+            ) : (
+                <Table />
+            )}
         </div>
     );
 };
