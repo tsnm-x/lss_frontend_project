@@ -22,7 +22,13 @@ const PlayerRow = (props) => {
         <div
             className={`flex justify-between w-full items-center relative mb-[10px] last:mb-0 ${
                 props.reverse ? " pr-6 pl-4 " : "pr-4 pl-6 "
-            } ${active ? "bg-accent-color rounded-[3px] " : ""}`}
+            } ${
+                active
+                    ? props.reverse
+                        ? " bg-accent-color-2"
+                        : "bg-accent-color "
+                    : ""
+            }`}
         >
             <div className={`${props.reverse ? "order-5" : "order-1"}`}>
                 <h6 className=" sf-bold-12 text-light-text font-bold ">
@@ -107,7 +113,13 @@ const PlayerRow = (props) => {
             <div
                 className={`w-[9px] h-full rounded-[3px]  absolute top-0 ${
                     props.reverse ? "left-0" : "right-0"
-                } ${active ? "bg-accent-color" : "bg-card-&-content-box"}`}
+                } ${
+                    active
+                        ? props.reverse
+                            ? " bg-accent-color-2"
+                            : "bg-accent-color "
+                        : "bg-card-&-content-box"
+                }`}
             ></div>
         </div>
     );
