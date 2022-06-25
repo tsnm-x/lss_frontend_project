@@ -7,7 +7,6 @@ import { CardContext } from "../../../../../../pages/summoner/summoner";
 
 const Overview = (props) => {
     const { expand, expandControl } = useContext(CardContext);
-    console.log(expand, expandControl);
 
     const cardList = [
         {

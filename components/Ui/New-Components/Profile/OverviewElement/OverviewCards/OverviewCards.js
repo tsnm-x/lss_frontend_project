@@ -15,7 +15,7 @@ const OverviewCards = (props) => {
                 {/* card container  */}
                 <div className=" ">
                     {/* experimental expand card  */}
-                    <ExpandCard />
+                    {/* <ExpandCard /> */}
                     {/* card list  */}
                     {cards.map((card, index) => {
                         return <Card key={index} index={index} {...card} />;

@@ -103,7 +103,7 @@ const PlayerList = (props) => {
             </div>
             {/* right side expand btn  */}
             <div
-                onClick={CardExpand.expandControl}
+                onClick={() => CardExpand.expandControl(props.index)}
                 className={`h-full w-[30px] flex items-center justify-center
               rounded-tr-5px rounded-br-5px cursor-pointer ${
                   props.won ? "bg-accent-color-2" : "bg-accent-color"

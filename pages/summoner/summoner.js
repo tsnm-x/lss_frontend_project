@@ -11,13 +11,15 @@ export const CardContext = React.createContext();
 const Summoner = () => {
     const [view, setView] = useState("overview");
     const [cardExpand, setCardExpand] = useState(false);
+    const [expandCardNo, setExpandCardNo] = useState(null)
 
     const viewController = (action) => {
         console.log(action);
         view === action ? null : setView(action);
     };
 
-    const CardsExpandHandler = () => {
+    const CardsExpandHandler = (ClickedCardIndexNo) => {
+        setExpandCardNo(ClickedCardIndexNo);
         console.log("card expand handler");
         cardExpand ? null : setCardExpand(true);
     };
@@ -32,6 +34,7 @@ const Summoner = () => {
                     value={{
                         expand: cardExpand,
                         expandControl: CardsExpandHandler,
+                        expandCardNo: expandCardNo
                     }}
                 >
                     <Overview />
