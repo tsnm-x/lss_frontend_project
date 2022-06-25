@@ -3,6 +3,7 @@ import StatusCard from "../../OverviewCards/StatusCard/StatusCard";
 import BuildCard from "../BuildCard/BuildCard";
 import OverviewAndRunBtns from "../OverviewAndRunBtns/OverviewAndRunBtns";
 import LosAndWinRow from "../LosAndWinRow/LosAndWinRow";
+import PlayerCompare from "../PlayerCompare/PlayerCompare";
 
 const ExpandCard = () => {
     return (
@@ -18,6 +19,8 @@ const ExpandCard = () => {
                 <OverviewAndRunBtns />
                 {/* los and win row  */}
                 <LosAndWinRow />
+                {/* player compare  */}
+                <PlayerCompare />
             </div>
             <div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color "></div>
         </div>

@@ -130,11 +130,15 @@
     .sf-bold-15 {
         @apply font-sf-pro-text font-bold text-[15px] leading-[20px];
     }
+    
     .sf-bold-12 {
         @apply font-sf-pro-text text-[12px] leading-[14px];
     }
     .sf-bold-10 {
         @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
+    }
+    .sf-bold-6 {
+        @apply font-sf-pro-text font-bold text-[6px] leading-[7px];
     }
     .sf-mid-41 {
         @apply font-sf-pro-text font-medium text-[41px] leading-[49px];
