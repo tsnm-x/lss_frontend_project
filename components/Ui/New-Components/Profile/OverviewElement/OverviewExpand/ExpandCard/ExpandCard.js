@@ -6,6 +6,9 @@ import LosAndWinRow from "../LosAndWinRow/LosAndWinRow";
 import PlayerCompare from "../PlayerCompare/PlayerCompare";
 import SimulateBtn from "../../../../universal/Btn/SimulateBtn/SimulateBtn";
 
+// runes context menu
+export const RunesContext = React.createContext();
+
 const ExpandCard = (props) => {
     const [showRunes, setShowRunes] = useState(false);
 
@@ -30,7 +33,9 @@ const ExpandCard = (props) => {
                 {/* los and win row  */}
                 <LosAndWinRow />
                 {/* player compare  */}
-                <PlayerCompare />
+                <RunesContext.Provider value={{runes: showRunes}}>
+                    <PlayerCompare showRunes={showRunes} />
+                </RunesContext.Provider>
                 {/* simulate btn  */}
                 <div className=" text-center mt-16 pb-[73px] mb-4 ">
                     <SimulateBtn />

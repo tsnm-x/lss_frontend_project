@@ -57,18 +57,25 @@ const PlayerRow = (props) => {
                 })}
             </div>
             {/* g batch  */}
-            <div
-                className={`flex items-center ${
-                    props.reverse ? "order-3" : "order-3"
-                }`}
-            >
-                <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
-                    G4
-                </h6>
-                <div className=" relative w-10 h-10 ">
-                    <Image src={SeasonBatch} alt="season batch" layout="fill" />
+            {!props.gold ? (
+                <div
+                    className={`flex items-center ${
+                        props.reverse ? "order-3" : "order-3"
+                    }`}
+                >
+                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
+                        G4
+                    </h6>
+                    <div className=" relative w-10 h-10 ">
+                        <Image
+                            src={SeasonBatch}
+                            alt="season batch"
+                            layout="fill"
+                        />
+                    </div>
                 </div>
-            </div>
+            ) : null}
+
             {/* name  */}
             <h5
                 className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold ${
