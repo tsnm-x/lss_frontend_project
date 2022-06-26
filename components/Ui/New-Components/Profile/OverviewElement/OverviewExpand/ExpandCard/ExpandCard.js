@@ -5,6 +5,10 @@ import OverviewAndRunBtns from "../OverviewAndRunBtns/OverviewAndRunBtns";
 import LosAndWinRow from "../LosAndWinRow/LosAndWinRow";
 import PlayerCompare from "../PlayerCompare/PlayerCompare";
 import SimulateBtn from "../../../../universal/Btn/SimulateBtn/SimulateBtn";
+import AnalyticsBtns from "../../SimulateGame/AnalyticsBtns/AnalyticsBtns";
+import Simulation from '../../SimulateGame/Simulation/Simulation'
+
+
 
 // runes context menu
 export const RunesContext = React.createContext();
@@ -40,6 +44,9 @@ const ExpandCard = (props) => {
                 <div className=" text-center mt-16 pb-[73px] mb-4 ">
                     <SimulateBtn />
                 </div>
+                {/* Simulation card */}
+                <Simulation />
+                {/* <AnalyticsBtns /> */}
             </div>
             <div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color "></div>
         </div>
