@@ -7,8 +7,7 @@ import { CardContext } from "../../../../../../../pages/summoner/summoner";
 
 const Card = (props) => {
     const { expandCardNo } = useContext(CardContext);
-    console.log("your props", props);
-    console.log("your clicked index", expandCardNo);
+
     return (
         <>
             {props.index === expandCardNo ? (

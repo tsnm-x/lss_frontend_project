@@ -20,7 +20,7 @@ const PlayerRow = (props) => {
     const batchList = [Batch1, Batch2, Batch3, Batch4, Batch5, Batch6];
     return (
         <div
-            className={`flex justify-between w-full items-center relative mb-[10px] last:mb-0 ${
+            className={`flex justify-between w-full items-center relative mb-[10px] last:mb-0 rounded-[3px] ${
                 props.reverse ? " pr-6 pl-4 " : "pr-4 pl-6 "
             } ${
                 active
