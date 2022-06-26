@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProfileWithBatchSmall from "../../ProfileWithBatch/ProfileWithBatchSmall";
 import Image from "next/image";
 import FaceOne from "../../../../public/assets/face-batch-row/NoPath - Copy (2).png";
@@ -11,6 +11,10 @@ import FaceSix from "../../../../public/assets/face-batch-row/NoPath.png";
 const PlayerFaceRow = (props) => {
     const faceList = [FaceOne, FaceTwo, FaceThree, FaceFour, FaceFive, FaceSix];
     const profileBatchList = ["", "", "", "", ""];
+
+    useEffect(()=>{
+        console.log(props.group)
+    }, [props.group])
 
     return (
         <div className={`flex justify-between ${props.className}`}>

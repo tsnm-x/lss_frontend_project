@@ -8,7 +8,7 @@ const matchesForCalculations = createSlice({
 	reducers: {
 		setMatches(state, { payload }) {
 			console.log(payload);
-			state.matches.push(...payload.matches);
+			state.matches = payload.matches;
 		},
 	},
 });

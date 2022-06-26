@@ -4,15 +4,11 @@ import PlayerOne from "../../../public/assets/players/NoPath - Copy (10).png";
 import PlayerTwo from "../../../public/assets/players/NoPath - Copy (11).png";
 import PlayerThree from "../../../public/assets/players/NoPath - Copy (12).png";
 import { HiArrowDown } from "react-icons/hi";
-import ChampList from "./ChampList";
 import ProfileCardWrapHoc from "../../HOC/ProfileCardWrapHoc";
 import useHttp from "../../../hook/useHttp";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { matchesForCalculationsActions } from "../../../store/matchesForCalculations";
 
 const SeasonMostPlayed = () => {
-	const dispatch = useDispatch();
 	const [expand, setExpand] = useState(false);
 	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
 	const {sendRequest, hasError} = useHttp();
@@ -25,15 +21,6 @@ const SeasonMostPlayed = () => {
 		if(!res){
 			console.log("no response from server");
 			return;
-		}
-
-		if(res){
-			const responseMatches = res.data.matches.slice(0, 20)
-		
-			dispatch (
-				matchesForCalculationsActions.setMatches({matches: responseMatches})
-			)
-
 		}
 		
 		setMatches(res.data.matches);

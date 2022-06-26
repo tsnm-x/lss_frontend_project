@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import classes from "./PlayerCards.module.css";
 // import ProfileImage from "../../../../public/assets/season most played champs/leeSin.png";
 // import useHttp from "../../../../hook/useHttp";
@@ -17,6 +17,7 @@ import Image from "next/image";
 import LineGraph1 from "../../../../public/assets/graph/line-graph-1.png";
 import LineGraph2 from "../../../../public/assets/graph/line-graph-2.png";
 import ArchadeImg from "../../../../public/assets/graph/archade-img.png";
+import useHttp from "../../../../hook/useHttp";
 
 // bottom graph component
 
@@ -53,6 +54,8 @@ const ArchadeComponent = () => {
 };
 
 const PlayerCards = (props) => {
+	const { hasError, sendRequest } = useHttp();
+    const [matchTimeLine, setMatchTimeLine] = useState({});
     // reducer state for bottom graph component
     const initialGraphComponent = {
         component: <GraphOneComponent />,
@@ -126,6 +129,29 @@ const PlayerCards = (props) => {
                 return "Normal Game";
         }
     };
+
+    const requestHandler = (res) => {
+        if(!res){
+            console.log("no response from server")
+        }
+
+        setMatchTimeLine(res.data.matchTimeline);
+    }
+
+    useEffect(()=>{
+        sendRequest(
+            {
+                url: "/matchTimeline",
+                method: "POST",
+                body: { matchId: props.id }
+            },
+            requestHandler
+        )
+    }, [props.id]);
+
+    // useEffect(()=>{
+    //     console.log(matchTimeLine?.info);
+    // }, [matchTimeLine?.info])
 
     return (
         <React.Fragment>

@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
 import ProfileCardWrap from "../../HOC/ProfileCardWrapHoc/ProfileCardWrapHoc";
-import Image from "next/image";
-import China from "../../../public/assets/oftenPlayedWith/china.png";
-import Nexos from "../../../public/assets/oftenPlayedWith/nexos.png";
-import SouthKorea from "../../../public/assets/oftenPlayedWith/south-korea.png";
-import classes from "./YouPlayedOften.module.css";
-import { useSelector } from "react-redux";
+import useHttp from "../../../hook/useHttp";
+import { useRouter } from "next/router";
 
 const YouPlayedOften = () => {
-	const matches = useSelector((state) => state.matches.matches);
+	const [matches, setMatches] = useState([]);
 	const playersArr = []
 	const [players, setPlayers] = useState([]);
 	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
+	const {sendRequest, hasError} = useHttp();
+	const router = useRouter();
+
+
+	const requestHandler = (res) => {
+		if(!res){
+			console.log("no response from server");
+			return;
+		}
+		
+		setMatches(res.data?.matches);
+	}
+
+	useEffect(()=>{
+		sendRequest(
+			{
+				url: "/seasonMostPlayed",
+				method: "GET",
+				params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
+			},
+			requestHandler
+		);
+	}, [])
 	
 	useEffect(()=>{
 		matches?.forEach((match)=>{
@@ -28,8 +47,6 @@ const YouPlayedOften = () => {
 
 
 	useEffect(()=>{
-
-		console.log(mostPlayedWithList)
 
 		let maxcount = 0;
 		let deaths = 0;

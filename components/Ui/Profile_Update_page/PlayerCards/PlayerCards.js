@@ -143,6 +143,7 @@ const PlayerCards = (props) => {
 								duration={convertHMS(match.duration)}
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
+								id={match?.matchId}
 						/>
 					)
 				})}
@@ -211,6 +212,7 @@ const PlayerCards = (props) => {
 								duration={convertHMS(match.duration)}
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
+								id={match.matchId}
 						/>
 					)
 				})}
