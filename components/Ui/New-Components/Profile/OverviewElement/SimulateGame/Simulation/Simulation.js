@@ -10,9 +10,9 @@ const Reducer = (state, action) => {
     switch (action) {
         case "power":
             return <PowerChart />;
-        case "gold diff":
-            return <LevelChart />;
         case "level diff":
+            return <LevelChart />;
+        case "gold diff":
             return <GoldChart />;
         default:
             return state;
@@ -26,7 +26,7 @@ const SimulateDataCard = () => {
         <div className=" text-white text-5xl">
             <AnalyticsBtns click={chartDispatch} />
             {/* all generated data  */}
-            <div className="">
+            <div className=" flex justify-between items-center px-10 ">
                 <div>
                     {ChartComponent}
                 </div>
