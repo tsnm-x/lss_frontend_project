@@ -13,10 +13,10 @@ import Loader from "../../../shared/loader/Loader";
 const PlayerCards = (props) => {
 	const [start, setStart] = useState(10);
 	const [update, setUpdate] = useState(true);
-	const [loaderViewer, setLoaderViewer] = useState(true)
+	const [loaderViewer, setLoaderViewer] = useState(true);
 	const [rankedSolo, setRankedSolo] = useState([]);
 	const [normals, setNormals] = useState([]);
-	const [rankedFlex, setRankedFlex] = useState([])
+	const [rankedFlex, setRankedFlex] = useState([]);
 	const matches = useSelector((state) => state.profile.profile);
 	const region = useSelector((state) => state.profile.region);
 	const summonerName = useSelector((state) => state.profile.summonerName);
@@ -86,55 +86,57 @@ const PlayerCards = (props) => {
 
 	let sortedMatches = [...matches];
 
-	useEffect(()=>{
-
+	useEffect(() => {
 		sortedMatches?.sort(function (x, y) {
 			return y.gameStartTimestamp - x.gameStartTimestamp;
 		});
 
-		setRankedSolo(sortedMatches?.filter((match)=>{
-			return match.queueId === 420
-		}));
+		setRankedSolo(
+			sortedMatches?.filter((match) => {
+				return match.queueId === 420;
+			})
+		);
 
-		setNormals(sortedMatches?.filter((match)=>{
-			return (match.queueId !== 420 && match.queueId !== 440)
-		}))
+		setNormals(
+			sortedMatches?.filter((match) => {
+				return match.queueId !== 420 && match.queueId !== 440;
+			})
+		);
 
-		setRankedFlex(sortedMatches?.filter((match)=>{
-			return match.queueId === 440
-		}))
+		setRankedFlex(
+			sortedMatches?.filter((match) => {
+				return match.queueId === 440;
+			})
+		);
+	}, [matches]);
 
-
-	}, [matches])
-
-	useEffect(()=>{
+	useEffect(() => {
 		(!rankedSolo.length && props.selectedMatchType === "ranked solo") ||
 		(!normals.length && props.selectedMatchType === "normals") ||
-		(!rankedFlex.length && props.selectedMatchType === "ranked flex")?
-		setLoaderViewer(false) :
-		setLoaderViewer(true)
+		(!rankedFlex.length && props.selectedMatchType === "ranked flex")
+			? setLoaderViewer(false)
+			: setLoaderViewer(true);
+	}, [rankedSolo, normals, rankedFlex, props.selectedMatchType]);
 
-	}, [rankedSolo, normals, rankedFlex, props.selectedMatchType])
-
-	useEffect(()=>{
-
-	}, [loaderViewer])
+	useEffect(() => {}, [loaderViewer]);
 
 	return (
 		<div>
 			{/* lists */}
 			<div className=" flex flex-col gap-y-5 ">
-				{sortedMatches[0] && props.selectedMatchType === "all" && sortedMatches.map((match, index) =>{
-					const mainPlayer = match.players.find(
-						(player) => player.mainPlayer === true
-					);
+				{sortedMatches[0] &&
+					props.selectedMatchType === "all" &&
+					sortedMatches.map((match, index) => {
+						const mainPlayer = match.players.find(
+							(player) => player.mainPlayer === true
+						);
 
-					const matchType = mainPlayer?.win ? "victory" : "defeat";
-					let indicatorTypeColor =
-						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+						const matchType = mainPlayer?.win ? "victory" : "defeat";
+						let indicatorTypeColor =
+							matchType === "victory" ? "white-blue" : "red-yellow-gold";
 
-					return (
-						<PlayerCard
+						return (
+							<PlayerCard
 								key={index}
 								color={indicatorTypeColor}
 								type={matchType}
@@ -144,20 +146,22 @@ const PlayerCards = (props) => {
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
 								id={match?.matchId}
-						/>
-					)
-				})}
-				{rankedSolo[0] &&  props.selectedMatchType === "ranked solo" && rankedSolo?.map((match, index)=>{
-					const mainPlayer = match.players.find(
-						(player) => player.mainPlayer === true
-					);
+							/>
+						);
+					})}
+				{rankedSolo[0] &&
+					props.selectedMatchType === "ranked solo" &&
+					rankedSolo?.map((match, index) => {
+						const mainPlayer = match.players.find(
+							(player) => player.mainPlayer === true
+						);
 
-					const matchType = mainPlayer?.win ? "victory" : "defeat";
-					let indicatorTypeColor =
-						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+						const matchType = mainPlayer?.win ? "victory" : "defeat";
+						let indicatorTypeColor =
+							matchType === "victory" ? "white-blue" : "red-yellow-gold";
 
-					return (
-						<PlayerCard
+						return (
+							<PlayerCard
 								key={index}
 								color={indicatorTypeColor}
 								type={matchType}
@@ -166,21 +170,23 @@ const PlayerCards = (props) => {
 								duration={convertHMS(match.duration)}
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
-						/>
-					)
-				})}
+							/>
+						);
+					})}
 
-				{normals[0] && props.selectedMatchType === "normals" && normals?.map((match, index)=>{
-					const mainPlayer = match.players.find(
-						(player) => player.mainPlayer === true
-					);
+				{normals[0] &&
+					props.selectedMatchType === "normals" &&
+					normals?.map((match, index) => {
+						const mainPlayer = match.players.find(
+							(player) => player.mainPlayer === true
+						);
 
-					const matchType = mainPlayer?.win ? "victory" : "defeat";
-					let indicatorTypeColor =
-						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+						const matchType = mainPlayer?.win ? "victory" : "defeat";
+						let indicatorTypeColor =
+							matchType === "victory" ? "white-blue" : "red-yellow-gold";
 
-					return (
-						<PlayerCard
+						return (
+							<PlayerCard
 								key={index}
 								color={indicatorTypeColor}
 								type={matchType}
@@ -189,21 +195,23 @@ const PlayerCards = (props) => {
 								duration={convertHMS(match.duration)}
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
-						/>
-					)
-				})}
+							/>
+						);
+					})}
 
-				{rankedFlex[0] && props.selectedMatchType === "ranked flex"&& rankedFlex?.map((match, index)=>{
-					const mainPlayer = match.players.find(
-						(player) => player.mainPlayer === true
-					);
+				{rankedFlex[0] &&
+					props.selectedMatchType === "ranked flex" &&
+					rankedFlex?.map((match, index) => {
+						const mainPlayer = match.players.find(
+							(player) => player.mainPlayer === true
+						);
 
-					const matchType = mainPlayer?.win ? "victory" : "defeat";
-					let indicatorTypeColor =
-						matchType === "victory" ? "white-blue" : "red-yellow-gold";
+						const matchType = mainPlayer?.win ? "victory" : "defeat";
+						let indicatorTypeColor =
+							matchType === "victory" ? "white-blue" : "red-yellow-gold";
 
-					return (
-						<PlayerCard
+						return (
+							<PlayerCard
 								key={index}
 								color={indicatorTypeColor}
 								type={matchType}
@@ -213,14 +221,19 @@ const PlayerCards = (props) => {
 								gameStartDate={getGameStart(match.gameStartTimestamp)}
 								queueId={match.queueId}
 								id={match.matchId}
-						/>
-					)
-				})}
+							/>
+						);
+					})}
 
 				{!loaderViewer && (
-					<div className="text-white flex justify-center">No #{props.selectedMatchType === "all"? "ranked solo": props.selectedMatchType}# games have een found for this summoner</div>
+					<div className="text-white flex justify-center">
+						No #
+						{props.selectedMatchType === "all"
+							? "ranked solo"
+							: props.selectedMatchType}
+						# games have been found for this summoner
+					</div>
 				)}
-				
 			</div>
 			<div className=" pt-[56px] pb-[228px] ">
 				{loaderViewer && (
