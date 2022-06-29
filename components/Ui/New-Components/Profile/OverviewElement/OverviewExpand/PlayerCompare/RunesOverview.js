@@ -95,18 +95,15 @@ const Precision = (props) => {
         ],
     });
 
-
     // get user data or empty object
-  useEffect(() => {
-    setPrecision(prevState => {
-      
-
-
-
-
-
-    })
-  }, [])
+    useEffect(() => {
+        // setPrecision((prevState) => {
+        //     const modifyedState = {};
+        //     // update batch data
+        //     if (props.data.optionBatch) {
+        //     }
+        // });
+    }, []);
 
     // placeholder object
 
@@ -127,7 +124,45 @@ const Precision = (props) => {
                     />
                 </div>
                 {/* options  */}
-                <div></div>
+                <div className=" flex mt-3 ">
+                    {precision.optionBatch.map((option, index) => {
+                        return (
+                            <div
+                                className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 ${
+                                    option.active
+                                        ? "border border-nav-btn "
+                                        : null
+                                }`}
+                                key={index}
+                            >
+                                <Image
+                                    src={option.img}
+                                    alt="batch icon"
+                                    layout="fill"
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+                {/* all the batches  */}
+                <div className=" grid grid-cols-3 grid-rows-3 gap-3 mt-3 ">
+                    {precision.batchList.map((batch, index) => {
+                        return (
+                            <div
+                                className={`relative w-7 h-7 rounded-full ${
+                                    batch.active ? "border border-nav-btn" : " opacity-30"
+                                }`}
+                                key={index}
+                            >
+                                <Image
+                                    src={batch.img}
+                                    alt="batch image"
+                                    layout="fill"
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
@@ -144,7 +179,7 @@ const RunesState = () => {
 // main component
 const RunesOverview = (props) => {
     const precisionBatchList = {
-        optionBatch: "conqueror",
+        optionBatch: [{ name: "conqueror" }],
         batchList: [
             { name: "triumph" },
             { name: "legendTenacity" },
