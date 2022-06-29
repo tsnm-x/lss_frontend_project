@@ -1,5 +1,11 @@
 import React, { useState } from "react";
+import Image from "next/image";
+import Jayce from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Jayce.png";
+import Tristana from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Tristana.png";
+import Qbatch from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/TristanaQ.png";
+import Rbatch from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/TristanaR.png";
 
+// child component that supporting main component ---------------------------------------
 const Buttons = (props) => {
     const [btns, setBtns] = useState([
         {
@@ -17,7 +23,9 @@ const Buttons = (props) => {
         setBtns((prevState) => {
             const modifyedState = [];
             prevState.forEach((item) => {
-                item.text === btnTxt ? (item.active = true) : (item.active = false);
+                item.text === btnTxt
+                    ? (item.active = true)
+                    : (item.active = false);
                 modifyedState.push(item);
             });
             return modifyedState;
@@ -49,7 +57,93 @@ const Buttons = (props) => {
     );
 };
 
+const ProfileRow = (props) => {
+    const { reverce , profile, batch} = props;
+    return (
+        <div className=" w-full flex justify-between items-center px-4 mb-5 last:mb-0 ">
+            <div
+                className={`relative w-11 h-11 ${
+                    reverce ? "order-4 ml-2" : 'mr-2'
+                }`}
+            >
+                <Image src={profile} alt="profile image" layout="fill" />
+            </div>
+            {/* progress bar  */}
+            <div className={`flex-grow ${reverce ? "order-2" : null}`}>
+                {/* top progress  */}
+                <div className=" flex h-3 ">
+                    <div className=" w-3/12 h-full bg-accent-color"></div>
+                    <div className=" w-6/12 h-full  bg-accent-color-2"></div>
+                    <div className=" w-3/12 h-full bg-light-text"></div>
+                </div>
+                <div className=" flex mt-2 ">
+                    <p className=" w-3/12 font-bold font-gotham text-[8px] leading-[9px] uppercase italic text-accent-color ">
+                        ad 412
+                    </p>
+                    <p className=" w-6/12 font-bold font-gotham text-[8px] leading-[9px] uppercase italic text-accent-color-2 ">
+                        ap 645
+                    </p>
+                    <p className=" w-3/12 font-bold font-gotham text-[8px] leading-[9px] uppercase italic text-light-text ">
+                        td 12
+                    </p>
+                </div>
+            </div>
+            {/* batch  */}
+            <div className={` ${reverce ? "order-1 mr-6" : "ml-6"}`}>
+                {batch.map((batch, index) => {
+                    return (
+                        <div className=" flex items-center " key={index}>
+                            <div className=" relative w-[15px] h-[15px] rounded-full  ">
+                                <Image
+                                    src={batch.img}
+                                    alt="q batch"
+                                    layout="fill"
+                                    className="full"
+                                />
+                            </div>
+                            <p className=" ml-1 font-gotham text-[6px] leading-[7px] text-grayed-text ">
+                                {batch.txt}
+                            </p>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+// the main component that rendering -------------------------------------------------------------------------------------------
 const SimulationData = () => {
+    const ProfileData = [
+        {
+            reverce: false,
+            profile: Jayce,
+            batch: [
+                {
+                    img: Qbatch,
+                    txt: 257,
+                },
+                {
+                    img: Rbatch,
+                    txt: 711,
+                },
+            ],
+        },
+        {
+            reverce: true,
+            profile: Tristana,
+            batch: [
+                {
+                    img: Qbatch,
+                    txt: 257,
+                },
+                {
+                    img: Rbatch,
+                    txt: 687,
+                },
+            ],
+        },
+    ];
     return (
         <div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
             <h4 className=" sf-bold-19 text-light-text capitalize pt-[24px] pl-[25px] ">
@@ -57,7 +151,7 @@ const SimulationData = () => {
             </h4>
             <Buttons />
             {/* damage card  */}
-            <div className=" w-full rounded-5px bg-card-&-content-box  px-[45px] py-2 italic">
+            <div className=" w-full rounded-5px bg-card-&-content-box  px-[45px] py-2 italic mt-3 ">
                 <div className=" grid grid-cols-2">
                     <h6 className=" font-gotham text-[8px] leading-[9px] font-bold text-grayed-text capitalize">
                         damage type
@@ -83,6 +177,22 @@ const SimulationData = () => {
                         8.58s
                     </p>
                 </div>
+            </div>
+            {/* selected profile view  */}
+            <div className=" mt-6">
+                {ProfileData.map((item, index) => {
+                    return (
+                        <ProfileRow
+                            key={index}
+                            {...item}
+                        />
+                    );
+                })}
+            </div>
+            {/* bottom dot  */}
+            <div className=" flex justify-center items-center mt-6 ">
+                <div className=" w-1 h-1 rounded-full bg-accent-color "></div>
+                <div className=" w-1 h-1 rounded-full bg-grayed-text ml-6 "></div>
             </div>
         </div>
     );
