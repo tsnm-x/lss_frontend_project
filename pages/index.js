@@ -99,7 +99,7 @@ export default function Home() {
 
     const [leftNav, setLeftNav] = useState(false);
 
-	// overflow disable on leftnavigation 
+    // overflow disable on leftnavigation
     const leftNavHandler = () => {
         setLeftNav(!leftNav);
         !leftNav
@@ -109,7 +109,9 @@ export default function Home() {
 
     return (
         <>
-            <div className={` laptop:h-screen laptop:flex laptop:flex-col laptop:justify-between ${classes.mainWrapper}`}>
+            <div
+                className={` laptop:h-screen laptop:flex laptop:flex-col laptop:justify-between ${classes.mainWrapper}`}
+            >
                 <Header menuBtnClick={leftNavHandler} />
                 {/* main section  */}
                 <Main className=" mt-10 tablet:mt-[200px] tablet:mb-[500px] laptop:my-[0]  " />
@@ -123,8 +125,11 @@ export default function Home() {
                 <AdvertiseAndDownloadNow className=" mt-[74px] mobile:hidden " />
                 <HorizontalAds className=" hidden mobile:block smTablet:hidden" />
                 {/* footer section  */}
-					<Footer className=" laptop:mt-[0px] " textStyle="text-grayed-text text-center smMobile:w-[244px]
-								 smTablet:container tablet:w-[722px] laptop:pb-[25px] desktop:py-[0px] " />
+                <Footer
+                    className=" laptop:mt-[0px] "
+                    textStyle="text-grayed-text text-center smMobile:w-[244px]
+								 smTablet:container tablet:w-[722px] laptop:pb-[25px] desktop:py-[0px] "
+                />
             </div>
 
             {/* 

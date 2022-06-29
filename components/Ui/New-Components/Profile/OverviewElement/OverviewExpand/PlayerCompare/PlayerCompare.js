@@ -1,5 +1,6 @@
 import React from "react";
 import PlayerRow from "./PlayerRow";
+import RunesOverview from "./RunesOverview";
 
 const LeftPlayers = (props) => {
     const PlayerRows = ["", "", "", "", ""];
@@ -13,11 +14,11 @@ const LeftPlayers = (props) => {
     );
 };
 
-const CenterPrecisionAndInspiration = (props) => {
-    return <div className={`w-2/6 h-[240px] rounded bg-gray-600 flex items-center justify-center `}>
-        <h3 className=" font-gotham capitalize text-center text-2xl font-bold p-5 border-accent-color text-accent-color border-[3px] rounded-full ">coming soon</h3>
-    </div>;
-};
+// const CenterPrecisionAndInspiration = (props) => {
+//     return <div className={`w-2/6 h-[240px] rounded bg-gray-600 flex items-center justify-center `}>
+//         <h3 className=" font-gotham capitalize text-center text-2xl font-bold p-5 border-accent-color text-accent-color border-[3px] rounded-full ">coming soon</h3>
+//     </div>;
+// };
 
 const RightPlayers = (props) => {
     const PlayerRows = ["", "", "", "", ""];
@@ -36,7 +37,7 @@ const PlayerCompare = (props) => {
         <div className=" flex gap-x-4 ">
             <LeftPlayers showRunes={props.showRunes} />
             {props.showRunes && (
-                <CenterPrecisionAndInspiration showRunes={props.showRunes} />
+                <RunesOverview />
             )}
             <RightPlayers showRunes={props.showRunes} />
         </div>
