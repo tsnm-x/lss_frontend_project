@@ -14,7 +14,7 @@ const IconAndCount = (props) => {
 
 const LosAndWinRow = () => {
     return (
-        <div className=" bg-card-&-content-box px-[25px] py-[10px] flex justify-center ">
+        <div className=" mb-[37px] bg-card-&-content-box px-[25px] py-[10px] flex justify-center ">
             {/* loss  */}
             <div className=" text-accent-color flex justify-between mr-6 w-3/6 font-bold ">
                 <IconAndCount txt="62.8k" />

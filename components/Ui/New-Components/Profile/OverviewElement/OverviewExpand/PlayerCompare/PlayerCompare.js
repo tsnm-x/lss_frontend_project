@@ -33,7 +33,7 @@ const RightPlayers = (props) => {
 
 const PlayerCompare = (props) => {
     return (
-        <div className=" flex gap-x-4 mt-[37px] ">
+        <div className=" flex gap-x-4 ">
             <LeftPlayers showRunes={props.showRunes} />
             {props.showRunes && (
                 <CenterPrecisionAndInspiration showRunes={props.showRunes} />

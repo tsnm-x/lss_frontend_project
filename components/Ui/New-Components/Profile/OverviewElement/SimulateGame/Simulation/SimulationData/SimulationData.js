@@ -36,7 +36,7 @@ const Buttons = (props) => {
         <div className=" flex ml-[28px] ">
             {btns.map((btn, index) => {
                 return (
-                    <div className=" mr-10" key={index}>
+                    <div className=" mr-10 flex flex-col mt-[14px] " key={index}>
                         <button
                             onClick={() => btnClickHandler(btn.text)}
                             className={` sf-bold-11 capitalize ${
@@ -48,7 +48,7 @@ const Buttons = (props) => {
                             {btn.text}
                         </button>
                         {btn.active && (
-                            <div className=" bg-accent-color w-3/6 h-[1px] mx-auto "></div>
+                            <div className=" bg-accent-color w-3/6 h-[1px] mx-auto mt-1 "></div>
                         )}
                     </div>
                 );
@@ -149,7 +149,7 @@ const SimulationData = () => {
             <h4 className=" sf-bold-19 text-light-text capitalize pt-[24px] pl-[25px] ">
                 simulation data
             </h4>
-            <Buttons />
+            <Buttons />           
             {/* damage card  */}
             <div className=" w-full rounded-5px bg-card-&-content-box  px-[45px] py-2 italic mt-3 ">
                 <div className=" grid grid-cols-2">
@@ -191,8 +191,8 @@ const SimulationData = () => {
             </div>
             {/* bottom dot  */}
             <div className=" flex justify-center items-center mt-6 ">
-                <div className=" w-1 h-1 rounded-full bg-accent-color "></div>
-                <div className=" w-1 h-1 rounded-full bg-grayed-text ml-6 "></div>
+                <div className=" w-[5px] h-[5px] rounded-full bg-accent-color "></div>
+                <div className=" w-[5px] h-[5px] rounded-full bg-grayed-text ml-6 "></div>
             </div>
         </div>
     );

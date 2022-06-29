@@ -6,18 +6,23 @@ import LosAndWinRow from "../LosAndWinRow/LosAndWinRow";
 import PlayerCompare from "../PlayerCompare/PlayerCompare";
 import SimulateBtn from "../../../../universal/Btn/SimulateBtn/SimulateBtn";
 import AnalyticsBtns from "../../SimulateGame/AnalyticsBtns/AnalyticsBtns";
-import Simulation from '../../SimulateGame/Simulation/Simulation'
-
-
+import Simulation from "../../SimulateGame/Simulation/Simulation";
+import HeaderOnSimulateGameMode from "../../SimulateGame/Simulation/HeaderOnSimulateGameMode/HeaderOnSimulateGameMode";
 
 // runes context menu
 export const RunesContext = React.createContext();
 
 const ExpandCard = (props) => {
     const [showRunes, setShowRunes] = useState(false);
+    const [showSimulatedGraph, setShowSimulateGraph] = useState(false);
 
     const showRunesHandler = (btnState) => {
         setShowRunes(btnState);
+    };
+
+    const simulateDataHandler = () => {
+        console.log("render");
+        setShowSimulateGraph(true);
     };
 
     return (
@@ -29,24 +34,33 @@ const ExpandCard = (props) => {
                     <StatusCard />
                     <BuildCard />
                 </div>
-                {/* overview and runes btn  */}
-                <OverviewAndRunBtns
-                    runesHandler={showRunesHandler}
-                    currentRunes={showRunes}
-                />
-                {/* los and win row  */}
-                <LosAndWinRow />
+                <div>
+                    {!showSimulatedGraph ? (
+                        <>
+                            {/* overview and runes btn  */}
+                            <OverviewAndRunBtns
+                                runesHandler={showRunesHandler}
+                                currentRunes={showRunes}
+                            />
+                            {/* los and win row  */}
+                            <LosAndWinRow />
+                        </>
+                    ) : (
+                        <HeaderOnSimulateGameMode />
+                    )}
+                </div>
                 {/* player compare  */}
-                <RunesContext.Provider value={{runes: showRunes}}>
+                <RunesContext.Provider value={{ runes: showRunes }}>
                     <PlayerCompare showRunes={showRunes} />
                 </RunesContext.Provider>
-                {/* simulate btn  */}
+                {/* simulate btn and simulation card  */}
                 <div className=" text-center mt-16 pb-[73px] mb-4 ">
-                    <SimulateBtn />
+                    {!showSimulatedGraph ? (
+                        <SimulateBtn click={simulateDataHandler} />
+                    ) : (
+                        <Simulation />
+                    )}
                 </div>
-                {/* Simulation card */}
-                <Simulation />
-                {/* <AnalyticsBtns /> */}
             </div>
             <div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color "></div>
         </div>
