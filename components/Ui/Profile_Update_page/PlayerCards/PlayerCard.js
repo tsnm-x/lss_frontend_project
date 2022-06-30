@@ -128,11 +128,6 @@ const PlayerCards = (props) => {
         }
     };
 
-
-    // useEffect(()=>{
-    //     console.log(matchTimeLine?.info);
-    // }, [matchTimeLine?.info])
-
     return (
         <React.Fragment>
             <div className=" w-full max-w-[610px]">
