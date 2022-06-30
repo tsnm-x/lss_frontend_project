@@ -1,10 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderWithSearchbar from "../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar";
 import ErrorComponent from "../../components/Ui/New-Components/SummonerNotFound/ErrorComponent/ErrorComponent";
 import Footer from '../../components/shared/New-Componets/Footer/Footer'
 import classes from '../../styles/index.module.css'
+import useHttp from "../../hook/useHttp";
+import { useRouter } from "next/router";
 
 const summonerNotFound = () => {
+    const router = useRouter();
+    const [summonersFromOtherAreas, setSummonersFromOtherAreas] = useState([]);
+    const summoners = []
+    const [regions, setRegions] = useState([]);
+    const [refresher, setRefresher] = useState(false);
+    const [summonerName, setSummonerName] = useState("");
+    const { hasError, sendRequest } = useHttp();
+
+    const requestHandler = (res) => {
+        setRefresher(false);
+        if(!res){
+            console.log(res, "no response from the server");
+            return;
+        }
+
+        summoners.push({region: res.data.region, summonerName: res.data.name})
+
+        console.log(summoners)
+
+        setSummonersFromOtherAreas(summoners)
+        setRefresher(true);
+
+    }
+
+    const getSummonersFromOtherAreas = (region, summonerName) => {
+        console.log(region);
+        console.log(summonerName);
+        sendRequest(
+            {
+                url: "/summonerName",
+                method: "GET",
+                params: {
+                    region,
+                    summonerName,
+                },
+            },
+            requestHandler
+        );
+    }
+
+    useEffect(() => {
+        setRegions(router.query.reqServers);
+        setSummonerName(router.query.summonerName)
+    }, [router.query.reqServers, router.query.summonerName]);
+
+    useEffect(()=>{
+        regions.forEach((region)=> getSummonersFromOtherAreas(region, summonerName));
+    }, [regions, summonerName]);
+
     return (
         <div
             className={` laptop:flex laptop:flex-col laptop:flex-wrap laptop:justify-between laptop:min-h-screen ${classes.mainWrapper}`}
