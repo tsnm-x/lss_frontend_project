@@ -2,44 +2,57 @@ import React, { useState } from "react";
 import classes from "./ProfileSearch.module.css";
 import { FiSearch } from "react-icons/fi";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
+import useHttp from "../../../../../hook/useHttp";
+import Router from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { profileAction } from "../../../../../store/profile";
 
 const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
+    const {sendRequest} = useHttp();
+    const dispatch = useDispatch();
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [showCountryList, setShowCountryList] = useState(false);
     const [selectionNameList, setSelectionName] = useState([
         {
             name: "NA",
+            serverName: "NA1",
             active: true,
             fullName: "north america",
         },
         {
             name: "euw",
+            serverName: "EUW1",
             active: false,
             fullName: "europe west",
         },
         {
             name: "eun",
+            serverName: "EUN1",
             active: false,
             fullName: "Eu Nordic and East",
         },
         {
             name: "kr",
+            serverName: "KR",
             active: false,
             fullName: "Korea",
         },
         {
             name: "jp",
+            serverName: "JP1",
             active: false,
             fullName: "Japan",
         },
         {
             name: "lan",
+            serverName: "LA1",
             active: false,
             fullName: "Latin America North",
         },
         {
             name: "las",
+            serverName: "LA2",
             active: false,
             fullName: "Latin America South",
         },
@@ -89,6 +102,57 @@ const ProfileSearch = (props) => {
             return modifyedList;
         });
     };
+
+    function requestHandler(res) {
+		if (!res) {
+			console.log(res, "no response from the server");
+			Router.push(
+				{
+					pathname: "/summoner/summonerNotFound",
+					query: {summonerName: search, region: selectionNameList}
+				}
+			);
+			setSearch("");
+			return;
+		}
+
+		dispatch(
+			profileAction.setProfileDataPage({
+				profile: res.data.matches,
+				// region,
+				region: activeListDetails.selectedItem.serverName,
+				summonerName: search,
+			})
+		);
+		Router.push(
+			{
+				pathname: '/summoner/[region]/[summonerName]',
+				query: {
+					region: activeListDetails.selectedItem.serverName,
+					summonerName: search
+				}
+			}
+		);
+		setSearch("");
+	}
+
+	function searchHandler(e) {
+        if(e.key === "Enter"){
+            console.log("Entered!");
+            e.preventDefault();
+            sendRequest(
+                {
+                    url: "/summonerByName",
+                    method: "POST",
+                    body: {
+                        region: activeListDetails.selectedItem.serverName,
+                        summonerName: search,
+                    },
+                },
+                requestHandler
+            );
+        }
+	}
 
     return (
         <>
@@ -142,8 +206,9 @@ const ProfileSearch = (props) => {
                         </div>
                         {/* sumonner name box  */}
                         <input
-                            type="text"
+                            type="search"
                             onChange={searchInput}
+                            onKeyDown={(event) => searchHandler(event)}
                             value={search}
                             placeholder="Find your Summoner name..."
                             className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] smTablet:italic desktop:gotham-mid-25 ${classes.searchBox} ${props.searchBox}`}
