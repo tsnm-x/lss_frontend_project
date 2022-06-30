@@ -21,9 +21,31 @@ import LegendTenacity from "../../../../../../../public/assets/new-images/Profil
 import Overheal from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/Overheal.png";
 import PresenceOfMind from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/PresenceOfMind.png";
 import Triumph from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/Triumph.png";
+// inspiration icons -----------------------------------------------------
+import InspirationParent from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/Inspiration_icon.png";
+// icons
+import HextechFlashtraption from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/HextechFlashtraption.png";
+import MagicalFootwear from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/MagicalFootwear.png";
+import PerfectTiming from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/PerfectTiming.png";
+import FuturesMarket from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/FuturesMarket.png";
+import MinionDematerializer from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/MinionDematerializer.png";
+import BiscuitDelivery from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/BiscuitDelivery.png";
+import TimeWarpTonic from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/TimeWarpTonic.png";
+import CosmicInsight from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/CosmicInsight.png";
+import ApproachVelocity from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/ApproachVelocity.png";
+// runes icons
+import StatModsAdaptiveForceIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsAdaptiveForceIcon.png";
+import StatModsArmorIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsArmorIcon.png";
+import StatModsAttackSpeedIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsAttackSpeedIcon.png";
+import StatModsCDRScalingIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsCDRScalingIcon.png";
+import StatModsHealthScalingIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsHealthScalingIcon.png";
+import StatModsMagicResIcon_MagicResist_Fix from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsMagicResIcon.MagicResist_Fix.png";
+
 // precision component
 const Precision = (props) => {
-    const [precision, setPrecision] = useState({
+    // placeholder object
+
+    const [precisionData, setPrecisionData] = useState({
         optionBatch: [
             {
                 name: "conqueror",
@@ -95,18 +117,6 @@ const Precision = (props) => {
         ],
     });
 
-    // get user data or empty object
-    useEffect(() => {
-        // setPrecision((prevState) => {
-        //     const modifyedState = {};
-        //     // update batch data
-        //     if (props.data.optionBatch) {
-        //     }
-        // });
-    }, []);
-
-    // placeholder object
-
     return (
         <div
             className={`${Classes.PrecisionWrap} h-full p-[22px] rounded-5px `}
@@ -125,7 +135,7 @@ const Precision = (props) => {
                 </div>
                 {/* options  */}
                 <div className=" flex mt-3 ">
-                    {precision.optionBatch.map((option, index) => {
+                    {precisionData.optionBatch.map((option, index) => {
                         return (
                             <div
                                 className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 ${
@@ -146,11 +156,13 @@ const Precision = (props) => {
                 </div>
                 {/* all the batches  */}
                 <div className=" grid grid-cols-3 grid-rows-3 gap-3 mt-3 ">
-                    {precision.batchList.map((batch, index) => {
+                    {precisionData.batchList.map((batch, index) => {
                         return (
                             <div
                                 className={`relative w-7 h-7 rounded-full ${
-                                    batch.active ? "border border-nav-btn" : " opacity-30"
+                                    batch.active
+                                        ? "border border-nav-btn"
+                                        : " opacity-30"
                                 }`}
                                 key={index}
                             >
@@ -169,26 +181,182 @@ const Precision = (props) => {
 };
 
 const Inspiration = () => {
-    return <div></div>;
+    const [inspirationData, setInspirationData] = useState({
+        batchList: [
+            {
+                name: "HextechFlashtraption",
+                img: HextechFlashtraption,
+                active: true,
+            },
+            {
+                name: "MagicalFootwear",
+                img: MagicalFootwear,
+                active: false,
+            },
+            {
+                name: "PerfectTiming",
+                img: PerfectTiming,
+                active: false,
+            },
+            {
+                name: "FuturesMarket",
+                img: FuturesMarket,
+                active: false,
+            },
+            {
+                name: "MinionDematerializer",
+                img: MinionDematerializer,
+                active: false,
+            },
+            {
+                name: "BiscuitDelivery",
+                img: BiscuitDelivery,
+                active: true,
+            },
+            {
+                name: "TimeWarpTonic",
+                img: TimeWarpTonic,
+                active: false,
+            },
+            {
+                name: "CosmicInsight",
+                img: CosmicInsight,
+                active: false,
+            },
+            {
+                name: "ApproachVelocity",
+                img: ApproachVelocity,
+                active: true,
+            },
+        ],
+    });
+    return (
+        <div
+            className={`${Classes.InspirationWrap} h-full p-[22px] rounded-5px `}
+        >
+            <h1 className=" sf-bold-11 text-light-text capitalize text-center">
+                inspiration
+            </h1>
+            {/* batches  */}
+            <div className=" mt-[74px] flex flex-col items-center">
+                <div className=" relative w-8 h-8 rounded-full border border-[#201929]  ">
+                    <Image
+                        src={InspirationParent}
+                        alt="precision parent icon"
+                        layout="fill"
+                    />
+                </div>
+                {/* all the batches  */}
+                <div className=" grid grid-cols-3 grid-rows-3 gap-3 mt-3 ">
+                    {inspirationData.batchList.map((batch, index) => {
+                        return (
+                            <div
+                                className={`relative w-5 h-5 rounded-full ${
+                                    batch.active
+                                        ? "border border-nav-btn"
+                                        : " opacity-30"
+                                }`}
+                                key={index}
+                            >
+                                <Image
+                                    src={batch.img}
+                                    alt="batch image"
+                                    layout="fill"
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 const RunesState = () => {
-    return <div></div>;
+    const [RunesStateData, setRunesStateData] = useState({
+        batchList: [
+            {
+                name: "StatModsAdaptiveForceIcon",
+                img: StatModsAdaptiveForceIcon,
+                active: true,
+            },
+            {
+                name: "StatModsArmorIcon",
+                img: StatModsArmorIcon,
+                active: false,
+            },
+            {
+                name: "StatModsAttackSpeedIcon",
+                img: StatModsAttackSpeedIcon,
+                active: false,
+            },
+            {
+                name: "StatModsCDRScalingIcon",
+                img: StatModsCDRScalingIcon,
+                active: false,
+            },
+            {
+                name: "StatModsHealthScalingIcon",
+                img: StatModsHealthScalingIcon,
+                active: false,
+            },
+            {
+                name: "StatModsMagicResIcon_MagicResist_Fix",
+                img: StatModsMagicResIcon_MagicResist_Fix,
+                active: true,
+            },
+            {
+                name: "StatModsMagicResIcon_MagicResist_Fix",
+                img: StatModsMagicResIcon_MagicResist_Fix,
+                active: false,
+            },
+            {
+                name: "StatModsCDRScalingIcon",
+                img: StatModsCDRScalingIcon,
+                active: true,
+            },
+            {
+                name: "StatModsHealthScalingIcon",
+                img: StatModsHealthScalingIcon,
+                active: false,
+            },
+        ],
+    });
+    return (
+        <div
+            className={`${Classes.RunesStateWrap} h-full p-[14px] rounded-5px flex flex-col justify-center `}
+        >
+            {/* all the batches  */}
+            <div className=" grid grid-cols-3 grid-rows-3 gap-[6px] mt-3 ">
+                {RunesStateData.batchList.map((batch, index) => {
+                    return (
+                        <div
+                            className={`relative w-4 h-4 rounded-full ${
+                                batch.active
+                                    ? "border border-nav-btn"
+                                    : " opacity-40"
+                            }`}
+                            key={index}
+                        >
+                            <Image
+                                src={batch.img}
+                                alt="batch image"
+                                layout="fill"
+                            />
+                        </div>
+                    );
+                })}
+            </div>
+            <p className=" font-sf-pro-text text-grayed-text text-[6px] leading-[7px] capitalize font-bold text-center mt-5 ">rune stats</p>
+        </div>
+    );
 };
 
 // main component
 const RunesOverview = (props) => {
-    const precisionBatchList = {
-        optionBatch: [{ name: "conqueror" }],
-        batchList: [
-            { name: "triumph" },
-            { name: "legendTenacity" },
-            { name: "coupDeGrace" },
-        ],
-    };
     return (
         <div className=" text-2xl text-whit flex-grow h-[340px]  grid grid-cols-[49%_31%_20%] ">
-            <Precision data={precisionBatchList} />
+            <Precision />
             <Inspiration />
             <RunesState />
         </div>

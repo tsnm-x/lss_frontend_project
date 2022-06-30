@@ -1,5 +1,16 @@
 .PrecisionWrap {
-  background: url('../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Precision_splash_art.png') no-repeat center center;
-  background-size: cover;
+    background: url("../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Precision_splash_art.png")
+        no-repeat center center;
+    background-size: cover;
 }
 
+.InspirationWrap {
+    background: url("../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Inspiration_splash_art.png")
+        no-repeat center center;
+    background-size: cover;
+}
+.RunesStateWrap {
+    background: url("../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Hecarim_0.png")
+        no-repeat center center;
+    background-size: cover;
+}
