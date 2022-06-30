@@ -355,7 +355,7 @@ const RunesState = () => {
 // main component
 const RunesOverview = (props) => {
     return (
-        <div className=" text-2xl text-whit flex-grow h-[340px]  grid grid-cols-[49%_31%_20%] ">
+        <div className=" text-2xl text-whit flex-grow grid grid-cols-[49%_31%_20%] ">
             <Precision />
             <Inspiration />
             <RunesState />
