@@ -12,10 +12,6 @@ const PlayerFaceRow = (props) => {
     const faceList = [FaceOne, FaceTwo, FaceThree, FaceFour, FaceFive, FaceSix];
     const profileBatchList = ["", "", "", "", ""];
 
-    useEffect(()=>{
-        console.log(props.group)
-    }, [props.group])
-
     return (
         <div className={`flex justify-between ${props.className}`}>
             <div className={`grid content-between gap-y-2  ${props.faceStyle}`}>
@@ -28,6 +24,7 @@ const PlayerFaceRow = (props) => {
                         player.item4,
                         player.item5,
                     ];
+                    
                     return (
                         <div key={index} className=" flex items-center ">
                             {items.map((item, index) => {

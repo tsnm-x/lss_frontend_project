@@ -54,8 +54,6 @@ const ArchadeComponent = () => {
 };
 
 const PlayerCards = (props) => {
-	const { hasError, sendRequest } = useHttp();
-    const [matchTimeLine, setMatchTimeLine] = useState({});
     // reducer state for bottom graph component
     const initialGraphComponent = {
         component: <GraphOneComponent />,
@@ -130,24 +128,6 @@ const PlayerCards = (props) => {
         }
     };
 
-    const requestHandler = (res) => {
-        if(!res){
-            console.log("no response from server")
-        }
-
-        setMatchTimeLine(res.data.matchTimeline);
-    }
-
-    useEffect(()=>{
-        sendRequest(
-            {
-                url: "/matchTimeline",
-                method: "POST",
-                body: { matchId: props.id }
-            },
-            requestHandler
-        )
-    }, [props.id]);
 
     // useEffect(()=>{
     //     console.log(matchTimeLine?.info);
