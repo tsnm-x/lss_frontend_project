@@ -15,6 +15,7 @@ import CardContext from "../../../../Context/CardContext";
 
 const Summoner = () => {
     const [view, setView] = useState("overview");
+    const [cardProps, setCardProps] = useState({})
     const [cardExpand, setCardExpand] = useState(false);
     const [expandCardNo, setExpandCardNo] = useState(null)
     const { hasError, sendRequest } = useHttp();
@@ -86,11 +87,14 @@ const Summoner = () => {
         view === action ? null : setView(action);
     };
 
-    const CardsExpandHandler = (ClickedCardIndexNo) => {
+    const CardsExpandHandler = (ClickedCardIndexNo, otherProps) => {
         setExpandCardNo(ClickedCardIndexNo);
         console.log("card expand handler");
         cardExpand ? null : setCardExpand(true);
+        setCardProps(otherProps);
     };
+
+
 
     return (
         <div>
@@ -110,7 +114,8 @@ const Summoner = () => {
                     value={{
                         expand: cardExpand,
                         expandControl: CardsExpandHandler,
-                        expandCardNo: expandCardNo
+                        expandCardNo: expandCardNo,
+                        cardProps: cardProps
                     }}
                 >
                     <Overview selectedMatchType={selectedMatchType} ControlBtnLists={ControlBtnLists} setSelectedMatchType={setSelectedMatchType} matches={matches} />

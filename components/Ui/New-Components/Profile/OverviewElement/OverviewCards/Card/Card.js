@@ -10,12 +10,12 @@ import { useState } from "react";
 
 const Card = (props) => {
     const [addClass, setAddClass] = useState(false);
-    const { expandCardNo, expand } = useContext(CardContext);
+    const { expandCardNo, expand, cardProps } = useContext(CardContext);
 
     return (
         <>
             {props.index === expandCardNo ? (
-                <ExpandCard />
+                <ExpandCard {...props}/>
             ) : (
                 <div
                     className={` rounded-5px overflow-hidden grid  border-b border-background ${

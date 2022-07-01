@@ -9,7 +9,7 @@ import BatchImg2 from "../../../../../../../public/assets/new-images/Profile/car
 const LeftSide = (props) => {
 
     const selectGameType = () => {
-        switch (props?.match.queueId) {
+        switch (props?.match?.queueId) {
             case 76:
                 return "Ultra Rapid Fire";
             case 100:
@@ -133,6 +133,8 @@ const LeftSide = (props) => {
 
 const RightSide = (props) => {
     const [teamKills, setTeamKills] = useState(1)
+    const [kp, setKp] = useState(0);
+    const [viewer, setViewer] = useState(false)
     const selectSpell = (id) => {
         switch (id) {
             case 21:
@@ -198,8 +200,16 @@ const RightSide = (props) => {
                 totalKills = totalKills + player.kills
             }
         });
-        if(totalKills) setTeamKills(totalKills);
-    }, [props?.match?.players])
+        setTeamKills(totalKills);
+    }, [teamKills])
+
+    useEffect(()=>{
+       setKp((((props.mainPlayer.kills + props.mainPlayer?.assists) / teamKills) * 100).toFixed(1))
+    }, [teamKills])
+
+    useEffect(()=>{
+        if(kp) setViewer(true)
+    }, [kp])
     return (
         <div>
             {/* top images  */}
@@ -280,7 +290,7 @@ const RightSide = (props) => {
                 <p className=" text-grayed-text ">
                     <span className=" text-accent-color-2">{(((props.mainPlayer?.assists + props.mainPlayer?.kills) / (props.mainPlayer?.deaths? props.mainPlayer?.deaths : 1)).toFixed(2))}:1</span> KDA
                 </p>
-                <p className=" text-grayed-text mt-[2px] ">{teamKills && ((((props.mainPlayer.kills + props.mainPlayer?.assists) / teamKills) * 100).toFixed(1))}% KP</p>
+                {viewer && <p className=" text-grayed-text mt-[2px] ">{kp}% KP</p>}
             </div>
         </div>
     );

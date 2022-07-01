@@ -31,8 +31,8 @@ const ExpandCard = (props) => {
             <div className="mr-[5px]">
                 {/* defeat and build card  */}
                 <div className=" grid grid-cols-[420px_800px] ">
-                    <StatusCard />
-                    <BuildCard />
+                    <StatusCard {...props} />
+                    <BuildCard {...props}/>
                 </div>
                 <div>
                     {!showSimulatedGraph ? (

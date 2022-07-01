@@ -13,6 +13,7 @@ const BuildCard = (props) => {
           <RankCard
               className=" bg-transparent flex border-transparent w-full justify-center "
               imgClassName=" w-[63px] h-[63px] mr-[20px] last:mr-0 "
+              {...props}
           />
       </div>
   );
