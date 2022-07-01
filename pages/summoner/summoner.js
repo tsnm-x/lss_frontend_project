@@ -4,9 +4,9 @@ import PlayerInfo from "../../components/Ui/New-Components/Profile/PlayerInfo/Pl
 import OverviewChampion from "../../components/Ui/New-Components/Profile/OverviewChampionBtns/OverviewChampionBtns";
 import Table from "../../components/Ui/New-Components/Profile/TableElement/Table/Table";
 import Overview from "../../components/Ui/New-Components/Profile/OverviewElement/Overview/Overview";
+import CardContext from '../../Context/CardContext';
 
-// contexts
-export const CardContext = React.createContext();
+
 
 const Summoner = () => {
     const [view, setView] = useState("overview");
