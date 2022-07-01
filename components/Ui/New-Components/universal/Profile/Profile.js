@@ -70,7 +70,7 @@ const Profile = (props) => {
                     <button className=" btn text-white bg-accent-color laptop:mr-[9px] " onClick={refreshHandler}>
                         {props?.btnDetails[0].text}
                     </button>
-                    <Link href={`${props?.btnDetails[1].url}`}><button className=" btn bg-white ">{props?.btnDetails[1].text}</button></Link>
+                    <Link href={props?.btnDetails[1].url}><button className=" btn bg-white ">{props?.btnDetails[1].text}</button></Link>
                 </div>
             </div>
         </div>

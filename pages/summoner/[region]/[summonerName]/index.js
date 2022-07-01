@@ -112,7 +112,7 @@ const Summoner = () => {
                         expandCardNo: expandCardNo
                     }}
                 >
-                    <Overview selectedMatchType={selectedMatchType} ControlBtnLists={ControlBtnLists} setSelectedMatchType={setSelectedMatchType}  />
+                    <Overview selectedMatchType={selectedMatchType} ControlBtnLists={ControlBtnLists} setSelectedMatchType={setSelectedMatchType} matches={matches} />
                 </CardContext.Provider>
             ) : (
                 <Table />
