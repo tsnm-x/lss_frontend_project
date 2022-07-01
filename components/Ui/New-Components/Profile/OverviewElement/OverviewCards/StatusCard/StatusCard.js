@@ -20,6 +20,33 @@ const LeftSide = (props) => {
     useEffect(()=>{
         console.log(props.match)
     }, [mainPlayer])
+
+    const selectGameType = () => {
+        switch (props?.match.queueId) {
+            case 76:
+                return "Ultra Rapid Fire";
+            case 100:
+                return "5v5 ARAM";
+            case 400:
+                return "5v5 Draft Pick";
+            case 420:
+                return "5v5 Ranked Solo";
+            case 430:
+                return "5v5 Blind Pick";
+            case 440:
+                return "5v5 Ranked Flex";
+            case 450:
+                return "5v5 ARAM";
+            case 470:
+                return "3v3 Ranked Flex";
+            case 900:
+                return "URF";
+
+            default:
+                return "Normal Game";
+        }
+    };
+
     return (
         <>
             {mainPlayer && (
@@ -55,7 +82,7 @@ const LeftSide = (props) => {
                                 : "text-[12px] leading-[14px] mt-1"
                         } text-grayed-text`}
                     >
-                        Ranked solo
+                        {selectGameType()}
                     </h6>
                     <h2
                         className={` text-light-text ${
