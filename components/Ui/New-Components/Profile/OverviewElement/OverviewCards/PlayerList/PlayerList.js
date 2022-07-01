@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BiExpand } from "react-icons/bi";
 import Image from "next/image";
-import { CardContext } from "../../../../../../../pages/summoner/[region]/[summonerName]/index";
+import CardContext from "../../../../../../../Context/CardContext";
 // player list
 import Atrox from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Aatrox.png";
 import Akali from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Akali.png";
@@ -57,7 +57,7 @@ const PlayerList = (props) => {
     ];
 
     return (
-        <div className=" bg-card-&-content-box grid grid-cols-[auto_35px]">
+        <div className=" bg-card-&-content-box grid grid-cols-[auto_30px]">
             {/* player lists  */}
             <div className="h-full relative py-[10px] pl-[18px] pr-[60px] ">
                 {props.index === 0 ? (

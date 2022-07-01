@@ -3,7 +3,7 @@ import OverviewCards from "../OverviewCards/OverviewCards";
 import OverviewLeft from "../OverviewLeft/OverviewLeft";
 import AdsImg from "../../../../../../public/assets/new-images/Profile/ads.png";
 import Image from "next/image";
-import { CardContext } from "../../../../../../pages/summoner/[region]/[summonerName]/index";
+import CardContext from "../../../../../../Context/CardContext";
 
 const Overview = (props) => {
     const { expand, expandControl } = useContext(CardContext);
@@ -47,7 +47,7 @@ const Overview = (props) => {
                 {/* left side  */}
                 {!expand && <OverviewLeft />}
                 {/* center  */}
-                <OverviewCards cards={cardList} expand={expand} ControlBtnLists={props?.ControlBtnLists} selectedMatchType={props?.selectedMatchType} setSelectedMatchType={props?.setSelectedMatchType}/>
+                <OverviewCards cards={cardList} matches={props?.matches} expand={expand} ControlBtnLists={props?.ControlBtnLists} selectedMatchType={props?.selectedMatchType} setSelectedMatchType={props?.setSelectedMatchType}/>
             </div>
             {!expand && (
                 <div className=" absolute right-0 top-[60px] w-[170px] h-full max-h-[1105px] ">

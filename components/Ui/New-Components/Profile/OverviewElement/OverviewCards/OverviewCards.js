@@ -17,8 +17,8 @@ const OverviewCards = (props) => {
                     {/* experimental expand card  */}
                     {/* <ExpandCard /> */}
                     {/* card list  */}
-                    {cards.map((card, index) => {
-                        return <Card key={index} index={index} {...card} />;
+                    {props.matches.map((match, index) => {
+                        return <Card key={index} index={index} match={match} />;
                     })}
                 </div>
                 {/* show more btn  */}

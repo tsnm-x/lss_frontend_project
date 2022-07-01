@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {profileAction} from "../../../../store/profile";
 import { axiosInstance } from "../../../../network/axiosConfig";
+import CardContext from "../../../../Context/CardContext";
 // contexts
-export const CardContext = React.createContext();
+
 
 const Summoner = () => {
     const [view, setView] = useState("overview");

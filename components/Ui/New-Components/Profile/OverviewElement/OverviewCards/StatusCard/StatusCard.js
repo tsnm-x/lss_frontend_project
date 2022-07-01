@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import CardImage from "../../../../../../../public/assets/new-images/Profile/card/Jiggesh.png";
 import SummonerFlash from "../../../../../../../public/assets/new-images/Profile/card/SummonerFlash.png";
@@ -7,60 +7,77 @@ import BatchImg1 from "../../../../../../../public/assets/new-images/Profile/car
 import BatchImg2 from "../../../../../../../public/assets/new-images/Profile/card/batch2.png";
 
 const LeftSide = (props) => {
+
+    const [mainPlayer, setMainPlayer] = useState({});
+
+    useEffect(()=>{
+        let main = props?.match?.players.find((player) => {
+            return player.mainPlayer == true;
+        })
+        setMainPlayer(main)
+    }, [props.match])
+
+    useEffect(()=>{
+        console.log(props.match)
+    }, [mainPlayer])
     return (
-        <div className={`font-sf-pro-text font-bold mr-[30px] `}>
-            <h4
-                className={` capitalize ${
-                    props.won ? "text-accent-color-2" : "text-accent-color"
-                }`}
-            >
-                <span
-                    className={` mr-1 ${
-                        props.expand
-                            ? "text-[23px] leading-7 "
-                            : " text-[17px] leading-5"
-                    }`}
-                >
-                    {props.won ? "Victory" : "Defeat"}
-                </span>{" "}
-                <span
-                    className={`text-light-text ${
-                        props.expand
-                            ? " text-base leading-[19px] "
-                            : "text-[12px] leading-[14px] "
-                    }`}
-                >
-                    24:14
-                </span>
-            </h4>
-            <h6
-                className={`${
-                    props.expand
-                        ? "text-[15px] leading-[18px] mt-2"
-                        : "text-[12px] leading-[14px] mt-1"
-                } text-grayed-text`}
-            >
-                Ranked solo
-            </h6>
-            <h2
-                className={` text-light-text ${
-                    props.expand
-                        ? "text-[33px] leading-[39px] mt-[18px] "
-                        : "text-[25px] leading-[30px] mt-[10px]"
-                } `}
-            >
-                6/8/10
-            </h2>
-            <h6
-                className={` text-grayed-text ${
-                    props.expand
-                        ? " mt-5 text-[17px] leading-[20px] "
-                        : "text-[12px] leading-[14px] mt-[10px] "
-                } `}
-            >
-                2 Days ago
-            </h6>
-        </div>
+        <>
+            {mainPlayer && (
+                <div className={`font-sf-pro-text font-bold mr-[30px] `}>
+                    <h4
+                        className={` capitalize ${
+                            mainPlayer?.win ? "text-accent-color-2" : "text-accent-color"
+                        }`}
+                    >
+                        <span
+                            className={` mr-1 ${
+                                props.expand
+                                    ? "text-[23px] leading-7 "
+                                    : " text-[17px] leading-5"
+                            }`}
+                        >
+                            {mainPlayer?.win ? "Victory" : "Defeat"}
+                        </span>{" "}
+                        <span
+                            className={`text-light-text ${
+                                props.expand
+                                    ? " text-base leading-[19px] "
+                                    : "text-[12px] leading-[14px] "
+                            }`}
+                        >
+                            24:14
+                        </span>
+                    </h4>
+                    <h6
+                        className={`${
+                            props.expand
+                                ? "text-[15px] leading-[18px] mt-2"
+                                : "text-[12px] leading-[14px] mt-1"
+                        } text-grayed-text`}
+                    >
+                        Ranked solo
+                    </h6>
+                    <h2
+                        className={` text-light-text ${
+                            props.expand
+                                ? "text-[33px] leading-[39px] mt-[18px] "
+                                : "text-[25px] leading-[30px] mt-[10px]"
+                        } `}
+                    >
+                        6/8/10
+                    </h2>
+                    <h6
+                        className={` text-grayed-text ${
+                            props.expand
+                                ? " mt-5 text-[17px] leading-[20px] "
+                                : "text-[12px] leading-[14px] mt-[10px] "
+                        } `}
+                    >
+                        2 Days ago
+                    </h6>
+                </div>
+            )}
+        </>
     );
 };
 
@@ -166,9 +183,9 @@ const StatusCard = (props) => {
              }`}
         >
             {/* left side  */}
-            <LeftSide {...props} />
+            <LeftSide {...props} matches={props.matches} mainPlayer={props.mainPlayer} />
             {/* right side  */}
-            <RightSide expand={props.expand} />
+            <RightSide expand={props.expand} matches={props.matches} />
         </div>
     );
 };
