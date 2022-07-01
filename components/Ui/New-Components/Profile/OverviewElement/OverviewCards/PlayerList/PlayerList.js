@@ -57,9 +57,9 @@ const PlayerList = (props) => {
     ];
 
     return (
-        <div className=" bg-card-&-content-box w-[335px] flex ">
+        <div className=" bg-card-&-content-box grid grid-cols-[auto_35px]">
             {/* player lists  */}
-            <div className=" w-[305px]  h-full relative py-[10px] pl-[18px] pr-[60px] ">
+            <div className="h-full relative py-[10px] pl-[18px] pr-[60px] ">
                 {props.index === 0 ? (
                     <div
                         className=" font-sf-pro-text text-[10px] leading-3 font-bold text-accent-color bg-[#2F2937] py-[3px] px-[28px]
