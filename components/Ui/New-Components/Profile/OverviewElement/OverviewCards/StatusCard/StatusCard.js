@@ -8,19 +8,6 @@ import BatchImg2 from "../../../../../../../public/assets/new-images/Profile/car
 
 const LeftSide = (props) => {
 
-    const [mainPlayer, setMainPlayer] = useState({});
-
-    useEffect(()=>{
-        let main = props?.match?.players.find((player) => {
-            return player.mainPlayer == true;
-        })
-        setMainPlayer(main)
-    }, [props.match])
-
-    useEffect(()=>{
-        console.log(props.match)
-    }, [mainPlayer])
-
     const selectGameType = () => {
         switch (props?.match.queueId) {
             case 76:
@@ -85,11 +72,11 @@ const LeftSide = (props) => {
 
     return (
         <>
-            {mainPlayer && (
+            {props.mainPlayer && (
                 <div className={`font-sf-pro-text font-bold mr-[30px] `}>
                     <h4
                         className={` capitalize ${
-                            mainPlayer?.win ? "text-accent-color-2" : "text-accent-color"
+                            props?.mainPlayer?.win ? "text-accent-color-2" : "text-accent-color"
                         }`}
                     >
                         <span
@@ -99,7 +86,7 @@ const LeftSide = (props) => {
                                     : " text-[17px] leading-5"
                             }`}
                         >
-                            {mainPlayer?.win ? "Victory" : "Defeat"}
+                            {props?.mainPlayer?.win ? "Victory" : "Defeat"}
                         </span>{" "}
                         <span
                             className={`text-light-text ${
@@ -108,7 +95,7 @@ const LeftSide = (props) => {
                                     : "text-[12px] leading-[14px] "
                             }`}
                         >
-                            {convertHMS(props?.match.duration)}
+                            {convertHMS(props?.match?.duration)}
                         </span>
                     </h4>
                     <h6
@@ -127,7 +114,7 @@ const LeftSide = (props) => {
                                 : "text-[25px] leading-[30px] mt-[10px]"
                         } `}
                     >
-                        {mainPlayer?.kills}/{mainPlayer?.deaths}/{mainPlayer?.assists}
+                        {props?.mainPlayer?.kills}/{props?.mainPlayer?.deaths}/{props?.mainPlayer?.assists}
                     </h2>
                     <h6
                         className={` text-grayed-text ${
@@ -136,7 +123,7 @@ const LeftSide = (props) => {
                                 : "text-[12px] leading-[14px] mt-[10px] "
                         } `}
                     >
-                        {getGameStart(props?.match.gameStartTimestamp)}
+                        {getGameStart(props?.match?.gameStartTimestamp)}
                     </h6>
                 </div>
             )}
@@ -164,7 +151,7 @@ const RightSide = (props) => {
                 >
                     <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
                         <Image
-                            src={CardImage}
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${props.mainPlayer?.profileIcon}.png`}
                             alt="profile image"
                             layout="fill"
                         />
@@ -175,7 +162,7 @@ const RightSide = (props) => {
                           laptop:absolute laptop:left-[40%] laptop:-bottom-[6px]
                           laptop:bg-background flex items-center justify-center"
                     >
-                        92
+                        {props?.mainPlayer?.summonerLevel}
                     </div>
                 </div>
                 {/* power and batches  */}
@@ -238,6 +225,19 @@ const RightSide = (props) => {
 };
 
 const StatusCard = (props) => {
+    const [mainPlayer, setMainPlayer] = useState({});
+
+    useEffect(()=>{
+        let main = props?.match?.players.find((player) => {
+            return player.mainPlayer == true;
+        })
+        setMainPlayer(main)
+    }, [props.match])
+
+    useEffect(()=>{
+        console.log(props.match)
+    }, [mainPlayer])
+
     return (
         <div
             className={`  bg-card-&-content-box
@@ -246,9 +246,9 @@ const StatusCard = (props) => {
              }`}
         >
             {/* left side  */}
-            <LeftSide {...props} matches={props.matches} mainPlayer={props.mainPlayer} />
+            <LeftSide {...props} matches={props.matches} mainPlayer={mainPlayer} />
             {/* right side  */}
-            <RightSide expand={props.expand} matches={props.matches} />
+            <RightSide expand={props.expand} matches={props.matches} mainPlayer={mainPlayer} />
         </div>
     );
 };
