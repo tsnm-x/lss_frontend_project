@@ -109,7 +109,7 @@ const ProfileSearch = (props) => {
 			Router.push(
 				{
 					pathname: "/summoner/summonerNotFound",
-					query: {summonerName: search, region: selectionNameList}
+					query: {summonerName: search, reqServers: selectionNameList}
 				}
 			);
 			setSearch("");

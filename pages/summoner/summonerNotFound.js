@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderWithSearchbar from "../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar";
 import ErrorComponent from "../../components/Ui/New-Components/SummonerNotFound/ErrorComponent/ErrorComponent";
 import Footer from '../../components/shared/New-Componets/Footer/Footer'
@@ -53,7 +53,7 @@ const summonerNotFound = () => {
     }, [router.query.reqServers, router.query.summonerName]);
 
     useEffect(()=>{
-        regions.forEach((region)=> getSummonersFromOtherAreas(region, summonerName));
+        regions?.forEach((region)=> getSummonersFromOtherAreas(region.serverName, summonerName));
     }, [regions, summonerName]);
 
     return (
