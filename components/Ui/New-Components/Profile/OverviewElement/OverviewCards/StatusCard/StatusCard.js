@@ -47,6 +47,42 @@ const LeftSide = (props) => {
         }
     };
 
+    function convertHMS(value) {
+		const sec = parseInt(value, 10); // convert value to number if it's string
+		let hours = Math.floor(sec / 3600); // get hours
+		let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+		let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
+		// add 0 if value < 10; Example: 2 => 02
+		if (hours < 10) {
+			hours = "0" + hours;
+		}
+		if (minutes < 10) {
+			minutes = "0" + minutes;
+		}
+		if (seconds < 10) {
+			seconds = "0" + seconds;
+		}
+		return hours + ":" + minutes + ":" + seconds; // Return is MM : SS
+	}
+
+    function getGameStart(gameStartInitialDate) {
+		let gameStartDate = new Date(gameStartInitialDate);
+
+		const diffTime = Math.abs(Date.now() - gameStartDate);
+		// const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+		const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+
+		let gameStart;
+		if (diffHours >= 24) {
+			gameStart = `${(diffHours / 24).toFixed(0)} Days Ago`;
+		} else if (diffHours < 24) {
+			gameStart = `${diffHours.toFixed(0)} Hours Ago`;
+		} else {
+			gameStart = "Unmeasurable";
+		}
+		return gameStart;
+	}
+
     return (
         <>
             {mainPlayer && (
@@ -72,7 +108,7 @@ const LeftSide = (props) => {
                                     : "text-[12px] leading-[14px] "
                             }`}
                         >
-                            24:14
+                            {convertHMS(props?.match.duration)}
                         </span>
                     </h4>
                     <h6
@@ -91,7 +127,7 @@ const LeftSide = (props) => {
                                 : "text-[25px] leading-[30px] mt-[10px]"
                         } `}
                     >
-                        6/8/10
+                        {mainPlayer?.kills}/{mainPlayer?.deaths}/{mainPlayer?.assists}
                     </h2>
                     <h6
                         className={` text-grayed-text ${
@@ -100,7 +136,7 @@ const LeftSide = (props) => {
                                 : "text-[12px] leading-[14px] mt-[10px] "
                         } `}
                     >
-                        2 Days ago
+                        {getGameStart(props?.match.gameStartTimestamp)}
                     </h6>
                 </div>
             )}
