@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ErrorDetails from "../ErrorDetails/ErrorDetails";
 import Image from "next/image";
 import RightSideImage from "../../../../../public/assets/new-images/SummonerNotFound/right-side-image.png";
 
 const ErrorComponent = (props) => {
+    useEffect(()=>{
+        console.log(props.regions);
+        console.log(props.summonersFromOtherAreas)
+    }, [props.regions])
     return (
         <section
             className={`bg-card-&-content-box smTablet:bg-transparent ${props.className}`}
@@ -18,8 +22,8 @@ const ErrorComponent = (props) => {
                 smTablet:row-start-1 smTablet:relative smTablet:z-20 smTablet:flex smTablet:flex-col smTablet:flex-wrap
                  smTablet:justify-center laptop:w-[600px]"
                 >
-                    <ErrorMessage />
-                    <ErrorDetails />
+                    <ErrorMessage summonerName={props.summonerName} />
+                    <ErrorDetails  summonerName={props.summonerName} summonersFromOtherAreas={props.summonersFromOtherAreas} regions={props.regions} />
                 </div>
                 {/* highlight image  */}
                 <div

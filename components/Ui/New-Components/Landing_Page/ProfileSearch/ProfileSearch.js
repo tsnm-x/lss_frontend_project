@@ -104,12 +104,38 @@ const ProfileSearch = (props) => {
     };
 
     function requestHandler(res) {
+        
 		if (!res) {
 			console.log(res, "no response from the server");
+            console.log(selectionNameList)
 			Router.push(
 				{
 					pathname: "/summoner/summonerNotFound",
-					query: {summonerName: search, reqServers: selectionNameList}
+					query: {
+                        summonerName: search, 
+                        reqServers: 
+                        [
+                            selectionNameList[0].serverName, 
+                            selectionNameList[1].serverName, 
+                            selectionNameList[2].serverName, 
+                            selectionNameList[3].serverName, 
+                            selectionNameList[4].serverName, 
+                            selectionNameList[5].serverName, 
+                            selectionNameList[6].serverName, 
+                        ],
+                        regionFullName:
+                        JSON.stringify(
+                            {
+                                [selectionNameList[0].serverName]: selectionNameList[0].fullName, 
+                                [selectionNameList[1].serverName]: selectionNameList[1].fullName, 
+                                [selectionNameList[2].serverName]: selectionNameList[2].fullName, 
+                                [selectionNameList[3].serverName]: selectionNameList[3].fullName, 
+                                [selectionNameList[4].serverName]: selectionNameList[4].fullName, 
+                                [selectionNameList[5].serverName]: selectionNameList[5].fullName, 
+                                [selectionNameList[6].serverName]: selectionNameList[6].fullName, 
+                            }
+                        )
+                    }
 				}
 			);
 			setSearch("");
