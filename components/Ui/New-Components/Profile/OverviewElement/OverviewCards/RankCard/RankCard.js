@@ -15,7 +15,7 @@ const RankCard = (props) => {
             className={` ${
                 props.className
                     ? props.className
-                    : "px-[17px] py-[27px] grid grid-cols-4 grid-rows-2 gap-3 bg-card-&-content-box w-[200px] border-r border-background"
+                    : "px-[17px] py-[27px] grid grid-cols-4 grid-rows-2 gap-3 bg-card-&-content-box border-r border-background"
             }`}
         >
             {imageList.map((img, index) => {

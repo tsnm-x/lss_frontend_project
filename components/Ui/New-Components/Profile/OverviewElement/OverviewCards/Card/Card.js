@@ -3,10 +3,14 @@ import StatusCard from "../StatusCard/StatusCard";
 import RankCard from "../RankCard/RankCard";
 import PlayerList from "../PlayerList/PlayerList";
 import ExpandCard from "../../OverviewExpand/ExpandCard/ExpandCard";
+import "./Card.module.css";
 import { CardContext } from "../../../../../../../pages/summoner/summoner";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Card = (props) => {
-    const { expandCardNo } = useContext(CardContext);
+    const [addClass, setAddClass] = useState(false);
+    const { expandCardNo, expand } = useContext(CardContext);
 
     return (
         <>
@@ -14,10 +18,12 @@ const Card = (props) => {
                 <ExpandCard />
             ) : (
                 <div
-                    className={`rounded-5px overflow-hidden flex justify-start border-b border-background ${props.className}`}
+                    className={` rounded-5px overflow-hidden grid grid-cols-[35%_24%_41%] border-b border-background ${
+                        expand ? "" : " "
+                    } ${props.className}`}
                 >
-                    <StatusCard {...props} />
-                    <RankCard />
+                    <StatusCard expand={expand} {...props} />
+                    <RankCard expand={expand} />
                     <PlayerList index={props.index} {...props} />
                 </div>
             )}
