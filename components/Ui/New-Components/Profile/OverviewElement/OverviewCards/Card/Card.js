@@ -4,7 +4,7 @@ import RankCard from "../RankCard/RankCard";
 import PlayerList from "../PlayerList/PlayerList";
 import ExpandCard from "../../OverviewExpand/ExpandCard/ExpandCard";
 import "./Card.module.css";
-import { CardContext } from "../../../../../../../pages/summoner/summoner";
+import { CardContext } from "../../../../../../../pages/summoner/[region]/[summonerName]/index";
 import { useEffect } from "react";
 import { useState } from "react";
 

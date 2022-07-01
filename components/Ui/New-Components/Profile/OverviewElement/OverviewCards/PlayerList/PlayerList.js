@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BiExpand } from "react-icons/bi";
 import Image from "next/image";
-import { CardContext } from "../../../../../../../pages/summoner/summoner";
+import { CardContext } from "../../../../../../../pages/summoner/[region]/[summonerName]/index";
 // player list
 import Atrox from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Aatrox.png";
 import Akali from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Akali.png";

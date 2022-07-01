@@ -3,7 +3,7 @@ import OverviewCards from "../OverviewCards/OverviewCards";
 import OverviewLeft from "../OverviewLeft/OverviewLeft";
 import AdsImg from "../../../../../../public/assets/new-images/Profile/ads.png";
 import Image from "next/image";
-import { CardContext } from "../../../../../../pages/summoner/summoner";
+import { CardContext } from "../../../../../../pages/summoner/[region]/[summonerName]/index";
 
 const Overview = (props) => {
     const { expand, expandControl } = useContext(CardContext);
