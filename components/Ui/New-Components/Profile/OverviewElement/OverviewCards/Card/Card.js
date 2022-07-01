@@ -23,7 +23,7 @@ const Card = (props) => {
                     } ${props.className}`}
                 >
                     <StatusCard expand={expand} {...props} />
-                    <RankCard expand={expand} />
+                    <RankCard expand={expand} {...props}/>
                     <PlayerList index={props.index} {...props} />
                 </div>
             )}

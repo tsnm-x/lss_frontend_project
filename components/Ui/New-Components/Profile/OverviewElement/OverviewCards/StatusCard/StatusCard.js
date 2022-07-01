@@ -132,6 +132,7 @@ const LeftSide = (props) => {
 };
 
 const RightSide = (props) => {
+    const [teamKills, setTeamKills] = useState(1)
     const selectSpell = (id) => {
         switch (id) {
             case 21:
@@ -186,6 +187,19 @@ const RightSide = (props) => {
                 return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
         }
     };
+
+    useEffect(()=>{
+        let totalKills = 0;
+        let winState = props.mainPlayer.win;
+        props?.match?.players.forEach((player)=>{
+            console.log(player);
+            if(player.win == winState){
+                console.log("hi")
+                totalKills = totalKills + player.kills
+            }
+        });
+        if(totalKills) setTeamKills(totalKills);
+    }, [props?.match?.players])
     return (
         <div>
             {/* top images  */}
@@ -264,9 +278,9 @@ const RightSide = (props) => {
             {/* bottom texts  */}
             <div className=" font-sf-pro-text font-bold text-[9.5px] leading-[11px] pl-2 mt-[17px] ">
                 <p className=" text-grayed-text ">
-                    <span className=" text-accent-color-2">2:1</span> KDA
+                    <span className=" text-accent-color-2">{(((props.mainPlayer?.assists + props.mainPlayer?.kills) / (props.mainPlayer?.deaths? props.mainPlayer?.deaths : 1)).toFixed(2))}:1</span> KDA
                 </p>
-                <p className=" text-grayed-text mt-[2px] ">47.05% KP</p>
+                <p className=" text-grayed-text mt-[2px] ">{teamKills && ((((props.mainPlayer.kills + props.mainPlayer?.assists) / teamKills) * 100).toFixed(1))}% KP</p>
             </div>
         </div>
     );
@@ -282,10 +296,6 @@ const StatusCard = (props) => {
         setMainPlayer(main)
     }, [props.match])
 
-    useEffect(()=>{
-        console.log(props.match)
-    }, [mainPlayer])
-
     return (
         <div
             className={`  bg-card-&-content-box
@@ -294,9 +304,9 @@ const StatusCard = (props) => {
              }`}
         >
             {/* left side  */}
-            <LeftSide {...props} matches={props.matches} mainPlayer={mainPlayer} />
+            <LeftSide {...props} match={props.match} mainPlayer={mainPlayer} />
             {/* right side  */}
-            <RightSide expand={props.expand} matches={props.matches} mainPlayer={mainPlayer} />
+            <RightSide expand={props.expand} match={props.match} mainPlayer={mainPlayer} />
         </div>
     );
 };

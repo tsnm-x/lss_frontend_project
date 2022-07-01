@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import One from "../../../../../../../public/assets/new-images/Profile/card/one.png";
-import Two from "../../../../../../../public/assets/new-images/Profile/card/two.png";
-import Three from "../../../../../../../public/assets/new-images/Profile/card/three.png";
-import Four from "../../../../../../../public/assets/new-images/Profile/card/four.png";
-import Five from "../../../../../../../public/assets/new-images/Profile/card/five.png";
-import Six from "../../../../../../../public/assets/new-images/Profile/card/six.png";
 
 const RankCard = (props) => {
-    const imageList = [One, Two, Three, Four, Five, Six, null];
+    const [mainPlayer, setMainPlayer] = useState({});
+
+    useEffect(()=>{
+        let main = props?.match?.players.find((player) => {
+            return player.mainPlayer == true;
+        })
+        setMainPlayer(main)
+    }, [props.match])
 
     return (
         <div
@@ -18,7 +19,7 @@ const RankCard = (props) => {
                     : "px-[17px] py-[27px] grid grid-cols-4 grid-rows-2 gap-3 bg-card-&-content-box border-r border-background"
             }`}
         >
-            {imageList.map((img, index) => {
+            {[mainPlayer?.item0, mainPlayer?.item1, mainPlayer?.item2, mainPlayer?.item3, mainPlayer?.item4, mainPlayer?.item5].map((item, index) => {
                 return (
                     <div
                         className={`relative rounded-full bg-[#2f2936] ${
@@ -28,8 +29,8 @@ const RankCard = (props) => {
                         }`}
                         key={index}
                     >
-                        {img && (
-                            <Image src={img} alt="batch image" layout="fill" />
+                        {item !== 0 && (
+                            <Image className="rounded-full" src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`} alt="batch image" layout="fill" />
                         )}
                     </div>
                 );
