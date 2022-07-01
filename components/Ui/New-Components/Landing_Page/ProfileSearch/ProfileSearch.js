@@ -165,6 +165,7 @@ const ProfileSearch = (props) => {
 	function searchHandler(e) {
         if(e.key === "Enter"){
             console.log("Entered!");
+            console.log(activeListDetails.selectedItem.serverName);
             e.preventDefault();
             sendRequest(
                 {
