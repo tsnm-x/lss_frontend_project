@@ -132,12 +132,60 @@ const LeftSide = (props) => {
 };
 
 const RightSide = (props) => {
-    const [data, setData] = [
-        {
-            power: [SummonerFlash, SummonerHeal, ],
-            batch: [BatchImg1, BatchImg2],
-        },
-    ];
+    const selectSpell = (id) => {
+        switch (id) {
+            case 21:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
+
+            case 4:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerFlash.png";
+
+            case 1:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBoost.png";
+
+            case 14:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerDot.png";
+
+            case 3:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerExhaust.png";
+
+            case 6:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHaste.png";
+
+            case 7:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHeal.png";
+
+            case 13:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerMana.png";
+
+            case 30:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroRecall.png";
+
+            case 31:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroThrow.png";
+
+            case 11:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSmite.png";
+
+            case 39:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowURFSnowball_Mark.png";
+
+            case 32:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowball.png";
+
+            case 12:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerTeleport.png";
+
+            case 54:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookPlaceholder.png";
+
+            case 55:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
+
+            default:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
+        }
+    };
     return (
         <div>
             {/* top images  */}
@@ -169,7 +217,7 @@ const RightSide = (props) => {
                 <div className=" flex ">
                     {/* powers  */}
                     <div className=" mr-2 ">
-                        {data.power.map((power, index) => {
+                        {[props.mainPlayer?.summoner1Id, props.summoner2Id].map((power, index) => {
                             return (
                                 <div
                                     key={index}
@@ -180,7 +228,7 @@ const RightSide = (props) => {
                                     }`}
                                 >
                                     <Image
-                                        src={power}
+                                        src={selectSpell(power)}
                                         alt="summoner flash image"
                                         layout="fill"
                                         className=" rounded-5px "
@@ -190,7 +238,7 @@ const RightSide = (props) => {
                         })}
                     </div>
                     {/* batch  */}
-                    <div className=" mr-2 ">
+                    {/* <div className=" mr-2 ">
                         {data.batch.map((power, index) => {
                             return (
                                 <div
@@ -210,7 +258,7 @@ const RightSide = (props) => {
                                 </div>
                             );
                         })}
-                    </div>
+                    </div> */}
                 </div>
             </div>
             {/* bottom texts  */}
