@@ -1,14 +1,22 @@
 import React from 'react'
 
-const CardControlBtns = () => {
+const CardControlBtns = (props) => {
+
+  const filterMatches = (btn) => {
+    if (btn === props.selectedMatchType) {
+        props.setSelectedMatchType("all");
+    } else {
+        props.setSelectedMatchType(btn);
+      }
+  };
   return (
     <div className=''>
-      <button className=' sf-mid-14 text-center text-light-text capitalize py-[11px] px-[30px]
-       bg-buttons-gray rounded-5px mr-[5px] '>Ranked solo</button>
-      <button className=' sf-mid-14 text-center text-grayed-text capitalize py-[11px] px-[30px]
-       bg-buttons-gray rounded-5px mr-[5px] '>ranked flex</button>
-      <button className=' sf-mid-14 text-center text-grayed-text capitalize py-[11px] px-[30px]
-       bg-buttons-gray rounded-5px '>normals</button>
+      {props?.ControlBtnLists.map((btnName, index) => {
+        return (
+          <button key={index} onClick={() => filterMatches(btnName)} className={` sf-mid-14 text-center  capitalize py-[11px] px-[30px]
+          bg-buttons-gray rounded-5px mr-[5px] ${ (btnName === props.selectedMatchType) || (btnName === "ranked solo" && props.selectedMatchType === "all")? 'text-light-text': 'text-grayed-text'}`}>{btnName}</button>
+        )
+      })}
     </div>
   )
 }

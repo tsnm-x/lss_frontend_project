@@ -10,7 +10,7 @@ const OverviewCards = (props) => {
     const { cards } = props;
     return (
         <aside className={` w-full ${props.expand && 'card-expand'}`}>
-            <CardControlBtns />
+            <CardControlBtns selectedMatchType={props?.selectedMatchType} setSelectedMatchType={props?.setSelectedMatchType} ControlBtnLists={props?.ControlBtnLists}/>
             <div className=" mt-5 relative">
                 {/* card container  */}
                 <div className=" ">

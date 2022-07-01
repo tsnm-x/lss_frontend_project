@@ -11,8 +11,17 @@ const PlayerInfo = (props) => {
                 className=" container laptop:flex laptop:items-end laptop:justify-between
              laptop:pt-[67px] laptop:pb-[31px] relative z-30 "
             >
-                <Profile />
-                <RanksList />
+                <Profile
+                    btnDetails={props?.btnDetails}
+                    summonerName={props?.summonerName}
+                    profileIcon={props?.profileIcon}
+                    summonerLevel={props?.summonerLevel}
+                    region={props?.region}
+                />
+                <RanksList 
+                    rankSolo={props?.rankSolo}
+                    rankFlex={props?.rankFlex}
+                />
             </div>
             {/* cover photo  */}
             <div className=" w-full h-full absolute left-0 top-0 z-10">

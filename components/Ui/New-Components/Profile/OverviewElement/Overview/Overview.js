@@ -47,7 +47,7 @@ const Overview = (props) => {
                 {/* left side  */}
                 {!expand && <OverviewLeft />}
                 {/* center  */}
-                <OverviewCards cards={cardList} expand={expand} />
+                <OverviewCards cards={cardList} expand={expand} ControlBtnLists={props?.ControlBtnLists} selectedMatchType={props?.selectedMatchType} setSelectedMatchType={props?.setSelectedMatchType}/>
             </div>
             {!expand && (
                 <div className=" absolute right-0 top-[60px] w-[170px] h-full max-h-[1105px] ">

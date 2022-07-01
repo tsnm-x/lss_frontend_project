@@ -4,7 +4,7 @@ import Classes from "./ShowMore.module.css";
 
 const ShowMore = (props) => {
   const ClickHandler = () => {
-        props.click();
+        props?.click();
     };
 
     return (
