@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 
 const Table = () => {
 
-  const [expand, setExpand] = useState(false);
+  	const [expand, setExpand] = useState(false);
 	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
 	const {sendRequest, hasError} = useHttp();
 	const [matches, setMatches] = useState([]);
