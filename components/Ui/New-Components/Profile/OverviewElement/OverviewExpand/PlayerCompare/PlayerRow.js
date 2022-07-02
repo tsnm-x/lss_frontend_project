@@ -20,7 +20,6 @@ const PlayerRow = (props) => {
     const [ranks, setRanks] = useState([]);
     const {sendRequest} = useHttp();
     useEffect(() => {
-        props.index == 3 ? setActive(true) : null;
 
         sendRequest(
             {
@@ -35,6 +34,16 @@ const PlayerRow = (props) => {
             }
         );
     }, []);
+
+
+    useEffect(()=>{
+        active && props.setSelectedPlayer(props.player)
+    }, [active])
+
+    useEffect(()=>{
+        props.selectedPlayer.summonerId === props.player.summonerId ? setActive(true) : setActive(false)
+    }, [props.selectedPlayer])
+
 
     const rankSolo = ranks?.find((el) => el.queueType === "RANKED_SOLO_5x5");
 
@@ -173,15 +182,17 @@ const PlayerRow = (props) => {
     };
     return (
         <div
-            className={`flex justify-between w-full items-center relative mb-[10px] last:mb-0 rounded-[3px] ${
+            className={`flex justify-between w-full items-center cursor-pointer relative mb-[10px] last:mb-0 rounded-[3px] ${
                 props.reverse ? " pr-6 pl-4 " : "pr-4 pl-6 "
             } ${
-                active
+                props.player.summonerId === props.selectedPlayer.summonerId 
                     ? props.reverse
                         ? " bg-accent-color-2"
                         : "bg-accent-color "
                     : ""
             }`}
+
+            onClick={() => setActive(true)}
         >
             <div className={`${props.reverse ? "order-5" : "order-1"}`}>
                 <h6 className=" sf-bold-12 text-light-text font-bold ">

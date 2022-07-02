@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Player1img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-1.png";
 import Player2img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-2.png";
 import Player3img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-3.png";
+import useHttp from "../../../../../../../hook/useHttp";
+import { useRouter } from "next/router";
 
 const PlayerRow = (props) => {
     // profileImg: Player1img,
@@ -70,6 +72,96 @@ const PlayerRow = (props) => {
 };
 
 const OftenPlayWith = () => {
+    const [matches, setMatches] = useState([]);
+	const playersArr = []
+	const [players, setPlayers] = useState([]);
+	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
+	const {sendRequest, hasError} = useHttp();
+	const router = useRouter();
+
+
+	const requestHandler = (res) => {
+		if(!res){
+			console.log("no response from server");
+			return;
+		}
+		
+		setMatches(res.data?.matches);
+	}
+
+	useEffect(()=>{
+		sendRequest(
+			{
+				url: "/seasonMostPlayed",
+				method: "GET",
+				params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
+			},
+			requestHandler
+		);
+	}, [])
+	
+	useEffect(()=>{
+		matches?.forEach((match)=>{
+			match.players.forEach((player) => {
+				if(!player.mainPlayer){
+					playersArr.push(player)
+				}
+			})
+			
+		});
+
+		setPlayers(playersArr);
+	}, [matches]);
+
+
+	useEffect(()=>{
+
+		let maxcount = 0;
+		let deaths = 0;
+		let assists = 0;
+		let kills = 0;
+		let winCount = 0;
+		let lossCount = 0;
+
+		for (let i = 0; i < players.length; i++) {
+			let count = 0;
+			for (let j = 0; j < players.length; j++) {
+
+				if ((players[i].summonerId == players[j].summonerId) && !players[i].mainPlayer){
+					count++;
+					deaths = deaths + players[j].deaths;
+					assists = assists + players[j].assists;
+					kills = kills + players[j].kills;
+					players[j].win? winCount++ : lossCount++;
+					
+				}
+			}
+
+			if (count > maxcount) {
+				maxcount = count;
+				setMostPlayedWithList([...mostPlayedWithList,{ ...players[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount}]);
+			}
+
+			deaths = 0;
+			assists = 0;
+			kills = 0;
+			winCount = 0;
+			lossCount = 0;
+
+
+		}
+	}, [players]);
+
+	useEffect(()=>{
+
+		const newPlayers = players.filter((player)=> player.summonerId !== mostPlayedWithList[mostPlayedWithList.length-1].summonerId);
+
+		if(newPlayers[0]){
+			setPlayers(newPlayers);
+		}
+
+	}, [mostPlayedWithList])
+
     const oftenPlayerData = [
         {
             profileImg: Player1img,

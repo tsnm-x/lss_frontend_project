@@ -141,7 +141,7 @@ const Precision = (props) => {
                                 className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 ${
                                     option.active
                                         ? "border border-nav-btn "
-                                        : null
+                                        :  "opacity-30"
                                 }`}
                                 key={index}
                             >

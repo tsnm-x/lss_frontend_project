@@ -43,7 +43,7 @@ const ExpandCard = (props) => {
                                 currentRunes={showRunes}
                             />
                             {/* los and win row  */}
-                            <LosAndWinRow showProfile={showRunes} />
+                            <LosAndWinRow showProfile={showRunes} {...props} />
                         </>
                     ) : (
                         <HeaderOnSimulateGameMode />
