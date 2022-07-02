@@ -118,7 +118,7 @@ const Summoner = () => {
                         cardProps: cardProps
                     }}
                 >
-                    <Overview selectedMatchType={selectedMatchType} ControlBtnLists={ControlBtnLists} setSelectedMatchType={setSelectedMatchType} matches={matches} />
+                    <Overview selectedMatchType={selectedMatchType} ControlBtnLists={ControlBtnLists} setSelectedMatchType={setSelectedMatchType} matches={matches} region={router.query?.region} />
                 </CardContext.Provider>
             ) : (
                 <Table />

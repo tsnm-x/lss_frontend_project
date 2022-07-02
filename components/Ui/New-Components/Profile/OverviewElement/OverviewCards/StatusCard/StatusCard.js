@@ -223,7 +223,7 @@ const RightSide = (props) => {
                 >
                     <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
                         <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${props.mainPlayer?.profileIcon}.png`}
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.mainPlayer?.profileIcon}.png`}
                             alt="profile image"
                             layout="fill"
                         />

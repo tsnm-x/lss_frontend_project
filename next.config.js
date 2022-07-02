@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: false,
 	images: {
-		domains: ["ddragon.leagueoflegends.com"],
+		domains: ["ddragon.leagueoflegends.com", "avatar.leagueoflegends.com"],
 	},
 	typescript: {
 		// !! WARN !!

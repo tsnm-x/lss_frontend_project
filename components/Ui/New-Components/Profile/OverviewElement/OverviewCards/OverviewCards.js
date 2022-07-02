@@ -48,19 +48,19 @@ const OverviewCards = (props) => {
                     {/* <ExpandCard /> */}
                     {/* card list  */}
                     {props.matches[0] && props.selectedMatchType === "all" && props.matches.map((match, index) => {
-                        return <Card key={index} index={index} match={match} />;
+                        return <Card key={index} index={index} match={match} region={props?.region}/>;
                     })}
 
                     {rankedSolo[0] && props.selectedMatchType === "ranked solo" && rankedSolo.map((match, index) => {
-                        return <Card key={index} index={index} match={match} />;
+                        return <Card key={index} index={index} match={match} region={props?.region} />;
                     })}
 
                     {rankedFlex[0] && props.selectedMatchType === "ranked flex" && rankedFlex.map((match, index) => {
-                        return <Card key={index} index={index} match={match} />;
+                        return <Card key={index} index={index} match={match} region={props?.region} />;
                     })}
 
                     {normals[0] && props.selectedMatchType === "normals" && normals.map((match, index) => {
-                        return <Card key={index} index={index} match={match} />;
+                        return <Card key={index} index={index} match={match} region={props?.region} />;
                     })}
 
                     {!loaderViewer && (

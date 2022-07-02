@@ -51,7 +51,7 @@ const ExpandCard = (props) => {
                 </div>
                 {/* player compare  */}
                 <RunesContext.Provider value={{ runes: showRunes }}>
-                    <PlayerCompare showRunes={showRunes} />
+                    <PlayerCompare showRunes={showRunes} {...props} />
                 </RunesContext.Provider>
                 {/* simulate btn and simulation card  */}
                 <div className=" text-center mt-16 pb-[73px] mb-4 ">
