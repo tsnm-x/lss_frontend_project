@@ -6,11 +6,11 @@ const Champion = (props) => {
     return (
         <div className=" flex items-center ">
             <div className=" relative w-[29px] h-[29px] mr-[7px] ">
-                <Image src={props[0].img} alt="image" layout="fill" />
+                <Image src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.championName}_0.jpg`} alt="image" layout="fill" />
             </div>
             <p className=" text-light-text capitalize">
-                {props[0].name}{" "}
-                <span className=" text-grayed-text">({props[0].games} Games)</span>
+                {props.championName}{" "}
+                <span className=" text-grayed-text">({props.winCount + props.lossCount} Games)</span>
             </p>
         </div>
     );
@@ -19,23 +19,23 @@ const Champion = (props) => {
 const TableBodyRow = (props) => {
     return (
         <div className={` ${classes.tableBodyRow} ${props.className}`}>
-            <div className=" text-grayed-text">#{props.rank}</div>
+            <div className=" text-grayed-text">#{props.champLevel}</div>
             <div className=" text-light-text uppercase ">{props.role}</div>
-            <Champion {...props.champion} />
-            <div className=" text-accent-color-3">{props.wr}</div>
+            <Champion {...props} />
+            <div className=" text-accent-color-3">{(props.winCount / (props.winCount + props.lossCount) * 100).toFixed(2)}</div>
             <div className=" text-accent-color-3">
-                {props.kda}
-                <span className=" text-grayed-text">:{props.kdaThunk}</span>
+            {(((props.totalAssists + props.totalKills) / (props.totalDeaths? props.totalDeaths : 1)).toFixed(2))}
+                <span className=" text-grayed-text">:1</span>
             </div>
-            <div className=" text-light-text">{props.csMin}</div>
+            <div className=" text-light-text">{props.avgCs.toFixed(2)}</div>
             <div className=" text-accent-color-3 ">
-                {props.goldMin}{" "}
+                {props.goldPerMinute.toFixed(2)}{" "}
                 <span className=" text-grayed-text capitalize text-[12px] ">
                     g/min
                 </span>
             </div>
             <div className=" text-light-text ">
-                {props.damageDealt.toLocaleString()}
+                {props.totalDamageDealt.toLocaleString()}
             </div>
         </div>
     );

@@ -29,8 +29,8 @@ const Table = () => {
 	}
 
   function convertM(value) {
-		const sec = parseInt(value, 10); // convert value to number if it's string
-		let minutes = Math.floor((sec * 3600) / 60); // get minutes
+		const sec = parseInt(value); // convert value to number if it's string
+		let minutes = Math.floor(sec / 60) // get minutes
 		return minutes;
 	}
 
@@ -69,6 +69,7 @@ const Table = () => {
     let totalMatches = 0;
     let avgCs = 0;
     let totalDuration = 0;
+    let totalDamageDealt = 0;
 
 		for (let i = 0; i < mainPlayerChamps.length; i++) {
 			let count = 0;
@@ -83,13 +84,14 @@ const Table = () => {
 					mainPlayerChamps[j].win? winCount++ : lossCount++;
           totalMatches++;
           totalDuration = totalDuration + mainPlayerChamps[j].duration;
+          totalDamageDealt = totalDamageDealt + mainPlayerChamps[j].magicDamageDealt
 				}
 			}
 
 			if (count > maxcount) {
 				maxcount = count;
-        avgCs = totalCs / totalMatches / convertM(totalDuration)
-				setSeasonMostPlayedList([...seasonMostPlayedList,{ ...mainPlayerChamps[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount, avgCs}]);
+        avgCs = (totalCs / totalMatches) / convertM(totalDuration)
+				setSeasonMostPlayedList([...seasonMostPlayedList,{ ...mainPlayerChamps[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount, avgCs, totalDamageDealt}]);
 			}
 
       deaths = 0;
@@ -101,6 +103,7 @@ const Table = () => {
       totalMatches = 0;
       avgCs = 0;
       totalDuration = 0;
+      totalDamageDealt = 0;
 
 
 		}
@@ -121,132 +124,6 @@ const Table = () => {
 	}, [seasonMostPlayedList])
 
 
-  
-  const tableData = [
-    {
-      rank: 1,
-      role: 'adc',
-      champion: [{
-        img: JhinImg,
-        name: 'jhin',
-        games: 214
-      }],
-      wr: 57.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20901
-    },
-    {
-      rank: 2,
-      role: 'bdg',
-      champion: [{
-        img: ZiggsImg,
-        name: 'jhin',
-        games: 114
-      }],
-      wr: 31.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20101
-    },
-    {
-      rank: 1,
-      role: 'adc',
-      champion: [{
-        img: JhinImg,
-        name: 'jhin',
-        games: 214
-      }],
-      wr: 57.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20901
-    },
-    {
-      rank: 2,
-      role: 'bdg',
-      champion: [{
-        img: ZiggsImg,
-        name: 'jhin',
-        games: 114
-      }],
-      wr: 31.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20101
-    },
-    {
-      rank: 1,
-      role: 'adc',
-      champion: [{
-        img: JhinImg,
-        name: 'jhin',
-        games: 214
-      }],
-      wr: 57.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20901
-    },
-    {
-      rank: 2,
-      role: 'bdg',
-      champion: [{
-        img: ZiggsImg,
-        name: 'jhin',
-        games: 114
-      }],
-      wr: 31.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20101
-    },
-    {
-      rank: 1,
-      role: 'adc',
-      champion: [{
-        img: JhinImg,
-        name: 'jhin',
-        games: 214
-      }],
-      wr: 57.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20901
-    },
-    {
-      rank: 2,
-      role: 'bdg',
-      champion: [{
-        img: ZiggsImg,
-        name: 'jhin',
-        games: 114
-      }],
-      wr: 31.21,
-      kda: 2.14,
-      kdaThunk: 1,
-      csMin: 6.7,
-      goldMin: 421,
-      damageDealt: 20101
-    },
-    
-  ]
-
-
   return (
     <section className=' mt-[100px] mb-[300px] '>
       <div className="container">
@@ -255,7 +132,7 @@ const Table = () => {
         {/* table row  */}
         <div className=' mt-[25px] '>
           {
-            tableData.map((row, index) => {
+            seasonMostPlayedList.length >= 10 && seasonMostPlayedList.slice(0,11).map((row, index) => {
               return (
                 <TableBodyRow key={index} {...row} />
               )
