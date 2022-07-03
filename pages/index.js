@@ -16,7 +16,7 @@
 
 import React, { useState } from "react";
 import classes from "../styles/index.module.css";
-import Header from "../components/shared/New-Componets/header/Header";
+import Header from "../components/shared/New-Componets/Header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
 import AdvertiseAndDownloadNow from "../components/Ui/New-Components/Landing_Page/AdvertiseAndDownloadNow/AdvertiseAndDownloadNow";
 import Footer from "../components/shared/New-Componets/Footer/Footer";
