@@ -1,45 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Classes from "./RunesOverview.module.css";
-import PrecisionBg from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Precision_splash_art.png";
-import InspirationBg from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Inspiration_splash_art.png";
-import RuneStateBg from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Hecarim_0.png";
-// precision icons ------------------------------------------------
-// parent icon
-import PrecisionParent from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/7201_Precision.png";
-// options
-import Conquerer from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/main/Conqueror.png";
-import FleetFloot from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/main/FleetFootwork.png";
-import LethalTempo from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/main/LethalTempoTemp.png";
-import PressTheAttack from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/main/PressTheAttack.png";
-// icons
-import coupDeGrace from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/CoupDeGrace.png";
-import cutDown from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/CutDown.png";
-import LegendAlacrity from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/LegendAlacrity.png";
-import LegendBloodline from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/LegendBloodline.png";
-import LegendTenacity from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/LegendTenacity.png";
-import Overheal from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/Overheal.png";
-import PresenceOfMind from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/PresenceOfMind.png";
-import Triumph from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Precision/Triumph.png";
-// inspiration icons -----------------------------------------------------
-import InspirationParent from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/Inspiration_icon.png";
-// icons
-import HextechFlashtraption from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/HextechFlashtraption.png";
-import MagicalFootwear from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/MagicalFootwear.png";
-import PerfectTiming from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/PerfectTiming.png";
-import FuturesMarket from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/FuturesMarket.png";
-import MinionDematerializer from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/MinionDematerializer.png";
-import BiscuitDelivery from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/BiscuitDelivery.png";
-import TimeWarpTonic from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/TimeWarpTonic.png";
-import CosmicInsight from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/CosmicInsight.png";
-import ApproachVelocity from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Inspiration/ApproachVelocity.png";
-// runes icons
-import StatModsAdaptiveForceIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsAdaptiveForceIcon.png";
-import StatModsArmorIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsArmorIcon.png";
-import StatModsAttackSpeedIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsAttackSpeedIcon.png";
-import StatModsCDRScalingIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsCDRScalingIcon.png";
-import StatModsHealthScalingIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsHealthScalingIcon.png";
-import StatModsMagicResIcon_MagicResist_Fix from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/RunStats/StatModsMagicResIcon.MagicResist_Fix.png";
 
 // precision component
 const Precision = (props) => {
@@ -308,6 +269,70 @@ const Precision = (props) => {
                         }
                     ]
                 }
+                default:
+                    return {
+                        firstSlot: [
+                            {
+                                id: 8005,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                            },
+                            {
+                                id: 8008,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png",
+                            },
+                            {
+                                id: 8021,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png",
+                            },
+                            {
+                                id: 8010,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Conqueror/Conqueror.png",
+                                
+                            }
+                        ],
+                        secondSlot: [
+                            {
+                                id: 9101,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Overheal.png",
+                            },
+                            {
+                                id: 9111,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Triumph.png",
+                            },
+                            {
+                                id: 8009,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png",
+                            }
+                        ],
+                        thirdSlot: [
+                            {
+                                id: 9104,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png",
+                            },
+                            {
+                                id: 9105,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png",
+                            },
+                            {
+                                id: 9103,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png",
+                            }
+                        ],
+                        fouthSlot: [
+                            {
+                                id: 8014,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png",
+                            },
+                            {
+                                id: 8017,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CutDown/CutDown.png",
+                            },
+                            {
+                                id: 8299,
+                                image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/LastStand/LastStand.png",
+                            }
+                        ]
+                    }
         }
     }
 
@@ -319,9 +344,29 @@ const Precision = (props) => {
         return false
     }
 
+    const selectClass = (id) => {
+        switch (id) {
+			case 8100:
+				return `${Classes.DominationWrap}`
+			case 8300:
+				return `${Classes.InspirationWrap}`
+			case 8000:
+				return `${Classes.PrecisionWrap}`;
+			case 8400:
+				return `${Classes.ResolveWrap}`
+			case 8200:
+				return `${Classes.SorceryWrap}`
+
+			// todo: add image placeholder as default
+			default:
+				return `${Classes.PrecisionWrap}`;
+		}
+    }
+
     return (
         <div
             className={`${Classes.PrecisionWrap} h-full p-[22px] rounded-5px `}
+            
         >
             <h1 className=" sf-bold-11 text-light-text capitalize text-center">
                 {styleNameSelector(props?.selectedPlayer?.perks?.styles[0]?.style)}
@@ -337,7 +382,7 @@ const Precision = (props) => {
                 </div>
                 {/* options  */}
                 <div className=" flex mt-3 ">
-                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style) && selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).firstSlot.map((option, index) => {
+                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).firstSlot.map((option, index) => {
                         return (
                             <div
                                 className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 ${
@@ -358,7 +403,7 @@ const Precision = (props) => {
                 </div>
                 {/* all the batches  */}
                 <div className=" grid grid-cols-3 grid-rows-3 gap-3 mt-3 ">
-                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style) && selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).secondSlot.map((batch, index) => {
+                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).secondSlot.map((batch, index) => {
                         return (
                             <div
                                 className={`relative w-7 h-7 rounded-full ${
@@ -376,7 +421,7 @@ const Precision = (props) => {
                             </div>
                         );
                     })}
-                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style) && selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).thirdSlot.map((batch, index) => {
+                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).thirdSlot.map((batch, index) => {
                         return (
                             <div
                                 className={`relative w-7 h-7 rounded-full ${
@@ -680,6 +725,29 @@ const Inspiration = (props) => {
                         }
                     ]
                 }
+                default:
+                    return {
+                        firstSlot: [
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png", id: 8351},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png", id: 8360},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png", id: 8369}
+                        ],
+                        secondSlot: [
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png", id: 8306},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png", id: 8304},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/PerfectTiming/PerfectTiming.png", id: 8313}
+                        ],
+                        thirdSlot: [
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png", id: 8321},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png", id: 8316},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png", id: 8345}
+                        ],
+                        fouthSlot:[
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png", id: 8347},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png", id: 8410},
+                            {image: "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png", id: 8352}
+                        ]
+                    }
         }
     }
 
@@ -709,7 +777,7 @@ const Inspiration = (props) => {
                 </div>
                 {/* all the batches  */}
                 <div className=" grid grid-cols-3 gap-3 mt-3 mb-0 ">
-                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style) && selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).secondSlot.map((batch, index) => {
+                    {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).secondSlot.map((batch, index) => {
                         return (
                             <div
                                 className={`relative w-5 h-5 rounded-full ${
@@ -727,7 +795,7 @@ const Inspiration = (props) => {
                             </div>
                         );
                     })}
-                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style) && selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).thirdSlot.map((batch, index) => {
+                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).thirdSlot.map((batch, index) => {
                         return (
                             <div
                                 className={`relative w-5 h-5 rounded-full ${
@@ -844,7 +912,11 @@ const RunesState = (props) => {
 
     return (
         <div
-            className={`${Classes.RunesStateWrap} h-full p-[14px] rounded-5px flex flex-col justify-center `}
+            className={`h-full p-[14px] rounded-5px flex flex-col justify-center `}
+            style = {{
+                background: `url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.selectedPlayer.championName}_0.jpg') no-repeat center center`,
+                backgroundSize: 'cover'
+            }}
         >
             {/* all the batches  */}
             <div className=" grid grid-cols-3 grid-rows-3 gap-[6px] mt-3 ">

@@ -192,7 +192,7 @@ const RightSide = (props) => {
 
     useEffect(()=>{
         let totalKills = 0;
-        let winState = props.mainPlayer.win;
+        let winState = props?.mainPlayer?.win;
         props?.match?.players.forEach((player)=>{
             if(player.win == winState){
                 totalKills = totalKills + player.kills
@@ -202,7 +202,7 @@ const RightSide = (props) => {
     }, [teamKills])
 
     useEffect(()=>{
-       setKp((((props.mainPlayer.kills + props.mainPlayer?.assists) / teamKills) * 100).toFixed(1))
+       setKp((((props?.mainPlayer?.kills + props?.mainPlayer?.assists) / teamKills) * 100).toFixed(1))
     }, [teamKills])
 
     useEffect(()=>{

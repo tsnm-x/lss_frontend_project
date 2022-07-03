@@ -68,7 +68,7 @@ const OverviewCards = (props) => {
                     )}
                 </div>
                 {/* show more btn  */}
-                <ShowMore />
+                <ShowMore region={props?.region} summonerName={props?.summonerName}/>
             </div>
         </aside>
     );

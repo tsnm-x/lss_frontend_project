@@ -56,22 +56,22 @@ const PlayerList = (props) => {
                             >
                                 <div className=" relative w-[22px] h-[22px] rounded-full mr-[8px] ">
                                     <Image
-                                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${player.profileIcon}.png`}
-                                        alt={player.summonerName + "image"}
+                                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${player?.profileIcon}.png`}
+                                        alt={player?.summonerName + "image"}
                                         layout="fill"
                                         className=" rounded-full"
                                     />
                                 </div>
                                 <h6
                                     className={`gotham-mid-15 capitalize ${
-                                        player.mainPlayer
-                                            ? player.win
+                                        player?.mainPlayer
+                                            ? player?.win
                                                 ? "text-accent-color-2"
                                                 : "text-accent-color"
                                             : "text-grayed-text"
                                     }`}
                                 >
-                                    {player.summonerName}
+                                    {player?.summonerName}
                                 </h6>
                             </div>
                         );
@@ -83,7 +83,7 @@ const PlayerList = (props) => {
                 onClick={() => CardExpand.expandControl(props.index, props)}
                 className={`h-full w-[30px] flex items-center justify-center
               rounded-tr-5px rounded-br-5px cursor-pointer ${
-                mainPlayer.win ? "bg-accent-color-2" : "bg-accent-color"
+                mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
               }`}
             >
                 <BiExpand

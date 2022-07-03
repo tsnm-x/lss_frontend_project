@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import useHttp from "../../../../../../hook/useHttp";
+import { profileAction } from "../../../../../../store/profile";
 import Classes from "./ShowMore.module.css";
 
 const ShowMore = (props) => {
+    const [start, setStart] = useState(10);
+    const {sendRequest} = useHttp();
+    const dispatch = useDispatch();
+
     function requestHandler(res) {
 		if (res?.status === 200) {
 			dispatch(
@@ -20,7 +27,7 @@ const ShowMore = (props) => {
 			{
 				url: "/summonerByName",
 				method: "POST",
-				body: { region, summonerName, start },
+				body: { region: props?.region, summonerName: props.summonerName, start },
 			},
 			requestHandler
 		);

@@ -9,8 +9,21 @@
         no-repeat center center;
     background-size: cover;
 }
-.RunesStateWrap {
-    background: url("../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Hecarim_0.png")
+
+.DominationWrap {
+    background: url("https://static.wikia.nocookie.net/leagueoflegends/images/c/c5/Domination_Loading.jpg/revision/latest?cb=20170926030811")
+        no-repeat center center;
+    background-size: cover;
+}
+
+.ResolveWrap {
+    background: url("https://static.wikia.nocookie.net/leagueoflegends/images/4/40/Resolve_Loading.jpg/revision/latest?cb=20170926030813")
+        no-repeat center center;
+    background-size: cover;
+}
+
+.SorceryWrap {
+    background: url("https://static.wikia.nocookie.net/leagueoflegends/images/9/90/Sorcery_Loading.jpg/revision/latest?cb=20170926030814")
         no-repeat center center;
     background-size: cover;
 }
