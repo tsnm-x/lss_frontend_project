@@ -1,19 +1,8 @@
 import React, {useEffect} from "react";
 import Image from "next/image";
-import SuggestedImage from "../../../../public/assets/Live/suggestedBuild.png";
-import SuggestedContents from "./SuggestedContent";
-import StartingItem1 from "../../../../public/assets/Live/suggested-builds/starting-item 1.png";
-import StartingItem2 from "../../../../public/assets/Live/suggested-builds/starting-item 2.png";
-import CoreItem1 from "../../../../public/assets/Live/suggested-builds/core-items 1.png";
-import CoreItem2 from "../../../../public/assets/Live/suggested-builds/core-items 2.png";
-import BuildItem1 from "../../../../public/assets/Live/suggested-builds/build-items 1.png";
-import BuildItem2 from "../../../../public/assets/Live/suggested-builds/build-items 2.png";
-import BuildItem3 from "../../../../public/assets/Live/suggested-builds/build-items 3.png";
-import BuildItem4 from "../../../../public/assets/Live/suggested-builds/build-items 4.png";
 import { useSelector } from "react-redux";
 import ItemsWithName from "../ItemsWithName/ItemsWithName";
-import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
-import ProfileImage from "../../../../public/assets/profile-image.png";
+import LiveContentWrap from "../../../HOC/old-components/LiveContentWrapHoc/LiveContentWrapHoc";
 
 const SuggestedBuild = (props) => {
     const matches = useSelector((state) => state.profile.profile);

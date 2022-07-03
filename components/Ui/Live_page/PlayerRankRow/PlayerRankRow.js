@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RankIcon from "../../../../public/assets/rank-icon.png";
+import RankIcon from "../../../../public/assets/old-images/rank-icon.png";
 import Image from "next/image";
 import ProgressGraph from "../../../../public/assets/old-images/graph/Group 419.png";
 
