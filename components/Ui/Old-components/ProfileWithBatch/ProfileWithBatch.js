@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import BatchOne from "../../../public/assets/batches/Conqueror_rune (1).png";
-import BatchTwo from "../../../public/assets/batches/inspiration.png";
 
 // import domination
-import Domination from "../../../public/assets/runes/7200_Domination.png";
-import DarkHarvest from "../../../public/assets/runes/Domination/DarkHarvest.png";
-import Electrocute from "../../../public/assets/runes/Domination/Electrocute.png";
-import HailOfBlades from "../../../public/assets/runes/Domination/HailOfBlades.png";
-import Predator from "../../../public/assets/runes/Domination/Predator.png";
+import Domination from "../../../../public/assets/old-images/runes/7200_Domination.png";
+import DarkHarvest from "../../../../public/assets/old-images/runes/Domination/DarkHarvest.png";
+import Electrocute from "../../../../public/assets/old-images/runes/Domination/Electrocute.png";
+import HailOfBlades from "../../../../public/assets/old-images/runes/Domination/HailOfBlades.png";
+import Predator from "../../../../public/assets/old-images/runes/Domination/Predator.png";
 // import inspiration
-import Inspiration from "../../../public/assets/runes/7203_Whimsy.png";
-import GlacialAugment from "../../../public/assets/runes/Inspiration/GlacialAugment.png";
-import MasterKey from "../../../public/assets/runes/Inspiration/MasterKey.png";
-import UnsealedSpellbook from "../../../public/assets/runes/Inspiration/UnsealedSpellbook.png";
+import Inspiration from "../../../../public/assets/old-images/runes/7203_Whimsy.png";
+import GlacialAugment from "../../../../public/assets/old-images/runes/Inspiration/GlacialAugment.png";
+import MasterKey from "../../../../public/assets/old-images/runes/Inspiration/MasterKey.png";
+import UnsealedSpellbook from "../../../../public/assets/old-images/runes/Inspiration/UnsealedSpellbook.png";
 
-import Precision from "../../../public/assets/runes/7201_Precision.png";
-import Conqueror from "../../../public/assets/runes/Precision/Conqueror.png";
-import FleetFootwork from "../../../public/assets/runes/Precision/FleetFootwork.png";
-import LethalTempoTemp from "../../../public/assets/runes/Precision/LethalTempoTemp.png";
-import PressTheAttack from "../../../public/assets/runes/Precision/PressTheAttack.png";
+import Precision from "../../../../public/assets/old-images/runes/7201_Precision.png";
+import Conqueror from "../../../../public/assets/old-images/runes/Precision/Conqueror.png";
+import FleetFootwork from "../../../../public/assets/old-images/runes/Precision/FleetFootwork.png";
+import LethalTempoTemp from "../../../../public/assets/old-images/runes/Precision/LethalTempoTemp.png";
+import PressTheAttack from "../../../../public/assets/old-images/runes/Precision/PressTheAttack.png";
 
-import Resolve from "../../../public/assets/runes/7204_Resolve.png";
-import GraspOfTheUndying from "../../../public/assets/runes/Resolve/GraspOfTheUndying.png";
-import Guardian from "../../../public/assets/runes/Resolve/Guardian.png";
-import VeteranAftershock from "../../../public/assets/runes/Resolve/VeteranAftershock.png";
+import Resolve from "../../../../public/assets/old-images/runes/7204_Resolve.png";
+import GraspOfTheUndying from "../../../../public/assets/old-images/runes/Resolve/GraspOfTheUndying.png";
+import Guardian from "../../../../public/assets/old-images/runes/Resolve/Guardian.png";
+import VeteranAftershock from "../../../../public/assets/old-images/runes/Resolve/VeteranAftershock.png";
 
-import Sorcery from "../../../public/assets/runes/7202_Sorcery.png";
-import ArcaneComet from "../../../public/assets/runes/Sorcery/ArcaneComet.png";
-import PhaseRush from "../../../public/assets/runes/Sorcery/PhaseRush.png";
-import SummonAery from "../../../public/assets/runes/Sorcery/SummonAery.png";
+import Sorcery from "../../../../public/assets/old-images/runes/7202_Sorcery.png";
+import ArcaneComet from "../../../../public/assets/old-images/runes/Sorcery/ArcaneComet.png";
+import PhaseRush from "../../../../public/assets/old-images/runes/Sorcery/PhaseRush.png";
+import SummonAery from "../../../../public/assets/old-images/runes/Sorcery/SummonAery.png";
 
 const ProfileWithBatch = (props) => {
 	const select1stRune = (runeId) => {
