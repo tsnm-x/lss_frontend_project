@@ -6,7 +6,7 @@ import classes from '../../styles/index.module.css'
 import useHttp from "../../hook/useHttp";
 import { useRouter } from "next/router";
 
-const summonerNotFound = () => {
+const SummonerNotFound = () => {
     const router = useRouter();
     const [summonersFromOtherAreas, setSummonersFromOtherAreas] = useState([]);
     const summoners = [];
@@ -87,4 +87,4 @@ const summonerNotFound = () => {
     );
 };
 
-export default summonerNotFound;
+export default SummonerNotFound;
