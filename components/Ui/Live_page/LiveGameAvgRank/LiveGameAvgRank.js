@@ -1,7 +1,6 @@
 import React from "react";
-import RankImg from "../../../../public/assets/rank-icon.png";
 import Image from "next/image";
-import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
+import LiveContentWrap from "../../../HOC/old-components/LiveContentWrapHoc/LiveContentWrapHoc";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";

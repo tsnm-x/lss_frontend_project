@@ -141,7 +141,9 @@ const OftenPlayWith = () => {
 
 			if (count > maxcount) {
 				maxcount = count;
-				setMostPlayedWithList([...mostPlayedWithList,{ ...players[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount}]);
+				if(maxcount > 1){
+                    setMostPlayedWithList([...mostPlayedWithList,{ ...players[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount}]);
+                }
 			}
 
 			deaths = 0;
@@ -234,7 +236,9 @@ const OftenPlayWith = () => {
             </h6>
             {/* card container  */}
             <div className=" laptop:mt-[13px]">
-                {mostPlayedWithList.length >= 10 && mostPlayedWithList.slice(0, 11).map((player, index) => {
+                {mostPlayedWithList.length >= 10 ? mostPlayedWithList.slice(0, 11).map((player, index) => {
+                    return <PlayerRow key={index} {...player} />;
+                }) : mostPlayedWithList.map((player, index) => {
                     return <PlayerRow key={index} {...player} />;
                 })}
             </div>
