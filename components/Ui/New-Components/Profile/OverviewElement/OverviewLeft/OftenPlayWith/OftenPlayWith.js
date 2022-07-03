@@ -5,22 +5,16 @@ import Player2img from "../../../../../../../public/assets/new-images/Profile/Of
 import Player3img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-3.png";
 import useHttp from "../../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
+import { moreMatchesAction } from "../../../../../../../store/moreMatches";
+import { useDispatch, useSelector } from "react-redux";
 
 const PlayerRow = (props) => {
-    // profileImg: Player1img,
-    //           name: "nexos",
-    //           ladderRank: 42.123,
-    //           kda: 2.37,
-    //           kdaRatio: 1,
-    //           kdaDate: 7.3 / 5.3 / 5.0,
-    //           success: 54,
-    //           game: 32,
 
     return (
         <div className=" laptop:grid laptop:grid-cols-[repeat(4,1fr)] laptop:mb-2 last:laptop:mb-0 ">
             <div className=" laptop:relative laptop:w-[20px] laptop:h-[20px] laptop:border laptop:border-mix-white-black rounded-full ">
                 <Image
-                    src={props.profileImg}
+                    src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.profileIcon}.png`}
                     alt="profile image"
                     layout="fill"
                     className="rounded-full"
@@ -28,43 +22,40 @@ const PlayerRow = (props) => {
             </div>
             <div>
                 <h6 className=" laptop:gotham-mid-9 laptop:text-light-text laptop:italic capitalize">
-                    {props.name}
+                    {props.summonerName}
                 </h6>
-                <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] ">
-                    Ladder Rank: {props.ladderRank}
-                </p>
             </div>
             <div>
                 <h6 className=" italic laptop:gotham-mid-9 laptop:text-light-text laptop:uppercase">
                     <span
                         className={`text-accent-color-2 ${
-                            props.kda >= 5
+                            (((props.totalAssists + props.totalKills) / (props.totalDeaths? props.totalDeaths : 1)).toFixed(2)) >= 5
                                 ? "text-accent-color-4"
-                                : props.kda >= 2
+                                : (((props.totalAssists + props.totalKills) / (props.totalDeaths? props.totalDeaths : 1)).toFixed(2)) >= 2
                                 ? "text-accent-color-2"
                                 : "text-light-text"
                         }`}
                     >
-                        {props.kda}
+                        {(((props.totalAssists + props.totalKills) / (props.totalDeaths? props.totalDeaths : 1)).toFixed(2))}
                     </span>
-                    :{props.kdaRatio} kda
+                    :1 kda
                 </h6>
                 <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] ">
-                    {props.kdaDate}
+                    {props.totalKills}/{props.totalDeaths}/{props.totalAssists}
                 </p>
             </div>
             <div>
                 <h6
                     className={`laptop:gotham-mid-9  laptop:italic laptop:uppercase ${
-                        props.success >= 50
+                        (props.winCount / (props.winCount + props.lossCount) * 100) >= 50
                             ? "laptop:text-accent-color-2"
                             : " laptop:text-nav-btn"
                     }`}
                 >
-                    {props.success}%
+                    { (props.winCount / (props.winCount + props.lossCount) * 100).toFixed(0)}%
                 </h6>
                 <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] ">
-                    {props.game}games played
+                    {(props.winCount + props.lossCount)}games played
                 </p>
             </div>
         </div>
@@ -72,11 +63,13 @@ const PlayerRow = (props) => {
 };
 
 const OftenPlayWith = () => {
+    const moreMatches = useSelector((state) => state.matches.matches)
     const [matches, setMatches] = useState([]);
 	const playersArr = []
 	const [players, setPlayers] = useState([]);
 	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
 	const {sendRequest, hasError} = useHttp();
+    const dispatch = useDispatch();
 	const router = useRouter();
 
 
@@ -85,19 +78,28 @@ const OftenPlayWith = () => {
 			console.log("no response from server");
 			return;
 		}
+
+        dispatch(
+            moreMatchesAction.setMoreMatches(res.data.matches)
+        )
 		
 		setMatches(res.data?.matches);
 	}
 
 	useEffect(()=>{
-		sendRequest(
-			{
-				url: "/seasonMostPlayed",
-				method: "GET",
-				params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
-			},
-			requestHandler
-		);
+        console.log(moreMatches)
+		if(!moreMatches[0]){
+            sendRequest(
+                {
+                    url: "/seasonMostPlayed",
+                    method: "GET",
+                    params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
+                },
+                requestHandler
+            );
+        } else {
+            setMatches(moreMatches)
+        }
 	}, [])
 	
 	useEffect(()=>{
@@ -232,7 +234,7 @@ const OftenPlayWith = () => {
             </h6>
             {/* card container  */}
             <div className=" laptop:mt-[13px]">
-                {oftenPlayerData.map((player, index) => {
+                {mostPlayedWithList.length >= 10 && mostPlayedWithList.slice(0, 11).map((player, index) => {
                     return <PlayerRow key={index} {...player} />;
                 })}
             </div>

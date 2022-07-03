@@ -6,27 +6,22 @@ import JhinImg from '../../../../../../public/assets/new-images/Profile/Jhin.png
 import ZiggsImg from '../../../../../../public/assets/new-images/Profile/Ziggs.png'
 import useHttp from '../../../../../../hook/useHttp'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
 
 
 const Table = () => {
 
+	const matches  = useSelector((state) => {
+		console.log(state)
+		return state.matches.matches
+	})
   	const [expand, setExpand] = useState(false);
 	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
 	const {sendRequest, hasError} = useHttp();
-	const [matches, setMatches] = useState([]);
 	const [mainPlayerChamps, setMainPlayerChamps] = useState([])
 	const router = useRouter();
 	let champions  = [];
-
-	const requestHandler = (res) => {
-		if(!res){
-			console.log("no response from server");
-			return;
-		}
-		
-		setMatches(res.data.matches);
-	}
 
   function convertM(value) {
 		const sec = parseInt(value); // convert value to number if it's string
@@ -34,28 +29,21 @@ const Table = () => {
 		return minutes;
 	}
 
-	useEffect(()=>{
-		sendRequest(
-			{
-				url: "/seasonMostPlayed",
-				method: "GET",
-				params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
-			},
-			requestHandler
-		);
-	}, [])
-
 
 	useEffect(() => {
 
-		matches.forEach((match) => {
-			const mainPlayerArr = match.players.filter((player) => player.mainPlayer === true);
-			mainPlayerArr.forEach((obj) => {
-				champions.push({...obj, duration: match.duration})
-			})
-		})
+		console.log(matches)
 
-		setMainPlayerChamps(champions)
+		if(matches){
+			matches?.forEach((match) => {
+				const mainPlayerArr = match.players.filter((player) => player.mainPlayer === true);
+				mainPlayerArr.forEach((obj) => {
+					champions.push({...obj, duration: match.duration})
+				})
+			})
+	
+			setMainPlayerChamps(champions)
+		}
 	}, [matches])
 
 	useEffect(() => {
@@ -65,11 +53,11 @@ const Table = () => {
 		let kills = 0;
 		let winCount = 0;
 		let lossCount = 0;
-    let totalCs = 0;
-    let totalMatches = 0;
-    let avgCs = 0;
-    let totalDuration = 0;
-    let totalDamageDealt = 0;
+		let totalCs = 0;
+		let totalMatches = 0;
+		let avgCs = 0;
+		let totalDuration = 0;
+		let totalDamageDealt = 0;
 
 		for (let i = 0; i < mainPlayerChamps.length; i++) {
 			let count = 0;

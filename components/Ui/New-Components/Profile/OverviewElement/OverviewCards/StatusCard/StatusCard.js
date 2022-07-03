@@ -194,9 +194,7 @@ const RightSide = (props) => {
         let totalKills = 0;
         let winState = props.mainPlayer.win;
         props?.match?.players.forEach((player)=>{
-            console.log(player);
             if(player.win == winState){
-                console.log("hi")
                 totalKills = totalKills + player.kills
             }
         });

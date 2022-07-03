@@ -42,7 +42,7 @@ const PlayerCompare = (props) => {
     return (
         <div className={`flex gap-x-4 ${props.showRunes ? 'h-[340px]' : null}`}>
             {leftTeam.length !=0 && <LeftPlayers showRunes={props.showRunes} players={leftTeam} region={props?.region} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} />}
-            {props.showRunes && <RunesOverview />}
+            {props.showRunes && <RunesOverview selectedPlayer={selectedPlayer} />}
             {rightTeam.length != 0 && <RightPlayers showRunes={props.showRunes} players={rightTeam} region={props?.region} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} />}
         </div>
     );
