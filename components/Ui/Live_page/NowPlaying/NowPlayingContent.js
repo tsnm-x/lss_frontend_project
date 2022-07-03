@@ -1,5 +1,5 @@
 import React from "react";
-import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
+import LiveContentWrap from "../../../HOC/old-components/LiveContentWrapHoc/LiveContentWrapHoc";
 import { BsClock } from "react-icons/bs";
 
 const NowPlayingContent = (props) => {
