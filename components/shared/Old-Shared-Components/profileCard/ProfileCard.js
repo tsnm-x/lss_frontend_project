@@ -1,9 +1,8 @@
 import React from "react";
 import classes from "./profileCard.module.css";
 import Image from "next/image";
-
-import useHttp from "../../../hook/useHttp";
-import { profileAction } from "../../../store/profile";
+import useHttp from "../../../../hook/useHttp";
+import { profileAction } from "../../../..//store/profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Loader from "../loader/Loader";

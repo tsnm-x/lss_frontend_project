@@ -1,5 +1,5 @@
 .layout {
-    @apply bg-[url("../../../public/assets/profile/profile-bg.png")] bg-no-repeat bg-center bg-cover;
+    @apply bg-[url("../../../../public/assets/old-images/profile/profile-bg.png")] bg-no-repeat bg-center bg-cover;
 }
 
 

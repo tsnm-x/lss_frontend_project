@@ -2,11 +2,11 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import classes from "./header.module.css";
-import Logo from "../../../public/assets/Logo.svg";
+import Logo from "../../../../public/assets/old-images/Logo.svg";
 import Image from "next/image";
 import { AiOutlineWifi } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
-import ProfileImg from "../../../public/assets/profile/profile.png";
+import ProfileImg from "../../../../public/assets/old-images/profile/profile.png";
 import Router from "next/router";
 
 function classNames(...classes) {
