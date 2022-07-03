@@ -1,3 +1,4 @@
+/* old design 1.0 ----------------------------------- */
 .wrapper {
     @apply w-full overflow-y-hidden;
     background: url("../public/assets/league-of-legends-bg.png") no-repeat
@@ -66,3 +67,6 @@
 .blue_bg {
     @apply w-[92px] h-[92px] bg-white-blue rounded-full col-start-1 row-start-1 justify-self-end;
 }
+
+
+/* new design 2.0 ---------------------------------------------------------------------------------- */

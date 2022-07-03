@@ -39,7 +39,7 @@ const Profile = (props) => {
             <div className="laptop:w-[140px] laptop:h-[138px] relative laptop:mr-[20px] ">
                 <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
                     <Image
-                        src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${props.profileIcon}.png`}
+                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.profileIcon}.png`}
                         alt="profile image"
                         layout="fill"
                     />

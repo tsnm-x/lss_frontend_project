@@ -1,175 +1,233 @@
-html,
-body {
-    padding: 0;
-    margin: 0;
-    background-color: #0f121d;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0%;
-    padding: 0%;
-}
-/* custom font family  */
-@font-face {
-    font-family: "gotham-book";
-    src: url("../public/assets/fonts/GothamBook.ttf");
-}
-
-@font-face {
-    font-family: "gotham-mid";
-    src: url("../public/assets/fonts/GothamMedium.ttf");
-}
-
-@font-face {
-    font-family: "sf-pro";
-    src: url('../public/assets/fonts/SFPRODISPLAYMEDIUM.OTF');
-}
-
-/* default style variable  */
-:root {
-    /* Colors: */
-    --unnamed-color-fc2300: #fc2300;
-    --unnamed-color-8d919f: #8d919f;
-    --f3f4f8: #f3f4f8;
-    --sidebars: #0a0c14;
-    --background: #0f121d;
-    --overlay: #141726;
-    --special: #fc5900;
-    --small-text-icons: #47516c;
-    --unnamed-color-ffffff: #ffffff;
-    --unnamed-color-3a425a: #3a425a;
-    --unnamed-color-f58034: #f58034;
-    --unnamed-color-000000: #000000;
-
-    /* Font/text values */
-    --unnamed-font-family-gotham: "Gotham";
-    --unnamed-font-family-sf-pro-display: "sf-pro-light";
-    --unnamed-font-family-sf-ui-text: "sf-pro-text";
-    --unnamed-font-style-normal: normal;
-    --unnamed-font-weight-200: 200px;
-    --unnamed-font-weight-medium: medium;
-    --unnamed-font-weight-normal: normal;
-    --unnamed-font-size-8: 8px;
-    --unnamed-font-size-10: 10px;
-    --unnamed-font-size-16: 16px;
-    --unnamed-font-size-21: 21px;
-    --unnamed-font-size-27: 27px;
-    --unnamed-font-size-32: 32px;
-    --unnamed-character-spacing-0: 0px;
-    --unnamed-line-spacing-11: 11px;
-    --unnamed-line-spacing-14: 14px;
-    --unnamed-line-spacing-21: 21px;
-    --unnamed-line-spacing-28: 28px;
-    --unnamed-line-spacing-36: 36px;
-    --unnamed-line-spacing-43: 43px;
-}
-
-/* global style class  */
-
-@layer components {
-    /* fonts and texts */
-    .gotham-35px-mid {
-        @apply text-[35px] leading-[47px] font-gotham-mid font-medium;
-    }
-    .gotham-20px-book {
-        @apply font-gotham-book text-xl;
-    }
-    .gotham-17px-book {
-        @apply font-gotham-book text-[17px] leading-[22px];
-    }
-    .gotham-15px-book {
-        @apply font-gotham-book text-[15px] leading-5 font-medium;
-    }
-
-
-
-    .gotham-13px-mid {
-        @apply font-medium text-[13px] leading-[17px] tracking-normal;
-    }
-    .gotham-12px-mid {
-        @apply font-medium normal-case text-[12px] leading-4 tracking-normal;
-    }
-    .gotham-10px-mid {
-        @apply text-[8px] leading-[11px] font-medium font-gotham-mid;
-    }
-    .gotham-9px-mid {
-        @apply text-[9px] leading-[10px]  tracking-[0px];
-    }
-    .gotham-7px-mid {
-        @apply text-[10px] text-liquid-white leading-[12px];
-    }
-    .gotham-6px-mid {
-        @apply text-[10px]  leading-[12px];
-    }
-    .gotham-5px-mid {
-        @apply font-gotham-mid text-[5px] leading-[6px];
-    }
-    .gotham-4px-mid {
-        @apply text-[12px] text-liquid-white leading-[15px];
-    }
-    .gotham-2px-mid {
-        @apply text-[2px] leading-[2px] font-gotham-mid;
-    }
-
-    .sf-13px-regular {
-        @apply font-normal text-[13px] tracking-normal leading-[17px];
-    }
-    .sf-10px-regular {
-        @apply font-normal text-[10px] tracking-normal leading-[14px];
-    }
-    .sf-8px-regular {
-        @apply font-normal text-[8px] tracking-normal leading-[11px];
-    }
-    .sf-7px-regular {
-        @apply font-normal text-[7px] tracking-normal leading-[10px];
-    }
-
-    .sf-5px-reg {
-        @apply font-sf-pro text-[5px] leading-[6px] font-medium;
-    }
-    .sf-2px-reg {
-        @apply font-sf-pro text-[2px] leading-[3px] font-medium;
-    }
-    .sf-1px-reg {
-        @apply font-sf-pro text-[1px] leading-[1px] font-medium;
-    }
-
-    /* chat btn  */
-    .feedback_btn_wrap {
-        @apply absolute left-20 bottom-10 ;
-    }
-    .btn_img {
-        @apply absolute left-[30px] -top-[40px] w-[85px];
-    }
-    .feedback_btn {
-        @apply bg-white p-[18px] pt-[25px] py-5 flex flex-col items-center rounded-2xl;
-    }
-    .feedback_btn_icon {
-        @apply text-[28px] text-white-blue mb-[18px];
-    }
-
-    .feedback_btn_txt {
-        @apply text-white-blue capitalize text-center text-[10px] leading-[12px] w-[50px];
-    }
-
-    /* btn style  */
-    .btn {
-        /* @apply font-normal text-[13px] capitalize leading-[17px] text-liquid-white bg-white-blue border
-        border-mix-white-black rounded-7px px-5 py-4; */
-        @apply font-gotham-book capitalize text-[10px] leading-[14px] font-medium px-[14px] py-[10px] text-liquid-white bg-white-blue border
-        border-mix-white-black rounded-[5px];
-    }
-
-    /* card wrapper  */
-    
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* new design 2.0 ------------------------------------------------------------------------------------------- */
+/* custom fonts  */
+/* gotham fonts  */
+@font-face {
+    font-family: "Gotham";
+    font-style: normal;
+    font-weight: 100;
+    src: url("/assets/fonts/Gotham/GothamLight.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: italic;
+    font-weight: 100;
+    src: url("/assets/fonts/Gotham/GothamLightItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/fonts/Gotham/GothamBook.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: italic;
+    font-weight: 400;
+    src: url("/assets/fonts/Gotham/GothamBookItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/assets/old-images/fonts/Gotham/GothamMedium.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: italic;
+    font-weight: 500;
+    src: url("/assets/old-images/fonts/Gotham/GothamMediumItalic.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/assets/fonts/Gotham/GothamBold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Gotham";
+    font-style: italic;
+    font-weight: 700;
+    src: url("/assets/fonts/Gotham/GothamBoldItalic.woff2") format("woff2");
+}
+
+/* nedgen fonts  */
+@font-face {
+    font-family: "NEDGEN";
+    font-style: normal;
+    src: url("/assets/old-images/fonts/Nedgen/nedgen.woff2") format("woff2");
+}
+
+/* sf pro fonts  */
+@font-face {
+    font-family: "sf-pro-text";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-regular.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "sf-pro-text";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-medium.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "sf-pro-text";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-bold.woff2")
+        format("woff2");
+}
+
+/* global font component  */
+@layer components {
+    /* typography  */
+    .gotham-mid-50 {
+        @apply font-gotham font-medium text-[50px] leading-[56px];
+    }
+    .gotham-mid-30 {
+        @apply font-gotham font-medium text-[30px] leading-[33px];
+    }
+    .gotham-mid-25 {
+        @apply font-gotham text-[25px] leading-[27px] font-medium;
+    }
+    .gotham-mid-22 {
+        @apply font-gotham text-[22px] leading-[26px] font-medium;
+    }
+    .gotham-mid-21 {
+        @apply font-gotham text-[21px] leading-[23px] font-medium;
+    }
+    .gotham-mid-18 {
+        @apply font-gotham text-[18px] leading-[21px] font-medium;
+    }
+    .gotham-mid-16 {
+        @apply font-gotham text-[16px] leading-[18px] font-medium;
+    }
+    .gotham-mid-15 {
+        @apply font-gotham text-[15px] leading-[17px] font-medium;
+    }
+    .gotham-mid-9 {
+        @apply font-gotham text-[9px] leading-[10px] font-medium;
+    }
+    .sf-bold-40 {
+        @apply font-sf-pro-text font-bold text-[40px] leading-[48px];
+    }
+    .sf-bold-27 {
+        @apply font-sf-pro-text font-bold text-[27px] leading-[36px];
+    }
+    .sf-bold-24 {
+        @apply font-sf-pro-text font-bold text-[24px] leading-[28px];
+    }
+    .sf-bold-23 {
+        @apply font-sf-pro-text font-bold text-[23px] leading-[28px];
+    }
+    .sf-bold-21 {
+        @apply font-sf-pro-text font-bold text-[21px] leading-[25px];
+    }
+    .sf-bold-20 {
+        @apply font-sf-pro-text font-bold text-[20px] leading-[24px];
+    }
+    .sf-bold-19 {
+        @apply font-sf-pro-text font-bold text-[19px] leading-[23px];
+    }
+    .sf-bold-15 {
+        @apply font-sf-pro-text font-bold text-[15px] leading-[20px];
+    }
+    
+    .sf-bold-12 {
+        @apply font-sf-pro-text text-[12px] leading-[14px];
+    }
+    .sf-bold-11 {
+        @apply font-sf-pro-text font-bold text-[11px] leading-[10px];
+    }
+    .sf-bold-10 {
+        @apply font-sf-pro-text font-bold text-[10px] leading-[12px];
+    }
+    .sf-bold-6 {
+        @apply font-sf-pro-text font-bold text-[6px] leading-[7px];
+    }
+    .sf-mid-41 {
+        @apply font-sf-pro-text font-medium text-[41px] leading-[49px];
+    }
+    .sf-mid-31 {
+        @apply font-sf-pro-text font-medium text-[31px] leading-[37px];
+    }
+    .sf-mid-21 {
+        @apply font-sf-pro-text font-medium text-[21px] leading-[25px];
+    }
+    .sf-mid-20 {
+        @apply font-sf-pro-text font-medium text-[20px] leading-[24px];
+    }
+    .sf-mid-18 {
+        @apply font-sf-pro-text font-medium text-[18px] leading-[21px];
+    }
+    .sf-mid-14 {
+        @apply font-sf-pro-text font-medium text-[14px] leading-[16px];
+    }
+    .sf-mid-3 {
+        @apply font-sf-pro-text font-medium text-[3px] leading-[4px];
+    }
+    .sf-regular-25 {
+        @apply font-sf-pro-text text-[25px] leading-[30px];
+    }
+    .sf-regular-14 {
+        @apply font-sf-pro-text text-[14px] leading-[16px];
+    }
+
+    .sf-regular-10 {
+        @apply font-sf-pro-text text-[10px] leading-[12px];
+    }
+
+    .nedgen-regular-80 {
+        @apply font-NEDGEN text-[80px] leading-[92px];
+    }
+    .nedgen-regular-60 {
+        @apply font-NEDGEN text-[60px] leading-[69px];
+    }
+
+    .nedgen-regular-24 {
+        @apply font-NEDGEN text-[24px] leading-[27px];
+    }
+
+    .nedgen-regular-14 {
+        @apply font-NEDGEN text-[14px] leading-[16px];
+    }
+
+    .nedgen-regular-10 {
+        @apply font-NEDGEN text-[10px] leading-[12px];
+    }
+
+    .nedgen-regular-5 {
+        @apply font-NEDGEN text-[5px] leading-[6px];
+    }
+    /* container  */
+    .container {
+        @apply laptop:pl-[50px];
+    }
+    /* portal  */
+    #portal {
+        /* @apply w-screen h-screen bg-[#140a2272] absolute left-0 top-0 z-[100]; */
+        @apply smTablet:hidden;
+    }
+    body {
+        @apply bg-background overflow-x-hidden;
+    }
+    /* button  */
+    .btn {
+        @apply laptop:py-[16px] capitalize italic
+        rounded-[5px] laptop:px-[14px] laptop:font-gotham laptop:font-medium laptop:text-[15px] laptop:leading-[17px];
+    }
+
+    /* profile components ------------------- */
+    .coverImg_mask {
+        background: transparent
+            linear-gradient(180deg, #140f1014 0%, #140a22 100%) 0% 0% no-repeat
+            padding-box;
+    }
+}

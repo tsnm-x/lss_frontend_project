@@ -1,0 +1,26 @@
+.header__container {
+    @apply container pl-0 mx-auto flex relative smTablet:grid smTablet:grid-cols-2
+          desktop:justify-between;
+}
+
+.logo__wrapper {
+    @apply text-center w-full smTablet:text-left
+          desktop:w-[initial] desktop:inline-block;
+}
+
+
+.btnWrap {
+    @apply flex order-6 smTablet:justify-end;
+}
+
+.respBtn {
+    @apply absolute left-0 top-0 w-[12px] smTablet:w-[35px] 
+            desktop:order-6;
+}
+@media screen and (min-width: 768px) {
+    .respBtn {
+        position: initial;
+    }
+}
+
+
