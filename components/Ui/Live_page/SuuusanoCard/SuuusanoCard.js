@@ -1,7 +1,6 @@
 import React from "react";
-import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
+import LiveContentWrap from "../../../HOC/old-components/LiveContentWrapHoc/LiveContentWrapHoc";
 import Image from "next/image";
-import SuuuImg from "../../../../public/assets/Live/suuusanoo.png";
 
 const SuuusanoCard = (props) => {
     return (
