@@ -5,7 +5,7 @@ import LiveGameAvgRank from "../../Ui/Live_page/LiveGameAvgRank/LiveGameAvgRank"
 import NowPlaying from "../../Ui/Live_page/NowPlaying/NowPlaying";
 import SuggestedBuild from "../../Ui/Live_page/SuggestedBuild/SuggestedBuild";
 import Image from "next/image";
-import VS_img from "../../../public/assets/Live/suggested-builds/vs.png";
+import VS_img from "../../../public/assets/old-images/Live/suggested-builds/vs.png";
 // image links
 import PredectionCard from "./PredectionCard/PredectionCard";
 import PlayerRankRow from "../../Ui/Live_page/PlayerRankRow/PlayerRankRow";

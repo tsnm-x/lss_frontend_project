@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import ProfileWithBatch from "../../../Ui/ProfileWithBatch/ProfileWithBatch"
-import VS_img from "../../../../public/assets/Live/suggested-builds/vs.png";
+import ProfileWithBatch from "../../../Ui/Old-components/ProfileWithBatch/ProfileWithBatch"
+import VS_img from "../../../../public/assets/old-images/Live/suggested-builds/vs.png";
 
 const LeftRankList = (props) => {
     return (

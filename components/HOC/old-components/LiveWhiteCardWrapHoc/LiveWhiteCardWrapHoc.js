@@ -1,6 +1,5 @@
 import React from "react";
-import FeedBackBtn from "../../shared/FeedbackBtn/FeedBackBtn";
-import Image from "next/image";
+import FeedBackBtn from "../../../shared/Old-Shared-Components/FeedbackBtn/FeedBackBtn";
 import classes from "./LiveWhiteCardWrapHoc.module.css";
 import { BsWifi } from "react-icons/bs";
 
