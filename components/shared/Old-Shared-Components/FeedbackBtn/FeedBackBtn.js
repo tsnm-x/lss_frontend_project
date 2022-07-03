@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./FeedBackBtn.module.css";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
-import leaveFeedback from "../../../public/assets/leave-feedback.png";
+import leaveFeedback from "../../../../public/assets/old-images/leave-feedback.png";
 import Image from "next/image";
 
 export default function FeedBackBtn(props) {
