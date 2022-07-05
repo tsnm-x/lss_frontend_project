@@ -141,7 +141,7 @@ const OftenPlayWith = () => {
 
 			if (count > maxcount) {
 				maxcount = count;
-				if(maxcount > 1){
+				if(maxcount > 1 && !players[i].mainPlayer){
                     setMostPlayedWithList([...mostPlayedWithList,{ ...players[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount}]);
                 }
 			}
@@ -166,69 +166,6 @@ const OftenPlayWith = () => {
 
 	}, [mostPlayedWithList])
 
-    const oftenPlayerData = [
-        {
-            profileImg: Player1img,
-            name: "nexos",
-            ladderRank: 42.123,
-            kda: 2.37,
-            kdaRatio: 1,
-            kdaDate: 7.3 / 5.3 / 5.0,
-            success: 54,
-            game: 32,
-        },
-        {
-            profileImg: Player2img,
-            name: "웅오레",
-            ladderRank: 12.123,
-            kda: 7.31,
-            kdaRatio: 1,
-            kdaDate: 7.3 / 5.3 / 5.0,
-            success: 44,
-            game: 12,
-        },
-        {
-            profileImg: Player3img,
-            name: "면계집",
-            ladderRank: 56.236,
-            kda: 1.12,
-            kdaRatio: 1,
-            kdaDate: 7.3 / 5.3 / 5.0,
-            success: 31,
-            game: 9,
-        },
-        {
-            profileImg: Player1img,
-            name: "nexos",
-            ladderRank: 42.123,
-            kda: 2.37,
-            kdaRatio: 1,
-            kdaDate: 7.3 / 5.3 / 5.0,
-            success: 54,
-            game: 32,
-        },
-        {
-            profileImg: Player2img,
-            name: "웅오레",
-            ladderRank: 12.123,
-            kda: 7.31,
-            kdaRatio: 1,
-            kdaDate: 7.3 / 5.3 / 5.0,
-            success: 44,
-            game: 12,
-        },
-        {
-            profileImg: Player3img,
-            name: "면계집",
-            ladderRank: 56.236,
-            kda: 1.12,
-            kdaRatio: 1,
-            kdaDate: 7.3 / 5.3 / 5.0,
-            success: 31,
-            game: 9,
-        },
-    ];
-
     return (
         <div className=" px-[13px] py-[17px] rounded-5px bg-card-&-content-box laptop:mt-[10px] ">
             <h6 className=" font-sf-pro-text text-[11px] font-medium leading-[13px] text-grayed-text ">
@@ -236,7 +173,7 @@ const OftenPlayWith = () => {
             </h6>
             {/* card container  */}
             <div className=" laptop:mt-[13px]">
-                {mostPlayedWithList.length >= 10 ? mostPlayedWithList.slice(0, 11).map((player, index) => {
+                {mostPlayedWithList.length >= 10 ? mostPlayedWithList.slice(0, 10).map((player, index) => {
                     return <PlayerRow key={index} {...player} />;
                 }) : mostPlayedWithList.map((player, index) => {
                     return <PlayerRow key={index} {...player} />;

@@ -61,7 +61,7 @@ const RanksList = (props) => {
                                 className=" laptop:gotham-mid-21 laptop:italic
                         laptop:text-light-text "
                             >
-                                {props.rankSolo?.tier.toLowerCase()} {props.rankSolo?.rank.toLowerCase()}
+                                {props.rankSolo?.tier?.toLowerCase()} {props.rankSolo?.rank?.toLowerCase()}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px] italic  ">
                                 {props.rankSolo?.leaguePoints}lp
@@ -99,7 +99,7 @@ const RanksList = (props) => {
                                 className=" laptop:gotham-mid-21 laptop:italic
                         laptop:text-light-text "
                             >
-                                {props.rankFlex?.tier.toLowerCase()} {props.rankFlex?.rank.toLowerCase()}
+                                {props.rankFlex?.tier?.toLowerCase()} {props.rankFlex?.rank?.toLowerCase()}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px] italic  ">
                                 {props.rankFlex?.leaguePoints}lp

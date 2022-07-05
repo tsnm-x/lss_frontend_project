@@ -14,7 +14,7 @@
 // import { profileAction } from "../store/profile";
 // import Router from "next/router";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "../styles/index.module.css";
 import Header from "../components/shared/New-Componets/Header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
@@ -23,6 +23,8 @@ import Footer from "../components/shared/New-Componets/Footer/Footer";
 import Portal from "../components/shared/New-Componets/Portal/Portal";
 import LeftNavigationPortal from "../components/Ui/New-Components/universal/LeftNavigationPortal/LeftNavigationPortal";
 import HorizontalAds from "../components/shared/New-Componets/HorizontalAds/HorizontalAds";
+import { useDispatch } from "react-redux";
+import { moreMatchesAction } from "../store/moreMatches";
 
 export default function Home() {
     // const servers = [
@@ -98,6 +100,7 @@ export default function Home() {
     // }
 
     const [leftNav, setLeftNav] = useState(false);
+	const dispatch = useDispatch();
 
     // overflow disable on leftnavigation
     const leftNavHandler = () => {
@@ -106,6 +109,12 @@ export default function Home() {
             ? (document.querySelector("body").style.overflow = "hidden")
             : (document.querySelector("body").style.overflow = "initial");
     };
+
+	useEffect(()=>{
+		dispatch(
+			moreMatchesAction.setMoreMatches([])
+		)
+	}, [])
 
     return (
         <>
