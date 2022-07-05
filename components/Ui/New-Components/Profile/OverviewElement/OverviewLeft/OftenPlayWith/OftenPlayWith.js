@@ -100,7 +100,7 @@ const OftenPlayWith = () => {
         } else {
             setMatches(moreMatches)
         }
-	}, [])
+	}, [router])
 	
 	useEffect(()=>{
 		matches?.forEach((match)=>{
@@ -129,7 +129,7 @@ const OftenPlayWith = () => {
 			let count = 0;
 			for (let j = 0; j < players.length; j++) {
 
-				if ((players[i].summonerId == players[j].summonerId) && !players[i].mainPlayer){
+				if ((players[i].summonerName === players[j].summonerName) && !players[i].mainPlayer){
 					count++;
 					deaths = deaths + players[j].deaths;
 					assists = assists + players[j].assists;
@@ -158,7 +158,7 @@ const OftenPlayWith = () => {
 
 	useEffect(()=>{
 
-		const newPlayers = players.filter((player)=> player.summonerId !== mostPlayedWithList[mostPlayedWithList.length-1].summonerId);
+		const newPlayers = players.filter((player)=> player.summonerName !== mostPlayedWithList[mostPlayedWithList.length-1].summonerName);
 
 		if(newPlayers[0]){
 			setPlayers(newPlayers);
