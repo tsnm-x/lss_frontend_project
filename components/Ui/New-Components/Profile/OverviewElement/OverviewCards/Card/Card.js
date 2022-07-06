@@ -19,7 +19,7 @@ const Card = (props) => {
             ) : (
                 <div
                     className={` rounded-5px overflow-hidden grid  border-b border-background ${
-                        expand ? "grid-cols-[35%_24%_41%]" : " grid-cols-[37%_23%_40%]"
+                        expand ? "grid-cols-[35%_24%_41%] mb-2" : " grid-cols-[37%_23%_40%]"
                     } ${props.className}`}
                 >
                     <StatusCard expand={expand} {...props} />
