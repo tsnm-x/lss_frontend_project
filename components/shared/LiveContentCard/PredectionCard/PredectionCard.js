@@ -121,7 +121,10 @@ const RightRankList = (props) => {
 const PredectionCard = (props) => {
 
     const orderedPlayersList = [];
-    if(props.players.length === 10){
+    const redTeam = [];
+    const blueTeam = [];
+
+    if(props?.players){
         orderedPlayersList[0] = props.players[5];
         orderedPlayersList[1] = props.players[0];
         orderedPlayersList[2] = props.players[6];
@@ -132,10 +135,21 @@ const PredectionCard = (props) => {
         orderedPlayersList[7] = props.players[3];
         orderedPlayersList[8] = props.players[9];
         orderedPlayersList[9] = props.players[4];
+
+        blueTeam[0] = props.players[0];
+        blueTeam[1] = props.players[1];
+        blueTeam[2] = props.players[2];
+        blueTeam[3] = props.players[3];
+        blueTeam[4] = props.players[4];
+
+        redTeam[0] = props.players[5];
+        redTeam[1] = props.players[6];
+        redTeam[2] = props.players[7];
+        redTeam[3] = props.players[8];
+        redTeam[4] = props.players[9];
     }
 
-    const redTeam = [props.players[0], props.players[1], props.players[2], props.players[3], props.players[4]]
-    const blueTeam = [props.players[5], props.players[6], props.players[7], props.players[8], props.players[9]]
+
     return (
         <div
             className={`flex flex-col bg-white items-start pb-[14px] rounded-t-lg relative bg-[#F6FBFD] ${props.className}`}
