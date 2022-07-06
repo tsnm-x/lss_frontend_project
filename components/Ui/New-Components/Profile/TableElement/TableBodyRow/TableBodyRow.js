@@ -6,7 +6,7 @@ const Champion = (props) => {
     return (
         <div className=" flex items-center ">
             <div className=" relative w-[29px] h-[29px] mr-[7px] ">
-                <Image src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.championName}_0.jpg`} alt="image" layout="fill" />
+                <Image src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.championName}.png`} alt="image" layout="fill" />
             </div>
             <p className=" text-light-text capitalize">
                 {props.championName}{" "}

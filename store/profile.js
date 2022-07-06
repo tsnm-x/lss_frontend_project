@@ -3,12 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const profileSlice = createSlice({
 	name: "Profile",
 	initialState: {
-		profile: [
-			{
-				duration: "",
-				players: [],
-			},
-		],
+		profile: [],
 		region: "",
 		summonerName: "",
 	},

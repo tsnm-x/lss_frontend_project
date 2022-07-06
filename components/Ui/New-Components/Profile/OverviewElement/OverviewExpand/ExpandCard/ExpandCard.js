@@ -46,12 +46,12 @@ const ExpandCard = (props) => {
                             <LosAndWinRow showProfile={showRunes} {...props} />
                         </>
                     ) : (
-                        <HeaderOnSimulateGameMode />
+                        <HeaderOnSimulateGameMode setShowSimulateGraph={setShowSimulateGraph} setExpand={props.setExpand} expand={props.expand} />
                     )}
                 </div>
                 {/* player compare  */}
                 <RunesContext.Provider value={{ runes: showRunes }}>
-                    <PlayerCompare showRunes={showRunes} {...props} />
+                    <PlayerCompare showRunes={showRunes} {...props} showSimulatedGraph={showSimulatedGraph} />
                 </RunesContext.Provider>
                 {/* simulate btn and simulation card  */}
                 <div className=" text-center mt-16 pb-[73px] mb-4 ">

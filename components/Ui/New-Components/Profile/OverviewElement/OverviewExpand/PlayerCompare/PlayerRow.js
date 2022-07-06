@@ -17,8 +17,37 @@ import useHttp from "../../../../../../../hook/useHttp";
 
 const PlayerRow = (props) => {
     const [active, setActive] = useState(false);
-    const [ranks, setRanks] = useState([]);
     const {sendRequest} = useHttp();
+
+
+    // useEffect(()=>{
+    //     console.log(props.player.summonerRiotId)
+    //     console.log(props?.ranks);
+    // }, [props.ranks])
+    
+    const selectGameType = () => {
+        switch (props?.match?.queueId) {
+            case 76:
+                return "ULTRA_RAPID_FIRE";
+            case 100:
+                return "ARAM_5v5";
+            case 400:
+                return "DRAFT_PICK_5v5";
+            case 420:
+                return "RANKED_SOLO_5x5";
+            case 430:
+                return "BLIND_PICK_5v5";
+            case 440:
+                return "RANKED_FLEX_SR";
+            case 450:
+                return "ARAM_5v5";
+            case 470:
+                return "RANKEd_FLEX_3v3";
+            case 900:
+                return "URF";
+        }
+    };
+
     useEffect(() => {
 
         sendRequest(
@@ -29,7 +58,7 @@ const PlayerRow = (props) => {
             },
             (res) => {
                 if (res) {
-                    setRanks(res.data.ranks);
+                    props.setRanks({...props.ranks, [props.player.summonerName]:res.data.ranks});
                 }
             }
         );
@@ -45,7 +74,8 @@ const PlayerRow = (props) => {
     }, [props.selectedPlayer])
 
 
-    const rankSolo = ranks?.find((el) => el.queueType === "RANKED_SOLO_5x5");
+    const rankQueue = selectGameType();
+    const rankSolo = props?.ranks[props.player?.summonerName]?.find((el) => el.queueType === rankQueue);
 
     const getRankbatch = (rank) =>{
         switch (rank.tier) {
@@ -221,7 +251,7 @@ const PlayerRow = (props) => {
                 })}
             </div>
             {/* g batch  */}
-            {rankSolo ? (
+            {!props.showSimulatedGraph && rankSolo ? (
                 <div
                     className={`flex items-center ${
                         props.reverse ? "order-3" : "order-3"
@@ -238,7 +268,17 @@ const PlayerRow = (props) => {
                         />
                     </div>
                 </div>
-            ) : null}
+            ) : props.showSimulatedGraph ? (
+                <div
+                className={`flex items-center ${
+                    props.reverse ? "order-3" : "order-3"
+                }`}
+            >
+                <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
+                    Level {props.player.champLevel}
+                </h6>
+            </div>
+            ): null}
 
             {/* name  */}
             <h5
@@ -278,7 +318,7 @@ const PlayerRow = (props) => {
                     }`}
                 >
                     {props?.player?.profileIcon && <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.player.profileIcon}.png`}
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player.championName}.png`}
                             alt="profile Image"
                             layout="fill"
                         />}

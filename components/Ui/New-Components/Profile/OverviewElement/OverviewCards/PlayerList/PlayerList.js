@@ -56,7 +56,7 @@ const PlayerList = (props) => {
                             >
                                 <div className=" relative w-[22px] h-[22px] rounded-full mr-[8px] ">
                                     <Image
-                                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${player?.profileIcon}.png`}
+                                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${player?.championName}.png`}
                                         alt={player?.summonerName + "image"}
                                         layout="fill"
                                         className=" rounded-full"

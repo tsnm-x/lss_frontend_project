@@ -1,10 +1,23 @@
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import useHttp from "../../../../../hook/useHttp";
+import { profileAction } from "../../../../../store/profile";
 
 
 const ErrorDetails = (props) => {
     let normalColor = {}
     let newColor = {}
-    const [color, setColor] = useState({})
+    const [color, setColor] = useState({});
+    const [region, setRegion] = useState("");
+    const router = useRouter();
+    const {sendRequest} = useHttp();
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        console.log(region);
+    }, [region])
+
 
     useEffect(()=>{
        if(Object.keys(color).length !== Object.keys(newColor).length) setColor(newColor)
@@ -13,6 +26,50 @@ const ErrorDetails = (props) => {
     useEffect(()=>{
         console.log(color)
     }, [color])
+
+    function requestHandler(res) {
+        
+		if (!res) {
+			console.log(res, "no response from the server");
+			return;
+		}
+
+		dispatch(
+			profileAction.setProfileDataPage({
+				profile: res.data.matches,
+				// region,
+				region,
+				summonerName: router.query?.summonerName,
+			})
+		);
+		Router.push(
+			{
+				pathname: '/summoner/[region]/[summonerName]',
+				query: {
+					region,
+					summonerName: router.query?.summonerName
+				}
+			}
+		);
+	}
+
+    const getSummoner = (region) => {
+        setRegion(region);
+
+        console.log(region);
+
+        sendRequest(
+            {
+                url: "/summonerByName",
+                method: "POST",
+                body: {
+                    region,
+                    summonerName: router.query?.summonerName,
+                },
+            },
+            requestHandler
+        );
+    }
 
 
     return (
@@ -51,7 +108,6 @@ const ErrorDetails = (props) => {
                             </h2>
                             {props?.summonersFromOtherAreas.map((summonerObj, idx) => {
                                 if(item === summonerObj.region) newColor[item] =  'text-white'
-                                
                                 return (
                                     <div key={idx}>
                                         
@@ -59,6 +115,7 @@ const ErrorDetails = (props) => {
                                             <>
                                                 <h4
                                                 className={`sf-bold-12 text-accent-color mt-[7px] capitalize desktop:text-[16px] desktop:leading-[21px] `}
+                                                onClick={() => getSummoner(item)}
                                                 >
                                                     {summonerObj.summonerName}  
                                                 </h4>

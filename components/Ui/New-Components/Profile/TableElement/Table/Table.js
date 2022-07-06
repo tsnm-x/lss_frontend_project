@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux'
 const Table = () => {
 
 	const matches  = useSelector((state) => {
-		console.log(state)
-		return state.matches.matches
+		console.log(state.profile.profile)
+		return state.profile.profile
 	})
   	const [expand, setExpand] = useState(false);
 	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
@@ -68,11 +68,11 @@ const Table = () => {
 					deaths = deaths + mainPlayerChamps[j].deaths;
 					assists = assists + mainPlayerChamps[j].assists;
 					kills = kills + mainPlayerChamps[j].kills;
-          totalCs = totalCs + mainPlayerChamps[j].totalMinionsKilled
+          			totalCs = totalCs + mainPlayerChamps[j].totalMinionsKilled
 					mainPlayerChamps[j].win? winCount++ : lossCount++;
-          totalMatches++;
-          totalDuration = totalDuration + mainPlayerChamps[j].duration;
-          totalDamageDealt = totalDamageDealt + mainPlayerChamps[j].magicDamageDealt
+					totalMatches++;
+					totalDuration = totalDuration + mainPlayerChamps[j].duration;
+					totalDamageDealt = totalDamageDealt + mainPlayerChamps[j].magicDamageDealt
 				}
 			}
 

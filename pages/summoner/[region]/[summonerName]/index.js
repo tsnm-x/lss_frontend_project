@@ -76,7 +76,7 @@ const Summoner = () => {
         }
     }, [router]);
 
-    const ControlBtnLists = ["ranked solo", "normals", "ranked flex"];
+    const ControlBtnLists = ["all", "ranked solo", "normals", "ranked flex"];
     const [selectedMatchType, setSelectedMatchType] = useState("all");
 
     const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
@@ -118,7 +118,14 @@ const Summoner = () => {
                         cardProps: cardProps
                     }}
                 >
-                    <Overview selectedMatchType={selectedMatchType} ControlBtnLists={ControlBtnLists} setSelectedMatchType={setSelectedMatchType} matches={matches} region={router.query?.region} summonerName={mainPlayer?.summonerName} />
+                    <Overview 
+                        selectedMatchType={selectedMatchType} 
+                        ControlBtnLists={ControlBtnLists} 
+                        setSelectedMatchType={setSelectedMatchType} 
+                        matches={matches} 
+                        region={router.query?.region} 
+                        summonerName={mainPlayer?.summonerName} 
+                        />
                 </CardContext.Provider>
             ) : (
                 <Table />

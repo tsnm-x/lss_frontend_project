@@ -49,7 +49,7 @@ const LeftSide = (props) => {
 		if (seconds < 10) {
 			seconds = "0" + seconds;
 		}
-		return hours + ":" + minutes + ":" + seconds; // Return is MM : SS
+		return minutes + ":" + seconds; // Return is MM : SS
 	}
 
     function getGameStart(gameStartInitialDate) {
@@ -186,10 +186,13 @@ const RightSide = (props) => {
                 return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
 
             default:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
         }
     };
 
+    useEffect(()=>{
+        console.log(props.mainPlayer)
+    }, [props.mainPlayer])
     useEffect(()=>{
         let totalKills = 0;
         let winState = props?.mainPlayer?.win;
@@ -221,25 +224,25 @@ const RightSide = (props) => {
                 >
                     <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
                         <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.mainPlayer?.profileIcon}.png`}
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.mainPlayer?.championName}.png`}
                             alt="profile image"
                             layout="fill"
                         />
                     </div>
                     <div
-                        className=" text-white font-gotham font-medium text-[6px] leading-[7px]  laptop:w-[18px] 
+                        className=" text-white font-gotham font-medium text-[9px] leading-[7px]  laptop:w-[18px] 
                           laptop:h-[18px] laptop:rounded-full laptop:border laptop:border-grayed-text laptop:italic
                           laptop:absolute laptop:left-[40%] laptop:-bottom-[6px]
                           laptop:bg-background flex items-center justify-center"
                     >
-                        {props?.mainPlayer?.summonerLevel}
+                        {props?.mainPlayer?.champLevel}
                     </div>
                 </div>
                 {/* power and batches  */}
                 <div className=" flex ">
                     {/* powers  */}
                     <div className=" mr-2 ">
-                        {[props.mainPlayer?.summoner1Id, props.summoner2Id].map((power, index) => {
+                        {[props.mainPlayer?.summoner1Id, props.mainPlayer?.summoner2Id].map((power, index) => {
                             return (
                                 <div
                                     key={index}

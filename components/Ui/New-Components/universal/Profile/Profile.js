@@ -63,7 +63,7 @@ const Profile = (props) => {
                 laptop:mt-[10px] 
                 "
                 >
-                    ladder rank: 42.123
+                    {/* ladder rank: 42.123 */}
                 </p>
                 {/* buttons  */}
                 <div className=" mt-[13px] ">

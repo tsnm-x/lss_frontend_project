@@ -47,6 +47,12 @@ const LosAndWinRow = (props) => {
     const [mainPlayer, setMainPlayer] = useState({})
 
     useEffect(()=>{
+
+        console.log(props.match.players[0].goldEarned);
+
+    }, [props.match.teams])
+
+    useEffect(()=>{
         setLostTeam(props.match.teams.filter((team) => !team.win)[0]);
         setWinnerTeam(props.match.teams.filter((team) => team.win)[0]);
         setLostTeamPlayers(props.match.players.filter((player) => !player.win));
@@ -132,7 +138,7 @@ const LosAndWinRow = (props) => {
                             {winningTeamStats.totalKills}/{winningTeamStats.totalDeaths}/{winningTeamStats.totalAssists}
                         </p>
                         <div className=" flex items-center gap-x-5 ">
-                            <IconAndCount txt={`${winnerTeam.objectives?.inhibitor?.kills}`} img={towerBlue} />
+                            <IconAndCount txt={`${winnerTeam.objectives?.inhibitor?.kills}`} img={roundBlue} />
                             <IconAndCount txt={`${winnerTeam.objectives?.tower?.kills}`} img={towerBlue} />
                         </div>
                         <div className=" flex items-center gap-x-5 ">

@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ProfileSearchBox from "../../../Ui/New-Components/universal/ProfileSearchBox/ProfileSearchBox";
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 import SkirmishSimulatorAppBtn from "../../../Ui/New-Components/universal/Btn/SkirmishSimulatorAppBtn/SkirmishSimulatorAppBtn";
+import { useRouter } from "next/router";
+
 
 const HeaderWithSearchbar = (props) => {
+    
     return (
         <header className={`py-[31px] ${props.className}`}>
             <div
                 className={`container pl-0 flex relative h-[22px] smTablet:h-[45px]`}
             >
                 {/* logo  */}
-                <Logo className=" hidden smTablet:block smTablet:text-[32px] smTablet:leading-[37px] smTablet:order-1 " />
+                <Logo className=" hidden smTablet:block smTablet:text-[32px] smTablet:leading-[37px] smTablet:order-1 cursor-pointer"/>
                 {/* resp btn  */}
                 <div
                     className=" absolute left-0 inline-block smTablet:static smTablet:order-3 smTablet:flex 

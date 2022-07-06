@@ -23,9 +23,6 @@ import Footer from "../components/shared/New-Componets/Footer/Footer";
 import Portal from "../components/shared/New-Componets/Portal/Portal";
 import LeftNavigationPortal from "../components/Ui/New-Components/universal/LeftNavigationPortal/LeftNavigationPortal";
 import HorizontalAds from "../components/shared/New-Componets/HorizontalAds/HorizontalAds";
-import { useDispatch } from "react-redux";
-import { moreMatchesAction } from "../store/moreMatches";
-
 export default function Home() {
     // const servers = [
     //     "BR",
@@ -100,7 +97,6 @@ export default function Home() {
     // }
 
     const [leftNav, setLeftNav] = useState(false);
-	const dispatch = useDispatch();
 
     // overflow disable on leftnavigation
     const leftNavHandler = () => {
@@ -109,12 +105,6 @@ export default function Home() {
             ? (document.querySelector("body").style.overflow = "hidden")
             : (document.querySelector("body").style.overflow = "initial");
     };
-
-	useEffect(()=>{
-		dispatch(
-			moreMatchesAction.setMoreMatches([])
-		)
-	}, [])
 
     return (
         <>

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Player1img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-1.png";
-import Player2img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-2.png";
-import Player3img from "../../../../../../../public/assets/new-images/Profile/Often_play_with/player-3.png";
-import useHttp from "../../../../../../../hook/useHttp";
-import { useRouter } from "next/router";
-import { moreMatchesAction } from "../../../../../../../store/moreMatches";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 
 const PlayerRow = (props) => {
+
+    useEffect(()=>{
+        console.log(props.winCount + props.lossCount);
+    }, [props])
 
     return (
         <div className=" laptop:grid laptop:grid-cols-[repeat(4,1fr)] laptop:mb-2 last:laptop:mb-0 ">
@@ -63,44 +61,10 @@ const PlayerRow = (props) => {
 };
 
 const OftenPlayWith = () => {
-    const moreMatches = useSelector((state) => state.matches.matches)
-    const [matches, setMatches] = useState([]);
+    const matches = useSelector((state) => state.profile.profile)
 	const playersArr = []
 	const [players, setPlayers] = useState([]);
 	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
-	const {sendRequest, hasError} = useHttp();
-    const dispatch = useDispatch();
-	const router = useRouter();
-
-
-	const requestHandler = (res) => {
-		if(!res){
-			console.log("no response from server");
-			return;
-		}
-
-        dispatch(
-            moreMatchesAction.setMoreMatches(res.data.matches)
-        )
-		
-		setMatches(res.data?.matches);
-	}
-
-	useEffect(()=>{
-        console.log(moreMatches)
-		if(!moreMatches[0]){
-            sendRequest(
-                {
-                    url: "/seasonMostPlayed",
-                    method: "GET",
-                    params: { region: router.query.region, summonerName: router.query.summonerName, count: 50},
-                },
-                requestHandler
-            );
-        } else {
-            setMatches(moreMatches)
-        }
-	}, [router])
 	
 	useEffect(()=>{
 		matches?.forEach((match)=>{

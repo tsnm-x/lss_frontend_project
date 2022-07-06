@@ -48,19 +48,19 @@ const OverviewCards = (props) => {
                     {/* <ExpandCard /> */}
                     {/* card list  */}
                     {props.matches[0] && props.selectedMatchType === "all" && props.matches.map((match, index) => {
-                        return <Card key={index} index={index} match={match} region={props?.region}/>;
+                        return <Card key={index} index={index} match={match} region={props?.region} expand={props.expand} setExpand={props.setExpand}/>;
                     })}
 
                     {rankedSolo[0] && props.selectedMatchType === "ranked solo" && rankedSolo.map((match, index) => {
-                        return <Card key={index} index={index} match={match} region={props?.region} />;
+                        return <Card key={index} index={index} match={match} region={props?.region} expand={props.expand} setExpand={props.setExpand}/>;
                     })}
 
                     {rankedFlex[0] && props.selectedMatchType === "ranked flex" && rankedFlex.map((match, index) => {
-                        return <Card key={index} index={index} match={match} region={props?.region} />;
+                        return <Card key={index} index={index} match={match} region={props?.region} expand={props.expand} setExpand={props.setExpand}/>;
                     })}
 
                     {normals[0] && props.selectedMatchType === "normals" && normals.map((match, index) => {
-                        return <Card key={index} index={index} match={match} region={props?.region} />;
+                        return <Card key={index} index={index} match={match} region={props?.region} expand={props.expand} setExpand={props.setExpand}/>;
                     })}
 
                     {!loaderViewer && (
