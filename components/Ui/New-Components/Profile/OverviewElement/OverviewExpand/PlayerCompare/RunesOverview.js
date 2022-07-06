@@ -373,7 +373,7 @@ const Precision = (props) => {
             </h1>
             {/* batches  */}
             <div className=" mt-10 flex flex-col items-center">
-                <div className=" relative w-8 h-8 rounded-full border border-[#201929]  ">
+                <div className=" relative w-8 h-8 rounded-full border border-[#201929] smDesktop:w-[34px] smDesktop:h-[34px]  ">
                     <Image
                         src={styleSelector(props?.selectedPlayer?.perks?.styles[0]?.style)}
                         alt="precision parent icon"
@@ -385,7 +385,7 @@ const Precision = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).firstSlot.map((option, index) => {
                         return (
                             <div
-                                className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 ${
+                                className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 smDesktop:w-[35px] smDesktop:h-[35px] ${
                                     checkIconOpacity(option.id)
                                         ? "border border-nav-btn "
                                         :  "opacity-30"
@@ -406,7 +406,7 @@ const Precision = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).secondSlot.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-7 h-7 rounded-full ${
+                                className={`relative w-7 h-7 rounded-full smDesktop:w-[30px] smDesktop:h-[30px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -768,7 +768,7 @@ const Inspiration = (props) => {
             </h1>
             {/* batches  */}
             <div className=" mt-[74px] flex flex-col items-center">
-                <div className=" relative w-8 h-8 rounded-full border border-[#201929]  ">
+                <div className=" relative w-8 h-8 rounded-full border border-[#201929] smDesktop:w-[35px] smDesktop:h-[35px] smDesktop:mb-3  ">
                     <Image
                         src={styleSelector(props?.selectedPlayer?.perks?.styles[1]?.style)}
                         alt="precision parent icon"
@@ -780,7 +780,7 @@ const Inspiration = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).secondSlot.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-5 h-5 rounded-full ${
+                                className={`relative w-5 h-5 rounded-full smDesktop:w-[22.5px] smDesktop:h-[22.5px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -923,7 +923,7 @@ const RunesState = (props) => {
                 {offense.map((batch, index) => {
                     return (
                         <div
-                            className={`relative w-4 h-4 rounded-full ${
+                            className={`relative w-4 h-4 rounded-full smDesktop:w-5 smDesktop:h-5 ${
                                 checkIconOpacity(batch.id, "offense")
                                     ? "border border-nav-btn"
                                     : " opacity-40"

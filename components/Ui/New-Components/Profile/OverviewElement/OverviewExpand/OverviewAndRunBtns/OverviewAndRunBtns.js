@@ -21,14 +21,14 @@ const OverviewAndRunBtns = (props) => {
     };
 
     return (
-        <div className=" mt-[18px] mb-[30px] text-center ">
+        <div className=" mt-[18px] mb-[30px] text-center smDesktop:mt-5 smDesktop:mb-9 ">
             {btns.map((item, index) => {
                 return (
                     <button
                         key={index}
                         onClick={() => ClickHandler(item.text)}
                         className={`font-sf-pro-text text-[19px]
-             leading-[23px] font-bold capitalize mx-[40px] ${
+             leading-[23px] font-bold capitalize mx-[40px] smDesktop:text-[20px] smDesktop:leading-[24px] ${
                  item.active ? "text-accent-color" : "text-grayed-text"
              } `}
                     >

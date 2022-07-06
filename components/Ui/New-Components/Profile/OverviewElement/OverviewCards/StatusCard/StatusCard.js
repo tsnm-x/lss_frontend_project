@@ -76,7 +76,9 @@ const LeftSide = (props) => {
                 <div className={`font-sf-pro-text font-bold mr-[30px] `}>
                     <h4
                         className={` capitalize ${
-                            props?.mainPlayer?.win ? "text-accent-color-2" : "text-accent-color"
+                            props?.mainPlayer?.win
+                                ? "text-accent-color-2"
+                                : "text-accent-color"
                         }`}
                     >
                         <span
@@ -91,7 +93,7 @@ const LeftSide = (props) => {
                         <span
                             className={`text-light-text ${
                                 props.expand
-                                    ? " text-base leading-[19px] "
+                                    ? " text-base leading-[19px]  "
                                     : "text-[12px] leading-[14px] "
                             }`}
                         >
@@ -110,16 +112,17 @@ const LeftSide = (props) => {
                     <h2
                         className={` text-light-text ${
                             props.expand
-                                ? "text-[33px] leading-[39px] mt-[18px] "
+                                ? "text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px] "
                                 : "text-[25px] leading-[30px] mt-[10px]"
                         } `}
                     >
-                        {props?.mainPlayer?.kills}/{props?.mainPlayer?.deaths}/{props?.mainPlayer?.assists}
+                        {props?.mainPlayer?.kills}/{props?.mainPlayer?.deaths}/
+                        {props?.mainPlayer?.assists}
                     </h2>
                     <h6
                         className={` text-grayed-text ${
                             props.expand
-                                ? " mt-5 text-[17px] leading-[20px] "
+                                ? " mt-5 text-[17px] leading-[20px]  "
                                 : "text-[12px] leading-[14px] mt-[10px] "
                         } `}
                     >
@@ -218,8 +221,8 @@ const RightSide = (props) => {
                 <div
                     className={`${
                         props.expand
-                            ? " laptop:w-[95px] laptop:h-[95px] "
-                            : "laptop:w-[62px] laptop:h-[62px]"
+                            ? " laptop:w-[95px] laptop:h-[95px] smDesktop:w-[98px] smDesktop:h-[98px]  "
+                            : "laptop:w-[62px] laptop:h-[62px] smDesktop:w-[65px] smDesktop:h-[65px] "
                     } relative mr-1 `}
                 >
                     <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
@@ -248,8 +251,8 @@ const RightSide = (props) => {
                                     key={index}
                                     className={` relative ${
                                         props.expand
-                                            ? " w-[45px] h-[45px] mb-[6px]  "
-                                            : " w-[29px] h-[29px] rounded-5px"
+                                            ? " w-[45px] h-[45px] mb-[6px] "
+                                            : " w-[29px] h-[29px] rounded-5px smDesktop:w-[31px] smDesktop:h-[31px] smDesktop:first:mb-1"
                                     }`}
                                 >
                                     <Image
@@ -311,7 +314,7 @@ const StatusCard = (props) => {
         <div
             className={`  bg-card-&-content-box
              flex items-center border-r border-background ${
-                 props.expand ? " py-6 px-[30px]" : "p-5 pt-[15px]"
+                 props.expand ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px] " : "p-5 pt-[15px]"
              }`}
         >
             {/* left side  */}

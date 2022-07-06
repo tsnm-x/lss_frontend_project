@@ -16,7 +16,7 @@ import roundBlue from "../../../../../../../public/assets/new-images/Profile/car
 
 const IconAndCount = (props) => {
     return (
-        <div className={` flex first:mr-[10px] ${props.className}`}>
+        <div className={` flex smDesktop:items-center first:mr-[10px] ${props.className}`}>
             <div className={` relative w-4 h-4 mr-3 ${props.imgClassName}`}>
                 <Image src={props.img} alt="icon" layout="fill" />
             </div>
@@ -96,7 +96,7 @@ const LosAndWinRow = (props) => {
                 (
                     <div className=" text-accent-color flex justify-between items-center w-3/6 font-bold ">
                         <div>
-                            <IconAndCount txt={`${lostTeamStats.totalGold}`} img={KiloIconRed} />
+                            <IconAndCount txt={`${((lostTeamStats.totalGold)/1000).toFixed(1)}k`} img={KiloIconRed} />
                         </div>
                         <div className=" flex items-center gap-x-5 ">
                             <IconAndCount txt={`${lostTeam.objectives?.dragon?.kills}`} img={AlienRed} />
@@ -146,7 +146,7 @@ const LosAndWinRow = (props) => {
                             <IconAndCount txt={`${winnerTeam.objectives?.dragon?.kills}`} img={AlienBlue} />
                         </div>
                         <div>
-                            <IconAndCount txt={`${winningTeamStats.totalGold}`} img={KiloIconBlue} />
+                            <IconAndCount txt={`${((winningTeamStats.totalGold)/1000).toFixed(1)}k`} img={KiloIconBlue} />
                         </div>
                     </div>
                 )

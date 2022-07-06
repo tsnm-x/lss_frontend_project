@@ -34,7 +34,7 @@ const PlayerList = (props) => {
 
 
     return (
-        <div className=" bg-card-&-content-box grid grid-cols-[auto_30px]">
+        <div className=" bg-card-&-content-box grid grid-cols-[auto_30px] smDesktop:grid-cols-[auto_33px]">
             {/* player lists  */}
             <div className="h-full relative py-[10px] pl-[18px] pr-[60px] ">
                 {props.index === 0 ? (
@@ -82,13 +82,12 @@ const PlayerList = (props) => {
             <div
                 onClick={() => CardExpand.expandControl(props.index, props)}
                 className={`h-full w-[30px] flex items-center justify-center
-              rounded-tr-5px rounded-br-5px cursor-pointer ${
+              rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[33px]  ${
                 mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
               }`}
             >
                 <BiExpand
-                    size={18}
-                    className=" border-[2px] border-[#141726] rounded-5px"
+                    className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] "
                 />
             </div>
         </div>
