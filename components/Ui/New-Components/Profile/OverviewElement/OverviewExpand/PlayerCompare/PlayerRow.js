@@ -225,7 +225,7 @@ const PlayerRow = (props) => {
             onClick={() => setActive(true)}
         >
             <div className={`${props.reverse ? "order-5" : "order-1"}`}>
-                <h6 className=" sf-bold-12 text-light-text font-bold ">
+                <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] ">
                     {props?.player?.kills}/{props?.player?.deaths}/{props?.player?.assists}
                 </h6>
                 <p className=" sf-bold-6 text-light-text font-bold ">
@@ -238,7 +238,7 @@ const PlayerRow = (props) => {
                     return (
                         <div
                             key={index}
-                            className=" w-[22px] h-[22px] relative rounded-5px mr-1 last:mr-0 "
+                            className=" w-[22px] h-[22px] relative rounded-5px mr-1 last:mr-0 smDesktop:w-[25px] smDesktop:h-[25px] "
                         >
                             {batch !== 0 && <Image
                                 src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${batch}.png`}
@@ -282,7 +282,7 @@ const PlayerRow = (props) => {
 
             {/* name  */}
             <h5
-                className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold ${
+                className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] ${
                     props.reverse ? "order-2" : "order-4"
                 }`}
             >
@@ -297,14 +297,14 @@ const PlayerRow = (props) => {
                             : "order-2 mr-[9px] "
                     }`}
                 >
-                    <div className=" relative w-[20px] h-5">
+                    <div className=" relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] ">
                         <Image
                             src={selectSpell(props.player.summoner1Id)}
                             alt="flash batch"
                             layout="fill"
                         />
                     </div>
-                    <div className=" relative w-[20px] h-5">
+                    <div className=" relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] ">
                         <Image
                             src={selectSpell(props.player.summoner2Id)}
                             alt="teleport batch"
@@ -313,7 +313,7 @@ const PlayerRow = (props) => {
                     </div>
                 </div>
                 <div
-                    className={`relative w-[40px] h-[40px] ${
+                    className={`relative w-[40px] h-[40px] smDesktop:w-[43px] smDesktop:h-[43px] ${
                         props.reverse ? "order-1" : "order-2"
                     }`}
                 >

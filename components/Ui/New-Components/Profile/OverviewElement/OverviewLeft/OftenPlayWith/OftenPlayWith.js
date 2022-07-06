@@ -9,7 +9,7 @@ const PlayerRow = (props) => {
     }, [props])
 
     return (
-        <div className=" laptop:grid laptop:grid-cols-[repeat(4,1fr)] laptop:mb-2 last:laptop:mb-0 ">
+        <div className=" laptop:grid laptop:grid-cols-[repeat(4,1fr)] laptop:mb-2 last:laptop:mb-0 smDesktop:grid-cols-[2fr_3fr_3fr_1.5fr] ">
             <div
                 className="  laptop:relative laptop:w-[20px] laptop:h-[20px] laptop:border laptop:border-mix-white-black rounded-full
              smDesktop:w-[26px] smDesktop:h-[26px] "
@@ -62,7 +62,7 @@ const PlayerRow = (props) => {
                     {props.totalKills}/{props.totalDeaths}/{props.totalAssists}
                 </p>
             </div>
-            <div>
+            <div className="">
                 <h6
                     className={`laptop:gotham-mid-9  laptop:italic laptop:uppercase ${
                         (props.winCount / (props.winCount + props.lossCount)) *
