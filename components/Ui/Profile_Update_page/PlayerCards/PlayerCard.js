@@ -93,19 +93,21 @@ const PlayerCards = (props) => {
 		setSimulationDetails(false);
 	};
 	const [openDetails, setOpenDetails] = useState(false);
-	const simulateBtnHanlder = () => {
+	const simulateBtnHandler = () => {
 		const requestHandler = (res) => {
 			if (!res) {
 				console.log("no response from server");
 			}
-			setMatchByTimeline(res.data.matchInDb.matchTimeline);
+			setMatchByTimeline(res?.data);
+			// console.log(res);
 		};
+		console.log(props?.id, router.query?.region);
 
 		sendRequest(
 			{
 				url: "/matchTimeline",
 				method: "POST",
-				body: { matchId: props.id, region: router.query?.region },
+				body: { matchId: props?.id, region: router.query?.region },
 			},
 			requestHandler
 		);
@@ -315,7 +317,7 @@ const PlayerCards = (props) => {
 					{cardDetailsExpand && (
 						<div className=" w-full absolute left-0 -bottom-[6px] flex justify-center z-10">
 							<button
-								onClick={simulateBtnHanlder}
+								onClick={simulateBtnHandler}
 								className=" rounded-[5px] sf-5px-reg px-2 py-[3px] bg-[#FC2300] text-center text-liquid-white "
 							>
 								simulate game
