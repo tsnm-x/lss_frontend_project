@@ -15,7 +15,17 @@ const ErrorDetails = (props) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log(region);
+        sendRequest(
+            {
+                url: "/summonerByName",
+                method: "POST",
+                body: {
+                    region,
+                    summonerName: router.query?.summonerName,
+                },
+            },
+            requestHandler
+        );
     }, [region])
 
 
@@ -58,17 +68,7 @@ const ErrorDetails = (props) => {
 
         console.log(region);
 
-        sendRequest(
-            {
-                url: "/summonerByName",
-                method: "POST",
-                body: {
-                    region,
-                    summonerName: router.query?.summonerName,
-                },
-            },
-            requestHandler
-        );
+        
     }
 
 
