@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from "react";
-import classes from "./LiveContentCard.module.css";
-import LiveWhiteCardWrapHoc from "../../HOC/LiveWhiteCardWrapHoc/LiveWhiteCardWrapHoc";
+import LiveWhiteCardWrapHoc from "../../HOC/old-components/LiveWhiteCardWrapHoc/LiveWhiteCardWrapHoc";
 import SuuusanooCard from "../../Ui/Live_page/SuuusanoCard/SuuusanoCard";
 import LiveGameAvgRank from "../../Ui/Live_page/LiveGameAvgRank/LiveGameAvgRank";
 import NowPlaying from "../../Ui/Live_page/NowPlaying/NowPlaying";
 import SuggestedBuild from "../../Ui/Live_page/SuggestedBuild/SuggestedBuild";
 import Image from "next/image";
-import ProfileWithBatch from "../../Ui/ProfileWithBatch/ProfileWithBatch";
-import VS_img from "../../../public/assets/Live/suggested-builds/vs.png";
+import VS_img from "../../../public/assets/old-images/Live/suggested-builds/vs.png";
 // image links
-import MainImg from "../../../public/assets/Live/profile-face/NoPath - Copy (25).png";
-import Rank1 from "../../../public/assets/playerCard/NoPath - Copy (33).png";
-import Rank2 from "../../../public/assets/playerCard/NoPath - Copy (32).png";
-import Rank3 from "../../../public/assets/playerCard/NoPath - Copy (31).png";
-import Rank4 from "../../../public/assets/playerCard/NoPath - Copy (30).png";
-import Rank5 from "../../../public/assets/playerCard/NoPath - Copy (29).png";
-import Rank6 from "../../../public/assets/playerCard/NoPath - Copy (28).png";
 import PredectionCard from "./PredectionCard/PredectionCard";
 import PlayerRankRow from "../../Ui/Live_page/PlayerRankRow/PlayerRankRow";
 import BottomChart from "./BottomChart/BottomChart";
-import BottomWhiteShadow from '../../../public/assets/Live_simulator/bottom-element.svg'
 
 
 

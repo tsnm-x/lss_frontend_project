@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import Header from "../../components/shared/header/Header";
+import Header from "../../components/shared/Old-Shared-Components/header/Header";
 import classes from "../../styles/Home.module.css";
-import leaveFeedback from "../../public/assets/leave-feedback.png";
+import leaveFeedback from "../../public/assets/old-images/leave-feedback.png";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
 import Image from "next/image";
 import { useEffect, useState } from "react";

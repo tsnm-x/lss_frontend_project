@@ -1,5 +1,5 @@
 .main {
-  background: transparent url("../public/assets/update-profile/background.png") no-repeat center center;
+  background: transparent url("/public/assets/update-profile/background.png") no-repeat center center;
   background-size: cover;
   position: relative;
 }

@@ -1,21 +1,20 @@
 import React from "react";
-import RankImg from "../../../../public/assets/rank-icon.png";
 import Image from "next/image";
-import LiveContentWrap from "../../../HOC/LiveContentWrapHoc/LiveContentWrapHoc";
+import LiveContentWrap from "../../../HOC/old-components/LiveContentWrapHoc/LiveContentWrapHoc";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { axiosInstance } from "../../../../network/axiosConfig";
 // import all rank elements then select one
-import Emblem_Iron from "../../../../public/assets/ranks/Emblem_Iron.png"
-import Emblem_Bronze from "../../../../public/assets/ranks/Emblem_Bronze.png";
-import Emblem_Silver from "../../../../public/assets/ranks/Emblem_Silver.png";
-import Emblem_Gold from "../../../../public/assets/ranks/Emblem_Gold.png";
-import Emblem_Platinum from "../../../../public/assets/ranks/Emblem_Platinum.png";
-import Emblem_Diamond from "../../../../public/assets/ranks/Emblem_Diamond.png";
-import Emblem_Master from "../../../../public/assets/ranks/Emblem_Master.png";
-import Emblem_Grandmaster from "../../../../public/assets/ranks/Emblem_Grandmaster.png";
-import Emblem_Challenger from "../../../../public/assets/ranks/Emblem_Challenger.png";
+import Emblem_Iron from "../../../../public/assets/old-images/ranks/Emblem_Iron.png"
+import Emblem_Bronze from "../../../../public/assets/old-images/ranks/Emblem_Bronze.png";
+import Emblem_Silver from "../../../../public/assets/old-images/ranks/Emblem_Silver.png";
+import Emblem_Gold from "../../../../public/assets/old-images/ranks/Emblem_Gold.png";
+import Emblem_Platinum from "../../../../public/assets/old-images/ranks/Emblem_Platinum.png";
+import Emblem_Diamond from "../../../../public/assets/old-images/ranks/Emblem_Diamond.png";
+import Emblem_Master from "../../../../public/assets/old-images/ranks/Emblem_Master.png";
+import Emblem_Grandmaster from "../../../../public/assets/old-images/ranks/Emblem_Grandmaster.png";
+import Emblem_Challenger from "../../../../public/assets/old-images/ranks/Emblem_Challenger.png";
 
 const LiveGameAvgRank = () => {
 

@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileCard from "../profileCard/ProfileCard";
-import RankStatus from "../../Ui/RankStatus/RankStatus";
+import ProfileCard from "../Old-Shared-Components/profileCard/ProfileCard";
+import RankStatus from "../../Ui/Old-components/RankStatus/RankStatus";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";

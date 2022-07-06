@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import NowPlayingImg from "../../../../public/assets/Live/now-playing.png";
+import NowPlayingImg from "../../../../public/assets/old-images/Live/now-playing.png";
 import Image from "next/image";
 import NowPlayingContent from "./NowPlayingContent";
 import { useSelector } from "react-redux";

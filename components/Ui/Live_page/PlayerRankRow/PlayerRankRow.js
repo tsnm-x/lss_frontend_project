@@ -1,21 +1,7 @@
 import React, { useEffect, useState } from "react";
-import RankIcon from "../../../../public/assets/rank-icon.png";
+import RankIcon from "../../../../public/assets/old-images/rank-icon.png";
 import Image from "next/image";
-import ProgressGraph from "../../../../public/assets/graph/Group 419.png";
-import { useRouter } from "next/router";
-import { axiosInstance } from "../../../../network/axiosConfig";
-import axios from "axios";
-
-// import all rank elements then select one
-import Emblem_Iron from "../../../../public/assets/ranks/Emblem_Iron.png";
-import Emblem_Bronze from "../../../../public/assets/ranks/Emblem_Bronze.png";
-import Emblem_Silver from "../../../../public/assets/ranks/Emblem_Silver.png";
-import Emblem_Gold from "../../../../public/assets/ranks/Emblem_Gold.png";
-import Emblem_Platinum from "../../../../public/assets/ranks/Emblem_Platinum.png";
-import Emblem_Diamond from "../../../../public/assets/ranks/Emblem_Diamond.png";
-import Emblem_Master from "../../../../public/assets/ranks/Emblem_Master.png";
-import Emblem_Grandmaster from "../../../../public/assets/ranks/Emblem_Grandmaster.png";
-import Emblem_Challenger from "../../../../public/assets/ranks/Emblem_Challenger.png";
+import ProgressGraph from "../../../../public/assets/old-images/graph/Group 419.png";
 
 const PlayerRankCard = (props) => {
     const rankList = [

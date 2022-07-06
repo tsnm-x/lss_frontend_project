@@ -1,6 +1,7 @@
+/* old design 1.0 ----------------------------------- */
 .wrapper {
     @apply w-full overflow-y-hidden;
-    background: url("../public/assets/league-of-legends-bg.png") no-repeat
+    background: url("/public/assets/league-of-legends-bg.png") no-repeat
         top center;
     background-size: cover;
     height: calc(100vh - 80px);
@@ -8,7 +9,7 @@
 .bgImg {
     width: 100%;
     height: 100%;
-    background-image: url(../public/assets/league-of-legends.jpeg);
+    background-image: url(/public/assets/league-of-legends.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -66,3 +67,6 @@
 .blue_bg {
     @apply w-[92px] h-[92px] bg-white-blue rounded-full col-start-1 row-start-1 justify-self-end;
 }
+
+
+/* new design 2.0 ---------------------------------------------------------------------------------- */

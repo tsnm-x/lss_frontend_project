@@ -1,7 +1,7 @@
 import React from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 
-import Header from "../../components/shared/header/Header";
+import Header from "../../components/shared/Old-Shared-Components/header/Header";
 
 const unityContext = new UnityContext({
 	loaderUrl: "/assets/LSS WebGL.loader.js",

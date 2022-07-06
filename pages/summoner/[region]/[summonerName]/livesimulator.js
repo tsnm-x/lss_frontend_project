@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import ProfileCard from "../../../../components/shared/profileCard/ProfileCard";
-import Header from "../../../../components/shared/header/Header";
+import Header from "../../../../components/shared/Old-Shared-Components//header/Header";
 import classes from "../../../../styles/livesimulator.module.css";
 import ProfileWithRank from "../../../../components/shared/ProfileWithRank/ProfileWithRank";
-import LivePageLoading from "../../../../components/shared/LivePageLoading/LivePageLoading";
 import LiveContentCard from "../../../../components/shared/LiveContentCard/LiveContentCard";
 import { useRouter } from "next/router";
 

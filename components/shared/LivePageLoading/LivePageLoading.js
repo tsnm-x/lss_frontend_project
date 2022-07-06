@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classes from "./LivePageLoading.module.css";
-import LiveWhiteCardWrapHoc from "../../HOC/LiveWhiteCardWrapHoc/LiveWhiteCardWrapHoc";
+import LiveWhiteCardWrapHoc from "../../HOC/old-components/LiveWhiteCardWrapHoc/LiveWhiteCardWrapHoc";
 import Image from "next/image";
-import SwordImage from "../../../public/assets/Live/sord.png";
+import SwordImage from "../../../public/assets/old-images/Live/sord.png";
 import Link from "next/link";
 
 const LivePageLoading = () => {
