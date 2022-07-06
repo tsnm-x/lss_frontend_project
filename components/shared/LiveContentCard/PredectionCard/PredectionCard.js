@@ -121,16 +121,18 @@ const RightRankList = (props) => {
 const PredectionCard = (props) => {
 
     const orderedPlayersList = [];
-    orderedPlayersList[0] = props.players[5];
-    orderedPlayersList[1] = props.players[0];
-    orderedPlayersList[2] = props.players[6];
-    orderedPlayersList[3] = props.players[1];
-    orderedPlayersList[4] = props.players[7];
-    orderedPlayersList[5] = props.players[2];
-    orderedPlayersList[6] = props.players[8];
-    orderedPlayersList[7] = props.players[3];
-    orderedPlayersList[8] = props.players[9];
-    orderedPlayersList[9] = props.players[4];
+    if(props.players.length === 10){
+        orderedPlayersList[0] = props.players[5];
+        orderedPlayersList[1] = props.players[0];
+        orderedPlayersList[2] = props.players[6];
+        orderedPlayersList[3] = props.players[1];
+        orderedPlayersList[4] = props.players[7];
+        orderedPlayersList[5] = props.players[2];
+        orderedPlayersList[6] = props.players[8];
+        orderedPlayersList[7] = props.players[3];
+        orderedPlayersList[8] = props.players[9];
+        orderedPlayersList[9] = props.players[4];
+    }
 
     const redTeam = [props.players[0], props.players[1], props.players[2], props.players[3], props.players[4]]
     const blueTeam = [props.players[5], props.players[6], props.players[7], props.players[8], props.players[9]]
