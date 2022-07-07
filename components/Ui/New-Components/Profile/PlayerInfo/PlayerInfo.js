@@ -10,7 +10,7 @@ const PlayerInfo = (props) => {
     return (
         <section className=" relative">
             <div
-                className=" container relative z-30 laptop:flex laptop:items-end laptop:justify-between
+                className=" container relative z-30 laptop:flex laptop:items-end 
              laptop:pt-[67px] laptop:pb-[31px] desktop:pt-[150px]  "
             >
                 <Profile

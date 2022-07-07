@@ -60,10 +60,10 @@ const Profile = (props) => {
                 </h2>
                 <p
                     className=" laptop:sf-mid-14 laptop:text-[#AAA0A8] capitalize
-                laptop:mt-[10px] 
+                laptop:mt-[10px]  desktop:text-[18px] desktop:leading-[21px] 
                 "
                 >
-                    {/* ladder rank: 42.123 */}
+                    ladder rank: Unavailable
                 </p>
                 {/* buttons  */}
                 <div className=" mt-[13px] ">

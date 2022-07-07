@@ -44,7 +44,7 @@ const RanksList = (props) => {
             RankIcon = Emblem_Iron;
     }
     return (
-        <div className={` laptop:flex ${props.className}`}>
+        <div className={` ml-[250px] laptop:flex laptop:ml-[260px] desktop:ml-[275px]  ${props.className}`}>
             {props?.rankSolo && (
                 <div className=" mr-[35px] ">
                     <h5 className=" text-light-text laptop:sf-bold-21 ">
