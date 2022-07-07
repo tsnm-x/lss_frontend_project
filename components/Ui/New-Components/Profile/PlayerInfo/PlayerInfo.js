@@ -3,10 +3,12 @@ import Profile from "../../universal/Profile/Profile";
 import RanksList from "../RanksList/RanksList";
 import CoverPhoto from "../../../../../public/assets/new-images/Profile/profile-cover-image.png";
 import Image from "next/image";
+import Classes from './PlayerInfo.module.css'
 
 const PlayerInfo = (props) => {
+    console.log(CoverPhoto)
     return (
-        <section className=" laptop:relative">
+        <section className=" relative">
             <div
                 className=" container relative z-30 laptop:flex laptop:items-end laptop:justify-between
              laptop:pt-[67px] laptop:pb-[31px] desktop:pt-[150px]  "
@@ -24,15 +26,14 @@ const PlayerInfo = (props) => {
                 />
             </div>
             {/* cover photo  */}
-            <div className=" w-full h-full absolute left-0 top-0 z-10">
-                <Image
-                    src={CoverPhoto}
-                    alt="profile cover image"
-                    layout="fill"
-                />
+            <div
+                className={` w-full h-full ${Classes.bgImg} absolute left-0 top-0 `}
+                
+            >
+                
             </div>
             {/* cover photo mask  */}
-            <div className=" w-full h-full absolute left-0 top-0 z-20 coverImg_mask"></div>
+            <div className="w-full h-full absolute left-0 top-0 z-20 coverImg_mask"></div>
         </section>
     );
 };
