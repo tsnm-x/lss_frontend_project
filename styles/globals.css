@@ -220,7 +220,7 @@
     }
     /* button  */
     .btn {
-        @apply laptop:py-[16px] capitalize italic
+        @apply laptop:py-[16px] capitalize
         rounded-[5px] laptop:px-[14px] laptop:font-gotham laptop:font-medium laptop:text-[15px] laptop:leading-[17px];
     }
 

@@ -47,7 +47,7 @@ const Profile = (props) => {
                 <div
                     className=" text-white laptop:gotham-mid-12 laptop:w-[33px] 
                 laptop:h-[33px] laptop:rounded-full laptop:border laptop:flex laptop:justify-center laptop:items-center
-                laptop:font-medium laptop:italic laptop:mx-auto laptop:absolute laptop:left-[40%] laptop:-bottom-[15px]
+                laptop:font-medium laptop:mx-auto laptop:absolute laptop:left-[40%] laptop:-bottom-[15px]
                  laptop:bg-background desktop:w-[41px] desktop:h-[41px]"
                 >
                     {props.summonerLevel}
@@ -55,7 +55,7 @@ const Profile = (props) => {
             </div>
             {/* profile details  */}
             <div>
-                <h2 className=" laptop:gotham-mid-50 laptop:text-light-text italic desktop:text-[62px] desktop:leading-[69px]  ">
+                <h2 className=" laptop:gotham-mid-50 laptop:text-light-text desktop:text-[62px] desktop:leading-[69px]  ">
                     {props?.summonerName}
                 </h2>
                 <p
