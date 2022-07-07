@@ -1,6 +1,6 @@
 .header__container {
     @apply container pl-0 mx-auto flex relative smTablet:grid smTablet:grid-cols-2
-          desktop:justify-between;
+          desktop:justify-between mobile:max-w-[90%];
 }
 
 .logo__wrapper {

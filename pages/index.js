@@ -109,11 +109,11 @@ export default function Home() {
     return (
         <>
             <div
-                className={` laptop:h-screen laptop:flex laptop:flex-col laptop:justify-between ${classes.mainWrapper}`}
+                className={`h-screen flex flex-col justify-between ${classes.mainWrapper}`}
             >
                 <Header menuBtnClick={leftNavHandler} />
                 {/* main section  */}
-                <Main className=" mt-10 tablet:mt-[200px] tablet:mb-[500px] laptop:my-[0]  " />
+                <Main className=" laptop:my-[0]  " />
                 {/* sidebar  */}
                 {leftNav && (
                     <Portal selector="#portal">
@@ -121,7 +121,7 @@ export default function Home() {
                     </Portal>
                 )}
                 {/* advertise and download  */}
-                <AdvertiseAndDownloadNow className=" mt-[74px] mobile:hidden " />
+                <AdvertiseAndDownloadNow className=" mobile:hidden " />
                 <HorizontalAds className=" hidden mobile:block smTablet:hidden" />
                 {/* footer section  */}
                 <Footer
