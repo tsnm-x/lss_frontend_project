@@ -44,7 +44,7 @@ const OverviewCards = (props) => {
     }, [rankedSolo, normals, rankedFlex, props.selectedMatchType]);
     return (
         <aside
-            className={`w-full smDesktop:w-[initial] ${
+            className={`w-full smDesktop:w-[initial] desktop:mt-[37px]  ${
                 props.expand && "card-expand"
             } ${props.className} `}
         >
@@ -56,7 +56,7 @@ const OverviewCards = (props) => {
             <div className="smDesktop:flex smDesktop:justify-between ">
                 <div
                     className={` mt-5 relative ${
-                        props.expand ? "w-full" : "smDesktop:w-[862px] "
+                        props.expand ? "w-full" : "smDesktop:w-[862px] desktop:w-full desktop:mr-11 "
                     }`}
                 >
                     {/* card container  */}
@@ -138,7 +138,7 @@ const OverviewCards = (props) => {
                     />
                 </div>
                 {!props.expand ? (
-                    <Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 " />
+                    <Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />
                 ) : null}
             </div>
         </aside>

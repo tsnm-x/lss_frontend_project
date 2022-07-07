@@ -36,7 +36,7 @@ const Profile = (props) => {
     return (
         <div className=" flex ">
             {/* profile image  */}
-            <div className="laptop:w-[140px] laptop:h-[138px] desktop:w-[171px] desktop:h-[171px] relative laptop:mr-[20px]">
+            <div className=" relative laptop:w-[140px] laptop:h-[138px] laptop:mr-[20px] desktop:w-[171px] desktop:h-[171px] desktop:mr-[26px] ">
                 <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
                     <Image
                         src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.profileIcon}.png`}
@@ -55,7 +55,7 @@ const Profile = (props) => {
             </div>
             {/* profile details  */}
             <div>
-                <h2 className=" laptop:gotham-mid-50 laptop:text-light-text italic  ">
+                <h2 className=" laptop:gotham-mid-50 laptop:text-light-text italic desktop:text-[62px] desktop:leading-[69px]  ">
                     {props?.summonerName}
                 </h2>
                 <p
@@ -68,13 +68,13 @@ const Profile = (props) => {
                 {/* buttons  */}
                 <div className=" mt-[13px] ">
                     <button
-                        className=" btn text-white bg-accent-color laptop:mr-[9px] "
+                        className=" btn text-white bg-accent-color laptop:mr-[9px] desktop:text-[20px] desktop:leading-[22px] desktop:px-[17px] desktop:py-[20px] "
                         onClick={refreshHandler}
                     >
                         {props?.btnDetails[0].text}
                     </button>
                     <Link href={props?.btnDetails[1].url}>
-                        <button className=" btn bg-white ">
+                        <button className=" btn bg-white desktop:text-[20px] desktop:leading-[22px] desktop:px-[17px] desktop:py-[20px] ">
                             {props?.btnDetails[1].text}
                         </button>
                     </Link>

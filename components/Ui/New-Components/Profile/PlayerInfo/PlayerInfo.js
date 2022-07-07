@@ -8,8 +8,8 @@ const PlayerInfo = (props) => {
     return (
         <section className=" laptop:relative">
             <div
-                className=" container laptop:flex laptop:items-end laptop:justify-between
-             laptop:pt-[67px] laptop:pb-[31px] relative z-30 "
+                className=" container relative z-30 laptop:flex laptop:items-end laptop:justify-between
+             laptop:pt-[67px] laptop:pb-[31px] desktop:pt-[150px]  "
             >
                 <Profile
                     btnDetails={props?.btnDetails}
@@ -18,7 +18,7 @@ const PlayerInfo = (props) => {
                     summonerLevel={props?.summonerLevel}
                     region={props?.region}
                 />
-                <RanksList 
+                <RanksList
                     rankSolo={props?.rankSolo}
                     rankFlex={props?.rankFlex}
                 />

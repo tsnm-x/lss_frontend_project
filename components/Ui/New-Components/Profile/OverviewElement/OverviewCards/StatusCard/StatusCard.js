@@ -7,7 +7,6 @@ import BatchImg1 from "../../../../../../../public/assets/new-images/Profile/car
 import BatchImg2 from "../../../../../../../public/assets/new-images/Profile/card/batch2.png";
 
 const LeftSide = (props) => {
-
     const selectGameType = () => {
         switch (props?.match?.queueId) {
             case 76:
@@ -35,45 +34,45 @@ const LeftSide = (props) => {
     };
 
     function convertHMS(value) {
-		const sec = parseInt(value, 10); // convert value to number if it's string
-		let hours = Math.floor(sec / 3600); // get hours
-		let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
-		let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
-		// add 0 if value < 10; Example: 2 => 02
-		if (hours < 10) {
-			hours = "0" + hours;
-		}
-		if (minutes < 10) {
-			minutes = "0" + minutes;
-		}
-		if (seconds < 10) {
-			seconds = "0" + seconds;
-		}
-		return minutes + ":" + seconds; // Return is MM : SS
-	}
+        const sec = parseInt(value, 10); // convert value to number if it's string
+        let hours = Math.floor(sec / 3600); // get hours
+        let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+        let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
+        // add 0 if value < 10; Example: 2 => 02
+        if (hours < 10) {
+            hours = "0" + hours;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        return minutes + ":" + seconds; // Return is MM : SS
+    }
 
     function getGameStart(gameStartInitialDate) {
-		let gameStartDate = new Date(gameStartInitialDate);
+        let gameStartDate = new Date(gameStartInitialDate);
 
-		const diffTime = Math.abs(Date.now() - gameStartDate);
-		// const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-		const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+        const diffTime = Math.abs(Date.now() - gameStartDate);
+        // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
 
-		let gameStart;
-		if (diffHours >= 24) {
-			gameStart = `${(diffHours / 24).toFixed(0)} Days Ago`;
-		} else if (diffHours < 24) {
-			gameStart = `${diffHours.toFixed(0)} Hours Ago`;
-		} else {
-			gameStart = "Unmeasurable";
-		}
-		return gameStart;
-	}
+        let gameStart;
+        if (diffHours >= 24) {
+            gameStart = `${(diffHours / 24).toFixed(0)} Days Ago`;
+        } else if (diffHours < 24) {
+            gameStart = `${diffHours.toFixed(0)} Hours Ago`;
+        } else {
+            gameStart = "Unmeasurable";
+        }
+        return gameStart;
+    }
 
     return (
         <>
             {props.mainPlayer && (
-                <div className={`font-sf-pro-text font-bold mr-[30px] `}>
+                <div className={`font-sf-pro-text font-bold mr-[30px] desktop:mr-[34px] `}>
                     <h4
                         className={` capitalize ${
                             props?.mainPlayer?.win
@@ -85,7 +84,7 @@ const LeftSide = (props) => {
                             className={` mr-1 ${
                                 props.expand
                                     ? "text-[23px] leading-7 "
-                                    : " text-[17px] leading-5"
+                                    : " text-[17px] leading-5 desktop:text-[21px] desktop:leading-[25px] "
                             }`}
                         >
                             {props?.mainPlayer?.win ? "Victory" : "Defeat"}
@@ -94,7 +93,7 @@ const LeftSide = (props) => {
                             className={`text-light-text ${
                                 props.expand
                                     ? " text-base leading-[19px]  "
-                                    : "text-[12px] leading-[14px] "
+                                    : "text-[12px] leading-[14px] desktop:text-[15px] desktop:leading-lg "
                             }`}
                         >
                             {convertHMS(props?.match?.duration)}
@@ -104,7 +103,7 @@ const LeftSide = (props) => {
                         className={`${
                             props.expand
                                 ? "text-[15px] leading-[18px] mt-2"
-                                : "text-[12px] leading-[14px] mt-1"
+                                : "text-[12px] leading-[14px] mt-1 desktop:text-[15px] desktop:leading-[18px] "
                         } text-grayed-text`}
                     >
                         {selectGameType()}
@@ -113,7 +112,7 @@ const LeftSide = (props) => {
                         className={` text-light-text ${
                             props.expand
                                 ? "text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px] "
-                                : "text-[25px] leading-[30px] mt-[10px]"
+                                : "text-[25px] leading-[30px] mt-[10px] desktop:text-[30px] desktop:leading-[36px] desktop:mt-[10px] "
                         } `}
                     >
                         {props?.mainPlayer?.kills}/{props?.mainPlayer?.deaths}/
@@ -123,7 +122,7 @@ const LeftSide = (props) => {
                         className={` text-grayed-text ${
                             props.expand
                                 ? " mt-5 text-[17px] leading-[20px]  "
-                                : "text-[12px] leading-[14px] mt-[10px] "
+                                : "text-[12px] leading-[14px] mt-[10px] desktop:text-[15px] desktop:leading-[18px] desktop:mt-3 "
                         } `}
                     >
                         {getGameStart(props?.match?.gameStartTimestamp)}
@@ -135,9 +134,9 @@ const LeftSide = (props) => {
 };
 
 const RightSide = (props) => {
-    const [teamKills, setTeamKills] = useState(1)
+    const [teamKills, setTeamKills] = useState(1);
     const [kp, setKp] = useState(0);
-    const [viewer, setViewer] = useState(false)
+    const [viewer, setViewer] = useState(false);
     const selectSpell = (id) => {
         switch (id) {
             case 21:
@@ -193,27 +192,33 @@ const RightSide = (props) => {
         }
     };
 
-    useEffect(()=>{
-        console.log(props.mainPlayer)
-    }, [props.mainPlayer])
-    useEffect(()=>{
+    useEffect(() => {
+        console.log(props.mainPlayer);
+    }, [props.mainPlayer]);
+    useEffect(() => {
         let totalKills = 0;
         let winState = props?.mainPlayer?.win;
-        props?.match?.players.forEach((player)=>{
-            if(player.win == winState){
-                totalKills = totalKills + player.kills
+        props?.match?.players.forEach((player) => {
+            if (player.win == winState) {
+                totalKills = totalKills + player.kills;
             }
         });
         setTeamKills(totalKills);
-    }, [teamKills])
+    }, [teamKills]);
 
-    useEffect(()=>{
-       setKp((((props?.mainPlayer?.kills + props?.mainPlayer?.assists) / teamKills) * 100).toFixed(1))
-    }, [teamKills])
+    useEffect(() => {
+        setKp(
+            (
+                ((props?.mainPlayer?.kills + props?.mainPlayer?.assists) /
+                    teamKills) *
+                100
+            ).toFixed(1)
+        );
+    }, [teamKills]);
 
-    useEffect(()=>{
-        if(kp) setViewer(true)
-    }, [kp])
+    useEffect(() => {
+        if (kp) setViewer(true);
+    }, [kp]);
     return (
         <div>
             {/* top images  */}
@@ -222,7 +227,7 @@ const RightSide = (props) => {
                     className={`${
                         props.expand
                             ? " laptop:w-[95px] laptop:h-[95px] smDesktop:w-[98px] smDesktop:h-[98px]  "
-                            : "laptop:w-[62px] laptop:h-[62px] smDesktop:w-[65px] smDesktop:h-[65px] "
+                            : "laptop:w-[62px] laptop:h-[62px] smDesktop:w-[65px] smDesktop:h-[65px] desktop:w-[75px] desktop:h-[75px] "
                     } relative mr-1 `}
                 >
                     <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
@@ -233,10 +238,10 @@ const RightSide = (props) => {
                         />
                     </div>
                     <div
-                        className=" text-white font-gotham font-medium text-[9px] leading-[7px]  laptop:w-[18px] 
+                        className=" text-white font-gotham font-medium text-[9px] leading-[7px] flex items-center justify-center laptop:w-[18px] 
                           laptop:h-[18px] laptop:rounded-full laptop:border laptop:border-grayed-text laptop:italic
                           laptop:absolute laptop:left-[40%] laptop:-bottom-[6px]
-                          laptop:bg-background flex items-center justify-center"
+                          laptop:bg-background desktop:text-[8px] desktop:leading-[9px] desktop:w-[20px] desktop:h-[20px] desktop:-bottom-[7px]  "
                     >
                         {props?.mainPlayer?.champLevel}
                     </div>
@@ -245,14 +250,17 @@ const RightSide = (props) => {
                 <div className=" flex ">
                     {/* powers  */}
                     <div className=" mr-2 ">
-                        {[props.mainPlayer?.summoner1Id, props.mainPlayer?.summoner2Id].map((power, index) => {
+                        {[
+                            props.mainPlayer?.summoner1Id,
+                            props.mainPlayer?.summoner2Id,
+                        ].map((power, index) => {
                             return (
                                 <div
                                     key={index}
                                     className={` relative ${
                                         props.expand
                                             ? " w-[45px] h-[45px] mb-[6px] "
-                                            : " w-[29px] h-[29px] rounded-5px smDesktop:w-[31px] smDesktop:h-[31px] smDesktop:first:mb-1"
+                                            : " w-[29px] h-[29px] rounded-5px smDesktop:w-[31px] smDesktop:h-[31px] smDesktop:first:mb-1 desktop:w-[35px] desktop:h-[35px] "
                                     }`}
                                 >
                                     <Image
@@ -266,15 +274,16 @@ const RightSide = (props) => {
                         })}
                     </div>
                     {/* batch  */}
-                    {/* <div className=" mr-2 ">
-                        {data.batch.map((power, index) => {
+                    <div className=" mr-2 ">
+                    {/* data.batch  */}
+                        {[BatchImg1, BatchImg2].map((power, index) => {
                             return (
                                 <div
                                     key={index}
-                                    className={` relative ${
+                                    className={` relative desktop:mb-[5px] ${
                                         props.expand
                                             ? " w-[45px] h-[45px] mb-[6px]  "
-                                            : " w-[29px] h-[29px] rounded-5px"
+                                            : " w-[29px] h-[29px] rounded-5px desktop:w-[35px] desktop:h-[35px]"
                                     }`}
                                 >
                                     <Image
@@ -286,15 +295,27 @@ const RightSide = (props) => {
                                 </div>
                             );
                         })}
-                    </div> */}
+                    </div>
                 </div>
             </div>
             {/* bottom texts  */}
-            <div className=" font-sf-pro-text font-bold text-[9.5px] leading-[11px] pl-2 mt-[17px] ">
+            <div className=" font-sf-pro-text font-bold text-[9.5px] leading-[11px] pl-2 mt-[17px] desktop:text-[12px] desktop:leading-[14px] ">
                 <p className=" text-grayed-text ">
-                    <span className=" text-accent-color-2">{(((props.mainPlayer?.assists + props.mainPlayer?.kills) / (props.mainPlayer?.deaths? props.mainPlayer?.deaths : 1)).toFixed(2))}:1</span> KDA
+                    <span className=" text-accent-color-2">
+                        {(
+                            (props.mainPlayer?.assists +
+                                props.mainPlayer?.kills) /
+                            (props.mainPlayer?.deaths
+                                ? props.mainPlayer?.deaths
+                                : 1)
+                        ).toFixed(2)}
+                        :1
+                    </span>{" "}
+                    KDA
                 </p>
-                {viewer && <p className=" text-grayed-text mt-[2px] ">{kp}% KP</p>}
+                {viewer && (
+                    <p className=" text-grayed-text mt-[2px] ">{kp}% KP</p>
+                )}
             </div>
         </div>
     );
@@ -303,24 +324,30 @@ const RightSide = (props) => {
 const StatusCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
 
-    useEffect(()=>{
+    useEffect(() => {
         let main = props?.match?.players.find((player) => {
             return player.mainPlayer == true;
-        })
-        setMainPlayer(main)
-    }, [props.match])
+        });
+        setMainPlayer(main);
+    }, [props.match]);
 
     return (
         <div
             className={`  bg-card-&-content-box
              flex items-center border-r border-background ${
-                 props.expand ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px] " : "p-5 pt-[15px]"
+                 props.expand
+                     ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px] "
+                     : "p-5 pt-[15px] desktop:px-6 desktop:py-5"
              }`}
         >
             {/* left side  */}
             <LeftSide {...props} match={props.match} mainPlayer={mainPlayer} />
             {/* right side  */}
-            <RightSide expand={props.expand} match={props.match} mainPlayer={mainPlayer} />
+            <RightSide
+                expand={props.expand}
+                match={props.match}
+                mainPlayer={mainPlayer}
+            />
         </div>
     );
 };

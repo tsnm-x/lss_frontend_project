@@ -53,7 +53,11 @@ const RanksList = (props) => {
                     <div className=" laptop:mt-[13px] laptop:flex  ">
                         {/* image  */}
                         <div className=" relative laptop:w-[63px] laptop:h-[59px] ">
-                            <Image src={RankIcon} alt="Rank icon" layout="fill" />
+                            <Image
+                                src={RankIcon}
+                                alt="Rank icon"
+                                layout="fill"
+                            />
                         </div>
                         {/* gold  */}
                         <div className=" laptop:mr-[49px] ">
@@ -61,7 +65,8 @@ const RanksList = (props) => {
                                 className=" laptop:gotham-mid-21 laptop:italic
                         laptop:text-light-text "
                             >
-                                {props.rankSolo?.tier?.toLowerCase()} {props.rankSolo?.rank?.toLowerCase()}
+                                {props.rankSolo?.tier?.toLowerCase()}{" "}
+                                {props.rankSolo?.rank?.toLowerCase()}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px] italic  ">
                                 {props.rankSolo?.leaguePoints}lp
@@ -70,14 +75,17 @@ const RanksList = (props) => {
                         {/* percentage  */}
                         <div>
                             <h5 className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right">
-                                {props.rankSolo?.wins}w {props.rankSolo?.losses}l
+                                {props.rankSolo?.wins}w {props.rankSolo?.losses}
+                                l
                             </h5>
                             <p className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right mt-[4px] ">
                                 {(
                                     (props.rankSolo?.wins /
-                                        (props.rankSolo?.wins + props.rankSolo?.losses)) *
+                                        (props.rankSolo?.wins +
+                                            props.rankSolo?.losses)) *
                                     100
-                                ).toFixed(2)}%
+                                ).toFixed(2)}
+                                %
                             </p>
                         </div>
                     </div>
@@ -91,7 +99,11 @@ const RanksList = (props) => {
                     <div className=" laptop:mt-[13px] laptop:flex  ">
                         {/* image  */}
                         <div className=" relative laptop:w-[63px] laptop:h-[59px] ">
-                            <Image src={RankIcon} alt="Rank icon" layout="fill" />
+                            <Image
+                                src={RankIcon}
+                                alt="Rank icon"
+                                layout="fill"
+                            />
                         </div>
                         {/* gold  */}
                         <div className=" laptop:mr-[49px] ">
@@ -99,7 +111,8 @@ const RanksList = (props) => {
                                 className=" laptop:gotham-mid-21 laptop:italic
                         laptop:text-light-text "
                             >
-                                {props.rankFlex?.tier?.toLowerCase()} {props.rankFlex?.rank?.toLowerCase()}
+                                {props.rankFlex?.tier?.toLowerCase()}{" "}
+                                {props.rankFlex?.rank?.toLowerCase()}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px] italic  ">
                                 {props.rankFlex?.leaguePoints}lp
@@ -108,14 +121,17 @@ const RanksList = (props) => {
                         {/* percentage  */}
                         <div>
                             <h5 className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right">
-                                {props.rankFlex?.wins}w {props.rankFlex?.losses}l
+                                {props.rankFlex?.wins}w {props.rankFlex?.losses}
+                                l
                             </h5>
                             <p className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right mt-[4px] ">
-                            {(
+                                {(
                                     (props.rankFlex?.wins /
-                                        (props.rankFlex?.wins + props.rankFlex?.losses)) *
+                                        (props.rankFlex?.wins +
+                                            props.rankFlex?.losses)) *
                                     100
-                                ).toFixed(2)}%
+                                ).toFixed(2)}
+                                %
                             </p>
                         </div>
                     </div>
