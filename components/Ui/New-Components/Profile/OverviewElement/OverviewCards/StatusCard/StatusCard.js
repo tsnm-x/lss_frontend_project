@@ -83,7 +83,7 @@ const LeftSide = (props) => {
                         <span
                             className={` mr-1 ${
                                 props.expand
-                                    ? "text-[23px] leading-7 "
+                                    ? "text-[23px] leading-7 desktop:text-[27px] desktop:leading-[33px] "
                                     : " text-[17px] leading-5 desktop:text-[21px] desktop:leading-[25px] "
                             }`}
                         >
@@ -92,7 +92,7 @@ const LeftSide = (props) => {
                         <span
                             className={`text-light-text ${
                                 props.expand
-                                    ? " text-base leading-[19px]  "
+                                    ? " text-base leading-[19px] desktop:text-[19px] desktop:leading-[23px]  "
                                     : "text-[12px] leading-[14px] desktop:text-[15px] desktop:leading-lg "
                             }`}
                         >
@@ -102,7 +102,7 @@ const LeftSide = (props) => {
                     <h6
                         className={`${
                             props.expand
-                                ? "text-[15px] leading-[18px] mt-2"
+                                ? "text-[15px] leading-[18px] mt-2 desktop:text-[20px] desktop:leading-[24px] "
                                 : "text-[12px] leading-[14px] mt-1 desktop:text-[15px] desktop:leading-[18px] "
                         } text-grayed-text`}
                     >
@@ -111,7 +111,7 @@ const LeftSide = (props) => {
                     <h2
                         className={` text-light-text ${
                             props.expand
-                                ? "text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px] "
+                                ? "text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px] desktop:text-[41px] desktop:leading-[49px] desktop:mt-[15px] "
                                 : "text-[25px] leading-[30px] mt-[10px] desktop:text-[30px] desktop:leading-[36px] desktop:mt-[10px] "
                         } `}
                     >
@@ -121,7 +121,7 @@ const LeftSide = (props) => {
                     <h6
                         className={` text-grayed-text ${
                             props.expand
-                                ? " mt-5 text-[17px] leading-[20px]  "
+                                ? " mt-5 text-[17px] leading-[20px] desktop:text-[20px] desktop:leading-[24px] desktop:mt-4  "
                                 : "text-[12px] leading-[14px] mt-[10px] desktop:text-[15px] desktop:leading-[18px] desktop:mt-3 "
                         } `}
                     >
