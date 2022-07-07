@@ -30,7 +30,7 @@ const ExpandCard = (props) => {
             {/* top row  */}
             <div className="mr-[5px]">
                 {/* defeat and build card  */}
-                <div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] ">
+                <div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] desktop:rounded-[5px] desktop:overflow-hidden ">
                     <StatusCard {...props} />
                     <BuildCard {...props}/>
                 </div>
@@ -62,7 +62,7 @@ const ExpandCard = (props) => {
                     )}
                 </div>
             </div>
-            <div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color "></div>
+            <div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color rounded-tr rounded-br desktop:w-[15px] "></div>
         </div>
     );
 };

@@ -55,8 +55,8 @@ const OverviewCards = (props) => {
             />
             <div className="smDesktop:flex smDesktop:justify-between ">
                 <div
-                    className={` mt-5 relative ${
-                        props.expand ? "w-full" : "smDesktop:w-[862px] desktop:w-full desktop:mr-11 "
+                    className={` relative ${
+                        props.expand ? "w-full mt-[8px] " : "mt-5 smDesktop:w-[862px] desktop:w-full desktop:mr-11  "
                     }`}
                 >
                     {/* card container  */}

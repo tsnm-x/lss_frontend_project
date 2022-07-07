@@ -54,7 +54,7 @@ const PlayerList = (props) => {
                                 className=" flex items-center justify-start mb-1"
                                 key={index}
                             >
-                                <div className=" relative w-[22px] h-[22px] rounded-full mr-[8px] desktop:w-[24px] desktop:h-[24px]  ">
+                                <div className=" border border-[#707070] relative w-[22px] h-[22px] rounded-full mr-[8px] desktop:w-[24px] desktop:h-[24px]  ">
                                     <Image
                                         src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${player?.championName}.png`}
                                         alt={player?.summonerName + "image"}

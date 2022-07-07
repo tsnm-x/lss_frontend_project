@@ -56,7 +56,11 @@ const RankCard = (props) => {
             {[mainPlayer?.item0, mainPlayer?.item1, mainPlayer?.item2, mainPlayer?.item3, mainPlayer?.item4, mainPlayer?.item5].map((item, index) => {
                 return (
                     <div
-                        className={`relative rounded-full bg-[#2f2936] ${mythicHighlighter(item)? "border-2 border-white": ""} ${
+                        className={`relative rounded-full bg-[#2f2936] ${
+                            mythicHighlighter(item)
+                                ? "border-2 border-[#D55460]"
+                                : ""
+                        } ${
                             props.imgClassName
                                 ? props.imgClassName
                                 : "w-[32px] h-[32px] desktop:w-[40px] desktop:h-[40px] "
@@ -64,7 +68,12 @@ const RankCard = (props) => {
                         key={index}
                     >
                         {item !== 0 && (
-                            <Image className={`rounded-full`} src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`} alt="batch image" layout="fill" />
+                            <Image
+                                className={`rounded-full`}
+                                src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
+                                alt="batch image"
+                                layout="fill"
+                            />
                         )}
                     </div>
                 );
