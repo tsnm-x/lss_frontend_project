@@ -34,9 +34,9 @@ const PlayerList = (props) => {
 
 
     return (
-        <div className=" bg-card-&-content-box grid grid-cols-[auto_30px] smDesktop:grid-cols-[auto_33px]">
+        <div className=" bg-card-&-content-box grid grid-cols-[auto_30px] smDesktop:grid-cols-[auto_33px] desktop:grid-cols-[auto_36px] ">
             {/* player lists  */}
-            <div className="h-full relative py-[10px] pl-[18px] pr-[60px] ">
+            <div className="h-full relative py-[10px] pl-[18px] pr-[60px] desktop:pl-[24px] ">
                 {props.index === 0 ? (
                     <div
                         className=" font-sf-pro-text text-[10px] leading-3 font-bold text-accent-color bg-[#2F2937] py-[3px] px-[28px]
@@ -47,14 +47,14 @@ const PlayerList = (props) => {
                 ) : null}
 
                 {/* players  */}
-                <div className=" grid grid-cols-2 gap-x-1">
+                <div className=" grid grid-cols-2 gap-x-1 desktop:content-center desktop:h-full ">
                     {orderedPlayersList.map((player, index) => {
                         return (
                             <div
                                 className=" flex items-center justify-start mb-1"
                                 key={index}
                             >
-                                <div className=" relative w-[22px] h-[22px] rounded-full mr-[8px] ">
+                                <div className=" relative w-[22px] h-[22px] rounded-full mr-[8px] desktop:w-[24px] desktop:h-[24px]  ">
                                     <Image
                                         src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${player?.championName}.png`}
                                         alt={player?.summonerName + "image"}
@@ -87,7 +87,7 @@ const PlayerList = (props) => {
               }`}
             >
                 <BiExpand
-                    className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] "
+                    className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] desktop:text-[22px] "
                 />
             </div>
         </div>

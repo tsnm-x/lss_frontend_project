@@ -35,9 +35,9 @@ const Overview = (props) => {
                     }`}
                 />
                 {/* ads  */}
-                <div className=" hidden  smDesktop:block smDesktop:w-[105px] smDesktop:h-[1155px] ">
+                {/* <div className=" hidden  smDesktop:block smDesktop:w-[105px] smDesktop:h-[1155px] ">
                     <Ads className=" smDesktop:h-[1155px] " />
-                </div>
+                </div> */}
             </div>
 
             {!expand && (

@@ -334,7 +334,7 @@ const StatusCard = (props) => {
     return (
         <div
             className={`  bg-card-&-content-box
-             flex items-center border-r border-background ${
+             flex items-center border-r border-background desktop:justify-between  ${
                  props.expand
                      ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px] "
                      : "p-5 pt-[15px] desktop:px-6 desktop:py-5"

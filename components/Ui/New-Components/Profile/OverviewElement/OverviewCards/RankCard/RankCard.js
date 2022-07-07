@@ -50,7 +50,7 @@ const RankCard = (props) => {
             className={` ${
                 props.className
                     ? props.className
-                    : "px-[17px] py-[27px] grid grid-cols-4 gap-3 content-center bg-card-&-content-box border-r border-background smDesktop:px-[18px] "
+                    : "px-[17px] py-[27px] grid grid-cols-4 gap-3 content-center bg-card-&-content-box border-r border-background smDesktop:px-[18px] desktop:px-5 "
             }`}
         >
             {[mainPlayer?.item0, mainPlayer?.item1, mainPlayer?.item2, mainPlayer?.item3, mainPlayer?.item4, mainPlayer?.item5].map((item, index) => {
@@ -59,7 +59,7 @@ const RankCard = (props) => {
                         className={`relative rounded-full bg-[#2f2936] ${mythicHighlighter(item)? "border-2 border-white": ""} ${
                             props.imgClassName
                                 ? props.imgClassName
-                                : "w-[32px] h-[32px]"
+                                : "w-[32px] h-[32px] desktop:w-[40px] desktop:h-[40px] "
                         }`}
                         key={index}
                     >
