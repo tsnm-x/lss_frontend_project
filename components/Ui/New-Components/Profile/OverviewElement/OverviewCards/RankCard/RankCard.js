@@ -38,6 +38,7 @@ const RankCard = (props) => {
             case 3068:
             case 3078:
             case 6664:
+                console.log(id);
                 return true;
             default:
                 return false;

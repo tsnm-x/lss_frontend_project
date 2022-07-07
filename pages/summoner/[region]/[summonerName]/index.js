@@ -17,15 +17,15 @@ const Summoner = () => {
     const [view, setView] = useState("overview");
     const [cardProps, setCardProps] = useState({})
     const [cardExpand, setCardExpand] = useState(false);
-    const [expandCardNo, setExpandCardNo] = useState(null)
+    const [expandCardNo, setExpandCardNo] = useState(null);
+    const [mainPlayer, setMainPlayer] = useState({})
     const { hasError, sendRequest } = useHttp();
     const router = useRouter();
     const dispatch = useDispatch();
 
     const matches = useSelector((state) => state.profile.profile);
-    let mainPlayer = matches[0]?.players.find((player) => {
-        return player.mainPlayer == true;
-    });
+    const otherData = useSelector((state)=> state.profile)
+   
     const [ranks, setRanks] = useState([]);
 
 	const btnDetails = [
@@ -35,14 +35,14 @@ const Summoner = () => {
 
 	useEffect(() => {
 		const { region } = router.query;
-		axiosInstance
+		mainPlayer && axiosInstance
 			.post("/summonerRanks", {
 				region,
 				summonerRiotId: mainPlayer?.summonerRiotId,
 			})
 			.then((res) => {
 				setRanks(res.data.ranks);
-			});
+		});
 	}, [mainPlayer]);
 
     useEffect(()=>{
@@ -51,10 +51,13 @@ const Summoner = () => {
 
     useEffect(() => {
         const { region, summonerName } = router.query;
-        if (!matches[0]) {
-            return;
-        }
-        if (matches[0].players.length === 0) {
+        window.localStorage.setItem('region', region);
+        
+        if (matches[0]) {
+            setMainPlayer(matches[0]?.players.find((player) => {
+                return player.mainPlayer == true;
+            }))
+        } else {
             sendRequest(
                 {
                     url: "/summonerByName",
@@ -67,14 +70,14 @@ const Summoner = () => {
                             profileAction.setProfileDataPage({
                                 profile: res.data.matches,
                                 region,
-                                summonerName,
+                                summonerName
                             })
                         );
                     }
                 }
             );
         }
-    }, [router]);
+    }, [matches, router]);
 
     const ControlBtnLists = ["all", "ranked solo", "normals", "ranked flex"];
     const [selectedMatchType, setSelectedMatchType] = useState("all");
@@ -99,15 +102,15 @@ const Summoner = () => {
     return (
         <div>
             <HeaderWithSearchbar className=" laptop:py-[16px] " />
-            <PlayerInfo
+            {mainPlayer && (<PlayerInfo
                 btnDetails={btnDetails}
-                summonerName={mainPlayer?.summonerName}
+                summonerName={otherData?.summonerName}
                 profileIcon={mainPlayer?.profileIcon}
                 summonerLevel={mainPlayer?.summonerLevel}
                 region={router.query?.region}
                 rankSolo={rankSolo}
                 rankFlex={rankFlex}
-            />
+            />)}
             <OverviewChampion controller={viewController} currentView={view} />
             {view === "overview" ? (
                 <CardContext.Provider
@@ -117,7 +120,7 @@ const Summoner = () => {
                         expandCardNo: expandCardNo,
                         cardProps: cardProps
                     }}
-                >
+                >{ mainPlayer &&
                     <Overview 
                         selectedMatchType={selectedMatchType} 
                         ControlBtnLists={ControlBtnLists} 
@@ -125,7 +128,7 @@ const Summoner = () => {
                         matches={matches} 
                         region={router.query?.region} 
                         summonerName={mainPlayer?.summonerName} 
-                        />
+                    />}
                 </CardContext.Provider>
             ) : (
                 <Table />

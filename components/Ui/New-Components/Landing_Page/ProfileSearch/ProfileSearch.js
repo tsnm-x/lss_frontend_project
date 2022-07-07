@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./ProfileSearch.module.css";
 import { FiSearch } from "react-icons/fi";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
@@ -64,6 +64,19 @@ const ProfileSearch = (props) => {
         index: 0,
     });
 
+    useEffect(()=>{
+        if(window.localStorage.getItem('region')){
+            const finder = selectionNameList.find((regionObj) => regionObj.serverName === window.localStorage.getItem('region'));
+            setActiveListDetails((prevState)=>{
+                return {
+                    selectedItem: finder,
+                    showList: false,
+                    index: 0,
+                }
+            })
+        }
+    }, [])
+
     const CountryListShowHideHandler = () => {
         setActiveListDetails((prevState) => {
             return {
@@ -78,8 +91,6 @@ const ProfileSearch = (props) => {
     };
 
     const btnActiveHandler = (listNo) => {
-        // setActiveItemIndex(index);
-        // console.log(selectionNameList);
         const oldList = [...selectionNameList];
         const modifyedList = [];
         setSelectionName(() => {
@@ -144,7 +155,7 @@ const ProfileSearch = (props) => {
 
         dispatch(
             profileAction.setProfileDataPage({
-                profile: res.data.matches,
+                profile: [],
                 // region,
                 region: activeListDetails.selectedItem.serverName,
                 summonerName: search,
@@ -167,9 +178,9 @@ const ProfileSearch = (props) => {
             e.preventDefault();
             sendRequest(
                 {
-                    url: "/summonerByName",
-                    method: "POST",
-                    body: {
+                    url: "/summonerName",
+                    method: "GET",
+                    params: {
                         region: activeListDetails.selectedItem.serverName,
                         summonerName: search,
                     },

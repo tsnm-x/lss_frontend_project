@@ -71,7 +71,7 @@ const PlayerList = (props) => {
                                             : "text-grayed-text"
                                     }`}
                                 >
-                                    {player?.summonerName}
+                                    {player?.summonerName?.slice(0,7)}{player?.summonerName?.length >= 7 && "..."}
                                 </h6>
                             </div>
                         );

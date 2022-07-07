@@ -19,12 +19,22 @@ const Reducer = (state, action) => {
     }
 };
 
-const SimulateDataCard = () => {
+const SimulateDataCard = (props) => {
+    const frames = props?.frames;
     const [ChartComponent, chartDispatch] = useReducer(Reducer, initialState);
 
     return (
         <div className=" text-white text-5xl">
             <AnalyticsBtns click={chartDispatch} />
+
+            <input
+                className="text-full-dark"
+                type="range"
+                min="0"
+                max={(frames?.length - 2).toString()}
+                onChange={(e) => props.frameChange(e.target.value)}
+            />
+            
             {/* all generated data  */}
             <div className=" flex justify-between items-center px-10 ">
                 <div>

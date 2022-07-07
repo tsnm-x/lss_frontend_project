@@ -9,42 +9,41 @@ import Emblem_Diamond from "../../../../../../../public/assets/old-images/ranks/
 import Emblem_Master from "../../../../../../../public/assets/old-images/ranks/Emblem_Master.png";
 import Emblem_Grandmaster from "../../../../../../../public/assets/old-images/ranks/Emblem_Grandmaster.png";
 import Emblem_Challenger from "../../../../../../../public/assets/old-images/ranks/Emblem_Challenger.png";
-import SeasonBatch from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Season_2022_-_Gold.png";
-import FlashBatch from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/SummonerFlash (1).png";
-import TeleportBatch from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/SummonerTeleport.png";
-import Jayce from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Jayce.png";
 import useHttp from "../../../../../../../hook/useHttp";
 
 const PlayerRow = (props) => {
     const [active, setActive] = useState(false);
+    const [rank, setRank] = useState([])
     const {sendRequest} = useHttp();
 
+    const matchTimelineData = props.matchTimelineData;
+    const frames = matchTimelineData?.frames;
+    const matchMetaData = matchTimelineData?.metaData;
+    const selectedFrame = props.selectedFrame;
 
-    // useEffect(()=>{
-    //     console.log(props.player.summonerRiotId)
-    //     console.log(props?.ranks);
-    // }, [props.ranks])
+    const correctParticipant = frames
+        ? frames[selectedFrame][`participant${props.player.standingId}`]
+        : {};
+    
+    const renderedItems = props.showSimulatedGraph
+    ? correctParticipant?.items
+    : [
+            props.player.item0,
+            props.player.item1,
+            props.player.item2,
+            props.player.item3,
+            props.player.item4,
+            props.player.item5,
+        ];
     
     const selectGameType = () => {
         switch (props?.match?.queueId) {
-            case 76:
-                return "ULTRA_RAPID_FIRE";
-            case 100:
-                return "ARAM_5v5";
-            case 400:
-                return "DRAFT_PICK_5v5";
             case 420:
                 return "RANKED_SOLO_5x5";
-            case 430:
-                return "BLIND_PICK_5v5";
             case 440:
                 return "RANKED_FLEX_SR";
-            case 450:
-                return "ARAM_5v5";
-            case 470:
-                return "RANKEd_FLEX_3v3";
-            case 900:
-                return "URF";
+            default:
+                return "RANKED_SOLO_5x5";
         }
     };
 
@@ -54,19 +53,31 @@ const PlayerRow = (props) => {
             {
                 url: "/summonerRanks",
                 method: "POST",
-                body: { region: props.region, summonerRiotId: props.player.summonerRiotId },
+                body: { region: props.region, summonerRiotId: props.player.summonerId },
             },
             (res) => {
+                console.log(props.player.summonerName)
+                console.log(props.region)
                 if (res) {
-                    props.setRanks({...props.ranks, [props.player.summonerName]:res.data.ranks});
+                    
+                    console.log(res.data.ranks)
+                    setRank(res.data.ranks) 
+                    
                 }
             }
         );
-    }, []);
+    }, [props.player.summonerName]);
 
 
     useEffect(()=>{
-        active && props.setSelectedPlayer(props.player)
+        if(active){
+            if(props.showRunes){
+                props.setSelectedPlayer(props.player)
+            } else {
+                props.setSelectedPlayer({})
+                props.setSimulatorPlayers(props.player)
+            } 
+        }
     }, [active])
 
     useEffect(()=>{
@@ -75,7 +86,7 @@ const PlayerRow = (props) => {
 
 
     const rankQueue = selectGameType();
-    const rankSolo = props?.ranks[props.player?.summonerName]?.find((el) => el.queueType === rankQueue);
+    const rankSolo = rank.find((el) => el.queueType === rankQueue);
 
     const getRankbatch = (rank) =>{
         switch (rank.tier) {
@@ -210,12 +221,13 @@ const PlayerRow = (props) => {
                 return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
         }
     };
+    
     return (
         <div
             className={`flex justify-between w-full items-center cursor-pointer relative mb-[10px] last:mb-0 rounded-[3px] ${
                 props.reverse ? " pr-6 pl-4 " : "pr-4 pl-6 "
             } ${
-                props.player.summonerId === props.selectedPlayer.summonerId 
+                props.player.summonerId === props.selectedPlayer.summonerId || props.player.summonerId === props.simulatorPlayers.summonerId
                     ? props.reverse
                         ? " bg-accent-color-2"
                         : "bg-accent-color "
@@ -225,16 +237,44 @@ const PlayerRow = (props) => {
             onClick={() => setActive(true)}
         >
             <div className={`${props.reverse ? "order-5" : "order-1"}`}>
-                <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] ">
-                    {props?.player?.kills}/{props?.player?.deaths}/{props?.player?.assists}
-                </h6>
-                <p className=" sf-bold-6 text-light-text font-bold ">
-                    kda: {(((props.player?.assists + props.player?.kills) / (props.player?.deaths? props.player?.deaths : 1)).toFixed(2))}:1
-                </p>
+            {props.showSimulatedGraph ? (
+                    <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] ">
+                        {correctParticipant?.stats?.kill}/{correctParticipant?.stats?.death}/{correctParticipant?.stats?.assist}
+                    </h6>
+                ) : (
+                    <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] ">
+                        {props?.player?.kills}/{props?.player?.deaths}/{props?.player?.assists}
+                    </h6>
+                )
+            }
+
+            {props.showSimulatedGraph ? (
+                    <p className=" sf-bold-6 text-light-text font-bold ">
+                        kda:
+                        {(
+                            (correctParticipant?.stats?.assist +
+                                correctParticipant?.stats?.kill) /
+                            (correctParticipant?.stats?.death
+                                ? correctParticipant?.stats?.death
+                                : 1)
+                        ).toFixed(2)}
+                        :1
+                    </p>
+                ) : (
+                    <p className=" sf-bold-6 text-light-text font-bold ">
+                        kda:
+                        {(
+                            (props.player?.assists + props?.player?.kills) /
+                            (props.player?.deaths ? props?.player?.deaths : 1)
+                        ).toFixed(2)}
+                        :1
+                    </p>
+                )
+            }
             </div>
             {/* batches  */}
             <div className={`flex ${props.reverse ? "order-4" : "order-2"} `}>
-                {[props.player.item0, props.player.item1, props.player.item2, props.player.item3, props.player.item4, props.player.item5].map((batch, index) => {
+                {renderedItems?.map((batch, index) => {
                     return (
                         <div
                             key={index}
@@ -258,7 +298,7 @@ const PlayerRow = (props) => {
                     }`}
                 >
                     <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
-                        {getTierIntials(rankSolo)}{rankConverter(rankSolo.rank)}
+                        {getTierIntials(rankSolo)}{rankConverter(rankSolo?.rank)}
                     </h6>
                     <div className=" relative w-10 h-10 ">
                         <Image
@@ -275,7 +315,8 @@ const PlayerRow = (props) => {
                 }`}
             >
                 <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
-                    Level {props.player.champLevel}
+                Level {props?.player?.champLevel}
+                {frames ? correctParticipant?.level : ""}
                 </h6>
             </div>
             ): null}
