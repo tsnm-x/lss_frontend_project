@@ -229,12 +229,12 @@ const PlayerRow = (props) => {
                 props.reverse
                     ? `pr-6 pl-4 desktop:pr-[31px] desktop:pl-6 desktop:grid  ${
                           props.showRunes
-                              ? "desktop:grid-cols-[100px_120px_210px_60px]"
+                              ? "desktop:grid-cols-[85px_120px_210px_60px]"
                               : " desktop:grid-cols-[100px_120px_100px_210px_60px]"
                       }`
                     : `pr-4 pl-6 desktop:pr-6 desktop:pl-[31px] desktop:grid  ${
                           props.showRunes
-                              ? "desktop:grid-cols-[60px_210px_120px_100px]"
+                              ? "desktop:grid-cols-[60px_210px_120px_85px]"
                               : " desktop:grid-cols-[60px_210px_100px_120px_100px]"
                       }`
             } ${
@@ -367,12 +367,12 @@ const PlayerRow = (props) => {
                 {props?.player?.summonerName}
             </h5>
             {/* profile image  */}
-            <div className={` flex ${props.reverse ? "order-1" : "order-5"}`}>
+            <div className={` flex ${props.reverse ? "order-1 justify-end " : "order-5"}`}>
                 <div
                     className={` ${
                         props.reverse
-                            ? "order-2 ml-[9px] desktop:ml-3 "
-                            : "order-2 mr-[9px] desktop:mr-3 "
+                            ? "order-2 ml-[9px] desktop:ml-1 "
+                            : "order-2 mr-[9px] desktop:mr-1 "
                     }`}
                 >
                     <div className=" relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] ">
