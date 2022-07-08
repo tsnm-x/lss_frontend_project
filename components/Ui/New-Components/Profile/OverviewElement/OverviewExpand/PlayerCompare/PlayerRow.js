@@ -309,35 +309,37 @@ const PlayerRow = (props) => {
             </div>
             {/* g batch  */}
             {/* {!props.showSimulatedGraph && rankSolo ? (
-				<div
-					className={`flex items-center ${
-						props.reverse ? "order-3" : "order-3"
-					}`}
-				>
-					<h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
-						{getTierIntials(rankSolo)}
-						{rankConverter(rankSolo?.rank)}
-					</h6>
-					<div className=" relative w-10 h-10 desktop:w-[52px] desktop:h-[52px] ">
-						<Image
-							src={getRankbatch(rankSolo)}
-							alt="season batch"
-							layout="fill"
-						/>
-					</div>
-				</div>
-			) : props.showSimulatedGraph ? (
-				<div
-					className={`flex items-center ${
-						props.reverse ? "order-3" : "order-3"
-					}`}
-				>
-					<h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
-						Level {"  "}
-						{frames ? correctParticipant?.level : props?.player?.champLevel}
-					</h6>
-				</div>
-			) : null} */}
+                <div
+                    className={`flex items-center ${
+                        props.reverse ? "order-3" : "order-3"
+                    }`}
+                >
+                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
+                        {getTierIntials(rankSolo)}
+                        {rankConverter(rankSolo?.rank)}
+                    </h6>
+                    <div className=" relative w-10 h-10 desktop:w-[52px] desktop:h-[52px] ">
+                        <Image
+                            src={getRankbatch(rankSolo)}
+                            alt="season batch"
+                            layout="fill"
+                        />
+                    </div>
+                </div>
+            ) : props.showSimulatedGraph ? (
+                <div
+                    className={`flex items-center ${
+                        props.reverse ? "order-3" : "order-3"
+                    }`}
+                >
+                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
+                        Level {"  "}
+                        {frames
+                            ? correctParticipant?.level
+                            : props?.player?.champLevel}
+                    </h6>
+                </div>
+            ) : null} */}
             {!props.showRunes ? (
                 <div
                     className={`flex items-center ${
