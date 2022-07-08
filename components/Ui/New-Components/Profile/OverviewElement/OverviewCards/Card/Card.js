@@ -11,7 +11,6 @@ import { useState } from "react";
 const Card = (props) => {
 	const [addClass, setAddClass] = useState(false);
 	const { expandCardNo, expand, cardProps } = useContext(CardContext);
-
 	return (
 		<>
 			{props.index === expandCardNo ? (

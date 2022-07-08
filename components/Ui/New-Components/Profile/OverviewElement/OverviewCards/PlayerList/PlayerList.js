@@ -32,9 +32,12 @@ const PlayerList = (props) => {
         return player.mainPlayer == true;
     });
 
-
     return (
-        <div className=" bg-card-&-content-box grid grid-cols-[auto_30px] smDesktop:grid-cols-[auto_33px] desktop:grid-cols-[auto_36px] ">
+        <div
+            className={`bg-card-&-content-box grid grid-cols-[auto_30px] 
+            smDesktop:grid-cols-[auto_33px] desktop:grid-cols-[auto_36px]
+            ${props.expand ? " desktop:pl-[34px] " : ""} `}
+        >
             {/* player lists  */}
             <div className="h-full relative py-[10px] pl-[18px] pr-[60px] desktop:pl-[24px] ">
                 {props.index === 0 ? (
@@ -51,10 +54,17 @@ const PlayerList = (props) => {
                     {orderedPlayersList.map((player, index) => {
                         return (
                             <div
-                                className=" flex items-center justify-start mb-1"
+                                className={`flex items-center justify-start mb-1 ${props.expand ? " desktop:mb-[6px] " : ""}`}
                                 key={index}
                             >
-                                <div className=" border border-[#707070] relative w-[22px] h-[22px] rounded-full mr-[8px] desktop:w-[24px] desktop:h-[24px]  ">
+                                <div
+                                    className={`border border-[#707070] relative w-[22px] h-[22px] rounded-full mr-[8px] 
+                                    desktop:w-[24px] desktop:h-[24px] ${
+                                        props.expand
+                                            ? " desktop:w-[43px] desktop:h-[43px] desktop:mr-6 "
+                                            : ""
+                                    }`}
+                                >
                                     <Image
                                         src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${player?.championName}.png`}
                                         alt={player?.summonerName + "image"}
@@ -69,9 +79,10 @@ const PlayerList = (props) => {
                                                 ? "text-accent-color-2"
                                                 : "text-accent-color"
                                             : "text-grayed-text"
-                                    }`}
+                                    } ${props.expand ? " desktop:text-[20px] desktop:leading-[22px] " : ""}`}
                                 >
-                                    {player?.summonerName?.slice(0,7)}{player?.summonerName?.length >= 7 && "..."}
+                                    {player?.summonerName?.slice(0, 7)}
+                                    {player?.summonerName?.length >= 7 && "..."}
                                 </h6>
                             </div>
                         );
@@ -83,12 +94,10 @@ const PlayerList = (props) => {
                 onClick={() => CardExpand.expandControl(props.index, props)}
                 className={`h-full w-[30px] flex items-center justify-center
               rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[33px]  ${
-                mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
+                  mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
               }`}
             >
-                <BiExpand
-                    className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] desktop:text-[22px] "
-                />
+                <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] desktop:text-[22px] " />
             </div>
         </div>
     );

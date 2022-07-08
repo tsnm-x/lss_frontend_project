@@ -39,20 +39,24 @@ const RankCard = (props) => {
             case 3068:
             case 3078:
             case 6664:
-                console.log(id);
                 return true;
             default:
                 return false;
         }
     };
-
     return (
-        <div className=" bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex desktop:px-5   ">
+        <div
+            className={`bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex desktop:px-5 ${props.expand ? " desktop:px-[41px] " : ""} `}
+        >
             <div
                 className={` ${
                     props.className
                         ? props.className
-                        : " grid grid-cols-3 gap-3 content-center justify-center "
+                        : `grid grid-cols-3 gap-3 content-center justify-center ${
+                              props.expand
+                                  ? " desktop:gap-[24px]  "
+                                  : ""
+                          }`
                 }`}
             >
                 {[
@@ -72,7 +76,11 @@ const RankCard = (props) => {
                             } ${
                                 props.imgClassName
                                     ? props.imgClassName
-                                    : "w-[32px] h-[32px] desktop:w-[40px] desktop:h-[40px] "
+                                    : `w-[32px] h-[32px]  desktop:w-[40px] desktop:h-[40px] ${
+                                          props.expand
+                                              ? " desktop:w-[68px] desktop:h-[68px]  "
+                                              : "not expanded"
+                                      }`
                             }`}
                             key={index}
                         >
@@ -89,7 +97,13 @@ const RankCard = (props) => {
                 })}
             </div>
             <div>
-                <div className=" relative w-[30px] h-[30px] rounded-full mt-3 ml-3   ">
+                <div
+                    className={`relative w-[30px] h-[30px] rounded-full mt-3 ml-3 ${
+                        props.expand
+                            ? " desktop:w-[51px] desktop:h-[51px] desktop:ml-[24px] desktop:mt-[30px] "
+                            : ""
+                    }`}
+                >
                     <Image src={SmallImg} alt="small img" layout="fill" />
                 </div>
             </div>

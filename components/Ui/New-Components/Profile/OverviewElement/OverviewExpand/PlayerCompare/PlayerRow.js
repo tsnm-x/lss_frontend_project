@@ -59,10 +59,8 @@ const PlayerRow = (props) => {
                 },
             },
             (res) => {
-                console.log(props.player.summonerName);
-                console.log(props.region);
+  
                 if (res) {
-                    console.log(res.data.ranks);
                     setRank(res.data.ranks);
                 }
             }
@@ -221,7 +219,6 @@ const PlayerRow = (props) => {
                 return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
         }
     };
-    console.log(props);
 
     return (
         <div

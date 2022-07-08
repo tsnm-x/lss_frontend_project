@@ -217,7 +217,6 @@ const RightSide = (props) => {
     };
 
     useEffect(() => {
-        console.log(props.mainPlayer);
     }, [props.mainPlayer]);
     useEffect(() => {
         let totalKills = 0;
@@ -252,7 +251,7 @@ const RightSide = (props) => {
                         props.expand
                             ? `laptop:w-[95px] laptop:h-[95px] smDesktop:w-[98px] smDesktop:h-[98px] ${
                                   props.mainExpand
-                                      ? ""
+                                      ? " desktop:w-[102px] desktop:h-[102px] "
                                       : " desktop:w-[129px] desktop:h-[129px] "
                               }`
                             : "laptop:w-[62px] laptop:h-[62px] smDesktop:w-[65px] smDesktop:h-[65px] desktop:w-[75px] desktop:h-[75px] "
@@ -361,7 +360,6 @@ const RightSide = (props) => {
 
 const StatusCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
-    console.log(props)
 
     useEffect(() => {
         let main = props?.match?.players.find((player) => {
@@ -375,7 +373,7 @@ const StatusCard = (props) => {
             className={`  bg-card-&-content-box
              flex items-center border-r border-background desktop:justify-between  ${
                  props.expand
-                     ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px] "
+                     ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px] desktop:px-[41px] "
                      : "p-5 pt-[15px] desktop:px-6 desktop:py-5"
              }`}
         >
@@ -386,6 +384,7 @@ const StatusCard = (props) => {
                 expand={props.expand}
                 match={props.match}
                 mainPlayer={mainPlayer}
+                mainExpand={props.mainExpand}
             />
         </div>
     );

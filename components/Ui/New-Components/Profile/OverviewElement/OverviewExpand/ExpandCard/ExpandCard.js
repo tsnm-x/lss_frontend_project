@@ -29,6 +29,7 @@ const ExpandCard = (props) => {
 	const [selectedFrame, setSelectedFrame] = useState(
 		matchTimelineData?.frames?.length - 2 || 0
 	);
+	const [mainExpand, setMainExpand] = useState(true)
 
 	const players = JSON.parse(JSON.stringify(props.match?.players));
 
@@ -105,7 +106,7 @@ const ExpandCard = (props) => {
 			<div className="mr-[5px] desktop:mr-[15px] ">
 				{/* defeat and build card  */}
 				<div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] desktop:rounded-[5px] desktop:overflow-hidden ">
-					<StatusCard {...props} mainExpand={true} />
+					<StatusCard {...props} mainExpand={mainExpand} />
 					<BuildCard {...props} />
 				</div>
 				<div>
