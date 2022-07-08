@@ -107,7 +107,7 @@ const ExpandCard = (props) => {
 				{/* defeat and build card  */}
 				<div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] desktop:rounded-[5px] desktop:overflow-hidden ">
 					<StatusCard {...props} mainExpand={mainExpand} />
-					<BuildCard {...props} />
+					<BuildCard {...props} mainExpand={mainExpand} />
 				</div>
 				<div>
 					{!showSimulatedGraph ? (
