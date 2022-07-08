@@ -4,10 +4,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import Header from "../../components/shared/Old-Shared-Components/header/Header";
 
 const unityContext = new UnityContext({
-	loaderUrl: "/assets/LSS WebGL.loader.js",
-	dataUrl: "/assets/LSS WebGL.data.unityweb",
-	frameworkUrl: "/assets/LSS WebGL.framework.js.unityweb",
-	codeUrl: "/assets/LSS WebGL.wasm.unityweb",
+	loaderUrl: "/assets/unity/WebGL.loader.js",
+	dataUrl: "/assets/unity/WebGL.data.unityweb",
+	frameworkUrl: "/assets/unity/WebGL.framework.js.unityweb",
+	codeUrl: "/assets/unity/WebGL.wasm.unityweb",
 });
 
 export default function Simulator() {

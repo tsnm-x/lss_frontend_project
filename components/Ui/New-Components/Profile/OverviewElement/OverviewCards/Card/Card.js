@@ -9,26 +9,26 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const Card = (props) => {
-    const [addClass, setAddClass] = useState(false);
-    const { expandCardNo, expand, cardProps } = useContext(CardContext);
+	const [addClass, setAddClass] = useState(false);
+	const { expandCardNo, expand, cardProps } = useContext(CardContext);
 
-    return (
-        <>
-            {props.index === expandCardNo ? (
-                <ExpandCard {...props}/>
-            ) : (
-                <div
-                    className={` rounded-5px overflow-hidden grid  border-b border-background ${
-                        expand ? "grid-cols-[35%_24%_41%] mb-2" : " grid-cols-[37%_23%_40%]"
-                    } ${props.className}`}
-                >
-                    <StatusCard expand={expand} {...props} />
-                    <RankCard expand={expand} {...props}/>
-                    <PlayerList index={props.index} {...props} />
-                </div>
-            )}
-        </>
-    );
+	return (
+		<>
+			{props.index === expandCardNo ? (
+				<ExpandCard {...props} />
+			) : (
+				<div
+					className={` rounded-5px overflow-hidden grid  border-b border-background ${
+						expand ? "grid-cols-[35%_24%_41%] mb-2" : " grid-cols-[37%_23%_40%]"
+					} ${props.className}`}
+				>
+					<StatusCard expand={expand} {...props} />
+					<RankCard expand={expand} {...props} />
+					<PlayerList index={props.index} {...props} />
+				</div>
+			)}
+		</>
+	);
 };
 
 export default Card;

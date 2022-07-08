@@ -3,17 +3,34 @@ import PlayerRow from "./PlayerRow";
 import RunesOverview from "./RunesOverview";
 
 const LeftPlayers = (props) => {
-
-    useEffect(()=>{
-        console.log(props.players)
-    }, [props.players])
-    return (
-        <div className={`w-3/6 h-full flex flex-col justify-between py-2 ${props.showRunes ? 'w-2/6': 'w-3/6'}`}>
-            {props.players.map((player, index) => {
-                return <PlayerRow key={index} reverse={false} index={index} gold={props.showRunes} player={player} region={props?.region} setSelectedPlayer={props.setSelectedPlayer} selectedPlayer={props.selectedPlayer} match={props.match}  showSimulatedGraph={props.showSimulatedGraph} ranks={props.ranks} setRanks={props.setRanks} />;
-            })}
-        </div>
-    );
+	return (
+		<div
+			className={`w-3/6 h-full flex flex-col justify-between py-2 ${
+				props.showRunes ? "w-2/6" : "w-3/6"
+			}`}
+		>
+			{props.players.map((player, index) => {
+				return (
+					<PlayerRow
+						selectedFrame={props.selectedFrame}
+						matchTimelineData={props.matchTimelineData}
+						key={index}
+						reverse={false}
+						index={index}
+						gold={props.showRunes}
+						player={player}
+						region={props?.region}
+						setSelectedPlayer={props.setSelectedPlayer}
+						selectedPlayer={props.selectedPlayer}
+						match={props.match}
+						showSimulatedGraph={props.showSimulatedGraph}
+						ranks={props.ranks}
+						setRanks={props.setRanks}
+					/>
+				);
+			})}
+		</div>
+	);
 };
 
 // const CenterPrecisionAndInspiration = (props) => {
@@ -23,33 +40,89 @@ const LeftPlayers = (props) => {
 // };
 
 const RightPlayers = (props) => {
-
-    return (
-        <div className={` h-full flex flex-col justify-between py-2 ${props.showRunes ? 'w-2/6' : 'w-3/6'}`}>
-            {props.players.map((player, index) => {
-                return <PlayerRow key={index} reverse={true} index={index} gold={props.showRunes} player={player} region={props?.region} setSelectedPlayer={props.setSelectedPlayer} selectedPlayer={props.selectedPlayer} match={props.match} showSimulatedGraph={props.showSimulatedGraph} ranks={props.ranks} setRanks={props.setRanks}/>;
-            })}
-        </div>
-    );
+	return (
+		<div
+			className={` h-full flex flex-col justify-between py-2 ${
+				props.showRunes ? "w-2/6" : "w-3/6"
+			}`}
+		>
+			{props.players.map((player, index) => {
+				return (
+					<PlayerRow
+						selectedFrame={props.selectedFrame}
+						matchTimelineData={props.matchTimelineData}
+						key={index}
+						reverse={true}
+						index={index}
+						gold={props.showRunes}
+						player={player}
+						region={props?.region}
+						setSelectedPlayer={props.setSelectedPlayer}
+						selectedPlayer={props.selectedPlayer}
+						match={props.match}
+						showSimulatedGraph={props.showSimulatedGraph}
+						ranks={props.ranks}
+						setRanks={props.setRanks}
+					/>
+				);
+			})}
+		</div>
+	);
 };
 
 const PlayerCompare = (props) => {
-    const [ranks, setRanks] = useState({});
-    const [leftTeam, setLeftTeam] = useState([]);
-    const [rightTeam, setRightTeam] = useState([]);
-    const [selectedPlayer, setSelectedPlayer] = useState({});
+	const [ranks, setRanks] = useState({});
+	const [leftTeam, setLeftTeam] = useState([]);
+	const [rightTeam, setRightTeam] = useState([]);
 
-    useEffect(()=>{
-        setLeftTeam(props.match.players.filter((player)=> !player.win))
-        setRightTeam(props.match.players.filter((player)=> player.win))
-    }, [props.match.players])
-    return (
-        <div className={`flex gap-x-4 ${props.showRunes ? 'h-[340px]' : null}`}>
-            {leftTeam.length !=0 && <LeftPlayers showRunes={props.showRunes} players={leftTeam} region={props?.region} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} match={props.match} showSimulatedGraph={props.showSimulatedGraph} ranks={ranks} setRanks={setRanks}/>}
-            {props.showRunes && <RunesOverview selectedPlayer={selectedPlayer} />}
-            {rightTeam.length != 0 && <RightPlayers showRunes={props.showRunes} players={rightTeam} region={props?.region} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} match={props.match} showSimulatedGraph={props.showSimulatedGraph} ranks={ranks} setRanks={setRanks}/>}
-        </div>
-    );
+	const players = JSON.parse(JSON.stringify(props.match?.players));
+
+	for (let i = 0; i < players.length; i++) {
+		players[i].standingId = i + 1;
+	}
+
+	useEffect(() => {
+		setLeftTeam(players.filter((player) => !player.win));
+		setRightTeam(players.filter((player) => player.win));
+	}, [props.match.players]);
+
+	return (
+		<div className={`flex gap-x-4 ${props.showRunes ? "h-[340px]" : null}`}>
+			{leftTeam.length != 0 && (
+				<LeftPlayers
+					selectedFrame={props.selectedFrame}
+					matchTimelineData={props.matchTimelineData}
+					showRunes={props.showRunes}
+					players={leftTeam}
+					region={props?.region}
+					selectedPlayer={props.selectedPlayer}
+					setSelectedPlayer={props.setSelectedPlayer}
+					match={props.match}
+					showSimulatedGraph={props.showSimulatedGraph}
+					ranks={ranks}
+					setRanks={setRanks}
+				/>
+			)}
+			{props.showRunes && (
+				<RunesOverview selectedPlayer={props.selectedPlayer} />
+			)}
+			{rightTeam.length != 0 && (
+				<RightPlayers
+					selectedFrame={props.selectedFrame}
+					matchTimelineData={props.matchTimelineData}
+					showRunes={props.showRunes}
+					players={rightTeam}
+					region={props?.region}
+					selectedPlayer={props.selectedPlayer}
+					setSelectedPlayer={props.setSelectedPlayer}
+					match={props.match}
+					showSimulatedGraph={props.showSimulatedGraph}
+					ranks={ranks}
+					setRanks={setRanks}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default PlayerCompare;
