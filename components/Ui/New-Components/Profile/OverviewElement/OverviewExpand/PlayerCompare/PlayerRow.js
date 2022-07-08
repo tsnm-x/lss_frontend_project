@@ -28,12 +28,12 @@ const PlayerRow = (props) => {
     const renderedItems = props.showSimulatedGraph
     ? correctParticipant?.items
     : [
-            props.player.item0,
-            props.player.item1,
-            props.player.item2,
-            props.player.item3,
-            props.player.item4,
-            props.player.item5,
+            props.player?.item0,
+            props.player?.item1,
+            props.player?.item2,
+            props.player?.item3,
+            props.player?.item4,
+            props.player?.item5,
         ];
     
     const selectGameType = () => {

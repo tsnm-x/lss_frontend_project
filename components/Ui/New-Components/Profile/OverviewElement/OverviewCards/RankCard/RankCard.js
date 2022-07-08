@@ -38,7 +38,31 @@ const RankCard = (props) => {
             case 3068:
             case 3078:
             case 6664:
-                console.log(id);
+            case 7002:
+            case 7000:
+            case 7001:
+            case 7015:
+            case 7017:
+            case 7016:
+            case 7018:
+            case 7024:
+            case 7014:
+            case 7013:
+            case 7009:
+            case 7012:
+            case 7011:
+            case 7010:
+            case 7008:
+            case 7006:
+            case 7007:
+            case 7023:
+            case 7019:
+            case 7022:
+            case 7020:
+            case 7021:
+            case 7004:
+            case 7005:
+            case 7003:
                 return true;
             default:
                 return false;
