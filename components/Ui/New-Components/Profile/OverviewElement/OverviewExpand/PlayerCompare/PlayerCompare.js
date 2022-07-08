@@ -72,42 +72,46 @@ const RightPlayers = (props) => {
 
 const PlayerCompare = (props) => {
 	return (
-		<div className={`flex gap-x-4 ${props.showRunes ? "h-[340px]" : null} desktop:mx-10 `}>
-			{props.leftTeam.length != 0 && (
-				<LeftPlayers
-					showRunes={props.showRunes}
-					players={props.leftTeam}
-					region={props?.region}
-					selectedPlayer={props.selectedPlayer}
-					setSelectedPlayer={props.setSelectedPlayer}
-					match={props.match}
-					showSimulatedGraph={props.showSimulatedGraph}
-					simulatorPlayers={props.simulatorPlayerRed}
-					setSimulatorPlayers={props.setSimulatorPlayerRed}
-					selectedFrame={props.selectedFrame}
-					matchTimelineData={props.matchTimelineData}
-				/>
-			)}
-			{props.showRunes && (
-				<RunesOverview selectedPlayer={props.selectedPlayer} />
-			)}
-			{props.rightTeam.length != 0 && (
-				<RightPlayers
-					showRunes={props.showRunes}
-					players={props.rightTeam}
-					region={props?.region}
-					selectedPlayer={props.selectedPlayer}
-					setSelectedPlayer={props.setSelectedPlayer}
-					match={props.match}
-					showSimulatedGraph={props.showSimulatedGraph}
-					simulatorPlayers={props.simulatorPlayerBlue}
-					setSimulatorPlayers={props.setSimulatorPlayerBlue}
-					selectedFrame={props.selectedFrame}
-					matchTimelineData={props.matchTimelineData}
-				/>
-			)}
-		</div>
-	);
+        <div
+            className={`flex gap-x-4 ${
+                props.showRunes ? "h-[340px] desktop:h-[460px] " : "desktop:mx-10"
+            }  `}
+        >
+            {props.leftTeam.length != 0 && (
+                <LeftPlayers
+                    showRunes={props.showRunes}
+                    players={props.leftTeam}
+                    region={props?.region}
+                    selectedPlayer={props.selectedPlayer}
+                    setSelectedPlayer={props.setSelectedPlayer}
+                    match={props.match}
+                    showSimulatedGraph={props.showSimulatedGraph}
+                    simulatorPlayers={props.simulatorPlayerRed}
+                    setSimulatorPlayers={props.setSimulatorPlayerRed}
+                    selectedFrame={props.selectedFrame}
+                    matchTimelineData={props.matchTimelineData}
+                />
+            )}
+            {props.showRunes && (
+                <RunesOverview selectedPlayer={props.selectedPlayer} />
+            )}
+            {props.rightTeam.length != 0 && (
+                <RightPlayers
+                    showRunes={props.showRunes}
+                    players={props.rightTeam}
+                    region={props?.region}
+                    selectedPlayer={props.selectedPlayer}
+                    setSelectedPlayer={props.setSelectedPlayer}
+                    match={props.match}
+                    showSimulatedGraph={props.showSimulatedGraph}
+                    simulatorPlayers={props.simulatorPlayerBlue}
+                    setSimulatorPlayers={props.setSimulatorPlayerBlue}
+                    selectedFrame={props.selectedFrame}
+                    matchTimelineData={props.matchTimelineData}
+                />
+            )}
+        </div>
+    );
 };
 
 export default PlayerCompare;

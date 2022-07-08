@@ -10,7 +10,7 @@ import Emblem_Master from "../../../../../../../public/assets/old-images/ranks/E
 import Emblem_Grandmaster from "../../../../../../../public/assets/old-images/ranks/Emblem_Grandmaster.png";
 import Emblem_Challenger from "../../../../../../../public/assets/old-images/ranks/Emblem_Challenger.png";
 import useHttp from "../../../../../../../hook/useHttp";
-import GbatchImg from '../../../../../../../public/assets/new-images/Profile/card/CardExpand/g-batch.png'
+import GbatchImg from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/g-batch.png";
 
 const PlayerRow = (props) => {
     const [active, setActive] = useState(false);
@@ -221,13 +221,22 @@ const PlayerRow = (props) => {
                 return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
         }
     };
+    console.log(props);
 
     return (
         <div
             className={` flex justify-between w-full items-center cursor-pointer relative mb-[10px] last:mb-0 rounded-[3px] desktop:mb-4 desktop:last:mb-0 ${
                 props.reverse
-                    ? " pr-6 pl-4 desktop:pr-[31px] desktop:pl-6 "
-                    : "pr-4 pl-6 desktop:pr-6 desktop:pl-[31px] desktop:grid desktop:grid-cols-[60px_210px_100px_120px_100px]  "
+                    ? `pr-6 pl-4 desktop:pr-[31px] desktop:pl-6 desktop:grid  ${
+                          props.showRunes
+                              ? "desktop:grid-cols-[100px_120px_210px_60px]"
+                              : " desktop:grid-cols-[100px_120px_100px_210px_60px]"
+                      }`
+                    : `pr-4 pl-6 desktop:pr-6 desktop:pl-[31px] desktop:grid  ${
+                          props.showRunes
+                              ? "desktop:grid-cols-[60px_210px_120px_100px]"
+                              : " desktop:grid-cols-[60px_210px_100px_120px_100px]"
+                      }`
             } ${
                 props.player.summonerId === props.selectedPlayer.summonerId ||
                 props.player.summonerId === props.simulatorPlayers.summonerId
@@ -240,7 +249,10 @@ const PlayerRow = (props) => {
         >
             <div className={`${props.reverse ? "order-5" : "order-1"}`}>
                 {props.showSimulatedGraph ? (
-                    <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
+                    <h6
+                        className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
+												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
+                    >
                         {correctParticipant?.stats?.kill}/
                         {correctParticipant?.stats?.death}/
                         {correctParticipant?.stats?.assist}
@@ -326,20 +338,24 @@ const PlayerRow = (props) => {
 					</h6>
 				</div>
 			) : null} */}
-
-            <div
-                className={`flex items-center ${
-                    props.reverse ? "order-3" : "order-3"
-                }`}
-            >
-                <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
-                    G2
-                </h6>
-                <div className=" relative w-10 h-10 desktop:w-[52px] desktop:h-[52px] ">
-                    <Image src={GbatchImg} alt="season batch" layout="fill" />
+            {!props.showRunes ? (
+                <div
+                    className={`flex items-center ${
+                        props.reverse ? "order-3" : "order-3"
+                    }`}
+                >
+                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
+                        G2
+                    </h6>
+                    <div className=" relative w-10 h-10 desktop:w-[52px] desktop:h-[52px] ">
+                        <Image
+                            src={GbatchImg}
+                            alt="season batch"
+                            layout="fill"
+                        />
+                    </div>
                 </div>
-            </div>
-
+            ) : null}
             {/* name  */}
             <h5
                 className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] desktop:text-lg ${

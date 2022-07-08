@@ -365,15 +365,16 @@ const Precision = (props) => {
 
     return (
         <div
-            className={`${Classes.PrecisionWrap} h-full p-[22px] rounded-5px `}
+            className={`${Classes.PrecisionWrap} h-full p-[22px] rounded-5px desktop:pt-[32px] `}
             
         >
-            <h1 className=" sf-bold-11 text-light-text capitalize text-center">
+            <h1 className=" sf-bold-11 text-light-text capitalize text-center desktop:text-base">
                 {styleNameSelector(props?.selectedPlayer?.perks?.styles[0]?.style)}
             </h1>
             {/* batches  */}
-            <div className=" mt-10 flex flex-col items-center">
-                <div className=" relative w-8 h-8 rounded-full border border-[#201929] smDesktop:w-[34px] smDesktop:h-[34px]  ">
+            <div className=" mt-10 flex flex-col items-center desktop:mt-[60px] ">
+                <div className=" relative w-8 h-8 rounded-full border border-[#201929] smDesktop:w-[34px] smDesktop:h-[34px]
+                    desktop:w-[43px] desktop:h-[43px]  ">
                     <Image
                         src={styleSelector(props?.selectedPlayer?.perks?.styles[0]?.style)}
                         alt="precision parent icon"
@@ -385,7 +386,9 @@ const Precision = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).firstSlot.map((option, index) => {
                         return (
                             <div
-                                className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 smDesktop:w-[35px] smDesktop:h-[35px] ${
+                                className={` relative w-8 h-8 rounded-full mr-1 last:mr-0 
+                                smDesktop:w-[35px] smDesktop:h-[35px] desktop:w-[43px] desktop:mr-[6px]
+                                desktop:h-[43px] ${
                                     checkIconOpacity(option.id)
                                         ? "border border-nav-btn "
                                         :  "opacity-30"
@@ -402,11 +405,11 @@ const Precision = (props) => {
                     })}
                 </div>
                 {/* all the batches  */}
-                <div className=" grid grid-cols-3 grid-rows-3 gap-3 mt-3 ">
+                <div className=" grid grid-cols-3 grid-rows-3 gap-3 mt-3 desktop:gap-4 ">
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).secondSlot.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-7 h-7 rounded-full smDesktop:w-[30px] smDesktop:h-[30px] ${
+                                className={`relative w-7 h-7 rounded-full smDesktop:w-[30px] smDesktop:h-[30px] desktop:w-[35px] desktop:h-[35px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -761,13 +764,13 @@ const Inspiration = (props) => {
 
     return (
         <div
-            className={`${Classes.InspirationWrap} h-full p-[22px] rounded-5px `}
+            className={`${Classes.InspirationWrap} h-full p-[22px] rounded-5px desktop:pt-[32px] `}
         >
-            <h1 className=" sf-bold-11 text-light-text capitalize text-center">
+            <h1 className=" sf-bold-11 text-light-text capitalize text-center desktop:text-base">
                 {styleNameSelector(props?.selectedPlayer?.perks?.styles[1]?.style)}
             </h1>
             {/* batches  */}
-            <div className=" mt-[74px] flex flex-col items-center">
+            <div className=" mt-[74px] flex flex-col items-center desktop:mt-[100px] ">
                 <div className=" relative w-8 h-8 rounded-full border border-[#201929] smDesktop:w-[35px] smDesktop:h-[35px] smDesktop:mb-3  ">
                     <Image
                         src={styleSelector(props?.selectedPlayer?.perks?.styles[1]?.style)}
@@ -913,17 +916,17 @@ const RunesState = (props) => {
     return (
         <div
             className={`h-full p-[14px] rounded-5px flex flex-col justify-center  ${Classes.runesState} `}
-            style = {{
+            style={{
                 background: `url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.selectedPlayer.championName}_0.jpg') no-repeat center center`,
-                backgroundSize: 'cover'
+                backgroundSize: "cover",
             }}
         >
             {/* all the batches  */}
-            <div className=" grid grid-cols-3 grid-rows-3 gap-[6px] mt-3 relative z-50">
+            <div className=" grid grid-cols-3 grid-rows-3 gap-[6px] mt-3 relative z-50 desktop:gap-[10px] ">
                 {offense.map((batch, index) => {
                     return (
                         <div
-                            className={`relative w-4 h-4 rounded-full smDesktop:w-5 smDesktop:h-5 ${
+                            className={`relative w-4 h-4 rounded-full smDesktop:w-5 smDesktop:h-5 desktop:w-[22px] desktop:h-[22px] ${
                                 checkIconOpacity(batch.id, "offense")
                                     ? "border border-nav-btn"
                                     : " opacity-40"
@@ -941,7 +944,7 @@ const RunesState = (props) => {
                 {flex.map((batch, index) => {
                     return (
                         <div
-                            className={`relative w-4 h-4 rounded-full ${
+                            className={`relative w-4 h-4 rounded-full desktop:w-[22px] desktop:h-[22px] ${
                                 checkIconOpacity(batch.id, "flex")
                                     ? "border border-nav-btn"
                                     : " opacity-40"
@@ -959,7 +962,7 @@ const RunesState = (props) => {
                 {defense.map((batch, index) => {
                     return (
                         <div
-                            className={`relative w-4 h-4 rounded-full ${
+                            className={`relative w-4 h-4 rounded-full desktop:w-[22px] desktop:h-[22px] ${
                                 checkIconOpacity(batch.id, "defense")
                                     ? "border border-nav-btn"
                                     : " opacity-40"
@@ -975,7 +978,13 @@ const RunesState = (props) => {
                     );
                 })}
             </div>
-            <p className=" font-sf-pro-text text-grayed-text text-[6px] leading-[7px] capitalize font-bold text-center mt-5 ">rune stats</p>
+            <p
+                className=" font-sf-pro-text text-[#AAA0A8] text-[6px]
+             leading-[7px] capitalize font-bold text-center mt-5 desktop:text-[10px]
+              desktop:leading-[12px] "
+            >
+                rune stats
+            </p>
         </div>
     );
 };
