@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import AnalyticsBtns from "../AnalyticsBtns/AnalyticsBtns";
 import PowerChart from "./PowerChart/PowerChart";
 import LevelChart from "./LevelDiffChart/LevelDiffChart";
@@ -22,8 +22,13 @@ const Reducer = (state, action) => {
 
 const SimulateDataCard = (props) => {
 	const frames = props?.frames;
-	const [framePointer, setFramePointer] = useState(0);
+	const [framePointer, setFramePointer] = useState(15);
 	const [ChartComponent, chartDispatch] = useReducer(Reducer, initialState);
+
+	useEffect(() => {
+		console.log(framePointer);
+        props.frameChange(15);
+    }, [])
 
 	return (
 		<div className=" text-white text-5xl">

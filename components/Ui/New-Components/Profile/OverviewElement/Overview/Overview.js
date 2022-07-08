@@ -7,7 +7,7 @@ import CardContext from "../../../../../../Context/CardContext";
 import Ads from "../../../../../shared/New-Componets/Ads/Ads";
 
 const Overview = (props) => {
-    const { expand, expandControl } = useContext(CardContext);
+    const { expand, setCardExpand, expandControl } = useContext(CardContext);
 
     return (
         <section className=" my-[60px] relative ">
@@ -25,7 +25,8 @@ const Overview = (props) => {
                     region={props?.region}
                     matches={props?.matches}
                     expand={expand}
-                    setExpand={expandControl}
+                    setExpand={setCardExpand}
+                    expandControl={expandControl}
                     ControlBtnLists={props?.ControlBtnLists}
                     selectedMatchType={props?.selectedMatchType}
                     setSelectedMatchType={props?.setSelectedMatchType}

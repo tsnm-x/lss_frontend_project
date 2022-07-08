@@ -154,6 +154,7 @@ const Summoner = () => {
 				<CardContext.Provider
 					value={{
 						expand: cardExpand,
+						setCardExpand: setCardExpand,
 						expandControl: CardsExpandHandler,
 						expandCardNo: expandCardNo,
 						cardProps: cardProps,
