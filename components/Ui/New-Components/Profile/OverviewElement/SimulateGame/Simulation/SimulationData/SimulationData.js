@@ -168,85 +168,85 @@ const SimulationData = (props) => {
 		unityContext.send("Simulator Manager", "LoadData", JSON.stringify(data));
 	};
 
-	return (
-		<>
-			<div>
-				<img
-					src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.selectedPlayer?.championName}.png`}
-					alt="profile Image"
-					layout="fill"
-				/>
-				<h1>vs</h1>
-				<img
-					src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/Ashe.png`}
-					alt="profile Image"
-					layout="fill"
-				/>
-			</div>
-
-			<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
-				<button onClick={clicked}>Start Sim</button>
-				{/* <Unity
-					style={{
-						width: "100%",
-						height: "100%",
-						background: "#231F20",
-						justifySelf: "center",
-						alignSelf: "center",
-					}}
-					unityContext={unityContext}
-				/> */}
-			</div>
-		</>
-	);
-
 	// return (
-	// 	<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
-	// 		<h4 className=" sf-bold-19 text-light-text capitalize pt-[24px] pl-[25px] ">
-	// 			simulation data
-	// 		</h4>
-	// 		<Buttons />
-	// 		{/* damage card  */}
-	// 		<div className=" w-full rounded-5px bg-card-&-content-box  px-[45px] py-2 italic mt-3 ">
-	// 			<div className=" grid grid-cols-2">
-	// 				<h6 className=" font-gotham text-[8px] leading-[9px] font-bold text-grayed-text capitalize">
-	// 					damage type
-	// 				</h6>
-	// 				<h6 className=" font-gotham text-[8px] leading-[9px] font-bold text-grayed-text capitalize">
-	// 					fight length
-	// 				</h6>
-	// 			</div>
-	// 			<div className=" grid grid-cols-2 font-gotham text-[11px] leading-[12px] text-light-text font-bold mt-[10px] ">
-	// 				<div className="">
-	// 					<span className=" text-accent-color mr-1 ">38%</span>
-	// 					<span className=" text-accent-color-2 mr-1 ">62%</span>
-	// 					<span className=" ">0%</span>
-	// 				</div>
-	// 				<p>8.58s</p>
-	// 			</div>
+	// 	<>
+	// 		<div>
+	// 			<img
+	// 				src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.selectedPlayer?.championName}.png`}
+	// 				alt="profile Image"
+	// 				layout="fill"
+	// 			/>
+	// 			<h1>vs</h1>
+	// 			<img
+	// 				src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/Ashe.png`}
+	// 				alt="profile Image"
+	// 				layout="fill"
+	// 			/>
+	// 		</div>
 
-	// 			<div className=" grid grid-cols-2 mt-5">
-	// 				<p className=" font-gotham text-[8px] leading-[9px] text-grayed-text font-bold">
-	// 					CC Duration{" "}
-	// 				</p>
-	// 				<p className=" font-gotham text-[11px] leading-[12px] text-light-text font-bold">
-	// 					8.58s
-	// 				</p>
-	// 			</div>
+	// 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
+	// 			<button onClick={clicked}>Start Sim</button>
+	// 			<Unity
+	// 				style={{
+	// 					width: "100%",
+	// 					height: "100%",
+	// 					background: "#231F20",
+	// 					justifySelf: "center",
+	// 					alignSelf: "center",
+	// 				}}
+	// 				unityContext={unityContext}
+	// 			/>
 	// 		</div>
-	// 		{/* selected profile view  */}
-	// 		<div className=" mt-6">
-	// 			{ProfileData.map((item, index) => {
-	// 				return <ProfileRow key={index} {...item} />;
-	// 			})}
-	// 		</div>
-	// 		{/* bottom dot  */}
-	// 		<div className=" flex justify-center items-center mt-6 ">
-	// 			<div className=" w-[5px] h-[5px] rounded-full bg-accent-color "></div>
-	// 			<div className=" w-[5px] h-[5px] rounded-full bg-grayed-text ml-6 "></div>
-	// 		</div>
-	// 	</div>
+	// 	</>
 	// );
+
+	return (
+		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
+			<h4 className=" sf-bold-19 text-light-text capitalize pt-[24px] pl-[25px] ">
+				simulation data
+			</h4>
+			<Buttons />
+			{/* damage card  */}
+			<div className=" w-full rounded-5px bg-card-&-content-box  px-[45px] py-2 italic mt-3 ">
+				<div className=" grid grid-cols-2">
+					<h6 className=" font-gotham text-[8px] leading-[9px] font-bold text-grayed-text capitalize">
+						damage type
+					</h6>
+					<h6 className=" font-gotham text-[8px] leading-[9px] font-bold text-grayed-text capitalize">
+						fight length
+					</h6>
+				</div>
+				<div className=" grid grid-cols-2 font-gotham text-[11px] leading-[12px] text-light-text font-bold mt-[10px] ">
+					<div className="">
+						<span className=" text-accent-color mr-1 ">38%</span>
+						<span className=" text-accent-color-2 mr-1 ">62%</span>
+						<span className=" ">0%</span>
+					</div>
+					<p>8.58s</p>
+				</div>
+
+				<div className=" grid grid-cols-2 mt-5">
+					<p className=" font-gotham text-[8px] leading-[9px] text-grayed-text font-bold">
+						CC Duration{" "}
+					</p>
+					<p className=" font-gotham text-[11px] leading-[12px] text-light-text font-bold">
+						8.58s
+					</p>
+				</div>
+			</div>
+			{/* selected profile view  */}
+			<div className=" mt-6">
+				{ProfileData.map((item, index) => {
+					return <ProfileRow key={index} {...item} />;
+				})}
+			</div>
+			{/* bottom dot  */}
+			<div className=" flex justify-center items-center mt-6 ">
+				<div className=" w-[5px] h-[5px] rounded-full bg-accent-color "></div>
+				<div className=" w-[5px] h-[5px] rounded-full bg-grayed-text ml-6 "></div>
+			</div>
+		</div>
+	);
 };
 
 export default SimulationData;
