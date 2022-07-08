@@ -25,8 +25,11 @@ const PlayerRow = (props) => {
                 <h6
                     className="laptop:gotham-mid-9 laptop:text-light-text laptop:italic capitalize 
                 smDesktop:text-[10px] smDesktop:leading-[11px] desktop:text-[18px] desktop:leading-[21px] "
+                    title={props.summonerName}
                 >
-                    {props.summonerName}
+                    {/* {props.summonerName} */}
+                    {props?.summonerName?.slice(0, 7)}
+                    {props?.summonerName?.length >= 7 && "..."}
                 </h6>
                 <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] desktop:text-[7px] desktop:leading-[9px] ">
                     Ladder Rank: {props.ladderRank}
