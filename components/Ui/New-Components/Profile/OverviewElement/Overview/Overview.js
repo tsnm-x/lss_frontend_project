@@ -15,7 +15,7 @@ const Overview = (props) => {
                 className={`container laptop:grid ${
                     expand
                         ? "laptop:grid-cols-1"
-                        : "laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[280px_auto] smDesktop:gap-x-[61px]"
+                        : "laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[280px_auto] smDesktop:gap-x-[61px] desktop:grid-cols-[415px_auto] desktop:gap-x-[56px] "
                 }  laptop:gap-x-[22px] `}
             >
                 {/* left side  */}

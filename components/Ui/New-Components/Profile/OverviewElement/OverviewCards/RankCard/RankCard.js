@@ -38,6 +38,7 @@ const RankCard = (props) => {
             case 3068:
             case 3078:
             case 6664:
+                console.log(id);
                 return true;
             default:
                 return false;
@@ -50,21 +51,30 @@ const RankCard = (props) => {
             className={` ${
                 props.className
                     ? props.className
-                    : "px-[17px] py-[27px] grid grid-cols-4 gap-3 content-center bg-card-&-content-box border-r border-background smDesktop:px-[18px] "
+                    : "px-[17px] py-[27px] grid grid-cols-4 gap-3 content-center bg-card-&-content-box border-r border-background smDesktop:px-[18px] desktop:px-5 "
             }`}
         >
             {[mainPlayer?.item0, mainPlayer?.item1, mainPlayer?.item2, mainPlayer?.item3, mainPlayer?.item4, mainPlayer?.item5].map((item, index) => {
                 return (
                     <div
-                        className={`relative rounded-full bg-[#2f2936] ${mythicHighlighter(item)? "border-2 border-white": ""} ${
+                        className={`relative rounded-full bg-[#2f2936] ${
+                            mythicHighlighter(item)
+                                ? "border-2 border-[#D55460]"
+                                : ""
+                        } ${
                             props.imgClassName
                                 ? props.imgClassName
-                                : "w-[32px] h-[32px]"
+                                : "w-[32px] h-[32px] desktop:w-[40px] desktop:h-[40px] "
                         }`}
                         key={index}
                     >
                         {item !== 0 && (
-                            <Image className={`rounded-full`} src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`} alt="batch image" layout="fill" />
+                            <Image
+                                className={`rounded-full`}
+                                src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
+                                alt="batch image"
+                                layout="fill"
+                            />
                         )}
                     </div>
                 );

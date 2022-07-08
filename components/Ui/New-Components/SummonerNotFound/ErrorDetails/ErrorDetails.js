@@ -1,7 +1,6 @@
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import useHttp from "../../../../../hook/useHttp";
 import { profileAction } from "../../../../../store/profile";
 
 
@@ -11,21 +10,28 @@ const ErrorDetails = (props) => {
     const [color, setColor] = useState({});
     const [region, setRegion] = useState("");
     const router = useRouter();
-    const {sendRequest} = useHttp();
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        sendRequest(
-            {
-                url: "/summonerByName",
-                method: "POST",
-                body: {
+        if(region){
+            dispatch(
+                profileAction.setProfileDataPage({
+                    profile: [],
+                    // region,
                     region,
                     summonerName: router.query?.summonerName,
-                },
-            },
-            requestHandler
-        );
+                })
+            );
+            Router.push(
+                {
+                    pathname: '/summoner/[region]/[summonerName]',
+                    query: {
+                        region,
+                        summonerName: router.query?.summonerName
+                    }
+                }
+            );
+        }
     }, [region])
 
 
@@ -37,39 +43,6 @@ const ErrorDetails = (props) => {
         console.log(color)
     }, [color])
 
-    function requestHandler(res) {
-        
-		if (!res) {
-			console.log(res, "no response from the server");
-			return;
-		}
-
-		dispatch(
-			profileAction.setProfileDataPage({
-				profile: res.data.matches,
-				// region,
-				region,
-				summonerName: router.query?.summonerName,
-			})
-		);
-		Router.push(
-			{
-				pathname: '/summoner/[region]/[summonerName]',
-				query: {
-					region,
-					summonerName: router.query?.summonerName
-				}
-			}
-		);
-	}
-
-    const getSummoner = (region) => {
-        setRegion(region);
-
-        console.log(region);
-
-        
-    }
 
 
     return (
@@ -114,8 +87,8 @@ const ErrorDetails = (props) => {
                                         {item === summonerObj.region && (
                                             <>
                                                 <h4
-                                                className={`sf-bold-12 text-accent-color mt-[7px] capitalize desktop:text-[16px] desktop:leading-[21px] `}
-                                                onClick={() => getSummoner(item)}
+                                                className={`sf-bold-12 text-accent-color mt-[7px] capitalize desktop:text-[16px] desktop:leading-[21px] cursor-pointer`}
+                                                onClick={() => setRegion(item)}
                                                 >
                                                     {summonerObj.summonerName}  
                                                 </h4>

@@ -12,18 +12,18 @@ import { useSelector } from 'react-redux'
 
 const Table = () => {
 
-	const matches  = useSelector((state) => {
+	const matches = useSelector((state) => {
 		console.log(state.profile.profile)
 		return state.profile.profile
 	})
-  	const [expand, setExpand] = useState(false);
+	const [expand, setExpand] = useState(false);
 	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
-	const {sendRequest, hasError} = useHttp();
+	const { sendRequest, hasError } = useHttp();
 	const [mainPlayerChamps, setMainPlayerChamps] = useState([])
 	const router = useRouter();
-	let champions  = [];
+	let champions = [];
 
-  function convertM(value) {
+	function convertM(value) {
 		const sec = parseInt(value); // convert value to number if it's string
 		let minutes = Math.floor(sec / 60) // get minutes
 		return minutes;
@@ -34,14 +34,14 @@ const Table = () => {
 
 		console.log(matches)
 
-		if(matches){
+		if (matches) {
 			matches?.forEach((match) => {
 				const mainPlayerArr = match.players.filter((player) => player.mainPlayer === true);
 				mainPlayerArr.forEach((obj) => {
-					champions.push({...obj, duration: match.duration})
+					champions.push({ ...obj, duration: match.duration })
 				})
 			})
-	
+
 			setMainPlayerChamps(champions)
 		}
 	}, [matches])
@@ -63,13 +63,13 @@ const Table = () => {
 			let count = 0;
 			for (let j = 0; j < mainPlayerChamps.length; j++) {
 
-				if (mainPlayerChamps[i].championName == mainPlayerChamps[j].championName){
+				if (mainPlayerChamps[i].championName == mainPlayerChamps[j].championName) {
 					count++;
 					deaths = deaths + mainPlayerChamps[j].deaths;
 					assists = assists + mainPlayerChamps[j].assists;
 					kills = kills + mainPlayerChamps[j].kills;
-          			totalCs = totalCs + mainPlayerChamps[j].totalMinionsKilled
-					mainPlayerChamps[j].win? winCount++ : lossCount++;
+					totalCs = totalCs + mainPlayerChamps[j].totalMinionsKilled
+					mainPlayerChamps[j].win ? winCount++ : lossCount++;
 					totalMatches++;
 					totalDuration = totalDuration + mainPlayerChamps[j].duration;
 					totalDamageDealt = totalDamageDealt + mainPlayerChamps[j].magicDamageDealt
@@ -78,20 +78,20 @@ const Table = () => {
 
 			if (count > maxcount) {
 				maxcount = count;
-        avgCs = (totalCs / totalMatches) / convertM(totalDuration)
-				setSeasonMostPlayedList([...seasonMostPlayedList,{ ...mainPlayerChamps[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount, avgCs, totalDamageDealt}]);
+				avgCs = (totalCs / totalMatches) / convertM(totalDuration)
+				setSeasonMostPlayedList([...seasonMostPlayedList, { ...mainPlayerChamps[i], totalDeaths: deaths, totalAssists: assists, totalKills: kills, winCount, lossCount, avgCs, totalDamageDealt }]);
 			}
 
-      deaths = 0;
+			deaths = 0;
 			assists = 0;
 			kills = 0;
 			winCount = 0;
 			lossCount = 0;
-      totalCs = 0;
-      totalMatches = 0;
-      avgCs = 0;
-      totalDuration = 0;
-      totalDamageDealt = 0;
+			totalCs = 0;
+			totalMatches = 0;
+			avgCs = 0;
+			totalDuration = 0;
+			totalDamageDealt = 0;
 
 
 		}
@@ -99,37 +99,41 @@ const Table = () => {
 	}, [mainPlayerChamps])
 
 
-	useEffect(()=>{
+	useEffect(() => {
 		console.log(seasonMostPlayedList)
 		// console.log(mainPlayerChamps)
 		const newChamps = mainPlayerChamps.filter((champion) => {
-			return champion.championName !== seasonMostPlayedList[seasonMostPlayedList.length-1].championName
+			return champion.championName !== seasonMostPlayedList[seasonMostPlayedList.length - 1].championName
 		});
 
-		if(newChamps[0]){
+		if (newChamps[0]) {
 			setMainPlayerChamps(newChamps);
 		}
 	}, [seasonMostPlayedList])
 
 
-  return (
-    <section className=' mt-[100px] mb-[300px] '>
-      <div className="container">
-        <TableControlBtns />
-        <TableHeader className=" mt-10 " />
-        {/* table row  */}
-        <div className=' mt-[25px] '>
-          {
-            seasonMostPlayedList.length >= 10 && seasonMostPlayedList.slice(0,11).map((row, index) => {
-              return (
-                <TableBodyRow key={index} {...row} />
-              )
-            })
-          }
-        </div>
-      </div>
-    </section>
-  )
+	return (
+		<section className=' mt-[100px] mb-[300px] '>
+			<div className="container">
+				<TableControlBtns />
+				<TableHeader className=" mt-10 " />
+				{/* table row  */}
+				<div className=' mt-[25px] '>
+					{
+						seasonMostPlayedList.length >= 10 ? seasonMostPlayedList.slice(0, 11).map((row, index) => {
+							return (
+								<TableBodyRow key={index} {...row} />
+							)
+						}) : seasonMostPlayedList.map((row, index) => {
+							return (
+								<TableBodyRow key={index} {...row} />
+							)
+						})
+					}
+				</div>
+			</div>
+		</section>
+	)
 }
 
 export default Table

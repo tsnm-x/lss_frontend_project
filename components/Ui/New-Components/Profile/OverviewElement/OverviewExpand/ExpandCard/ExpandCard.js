@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StatusCard from "../../OverviewCards/StatusCard/StatusCard";
 import BuildCard from "../BuildCard/BuildCard";
 import OverviewAndRunBtns from "../OverviewAndRunBtns/OverviewAndRunBtns";
@@ -15,19 +15,65 @@ import { useRouter } from "next/router";
 export const RunesContext = React.createContext();
 
 const ExpandCard = (props) => {
+	const [showRunes, setShowRunes] = useState(false);
+	const [showSimulatedGraph, setShowSimulateGraph] = useState(false);
 	const [selectedPlayer, setSelectedPlayer] = useState({});
+	const [simulatorPlayerRed, setSimulatorPlayerRed] = useState({});
+	const [simulatorPlayerBlue, setSimulatorPlayerBlue] = useState({});
+	const [index, setIndex] = useState(0);
+	const [leftTeam, setLeftTeam] = useState([]);
+	const [rightTeam, setRightTeam] = useState([]);
 	const { hasError, sendRequest } = useHttp();
 	const router = useRouter();
-	const [showRunes, setShowRunes] = useState(false);
 	const [matchTimelineData, setMatchTimelineData] = useState({});
 	const [selectedFrame, setSelectedFrame] = useState(
 		matchTimelineData?.frames?.length - 2 || 0
 	);
-	const [showSimulatedGraph, setShowSimulateGraph] = useState(false);
 
-	const showRunesHandler = (btnState) => {
-		setShowRunes(btnState);
-	};
+	const players = JSON.parse(JSON.stringify(props.match?.players));
+
+	for (let i = 0; i < players.length; i++) {
+		players[i].standingId = i + 1;
+	}
+
+	useEffect(() => {
+		setLeftTeam(players.filter((player) => !player.win));
+		setRightTeam(players.filter((player) => player.win));
+	}, [props.match.players]);
+
+	useEffect(() => {
+		leftTeam.find((player) => player.mainPlayer)
+			? leftTeam.find((player, index) => {
+					if (player.mainPlayer) {
+						setIndex(index);
+						return true;
+					}
+					return false;
+			  })
+			: rightTeam.find((player, index) => {
+					if (player.mainPlayer) {
+						setIndex(index);
+						return true;
+					}
+					return false;
+			  });
+	}, [leftTeam, rightTeam]);
+
+	useEffect(() => {
+		if (!showRunes) {
+			setSelectedPlayer({});
+			if (index) {
+				setSimulatorPlayerBlue(rightTeam[index]);
+				setSimulatorPlayerRed(leftTeam[index]);
+			}
+		} else {
+			setSimulatorPlayerBlue({});
+			setSimulatorPlayerRed({});
+			setSelectedPlayer(
+				props.match.players.find((player) => player.mainPlayer)
+			);
+		}
+	}, [showRunes, index]);
 
 	const frameChange = (e) => {
 		setSelectedFrame(e);
@@ -49,12 +95,16 @@ const ExpandCard = (props) => {
 		setShowSimulateGraph(true);
 	};
 
+	const showRunesHandler = (btnState) => {
+		setShowRunes(btnState);
+	};
+
 	return (
 		<div className=" relative">
 			{/* top row  */}
 			<div className="mr-[5px]">
 				{/* defeat and build card  */}
-				<div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] ">
+				<div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] desktop:rounded-[5px] desktop:overflow-hidden ">
 					<StatusCard {...props} />
 					<BuildCard {...props} />
 				</div>
@@ -80,19 +130,25 @@ const ExpandCard = (props) => {
 				{/* player compare  */}
 				<RunesContext.Provider value={{ runes: showRunes }}>
 					<PlayerCompare
-						selectedPlayer={selectedPlayer}
-						setSelectedPlayer={setSelectedPlayer}
-						matchTimelineData={matchTimelineData?.matchTimeline}
-						selectedFrame={selectedFrame}
 						showRunes={showRunes}
 						{...props}
 						showSimulatedGraph={showSimulatedGraph}
+						selectedPlayer={selectedPlayer}
+						setSelectedPlayer={setSelectedPlayer}
+						simulatorPlayerRed={simulatorPlayerRed}
+						setSimulatorPlayerRed={setSimulatorPlayerRed}
+						simulatorPlayerBlue={simulatorPlayerBlue}
+						setSimulatorPlayerBlue={setSimulatorPlayerBlue}
+						leftTeam={leftTeam}
+						rightTeam={rightTeam}
+						matchTimelineData={matchTimelineData?.matchTimeline}
+						selectedFrame={selectedFrame}
 					/>
 				</RunesContext.Provider>
 				{/* simulate btn and simulation card  */}
 				<div className=" text-center mt-16 pb-[73px] mb-4 ">
 					{!showSimulatedGraph ? (
-						<SimulateBtn click={simulateDataHandler} />
+						<SimulateBtn click={simulateDataHandler} showRunes={showRunes} />
 					) : (
 						<Simulation
 							selectedPlayer={selectedPlayer}
@@ -102,7 +158,7 @@ const ExpandCard = (props) => {
 					)}
 				</div>
 			</div>
-			<div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color "></div>
+			<div className=" absolute right-0 top-0 w-[2px] h-full bg-accent-color rounded-tr rounded-br desktop:w-[15px] "></div>
 		</div>
 	);
 };

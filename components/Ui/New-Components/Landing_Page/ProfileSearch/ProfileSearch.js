@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./ProfileSearch.module.css";
 import { FiSearch } from "react-icons/fi";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
@@ -9,7 +9,7 @@ import { profileAction } from "../../../../../store/profile";
 
 const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
-    const {sendRequest} = useHttp();
+    const { sendRequest } = useHttp();
     const dispatch = useDispatch();
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [showCountryList, setShowCountryList] = useState(false);
@@ -64,6 +64,19 @@ const ProfileSearch = (props) => {
         index: 0,
     });
 
+    useEffect(()=>{
+        if(window.localStorage.getItem('region')){
+            const finder = selectionNameList.find((regionObj) => regionObj.serverName === window.localStorage.getItem('region'));
+            setActiveListDetails((prevState)=>{
+                return {
+                    selectedItem: finder,
+                    showList: false,
+                    index: 0,
+                }
+            })
+        }
+    }, [])
+
     const CountryListShowHideHandler = () => {
         setActiveListDetails((prevState) => {
             return {
@@ -78,8 +91,6 @@ const ProfileSearch = (props) => {
     };
 
     const btnActiveHandler = (listNo) => {
-        // setActiveItemIndex(index);
-        // console.log(selectionNameList);
         const oldList = [...selectionNameList];
         const modifyedList = [];
         setSelectionName(() => {
@@ -104,74 +115,72 @@ const ProfileSearch = (props) => {
     };
 
     function requestHandler(res) {
-        
-		if (!res) {
-			console.log(res, "no response from the server");
-            console.log(selectionNameList)
-			Router.push(
-				{
-					pathname: "/summoner/summonerNotFound",
-					query: {
-                        summonerName: search, 
-                        reqServers: 
-                        [
-                            selectionNameList[0].serverName, 
-                            selectionNameList[1].serverName, 
-                            selectionNameList[2].serverName, 
-                            selectionNameList[3].serverName, 
-                            selectionNameList[4].serverName, 
-                            selectionNameList[5].serverName, 
-                            selectionNameList[6].serverName, 
-                        ],
-                        regionFullName:
-                        JSON.stringify(
-                            {
-                                [selectionNameList[0].serverName]: selectionNameList[0].fullName, 
-                                [selectionNameList[1].serverName]: selectionNameList[1].fullName, 
-                                [selectionNameList[2].serverName]: selectionNameList[2].fullName, 
-                                [selectionNameList[3].serverName]: selectionNameList[3].fullName, 
-                                [selectionNameList[4].serverName]: selectionNameList[4].fullName, 
-                                [selectionNameList[5].serverName]: selectionNameList[5].fullName, 
-                                [selectionNameList[6].serverName]: selectionNameList[6].fullName, 
-                            }
-                        )
-                    }
-				}
-			);
-			setSearch("");
-			return;
-		}
+        if (!res) {
+            console.log(res, "no response from the server");
+            console.log(selectionNameList);
+            Router.push({
+                pathname: "/summoner/summonerNotFound",
+                query: {
+                    summonerName: search,
+                    reqServers: [
+                        selectionNameList[0].serverName,
+                        selectionNameList[1].serverName,
+                        selectionNameList[2].serverName,
+                        selectionNameList[3].serverName,
+                        selectionNameList[4].serverName,
+                        selectionNameList[5].serverName,
+                        selectionNameList[6].serverName,
+                    ],
+                    regionFullName: JSON.stringify({
+                        [selectionNameList[0].serverName]:
+                            selectionNameList[0].fullName,
+                        [selectionNameList[1].serverName]:
+                            selectionNameList[1].fullName,
+                        [selectionNameList[2].serverName]:
+                            selectionNameList[2].fullName,
+                        [selectionNameList[3].serverName]:
+                            selectionNameList[3].fullName,
+                        [selectionNameList[4].serverName]:
+                            selectionNameList[4].fullName,
+                        [selectionNameList[5].serverName]:
+                            selectionNameList[5].fullName,
+                        [selectionNameList[6].serverName]:
+                            selectionNameList[6].fullName,
+                    }),
+                },
+            });
+            setSearch("");
+            return;
+        }
 
-		dispatch(
-			profileAction.setProfileDataPage({
-				profile: res.data.matches,
-				// region,
-				region: activeListDetails.selectedItem.serverName,
-				summonerName: search,
-			})
-		);
-		Router.push(
-			{
-				pathname: '/summoner/[region]/[summonerName]',
-				query: {
-					region: activeListDetails.selectedItem.serverName,
-					summonerName: search
-				}
-			}
-		);
-		setSearch("");
-	}
+        dispatch(
+            profileAction.setProfileDataPage({
+                profile: [],
+                // region,
+                region: activeListDetails.selectedItem.serverName,
+                summonerName: search,
+            })
+        );
+        Router.push({
+            pathname: "/summoner/[region]/[summonerName]",
+            query: {
+                region: activeListDetails.selectedItem.serverName,
+                summonerName: search,
+            },
+        });
+        setSearch("");
+    }
 
-	function searchHandler(e) {
-        if(e.key === "Enter"){
+    function searchHandler(e) {
+        if (e.key === "Enter") {
             console.log("Entered!");
             console.log(activeListDetails.selectedItem.serverName);
             e.preventDefault();
             sendRequest(
                 {
-                    url: "/summonerByName",
-                    method: "POST",
-                    body: {
+                    url: "/summonerName",
+                    method: "GET",
+                    params: {
                         region: activeListDetails.selectedItem.serverName,
                         summonerName: search,
                     },
@@ -179,7 +188,7 @@ const ProfileSearch = (props) => {
                 requestHandler
             );
         }
-	}
+    }
 
     return (
         <>
@@ -225,7 +234,7 @@ const ProfileSearch = (props) => {
                             className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] tablet:py-[22px] desktop:py-[32px] desktop:w-[250px] `}
                         >
                             <h4
-                                className={` text-white mr-[16px] uppercase smTablet:italic smTablet:gotham-mid-15 desktop:gotham-mid-25`}
+                                className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 desktop:gotham-mid-25`}
                             >
                                 {activeListDetails.selectedItem.name}
                             </h4>
@@ -238,11 +247,13 @@ const ProfileSearch = (props) => {
                             onKeyDown={(event) => searchHandler(event)}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] smTablet:italic desktop:gotham-mid-25 ${classes.searchBox} ${props.searchBox}`}
+                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] desktop:gotham-mid-25 ${classes.searchBox} ${props.searchBox}`}
                         />
-                        <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:hidden desktop:hidden">
-                            <FiSearch width={"20px"} size="20px" />
-                        </button>
+                        {!props.hideSearch && (
+                            <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px] desktop:top-[23px] desktop:right-[25px] ">
+                                <FiSearch className=" text-[#AAA0A8] text-[20px] smTablet:text-[28px] desktop:text-[42px] " />
+                            </button>
+                        )}
                     </div>
                 </form>
 

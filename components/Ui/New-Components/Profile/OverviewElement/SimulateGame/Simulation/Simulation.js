@@ -4,6 +4,7 @@ import PowerChart from "./PowerChart/PowerChart";
 import LevelChart from "./LevelDiffChart/LevelDiffChart";
 import GoldChart from "./GoldDiffChart/GoldDiffChart";
 import SimulationData from "./SimulationData/SimulationData";
+import { useState } from "react";
 
 const initialState = <PowerChart />;
 const Reducer = (state, action) => {
@@ -21,7 +22,7 @@ const Reducer = (state, action) => {
 
 const SimulateDataCard = (props) => {
 	const frames = props?.frames;
-
+	const [framePointer, setFramePointer] = useState(0);
 	const [ChartComponent, chartDispatch] = useReducer(Reducer, initialState);
 
 	return (
@@ -33,13 +34,17 @@ const SimulateDataCard = (props) => {
 				type="range"
 				min="0"
 				max={(frames?.length - 2).toString()}
-				onChange={(e) => props.frameChange(e.target.value)}
+				value={framePointer}
+				onChange={(e) => {
+					setFramePointer(e.target.value);
+					props.frameChange(e.target.value);
+				}}
 			/>
 
 			{/* all generated data  */}
 			<div className=" flex justify-between items-center px-10 ">
 				<div>{ChartComponent}</div>
-				<SimulationData selectedPlayer={props.selectedPlayer} />
+				<SimulationData />
 			</div>
 		</div>
 	);

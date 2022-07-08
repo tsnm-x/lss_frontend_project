@@ -912,14 +912,14 @@ const RunesState = (props) => {
 
     return (
         <div
-            className={`h-full p-[14px] rounded-5px flex flex-col justify-center `}
+            className={`h-full p-[14px] rounded-5px flex flex-col justify-center  ${Classes.runesState} `}
             style = {{
                 background: `url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.selectedPlayer.championName}_0.jpg') no-repeat center center`,
                 backgroundSize: 'cover'
             }}
         >
             {/* all the batches  */}
-            <div className=" grid grid-cols-3 grid-rows-3 gap-[6px] mt-3 ">
+            <div className=" grid grid-cols-3 grid-rows-3 gap-[6px] mt-3 relative z-50">
                 {offense.map((batch, index) => {
                     return (
                         <div

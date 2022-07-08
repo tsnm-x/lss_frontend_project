@@ -27,3 +27,16 @@
         no-repeat center center;
     background-size: cover;
 }
+.runesState {
+    @apply relative;
+
+}
+.runesState::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #0000009c;
+}

@@ -43,7 +43,7 @@ const OverviewCards = (props) => {
 	}, [rankedSolo, normals, rankedFlex, props.selectedMatchType]);
 	return (
 		<aside
-			className={`w-full smDesktop:w-[initial] ${
+			className={`w-full smDesktop:w-[initial] desktop:mt-[37px]  ${
 				props.expand && "card-expand"
 			} ${props.className} `}
 		>
@@ -54,8 +54,10 @@ const OverviewCards = (props) => {
 			/>
 			<div className="smDesktop:flex smDesktop:justify-between ">
 				<div
-					className={` mt-5 relative ${
-						props.expand ? "w-full" : "smDesktop:w-[862px] "
+					className={` relative ${
+						props.expand
+							? "w-full mt-[8px] "
+							: "mt-5 smDesktop:w-[862px] desktop:w-full desktop:mr-11  "
 					}`}
 				>
 					{/* card container  */}
@@ -126,7 +128,7 @@ const OverviewCards = (props) => {
 								{props.selectedMatchType === "all"
 									? "ranked solo"
 									: props.selectedMatchType}
-								# games have been found for this summoner
+								# games have een found for this summoner
 							</div>
 						)}
 					</div>
@@ -134,7 +136,7 @@ const OverviewCards = (props) => {
 					<ShowMore region={props?.region} summonerName={props?.summonerName} />
 				</div>
 				{!props.expand ? (
-					<Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 " />
+					<Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />
 				) : null}
 			</div>
 		</aside>

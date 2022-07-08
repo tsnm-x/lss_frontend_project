@@ -36,7 +36,7 @@ const ShowMore = (props) => {
     return (
         <button onClick={getMoreMatches} className={`${Classes.BtnWrap}`}>
             <h3 className={` sf-bold-40 ${Classes.BtnTxt}`}>Show more</h3>
-            <BsChevronDown className=" text-[20px]  text-white mx-auto " />
+            <BsChevronDown className=" text-[20px]  text-white mx-auto desktop:mt-6 " />
         </button>
     );
 };

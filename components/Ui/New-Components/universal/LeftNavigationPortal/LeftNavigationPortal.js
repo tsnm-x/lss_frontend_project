@@ -10,7 +10,7 @@ const LeftNavigationPortal = (props) => {
     };
 
     return (
-        <div className={`${classes.portal}`}>
+        <div onClick={menuBtnHandler} className={`${classes.portal}`}>
             <div className={`${classes.portalWrap}`}>
                 {/* top navigation  */}
                 <div className=" flex justify-between ">
@@ -34,7 +34,10 @@ const LeftNavigationPortal = (props) => {
                 </div>
                 <div className=" mobile:mx-[10px]">
                     {/* search and list  */}
-                    <ProfileSearch searchBox="sf-bold-10 mt-[30px] " />
+                    <ProfileSearch
+                        searchBox="sf-bold-10 mt-[30px] "
+                        hideSearch={true}
+                   />
                     {/* download btn  */}
                     <div>
                         <button

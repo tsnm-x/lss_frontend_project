@@ -12,20 +12,20 @@ const LeftPlayers = (props) => {
 			{props.players.map((player, index) => {
 				return (
 					<PlayerRow
-						selectedFrame={props.selectedFrame}
-						matchTimelineData={props.matchTimelineData}
 						key={index}
 						reverse={false}
 						index={index}
-						gold={props.showRunes}
+						showRunes={props.showRunes}
 						player={player}
 						region={props?.region}
 						setSelectedPlayer={props.setSelectedPlayer}
 						selectedPlayer={props.selectedPlayer}
 						match={props.match}
 						showSimulatedGraph={props.showSimulatedGraph}
-						ranks={props.ranks}
-						setRanks={props.setRanks}
+						simulatorPlayers={props.simulatorPlayers}
+						setSimulatorPlayers={props.setSimulatorPlayers}
+						selectedFrame={props.selectedFrame}
+						matchTimelineData={props.matchTimelineData}
 					/>
 				);
 			})}
@@ -49,20 +49,20 @@ const RightPlayers = (props) => {
 			{props.players.map((player, index) => {
 				return (
 					<PlayerRow
-						selectedFrame={props.selectedFrame}
-						matchTimelineData={props.matchTimelineData}
 						key={index}
 						reverse={true}
 						index={index}
-						gold={props.showRunes}
+						showRunes={props.showRunes}
 						player={player}
 						region={props?.region}
 						setSelectedPlayer={props.setSelectedPlayer}
 						selectedPlayer={props.selectedPlayer}
 						match={props.match}
 						showSimulatedGraph={props.showSimulatedGraph}
-						ranks={props.ranks}
-						setRanks={props.setRanks}
+						simulatorPlayers={props.simulatorPlayers}
+						setSimulatorPlayers={props.setSimulatorPlayers}
+						selectedFrame={props.selectedFrame}
+						matchTimelineData={props.matchTimelineData}
 					/>
 				);
 			})}
@@ -71,54 +71,39 @@ const RightPlayers = (props) => {
 };
 
 const PlayerCompare = (props) => {
-	const [ranks, setRanks] = useState({});
-	const [leftTeam, setLeftTeam] = useState([]);
-	const [rightTeam, setRightTeam] = useState([]);
-
-	const players = JSON.parse(JSON.stringify(props.match?.players));
-
-	for (let i = 0; i < players.length; i++) {
-		players[i].standingId = i + 1;
-	}
-
-	useEffect(() => {
-		setLeftTeam(players.filter((player) => !player.win));
-		setRightTeam(players.filter((player) => player.win));
-	}, [props.match.players]);
-
 	return (
 		<div className={`flex gap-x-4 ${props.showRunes ? "h-[340px]" : null}`}>
-			{leftTeam.length != 0 && (
+			{props.leftTeam.length != 0 && (
 				<LeftPlayers
-					selectedFrame={props.selectedFrame}
-					matchTimelineData={props.matchTimelineData}
 					showRunes={props.showRunes}
-					players={leftTeam}
+					players={props.leftTeam}
 					region={props?.region}
 					selectedPlayer={props.selectedPlayer}
 					setSelectedPlayer={props.setSelectedPlayer}
 					match={props.match}
 					showSimulatedGraph={props.showSimulatedGraph}
-					ranks={ranks}
-					setRanks={setRanks}
+					simulatorPlayers={props.simulatorPlayerRed}
+					setSimulatorPlayers={props.setSimulatorPlayerRed}
+					selectedFrame={props.selectedFrame}
+					matchTimelineData={props.matchTimelineData}
 				/>
 			)}
 			{props.showRunes && (
 				<RunesOverview selectedPlayer={props.selectedPlayer} />
 			)}
-			{rightTeam.length != 0 && (
+			{props.rightTeam.length != 0 && (
 				<RightPlayers
-					selectedFrame={props.selectedFrame}
-					matchTimelineData={props.matchTimelineData}
 					showRunes={props.showRunes}
-					players={rightTeam}
+					players={props.rightTeam}
 					region={props?.region}
 					selectedPlayer={props.selectedPlayer}
 					setSelectedPlayer={props.setSelectedPlayer}
 					match={props.match}
 					showSimulatedGraph={props.showSimulatedGraph}
-					ranks={ranks}
-					setRanks={setRanks}
+					simulatorPlayers={props.simulatorPlayerBlue}
+					setSimulatorPlayers={props.setSimulatorPlayerBlue}
+					selectedFrame={props.selectedFrame}
+					matchTimelineData={props.matchTimelineData}
 				/>
 			)}
 		</div>

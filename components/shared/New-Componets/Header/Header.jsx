@@ -14,7 +14,7 @@ const Header = (props) => {
 
     return (
         <header className=" py-[36px] ">
-            <div className={`${classes.header__container}`}>
+            <div className={`${classes.header__container}  `}>
                 {/* resp menu btn  */}
                 <div className={`  ${classes.btnWrap}`}>
                     <SkirmishSimulatorAppBtn className=" hidden smTablet:block smTablet:sf-bold-20 smTablet:p-[6px_12px] smTablet:mr-[45px] tablet:mr-[80px] desktop:mr-[92px] " />

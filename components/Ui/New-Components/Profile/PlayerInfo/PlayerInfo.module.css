@@ -1,0 +1,4 @@
+.bgImg {
+  background: transparent url('../../../../../public/assets/new-images/Profile/profile-cover-image.png') no-repeat center center;
+  background-size: cover;
+}

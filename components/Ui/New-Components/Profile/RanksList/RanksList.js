@@ -11,40 +11,40 @@ import Emblem_Grandmaster from "../../../../../public/assets/old-images/ranks/Em
 import Emblem_Challenger from "../../../../../public/assets/old-images/ranks/Emblem_Challenger.png";
 
 const RanksList = (props) => {
-    let RankIcon;
-    switch (props.ranks?.tier) {
-        case "IRON":
-            RankIcon = Emblem_Iron;
-            break;
-        case "BRONZE":
-            RankIcon = Emblem_Bronze;
-            break;
-        case "SILVER":
-            RankIcon = Emblem_Silver;
-            break;
-        case "GOLD":
-            RankIcon = Emblem_Gold;
-            break;
-        case "PLATINUM":
-            RankIcon = Emblem_Platinum;
-            break;
-        case "DIAMOND":
-            RankIcon = Emblem_Diamond;
-            break;
-        case "MASTER":
-            RankIcon = Emblem_Master;
-            break;
-        case "GRANDMASTER":
-            RankIcon = Emblem_Grandmaster;
-            break;
-        case "CHALLENGER":
-            RankIcon = Emblem_Challenger;
-            break;
-        default:
-            RankIcon = Emblem_Iron;
+    const iconSelector = (id) => {
+        switch (id) {
+            case "IRON":
+                return Emblem_Iron;
+            case "BRONZE":
+                return Emblem_Bronze;
+                break;
+            case "SILVER":
+                return Emblem_Silver;
+                break;
+            case "GOLD":
+                return Emblem_Gold;
+                break;
+            case "PLATINUM":
+                return Emblem_Platinum;
+                break;
+            case "DIAMOND":
+                return Emblem_Diamond;
+                break;
+            case "MASTER":
+                return Emblem_Master;
+                break;
+            case "GRANDMASTER":
+                return Emblem_Grandmaster;
+                break;
+            case "CHALLENGER":
+                return Emblem_Challenger;
+                break;
+            default:
+                return Emblem_Iron;
+        }
     }
     return (
-        <div className={` laptop:flex ${props.className}`}>
+        <div className={` ml-[250px] laptop:flex laptop:ml-[260px] desktop:ml-[275px]  ${props.className}`}>
             {props?.rankSolo && (
                 <div className=" mr-[35px] ">
                     <h5 className=" text-light-text laptop:sf-bold-21 ">
@@ -53,31 +53,39 @@ const RanksList = (props) => {
                     <div className=" laptop:mt-[13px] laptop:flex  ">
                         {/* image  */}
                         <div className=" relative laptop:w-[63px] laptop:h-[59px] ">
-                            <Image src={RankIcon} alt="Rank icon" layout="fill" />
+                            <Image
+                                src={iconSelector(props.rankSolo?.tier)}
+                                alt="Rank icon"
+                                layout="fill"
+                            />
                         </div>
                         {/* gold  */}
                         <div className=" laptop:mr-[49px] ">
                             <h4
-                                className=" laptop:gotham-mid-21 laptop:italic
+                                className=" laptop:gotham-mid-21 
                         laptop:text-light-text "
                             >
-                                {props.rankSolo?.tier?.toLowerCase()} {props.rankSolo?.rank?.toLowerCase()}
+                                {props.rankSolo?.tier?.charAt(0) + props.rankSolo?.tier?.slice(1).toLowerCase()}{" "}
+                                {props.rankSolo?.rank}
                             </h4>
-                            <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px] italic  ">
-                                {props.rankSolo?.leaguePoints}lp
+                            <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px]  ">
+                                {props.rankSolo?.leaguePoints} lp
                             </p>
                         </div>
                         {/* percentage  */}
                         <div>
-                            <h5 className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right">
-                                {props.rankSolo?.wins}w {props.rankSolo?.losses}l
+                            <h5 className=" text-light-text laptop:gotham-mid-16 uppercase text-right">
+                                {props.rankSolo?.wins}w {props.rankSolo?.losses}
+                                l
                             </h5>
-                            <p className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right mt-[4px] ">
+                            <p className=" text-light-text laptop:gotham-mid-16 uppercase text-right mt-[4px] ">
                                 {(
                                     (props.rankSolo?.wins /
-                                        (props.rankSolo?.wins + props.rankSolo?.losses)) *
+                                        (props.rankSolo?.wins +
+                                            props.rankSolo?.losses)) *
                                     100
-                                ).toFixed(2)}%
+                                ).toFixed(2)}
+                                %
                             </p>
                         </div>
                     </div>
@@ -91,31 +99,39 @@ const RanksList = (props) => {
                     <div className=" laptop:mt-[13px] laptop:flex  ">
                         {/* image  */}
                         <div className=" relative laptop:w-[63px] laptop:h-[59px] ">
-                            <Image src={RankIcon} alt="Rank icon" layout="fill" />
+                            <Image
+                                src={iconSelector(props.rankFlex?.tier)}
+                                alt="Rank icon"
+                                layout="fill"
+                            />
                         </div>
                         {/* gold  */}
                         <div className=" laptop:mr-[49px] ">
                             <h4
-                                className=" laptop:gotham-mid-21 laptop:italic
+                                className=" laptop:gotham-mid-21 
                         laptop:text-light-text "
                             >
-                                {props.rankFlex?.tier?.toLowerCase()} {props.rankFlex?.rank?.toLowerCase()}
+                                {props.rankFlex?.tier?.charAt(0) + props.rankFlex?.tier?.slice(1).toLowerCase()}{" "}
+                                {props.rankFlex?.rank}
                             </h4>
-                            <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px] italic  ">
-                                {props.rankFlex?.leaguePoints}lp
+                            <p className=" text-text-gray-200 uppercase laptop:gotham-mid-16 mt-[4px]  ">
+                                {props.rankFlex?.leaguePoints} lp
                             </p>
                         </div>
                         {/* percentage  */}
                         <div>
-                            <h5 className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right">
-                                {props.rankFlex?.wins}w {props.rankFlex?.losses}l
+                            <h5 className=" text-light-text laptop:gotham-mid-16 uppercase text-right">
+                                {props.rankFlex?.wins}w {props.rankFlex?.losses}
+                                l
                             </h5>
-                            <p className=" text-light-text laptop:gotham-mid-16 italic uppercase text-right mt-[4px] ">
-                            {(
+                            <p className=" text-light-text laptop:gotham-mid-16 uppercase text-right mt-[4px] ">
+                                {(
                                     (props.rankFlex?.wins /
-                                        (props.rankFlex?.wins + props.rankFlex?.losses)) *
+                                        (props.rankFlex?.wins +
+                                            props.rankFlex?.losses)) *
                                     100
-                                ).toFixed(2)}%
+                                ).toFixed(2)}
+                                %
                             </p>
                         </div>
                     </div>

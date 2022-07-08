@@ -1,0 +1,21 @@
+.selectedName {
+    @apply font-gotham font-normal text-[25px] leading-[27px] text-white
+          mr-[16px];
+}
+
+/* .selectedWrap {
+    @apply absolute h-full hidden justify-center items-center bg-accent-color w-[250px]
+        py-[32px] rounded cursor-pointer smTablet:flex smTablet:w-[161px];
+} */
+
+.searchBox {
+ @apply  desktop:py-[32px] desktop:pl-[310px];
+      
+      /* @apply desktop:gotham-mid-25; */
+}
+
+
+.countryList {
+  @apply absolute left-0 top-[100px] bg-light-text rounded w-[250px]
+          p-[10px_12px];
+}

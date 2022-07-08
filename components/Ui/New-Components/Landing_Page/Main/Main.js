@@ -6,7 +6,7 @@ import Logo from "../../universal/logo/Logo";
 
 const Main = (props) => {
     return (
-        <main className={` smTablet:mb-[180px] ${props.className}`}>
+        <main className={` ${props.className}`}>
             <div
                 className="
                             container mobile:relative  mobile:w-[332px] mobile:h-[206px]
@@ -35,7 +35,7 @@ const Main = (props) => {
                 >
                     <div className=" mb-[39px] hidden smTablet:block smTablet:mb-[30px] desktop:mb-[38px] ">
                         <Logo className=" smTablet:text-[53px] smTablet:leading-[61px] tablet:nedgen-regular-60 desktop:nedgen-regular-80 text-center mb-[6px] " />
-                        <p className=" gotham-mid-30 text-light-text opacity-60 max-w-[545px] mx-auto text-center italic smTablet:text-[19px] smTablet:leading-[22px]
+                        <p className=" gotham-mid-30 text-light-text opacity-60 max-w-[545px] mx-auto text-center smTablet:text-[19px] smTablet:leading-[22px]
                                         smTablet:max-w-[342px] tablet:gotham-mid-22 tablet:max-w-[405px] desktop:text-[30px] desktop:leading-[34px] desktop:max-w-[540px]
                                     ">
                             Reach your potential with powerful LoL Simulation
