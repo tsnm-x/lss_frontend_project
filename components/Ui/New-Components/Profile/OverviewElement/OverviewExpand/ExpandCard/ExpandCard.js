@@ -16,6 +16,7 @@ export const RunesContext = React.createContext();
 
 const ExpandCard = (props) => {
 	const [showRunes, setShowRunes] = useState(false);
+	const [update, setUpdate] = useState(true);
 	const [showSimulatedGraph, setShowSimulateGraph] = useState(false);
 	const [selectedPlayer, setSelectedPlayer] = useState({});
 	const [simulatorPlayerRed, setSimulatorPlayerRed] = useState({});
@@ -29,7 +30,7 @@ const ExpandCard = (props) => {
 	const [selectedFrame, setSelectedFrame] = useState(
 		matchTimelineData?.frames?.length - 2 || 0
 	);
-	const [mainExpand, setMainExpand] = useState(true)
+	const [mainExpand, setMainExpand] = useState(true);
 
 	const players = JSON.parse(JSON.stringify(props.match?.players));
 
@@ -88,6 +89,7 @@ const ExpandCard = (props) => {
 				body: { region: router.query?.region, matchId: props.match.matchId },
 			},
 			(res) => {
+				setUpdate(!update);
 				if (res?.status === 200) {
 					setMatchTimelineData(res.data.matchTimeline);
 				}
