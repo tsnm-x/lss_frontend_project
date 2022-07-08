@@ -105,7 +105,7 @@ const ExpandCard = (props) => {
 			<div className="mr-[5px] desktop:mr-[15px] ">
 				{/* defeat and build card  */}
 				<div className=" grid grid-cols-[420px_800px] smDesktop:grid-cols-[468px_auto] desktop:rounded-[5px] desktop:overflow-hidden ">
-					<StatusCard {...props} />
+					<StatusCard {...props} mainExpand={true} />
 					<BuildCard {...props} />
 				</div>
 				<div>

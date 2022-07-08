@@ -72,7 +72,9 @@ const LeftSide = (props) => {
     return (
         <>
             {props.mainPlayer && (
-                <div className={`font-sf-pro-text font-bold mr-[30px] desktop:mr-[34px] `}>
+                <div
+                    className={`font-sf-pro-text font-bold mr-[30px] desktop:mr-[34px] `}
+                >
                     <h4
                         className={` capitalize ${
                             props?.mainPlayer?.win
@@ -83,7 +85,11 @@ const LeftSide = (props) => {
                         <span
                             className={` mr-1 ${
                                 props.expand
-                                    ? "text-[23px] leading-7 desktop:text-[27px] desktop:leading-[33px] "
+                                    ? `text-[23px] leading-7 ${
+                                          props.mainExpand
+                                              ? "desktop:text-[27px] desktop:leading-[33px]"
+                                              : " desktop:text-[35px] desktop:leading-[41px] desktop:mr-3 "
+                                      } `
                                     : " text-[17px] leading-5 desktop:text-[21px] desktop:leading-[25px] "
                             }`}
                         >
@@ -92,7 +98,11 @@ const LeftSide = (props) => {
                         <span
                             className={`text-light-text ${
                                 props.expand
-                                    ? " text-base leading-[19px] desktop:text-[19px] desktop:leading-[23px]  "
+                                    ? `text-base leading-[19px]  ${
+                                          props.mainExpand
+                                              ? "desktop:text-[19px] desktop:leading-[23px]"
+                                              : " desktop:text-[25px] desktop:leading-[30px]"
+                                      } `
                                     : "text-[12px] leading-[14px] desktop:text-[15px] desktop:leading-lg "
                             }`}
                         >
@@ -102,7 +112,11 @@ const LeftSide = (props) => {
                     <h6
                         className={`${
                             props.expand
-                                ? "text-[15px] leading-[18px] mt-2 desktop:text-[20px] desktop:leading-[24px] "
+                                ? `text-[15px] leading-[18px] mt-2 ${
+                                      props.mainExpand
+                                          ? "desktop:text-[20px] desktop:leading-[24px]"
+                                          : " desktop:text-[25px] desktop:leading-[30px] "
+                                  }`
                                 : "text-[12px] leading-[14px] mt-1 desktop:text-[15px] desktop:leading-[18px] "
                         } text-grayed-text`}
                     >
@@ -111,7 +125,13 @@ const LeftSide = (props) => {
                     <h2
                         className={` text-light-text ${
                             props.expand
-                                ? "text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px] desktop:text-[41px] desktop:leading-[49px] desktop:mt-[15px] "
+                                ? `text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px]
+                             ${
+                                 props.mainExpand
+                                     ? "desktop:text-[41px] desktop:leading-[49px] desktop:mt-[15px]"
+                                     : " desktop:text-[51px] desktop:leading-[61px] desktop:mt-[18px] "
+                             }
+                              `
                                 : "text-[25px] leading-[30px] mt-[10px] desktop:text-[30px] desktop:leading-[36px] desktop:mt-[10px] "
                         } `}
                     >
@@ -121,7 +141,11 @@ const LeftSide = (props) => {
                     <h6
                         className={` text-grayed-text ${
                             props.expand
-                                ? " mt-5 text-[17px] leading-[20px] desktop:text-[20px] desktop:leading-[24px] desktop:mt-4  "
+                                ? `mt-5 text-[17px] leading-[20px]  ${
+                                      props.mainExpand
+                                          ? "desktop:text-[20px] desktop:leading-[24px] desktop:mt-4"
+                                          : " text-[25px] leading-[30px] mt-5 "
+                                  }`
                                 : "text-[12px] leading-[14px] mt-[10px] desktop:text-[15px] desktop:leading-[18px] desktop:mt-3 "
                         } `}
                     >
@@ -226,7 +250,11 @@ const RightSide = (props) => {
                 <div
                     className={`${
                         props.expand
-                            ? " laptop:w-[95px] laptop:h-[95px] smDesktop:w-[98px] smDesktop:h-[98px]  "
+                            ? `laptop:w-[95px] laptop:h-[95px] smDesktop:w-[98px] smDesktop:h-[98px] ${
+                                  props.mainExpand
+                                      ? ""
+                                      : " desktop:w-[129px] desktop:h-[129px] "
+                              }`
                             : "laptop:w-[62px] laptop:h-[62px] smDesktop:w-[65px] smDesktop:h-[65px] desktop:w-[75px] desktop:h-[75px] "
                     } relative mr-1 `}
                 >
@@ -238,10 +266,10 @@ const RightSide = (props) => {
                         />
                     </div>
                     <div
-                        className=" text-white font-gotham font-medium text-[9px] leading-[7px] flex items-center justify-center laptop:w-[18px] 
+                        className={` text-white font-gotham font-medium text-[9px] leading-[7px] flex items-center justify-center laptop:w-[18px] 
                           laptop:h-[18px] laptop:rounded-full laptop:border laptop:border-grayed-text laptop:italic
                           laptop:absolute laptop:left-[40%] laptop:-bottom-[6px]
-                          laptop:bg-background desktop:text-[8px] desktop:leading-[9px] desktop:w-[20px] desktop:h-[20px] desktop:-bottom-[7px]  "
+                          laptop:bg-background desktop:text-[8px] desktop:leading-[9px] desktop:w-[20px] desktop:h-[20px] desktop:-bottom-[7px] `}
                     >
                         {props?.mainPlayer?.champLevel}
                     </div>
@@ -259,7 +287,11 @@ const RightSide = (props) => {
                                     key={index}
                                     className={` relative ${
                                         props.expand
-                                            ? " w-[45px] h-[45px] mb-[6px] "
+                                            ? `w-[45px] h-[45px] mb-[6px] ${
+                                                  props.mainExpand
+                                                      ? ""
+                                                      : " desktop:w-[60px] desktop:h-[60px] "
+                                              }`
                                             : " w-[29px] h-[29px] rounded-5px smDesktop:w-[31px] smDesktop:h-[31px] smDesktop:first:mb-1 desktop:w-[35px] desktop:h-[35px] "
                                     }`}
                                 >
@@ -275,14 +307,18 @@ const RightSide = (props) => {
                     </div>
                     {/* batch  */}
                     <div className=" mr-2 ">
-                    {/* data.batch  */}
+                        {/* data.batch  */}
                         {[BatchImg1, BatchImg2].map((power, index) => {
                             return (
                                 <div
                                     key={index}
                                     className={` relative desktop:mb-[5px] ${
                                         props.expand
-                                            ? " w-[45px] h-[45px] mb-[6px]  "
+                                            ? `w-[45px] h-[45px] mb-[6px] ${
+                                                  props.mainExpand
+                                                      ? ""
+                                                      : " desktop:w-[60px] desktop:h-[60px] "
+                                              }`
                                             : " w-[29px] h-[29px] rounded-5px desktop:w-[35px] desktop:h-[35px]"
                                     }`}
                                 >
@@ -299,7 +335,9 @@ const RightSide = (props) => {
                 </div>
             </div>
             {/* bottom texts  */}
-            <div className=" font-sf-pro-text font-bold text-[9.5px] leading-[11px] pl-2 mt-[17px] desktop:text-[12px] desktop:leading-[14px] ">
+            <div
+                className={`font-sf-pro-text font-bold text-[9.5px] leading-[11px] pl-2 mt-[17px] desktop:text-[12px] desktop:leading-[14px]  ${props.mainExpand ? "" : " desktop:text-[14px] desktop:leading-[18px] "}`}
+            >
                 <p className=" text-grayed-text ">
                     <span className=" text-accent-color-2">
                         {(
@@ -314,7 +352,7 @@ const RightSide = (props) => {
                     KDA
                 </p>
                 {viewer && (
-                    <p className=" text-grayed-text mt-[2px] ">{kp}% KP</p>
+                    <p className=" text-grayed-text mt-[2px] desktop:mt-1 ">{kp}% KP</p>
                 )}
             </div>
         </div>
@@ -323,6 +361,7 @@ const RightSide = (props) => {
 
 const StatusCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
+    console.log(props)
 
     useEffect(() => {
         let main = props?.match?.players.find((player) => {
