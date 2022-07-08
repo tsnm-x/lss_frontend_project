@@ -359,12 +359,19 @@ const PlayerRow = (props) => {
             <h5
                 className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] desktop:text-lg ${
                     props.reverse ? "order-2" : "order-4"
-                }`}
+                    }`}
+                title={props?.player?.summonerName}
             >
-                {props?.player?.summonerName}
+                {/* {props?.player?.summonerName} */}
+                {props?.player?.summonerName?.slice(0, 7)}
+                {props?.player?.summonerName?.length >= 7 && "..."}
             </h5>
             {/* profile image  */}
-            <div className={` flex ${props.reverse ? "order-1 justify-end " : "order-5"}`}>
+            <div
+                className={` flex ${
+                    props.reverse ? "order-1 justify-end " : "order-5"
+                }`}
+            >
                 <div
                     className={` ${
                         props.reverse
