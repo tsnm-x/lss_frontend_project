@@ -72,7 +72,7 @@ const RightPlayers = (props) => {
 
 const PlayerCompare = (props) => {
 	return (
-		<div className={`flex gap-x-4 ${props.showRunes ? "h-[340px]" : null}`}>
+		<div className={`flex gap-x-4 ${props.showRunes ? "h-[340px]" : null} desktop:mx-10 `}>
 			{props.leftTeam.length != 0 && (
 				<LeftPlayers
 					showRunes={props.showRunes}
