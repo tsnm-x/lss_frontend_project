@@ -427,7 +427,7 @@ const Precision = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style).thirdSlot.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-7 h-7 rounded-full ${
+                                className={`relative w-7 h-7 rounded-full smDesktop:w-[30px] smDesktop:h-[30px] desktop:w-[35px] desktop:h-[35px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -445,7 +445,7 @@ const Precision = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style)?.fouthSlot && selectStyleIcons(props?.selectedPlayer?.perks?.styles[0]?.style)?.fouthSlot?.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-7 h-7 rounded-full ${
+                                className={`relative w-7 h-7 rounded-full smDesktop:w-[30px] smDesktop:h-[30px] desktop:w-[35px] desktop:h-[35px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -771,7 +771,10 @@ const Inspiration = (props) => {
             </h1>
             {/* batches  */}
             <div className=" mt-[74px] flex flex-col items-center desktop:mt-[100px] ">
-                <div className=" relative w-8 h-8 rounded-full border border-[#201929] smDesktop:w-[35px] smDesktop:h-[35px] smDesktop:mb-3  ">
+                <div className=" relative w-8 h-8 rounded-full border border-[#201929] 
+                smDesktop:w-[35px] smDesktop:h-[35px] smDesktop:mb-3
+                 desktop:w-[43px] desktop:h-[43px]
+                  ">
                     <Image
                         src={styleSelector(props?.selectedPlayer?.perks?.styles[1]?.style)}
                         alt="precision parent icon"
@@ -779,11 +782,11 @@ const Inspiration = (props) => {
                     />
                 </div>
                 {/* all the batches  */}
-                <div className=" grid grid-cols-3 gap-3 mt-3 mb-0 ">
+                <div className=" grid grid-cols-3 gap-3 mt-3 mb-0 desktop:mt-[14px] ">
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).secondSlot.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-5 h-5 rounded-full smDesktop:w-[22.5px] smDesktop:h-[22.5px] ${
+                                className={`relative w-5 h-5 rounded-full smDesktop:w-[22.5px] smDesktop:h-[22.5px] desktop:w-[27px] desktop:h-[27px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -801,7 +804,7 @@ const Inspiration = (props) => {
                      {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style).thirdSlot.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-5 h-5 rounded-full ${
+                                className={`relative w-5 h-5 rounded-full smDesktop:w-[22.5px] smDesktop:h-[22.5px] desktop:w-[27px] desktop:h-[27px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
@@ -822,7 +825,7 @@ const Inspiration = (props) => {
                     {selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style)?.fouthSlot && selectStyleIcons(props?.selectedPlayer?.perks?.styles[1]?.style)?.fouthSlot?.map((batch, index) => {
                         return (
                             <div
-                                className={`relative w-5 h-5 rounded-full ${
+                                className={`relative w-5 h-5 rounded-full smDesktop:w-[22.5px] smDesktop:h-[22.5px] desktop:w-[27px] desktop:h-[27px] ${
                                     checkIconOpacity(batch.id)
                                         ? "border border-nav-btn"
                                         : " opacity-30"
