@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Jayce from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Jayce.png";
 import Tristana from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/CenterPrecisionAndEnspiration/Tristana.png";
@@ -168,37 +168,32 @@ const SimulationData = (props) => {
 		unityContext.send("Simulator Manager", "LoadData", JSON.stringify(data));
 	};
 
-	// return (
-	// 	<>
-	// 		<div>
-	// 			<img
-	// 				src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.selectedPlayer?.championName}.png`}
-	// 				alt="profile Image"
-	// 				layout="fill"
-	// 			/>
-	// 			<h1>vs</h1>
-	// 			<img
-	// 				src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/Ashe.png`}
-	// 				alt="profile Image"
-	// 				layout="fill"
-	// 			/>
-	// 		</div>
+	useEffect(() => {
+		window.alert = console.log;
 
-	// 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
-	// 			<button onClick={clicked}>Start Sim</button>
-	// 			<Unity
-	// 				style={{
-	// 					width: "100%",
-	// 					height: "100%",
-	// 					background: "#231F20",
-	// 					justifySelf: "center",
-	// 					alignSelf: "center",
-	// 				}}
-	// 				unityContext={unityContext}
-	// 			/>
-	// 		</div>
-	// 	</>
-	// );
+		// returned function will be called on component unmount
+		return () => {
+			unityContext.quitUnityInstance();
+		};
+	}, []);
+
+	return (
+		<>
+			<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
+				<button onClick={clicked}>Start Sim</button>
+				<Unity
+					style={{
+						width: "100%",
+						height: "100%",
+						background: "#231F20",
+						justifySelf: "center",
+						alignSelf: "center",
+					}}
+					unityContext={unityContext}
+				/>
+			</div>
+		</>
+	);
 
 	return (
 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
