@@ -10,7 +10,7 @@ const BuildCard = (props) => {
                 Build
             </h4>
             <RankCard
-                className=" bg-transparent flex border-transparent w-full justify-center smDesktop:mt-3 desktop:justify-start desktop:ml-[150px]  "
+                className={`bg-transparent flex border-transparent w-full justify-center smDesktop:mt-3 desktop:justify-start ${props.mainExpand ? " desktop:w-[620px] desktop:ml-[200px] " : ""}`}
                 imgClassName=" w-[63px] h-[63px] mr-[20px] last:mr-0 smDesktop:w-[69px] smDesktop:h-[69px] desktop:w-[77px] desktop:h-[77px] desktop:mr-[27px]  "
                 {...props}
             />

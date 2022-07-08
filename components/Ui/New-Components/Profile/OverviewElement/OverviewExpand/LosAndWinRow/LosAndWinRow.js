@@ -16,11 +16,13 @@ import roundBlue from "../../../../../../../public/assets/new-images/Profile/car
 
 const IconAndCount = (props) => {
     return (
-        <div className={` flex smDesktop:items-center first:mr-[10px] ${props.className}`}>
+        <div
+            className={` flex smDesktop:items-center first:mr-[10px] ${props.className}`}
+        >
             <div className={` relative w-4 h-4 mr-3 ${props.imgClassName}`}>
                 <Image src={props.img} alt="icon" layout="fill" />
             </div>
-            <p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text ">
+            <p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text desktop:text-base  ">
                 {props.txt}
             </p>
         </div>
@@ -37,30 +39,31 @@ const IconAndCount = (props) => {
 // };
 
 const LosAndWinRow = (props) => {
-
     const [lostTeam, setLostTeam] = useState({});
     const [winnerTeam, setWinnerTeam] = useState({});
     const [lostTeamPlayers, setLostTeamPlayers] = useState([]);
     const [winningTeamPlayers, setWinningTeamPlayers] = useState([]);
     const [lostTeamStats, setLostTeamStats] = useState({});
     const [winningTeamStats, setWinningTeamStats] = useState({});
-    const [mainPlayer, setMainPlayer] = useState({})
+    const [mainPlayer, setMainPlayer] = useState({});
 
-    useEffect(()=>{
-
+    useEffect(() => {
         console.log(props.match.players[0].goldEarned);
+    }, [props.match.teams]);
 
-    }, [props.match.teams])
-
-    useEffect(()=>{
+    useEffect(() => {
         setLostTeam(props.match.teams.filter((team) => !team.win)[0]);
         setWinnerTeam(props.match.teams.filter((team) => team.win)[0]);
         setLostTeamPlayers(props.match.players.filter((player) => !player.win));
-        setWinningTeamPlayers(props.match.players.filter((player) => player.win));
-        setMainPlayer(props.match.players.filter((player) => player.mainPlayer)[0])
-    }, [props.match.teams])
+        setWinningTeamPlayers(
+            props.match.players.filter((player) => player.win)
+        );
+        setMainPlayer(
+            props.match.players.filter((player) => player.mainPlayer)[0]
+        );
+    }, [props.match.teams]);
 
-    useEffect(()=>{
+    useEffect(() => {
         let totalDeaths = 0;
         let totalKills = 0;
         let totalAssists = 0;
@@ -69,13 +72,13 @@ const LosAndWinRow = (props) => {
             totalDeaths = totalDeaths + player.deaths;
             totalKills = totalKills + player.kills;
             totalAssists = totalAssists + player.assists;
-            totalGold = totalGold + player.goldEarned
-        })
+            totalGold = totalGold + player.goldEarned;
+        });
 
-        setLostTeamStats({totalDeaths, totalKills, totalAssists, totalGold});
-    }, [lostTeamPlayers])
+        setLostTeamStats({ totalDeaths, totalKills, totalAssists, totalGold });
+    }, [lostTeamPlayers]);
 
-    useEffect(()=>{
+    useEffect(() => {
         let totalDeaths = 0;
         let totalKills = 0;
         let totalAssists = 0;
@@ -84,73 +87,128 @@ const LosAndWinRow = (props) => {
             totalDeaths = totalDeaths + player.deaths;
             totalKills = totalKills + player.kills;
             totalAssists = totalAssists + player.assists;
-            totalGold = parseInt(totalGold) + player.goldEarned
-        })
+            totalGold = parseInt(totalGold) + player.goldEarned;
+        });
 
-        setWinningTeamStats({totalDeaths, totalKills, totalAssists, totalGold});
-    }, [winningTeamPlayers])
+        setWinningTeamStats({
+            totalDeaths,
+            totalKills,
+            totalAssists,
+            totalGold,
+        });
+    }, [winningTeamPlayers]);
     return (
-        <div className=" mb-[37px] bg-card-&-content-box px-[25px] h-10 flex justify-center items-center gap-x-10 ">
+        <div className=" mb-[37px] bg-card-&-content-box px-[25px] h-10 flex justify-center 
+        items-center gap-x-10 desktop:px-10 desktop:py-5 desktop:h-[initial]
+         desktop:gap-x-[87px] 
+         ">
             {/* loss  */}
-            { lostTeam && lostTeamStats &&
-                (
-                    <div className=" text-accent-color flex justify-between items-center w-3/6 font-bold ">
-                        <div>
-                            <IconAndCount txt={`${((lostTeamStats.totalGold)/1000).toFixed(1)}k`} img={KiloIconRed} />
-                        </div>
-                        <div className=" flex items-center gap-x-5 ">
-                            <IconAndCount txt={`${lostTeam.objectives?.dragon?.kills}`} img={AlienRed} />
-                            <IconAndCount txt={`${lostTeam.objectives?.baron?.kills}`} img={baronRed} />
-                        </div>
-                        <div className=" flex items-center gap-x-5 ">
-                            <IconAndCount txt={`${lostTeam.objectives?.tower?.kills}`} img={towerRed} />
-                            <IconAndCount txt={`${lostTeam.objectives?.inhibitor?.kills}`} img={roundRed} />
-                        </div>
-                        <p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text  ">
-                            {lostTeamStats.totalKills}/{lostTeamStats.totalDeaths}/{lostTeamStats.totalAssists}
-                        </p>
-                        {/* indicator  */}
+            {lostTeam && lostTeamStats && (
+                <div className=" text-accent-color flex justify-between items-center w-3/6 font-bold ">
+                    <div>
+                        <IconAndCount
+                            imgClassName=" desktop:w-[24px] desktop:h-[20px] "
+                            txt={`${(lostTeamStats.totalGold / 1000).toFixed(
+                                1
+                            )}k`}
+                            img={KiloIconRed}
+                        />
                     </div>
-                )
-            }
+                    <div className=" flex items-center gap-x-5 ">
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${lostTeam.objectives?.dragon?.kills}`}
+                            img={AlienRed}
+                        />
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${lostTeam.objectives?.baron?.kills}`}
+                            img={baronRed}
+                        />
+                    </div>
+                    <div className=" flex items-center gap-x-5 ">
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${lostTeam.objectives?.tower?.kills}`}
+                            img={towerRed}
+                        />
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${lostTeam.objectives?.inhibitor?.kills}`}
+                            img={roundRed}
+                        />
+                    </div>
+                    <p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text  ">
+                        {lostTeamStats.totalKills}/{lostTeamStats.totalDeaths}/
+                        {lostTeamStats.totalAssists}
+                    </p>
+                    {/* indicator  */}
+                </div>
+            )}
             {/* los and wind  */}
             {props.showProfile && mainPlayer ? (
                 <div className=" relative overflow-hidden rounded w-10 h-10 ">
-                    <Image src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${mainPlayer.profileIcon}.png`} alt="Profile image" layout="fill" />
+                    <Image
+                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${mainPlayer.profileIcon}.png`}
+                        alt="Profile image"
+                        layout="fill"
+                    />
                 </div>
             ) : (
                 <div className=" flex gap-x-12 items-center">
-                    <p className=" font-sf-pro-text text-[14px] leading-[16px] text-accent-color font-bold  ">
+                    <p className=" font-sf-pro-text text-[14px] leading-[16px] text-accent-color font-bold desktop:text-base   ">
                         Loss
                     </p>
-                    <p className=" font-sf-pro-text text-[14px] leading-[16px] text-accent-color-2 font-bold  ">
+                    <p className=" font-sf-pro-text text-[14px] leading-[16px] text-accent-color-2 font-bold  desktop:text-base  ">
                         Win
                     </p>
                 </div>
             )}
 
             {/* win  */}
-            { winnerTeam && winningTeamStats && 
-                (
-                    <div className=" text-accent-color-2 flex justify-between items-center w-3/6 font-bold ">
-                        {/* indicator  */}
-                        <p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text  ">
-                            {winningTeamStats.totalKills}/{winningTeamStats.totalDeaths}/{winningTeamStats.totalAssists}
-                        </p>
-                        <div className=" flex items-center gap-x-5 ">
-                            <IconAndCount txt={`${winnerTeam.objectives?.inhibitor?.kills}`} img={roundBlue} />
-                            <IconAndCount txt={`${winnerTeam.objectives?.tower?.kills}`} img={towerBlue} />
-                        </div>
-                        <div className=" flex items-center gap-x-5 ">
-                            <IconAndCount txt={`${winnerTeam.objectives?.baron?.kills}`} img={baronBlue} />
-                            <IconAndCount txt={`${winnerTeam.objectives?.dragon?.kills}`} img={AlienBlue} />
-                        </div>
-                        <div>
-                            <IconAndCount txt={`${((winningTeamStats.totalGold)/1000).toFixed(1)}k`} img={KiloIconBlue} />
-                        </div>
+            {winnerTeam && winningTeamStats && (
+                <div className=" text-accent-color-2 flex justify-between items-center w-3/6 font-bold ">
+                    {/* indicator  */}
+                    <p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text  ">
+                        {winningTeamStats.totalKills}/
+                        {winningTeamStats.totalDeaths}/
+                        {winningTeamStats.totalAssists}
+                    </p>
+                    <div className=" flex items-center gap-x-5 ">
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${winnerTeam.objectives?.inhibitor?.kills}`}
+                            img={roundBlue}
+                        />
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${winnerTeam.objectives?.tower?.kills}`}
+                            img={towerBlue}
+                        />
                     </div>
-                )
-            }
+                    <div className=" flex items-center gap-x-5 ">
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${winnerTeam.objectives?.baron?.kills}`}
+                            img={baronBlue}
+                        />
+                        <IconAndCount
+                            imgClassName=" desktop:w-[20px] desktop:h-[20px] "
+                            txt={`${winnerTeam.objectives?.dragon?.kills}`}
+                            img={AlienBlue}
+                        />
+                    </div>
+                    <div>
+                        <IconAndCount
+                            imgClassName=" desktop:w-[24px] desktop:h-[20px] "
+                            txt={`${(winningTeamStats.totalGold / 1000).toFixed(
+                                1
+                            )}k`}
+                            img={KiloIconBlue}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

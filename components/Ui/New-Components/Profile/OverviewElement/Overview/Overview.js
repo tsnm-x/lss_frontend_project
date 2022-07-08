@@ -34,10 +34,7 @@ const Overview = (props) => {
                         expand ? "smDesktop:ml-0" : "smDesktop:ml-[61px]"
                     }`}
                 />
-                {/* ads  */}
-                <div className=" hidden  smDesktop:block smDesktop:w-[105px] smDesktop:h-[1155px] ">
-                    <Ads className=" smDesktop:h-[1155px] " />
-                </div>
+                
             </div>
 
             {!expand && (

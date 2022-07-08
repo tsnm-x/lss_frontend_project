@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import SmallImg from "../../../../../../../public/assets/new-images/Profile/card/five.png";
 
 const RankCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
 
-    useEffect(()=>{
+    useEffect(() => {
         let main = props?.match?.players.find((player) => {
             return player.mainPlayer == true;
-        })
-        setMainPlayer(main)
-    }, [props.match])
+        });
+        setMainPlayer(main);
+    }, [props.match]);
+
 
     const mythicHighlighter = (id) => {
-        switch(id){
+        switch (id) {
             case 4644:
             case 6632:
             case 6691:
@@ -66,43 +68,79 @@ const RankCard = (props) => {
                 return true;
             default:
                 return false;
-
         }
-    }
-
+    };
     return (
         <div
-            className={` ${
-                props.className
-                    ? props.className
-                    : "px-[17px] py-[27px] grid grid-cols-4 gap-3 content-center bg-card-&-content-box border-r border-background smDesktop:px-[18px] desktop:px-5 "
-            }`}
+            className={`bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex ${
+                props.expand
+                    ? props.mainExpand
+                        ? " desktop:p-0  desktop:mt-[20px] "
+                        : "desktop:px-[41px]"
+                    : "desktop:px-5"
+            } `}
         >
-            {[mainPlayer?.item0, mainPlayer?.item1, mainPlayer?.item2, mainPlayer?.item3, mainPlayer?.item4, mainPlayer?.item5].map((item, index) => {
-                return (
-                    <div
-                        className={`relative rounded-full bg-[#2f2936] ${
-                            mythicHighlighter(item)
-                                ? "border-2 border-[#D55460]"
-                                : ""
-                        } ${
-                            props.imgClassName
-                                ? props.imgClassName
-                                : "w-[32px] h-[32px] desktop:w-[40px] desktop:h-[40px] "
-                        }`}
-                        key={index}
-                    >
-                        {item !== 0 && (
-                            <Image
-                                className={`rounded-full`}
-                                src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
-                                alt="batch image"
-                                layout="fill"
-                            />
-                        )}
-                    </div>
-                );
-            })}
+            <div
+                className={` ${
+                    props.className
+                        ? props.className
+                        : `grid grid-cols-3 gap-3 content-center justify-center ${
+                              props.expand ? " desktop:gap-[24px]  " : ""
+                          }`
+                } `}
+            >
+                {[
+                    mainPlayer?.item0,
+                    mainPlayer?.item1,
+                    mainPlayer?.item2,
+                    mainPlayer?.item3,
+                    mainPlayer?.item4,
+                    mainPlayer?.item5,
+                ].map((item, index) => {
+                    return (
+                        <div
+                            className={`relative rounded-full bg-[#2f2936] ${
+                                mythicHighlighter(item)
+                                    ? "border-2 border-[#D55460]"
+                                    : ""
+                            } ${
+                                props.imgClassName
+                                    ? props.imgClassName
+                                    : `w-[32px] h-[32px]  desktop:w-[40px] desktop:h-[40px] ${
+                                          props.expand
+                                              ? " desktop:w-[68px] desktop:h-[68px]  "
+                                              : "not expanded"
+                                      }`
+                            }`}
+                            key={index}
+                        >
+                            {item !== 0 && (
+                                <Image
+                                    className={`rounded-full`}
+                                    src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
+                                    alt="batch image"
+                                    layout="fill"
+                                />
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+            <div>
+                <div
+                    className={`relative w-[30px] h-[30px] rounded-full mt-3 ml-3 ${
+                        props.expand
+                            ? `desktop:w-[51px] desktop:h-[51px]  ${
+                                  props.mainExpand
+                                      ? " desktop:mt-4 desktop:ml-0 "
+                                      : " desktop:ml-[24px] desktop:mt-[30px]"
+                              } `
+                            : ""
+                    }`}
+                >
+                    <Image src={SmallImg} alt="small img" layout="fill" />
+                </div>
+            </div>
         </div>
     );
 };
