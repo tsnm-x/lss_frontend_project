@@ -5,6 +5,7 @@ import LevelChart from "./LevelDiffChart/LevelDiffChart";
 import GoldChart from "./GoldDiffChart/GoldDiffChart";
 import SimulationData from "./SimulationData/SimulationData";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const initialState = <PowerChart />;
 const Reducer = (state, action) => {
@@ -22,8 +23,12 @@ const Reducer = (state, action) => {
 
 const SimulateDataCard = (props) => {
 	const frames = props?.frames;
-	const [framePointer, setFramePointer] = useState(0);
+	const [framePointer, setFramePointer] = useState(15);
 	const [ChartComponent, chartDispatch] = useReducer(Reducer, initialState);
+
+	useEffect(() => {
+		props.frameChange(15);
+	}, []);
 
 	return (
 		<div className=" text-white text-5xl">
