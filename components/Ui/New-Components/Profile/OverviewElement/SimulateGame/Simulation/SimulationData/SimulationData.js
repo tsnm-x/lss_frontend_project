@@ -173,7 +173,7 @@ const SimulationData = (props) => {
 
 		// returned function will be called on component unmount
 		return () => {
-			unityContext.quitUnityInstance();
+			// unityContext.quitUnityInstance();
 		};
 	}, []);
 
