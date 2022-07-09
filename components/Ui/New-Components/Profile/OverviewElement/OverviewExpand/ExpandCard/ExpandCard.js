@@ -117,10 +117,12 @@ const ExpandCard = (props) => {
 							{/* overview and runes btn  */}
 							<OverviewAndRunBtns
 								runesHandler={showRunesHandler}
+								setExpand={props.setExpand}
+								expandControl={props.expandControl}
 								currentRunes={showRunes}
 							/>
 							{/* los and win row  */}
-							<LosAndWinRow showProfile={showRunes} {...props} />
+							
 						</>
 					) : (
 						<HeaderOnSimulateGameMode
@@ -129,6 +131,7 @@ const ExpandCard = (props) => {
 							expand={props.expand}
 						/>
 					)}
+					<LosAndWinRow showProfile={showRunes} {...props} />
 				</div>
 				{/* player compare  */}
 				<RunesContext.Provider value={{ runes: showRunes }}>

@@ -1,11 +1,10 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import AnalyticsBtns from "../AnalyticsBtns/AnalyticsBtns";
 import PowerChart from "./PowerChart/PowerChart";
 import LevelChart from "./LevelDiffChart/LevelDiffChart";
 import GoldChart from "./GoldDiffChart/GoldDiffChart";
 import SimulationData from "./SimulationData/SimulationData";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const initialState = <PowerChart />;
 const Reducer = (state, action) => {

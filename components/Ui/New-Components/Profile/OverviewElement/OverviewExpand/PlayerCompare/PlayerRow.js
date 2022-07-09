@@ -293,7 +293,7 @@ const PlayerRow = (props) => {
 						>
 							{batch !== 0 && (
 								<Image
-									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${batch}.png`}
+									src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/item/${batch}.png`}
 									alt="batch image"
 									layout="fill"
 									className=" rounded-5px"

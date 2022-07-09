@@ -73,6 +73,7 @@ const OverviewCards = (props) => {
 										region={props?.region}
 										expand={props.expand}
 										setExpand={props.setExpand}
+										expandControl={props.expandControl}
 									/>
 								);
 							})}
@@ -88,6 +89,7 @@ const OverviewCards = (props) => {
 										region={props?.region}
 										expand={props.expand}
 										setExpand={props.setExpand}
+										expandControl={props.expandControl}
 									/>
 								);
 							})}
@@ -103,6 +105,7 @@ const OverviewCards = (props) => {
 										region={props?.region}
 										expand={props.expand}
 										setExpand={props.setExpand}
+										expandControl={props.expandControl}
 									/>
 								);
 							})}
@@ -118,6 +121,7 @@ const OverviewCards = (props) => {
 										region={props?.region}
 										expand={props.expand}
 										setExpand={props.setExpand}
+										expandControl={props.expandControl}
 									/>
 								);
 							})}

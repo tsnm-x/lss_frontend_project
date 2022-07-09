@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const OverviewAndRunBtns = (props) => {
     const [btns, setBtns] = useState([
         { text: "overview", active: true },
         { text: "runes", active: false },
     ]);
+
+    const [cancelExpand, setCancelExpand] = useState(false);
+
+    useEffect(()=>{
+       if(cancelExpand){
+            props.setExpand(false); 
+            props.expandControl(false);
+       }
+    }, [cancelExpand])
 
     const ClickHandler = (txt) => {
         setBtns((prevState) => {
@@ -36,6 +45,14 @@ const OverviewAndRunBtns = (props) => {
                     </button>
                 );
             })}
+            <button
+                className={`font-sf-pro-text text-[14px] leading-[16px] text-nav-btn
+                    capitalize font-bold tracking-wider border-b-[2px]
+                    border-nav-btn pb-1 `}
+                    onClick={() => setCancelExpand(true)}
+            >
+                Leave
+            </button>
         </div>
     );
 };

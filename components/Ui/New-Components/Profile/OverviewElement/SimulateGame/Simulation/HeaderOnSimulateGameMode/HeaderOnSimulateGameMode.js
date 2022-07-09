@@ -8,7 +8,6 @@ const HeaderOnSimulateGameMode = (props) => {
     useEffect(()=>{
         if(cancelExpand){
             props.setShowSimulateGraph(false)
-            props.setExpand(false)
         }
     }, [cancelExpand])
     return (
