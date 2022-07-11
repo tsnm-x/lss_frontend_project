@@ -164,8 +164,23 @@ const SimulationData = (props) => {
 		},
 	};
 
+	const JSONString = {
+		APIMatchInfo: {
+			version: "12.10.1",
+			championInfo: [
+				{ champName: "Ashe", champLevel: 18 },
+				{ champName: "Garen", champLevel: 18 },
+			],
+		},
+	};
+	// SendMessage("Simulator Manager", "LoadData", JSONString);
+
 	const clicked = () => {
-		unityContext.send("Simulator Manager", "LoadData", JSON.stringify(data));
+		unityContext.send(
+			"Simulator Manager",
+			"LoadData",
+			JSON.stringify(JSONString)
+		);
 	};
 
 	useEffect(() => {
