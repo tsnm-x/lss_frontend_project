@@ -48,7 +48,10 @@ const SimulateDataCard = (props) => {
 			{/* all generated data  */}
 			<div className=" flex justify-between items-center px-10 ">
 				<div>{ChartComponent}</div>
-				<SimulationData />
+				<SimulationData
+					simulatorPlayerRed={props.simulatorPlayerRed}
+					simulatorPlayerBlue={props.simulatorPlayerBlue}
+				/>
 			</div>
 		</div>
 	);

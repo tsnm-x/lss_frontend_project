@@ -122,7 +122,6 @@ const ExpandCard = (props) => {
 								currentRunes={showRunes}
 							/>
 							{/* los and win row  */}
-							
 						</>
 					) : (
 						<HeaderOnSimulateGameMode
@@ -158,6 +157,8 @@ const ExpandCard = (props) => {
 					) : (
 						<Simulation
 							selectedPlayer={selectedPlayer}
+							simulatorPlayerRed={simulatorPlayerRed}
+							simulatorPlayerBlue={simulatorPlayerBlue}
 							frames={matchTimelineData?.matchTimeline?.frames}
 							frameChange={frameChange}
 						/>

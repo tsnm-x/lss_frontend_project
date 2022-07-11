@@ -155,9 +155,12 @@ const SimulationData = (props) => {
 		APIMatchInfo: {
 			version: "12.10.1",
 			championInfo: [
-				{ champName: "Ashe", champLevel: 18 },
 				{
-					champName: `${props.selectedPlayer?.championName || "Garen"}`,
+					champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
+					champLevel: 18,
+				},
+				{
+					champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
 					champLevel: 18,
 				},
 			],
@@ -168,8 +171,14 @@ const SimulationData = (props) => {
 		APIMatchInfo: {
 			version: "12.10.1",
 			championInfo: [
-				{ champName: "Ashe", champLevel: 18 },
-				{ champName: "Garen", champLevel: 18 },
+				{
+					champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
+					champLevel: 18,
+				},
+				{
+					champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
+					champLevel: 18,
+				},
 			],
 		},
 	};
