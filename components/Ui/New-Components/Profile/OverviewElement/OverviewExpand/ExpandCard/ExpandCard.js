@@ -10,6 +10,7 @@ import Simulation from "../../SimulateGame/Simulation/Simulation";
 import HeaderOnSimulateGameMode from "../../SimulateGame/Simulation/HeaderOnSimulateGameMode/HeaderOnSimulateGameMode";
 import useHttp from "../../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
+import ProfileCompareBar from "../ProfileCompareBar/ProfileCompareBar";
 
 // runes context menu
 export const RunesContext = React.createContext();
@@ -130,6 +131,7 @@ const ExpandCard = (props) => {
 							expand={props.expand}
 						/>
 					)}
+					<ProfileCompareBar />
 					<LosAndWinRow showProfile={showRunes} {...props} />
 				</div>
 				{/* player compare  */}
