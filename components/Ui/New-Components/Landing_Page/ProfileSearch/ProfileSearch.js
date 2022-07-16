@@ -204,7 +204,7 @@ const ProfileSearch = (props) => {
                             <div
                                 className={` 
                                             absolute left-0 top-[100px] bg-light-text rounded p-[10px_12px] smTablet:w-[175px] smTablet:top-[70px]
-                                            tablet:py-[7px] tablet:px-[10px] desktop:top-[105px] desktop:w-[250px] desktop:py-[10px] desktop:px-[12px]
+                                            tablet:py-[7px] tablet:px-[10px]
                                             `}
                             >
                                 {selectionNameList.map((country, index) => {
@@ -214,13 +214,13 @@ const ProfileSearch = (props) => {
                                             onClick={() =>
                                                 btnActiveHandler(index)
                                             }
-                                            className={` py-[6px] mb-1 cursor-pointer last:mb-0 desktop:py-2 desktop:mb-[6px] ${
+                                            className={` py-[6px] mb-1 cursor-pointer last:mb-0 ${
                                                 country.active
                                                     ? " bg-accent-color rounded text-white"
                                                     : " bg-[#AAA0A826] text-[#AAA0A8]"
                                             }`}
                                         >
-                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 laptop:text-[11px] desktop:text-[15px] desktop:leading-[20px] ">
+                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 laptop:text-[11px]  ">
                                                 {country.fullName}
                                             </p>
                                         </div>
@@ -231,10 +231,10 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] tablet:py-[22px] desktop:py-[32px] desktop:w-[250px] `}
+                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] tablet:py-[22px]  `}
                         >
                             <h4
-                                className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 desktop:gotham-mid-25`}
+                                className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 `}
                             >
                                 {activeListDetails.selectedItem.name}
                             </h4>
@@ -247,11 +247,11 @@ const ProfileSearch = (props) => {
                             onKeyDown={(event) => searchHandler(event)}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px] desktop:gotham-mid-25 ${classes.searchBox} ${props.searchBox}`}
+                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px]  ${classes.searchBox} ${props.searchBox}`}
                         />
                         {!props.hideSearch && (
-                            <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px] desktop:top-[23px] desktop:right-[25px] ">
-                                <FiSearch className=" text-[#AAA0A8] text-[20px] smTablet:text-[28px] desktop:text-[42px] " />
+                            <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px]  ">
+                                <FiSearch className=" text-[#AAA0A8] text-[20px] smTablet:text-[28px] " />
                             </button>
                         )}
                     </div>

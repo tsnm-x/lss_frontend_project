@@ -11,11 +11,14 @@ import Emblem_Grandmaster from "../../../../../../../public/assets/old-images/ra
 import Emblem_Challenger from "../../../../../../../public/assets/old-images/ranks/Emblem_Challenger.png";
 import useHttp from "../../../../../../../hook/useHttp";
 import GbatchImg from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/g-batch.png";
+import RoundBatch1 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-1.png";
+import RoundBatch2 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-2.png";
 
 const PlayerRow = (props) => {
     const [active, setActive] = useState(false);
     const [rank, setRank] = useState([]);
     const { sendRequest } = useHttp();
+    const [activeStyle, setActiveStyle] = useState(false);
 
     const matchTimelineData = props.matchTimelineData;
     const frames = matchTimelineData?.frames;
@@ -47,6 +50,13 @@ const PlayerRow = (props) => {
                 return "RANKED_SOLO_5x5";
         }
     };
+
+    useEffect(() => {
+        props.player.summonerId === props.selectedPlayer.summonerId ||
+        props.player.summonerId === props.simulatorPlayers.summonerId
+            ? setActiveStyle(true)
+            : setActiveStyle(false);
+    });
 
     useEffect(() => {
         console.log(props.player.summonerId);
@@ -224,15 +234,15 @@ const PlayerRow = (props) => {
         <div
             className={` flex justify-between w-full items-center cursor-pointer relative mb-[10px] last:mb-0 rounded-[3px] desktop:mb-4 desktop:last:mb-0 ${
                 props.reverse
-                    ? `pr-6 pl-4 desktop:pr-[31px] desktop:pl-6 desktop:grid  ${
+                    ? `px-3 desktop:grid  ${
                           props.showRunes
                               ? "desktop:grid-cols-[85px_120px_210px_60px]"
-                              : " desktop:grid-cols-[100px_120px_100px_210px_60px]"
+                              : " desktop:grid-cols-[2fr_2fr_2fr_4fr_2fr]"
                       }`
-                    : `pr-4 pl-6 desktop:pr-6 desktop:pl-[31px] desktop:grid  ${
+                    : ` px-3 desktop:grid  ${
                           props.showRunes
                               ? "desktop:grid-cols-[60px_210px_120px_85px]"
-                              : " desktop:grid-cols-[60px_210px_100px_120px_100px]"
+                              : " desktop:grid-cols-[2fr_4fr_2fr_2fr_2fr]"
                       }`
             } ${
                 props.player.summonerId === props.selectedPlayer.summonerId ||
@@ -240,52 +250,50 @@ const PlayerRow = (props) => {
                     ? props.reverse
                         ? " bg-accent-color-2"
                         : "bg-accent-color "
-                    : ""
+                    : props.reverse
+                    ? "bg-[#181631]"
+                    : " bg-[#251122]"
             }`}
             onClick={() => setActive(true)}
         >
-            <div className={`${props.reverse ? "order-5" : "order-1"}`}>
+            <div
+                className={` ${
+                    props.reverse
+                        ? "order-5 col-start-5 col-end-6 "
+                        : "order-1 col-start-1 col-end-2 "
+                }`}
+            >
                 {props.showSimulatedGraph ? (
                     <h6
-                        className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
+                        className={`sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
 												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
                     >
-                        {correctParticipant?.stats?.kill}/
-                        {correctParticipant?.stats?.death}/
-                        {correctParticipant?.stats?.assist}
+                        25,259
                     </h6>
                 ) : (
-                    <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
-                        {props?.player?.kills}/{props?.player?.deaths}/
-                        {props?.player?.assists}
+                    <h6 className=" sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
+                        25,259
                     </h6>
                 )}
-
-                {props.showSimulatedGraph ? (
-                    <p className=" sf-bold-6 text-light-text font-bold desktop:text-[10px] desktop:leading-[12px] ">
-                        kda:
-                        {(
-                            (correctParticipant?.stats?.assist +
-                                correctParticipant?.stats?.kill) /
-                            (correctParticipant?.stats?.death
-                                ? correctParticipant?.stats?.death
-                                : 1)
-                        ).toFixed(2)}
-                        :1
-                    </p>
-                ) : (
-                    <p className=" sf-bold-6 text-light-text font-bold desktop:text-[10px] desktop:leading-[12px] ">
-                        kda:
-                        {(
-                            (props.player?.assists + props?.player?.kills) /
-                            (props.player?.deaths ? props?.player?.deaths : 1)
-                        ).toFixed(2)}
-                        :1
-                    </p>
-                )}
+                {/* progress bar  */}
+                <div
+                    className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
+                >
+                    <div
+                        className={`w-3/6  ${
+                            activeStyle ? " bg-[#251122]" : "bg-accent-color"
+                        } h-full`}
+                    ></div>
+                </div>
             </div>
             {/* batches  */}
-            <div className={`flex ${props.reverse ? "order-4" : "order-2"} `}>
+            <div
+                className={`flex justify-center  ${
+                    props.reverse
+                        ? "order-4 col-start-4 col-end-5"
+                        : "order-2 col-start-2 col-end-3"
+                } `}
+            >
                 {renderedItems?.map((batch, index) => {
                     return (
                         <div
@@ -305,10 +313,12 @@ const PlayerRow = (props) => {
                 })}
             </div>
             {/* g batch  */}
-            {!props.showRunes && !props.showSimulatedGraph && rankSolo ? (
+            {/* {!props.showRunes && !props.showSimulatedGraph && rankSolo ? (
                 <div
                     className={`flex items-center ${
-                        props.reverse ? "order-3" : "order-3"
+                        props.reverse
+                            ? "order-3 col-start-3 col-end-4"
+                            : "order-3 col-start-3 col-end-4"
                     }`}
                 >
                     <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
@@ -326,7 +336,9 @@ const PlayerRow = (props) => {
             ) : props.showSimulatedGraph ? (
                 <div
                     className={`flex items-center ${
-                        props.reverse ? "order-3" : "order-3"
+                        props.reverse
+                            ? "order-3 col-start-3 col-end-4"
+                            : "order-3 col-start-3 col-end-4"
                     }`}
                 >
                     <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
@@ -336,7 +348,7 @@ const PlayerRow = (props) => {
                             : props?.player?.champLevel}
                     </h6>
                 </div>
-            ) : null}
+            ) : null} */}
             {/* {!props.showRunes ? (
                 <div
                     className={`flex items-center ${
@@ -356,27 +368,144 @@ const PlayerRow = (props) => {
                 </div>
             ) : null} */}
             {/* name  */}
-            <h5
+            {/* <h5
                 className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] desktop:text-lg ${
-                    props.reverse ? "order-2" : "order-4"
+                    props.reverse
+                        ? "order-2 col-start-2 col-end-3 "
+                        : "order-4 col-start-4 col-end-5"
                 }`}
                 title={props?.player?.summonerName}
-            >
-                {/* {props?.player?.summonerName} */}
-                {props?.player?.summonerName?.slice(0, 7)}
+            > */}
+            {/* {props?.player?.summonerName} */}
+            {/* {props?.player?.summonerName?.slice(0, 7)}
                 {props?.player?.summonerName?.length >= 7 && "..."}
-            </h5>
+            </h5> */}
+            <div
+                className={` flex flex-col ${
+                    props.reverse
+                        ? "order-2 col-start-3 col-end-4 items-end "
+                        : "order-4 col-start-3 col-end-4"
+                }`}
+            >
+                {props.showSimulatedGraph ? (
+                    <h6
+                        className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
+												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
+                    >
+                        {correctParticipant?.stats?.kill}/
+                        {correctParticipant?.stats?.death}/
+                        {correctParticipant?.stats?.assist}
+                    </h6>
+                ) : (
+                    <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
+                        {props?.player?.kills}/{props?.player?.deaths}/
+                        {props?.player?.assists}
+                    </h6>
+                )}
+
+                {props.showSimulatedGraph ? (
+                    <p
+                        className={`sf-bold-12 uppercase ${
+                            activeStyle ? "text-[#251122]" : "text-grayed-text"
+                        } font-bold`}
+                    >
+                        kda:
+                        {(
+                            (correctParticipant?.stats?.assist +
+                                correctParticipant?.stats?.kill) /
+                            (correctParticipant?.stats?.death
+                                ? correctParticipant?.stats?.death
+                                : 1)
+                        ).toFixed(2)}
+                        :1
+                    </p>
+                ) : (
+                    <p
+                        className={`sf-bold-12 uppercase ${
+                            activeStyle ? "text-[#251122]" : "text-grayed-text"
+                        } font-bold`}
+                    >
+                        kda:
+                        {(
+                            (props.player?.assists + props?.player?.kills) /
+                            (props.player?.deaths ? props?.player?.deaths : 1)
+                        ).toFixed(2)}
+                        :1
+                    </p>
+                )}
+            </div>
+            {/* cs min  */}
+            <div
+                className={` flex flex-col row-start-1 ${
+                    props.reverse
+                        ? "order-2 col-start-2 col-end-3 items-end "
+                        : "order-4 col-start-4 col-end-5"
+                }`}
+            >
+                {props.showSimulatedGraph ? (
+                    <h6
+                        className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
+												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
+                    >
+                        142 cs
+                    </h6>
+                ) : (
+                    <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
+                        142 cs
+                    </h6>
+                )}
+
+                {props.showSimulatedGraph ? (
+                    <p
+                        className={`sf-bold-12 uppercase ${
+                            activeStyle ? "text-[#251122]" : "text-grayed-text"
+                        } font-bold`}
+                    >
+                        6.3 cs/min
+                    </p>
+                ) : (
+                    <p
+                        className={`sf-bold-12 uppercase ${
+                            activeStyle ? "text-[#251122]" : "text-grayed-text"
+                        } font-bold`}
+                    >
+                        6.3 cs/min
+                    </p>
+                )}
+            </div>
             {/* profile image  */}
             <div
-                className={` flex ${
-                    props.reverse ? "order-1 justify-end " : "order-5"
+                className={` flex justify-between py-[2px]  ${
+                    props.reverse
+                        ? "order-1 justify-end col-start-1 col-end-2 flex-row-reverse "
+                        : "order-5 col-start-5 col-end-6"
                 }`}
             >
                 <div
-                    className={` ${
-                        props.reverse
-                            ? "order-2 ml-[9px] desktop:ml-1 "
-                            : "order-2 mr-[9px] desktop:mr-1 "
+                    className={`relative w-[40px] h-[40px] smDesktop:w-[43px] smDesktop:h-[43px] desktop:w-[52px] desktop:h-[52px] ${
+                        props.reverse ? "order-1" : "order-2"
+                    }`}
+                >
+                    {props?.player?.profileIcon && (
+                        <>
+                            <Image
+                                src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player.championName}.png`}
+                                alt="profile Image"
+                                layout="fill"
+                                className=" rounded-[4px] "
+                            />
+                            <div
+                                className=" absolute font-sf-pro-text font-bold text-grayed-text bg-[#110A1B] p-[2px_3px] text-[9px]
+                             leading-[12px] rounded-full border-[#707070] border -bottom-2 left-[18px] "
+                            >
+                                32
+                            </div>
+                        </>
+                    )}
+                </div>
+                <div
+                    className={` mr-[5px] ${
+                        props.reverse ? "order-2 " : "order-2 "
                     }`}
                 >
                     <div className=" relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] ">
@@ -395,35 +524,37 @@ const PlayerRow = (props) => {
                     </div>
                 </div>
                 <div
-                    className={`relative w-[40px] h-[40px] smDesktop:w-[43px] smDesktop:h-[43px] desktop:w-[52px] desktop:h-[52px] ${
-                        props.reverse ? "order-1" : "order-2"
+                    className={` ${
+                        props.reverse
+                            ? "order-2 ml-[9px] desktop:ml-1 "
+                            : "order-2 mr-[9px] desktop:mr-1 "
                     }`}
                 >
-                    {props?.player?.profileIcon && (
+                    <div
+                        className={`relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] rounded-full ${
+                            activeStyle ? "bg-[#251122]" : "bg-transparent "
+                        }`}
+                    >
                         <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player.championName}.png`}
-                            alt="profile Image"
+                            src={RoundBatch1}
+                            alt="flash batch"
                             layout="fill"
                         />
-                    )}
+                    </div>
+                    <div
+                        className={`relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] rounded-full ${
+                            activeStyle ? "bg-[#251122]" : "bg-transparent "
+                        }`}
+                    >
+                        <Image
+                            src={RoundBatch2}
+                            alt="teleport batch"
+                            layout="fill"
+                        />
+                    </div>
                 </div>
             </div>
             {/* indicator  */}
-
-            <div
-                className={`w-[9px] h-full rounded-[3px]  absolute top-0 desktop:w-3 ${
-                    props.reverse ? "left-0" : "right-0"
-                } ${
-                    (props.player.summonerId ===
-                        props.selectedPlayer.summonerId ||
-                    props.player.summonerId ===
-                        props.simulatorPlayers.summonerId)
-                        ? props.reverse
-                            ? " bg-accent-color-2"
-                            : "bg-accent-color "
-                        : " bg-card-&-content-box"
-                } `}
-            ></div>
         </div>
     );
 };

@@ -9,7 +9,7 @@
 } */
 
 .searchBox {
- @apply  desktop:py-[32px] desktop:pl-[310px];
+ /* @apply  desktop:py-[32px] desktop:pl-[310px]; */
       
       /* @apply desktop:gotham-mid-25; */
 }
