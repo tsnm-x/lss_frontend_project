@@ -72,17 +72,11 @@ const RightPlayers = (props) => {
 
 const PlayerCompare = (props) => {
     return (
-        <div
-            className={` w-full ${
-                props.showRunes
-                    ? " "
-                    : ""
-            } `}
-        >
+        <div className={` w-full ${props.showRunes ? " " : ""} `}>
             {/* topbar  */}
             <div className=" flex items-center bg-[#160f20] mb-2 ">
                 {/* left  */}
-                <div className=" sf-bold-12 capitalize font-bold  text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_5fr_2fr_2fr_3fr]">
+                <div className=" sf-bold-12 capitalize font-bold  text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_4fr_2fr_2fr_2fr]">
                     <h5>damage dealt</h5>
                     <h5>items</h5>
                     <h5>score</h5>
@@ -90,7 +84,7 @@ const PlayerCompare = (props) => {
                     <h5 className=" text-[14px] leading-[17px] ">team</h5>
                 </div>
                 {/* right  */}
-                <div className=" sf-bold-12 capitalize font-bold text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_5fr_2fr_2fr_3fr] ">
+                <div className=" sf-bold-12 capitalize font-bold text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_4fr_2fr_2fr_2fr] [direction:rtl] ">
                     <h5>damage dealt</h5>
                     <h5>items</h5>
                     <h5>score</h5>
@@ -101,9 +95,7 @@ const PlayerCompare = (props) => {
             {/* compare cards  */}
             <div
                 className={`flex gap-x-4 ${
-                    props.showRunes
-                        ? "h-[340px] desktop:h-[460px] "
-                        : ""
+                    props.showRunes ? "h-[340px] desktop:h-[460px] " : ""
                 }  `}
             >
                 {props.leftTeam.length != 0 && (
