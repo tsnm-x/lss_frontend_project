@@ -103,6 +103,10 @@ const ExpandCard = (props) => {
 		setShowRunes(btnState);
 	};
 
+	useEffect(()=>{
+		console.log(matchTimelineData)
+	}, [matchTimelineData])
+
 	return (
 		<div className=" relative">
 			{/* top row  */}
@@ -129,6 +133,7 @@ const ExpandCard = (props) => {
 							setShowSimulateGraph={setShowSimulateGraph}
 							setExpand={props.setExpand}
 							expand={props.expand}
+							matchTimelineData={matchTimelineData?.matchTimeline}
 						/>
 					)}
 					<ProfileCompareBar />
