@@ -237,7 +237,7 @@ const PlayerRow = (props) => {
                     ? `px-3 desktop:grid  ${
                           props.showRunes
                               ? "desktop:grid-cols-[85px_120px_210px_60px]"
-                              : " desktop:grid-cols-[100px_120px_100px_210px_60px]"
+                              : " desktop:grid-cols-[2fr_2fr_2fr_4fr_2fr]"
                       }`
                     : ` px-3 desktop:grid  ${
                           props.showRunes
@@ -260,7 +260,7 @@ const PlayerRow = (props) => {
                 className={` ${
                     props.reverse
                         ? "order-5 col-start-5 col-end-6 "
-                        : "order-1 col-start-1 col-end-2 pr-6 "
+                        : "order-1 col-start-1 col-end-2 "
                 }`}
             >
                 {props.showSimulatedGraph ? (
@@ -288,7 +288,7 @@ const PlayerRow = (props) => {
             </div>
             {/* batches  */}
             <div
-                className={`flex ${
+                className={`flex justify-center  ${
                     props.reverse
                         ? "order-4 col-start-4 col-end-5"
                         : "order-2 col-start-2 col-end-3"
@@ -381,9 +381,9 @@ const PlayerRow = (props) => {
                 {props?.player?.summonerName?.length >= 7 && "..."}
             </h5> */}
             <div
-                className={`${
+                className={` flex flex-col ${
                     props.reverse
-                        ? "order-2 col-start-2 col-end-3 "
+                        ? "order-2 col-start-3 col-end-4 items-end "
                         : "order-4 col-start-3 col-end-4"
                 }`}
             >
@@ -436,9 +436,9 @@ const PlayerRow = (props) => {
             </div>
             {/* cs min  */}
             <div
-                className={`${
+                className={` flex flex-col row-start-1 ${
                     props.reverse
-                        ? "order-2 col-start-2 col-end-3 "
+                        ? "order-2 col-start-2 col-end-3 items-end "
                         : "order-4 col-start-4 col-end-5"
                 }`}
             >
@@ -477,12 +477,12 @@ const PlayerRow = (props) => {
             <div
                 className={` flex justify-between py-[2px]  ${
                     props.reverse
-                        ? "order-1 justify-end col-start-1 col-end-2 "
+                        ? "order-1 justify-end col-start-1 col-end-2 flex-row-reverse "
                         : "order-5 col-start-5 col-end-6"
                 }`}
             >
                 <div
-                    className={`relative w-[40px] mr-[9px] h-[40px] smDesktop:w-[43px] smDesktop:h-[43px] desktop:w-[52px] desktop:h-[52px] ${
+                    className={`relative w-[40px] h-[40px] smDesktop:w-[43px] smDesktop:h-[43px] desktop:w-[52px] desktop:h-[52px] ${
                         props.reverse ? "order-1" : "order-2"
                     }`}
                 >

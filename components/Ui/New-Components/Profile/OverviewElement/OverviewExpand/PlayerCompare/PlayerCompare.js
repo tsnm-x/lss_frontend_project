@@ -78,18 +78,18 @@ const PlayerCompare = (props) => {
                 {/* left  */}
                 <div className=" sf-bold-12 capitalize font-bold  text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_4fr_2fr_2fr_2fr]">
                     <h5>damage dealt</h5>
-                    <h5>items</h5>
+                    <h5 className=" text-center ">items</h5>
                     <h5>score</h5>
                     <h5>creep score</h5>
                     <h5 className=" text-[14px] leading-[17px] ">team</h5>
                 </div>
                 {/* right  */}
-                <div className=" sf-bold-12 capitalize font-bold text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_4fr_2fr_2fr_2fr] [direction:rtl] ">
+                <div className=" sf-bold-12 capitalize font-bold text-grayed-text w-3/6 py-3 px-6 grid grid-cols-[2fr_2fr_2fr_4fr_2fr] ">
+                    <h5 className=" text-[14px] leading-[17px] text-right ">team</h5>
+                    <h5 className=" text-right ">creep score</h5>
+                    <h5 className=" text-right ">score</h5>
+                    <h5 className=" text-center ">items</h5>
                     <h5>damage dealt</h5>
-                    <h5>items</h5>
-                    <h5>score</h5>
-                    <h5>creep score</h5>
-                    <h5 className=" text-[14px] leading-[17px] ">team</h5>
                 </div>
             </div>
             {/* compare cards  */}
