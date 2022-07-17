@@ -28,6 +28,7 @@ const PlayerRow = (props) => {
 	const frameDetails = frames ? frames[selectedFrame] : null;
 
 	const LastFrame = frames ? frames[frames.length - 2] : null;
+	console.log(frames);
 
 	const getMaxXp = () => {
 		if (LastFrame) {

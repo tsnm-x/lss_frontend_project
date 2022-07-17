@@ -93,6 +93,7 @@ const ExpandCard = (props) => {
 				let matchTimeline = addDragonTimers(res.data.matchTimeline);
 				matchTimeline = addBaronTimers(matchTimeline);
 				setUpdate(!update);
+
 				if (res?.status === 200) {
 					setMatchTimelineData(matchTimeline);
 				}
@@ -111,10 +112,14 @@ const ExpandCard = (props) => {
 				seconds = "0" + seconds;
 			}
 
+			// 22 -  23 24 25 26
+
 			for (let i = 1; i <= 5; i++) {
-				matchTimeline.matchTimeline.frames[
-					date.getMinutes() + i
-				].dragonRespawn = `${5 - i}:${seconds}`;
+				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					].dragonRespawn = `${5 - i}:${seconds}`;
+				}
 			}
 		});
 
@@ -132,9 +137,11 @@ const ExpandCard = (props) => {
 			}
 
 			for (let i = 1; i <= 5; i++) {
-				matchTimeline.matchTimeline.frames[
-					date.getMinutes() + i
-				].baronRespawn = `${5 - i}:${seconds}`;
+				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					].baronRespawn = `${5 - i}:${seconds}`;
+				}
 			}
 		});
 
@@ -145,9 +152,9 @@ const ExpandCard = (props) => {
 		setShowRunes(btnState);
 	};
 
-	useEffect(() => {
-		console.log(matchTimelineData);
-	}, [matchTimelineData]);
+	// useEffect(() => {
+	// 	console.log(matchTimelineData);
+	// }, [matchTimelineData]);
 
 	return (
 		<div className=" relative">
