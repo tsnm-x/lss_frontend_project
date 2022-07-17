@@ -14,6 +14,15 @@ const unityContext = new UnityContext({
 	frameworkUrl: "/assets/unity/WebGL.framework.js.unityweb",
 	codeUrl: "/assets/unity/WebGL.wasm.unityweb",
 });
+
+// const { unityProvider, sendMessage, addEventListener, removeEventListener } =
+// 	useUnityContext({
+// 		loaderUrl: "/assets/unity/WebGL.loader.js",
+// 		dataUrl: "/assets/unity/WebGL.data.unityweb",
+// 		frameworkUrl: "/assets/unity/WebGL.framework.js.unityweb",
+// 		codeUrl: "/assets/unity/WebGL.wasm.unityweb",
+// 	});
+
 // child component that supporting main component ---------------------------------------
 const Buttons = (props) => {
 	const [btns, setBtns] = useState([
@@ -28,7 +37,6 @@ const Buttons = (props) => {
 	]);
 
 	const btnClickHandler = (btnTxt) => {
-		// console.log(btnTxt)
 		setBtns((prevState) => {
 			const modifyedState = [];
 			prevState.forEach((item) => {
@@ -167,6 +175,9 @@ const SimulationData = (props) => {
 		},
 	};
 
+	// console.log(props.simulatorPlayerRed);
+
+	// name , level , items
 	const JSONString = {
 		APIMatchInfo: {
 			version: "12.10.1",
@@ -174,6 +185,7 @@ const SimulationData = (props) => {
 				{
 					champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
 					champLevel: 18,
+					items: [3119, 2115],
 				},
 				{
 					champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
@@ -185,39 +197,55 @@ const SimulationData = (props) => {
 	// SendMessage("Simulator Manager", "LoadData", JSONString);
 
 	const clicked = () => {
+		// loop based on the frames of the game
+		// send the data of the frame for the two selected champions
 		unityContext.send(
 			"Simulator Manager",
-			"LoadData",
-			JSON.stringify(JSONString)
+			"LoadData", // ManualSimulate
+			JSON.stringify(JSONString) //
 		);
 	};
+
+	// 	unityContext.
+	// 	addEventListener("GameOver", handleGameOver);
+	// 	return () => {
+	// 		removeEventListener("GameOver", handleGameOver);
+	// 	};
+	// }, [addEventListener, removeEventListener, handleGameOver]);
 
 	useEffect(() => {
 		window.alert = console.log;
 
+		unityContext.on("HelloString", function (str) {
+			// new obj
+			// push to an array
+			// rerender and recall send function with the array
+			console.log(str);
+		});
+
 		// returned function will be called on component unmount
 		return () => {
-			// unityContext.quitUnityInstance();
+			unityContext.quitUnityInstance();
 		};
 	}, []);
 
-	return (
-		<>
-			<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
-				<button onClick={clicked}>Start Sim</button>
-				<Unity
-					style={{
-						width: "100%",
-						height: "100%",
-						background: "#231F20",
-						justifySelf: "center",
-						alignSelf: "center",
-					}}
-					unityContext={unityContext}
-				/>
-			</div>
-		</>
-	);
+	// return (
+	// 	<>
+	// 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
+	// 			<button onClick={clicked}>Start Sim</button>
+	// 			<Unity
+	// 				style={{
+	// 					width: "100%",
+	// 					height: "100%",
+	// 					background: "#231F20",
+	// 					justifySelf: "center",
+	// 					alignSelf: "center",
+	// 				}}
+	// 				unityContext={unityContext}
+	// 			/>
+	// 		</div>
+	// 	</>
+	// );
 
 	return (
 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">

@@ -49,7 +49,6 @@ const PlayerRow = (props) => {
 	};
 
 	useEffect(() => {
-		console.log(props.player.summonerId);
 		sendRequest(
 			{
 				url: "/summonerRanks",

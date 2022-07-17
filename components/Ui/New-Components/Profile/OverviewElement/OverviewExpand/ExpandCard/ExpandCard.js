@@ -89,13 +89,55 @@ const ExpandCard = (props) => {
 				body: { region: router.query?.region, matchId: props.match.matchId },
 			},
 			(res) => {
+				let matchTimeline = addDragonTimers(res.data.matchTimeline);
+				matchTimeline = addBaronTimers(matchTimeline);
 				setUpdate(!update);
 				if (res?.status === 200) {
-					setMatchTimelineData(res.data.matchTimeline);
+					setMatchTimelineData(matchTimeline);
 				}
 			}
 		);
 		setShowSimulateGraph(true);
+	};
+
+	const addDragonTimers = (matchTimeline) => {
+		matchTimeline?.matchTimeline?.frames[
+			matchTimeline?.matchTimeline?.frames?.length - 2
+		]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			for (let i = 1; i <= 5; i++) {
+				matchTimeline.matchTimeline.frames[
+					date.getMinutes() + i
+				].dragonRespawn = `${5 - i}:${seconds}`;
+			}
+		});
+
+		return matchTimeline;
+	};
+
+	const addBaronTimers = (matchTimeline) => {
+		matchTimeline?.matchTimeline?.frames[
+			matchTimeline?.matchTimeline?.frames?.length - 2
+		]?.blueTeam?.Baron?.KillEvents.forEach((kill) => {
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			for (let i = 1; i <= 5; i++) {
+				matchTimeline.matchTimeline.frames[
+					date.getMinutes() + i
+				].baronRespawn = `${5 - i}:${seconds}`;
+			}
+		});
+
+		return matchTimeline;
 	};
 
 	const showRunesHandler = (btnState) => {
@@ -130,7 +172,13 @@ const ExpandCard = (props) => {
 							expand={props.expand}
 						/>
 					)}
-					<LosAndWinRow showProfile={showRunes} {...props} />
+					<LosAndWinRow
+						showProfile={showRunes}
+						frames={matchTimelineData?.matchTimeline?.frames}
+						selectedFrame={selectedFrame}
+						showSimulatedGraph={showSimulatedGraph}
+						{...props}
+					/>
 				</div>
 				{/* player compare  */}
 				<RunesContext.Provider value={{ runes: showRunes }}>
