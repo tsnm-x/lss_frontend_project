@@ -75,9 +75,9 @@ const RankCard = (props) => {
             className={`bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex ${
                 props.expand
                     ? props.mainExpand
-                        ? " desktop:p-0  desktop:mt-[20px] "
-                        : "desktop:px-[41px]"
-                    : "desktop:px-5"
+                        ? "  "
+                        : ""
+                    : ""
             } `}
         >
             <div
@@ -85,7 +85,7 @@ const RankCard = (props) => {
                     props.className
                         ? props.className
                         : `grid grid-cols-3 gap-3 content-center justify-center ${
-                              props.expand ? " desktop:gap-[24px]  " : ""
+                              props.expand ? "   " : ""
                           }`
                 } `}
             >
@@ -106,9 +106,9 @@ const RankCard = (props) => {
                             } ${
                                 props.imgClassName
                                     ? props.imgClassName
-                                    : `w-[32px] h-[32px]  desktop:w-[40px] desktop:h-[40px] ${
+                                    : `w-[32px] h-[32px]  ${
                                           props.expand
-                                              ? " desktop:w-[68px] desktop:h-[68px]  "
+                                              ? "  "
                                               : "not expanded"
                                       }`
                             }`}
@@ -128,12 +128,12 @@ const RankCard = (props) => {
             </div>
             <div>
                 <div
-                    className={`relative w-[30px] h-[30px] rounded-full mt-3 ml-3 ${
+                    className={`relative w-[26px] h-[26px] rounded-full mt-3 ml-3 ${
                         props.expand
-                            ? `desktop:w-[51px] desktop:h-[51px]  ${
+                            ? ` ${
                                   props.mainExpand
-                                      ? " desktop:mt-4 desktop:ml-0 "
-                                      : " desktop:ml-[24px] desktop:mt-[30px]"
+                                      ? " "
+                                      : ""
                               } `
                             : ""
                     }`}

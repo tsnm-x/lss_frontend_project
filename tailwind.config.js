@@ -127,9 +127,6 @@ module.exports = {
                     "@screen smDesktop": {
                         maxWidth: "1396px",
                     },
-                    "@screen desktop": {
-                        maxWidth: "1780px",
-                    },
                 },
             });
         },
