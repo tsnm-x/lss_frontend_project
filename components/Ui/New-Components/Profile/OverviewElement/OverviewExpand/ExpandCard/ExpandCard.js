@@ -103,25 +103,37 @@ const ExpandCard = (props) => {
 	};
 
 	const addDragonTimers = (matchTimeline) => {
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
-		]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-
-			// 22 -  23 24 25 26
-
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.matchTimeline.frames[
-						date.getMinutes() + i
-					].dragonRespawn = `${5 - i}:${seconds}`;
+		if (matchTimeline?.matchTimeline) {
+			matchTimeline?.matchTimeline?.frames[
+				matchTimeline?.matchTimeline?.frames?.length - 2
+			]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
+				let date = new Date(kill.timeStamp);
+				let seconds = 60 - date.getSeconds();
+				if (seconds < 10) {
+					seconds = "0" + seconds;
 				}
-			}
-		});
+
+				for (let i = 1; i <= 5; i++) {
+					if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+						console.log("got in");
+						matchTimeline.matchTimeline.frames[
+							date.getMinutes() + i
+						].dargonRespawn = `${5 - i}:${seconds}`;
+					}
+				}
+			});
+		}
+
+		// 22 -  23 24 25 26
+
+		// 	for (let i = 1; i <= 5; i++) {
+		// 		if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+		// 			matchTimeline.matchTimeline.frames[
+		// 				date.getMinutes() + i
+		// 			].dragonRespawn = `${5 - i}:${seconds}`;
+		// 		}
+		// 	}
+		// });
 
 		return matchTimeline;
 	};
