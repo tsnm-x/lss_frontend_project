@@ -68,7 +68,7 @@ const Table = () => {
 					totalMatches++;
 					totalDuration = totalDuration + mainPlayerChamps[j].duration;
 					totalDamageDealt =
-						totalDamageDealt + mainPlayerChamps[j].magicDamageDealt;
+						totalDamageDealt + mainPlayerChamps[j].totalDamageDealt;
 				}
 			}
 

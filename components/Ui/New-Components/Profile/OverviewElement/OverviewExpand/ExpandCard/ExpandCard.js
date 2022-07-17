@@ -102,41 +102,58 @@ const ExpandCard = (props) => {
 	};
 
 	const addDragonTimers = (matchTimeline) => {
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
-		]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
+		if(matchTimeline?.matchTimeline){
+			matchTimeline?.matchTimeline?.frames[
+				matchTimeline?.matchTimeline?.frames?.length - 2
+			]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
+				let date = new Date(kill.timeStamp);
+				let seconds = 60 - date.getSeconds();
+				if (seconds < 10) {
+					seconds = "0" + seconds;
+				}
+	
+				for (let i = 1; i <= 5; i++) {
+					if(matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					]){
+						console.log("got in")
+						matchTimeline.matchTimeline.frames[
+							date.getMinutes() + i
+						].dargonRespawn = `${5 - i}:${seconds}`;
+					}
+					
+				}
+			});
+		}
 
-			for (let i = 1; i <= 5; i++) {
-				matchTimeline.matchTimeline.frames[
-					date.getMinutes() + i
-				].dragonRespawn = `${5 - i}:${seconds}`;
-			}
-		});
+		console.log(matchTimeline)
 
 		return matchTimeline;
 	};
 
 	const addBaronTimers = (matchTimeline) => {
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
-		]?.blueTeam?.Baron?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-
-			for (let i = 1; i <= 5; i++) {
-				matchTimeline.matchTimeline.frames[
-					date.getMinutes() + i
-				].baronRespawn = `${5 - i}:${seconds}`;
-			}
-		});
+		if(matchTimeline?.matchTimeline){
+			matchTimeline?.matchTimeline?.frames[
+				matchTimeline?.matchTimeline?.frames?.length - 2
+			]?.blueTeam?.Baron?.KillEvents.forEach((kill) => {
+				let date = new Date(kill.timeStamp);
+				let seconds = 60 - date.getSeconds();
+				if (seconds < 10) {
+					seconds = "0" + seconds;
+				}
+	
+				for (let i = 1; i <= 5; i++) {
+					if(matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					]){
+						console.log("got in 2")
+						matchTimeline.matchTimeline.frames[
+							date.getMinutes() + i
+						].baronRespawn = `${5 - i}:${seconds}`;
+					}
+				}
+			});
+		}
 
 		return matchTimeline;
 	};
@@ -146,8 +163,8 @@ const ExpandCard = (props) => {
 	};
 
 	useEffect(() => {
-		console.log(matchTimelineData);
-	}, [matchTimelineData]);
+		console.log(matchTimelineData)
+	}, [selectedFrame]);
 
 	return (
 		<div className=" relative">

@@ -60,6 +60,24 @@ const PlayerRow = (props) => {
 		return 0;
 	};
 
+	const getMaxDamageDealt = () => {
+		console.log(props.match?.players[0]?.totalDamageDealt)
+		let maxDamageDealt = props.match?.players[0]?.totalDamageDealt;
+
+		props.match?.players.forEach((player, index) => {
+			if (index !== (props.match?.players?.length - 1)) {
+				if (maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt) {
+					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealt;
+				}
+			}
+			console.log(maxDamageDealt)
+			return;
+		});
+		
+		return maxDamageDealt;
+		
+	};
+
 	const correctParticipant = frames
 		? frames[selectedFrame][`participant${props.player.standingId}`]
 		: {};
@@ -86,9 +104,15 @@ const PlayerRow = (props) => {
 		}
 	};
 
-	useEffect(() => {
-		console.log(frameDetails);
-	}, [frameDetails]);
+	// useEffect(() => {
+	// 	console.log(props.match.players);
+	// }, [props.match]);
+
+	function convertM(value) {
+		const sec = parseInt(value); // convert value to number if it's string
+		let minutes = Math.floor(sec / 60); // get minutes
+		return minutes;
+	}
 
 	useEffect(() => {
 		props.player.summonerId === props.selectedPlayer.summonerId ||
@@ -98,7 +122,6 @@ const PlayerRow = (props) => {
 	});
 
 	useEffect(() => {
-		console.log(props.player.summonerId);
 		sendRequest(
 			{
 				url: "/summonerRanks",
@@ -330,11 +353,11 @@ const PlayerRow = (props) => {
 					</h6>
 				) : (
 					<h6 className=" sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
-						25,259
+						{props.player?.totalDamageDealt}
 					</h6>
 				)}
 				{/* progress bar  */}
-				<div
+				{props.showSimulatedGraph? (<div
 					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
 				>
 					<div
@@ -350,7 +373,25 @@ const PlayerRow = (props) => {
 							}%`,
 						}}
 					></div>
-				</div>
+				</div>) : getMaxDamageDealt() &&
+				(<div
+					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
+				>
+					<div
+						className={`${
+							activeStyle ? " bg-[#251122]" : "bg-accent-color"
+						} h-full`}
+						style={{
+							width: `${
+								(!props.player?.totalDamageDealt
+									? 50
+									: props.player?.totalDamageDealt / (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) *
+								100
+							}%`,
+						}}
+					></div>
+				</div>)
+				}
 			</div>
 			{/* batches  */}
 			<div
@@ -514,7 +555,7 @@ const PlayerRow = (props) => {
 					</h6>
 				) : (
 					<h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
-						142 cs
+						{props.player?.totalMinionsKilled} cs
 					</h6>
 				)}
 
@@ -527,7 +568,7 @@ const PlayerRow = (props) => {
 						{(
 							correctParticipant?.stats?.creepScore /
 							(frameDetails?.timestamp / 60000)
-						).toFixed(1)}{" "}
+						)?.toFixed(1)}{" "}
 						cs/min
 					</p>
 				) : (
@@ -536,7 +577,9 @@ const PlayerRow = (props) => {
 							activeStyle ? "text-[#251122]" : "text-grayed-text"
 						} font-bold`}
 					>
-						6.3 cs/min
+						{(
+							props.player?.totalMinionsKilled / convertM(props.match?.duration)
+						)?.toFixed(1)} cs/min
 					</p>
 				)}
 			</div>
