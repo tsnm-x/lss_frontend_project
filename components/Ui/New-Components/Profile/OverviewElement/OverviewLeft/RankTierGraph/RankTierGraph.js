@@ -11,13 +11,15 @@ const Btns = (props) => {
         <div className={`flex ${props.className}`}>
             <button
                 className=" text-light-text font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                              bg-buttons-gray px-[7px] py-[9px] capitalize smDesktop:text-[11px] smDesktop:leading-[13px] mr-[3px] desktop:text-[18px] desktop:leading-[21px] desktop:p-3 desktop:mr-[6px]  "
+                              bg-buttons-gray px-[7px] py-[9px] capitalize smDesktop:text-[11px] 
+                              smDesktop:leading-[13px] mr-[3px] "
             >
                 Ranked solo
             </button>
             <button
                 className=" text-light-text font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                              bg-buttons-gray px-[7px] py-[9px] capitalize smDesktop:text-[11px] smDesktop:leading-[13px] desktop:text-[18px] desktop:leading-[21px] desktop:p-3 "
+                              bg-buttons-gray px-[7px] py-[9px] capitalize smDesktop:text-[11px]
+                               smDesktop:leading-[13px]  "
             >
                 ranked flex
             </button>
@@ -33,7 +35,7 @@ const Batch = (props) => {
         >
             <div
                 className="  relative w-[53px] h-[53px] rounded-full border border-[#fffaff52]
-                 smDesktop:w-[68px] smDesktop:h-[68px] desktop:w-[95px] desktop:h-[95px] "
+                 smDesktop:w-[68px] smDesktop:h-[68px] "
             >
                 <Image
                     src={BatchImg}
@@ -45,20 +47,20 @@ const Batch = (props) => {
             <div>
                 <h4
                     className=" font-sf-pro-text font-bold text-[13px] leading-[15px] text-light-text
-                     smDesktop:text-base desktop:text-[25px] desktop:leading-[30px] "
+                     smDesktop:text-base  "
                 >
                     Gold IV
                 </h4>
                 <h3
                     className=" font-sf-pro-text font-bold text-[16px] leading-[19px]
-                 text-light-text smDesktop:text-xl desktop:text-[30px] desktop:leading-[36px] "
+                 text-light-text smDesktop:text-xl "
                 >
                     71 LP
                 </h3>
             </div>
             <div
                 className="font-sf-pro-text font-bold text-[8px] leading-[10px] 
-            text-accent-color-2 smDesktop:text-[10px] smDesktop:leading-[12px] desktop:text-[16px] desktop:leading-[19px]  "
+            text-accent-color-2 smDesktop:text-[10px] smDesktop:leading-[12px] "
             >
                 <p>
                     54.62%<span className=" text-grayed-text">WR</span>
@@ -78,7 +80,7 @@ const TierGraph = (props) => {
     return (
         <div
             className={`  relative w-[163px] h-[70px] mt-3 ${props.className}
-         smDesktop:w-full smDesktop:h-[105px] smDesktop:mt-4 desktop:mt-8 desktop:w-[335px] desktop:h-[150px] `}
+         smDesktop:w-full smDesktop:h-[105px] smDesktop:mt-4 desktop:mt-6 `}
         >
             <Image
                 src={TierGraphImg}
@@ -94,7 +96,7 @@ const RankTierGraph = (props) => {
     return (
         <div
             className="  p-[20px_17px_10px_17px]  bg-card-&-content-box rounded
-            smDesktop:p-[25px_22px_15px_22px] desktop:p-[38px_32px] "
+            smDesktop:p-[25px_22px_15px_22px] "
         >
             {/* top btns  */}
             <Btns />

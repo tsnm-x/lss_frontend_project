@@ -12,7 +12,7 @@ const PlayerRow = (props) => {
         <div className=" laptop:grid laptop:grid-cols-[repeat(4,1fr)] laptop:mb-2 last:laptop:mb-0 smDesktop:grid-cols-[2fr_3fr_3fr_1.5fr] ">
             <div
                 className="  laptop:relative laptop:w-[20px] laptop:h-[20px] laptop:border laptop:border-mix-white-black rounded-full
-             smDesktop:w-[26px] smDesktop:h-[26px] desktop:w-[38px] desktop:h-[38px] "
+             smDesktop:w-[26px] smDesktop:h-[26px]"
             >
                 <Image
                     src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.profileIcon}.png`}
@@ -24,7 +24,7 @@ const PlayerRow = (props) => {
             <div>
                 <h6
                     className="laptop:gotham-mid-9 laptop:text-light-text laptop:italic capitalize 
-                smDesktop:text-[10px] smDesktop:leading-[11px] desktop:text-[18px] desktop:leading-[21px] "
+                smDesktop:text-[10px] smDesktop:leading-[11px] "
                     title={props.summonerName}
                 >
                     {/* {props.summonerName} */}
@@ -36,7 +36,7 @@ const PlayerRow = (props) => {
                 </p>
             </div>
             <div>
-                <h6 className=" italic laptop:gotham-mid-9 laptop:text-light-text laptop:uppercase desktop:text-[18px] desktop:leading-[21px] ">
+                <h6 className=" italic laptop:gotham-mid-9 laptop:text-light-text laptop:uppercase  ">
                     <span
                         className={`text-accent-color-2 ${
                             (
@@ -61,13 +61,13 @@ const PlayerRow = (props) => {
                     </span>
                     :1 kda
                 </h6>
-                <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] desktop:text-[7px] desktop:leading-[9px] ">
+                <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] desktop:text-[7px] desktop:leading-[9px]  ">
                     {props.totalKills}/{props.totalDeaths}/{props.totalAssists}
                 </p>
             </div>
             <div className="">
                 <h6
-                    className={`laptop:gotham-mid-9  laptop:italic laptop:uppercase desktop:text-[18px] desktop:leading-[21px]  ${
+                    className={`laptop:gotham-mid-9  laptop:italic laptop:uppercase  ${
                         (props.winCount / (props.winCount + props.lossCount)) *
                             100 >=
                         50
@@ -82,7 +82,7 @@ const PlayerRow = (props) => {
                     %
                 </h6>
                 <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] desktop:text-[7px] desktop:leading-[9px] ">
-                    {props.winCount + props.lossCount}games played
+                    {props.winCount + props.lossCount} games
                 </p>
             </div>
         </div>
@@ -162,16 +162,16 @@ const OftenPlayWith = () => {
     return (
         <div
             className=" px-[13px] py-[17px] rounded-5px bg-card-&-content-box laptop:mt-[10px]
-         smDesktop:mt-[50px] smDesktop:py-[22px] smDesktop:px-4 desktop:mt-6 desktop:py-8 desktop:px-[25px] "
+         smDesktop:mt-[50px] smDesktop:py-[22px] smDesktop:px-4  "
         >
             <h6
                 className="font-sf-pro-text text-[11px] font-medium leading-[13px] text-grayed-text 
-             smDesktop:text-[14px] desktop:text-[21px] desktop:leading-[25px]  "
+             smDesktop:text-[14px]  "
             >
                 You often play with
             </h6>
             {/* card container  */}
-            <div className="laptop:mt-[13px] smDesktop:mt-[17px] desktop:mt-5 ">
+            <div className="laptop:mt-[13px] smDesktop:mt-[17px] ">
                 {mostPlayedWithList.length >= 10
                     ? mostPlayedWithList.slice(0, 10).map((player, index) => {
                           return <PlayerRow key={index} {...player} />;

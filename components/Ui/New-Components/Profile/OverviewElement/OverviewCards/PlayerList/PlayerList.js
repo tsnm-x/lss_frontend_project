@@ -35,11 +35,11 @@ const PlayerList = (props) => {
     return (
         <div
             className={`bg-card-&-content-box grid grid-cols-[auto_30px] 
-            smDesktop:grid-cols-[auto_33px] desktop:grid-cols-[auto_36px]
-            ${props.expand ? " desktop:pl-[34px] " : ""} `}
+            smDesktop:grid-cols-[auto_33px] 
+            ${props.expand ? "  " : ""} `}
         >
             {/* player lists  */}
-            <div className="h-full relative py-[10px] pl-[18px] pr-[60px] desktop:pl-[24px] ">
+            <div className="h-full relative py-[10px] pl-[18px] pr-[60px]  ">
                 {props.index === 0 ? (
                     <div
                         className=" font-sf-pro-text text-[10px] leading-3 font-bold text-accent-color bg-[#2F2937] py-[3px] px-[28px]
@@ -50,18 +50,18 @@ const PlayerList = (props) => {
                 ) : null}
 
                 {/* players  */}
-                <div className=" grid grid-cols-2 gap-x-1 desktop:content-center desktop:h-full ">
+                <div className=" grid grid-cols-2 gap-x-1 ">
                     {orderedPlayersList.map((player, index) => {
                         return (
                             <div
-                                className={`flex items-center justify-start mb-1 ${props.expand ? " desktop:mb-[6px] " : ""}`}
+                                className={`flex items-center justify-start mb-1 ${props.expand ? "" : ""}`}
                                 key={index}
                             >
                                 <div
                                     className={`border border-[#707070] relative w-[22px] h-[22px] rounded-full mr-[8px] 
-                                    desktop:w-[24px] desktop:h-[24px] ${
+                                    ${
                                         props.expand
-                                            ? " desktop:w-[43px] desktop:h-[43px] desktop:mr-6 "
+                                            ? " "
                                             : ""
                                     }`}
                                 >
@@ -79,7 +79,7 @@ const PlayerList = (props) => {
                                                 ? "text-accent-color-2"
                                                 : "text-accent-color"
                                             : "text-grayed-text"
-                                    } ${props.expand ? " desktop:text-[20px] desktop:leading-[22px] " : ""}`}
+                                    } ${props.expand ? " " : ""}`}
                                 >
                                     {player?.summonerName?.slice(0, 7)}
                                     {player?.summonerName?.length >= 7 && "..."}
@@ -97,7 +97,7 @@ const PlayerList = (props) => {
                   mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
               }`}
             >
-                <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] desktop:text-[22px] " />
+                <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
             </div>
         </div>
     );

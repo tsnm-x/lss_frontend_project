@@ -208,7 +208,7 @@
     }
     /* container  */
     .container {
-        @apply laptop:pl-[50px];
+        /* @apply laptop:pl-[50px]; */
     }
     /* portal  */
     #portal {
