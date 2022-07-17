@@ -216,6 +216,27 @@ const RightSide = (props) => {
         }
     };
 
+    const styleSelector = (id) =>{
+
+        switch (id) {
+			case 8100:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png";
+			case 8300:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+			case 8000:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7201_Precision.png";
+			case 8400:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7204_Resolve.png";
+			case 8200:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7202_Sorcery.png";
+
+			// todo: add image placeholder as default
+			default:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+		}
+
+    }
+
     useEffect(() => {
     }, [props.mainPlayer]);
     useEffect(() => {
@@ -307,7 +328,7 @@ const RightSide = (props) => {
                     {/* batch  */}
                     <div className=" mr-2 ">
                         {/* data.batch  */}
-                        {[BatchImg1, BatchImg2].map((power, index) => {
+                        {[props?.mainPlayer?.perks?.styles[0]?.style, props?.mainPlayer?.perks?.styles[1]?.style].map((power, index) => {
                             return (
                                 <div
                                     key={index}
@@ -321,12 +342,12 @@ const RightSide = (props) => {
                                             : " w-[29px] h-[29px] rounded-5px desktop:w-[35px] desktop:h-[35px]"
                                     }`}
                                 >
-                                    <Image
-                                        src={power}
+                                    {power && <Image
+                                        src={styleSelector(power)}
                                         alt="summoner flash image"
                                         layout="fill"
                                         className=" rounded-5px "
-                                    />
+                                    />}
                                 </div>
                             );
                         })}

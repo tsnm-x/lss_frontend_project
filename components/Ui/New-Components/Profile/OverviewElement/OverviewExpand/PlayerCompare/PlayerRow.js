@@ -25,6 +25,43 @@ const PlayerRow = (props) => {
     const matchMetaData = matchTimelineData?.metaData;
     const selectedFrame = props.selectedFrame;
 
+    const frameDetails = frames? frames[selectedFrame] : null
+
+    const LastFrame = frames? frames[frames.length-2] : null
+
+    const getMaxXp = () => {
+        if(LastFrame){
+            const participants = [
+                LastFrame.participant1,
+                LastFrame.participant2,
+                LastFrame.participant3,
+                LastFrame.participant4,
+                LastFrame.participant5,
+                LastFrame.participant6,
+                LastFrame.participant7,
+                LastFrame.participant8,
+                LastFrame.participant9,
+                LastFrame.participant10
+            ]
+
+            let maxXp = participants[0]?.xp;
+            
+            participants.forEach((participant, index) => {
+                if(index !== (participants.length -1)){
+                    if(maxXp <= participants[index+1]?.xp){
+                        maxXp = participants[index+1]?.xp
+                    } 
+                    return;
+                }
+                return;
+                
+            })
+            return maxXp
+        }
+        return 0;
+        
+    }
+
     const correctParticipant = frames
         ? frames[selectedFrame][`participant${props.player.standingId}`]
         : {};
@@ -50,6 +87,10 @@ const PlayerRow = (props) => {
                 return "RANKED_SOLO_5x5";
         }
     };
+
+    useEffect(()=>{
+        console.log(frameDetails)
+    }, [frameDetails])
 
     useEffect(() => {
         props.player.summonerId === props.selectedPlayer.summonerId ||
@@ -175,6 +216,27 @@ const PlayerRow = (props) => {
         }
     };
 
+    const styleSelector = (id) =>{
+
+        switch (id) {
+			case 8100:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png";
+			case 8300:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+			case 8000:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7201_Precision.png";
+			case 8400:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7204_Resolve.png";
+			case 8200:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7202_Sorcery.png";
+
+			// todo: add image placeholder as default
+			default:
+				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+		}
+
+    }
+
     const selectSpell = (id) => {
         switch (id) {
             case 21:
@@ -268,7 +330,7 @@ const PlayerRow = (props) => {
                         className={`sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
 												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
                     >
-                        25,259
+                        {correctParticipant?.xp}
                     </h6>
                 ) : (
                     <h6 className=" sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
@@ -280,9 +342,12 @@ const PlayerRow = (props) => {
                     className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
                 >
                     <div
-                        className={`w-3/6  ${
+                        className={`${
                             activeStyle ? " bg-[#251122]" : "bg-accent-color"
                         } h-full`}
+                        style={{
+                            width: `${(!correctParticipant?.xp ? 50 : (correctParticipant?.xp) /(getMaxXp()? getMaxXp() : 1)) * 100}%`
+                        }}
                     ></div>
                 </div>
             </div>
@@ -417,7 +482,6 @@ const PlayerRow = (props) => {
                                 ? correctParticipant?.stats?.death
                                 : 1)
                         ).toFixed(2)}
-                        :1
                     </p>
                 ) : (
                     <p
@@ -429,8 +493,7 @@ const PlayerRow = (props) => {
                         {(
                             (props.player?.assists + props?.player?.kills) /
                             (props.player?.deaths ? props?.player?.deaths : 1)
-                        ).toFixed(2)}
-                        :1
+                        ).toFixed(2)} 
                     </p>
                 )}
             </div>
@@ -447,7 +510,7 @@ const PlayerRow = (props) => {
                         className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
 												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
                     >
-                        142 cs
+                        {correctParticipant?.stats?.creepScore} cs
                     </h6>
                 ) : (
                     <h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
@@ -461,7 +524,7 @@ const PlayerRow = (props) => {
                             activeStyle ? "text-[#251122]" : "text-grayed-text"
                         } font-bold`}
                     >
-                        6.3 cs/min
+                        {(correctParticipant?.stats?.creepScore / (frameDetails?.timestamp / 60000)).toFixed(1)} cs/min
                     </p>
                 ) : (
                     <p
@@ -498,7 +561,7 @@ const PlayerRow = (props) => {
                                 className=" absolute font-sf-pro-text font-bold text-grayed-text bg-[#110A1B] p-[2px_3px] text-[9px]
                              leading-[12px] rounded-full border-[#707070] border -bottom-2 left-[18px] "
                             >
-                                32
+                                {props.showSimulatedGraph ? correctParticipant.level : props.player?.champLevel}
                             </div>
                         </>
                     )}
@@ -536,7 +599,7 @@ const PlayerRow = (props) => {
                         }`}
                     >
                         <Image
-                            src={RoundBatch1}
+                            src={styleSelector(props.player.perks?.styles[0]?.style)}
                             alt="flash batch"
                             layout="fill"
                         />
@@ -547,7 +610,7 @@ const PlayerRow = (props) => {
                         }`}
                     >
                         <Image
-                            src={RoundBatch2}
+                            src={styleSelector(props.player.perks?.styles[1]?.style)}
                             alt="teleport batch"
                             layout="fill"
                         />

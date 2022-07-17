@@ -133,11 +133,21 @@ const ExpandCard = (props) => {
 							setShowSimulateGraph={setShowSimulateGraph}
 							setExpand={props.setExpand}
 							expand={props.expand}
-							matchTimelineData={matchTimelineData?.matchTimeline}
 						/>
 					)}
-					<ProfileCompareBar />
-					<LosAndWinRow showProfile={showRunes} {...props} />
+					{showSimulatedGraph && <ProfileCompareBar
+						{...props} 
+						matchTimelineData={matchTimelineData?.matchTimeline}
+						selectedFrame={selectedFrame}
+						showSimulatedGraph={showSimulatedGraph}
+					/>}
+					<LosAndWinRow 
+						showProfile={showRunes} 
+						{...props} 
+						matchTimelineData={matchTimelineData?.matchTimeline}
+						selectedFrame={selectedFrame}
+						showSimulatedGraph={showSimulatedGraph}
+					/>
 				</div>
 				{/* player compare  */}
 				<RunesContext.Provider value={{ runes: showRunes }}>
