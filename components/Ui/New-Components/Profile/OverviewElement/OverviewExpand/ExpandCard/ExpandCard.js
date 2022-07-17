@@ -10,6 +10,7 @@ import Simulation from "../../SimulateGame/Simulation/Simulation";
 import HeaderOnSimulateGameMode from "../../SimulateGame/Simulation/HeaderOnSimulateGameMode/HeaderOnSimulateGameMode";
 import useHttp from "../../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
+import ProfileCompareBar from "../ProfileCompareBar/ProfileCompareBar";
 
 // runes context menu
 export const RunesContext = React.createContext();
@@ -144,6 +145,10 @@ const ExpandCard = (props) => {
 		setShowRunes(btnState);
 	};
 
+	useEffect(() => {
+		console.log(matchTimelineData);
+	}, [matchTimelineData]);
+
 	return (
 		<div className=" relative">
 			{/* top row  */}
@@ -172,9 +177,18 @@ const ExpandCard = (props) => {
 							expand={props.expand}
 						/>
 					)}
+
+					{showSimulatedGraph && (
+						<ProfileCompareBar
+							{...props}
+							matchTimelineData={matchTimelineData?.matchTimeline}
+							selectedFrame={selectedFrame}
+							showSimulatedGraph={showSimulatedGraph}
+						/>
+					)}
 					<LosAndWinRow
 						showProfile={showRunes}
-						frames={matchTimelineData?.matchTimeline?.frames}
+						matchTimelineData={matchTimelineData?.matchTimeline}
 						selectedFrame={selectedFrame}
 						showSimulatedGraph={showSimulatedGraph}
 						{...props}
