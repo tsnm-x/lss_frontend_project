@@ -45,8 +45,11 @@ const Btns = () => {
 const HeaderBar = (props) => {
     return (
         <div className=" grid grid-cols-[4fr_2fr_2fr_4fr_2fr_2fr] py-4 bg-[#160f20] ">
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
-                <span>Defeat</span>(Red Team)
+            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ml-[30px] ">
+                <span className=" text-accent-color text-[12px] leading-[14px] ">
+                    Defeat
+                </span>{" "}
+                (Red Team)
             </h1>
             <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
                 Creep Score
@@ -73,8 +76,8 @@ const DataRow = (props) => {
     function RankCompGenerator(color, text) {
         let component = (
             <h1
-            className={Classes.secTitle}
-            style={{color: color}}
+                className={` capitalize ${Classes.secTitle}`}
+                style={{ color: color }}
             >
                 {text}
             </h1>
@@ -101,10 +104,10 @@ const DataRow = (props) => {
     });
 
     return (
-        <div className=" grid grid-cols-[4fr_2fr_2fr_4fr_2fr_2fr] py-4 bg-[#251122] ">
-            <div className=" flex ">
+        <div className=" grid grid-cols-[4fr_2fr_2fr_4fr_2fr_2fr] py-2 bg-[#251122] mb-1 last:mb-0 ">
+            <div className=" flex pl-5  ">
                 {/* left profile  */}
-                <div className=" flex justify-between gap-x-2 mr-[31px] ">
+                <div className=" flex justify-between gap-x-2 mr-[20px] ">
                     {/* round  */}
                     <div>
                         {props.profile.rankImg.round.map((img, index) => {
@@ -165,21 +168,60 @@ const DataRow = (props) => {
                     {Rank}
                 </div>
             </div>
-        <div>
-          
+            <div className=" flex flex-col justify-center ">
+                <h1 className={Classes.cellTitle}>{props.creepScore.creep}</h1>
+                <h1 className={Classes.secTitle}>
+                    {props.creepScore.cs} cs/min
+                </h1>
             </div>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
-                score
-            </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
-                items
-            </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
-                damage{" "}
-            </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
-                gold
-            </h1>
+            <div className=" flex flex-col justify-center ">
+                <h1 className={Classes.cellTitle}>{props.score.score}</h1>
+                <h1 className={Classes.secTitle}>
+                    KDA: {props.score.kds} cs/min
+                </h1>
+            </div>
+
+            <div className=" flex gap-x-[3px] items-center ">
+                {props.items.large.map((img, index) => {
+                    return (
+                        <div
+                            key={index}
+                            className=" relative rounded-[5px] w-[25px] h-[25px] bg-[#301d2d] "
+                        >
+                            {img ? (
+                                <Image
+                                    src={img}
+                                    alt="rank img"
+                                    layout="fill"
+                                    className=" rounded-[5px] "
+                                />
+                            ) : null}
+                        </div>
+                    );
+                })}
+                {
+                    <div className=" relative w-5 h-5 rounded-[5px] ">
+                        <Image
+                            src={props.items.small}
+                            alt="small rank img"
+                            layout="fill"
+                            className=" rounded-[5px] "
+                        />
+                    </div>
+                }
+            </div>
+            <div className=" flex flex-col justify-center ">
+                <h1 className={Classes.cellTitle}>{props.damage}</h1>
+                <div className=" w-5/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] ">
+                    <div className=" w-4/6 h-full bg-accent-color rounded-full "></div>
+                </div>
+            </div>
+            <div className=" flex flex-col justify-center ">
+                <h1 className={Classes.cellTitle}>{props.gold.gold}k</h1>
+                <h1 className={`${Classes.secTitle}`}>
+                    Unspent: {props.gold.unspent}
+                </h1>
+            </div>
         </div>
     );
 };
@@ -202,11 +244,11 @@ const ExpandDataRows = (props) => {
                 cs: 8.1,
             },
             score: {
-                score: 5 / 9 / 2,
+                score: "5/9/2",
                 kda: 0.77,
             },
             items: {
-                large: [Items1, Items2, Items3, Items4, Items5],
+                large: [Items1, Items2, Items3, Items4, undefined, Items5],
                 small: smallImg,
             },
             damage: 45.259,
@@ -215,15 +257,134 @@ const ExpandDataRows = (props) => {
                 unspent: 1.8,
             },
         },
+        {
+            profile: {
+                img: ProfileImg,
+                rankImg: {
+                    sqare: [Rank1, Rank2],
+                    round: [RoundBatch1, RoundBatch2],
+                },
+                name: "beanovi",
+                rank: 4,
+                profileId: 15,
+            },
+            creepScore: {
+                creep: 175,
+                cs: 8.1,
+            },
+            score: {
+                score: "5/9/2",
+                kda: 0.77,
+            },
+            items: {
+                large: [Items1, Items2, Items3, Items4, undefined, Items5],
+                small: smallImg,
+            },
+            damage: 45.259,
+            gold: {
+                gold: 21.8,
+                unspent: 1.8,
+            },
+        },
+        {
+            profile: {
+                img: ProfileImg,
+                rankImg: {
+                    sqare: [Rank1, Rank2],
+                    round: [RoundBatch1, RoundBatch2],
+                },
+                name: "beanovi",
+                rank: 4,
+                profileId: 15,
+            },
+            creepScore: {
+                creep: 175,
+                cs: 8.1,
+            },
+            score: {
+                score: "5/9/2",
+                kda: 0.77,
+            },
+            items: {
+                large: [Items1, Items2, Items3, Items4, undefined, Items5],
+                small: smallImg,
+            },
+            damage: 45.259,
+            gold: {
+                gold: 21.8,
+                unspent: 1.8,
+            },
+        },
+        {
+            profile: {
+                img: ProfileImg,
+                rankImg: {
+                    sqare: [Rank1, Rank2],
+                    round: [RoundBatch1, RoundBatch2],
+                },
+                name: "beanovi",
+                rank: 4,
+                profileId: 15,
+            },
+            creepScore: {
+                creep: 175,
+                cs: 8.1,
+            },
+            score: {
+                score: "5/9/2",
+                kda: 0.77,
+            },
+            items: {
+                large: [Items1, Items2, Items3, Items4, undefined, Items5],
+                small: smallImg,
+            },
+            damage: 45.259,
+            gold: {
+                gold: 21.8,
+                unspent: 1.8,
+            },
+        },
+        {
+            profile: {
+                img: ProfileImg,
+                rankImg: {
+                    sqare: [Rank1, Rank2],
+                    round: [RoundBatch1, RoundBatch2],
+                },
+                name: "beanovi",
+                rank: 4,
+                profileId: 15,
+            },
+            creepScore: {
+                creep: 175,
+                cs: 8.1,
+            },
+            score: {
+                score: "5/9/2",
+                kda: 0.77,
+            },
+            items: {
+                large: [Items1, Items2, Items3, Items4, undefined, Items5],
+                small: smallImg,
+            },
+            damage: 45.259,
+            gold: {
+                gold: 21.8,
+                unspent: 1.8,
+            },
+        },
+        
     ];
     const profile = rowData[0].profile.rankImg.round;
     return (
         <div>
             {/* header  */}
             <HeaderBar />
-            {rowData.map((data, index) => {
-                return <DataRow key={index} {...data} />;
-            })}
+            <div className=" px-2 ">
+                {rowData.map((data, index) => {
+                    return <DataRow key={index} {...data} />;
+                })}
+            </div>
         </div>
     );
 };
