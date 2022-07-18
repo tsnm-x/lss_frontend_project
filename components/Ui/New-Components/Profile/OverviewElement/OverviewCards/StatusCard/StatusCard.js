@@ -360,14 +360,12 @@ const RightSide = (props) => {
             >
                 <p className=" text-grayed-text ">
                     <span className=" text-accent-color-2">
-                        {(
+                        {props.mainPlayer?.deaths ? (
                             (props.mainPlayer?.assists +
                                 props.mainPlayer?.kills) /
-                            (props.mainPlayer?.deaths
-                                ? props.mainPlayer?.deaths
-                                : 1)
-                        ).toFixed(2)}
-                        :1
+                            (props.mainPlayer?.deaths)
+                        ).toFixed(2): "Perfect"}{props.mainPlayer?.deaths ? ":1" : ""}
+                        
                     </span>{" "}
                     KDA
                 </p>

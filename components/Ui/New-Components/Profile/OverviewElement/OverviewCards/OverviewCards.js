@@ -137,7 +137,7 @@ const OverviewCards = (props) => {
 						)}
 					</div>
 					{/* show more btn  */}
-					<ShowMore region={props?.region} summonerName={props?.summonerName} />
+					<ShowMore region={props?.region} summonerName={props?.summonerName}/>
 				</div>
 				{!props.expand ? (
 					<Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />

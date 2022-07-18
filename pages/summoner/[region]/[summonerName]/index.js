@@ -168,6 +168,8 @@ const Summoner = () => {
 							matches={matches}
 							region={router.query?.region}
 							summonerName={mainPlayer?.summonerName}
+							rankSolo={rankSolo}
+							rankFlex={rankFlex}
 						/>
 					)}
 				</CardContext.Provider>

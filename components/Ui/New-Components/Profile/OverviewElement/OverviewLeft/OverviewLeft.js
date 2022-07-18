@@ -2,11 +2,14 @@ import React from 'react'
 import RankTierGraph from './RankTierGraph/RankTierGraph'
 import OftenPlayWith from './OftenPlayWith/OftenPlayWith'
 
-const OverviewLeft = () => {
+const OverviewLeft = (props) => {
   return (
     <aside>
-      <RankTierGraph />
-      <OftenPlayWith />
+      <RankTierGraph
+        rankSolo={props?.rankSolo}
+        rankFlex={props?.rankFlex}
+      />
+      <OftenPlayWith/>
     </aside>
   )
 }

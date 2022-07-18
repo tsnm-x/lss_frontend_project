@@ -141,7 +141,7 @@ const RankCard = (props) => {
                             : ""
                     }`}
                 >
-                    <Image src={SmallImg} alt="small img" layout="fill" />
+                    {mainPlayer?.item6 && (<Image src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`} className="rounded-full" alt="small img" layout="fill" />)}
                 </div>
             </div>
         </div>
