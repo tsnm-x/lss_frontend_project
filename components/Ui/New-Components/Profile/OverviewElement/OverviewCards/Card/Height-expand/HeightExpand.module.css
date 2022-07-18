@@ -1,0 +1,14 @@
+.profileId {
+    @apply w-[15px] h-[15px] rounded-full
+                 font-sf-pro-text text-[9px] leading-[11px] font-bold text-white
+                             p-[2px] border border-grayed-text bg-card-&-content-box;
+}
+
+.cellTitle {
+    @apply font-sf-pro-text font-bold capitalize
+                     text-[13px] leading-[15px] text-[#FFFAFF];
+}
+.secTitle {
+    @apply font-sf-pro-text font-bold text-[10px] leading-[12px]
+     capitalize text-[#858DA3] ;
+}
