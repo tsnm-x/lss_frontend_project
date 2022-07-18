@@ -7,6 +7,14 @@ import "./Card.module.css";
 import CardContext from "../../../../../../../Context/CardContext";
 import FullCardContext from "../../../../../../../Context/CardContext";
 import { BiExpand } from "react-icons/bi";
+import Image from "next/image";
+// img list
+import Rank1 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/rank-1.png";
+import Rank2 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/rank-2.png";
+import Rank3 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/rank-3.png";
+import Rank4 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/rank-4.png";
+import Rank5 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/rank-5.png";
+import Rank6 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/rank-6.png";
 
 const Card = (props) => {
     const [expandFull, setExpandFull] = useState(false);
@@ -30,7 +38,7 @@ const Card = (props) => {
     });
 
     const ExpandFullHandler = () => {
-        setExpandFull(true);
+        setExpandFull(!expandFull);
     };
     return (
         <>
@@ -59,19 +67,51 @@ const Card = (props) => {
                                 <PlayerList index={props.index} {...props} />
                             </>
                         ) : (
-                            <div className=" px-5 py-4 ">
+                            <div className=" px-5 py-4 bg-[#241e2c] ">
                                 <h3 className=" text-accent-color font-sf-pro-text font-bold text-[15px] capitalize leading-[18px] ">
                                     build
                                 </h3>
-											<div>
-												
-																</div>
+                                <div className=" flex justify-center gap-x-3 mt-5 ">
+                                    {/* large  */}
+                                    {[
+                                        Rank1,
+                                        Rank2,
+                                        Rank3,
+                                        Rank4,
+                                        Rank5,
+                                        undefined,
+                                    ].map((img, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className=" w-[46px] h-[46px] rounded-full relative bg-[#2f2937]"
+                                            >
+                                                {img ? (
+                                                    <Image
+                                                        src={img}
+                                                        alt="image"
+                                                        layout="fill"
+                                                        className=" rounded-full "
+                                                    />
+                                                ) : null}
+                                            </div>
+                                        );
+                                    })}
+                                    {/* small img  */}
+                                    <div className=" w-[33px] h-[33px] relative rounded-full ">
+                                        <Image
+                                            src={Rank6}
+                                            alt=" rank img"
+                                            layout="fill"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         )}
                         {/* right side expand bar  */}
                         {expandFull && (
                             <div
-                                onClick={() => {}}
+                                onClick={() => { ExpandFullHandler()}}
                                 className={`h-full w-[30px] flex items-center justify-center
 																rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[33px]  ${
                                                                     mainPlayer?.win

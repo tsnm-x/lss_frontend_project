@@ -38,28 +38,28 @@ const PlayerRow = (props) => {
             <div>
                 <h6 className=" italic laptop:gotham-mid-9 laptop:text-light-text laptop:uppercase  ">
                     <span
-                        className={`text-accent-color-2 ${
+                        className={`${
+                            props.totalDeaths ?
                             (
                                 (props.totalAssists + props.totalKills) /
-                                (props.totalDeaths ? props.totalDeaths : 1)
+                                (props.totalDeaths)
                             ).toFixed(2) >= 5
-                                ? "text-accent-color-4"
+                                ? "text-accent-color-2"
                                 : (
                                       (props.totalAssists + props.totalKills) /
-                                      (props.totalDeaths
-                                          ? props.totalDeaths
-                                          : 1)
+                                      (props.totalDeaths)
                                   ).toFixed(2) >= 2
-                                ? "text-accent-color-2"
+                                ? "text-accent-color-4"
                                 : "text-light-text"
+                                : "text-accent-color-2"
                         }`}
                     >
-                        {(
+                        {props.totalDeaths ? (
                             (props.totalAssists + props.totalKills) /
-                            (props.totalDeaths ? props.totalDeaths : 1)
-                        ).toFixed(2)}
+                            (props.totalDeaths)
+                        ).toFixed(2) : "Perfect"}
                     </span>
-                    :1 kda
+                    {props.totalDeaths ? ":1" : ""} kda
                 </h6>
                 <p className=" laptop:sf-mid-3 laptop:text-nav-text capitalize mt-[2px] desktop:text-[7px] desktop:leading-[9px]  ">
                     {props.totalKills}/{props.totalDeaths}/{props.totalAssists}
@@ -96,6 +96,7 @@ const OftenPlayWith = () => {
 	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
 	
 	useEffect(()=>{
+        setMostPlayedWithList([])
 		matches?.forEach((match)=>{
 			match.players.forEach((player) => {
 				if(!player.mainPlayer){
@@ -151,11 +152,13 @@ const OftenPlayWith = () => {
 
 	useEffect(()=>{
 
-		const newPlayers = players.filter((player)=> player.summonerName !== mostPlayedWithList[mostPlayedWithList.length-1].summonerName);
+		if(mostPlayedWithList.length){
+            const newPlayers = players.filter((player)=> player?.summonerName !== mostPlayedWithList[mostPlayedWithList?.length-1]?.summonerName);
 
-		if(newPlayers[0]){
-			setPlayers(newPlayers);
-		}
+            if(newPlayers[0]){
+                setPlayers(newPlayers);
+            }
+        }
 
 	}, [mostPlayedWithList])
 

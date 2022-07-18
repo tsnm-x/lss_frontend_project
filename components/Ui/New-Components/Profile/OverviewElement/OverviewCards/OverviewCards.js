@@ -127,28 +127,25 @@ const OverviewCards = (props) => {
                                 );
                             })}
 
-                        {!loaderViewer && (
-                            <div className="text-white flex justify-center">
-                                No #
-                                {props.selectedMatchType === "all"
-                                    ? "ranked solo"
-                                    : props.selectedMatchType}
-                                # games have een found for this summoner
-                            </div>
-                        )}
-                    </div>
-                    {/* show more btn  */}
-                    <ShowMore
-                        region={props?.region}
-                        summonerName={props?.summonerName}
-                    />
-                </div>
-                {!props.expand ? (
-                    <Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />
-                ) : null}
-            </div>
-        </aside>
-    );
+						{!loaderViewer && (
+							<div className="text-white flex justify-center">
+								No #
+								{props.selectedMatchType === "all"
+									? "ranked solo"
+									: props.selectedMatchType}
+								# games have een found for this summoner
+							</div>
+						)}
+					</div>
+					{/* show more btn  */}
+					<ShowMore region={props?.region} summonerName={props?.summonerName}/>
+				</div>
+				{!props.expand ? (
+					<Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />
+				) : null}
+			</div>
+		</aside>
+	);
 };
 
 export default OverviewCards;

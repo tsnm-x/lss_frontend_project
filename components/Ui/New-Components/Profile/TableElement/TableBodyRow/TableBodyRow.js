@@ -24,8 +24,8 @@ const TableBodyRow = (props) => {
             <Champion {...props} />
             <div className=" text-accent-color-3">{(props.winCount / (props.winCount + props.lossCount) * 100).toFixed(2)}</div>
             <div className=" text-accent-color-3">
-            {(((props.totalAssists + props.totalKills) / (props.totalDeaths? props.totalDeaths : 1)).toFixed(2))}
-                <span className=" text-grayed-text">:1</span>
+            {props.totalDeaths ? (((props.totalAssists + props.totalKills) / (props.totalDeaths)).toFixed(2)) : "Perfect"}
+                <span className=" text-grayed-text">{props.totalDeaths? ":1" : ""}</span>
             </div>
             <div className=" text-light-text">{props.avgCs.toFixed(2)}</div>
             <div className=" text-accent-color-3 ">

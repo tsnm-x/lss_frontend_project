@@ -517,13 +517,11 @@ const PlayerRow = (props) => {
 						} font-bold`}
 					>
 						kda:
-						{(
+						{correctParticipant?.stats?.death ? (
 							(correctParticipant?.stats?.assist +
 								correctParticipant?.stats?.kill) /
-							(correctParticipant?.stats?.death
-								? correctParticipant?.stats?.death
-								: 1)
-						).toFixed(2)}
+							(correctParticipant?.stats?.death)
+						).toFixed(2) : "Perfect"}
 					</p>
 				) : (
 					<p
@@ -532,10 +530,10 @@ const PlayerRow = (props) => {
 						} font-bold`}
 					>
 						kda:
-						{(
+						{props.player?.deaths ? (
 							(props.player?.assists + props?.player?.kills) /
-							(props.player?.deaths ? props?.player?.deaths : 1)
-						).toFixed(2)}
+							(props.player?.deaths)
+						).toFixed(2) : "Perfect"}
 					</p>
 				)}
 			</div>

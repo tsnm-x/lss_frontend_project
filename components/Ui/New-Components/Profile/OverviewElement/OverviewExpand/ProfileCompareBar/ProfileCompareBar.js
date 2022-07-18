@@ -37,6 +37,8 @@ const Profile = (props) => {
 
 const LeftBatchBar = (props) => {
 
+    const [centralImg, setCenteralImg] = useState("")
+
     useEffect(()=>{
         // console.log(props.dragonData)
     }, [props.dragonData])
@@ -67,12 +69,21 @@ const LeftBatchBar = (props) => {
         return arr;
     }
 
+    useEffect(()=>{
+        console.log(props.dragonData);
+        if(props.dragonData?.length){
+            if(props.dragonData[1]?.length){
+                setCenteralImg(imgHandler(props.dragonData[1][props.dragonData[1].length-1].type))
+            }
+        }
+    }, [props.dragonData])
+
     return (
         <div className=" w-[612px] h-[45px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
             {/* center batch  */}
             <div className=" flex justify-center items-end row-start-1 col-start-1 ">
                 <div className=" relative w-[50px] h-[50px] ">
-                    <Image src={CenterBatch} alt="center batch" layout="fill" />
+                    {centralImg && (<Image src={centralImg} alt="center batch" layout="fill" />)}
                 </div>
             </div>
             {/* left right batch  */}

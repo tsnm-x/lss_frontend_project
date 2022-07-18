@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import OverviewCards from "../OverviewCards/OverviewCards";
 import OverviewLeft from "../OverviewLeft/OverviewLeft";
 import AdsImg from "../../../../../../public/assets/new-images/Profile/ads.png";
@@ -17,7 +17,12 @@ const Overview = (props) => {
                  smDesktop:gap-x-[61px] laptop:gap-x-[22px] `}
             >
                 {/* left side  */}
-                 <OverviewLeft />
+                {!expand && 
+                    <OverviewLeft 
+                        rankSolo={props?.rankSolo}
+                        rankFlex={props?.rankFlex}
+                    />
+                }
                 {/* center  */}
                 <OverviewCards
                     region={props?.region}
