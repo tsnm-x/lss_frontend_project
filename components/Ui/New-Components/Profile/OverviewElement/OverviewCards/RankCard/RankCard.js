@@ -12,6 +12,9 @@ const RankCard = (props) => {
         setMainPlayer(main);
     }, [props.match]);
 
+    useEffect(()=>{
+        console.log(mainPlayer)
+    }, [mainPlayer])
 
     const mythicHighlighter = (id) => {
         switch (id) {
