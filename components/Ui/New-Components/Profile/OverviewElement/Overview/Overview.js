@@ -12,14 +12,12 @@ const Overview = (props) => {
     return (
         <section className=" my-[60px] relative ">
             <div
-                className={`container laptop:grid ${
-                    expand
-                        ? "laptop:grid-cols-1"
-                        : "laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[280px_auto] smDesktop:gap-x-[61px]  "
-                }  laptop:gap-x-[22px] `}
+                className={`container laptop:grid 
+                laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[280px_auto]
+                 smDesktop:gap-x-[61px] laptop:gap-x-[22px] `}
             >
                 {/* left side  */}
-                {!expand && <OverviewLeft />}
+                 <OverviewLeft />
                 {/* center  */}
                 <OverviewCards
                     region={props?.region}
@@ -37,12 +35,9 @@ const Overview = (props) => {
                 />
                 
             </div>
-
-            {!expand && (
                 <div className="absolute right-0 top-[60px] w-[170px] h-full smDesktop:hidden ">
                     <Ads className="w-[170px] h-[1105px]" />
                 </div>
-            )}
         </section>
     );
 };
