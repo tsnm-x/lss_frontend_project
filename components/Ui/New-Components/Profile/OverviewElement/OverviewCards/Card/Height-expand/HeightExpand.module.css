@@ -5,7 +5,7 @@
 }
 
 .cellTitle {
-    @apply font-sf-pro-text font-bold capitalize
+    @apply font-sf-pro-text font-bold 
                      text-[13px] leading-[15px] text-[#FFFAFF];
 }
 .secTitle {

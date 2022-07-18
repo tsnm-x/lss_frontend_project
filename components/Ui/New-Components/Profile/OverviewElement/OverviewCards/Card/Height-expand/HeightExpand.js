@@ -51,19 +51,19 @@ const HeaderBar = (props) => {
                 </span>{" "}
                 (Red Team)
             </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
+            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text text-center ">
                 Creep Score
             </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
+            <h1 className=" text-center font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
                 score
             </h1>
             <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
                 items
             </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
-                damage{" "}
+            <h1 className=" text-center  font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
+                Damage Dealt
             </h1>
-            <h1 className=" font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
+            <h1 className=" ml-2  font-sf-pro-text text-[10px] leading-[12px] font-bold capitalize text-grayed-text ">
                 gold
             </h1>
         </div>
@@ -164,20 +164,22 @@ const DataRow = (props) => {
                 </div>
                 {/* right side  */}
                 <div className=" flex flex-col justify-center ">
-                    <h1 className={Classes.cellTitle}>{props.profile.name}</h1>
+                    <h1 className={`${Classes.cellTitle} capitalize `}>{props.profile.name}</h1>
                     {Rank}
                 </div>
             </div>
+            {/* cs  */}
             <div className=" flex flex-col justify-center ">
-                <h1 className={Classes.cellTitle}>{props.creepScore.creep}</h1>
-                <h1 className={Classes.secTitle}>
+                <h1 className={` text-center ${Classes.cellTitle}`}>{props.creepScore.creep} cs</h1>
+                <h1 className={` text-center ${Classes.secTitle}`}>
                     {props.creepScore.cs} cs/min
                 </h1>
             </div>
+            {/* score  */}
             <div className=" flex flex-col justify-center ">
                 <h1 className={Classes.cellTitle}>{props.score.score}</h1>
                 <h1 className={Classes.secTitle}>
-                    KDA: {props.score.kds} cs/min
+                    KDA: {props.score.kds}
                 </h1>
             </div>
 
@@ -210,13 +212,13 @@ const DataRow = (props) => {
                     </div>
                 }
             </div>
-            <div className=" flex flex-col justify-center ">
+            <div className=" flex flex-col justify-center items-center ">
                 <h1 className={Classes.cellTitle}>{props.damage}</h1>
                 <div className=" w-5/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] ">
                     <div className=" w-4/6 h-full bg-accent-color rounded-full "></div>
                 </div>
             </div>
-            <div className=" flex flex-col justify-center ">
+            <div className=" ml-2 flex flex-col justify-center ">
                 <h1 className={Classes.cellTitle}>{props.gold.gold}k</h1>
                 <h1 className={`${Classes.secTitle}`}>
                     Unspent: {props.gold.unspent}
