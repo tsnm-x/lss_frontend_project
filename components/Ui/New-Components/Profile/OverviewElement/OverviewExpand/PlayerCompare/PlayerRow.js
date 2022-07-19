@@ -28,7 +28,6 @@ const PlayerRow = (props) => {
 	const frameDetails = frames ? frames[selectedFrame] : null;
 
 	const LastFrame = frames ? frames[frames.length - 2] : null;
-	console.log(frames);
 
 	const getMaxXp = () => {
 		if (LastFrame) {
@@ -62,21 +61,22 @@ const PlayerRow = (props) => {
 	};
 
 	const getMaxDamageDealt = () => {
-		console.log(props.match?.players[0]?.totalDamageDealt)
+		console.log(props.match?.players[0]?.totalDamageDealt);
 		let maxDamageDealt = props.match?.players[0]?.totalDamageDealt;
 
 		props.match?.players.forEach((player, index) => {
-			if (index !== (props.match?.players?.length - 1)) {
-				if (maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt) {
+			if (index !== props.match?.players?.length - 1) {
+				if (
+					maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt
+				) {
 					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealt;
 				}
 			}
-			console.log(maxDamageDealt)
+			console.log(maxDamageDealt);
 			return;
 		});
-		
+
 		return maxDamageDealt;
-		
 	};
 
 	const correctParticipant = frames
@@ -358,41 +358,45 @@ const PlayerRow = (props) => {
 					</h6>
 				)}
 				{/* progress bar  */}
-				{props.showSimulatedGraph? (<div
-					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
-				>
+				{props.showSimulatedGraph ? (
 					<div
-						className={`${
-							activeStyle ? " bg-[#251122]" : "bg-accent-color"
-						} h-full`}
-						style={{
-							width: `${
-								(!correctParticipant?.xp
-									? 50
-									: correctParticipant?.xp / (getMaxXp() ? getMaxXp() : 1)) *
-								100
-							}%`,
-						}}
-					></div>
-				</div>) : getMaxDamageDealt() &&
-				(<div
-					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
-				>
-					<div
-						className={`${
-							activeStyle ? " bg-[#251122]" : "bg-accent-color"
-						} h-full`}
-						style={{
-							width: `${
-								(!props.player?.totalDamageDealt
-									? 50
-									: props.player?.totalDamageDealt / (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) *
-								100
-							}%`,
-						}}
-					></div>
-				</div>)
-				}
+						className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
+					>
+						<div
+							className={`${
+								activeStyle ? " bg-[#251122]" : "bg-accent-color"
+							} h-full`}
+							style={{
+								width: `${
+									(!correctParticipant?.xp
+										? 50
+										: correctParticipant?.xp / (getMaxXp() ? getMaxXp() : 1)) *
+									100
+								}%`,
+							}}
+						></div>
+					</div>
+				) : (
+					getMaxDamageDealt() && (
+						<div
+							className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
+						>
+							<div
+								className={`${
+									activeStyle ? " bg-[#251122]" : "bg-accent-color"
+								} h-full`}
+								style={{
+									width: `${
+										(!props.player?.totalDamageDealt
+											? 50
+											: props.player?.totalDamageDealt /
+											  (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) * 100
+									}%`,
+								}}
+							></div>
+						</div>
+					)
+				)}
 			</div>
 			{/* batches  */}
 			<div
@@ -580,7 +584,8 @@ const PlayerRow = (props) => {
 					>
 						{(
 							props.player?.totalMinionsKilled / convertM(props.match?.duration)
-						)?.toFixed(1)} cs/min
+						)?.toFixed(1)}{" "}
+						cs/min
 					</p>
 				)}
 			</div>

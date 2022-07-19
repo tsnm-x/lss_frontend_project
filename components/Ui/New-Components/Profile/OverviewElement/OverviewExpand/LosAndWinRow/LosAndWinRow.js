@@ -47,8 +47,9 @@ const LosAndWinRow = (props) => {
 	const [winningTeamStats, setWinningTeamStats] = useState({});
 	const [mainPlayer, setMainPlayer] = useState({});
 
+	const frame = props?.frames ? props?.frames[props?.selectedFrame] : undefined;
+
 	useEffect(() => {
-		console.log(props.matchTimelineData?.frames[props.selectedFrame]);
 		if (!props.showSimulatedGraph) {
 			setLostTeam(props.match.teams.filter((team) => !team.win)[0]);
 			setWinnerTeam(props.match.teams.filter((team) => team.win)[0]);
@@ -79,7 +80,6 @@ const LosAndWinRow = (props) => {
 	}, [props.showSimulatedGraph, props.selectedFrame, props.matchTimelineData]);
 
 	useEffect(() => {
-		console.log(lostTeamPlayers);
 		let totalDeaths = 0;
 		let totalKills = 0;
 		let totalAssists = 0;
