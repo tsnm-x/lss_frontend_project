@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Classes from "./HeightExpand.module.css";
 import Image from "next/image";
+import SimulateComponets from "../SimulateComponets/SimulateComponets";
 // items
 import smallImg from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/HeightExpand/3340.png";
 import Items1 from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/HeightExpand/1028.png";
@@ -164,13 +165,17 @@ const DataRow = (props) => {
                 </div>
                 {/* right side  */}
                 <div className=" flex flex-col justify-center ">
-                    <h1 className={`${Classes.cellTitle} capitalize `}>{props.profile.name}</h1>
+                    <h1 className={`${Classes.cellTitle} capitalize `}>
+                        {props.profile.name}
+                    </h1>
                     {Rank}
                 </div>
             </div>
             {/* cs  */}
             <div className=" flex flex-col justify-center ">
-                <h1 className={` text-center ${Classes.cellTitle}`}>{props.creepScore.creep} cs</h1>
+                <h1 className={` text-center ${Classes.cellTitle}`}>
+                    {props.creepScore.creep} cs
+                </h1>
                 <h1 className={` text-center ${Classes.secTitle}`}>
                     {props.creepScore.cs} cs/min
                 </h1>
@@ -178,9 +183,7 @@ const DataRow = (props) => {
             {/* score  */}
             <div className=" flex flex-col justify-center ">
                 <h1 className={Classes.cellTitle}>{props.score.score}</h1>
-                <h1 className={Classes.secTitle}>
-                    KDA: {props.score.kds}
-                </h1>
+                <h1 className={Classes.secTitle}>KDA: {props.score.kds}</h1>
             </div>
 
             <div className=" flex gap-x-[3px] items-center ">
@@ -375,9 +378,7 @@ const ExpandDataRows = (props) => {
                 unspent: 1.8,
             },
         },
-        
     ];
-    const profile = rowData[0].profile.rankImg.round;
     return (
         <div>
             {/* header  */}
@@ -393,8 +394,10 @@ const ExpandDataRows = (props) => {
 
 const HeightExpand = () => {
     return (
-        <div>
+        <div className=" mb-14 ">
             <Btns />
+            <ExpandDataRows />
+            <SimulateComponets />
             <ExpandDataRows />
         </div>
     );
