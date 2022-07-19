@@ -74,6 +74,7 @@ const HeaderBar = (props) => {
 const DataRow = (props) => {
     const [Rank, setRank] = useState();
 
+
     function RankCompGenerator(color, text) {
         let component = (
             <h1
@@ -105,7 +106,11 @@ const DataRow = (props) => {
     });
 
     return (
-        <div className=" grid grid-cols-[4fr_2fr_2fr_4fr_2fr_2fr] py-2 bg-[#251122] mb-1 last:mb-0 ">
+        <div
+            className={`grid grid-cols-[4fr_2fr_2fr_4fr_2fr_2fr] py-2 mb-1 last:mb-0 ${
+                props.type === "victory" ? "bg-[#181631]" : "bg-[#251122]"
+            } `}
+        >
             <div className=" flex pl-5  ">
                 {/* left profile  */}
                 <div className=" flex justify-between gap-x-2 mr-[20px] ">
@@ -183,7 +188,7 @@ const DataRow = (props) => {
             {/* score  */}
             <div className=" flex flex-col justify-center ">
                 <h1 className={Classes.cellTitle}>{props.score.score}</h1>
-                <h1 className={Classes.secTitle}>KDA: {props.score.kds}</h1>
+                <h1 className={Classes.secTitle}>KDA: {props.score.kda}</h1>
             </div>
 
             <div className=" flex gap-x-[3px] items-center ">
@@ -217,8 +222,16 @@ const DataRow = (props) => {
             </div>
             <div className=" flex flex-col justify-center items-center ">
                 <h1 className={Classes.cellTitle}>{props.damage}</h1>
-                <div className=" w-5/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] ">
-                    <div className=" w-4/6 h-full bg-accent-color rounded-full "></div>
+                <div
+                    className={`w-5/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] `}
+                >
+                    <div
+                        className={`w-4/6 h-full rounded-full ${
+                            props.type === "victory"
+                                ? " bg-accent-color-2"
+                                : " bg-accent-color"
+                        }`}
+                    ></div>
                 </div>
             </div>
             <div className=" ml-2 flex flex-col justify-center ">
@@ -382,10 +395,10 @@ const ExpandDataRows = (props) => {
     return (
         <div>
             {/* header  */}
-            <HeaderBar />
+            <HeaderBar {...props} />
             <div className=" px-2 ">
                 {rowData.map((data, index) => {
-                    return <DataRow key={index} {...data} />;
+                    return <DataRow key={index} {...data} type={props.type} />;
                 })}
             </div>
         </div>
@@ -398,7 +411,7 @@ const HeightExpand = () => {
             <Btns />
             <ExpandDataRows />
             <SimulateComponets />
-            <ExpandDataRows />
+            <ExpandDataRows type={'victory'} />
         </div>
     );
 };

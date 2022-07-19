@@ -15,14 +15,21 @@ import DragonR from "../../../../../../../../public/assets/new-images/Profile/ca
 import TowerR from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/icon-tower-r.png";
 import KiloR from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/kilo-r.png";
 import RoundR from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/round-r.png";
+import { useEffect } from "react";
 
 const Batch = (props) => {
     const [red, setRed] = useState(true);
 
+    useEffect(() => {
+        props.type === "victory" ? setRed(false) : setRed(true);
+    }, [props.type])
+
     return (
         <div
             className={` w-[200px] py-[15px] px-[20px] rounded-[5px] grid
-             grid-cols-[2fr_1fr_1fr] grid-rows-2 bg-[#251122] gap-y-3 `}
+             grid-cols-[2fr_1fr_1fr] grid-rows-2 gap-y-3 ${
+                 props.type === "victory" ? "bg-[#181631]" : "bg-[#251122]"
+             } `}
         >
             {/* sord  */}
             <div className=" flex ">
@@ -102,7 +109,7 @@ const SimulateComponets = () => {
             <button className=" font-sf-pro-text text-[14px] leading-[16px] font-bold 
              capitalize px-[25px] py-[15px] rounded-[5px]
               bg-accent-color text-light-text ">simulate game</button>
-            <Batch />
+            <Batch type={"victory"}  />
         </div>
     );
 };
