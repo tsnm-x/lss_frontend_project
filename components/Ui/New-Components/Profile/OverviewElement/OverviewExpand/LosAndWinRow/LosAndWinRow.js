@@ -3,11 +3,11 @@ import { SiNuxtdotjs } from "react-icons/si";
 import Image from "next/image";
 import ProfileImg from "../../../../../../../public/assets/new-images/Profile/card/Jiggesh.png";
 
-import KiloIconRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/kilo.png";
+import KiloIconRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/kilo-r.png";
 import AlienRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/icon-dragon-r.png";
 import baronRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/icon-baron-r.png";
 import towerRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/icon-tower-r.png";
-import roundRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/round.png";
+import roundRed from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/round-r.png";
 import KiloIconBlue from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/blue/kilo.png";
 import AlienBlue from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/blue/icon-dragon-r.png";
 import baronBlue from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/blue/icon-baron-r.png";

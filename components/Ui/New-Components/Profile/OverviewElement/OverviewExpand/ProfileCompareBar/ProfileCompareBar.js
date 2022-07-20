@@ -31,7 +31,31 @@ const Profile = (props) => {
 };
 
 const LeftBatchBar = (props) => {
+	// const imgHandler = (type) => {
+	// 	switch (type) {
+	// 		case "AIR_DRAGON":
+	// 			return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201";
+	// 		case "WATER_DRAGON":
+	// 			return "https://static.wikia.nocookie.net/leagueoflegends/images/c/c6/Ocean_Dragon_buff.png/revision/latest?cb=20191117184400";
+	// 		case "FIRE_DRAGON":
+	// 			return "https://static.wikia.nocookie.net/leagueoflegends/images/3/3f/Infernal_Dragon_buff.png/revision/latest?cb=20191117184224";
+	// 		case "EARTH_DRAGON":
+	// 			return "https://static.wikia.nocookie.net/leagueoflegends/images/9/9e/Mountain_Dragon_buff.png/revision/latest?cb=20191117184251";
+	// 		case "HEXTECH_DRAGON":
+	// 			return "https://static.wikia.nocookie.net/leagueoflegends/images/1/1e/Hextech_Dragon_buff.png/revision/latest?cb=20211231073400";
+	// 		default:
+	// 			return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201";
+	// 	}
+	// };
+
+	const [centralImg, setCenteralImg] = useState("");
+
+	useEffect(() => {
+		// console.log(props.dragonData)
+	}, [props.dragonData]);
+
 	const imgHandler = (type) => {
+		console.log(type);
 		switch (type) {
 			case "AIR_DRAGON":
 				return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201";
@@ -56,12 +80,25 @@ const LeftBatchBar = (props) => {
 		return arr;
 	};
 
+	useEffect(() => {
+		console.log(props.dragonData);
+		if (props.dragonData?.length) {
+			if (props.dragonData[1]?.length) {
+				setCenteralImg(
+					imgHandler(props.dragonData[1][props.dragonData[1].length - 1].type)
+				);
+			}
+		}
+	}, [props.dragonData]);
+
 	return (
 		<div className=" w-[612px] h-[45px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
 			{/* center batch  */}
 			<div className=" flex justify-center items-end row-start-1 col-start-1 ">
 				<div className=" relative w-[50px] h-[50px] ">
-					<Image src={CenterBatch} alt="center batch" layout="fill" />
+					{centralImg && (
+						<Image src={centralImg} alt="center batch" layout="fill" />
+					)}
 				</div>
 			</div>
 			{/* left right batch  */}
