@@ -90,16 +90,18 @@ const ExpandCard = (props) => {
 				body: { region: router.query?.region, matchId: props.match.matchId },
 			},
 			(res) => {
+				
 				let matchTimeline = addDragonTimers(res.data.matchTimeline);
 				matchTimeline = addBaronTimers(matchTimeline);
+				console.log(matchTimeline)
 				setUpdate(!update);
 
 				if (res?.status === 200) {
 					setMatchTimelineData(matchTimeline);
+					setShowSimulateGraph(true)
 				}
 			}
 		);
-		setShowSimulateGraph(true);
 	};
 
 	const addDragonTimers = (matchTimeline) => {
@@ -164,10 +166,6 @@ const ExpandCard = (props) => {
 		setShowRunes(btnState);
 	};
 
-	// useEffect(() => {
-	// 	console.log(matchTimelineData);
-	// }, [matchTimelineData]);
-
 	return (
 		<div className=" relative">
 			{/* top row  */}
@@ -200,14 +198,14 @@ const ExpandCard = (props) => {
 					{showSimulatedGraph && (
 						<ProfileCompareBar
 							{...props}
-							matchTimelineData={matchTimelineData?.matchTimeline}
+							matchTimelineData={matchTimelineData}
 							selectedFrame={selectedFrame}
 							showSimulatedGraph={showSimulatedGraph}
 						/>
 					)}
 					<LosAndWinRow
 						showProfile={showRunes}
-						matchTimelineData={matchTimelineData?.matchTimeline}
+						matchTimelineData={matchTimelineData}
 						selectedFrame={selectedFrame}
 						showSimulatedGraph={showSimulatedGraph}
 						{...props}
@@ -227,20 +225,20 @@ const ExpandCard = (props) => {
 						setSimulatorPlayerBlue={setSimulatorPlayerBlue}
 						leftTeam={leftTeam}
 						rightTeam={rightTeam}
-						matchTimelineData={matchTimelineData?.matchTimeline}
+						matchTimelineData={matchTimelineData}
 						selectedFrame={selectedFrame}
 					/>
 				</RunesContext.Provider>
 				{/* simulate btn and simulation card  */}
 				<div className=" text-center mt-16 pb-[73px] mb-4 ">
 					{!showSimulatedGraph ? (
-						<SimulateBtn click={simulateDataHandler} showRunes={showRunes} />
+						<SimulateBtn click={simulateDataHandler} showRunes={showRunes} showSimulatedGraph={showSimulatedGraph}/>
 					) : (
 						<Simulation
 							selectedPlayer={selectedPlayer}
 							simulatorPlayerRed={simulatorPlayerRed}
 							simulatorPlayerBlue={simulatorPlayerBlue}
-							frames={matchTimelineData?.matchTimeline?.frames}
+							frames={matchTimelineData?.frames}
 							frameChange={frameChange}
 						/>
 					)}

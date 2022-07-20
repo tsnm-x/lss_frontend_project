@@ -30,7 +30,7 @@ const PlayerRow = (props) => {
 	const LastFrame = frames ? frames[frames.length - 2] : null;
 	console.log(frames);
 
-	const getMaxXp = () => {
+	const getMaxDamageDealtInTimeline = () => {
 		if (LastFrame) {
 			const participants = [
 				LastFrame.participant1,
@@ -45,24 +45,23 @@ const PlayerRow = (props) => {
 				LastFrame.participant10,
 			];
 
-			let maxXp = participants[0]?.xp;
+			let maxDamage = participants[0]?.totalDamageDoneToChampions;
 
 			participants.forEach((participant, index) => {
 				if (index !== participants.length - 1) {
-					if (maxXp <= participants[index + 1]?.xp) {
-						maxXp = participants[index + 1]?.xp;
+					if (maxDamage <= participants[index + 1]?.totalDamageDoneToChampions) {
+						maxDamage = participants[index + 1]?.totalDamageDoneToChampions;
 					}
 					return;
 				}
 				return;
 			});
-			return maxXp;
+			return maxDamage;
 		}
 		return 0;
 	};
 
 	const getMaxDamageDealt = () => {
-		console.log(props.match?.players[0]?.totalDamageDealt)
 		let maxDamageDealt = props.match?.players[0]?.totalDamageDealt;
 
 		props.match?.players.forEach((player, index) => {
@@ -71,7 +70,6 @@ const PlayerRow = (props) => {
 					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealt;
 				}
 			}
-			console.log(maxDamageDealt)
 			return;
 		});
 		
@@ -350,7 +348,7 @@ const PlayerRow = (props) => {
 						className={`sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
 												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
 					>
-						{correctParticipant?.xp}
+						{correctParticipant?.totalDamageDoneToChampions}
 					</h6>
 				) : (
 					<h6 className=" sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
@@ -367,9 +365,9 @@ const PlayerRow = (props) => {
 						} h-full`}
 						style={{
 							width: `${
-								(!correctParticipant?.xp
+								(!correctParticipant?.totalDamageDoneToChampions
 									? 50
-									: correctParticipant?.xp / (getMaxXp() ? getMaxXp() : 1)) *
+									: correctParticipant?.totalDamageDoneToChampions / (getMaxDamageDealtInTimeline() ? getMaxDamageDealtInTimeline() : 1)) *
 								100
 							}%`,
 						}}
