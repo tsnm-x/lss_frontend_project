@@ -171,7 +171,7 @@ const SimulateComponets = (props) => {
                 query: {
                     region: router.query?.region,
                     summonerName: router.query?.summonerName,
-                    matchId: props.match?.matchId
+                    matchId: props.match?.matchId?.substr(router.query?.region?.length+1)
                 }
             }}>
             <button className=" font-sf-pro-text text-[14px] leading-[16px] font-bold 

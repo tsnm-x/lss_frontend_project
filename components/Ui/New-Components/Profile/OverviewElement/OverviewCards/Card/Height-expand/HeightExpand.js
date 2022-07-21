@@ -18,6 +18,7 @@ import RoundBatch2 from "../../../../../../../../public/assets/new-images/Profil
 import { useEffect } from "react";
 import useHttp from "../../../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Btns = () => {
     const [btns, setBtns] = useState([
@@ -82,14 +83,14 @@ const DataRow = (props) => {
     const router = useRouter();
 
     const getMaxDamageDealt = () => {
-		let maxDamageDealt = props.match?.players[0]?.totalDamageDealt;
+		let maxDamageDealt = props.match?.players[0]?.totalDamageDealtToChampions;
 
 		props.match?.players.forEach((player, index) => {
 			if (index !== props.match?.players?.length - 1) {
 				if (
-					maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt
+					maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealtToChampions
 				) {
-					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealt;
+					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealtToChampions;
 				}
 			}
 			return;
@@ -131,7 +132,7 @@ const DataRow = (props) => {
         let component = (
             <h1
                 className={` capitalize ${Classes.secTitle}`}
-                style={{ color: color? color : "#4DC7BE" }}
+                style={{ color: color? color : "#706A76" }}
             >
                 {text? text : `Level ${props?.summonerLevel}`}
             </h1>
@@ -237,8 +238,17 @@ const DataRow = (props) => {
         const rank = `${rankSolo?.tier}`;
         console.log(rank);
         switch (rank) {
+            case 'CHALLENGER':
+                RankCompGenerator("#3C8DB4", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()}`);
+                break;
+            case 'IRON':
+                RankCompGenerator("#534B4B", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                break;
+            case 'BRONZE':
+                RankCompGenerator("#D09989", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                break;
             case 'SILVER':
-                RankCompGenerator("#858DA3", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#848CA3", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
                 break;
             case 'GOLD':
                 RankCompGenerator("#CFAA69", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
@@ -247,13 +257,13 @@ const DataRow = (props) => {
                 RankCompGenerator("#4FADDF", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
                 break;
             case 'GRANDMASTER':
-                RankCompGenerator("#4FADDF", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#EB3649", `${rank?.charAt(0) + rank?.charAt(5)} ${rankConverter(rankSolo?.rank)}`);
             break;
             case 'MASTER':
-                RankCompGenerator("#CFAA69", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#CA70F2", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
                 break;
             case 'PLATINUM':
-                RankCompGenerator("#4DC7BE", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#4DC7BE", `${rank?.slice(0,3)} ${rankConverter(rankSolo?.rank)}`);
                 break;
             default:
                 RankCompGenerator("", '');
@@ -268,6 +278,177 @@ const DataRow = (props) => {
         return minutes
     }
 
+    const selectStyleIcons = (mainId, subId) => {
+        switch (mainId){
+            case 8100:
+				switch(subId) {
+                    case 8112:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png"
+                    case 8124:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Predator/Predator.png"
+                    case 8128:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png"
+                    case 9923:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png"
+                    case 8126:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/CheapShot/CheapShot.png"
+                    case 8139:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TasteOfBlood/GreenTerror_TasteOfBlood.png"
+                    case 8143:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/SuddenImpact/SuddenImpact.png"
+                    case 8136:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/ZombieWard/ZombieWard.png"
+                    case 8120:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/GhostPoro/GhostPoro.png"
+                    case 8138:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/EyeballCollection/EyeballCollection.png"
+                    case 8135:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TreasureHunter/TreasureHunter.png"
+                    case 8134:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/IngeniousHunter/IngeniousHunter.png"
+                    case 8105:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/RelentlessHunter/RelentlessHunter.png"
+                    case 8106:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/UltimateHunter/UltimateHunter.png"  
+                }
+			case 8300:
+				switch(subId) {
+                    case 8351:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png"
+                    case 8360:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png"
+                    case 8369:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png"
+                    case 8306:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png"
+                    case 8304:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png"
+                    case 8313:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/PerfectTiming/PerfectTiming.png"
+                    case 8321:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png"
+                    case 8316:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png"
+                    case 8345:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png"
+                    case 8347:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png"
+                    case 8410:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png"
+                    case 8352:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png"
+                }
+			case 8000:
+				switch(subId) {
+                    
+                    case 8005:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png"
+
+                    case 8008:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png"
+                    case 8021:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png"
+                    case 8010:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Conqueror/Conqueror.png"
+                    
+                    case 9101:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Overheal.png"
+                
+                    case 9111:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Triumph.png"
+                
+                    case 8009:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png"
+                
+                    case 9104:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png"
+                
+                    case 9105:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png"
+                
+                    case 9103:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png"
+                
+                    case 8014:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png"
+                
+                    case 8017:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CutDown/CutDown.png"
+                
+                    case 8299:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/LastStand/LastStand.png"
+                
+                }
+			case 8400:
+				switch (subId) {
+                    case 8437:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png"
+                
+                    case 8439:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png"
+                
+                    case 8465:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png"
+                
+                    case 8446:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Demolish/Demolish.png"
+                
+                    case 8463:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png"
+                
+                    case 8401:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/MirrorShell/MirrorShell.png"
+                
+                    case 8429:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Conditioning/Conditioning.png"
+                
+                    case 8444:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png"
+                
+                    case 8473:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/BonePlating/BonePlating.png"
+                
+                    case 8451:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png"
+                
+                    case 8453:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Revitalize/Revitalize.png"
+                
+                    case 8242:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Unflinching/Unflinching.png"
+                }
+			case 8200:
+				switch (subId) {  
+                    case 8224:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png"
+                
+                    case 8226:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ManaflowBand/ManaflowBand.png"
+                
+                    case 8275:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png"
+                
+                    case 8210:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png"
+                
+                    case 8234:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Celerity/CelerityTemp.png"
+                
+                    case 8233:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png"
+                
+                    case 8237:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Scorch/Scorch.png"
+                
+                    case 8232:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Waterwalking/Waterwalking.png"
+                
+                    case 8236:
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/GatheringStorm/GatheringStorm.png"
+                }
+        }
+    }
+
     return (
         <div
             className={`grid grid-cols-[4fr_2fr_2fr_4fr_2fr_2fr] py-2 mb-1 last:mb-0 ${
@@ -279,21 +460,26 @@ const DataRow = (props) => {
                 <div className=" flex justify-between gap-x-2 mr-[20px] ">
                     {/* round  */}
                     <div>
-                        {[props.perks?.styles[0]?.style, props.perks?.styles[1]?.style].map((img, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className=" relative w-[21px] h-[21px] rounded-full "
-                                >
-                                    {styleSelector(img) && <Image
-                                        src={styleSelector(img)}
-                                        alt="rank image"
-                                        layout="fill"
-                                        className=" rounded-full "
-                                    />}
-                                </div>
-                            );
-                        })}
+                        <div
+                            className=" relative w-[21px] h-[21px] rounded-full "
+                        >
+                            {selectStyleIcons(props.perks?.styles[0]?.style, props?.perks?.styles[0]?.selections[0]?.perk) && <Image
+                                src={selectStyleIcons(props.perks?.styles[0]?.style, props?.perks?.styles[0]?.selections[0]?.perk)}
+                                alt="rank image"
+                                layout="fill"
+                                className=" rounded-full "
+                            />}
+                        </div>
+                        <div
+                            className=" relative w-[21px] h-[21px] rounded-full "
+                        >
+                            {styleSelector(props.perks?.styles[1]?.style) && <Image
+                                src={styleSelector(props.perks?.styles[1]?.style)}
+                                alt="rank image"
+                                layout="fill"
+                                className=" rounded-full "
+                            />}
+                        </div>
                     </div>
                     {/* square  */}
                     <div>
@@ -333,9 +519,14 @@ const DataRow = (props) => {
                 </div>
                 {/* right side  */}
                 <div className=" flex flex-col justify-center ">
-                    <h1 className={`${Classes.cellTitle} capitalize `}>
-                        {props?.championName}
-                    </h1>
+                    <Link href={{
+                        pathname: "/summoner/[region]/[summonerName]",
+                        query: {region: router?.query?.region, summonerName: props?.summonerName}
+                    }}>
+                        <h1 className={`${Classes.cellTitle} capitalize cursor-pointer`}>
+                            {props?.summonerName?.length >= 7? `${props?.summonerName?.slice(0,7)}...` : props?.summonerName}
+                        </h1>
+                    </Link>
                     {Rank}
                 </div>
             </div>
@@ -391,7 +582,7 @@ const DataRow = (props) => {
                 }
             </div>
             <div className=" flex flex-col justify-center items-center ">
-                <h1 className={Classes.cellTitle}>{props?.totalDamageDealt}</h1>
+                <h1 className={Classes.cellTitle}>{props?.totalDamageDealtToChampions}</h1>
                 <div
                     className={`w-5/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] `}
                     
@@ -404,9 +595,9 @@ const DataRow = (props) => {
                         }`}
                         style={{
                             width: `${
-                                (!props?.totalDamageDealt
+                                (!props?.totalDamageDealtToChampions
                                     ? 50
-                                    : props?.totalDamageDealt / (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) *
+                                    : props?.totalDamageDealtToChampions / (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) *
                                 100
                             }%`,
                         }}
@@ -414,9 +605,9 @@ const DataRow = (props) => {
                 </div>
             </div>
             <div className=" ml-2 flex flex-col justify-center ">
-                <h1 className={Classes.cellTitle}>{props?.goldEarned}k</h1>
+                <h1 className={Classes.cellTitle}>{(props?.goldEarned/ 1000).toFixed(1)}k</h1>
                 <h1 className={`${Classes.secTitle}`}>
-                    Unspent: {props?.goldEarned - props?.goldSpent}
+                    Unspent: {((props?.goldEarned - props?.goldSpent)/ 1000).toFixed(2)}k
                 </h1>
             </div>
         </div>

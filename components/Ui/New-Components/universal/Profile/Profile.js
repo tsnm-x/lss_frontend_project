@@ -73,11 +73,11 @@ const Profile = (props) => {
                     >
                         {props?.btnDetails[0].text}
                     </button>
-                    <Link href={props?.btnDetails[1].url}>
+                    {/* <Link href={props?.btnDetails[1].url}>
                         <button className=" btn bg-white desktop:text-[20px] desktop:leading-[22px] desktop:px-[17px] desktop:py-[20px] ">
                             {props?.btnDetails[1].text}
                         </button>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>
