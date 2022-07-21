@@ -93,7 +93,7 @@ const ExpandCard = (props) => {
 				
 				let matchTimeline = addDragonTimers(res.data.matchTimeline);
 				matchTimeline = addBaronTimers(matchTimeline);
-				console.log(matchTimeline)
+				matchTimeline = addHaroldTimers(matchTimeline);
 				setUpdate(!update);
 
 				if (res?.status === 200) {
@@ -117,25 +117,31 @@ const ExpandCard = (props) => {
 
 				for (let i = 1; i <= 5; i++) {
 					if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-						console.log("got in");
 						matchTimeline.matchTimeline.frames[
 							date.getMinutes() + i
-						].dargonRespawn = `${5 - i}:${seconds}`;
+						].dragonRespawn = `${5 - i}:${seconds}`;
 					}
 				}
 			});
 		}
 
-		// 22 -  23 24 25 26
+		matchTimeline?.matchTimeline?.frames[
+			matchTimeline?.matchTimeline?.frames?.length - 2
+		]?.redTeam?.Dragon?.KillEvents.forEach((kill) => {
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
 
-		// 	for (let i = 1; i <= 5; i++) {
-		// 		if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-		// 			matchTimeline.matchTimeline.frames[
-		// 				date.getMinutes() + i
-		// 			].dragonRespawn = `${5 - i}:${seconds}`;
-		// 		}
-		// 	}
-		// });
+			for (let i = 1; i <= 5; i++) {
+				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					].dragonRespawn = `${5 - i}:${seconds}`;
+				}
+			}
+		});
 
 		return matchTimeline;
 	};
@@ -155,6 +161,70 @@ const ExpandCard = (props) => {
 					matchTimeline.matchTimeline.frames[
 						date.getMinutes() + i
 					].baronRespawn = `${5 - i}:${seconds}`;
+				}
+			}
+		});
+
+		matchTimeline?.matchTimeline?.frames[
+			matchTimeline?.matchTimeline?.frames?.length - 2
+		]?.redTeam?.Baron?.KillEvents.forEach((kill) => {
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			for (let i = 1; i <= 5; i++) {
+				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					].baronRespawn = `${5 - i}:${seconds}`;
+				}
+			}
+		});
+
+		return matchTimeline;
+	};
+
+	const addHaroldTimers = (matchTimeline) => {
+		matchTimeline?.matchTimeline?.frames[
+			matchTimeline?.matchTimeline?.frames?.length - 2
+		]?.blueTeam?.riftHerald?.KillEvents.forEach((kill) => {
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			for (let i = 1; i <= 5; i++) {
+				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+					if (date.getMinutes() >= 20) {
+						return;
+					}
+					matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					].riftHeraldRespawn = `${5 - i}:${seconds}`;
+				}
+			}
+		});
+
+		matchTimeline?.matchTimeline?.frames[
+			matchTimeline?.matchTimeline?.frames?.length - 2
+		]?.redTeam?.riftHerald?.KillEvents.forEach((kill) => {
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			for (let i = 1; i <= 5; i++) {
+				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+					if (date.getMinutes() >= 20) {
+						return;
+					}
+					matchTimeline.matchTimeline.frames[
+						date.getMinutes() + i
+					].riftHeraldRespawn = `${5 - i}:${seconds}`;
 				}
 			}
 		});
@@ -197,14 +267,16 @@ const ExpandCard = (props) => {
 
 					{showSimulatedGraph && (
 						<ProfileCompareBar
-							{...props}
+							frames={matchTimelineData?.frames}
 							matchTimelineData={matchTimelineData}
 							selectedFrame={selectedFrame}
 							showSimulatedGraph={showSimulatedGraph}
+							{...props}
 						/>
 					)}
 					<LosAndWinRow
 						showProfile={showRunes}
+						frames={matchTimelineData?.frames}
 						matchTimelineData={matchTimelineData}
 						selectedFrame={selectedFrame}
 						showSimulatedGraph={showSimulatedGraph}
@@ -235,7 +307,7 @@ const ExpandCard = (props) => {
 						<SimulateBtn click={simulateDataHandler} showRunes={showRunes} showSimulatedGraph={showSimulatedGraph}/>
 					) : (
 						<Simulation
-							selectedPlayer={selectedPlayer}
+							selectedFrame={selectedFrame}
 							simulatorPlayerRed={simulatorPlayerRed}
 							simulatorPlayerBlue={simulatorPlayerBlue}
 							frames={matchTimelineData?.frames}

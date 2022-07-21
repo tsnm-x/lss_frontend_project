@@ -28,7 +28,6 @@ const PlayerRow = (props) => {
 	const frameDetails = frames ? frames[selectedFrame] : null;
 
 	const LastFrame = frames ? frames[frames.length - 2] : null;
-	console.log(frames);
 
 	const getMaxDamageDealtInTimeline = () => {
 		if (LastFrame) {
@@ -65,16 +64,17 @@ const PlayerRow = (props) => {
 		let maxDamageDealt = props.match?.players[0]?.totalDamageDealt;
 
 		props.match?.players.forEach((player, index) => {
-			if (index !== (props.match?.players?.length - 1)) {
-				if (maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt) {
+			if (index !== props.match?.players?.length - 1) {
+				if (
+					maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt
+				) {
 					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealt;
 				}
 			}
 			return;
 		});
-		
+
 		return maxDamageDealt;
-		
 	};
 
 	const correctParticipant = frames
@@ -356,9 +356,7 @@ const PlayerRow = (props) => {
 					</h6>
 				)}
 				{/* progress bar  */}
-				{props.showSimulatedGraph? (<div
-					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
-				>
+				{props.showSimulatedGraph ? (
 					<div
 						className={`${
 							activeStyle ? " bg-[#251122]" : "bg-accent-color"
@@ -371,8 +369,7 @@ const PlayerRow = (props) => {
 								100
 							}%`,
 						}}
-					></div>
-				</div>) : getMaxDamageDealt() &&
+					></div>) : getMaxDamageDealt() &&
 				(<div
 					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
 				>
@@ -576,7 +573,8 @@ const PlayerRow = (props) => {
 					>
 						{(
 							props.player?.totalMinionsKilled / convertM(props.match?.duration)
-						)?.toFixed(1)} cs/min
+						)?.toFixed(1)}{" "}
+						cs/min
 					</p>
 				)}
 			</div>

@@ -9,10 +9,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 // import { SendMessage } from "react-unity-webgl";
 
 const unityContext = new UnityContext({
-	loaderUrl: "/assets/unity/WebGL.loader.js",
-	dataUrl: "/assets/unity/WebGL.data.unityweb",
-	frameworkUrl: "/assets/unity/WebGL.framework.js.unityweb",
-	codeUrl: "/assets/unity/WebGL.wasm.unityweb",
+	loaderUrl: "/assets/unity/Build.loader.js",
+	dataUrl: "/assets/unity/Build.data.unityweb",
+	frameworkUrl: "/assets/unity/Build.framework.js.unityweb",
+	codeUrl: "/assets/unity/Build.wasm.unityweb",
 });
 
 // const { unityProvider, sendMessage, addEventListener, removeEventListener } =
@@ -159,23 +159,53 @@ const SimulationData = (props) => {
 	const player1 = { champName: "ashe", level: 18 };
 	const player2 = { champName: "olaf", level: 18 };
 
-	const data = {
-		APIMatchInfo: {
-			version: "12.10.1",
-			championInfo: [
-				{
-					champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
-					champLevel: 18,
-				},
-				{
-					champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
-					champLevel: 18,
-				},
-			],
-		},
-	};
+	// const data = {
+	// 	APIMatchInfo: {
+	// 		version: "12.10.1",
+	// 		championInfo: [
+	// 			{
+	// 				champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
+	// 				champLevel: 18,
+	// 				items: [0, 0, 0, 0, 0, 0],
+	// 			},
+	// 			{
+	// 				champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
+	// 				champLevel: 18,
+	// 				items: [0, 0, 0, 0, 0, 0],
+	// 			},
+	// 		],
+	// 	},
+	// };
 
 	// console.log(props.simulatorPlayerRed);
+
+	// console.log(props);
+	const frames = props.frames;
+
+	const redPlayer = frames
+		? frames[props.selectedFrame][
+				`participant${props.simulatorPlayerRed?.standingId}`
+		  ]
+		: {};
+	const bluePlayer = frames
+		? frames[props.selectedFrame][
+				`participant${props.simulatorPlayerBlue?.standingId}`
+		  ]
+		: {};
+
+	console.log(
+		redPlayer,
+		bluePlayer,
+		props.simulatorPlayerRed,
+		props.simulatorPlayerBlue
+	);
+
+	// const redPlayerItems = [item0, item1, item2, item3, item4, item5];
+
+	// redPlayer?.ability
+	// redPlayer?.items
+
+	// const redPlayerItems = redPlayer?.items.filter((e) => {});
 
 	// name , level , items
 	const JSONString = {
@@ -184,16 +214,28 @@ const SimulationData = (props) => {
 			championInfo: [
 				{
 					champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
-					champLevel: 18,
-					items: [3119, 2115],
+					champLevel: redPlayer.level || 18,
+					// items: [0, 0, 0, 0, 0, 0],
+					items: redPlayer?.items || [1037, 1037, 1037, 1037, 1037, 1037],
+					// ability: redPlayer?.ability,
+					// runes: props.simulatorPlayerRed?.perks,
+					// spells: [props.simulatorPlayerRed?.summoner1Id,props.simulatorPlayerRed?.summoner1Id]
 				},
 				{
 					champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
-					champLevel: 18,
+					champLevel: bluePlayer.level || 18, // props.simulatorPlayerBlue?.championName,
+					// items: [1037, 1037, 1037, 1037, 1037, 1037],
+					items: bluePlayer?.items || [0, 0, 0, 0, 0, 0],
+					// ability: bluePlayer?.ability,
+					// runes: props.simulatorPlayerBlue?.perks,
+					// spells: [props.simulatorPlayerBlue?.summoner1Id,props.simulatorPlayerBlue?.summoner1Id]
 				},
 			],
 		},
 	};
+
+	console.log(JSON.stringify(JSONString));
+
 	// SendMessage("Simulator Manager", "LoadData", JSONString);
 
 	const clicked = () => {
@@ -221,6 +263,7 @@ const SimulationData = (props) => {
 			// push to an array
 			// rerender and recall send function with the array
 			console.log(str);
+			// send to d3
 		});
 
 		// returned function will be called on component unmount
@@ -229,23 +272,23 @@ const SimulationData = (props) => {
 		};
 	}, []);
 
-	// return (
-	// 	<>
-	// 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
-	// 			<button onClick={clicked}>Start Sim</button>
-	// 			<Unity
-	// 				style={{
-	// 					width: "100%",
-	// 					height: "100%",
-	// 					background: "#231F20",
-	// 					justifySelf: "center",
-	// 					alignSelf: "center",
-	// 				}}
-	// 				unityContext={unityContext}
-	// 			/>
-	// 		</div>
-	// 	</>
-	// );
+	return (
+		<>
+			<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
+				<button onClick={clicked}>Start Sim</button>
+				<Unity
+					style={{
+						width: "0%",
+						height: "0%",
+						background: "#231F20",
+						justifySelf: "center",
+						alignSelf: "center",
+					}}
+					unityContext={unityContext}
+				/>
+			</div>
+		</>
+	);
 
 	return (
 		<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">

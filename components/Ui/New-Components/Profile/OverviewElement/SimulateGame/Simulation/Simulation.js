@@ -34,7 +34,7 @@ const SimulateDataCard = (props) => {
 			<AnalyticsBtns click={chartDispatch} />
 
 			<input
-				className="text-full-dark"
+				className="text-full-dark w-[600px]"
 				type="range"
 				min="0"
 				max={(frames?.length - 2).toString()}
@@ -49,6 +49,8 @@ const SimulateDataCard = (props) => {
 			<div className=" flex justify-between items-center px-10 ">
 				<div>{ChartComponent}</div>
 				<SimulationData
+					frames={frames}
+					selectedFrame={props.selectedFrame}
 					simulatorPlayerRed={props.simulatorPlayerRed}
 					simulatorPlayerBlue={props.simulatorPlayerBlue}
 				/>
