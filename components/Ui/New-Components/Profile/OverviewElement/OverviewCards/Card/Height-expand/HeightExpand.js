@@ -257,16 +257,16 @@ const DataRow = (props) => {
                 RankCompGenerator("#4FADDF", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
                 break;
             case 'GRANDMASTER':
-                RankCompGenerator("#EB3649", `${rank?.charAt(0) + rank?.charAt(5)} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#EB3649", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()}`);
             break;
             case 'MASTER':
-                RankCompGenerator("#CA70F2", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#CA70F2", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()}`);
                 break;
             case 'PLATINUM':
-                RankCompGenerator("#4DC7BE", `${rank?.slice(0,3)} ${rankConverter(rankSolo?.rank)}`);
+                RankCompGenerator("#4DC7BE", `${rank?.charAt(0) + rank?.slice(1).toLowerCase()} ${rankConverter(rankSolo?.rank)}`);
                 break;
             default:
-                RankCompGenerator("", '');
+                RankCompGenerator('', '');
         }
     }, [rankSolo]);
 
@@ -605,9 +605,9 @@ const DataRow = (props) => {
                 </div>
             </div>
             <div className=" ml-2 flex flex-col justify-center ">
-                <h1 className={Classes.cellTitle}>{(props?.goldEarned/ 1000).toFixed(1)}k</h1>
+                <h1 className={Classes.cellTitle}>{(props?.goldEarned/ 1000).toFixed(1)}k Gold</h1>
                 <h1 className={`${Classes.secTitle}`}>
-                    Unspent: {((props?.goldEarned - props?.goldSpent)/ 1000).toFixed(2)}k
+                    Unspent: {(props?.goldEarned - props?.goldSpent)}
                 </h1>
             </div>
         </div>
