@@ -125,6 +125,7 @@ const ProfileRow = (props) => {
 
 // the main component that rendering -------------------------------------------------------------------------------------------
 const SimulationData = (props) => {
+	const [framesCount, setFramesCount] = useState(0);
 	const ProfileData = [
 		{
 			reverce: false,
@@ -181,6 +182,95 @@ const SimulationData = (props) => {
 
 	// console.log(props);
 	const frames = props.frames;
+
+	const sendData = () => {
+		if (!frames) return;
+		const redPlayer =
+			frames[framesCount][`participant${props.simulatorPlayerRed?.standingId}`];
+		const bluePlayer =
+			frames[framesCount][
+				`participant${props.simulatorPlayerBlue?.standingId}`
+			];
+
+		const JSONString = {
+			APIMatchInfo: {
+				version: "12.10.1",
+				championInfo: [
+					{
+						champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
+						champLevel: redPlayer.level || 18,
+						// items: [0, 0, 0, 0, 0, 0],
+						items: redPlayer?.items || [1037, 1037, 1037, 1037, 1037, 1037],
+						// ability: redPlayer?.ability,
+						// runes: props.simulatorPlayerRed?.perks,
+						// spells: [props.simulatorPlayerRed?.summoner1Id,props.simulatorPlayerRed?.summoner1Id]
+					},
+					{
+						champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
+						champLevel: bluePlayer.level || 18, // props.simulatorPlayerBlue?.championName,
+						// items: [1037, 1037, 1037, 1037, 1037, 1037],
+						items: bluePlayer?.items || [0, 0, 0, 0, 0, 0],
+						// ability: bluePlayer?.ability,
+						// runes: props.simulatorPlayerBlue?.perks,
+						// spells: [props.simulatorPlayerBlue?.summoner1Id,props.simulatorPlayerBlue?.summoner1Id]
+					},
+				],
+			},
+		};
+
+		// loop based on the frames of the game
+		// send the data of the frame for the two selected champions
+		unityContext.send(
+			"Simulator Manager",
+			"LoadData", // ManualSimulate // loop send 20 frames rapidly
+			JSON.stringify(JSONString) //
+		);
+	};
+
+	// if (frames) {
+	// 	frames.map((frame) => {
+	// 		const redPlayer =
+	// 			frame[`participant${props.simulatorPlayerRed?.standingId}`];
+	// 		const bluePlayer =
+	// 			frame[`participant${props.simulatorPlayerBlue?.standingId}`];
+
+	// 		const JSONString = {
+	// 			APIMatchInfo: {
+	// 				version: "12.10.1",
+	// 				championInfo: [
+	// 					{
+	// 						champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
+	// 						champLevel: redPlayer.level || 18,
+	// 						// items: [0, 0, 0, 0, 0, 0],
+	// 						items: redPlayer?.items || [1037, 1037, 1037, 1037, 1037, 1037],
+	// 						// ability: redPlayer?.ability,
+	// 						// runes: props.simulatorPlayerRed?.perks,
+	// 						// spells: [props.simulatorPlayerRed?.summoner1Id,props.simulatorPlayerRed?.summoner1Id]
+	// 					},
+	// 					{
+	// 						champName: `${
+	// 							props.simulatorPlayerBlue?.championName || "Garen"
+	// 						}`,
+	// 						champLevel: bluePlayer.level || 18, // props.simulatorPlayerBlue?.championName,
+	// 						// items: [1037, 1037, 1037, 1037, 1037, 1037],
+	// 						items: bluePlayer?.items || [0, 0, 0, 0, 0, 0],
+	// 						// ability: bluePlayer?.ability,
+	// 						// runes: props.simulatorPlayerBlue?.perks,
+	// 						// spells: [props.simulatorPlayerBlue?.summoner1Id,props.simulatorPlayerBlue?.summoner1Id]
+	// 					},
+	// 				],
+	// 			},
+	// 		};
+
+	// 		// loop based on the frames of the game
+	// 		// send the data of the frame for the two selected champions
+	// 		unityContext.send(
+	// 			"Simulator Manager",
+	// 			"LoadData", // ManualSimulate // loop send 20 frames rapidly
+	// 			JSON.stringify(JSONString) //
+	// 		);
+	// 	});
+	// }
 
 	const redPlayer = frames
 		? frames[props.selectedFrame][
@@ -259,8 +349,14 @@ const SimulationData = (props) => {
 		window.alert = console.log;
 
 		unityContext.on("HelloString", function (str) {
-			// new obj
-			// push to an array
+			if (framesCount > frames.length - 2) {
+				return;
+			}
+			// push data to an array
+			props.callback(str);
+			// send next frame
+			setFramesCount(framesCount + 1);
+			sendData();
 			// rerender and recall send function with the array
 			console.log(str);
 			// send to d3
