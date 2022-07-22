@@ -13,10 +13,13 @@ import Jayce from "../../../../../../../public/assets/new-images/Profile/card/pl
 import Jhin from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Jhin.png";
 import Rell from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Rell.png";
 import Seraphine from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Seraphine.png";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const PlayerList = (props) => {
     const CardExpand = useContext(CardContext);
     const FullCardExpand = useContext(FullCardContext);
+    const router = useRouter();
 
     const orderedPlayersList = [];
     orderedPlayersList[0] = props.match.players[5];
@@ -72,18 +75,24 @@ const PlayerList = (props) => {
                                         className=" rounded-full"
                                     />
                                 </div>
-                                <h6
-                                    className={`gotham-mid-15 capitalize ${
-                                        player?.mainPlayer
-                                            ? player?.win
-                                                ? "text-accent-color-2"
-                                                : "text-accent-color"
-                                            : "text-grayed-text"
-                                    } ${props.expand ? " " : ""}`}
-                                >
-                                    {player?.summonerName?.slice(0, 7)}
-                                    {player?.summonerName?.length >= 7 && "..."}
-                                </h6>
+                                <Link href={{
+                                    pathname:'/summoner/[region]/[summonerName]',
+                                    query: {region: router?.query.region, summonerName: player?.summonerName}
+
+                                }}>
+                                    <h6
+                                        className={`gotham-mid-15 capitalize cursor-pointer ${
+                                            player?.mainPlayer
+                                                ? player?.win
+                                                    ? "text-accent-color-2"
+                                                    : "text-accent-color"
+                                                : "text-grayed-text"
+                                        } ${props.expand ? " " : ""}`}
+                                    >
+                                        {player?.summonerName?.slice(0, 7)}
+                                        {player?.summonerName?.length >= 7 && "..."}
+                                    </h6>
+                                </Link>
                             </div>
                         );
                     })}

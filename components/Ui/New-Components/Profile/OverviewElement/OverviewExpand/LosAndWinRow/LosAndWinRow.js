@@ -51,12 +51,12 @@ const LosAndWinRow = (props) => {
 
 	useEffect(() => {
 		if (!props.showSimulatedGraph) {
-			setLostTeam(props.match.teams.filter((team) => !team.win)[0]);
-			setWinnerTeam(props.match.teams.filter((team) => team.win)[0]);
-			setLostTeamPlayers(props.match.players.filter((player) => !player.win));
-			setWinningTeamPlayers(props.match.players.filter((player) => player.win));
+			setLostTeam(props.match?.teams?.filter((team) => !team.win)[0]);
+			setWinnerTeam(props.match?.teams?.filter((team) => team.win)[0]);
+			setLostTeamPlayers(props.match?.players?.filter((player) => !player.win));
+			setWinningTeamPlayers(props.match?.players?.filter((player) => player.win));
 			setMainPlayer(
-				props.match.players.filter((player) => player.mainPlayer)[0]
+				props.match?.players?.filter((player) => player.mainPlayer)[0]
 			);
 		} else {
 			let frame = props.matchTimelineData?.frames[props.selectedFrame];
@@ -87,18 +87,18 @@ const LosAndWinRow = (props) => {
 
 		if (!props.showSimulatedGraph) {
 			lostTeamPlayers.forEach((player) => {
-				totalDeaths = totalDeaths + player.deaths;
-				totalKills = totalKills + player.kills;
-				totalAssists = totalAssists + player.assists;
-				totalGold = totalGold + player.goldEarned;
+				totalDeaths = totalDeaths + player?.deaths;
+				totalKills = totalKills + player?.kills;
+				totalAssists = totalAssists + player?.assists;
+				totalGold = totalGold + player?.goldEarned;
 			});
 
 			setLostTeamStats({ totalDeaths, totalKills, totalAssists, totalGold });
 		} else {
 			lostTeamPlayers.forEach((player) => {
-				totalDeaths = totalDeaths + player?.stats.death;
-				totalKills = totalKills + player?.stats.kill;
-				totalAssists = totalAssists + player?.stats.assist;
+				totalDeaths = totalDeaths + player?.stats?.death;
+				totalKills = totalKills + player?.stats?.kill;
+				totalAssists = totalAssists + player?.stats?.assist;
 			});
 
 			setLostTeamStats({
@@ -118,10 +118,10 @@ const LosAndWinRow = (props) => {
 
 		if (!props.showSimulatedGraph) {
 			winningTeamPlayers.forEach((player) => {
-				totalDeaths = totalDeaths + player.deaths;
-				totalKills = totalKills + player.kills;
-				totalAssists = totalAssists + player.assists;
-				totalGold = parseInt(totalGold) + player.goldEarned;
+				totalDeaths = totalDeaths + player?.deaths;
+				totalKills = totalKills + player?.kills;
+				totalAssists = totalAssists + player?.assists;
+				totalGold = parseInt(totalGold) + player?.goldEarned;
 			});
 
 			setWinningTeamStats({
@@ -132,9 +132,9 @@ const LosAndWinRow = (props) => {
 			});
 		} else {
 			winningTeamPlayers.forEach((player) => {
-				totalDeaths = totalDeaths + player?.stats.death;
-				totalKills = totalKills + player?.stats.kill;
-				totalAssists = totalAssists + player?.stats.assist;
+				totalDeaths = totalDeaths + player?.stats?.death;
+				totalKills = totalKills + player?.stats?.kill;
+				totalAssists = totalAssists + player?.stats?.assist;
 			});
 
 			setWinningTeamStats({
@@ -159,7 +159,7 @@ const LosAndWinRow = (props) => {
 					<div>
 						<IconAndCount
 							imgClassName=" desktop:w-[24px] desktop:h-[20px] "
-							txt={`${(lostTeamStats.totalGold / 1000).toFixed(1)}k`}
+							txt={`${(lostTeamStats?.totalGold / 1000).toFixed(1)}k`}
 							img={KiloIconRed}
 						/>
 					</div>
@@ -171,7 +171,7 @@ const LosAndWinRow = (props) => {
 									? lostTeam?.Dragon?.kills
 										? lostTeam?.Dragon?.kills
 										: 0
-									: lostTeam.objectives?.dragon?.kills
+									: lostTeam?.objectives?.dragon?.kills
 							}`}
 							img={AlienRed}
 						/>
@@ -179,10 +179,10 @@ const LosAndWinRow = (props) => {
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? lostTeam.Baron?.kills
-										? lostTeam.Baron?.kills
+									? lostTeam?.Baron?.kills
+										? lostTeam?.Baron?.kills
 										: 0
-									: lostTeam.objectives?.baron?.kills
+									: lostTeam?.objectives?.baron?.kills
 							}`}
 							img={baronRed}
 						/>
@@ -192,10 +192,10 @@ const LosAndWinRow = (props) => {
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? lostTeam.Tower?.kills
-										? lostTeam.Tower?.kills
+									? lostTeam?.Tower?.kills
+										? lostTeam?.Tower?.kills
 										: 0
-									: lostTeam.objectives?.tower?.kills
+									: lostTeam?.objectives?.tower?.kills
 							}`}
 							img={towerRed}
 						/>
@@ -203,16 +203,16 @@ const LosAndWinRow = (props) => {
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? lostTeam.Inhibitor?.kills
-										? lostTeam.Inhibitor?.kills
+									? lostTeam?.Inhibitor?.kills
+										? lostTeam?.Inhibitor?.kills
 										: 0
-									: lostTeam.objectives?.inhibitor?.kills
+									: lostTeam?.objectives?.inhibitor?.kills
 							}`}
 							img={roundRed}
 						/>
 					</div>
 					<p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text  ">
-						{lostTeamStats.totalKills ? lostTeamStats.totalKills : 0}
+						{lostTeamStats?.totalKills ? lostTeamStats.totalKills : 0}
 					</p>
 					{/* indicator  */}
 				</div>
@@ -242,15 +242,15 @@ const LosAndWinRow = (props) => {
 				<div className=" text-accent-color-2 flex justify-between items-center w-3/6 font-bold ">
 					{/* indicator  */}
 					<p className=" font-sf-pro-text text-[14px] leading-[16px] text-light-text  ">
-						{winningTeamStats.totalKills}
+						{winningTeamStats?.totalKills}
 					</p>
 					<div className=" flex items-center gap-x-5 ">
 						<IconAndCount
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? winnerTeam.Inhibitor?.kills
-									: winnerTeam.objectives?.inhibitor?.kills
+									? winnerTeam?.Inhibitor?.kills
+									: winnerTeam?.objectives?.inhibitor?.kills
 							}`}
 							img={roundBlue}
 						/>
@@ -258,8 +258,8 @@ const LosAndWinRow = (props) => {
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? winnerTeam.Tower?.kills
-									: winnerTeam.objectives?.tower?.kills
+									? winnerTeam?.Tower?.kills
+									: winnerTeam?.objectives?.tower?.kills
 							}`}
 							img={towerBlue}
 						/>
@@ -269,8 +269,8 @@ const LosAndWinRow = (props) => {
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? winnerTeam.Baron?.kills
-									: winnerTeam.objectives?.baron?.kills
+									? winnerTeam?.Baron?.kills
+									: winnerTeam?.objectives?.baron?.kills
 							}`}
 							img={baronBlue}
 						/>
@@ -278,8 +278,8 @@ const LosAndWinRow = (props) => {
 							imgClassName=" desktop:w-[20px] desktop:h-[20px] "
 							txt={`${
 								props.showSimulatedGraph
-									? winnerTeam.Dragon?.kills
-									: winnerTeam.objectives?.dragon?.kills
+									? winnerTeam?.Dragon?.kills
+									: winnerTeam?.objectives?.dragon?.kills
 							}`}
 							img={AlienBlue}
 						/>
@@ -287,7 +287,7 @@ const LosAndWinRow = (props) => {
 					<div>
 						<IconAndCount
 							imgClassName=" desktop:w-[24px] desktop:h-[20px] "
-							txt={`${(winningTeamStats.totalGold / 1000).toFixed(1)}k`}
+							txt={`${(winningTeamStats?.totalGold / 1000).toFixed(1)}k`}
 							img={KiloIconBlue}
 						/>
 					</div>

@@ -1,6 +1,5 @@
 import React from "react";
 import Profile from "../../universal/Profile/Profile";
-import RanksList from "../RanksList/RanksList";
 import CoverPhoto from "../../../../../public/assets/new-images/Profile/profile-cover-image.png";
 import Image from "next/image";
 import Classes from './PlayerInfo.module.css'
@@ -19,10 +18,6 @@ const PlayerInfo = (props) => {
                     profileIcon={props?.profileIcon}
                     summonerLevel={props?.summonerLevel}
                     region={props?.region}
-                />
-                <RanksList
-                    rankSolo={props?.rankSolo}
-                    rankFlex={props?.rankFlex}
                 />
             </div>
             {/* cover photo  */}

@@ -16,6 +16,8 @@ import TowerR from "../../../../../../../../public/assets/new-images/Profile/car
 import KiloR from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/kilo-r.png";
 import RoundR from "../../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/round-r.png";
 import { useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Batch = (props) => {
     const [red, setRed] = useState(true);
@@ -40,7 +42,7 @@ const Batch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <h6 className={Classes.text}>26</h6>
+                <h6 className={Classes.text}>{props?.teamStats?.totalKills}</h6>
             </div>
             {/* tower  */}
             <div className=" flex ">
@@ -51,7 +53,7 @@ const Batch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <h6 className={Classes.text}>7</h6>
+                <h6 className={Classes.text}>{props?.team?.objectives?.tower?.kills}</h6>
             </div>
             {/* round b  */}
             <div className=" flex ">
@@ -62,7 +64,7 @@ const Batch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <h6 className={Classes.text}>2</h6>
+                <h6 className={Classes.text}>{props?.team?.objectives?.inhibitor?.kills}</h6>
             </div>
             {/* kilo  */}
             <div className=" flex ">
@@ -73,7 +75,7 @@ const Batch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <h6 className={Classes.text}>62.2k</h6>
+                <h6 className={Classes.text}>{(props?.teamStats?.totalGold / 1000).toFixed(1)}k</h6>
             </div>
             {/* dragon  */}
             <div className=" flex ">
@@ -84,7 +86,7 @@ const Batch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <h6 className={Classes.text}>7</h6>
+                <h6 className={Classes.text}>{props?.team?.objectives?.dragon?.kills}</h6>
             </div>
             {/* barn  */}
             <div className=" flex ">
@@ -95,21 +97,90 @@ const Batch = (props) => {
                         layout="fill"
                     />
                 </div>
-                <h6 className={Classes.text}>2</h6>
+                <h6 className={Classes.text}>{props?.team?.objectives?.baron?.kills}</h6>
             </div>
         </div>
     );
 };
 
-const SimulateComponets = () => {
+const SimulateComponets = (props) => {
+
+    const [lostTeam, setLostTeam] = useState({});
+	const [winnerTeam, setWinnerTeam] = useState({});
+	const [lostTeamPlayers, setLostTeamPlayers] = useState([]);
+	const [winningTeamPlayers, setWinningTeamPlayers] = useState([]);
+	const [lostTeamStats, setLostTeamStats] = useState({});
+	const [winningTeamStats, setWinningTeamStats] = useState({});
+
+    useEffect(() => {
+		
+        setLostTeam(props.match?.teams?.filter((team) => !team.win)[0]);
+        setWinnerTeam(props.match?.teams?.filter((team) => team.win)[0]);
+        setLostTeamPlayers(props.match?.players?.filter((player) => !player.win));
+        setWinningTeamPlayers(props.match?.players?.filter((player) => player.win));
+		
+	}, [props.showSimulatedGraph, props.selectedFrame, props.matchTimelineData]);
+
+	useEffect(() => {
+		let totalDeaths = 0;
+		let totalKills = 0;
+		let totalAssists = 0;
+		let totalGold = 0;
+
+        lostTeamPlayers.forEach((player) => {
+            totalDeaths = totalDeaths + player?.deaths;
+            totalKills = totalKills + player?.kills;
+            totalAssists = totalAssists + player?.assists;
+            totalGold = totalGold + player?.goldEarned;
+        });
+
+        setLostTeamStats({ totalDeaths, totalKills, totalAssists, totalGold });
+    
+	}, [lostTeamPlayers]);
+
+	useEffect(() => {
+		let totalDeaths = 0;
+		let totalKills = 0;
+		let totalAssists = 0;
+		let totalGold = 0;
+		
+        winningTeamPlayers.forEach((player) => {
+            totalDeaths = totalDeaths + player?.deaths;
+            totalKills = totalKills + player?.kills;
+            totalAssists = totalAssists + player?.assists;
+            totalGold = parseInt(totalGold) + player?.goldEarned;
+        });
+
+        setWinningTeamStats({
+            totalDeaths,
+            totalKills,
+            totalAssists,
+            totalGold,
+        });
+		
+	}, [winningTeamPlayers]);
+
+    const router = useRouter();
+
     return (
         <div className=" flex justify-around items-center my-3 ">
-            <Batch />
+            <Batch team={lostTeam} teamStats={lostTeamStats}/>
             {/* simulate btn  */}
+            <Link href={{
+                pathname: `/summoner/[region]/[summonerName]/[matchId]`,
+                query: {
+                    region: router.query?.region,
+                    summonerName: router.query?.summonerName,
+                    matchId: props.match?.matchId?.substr(router.query?.region?.length+1)
+                }
+            }}>
             <button className=" font-sf-pro-text text-[14px] leading-[16px] font-bold 
              capitalize px-[25px] py-[15px] rounded-[5px]
-              bg-accent-color text-light-text ">simulate game</button>
-            <Batch type={"victory"}  />
+              bg-accent-color text-light-text ">
+                simulate game
+            </button>
+            </Link>
+            <Batch type={"victory"}  team={winnerTeam} teamStats={winningTeamStats}/>
         </div>
     );
 };

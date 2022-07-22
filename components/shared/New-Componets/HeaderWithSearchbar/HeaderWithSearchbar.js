@@ -20,7 +20,7 @@ const HeaderWithSearchbar = (props) => {
                 smTablet:items-center smTablet:justify-end"
                 >
                     {/* skirmish btn  */}
-                    <SkirmishSimulatorAppBtn className=" hidden laptop:block laptop:mr-[70px] " />
+                    {/* <SkirmishSimulatorAppBtn className=" hidden laptop:block laptop:mr-[70px] " /> */}
                     {/* responsive nav btn  */}
                     <button className={` w-[12px] smTablet:w-[35px]  `}>
                         <svg

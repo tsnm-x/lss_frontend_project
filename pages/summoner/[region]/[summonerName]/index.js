@@ -63,11 +63,32 @@ const Summoner = () => {
 		window.localStorage.setItem("region", region);
 
 		if (matches[0]) {
-			setMainPlayer(
-				matches[0]?.players.find((player) => {
-					return player.mainPlayer == true;
-				})
-			);
+			if(matches[0]?.players?.find((player) => player.mainPlayer == true)?.summonerName === summonerName){
+				setMainPlayer(
+					matches[0]?.players.find((player) => {
+						return player.mainPlayer == true;
+					})
+				);
+			} else {
+				sendRequest(
+					{
+						url: "/summonerByName",
+						method: "POST",
+						body: { region, summonerName },
+					},
+					(res) => {
+						if (res?.status === 200) {
+							dispatch(
+								profileAction.setProfileDataPage({
+									profile: res.data.matches,
+									region,
+									summonerName,
+								})
+							);
+						}
+					}
+				);
+			}
 		} else {
 			sendRequest(
 				{
