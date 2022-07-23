@@ -32,12 +32,12 @@ const AnalyticsViewBtns = () => {
 
     return (
         <section>
-            <div className="container flex items-center">
+            <div className="container flex items-center bg-card-&-content-box ">
                 {/* indicator left  */}
-                <div className={Classess.indicator}></div>
-                <div className=" flex justify-between items-center w-full ">
+                <div className={`${Classess.indicator}`}></div>
+                <div className=" flex justify-between items-center w-full pl-[30px] pr-[25px] py-5 ">
                     {/* right side  */}
-                    <div className=" pl-[30px] pr-[25px] py-5 flex items-center ">
+                    <div className="  flex items-center ">
                         {/* texts  */}
                         <div className=" mr-[50px] ">
                             <h3 className=" sf-bold-20 text-white ">
