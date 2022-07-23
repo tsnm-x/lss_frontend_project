@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Classess from "./AnalyticsViewBtns.module.css";
 
 const AnalyticsViewBtns = () => {
@@ -15,21 +15,20 @@ const AnalyticsViewBtns = () => {
             txt: "map details",
             active: false,
         },
-  ]);
-  
+    ]);
 
-  const btnClickHandler = (index) => {
-    const modifyedArray = [...btns];
-    modifyedArray.forEach((item, index) => {
-      return {
-        
-      }
-    })
-    modifyedArray[index] = {
-      txt: btns[index].txt,
-      active: true
-    }
-  }
+    const btnClickHandler = (activeIndex) => {
+        setBtns((prevState) => {
+            const modifyedState = [];
+            prevState.map((btn, index) => {
+                modifyedState.push({
+                    txt: btn.txt,
+                    active: activeIndex === index ? true : false,
+                });
+            });
+            return modifyedState;
+        });
+    };
 
     return (
         <section>
@@ -52,8 +51,8 @@ const AnalyticsViewBtns = () => {
                         <div className=" flex gap-x-[10px] ">
                             {btns.map((btn, index) => {
                                 return (
-                                  <button
-                                      onClick={ () => btnClickHandler(index)}
+                                    <button
+                                        onClick={() => btnClickHandler(index)}
                                         key={index}
                                         className={` ${Classess.btn} ${
                                             btn.active
