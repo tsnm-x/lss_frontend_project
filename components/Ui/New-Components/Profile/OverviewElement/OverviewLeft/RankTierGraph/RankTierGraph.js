@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Image from 'next/image'
 import BatchImg from '../../../../../../../public/assets/new-images/Profile/batch-img.png'
-import Emblem_Iron from "../../../../../../../public/assets/old-images/ranks/Emblem_Iron.png";
-import Emblem_Bronze from "../../../../../../../public/assets/old-images/ranks/Emblem_Bronze.png";
-import Emblem_Silver from "../../../../../../../public/assets/old-images/ranks/Emblem_Silver.png";
-import Emblem_Gold from "../../../../../../../public/assets/old-images/ranks/Emblem_Gold.png";
-import Emblem_Platinum from "../../../../../../../public/assets/old-images/ranks/Emblem_Platinum.png";
-import Emblem_Diamond from "../../../../../../../public/assets/old-images/ranks/Emblem_Diamond.png";
-import Emblem_Master from "../../../../../../../public/assets/old-images/ranks/Emblem_Master.png";
-import Emblem_Grandmaster from "../../../../../../../public/assets/old-images/ranks/Emblem_Grandmaster.png";
-import Emblem_Challenger from "../../../../../../../public/assets/old-images/ranks/Emblem_Challenger.png";
-
+import Emblem_Iron from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-iron.png";
+import Emblem_Bronze from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-bronze.png";
+import Emblem_Silver from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-silver.png";
+import Emblem_Gold from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-gold.png";
+import Emblem_Platinum from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-platinum.png";
+import Emblem_Diamond from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-diamond.png";
+import Emblem_Master from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-master.png";
+import Emblem_Grandmaster from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-grandmaster.png";
+import Emblem_Challenger from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-challenger.png";
+import Emblem_Unranked from "../../../../../../../public/assets/new-images/Profile/Ranks/unranked.png";
 
 
 // top buttons 
@@ -91,7 +91,7 @@ const Batch = (props) => {
                 return Emblem_Challenger;
                 break;
             default:
-                return Emblem_Iron;
+                return Emblem_Unranked;
         }
     }
 

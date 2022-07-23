@@ -8,7 +8,7 @@ import useHttp from "../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-const Table = () => {
+const Table = (props) => {
 	const matches = useSelector((state) => {
 		return state.profile.profile;
 	});
@@ -25,8 +25,28 @@ const Table = () => {
 		return minutes;
 	}
 
+	useEffect(()=>{
+		router.push({
+			pathname: '/summoner/[region]/[summonerName]',
+			query: {region: router?.query?.region, summonerName: router?.query?.summonerName}
+		}, `/summoner/${router?.query?.region}/${router?.query?.summonerName}/championPool`, { shallow: true })
+	}, [])
+
 	useEffect(() => {
-		if (matches) {
+		router.beforePopState(({ as }) => {
+			if (as === `/summoner/${router?.query?.region}/${router?.query?.summonerName}`) {
+				props.controller("overview")
+			}
+			return true;
+		});
+	
+		return () => {
+			router.beforePopState(() => true);
+		};
+	}, [router]);
+
+	useEffect(() => {
+		if (matches[0]) {
 			matches?.forEach((match) => {
 				const mainPlayerArr = match.players.filter(
 					(player) => player.mainPlayer === true
@@ -38,7 +58,7 @@ const Table = () => {
 
 			setMainPlayerChamps(champions);
 		}
-	}, [matches]);
+	}, [router]);
 
 	useEffect(() => {
 		let maxcount = 0;

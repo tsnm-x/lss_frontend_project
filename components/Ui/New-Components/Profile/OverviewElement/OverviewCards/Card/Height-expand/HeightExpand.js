@@ -595,7 +595,7 @@ const DataRow = (props) => {
             <div className=" ml-2 flex flex-col justify-center ">
                 <h1 className={Classes.cellTitle}>{(props?.goldEarned/ 1000).toFixed(1)}k Gold</h1>
                 <h1 className={`${Classes.secTitle}`}>
-                    Unspent: {(props?.goldEarned - props?.goldSpent)}
+                    Unspent: {Math.abs(props?.goldEarned - props?.goldSpent)}
                 </h1>
             </div>
         </div>

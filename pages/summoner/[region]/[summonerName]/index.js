@@ -70,6 +70,7 @@ const Summoner = () => {
 					})
 				);
 			} else {
+				CardsExpandHandler(-1);
 				sendRequest(
 					{
 						url: "/summonerByName",
@@ -90,6 +91,7 @@ const Summoner = () => {
 				);
 			}
 		} else {
+			CardsExpandHandler(-1);
 			sendRequest(
 				{
 					url: "/summonerByName",
@@ -112,34 +114,7 @@ const Summoner = () => {
 	}, [matches, router]);
 
 	const ControlBtnLists = ["all", "ranked solo", "normals", "ranked flex"];
-	const [selectedMatchType, setSelectedMatchType] = useState("all");
-
-	useEffect(() => {
-		const { region, summonerName } = router.query;
-		if (!matches[0]) {
-			return;
-		}
-		if (matches[0].players.length === 0) {
-			sendRequest(
-				{
-					url: "/summonerByName",
-					method: "POST",
-					body: { region, summonerName },
-				},
-				(res) => {
-					if (res?.status === 200) {
-						dispatch(
-							profileAction.setProfileDataPage({
-								profile: res.data.matches,
-								region,
-								summonerName,
-							})
-						);
-					}
-				}
-			);
-		}
-	}, [router]);
+	const [selectedMatchType, setSelectedMatchType] = useState("all")
 
 	const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
 	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
@@ -152,7 +127,6 @@ const Summoner = () => {
 	const CardsExpandHandler = (ClickedCardIndexNo, otherProps) => {
 		setExpandCardNo(ClickedCardIndexNo);
 		console.log("card expand handler");
-		cardExpand ? null : setCardExpand(true);
 		setCardProps(otherProps);
 	};
 
@@ -195,7 +169,7 @@ const Summoner = () => {
 					)}
 				</CardContext.Provider>
 			) : (
-				<Table />
+				<Table controller={viewController}/>
 			)}
 		</div>
 	);
