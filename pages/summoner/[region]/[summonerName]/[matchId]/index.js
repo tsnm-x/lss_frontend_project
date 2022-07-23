@@ -1,6 +1,16 @@
 import React from "react";
-const MatchSimulator = () => {
-    return (<></>)
-}
+import HeaderWithSearchbar from '../../../../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar';
+import ProfileIntro from "../../../../../components/Ui/New-Components/Analytic_Page/ProfileIntro/ProfileIntro";
 
-export default MatchSimulator
+
+const MatchSimulator = () => {
+    return (
+        <>
+            <HeaderWithSearchbar />
+            <ProfileIntro />
+        </>
+    );
+};
+
+export default MatchSimulator;
+    
