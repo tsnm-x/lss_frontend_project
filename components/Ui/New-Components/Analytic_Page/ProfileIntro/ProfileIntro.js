@@ -25,7 +25,7 @@ const ProfileIntro = () => {
 
     return (
         <section>
-            <div className="container flex ">
+            <div className="container flex pt-[80px] pb-[75px] ">
                 {/* left side img  */}
                 <div className=" rounded-[15px] relative w-[110px] h-[110px] border border-white mr-[35px] ">
                     <Image
