@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { profileAction } from "../../../../store/profile";
 import { axiosInstance } from "../../../../network/axiosConfig";
 import CardContext from "../../../../Context/CardContext";
-// contexts
+import { champAction } from "../../../../store/champMostPlayed";
 
 const Summoner = () => {
 	const [view, setView] = useState("overview");
@@ -18,8 +18,12 @@ const Summoner = () => {
 	const [cardExpand, setCardExpand] = useState(false);
 	const [expandCardNo, setExpandCardNo] = useState(null);
 	const [mainPlayer, setMainPlayer] = useState({});
-	const { hasError, sendRequest } = useHttp();
+	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
+	const { sendRequest, hasError } = useHttp();
+	const [mainPlayerChamps, setMainPlayerChamps] = useState([]);
 	const router = useRouter();
+	let champions = [];
+	const [mostPlayedChamp, setMostPlayedChamp] = useState({});
 	const dispatch = useDispatch();
 
 	const matches = useSelector((state) => state.profile.profile);
@@ -69,7 +73,23 @@ const Summoner = () => {
 						return player.mainPlayer == true;
 					})
 				);
+
+				if(!seasonMostPlayedList[0]){
+					matches?.forEach((match) => {
+						const mainPlayerArr = match.players.filter(
+							(player) => player.mainPlayer === true
+						);
+						mainPlayerArr.forEach((obj) => {
+							champions.push({ ...obj, duration: match.duration });
+						});
+					});
+		
+					setMainPlayerChamps(champions);
+				}
+
 			} else {
+				CardsExpandHandler(-1);
+				setSeasonMostPlayedList([])
 				sendRequest(
 					{
 						url: "/summonerByName",
@@ -78,6 +98,7 @@ const Summoner = () => {
 					},
 					(res) => {
 						if (res?.status === 200) {
+							
 							dispatch(
 								profileAction.setProfileDataPage({
 									profile: res.data.matches,
@@ -90,6 +111,8 @@ const Summoner = () => {
 				);
 			}
 		} else {
+			CardsExpandHandler(-1);
+			setSeasonMostPlayedList([])
 			sendRequest(
 				{
 					url: "/summonerByName",
@@ -97,7 +120,7 @@ const Summoner = () => {
 					body: { region, summonerName },
 				},
 				(res) => {
-					if (res?.status === 200) {
+					if (res?.status === 200) {	
 						dispatch(
 							profileAction.setProfileDataPage({
 								profile: res.data.matches,
@@ -111,35 +134,100 @@ const Summoner = () => {
 		}
 	}, [matches, router]);
 
-	const ControlBtnLists = ["all", "ranked solo", "normals", "ranked flex"];
-	const [selectedMatchType, setSelectedMatchType] = useState("all");
+	function convertM(value) {
+		const sec = parseInt(value); // convert value to number if it's string
+		let minutes = Math.floor(sec / 60); // get minutes
+		return minutes;
+	}
 
 	useEffect(() => {
-		const { region, summonerName } = router.query;
-		if (!matches[0]) {
-			return;
-		}
-		if (matches[0].players.length === 0) {
-			sendRequest(
-				{
-					url: "/summonerByName",
-					method: "POST",
-					body: { region, summonerName },
-				},
-				(res) => {
-					if (res?.status === 200) {
-						dispatch(
-							profileAction.setProfileDataPage({
-								profile: res.data.matches,
-								region,
-								summonerName,
-							})
-						);
-					}
+		let maxcount = 0;
+		let deaths = 0;
+		let assists = 0;
+		let kills = 0;
+		let winCount = 0;
+		let lossCount = 0;
+		let totalCs = 0;
+		let totalMatches = 0;
+		let avgCs = 0;
+		let totalDuration = 0;
+		let totalDamageDealt = 0;
+
+		for (let i = 0; i < mainPlayerChamps.length; i++) {
+			let count = 0;
+			for (let j = 0; j < mainPlayerChamps.length; j++) {
+				if (
+					mainPlayerChamps[i].championName == mainPlayerChamps[j].championName
+				) {
+					count++;
+					deaths = deaths + mainPlayerChamps[j].deaths;
+					assists = assists + mainPlayerChamps[j].assists;
+					kills = kills + mainPlayerChamps[j].kills;
+					totalCs = totalCs + mainPlayerChamps[j].totalMinionsKilled;
+					mainPlayerChamps[j].win ? winCount++ : lossCount++;
+					totalMatches++;
+					totalDuration = totalDuration + mainPlayerChamps[j].duration;
+					totalDamageDealt =
+						totalDamageDealt + mainPlayerChamps[j].totalDamageDealtToChampions;
 				}
-			);
+			}
+
+			if (count > maxcount) {
+				maxcount = count;
+				avgCs = totalCs / totalMatches / convertM(totalDuration);
+				
+				setSeasonMostPlayedList([
+					...seasonMostPlayedList,
+					{
+						...mainPlayerChamps[i],
+						totalDeaths: deaths,
+						totalAssists: assists,
+						totalKills: kills,
+						winCount,
+						lossCount,
+						avgCs,
+						totalDamageDealt,
+					},
+				]);
+			}
+
+			deaths = 0;
+			assists = 0;
+			kills = 0;
+			winCount = 0;
+			lossCount = 0;
+			totalCs = 0;
+			totalMatches = 0;
+			avgCs = 0;
+			totalDuration = 0;
+			totalDamageDealt = 0;
 		}
-	}, [router]);
+	}, [mainPlayerChamps]);
+
+	useEffect(() => {
+		dispatch(
+			champAction.setChamp(seasonMostPlayedList)
+		)
+		if(seasonMostPlayedList[0]){
+
+			const newChamps = mainPlayerChamps.filter((champion) => 
+				champion.championName !==
+				seasonMostPlayedList[seasonMostPlayedList.length - 1].championName
+			);
+
+			console.log(newChamps)
+
+			if (newChamps[0]) {
+				setMainPlayerChamps(newChamps);
+			}
+		}
+		
+		
+
+	}, [seasonMostPlayedList]);
+
+	const ControlBtnLists = ["all", "ranked solo", "normals", "ranked flex"];
+	const [selectedMatchType, setSelectedMatchType] = useState("all")
 
 	const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
 	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
@@ -152,7 +240,6 @@ const Summoner = () => {
 	const CardsExpandHandler = (ClickedCardIndexNo, otherProps) => {
 		setExpandCardNo(ClickedCardIndexNo);
 		console.log("card expand handler");
-		cardExpand ? null : setCardExpand(true);
 		setCardProps(otherProps);
 	};
 
@@ -195,7 +282,7 @@ const Summoner = () => {
 					)}
 				</CardContext.Provider>
 			) : (
-				<Table />
+				<Table controller={viewController}/>
 			)}
 		</div>
 	);

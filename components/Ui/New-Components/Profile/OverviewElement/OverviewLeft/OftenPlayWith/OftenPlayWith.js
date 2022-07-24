@@ -96,13 +96,11 @@ const OftenPlayWith = () => {
 	const [mostPlayedWithList, setMostPlayedWithList] = useState([])
 	
 	useEffect(()=>{
-        setMostPlayedWithList([])
+        setMostPlayedWithList([]);
 		matches?.forEach((match)=>{
-			match.players.forEach((player) => {
-				if(!player.mainPlayer){
-					playersArr.push(player)
-				}
-			})
+			const mainPlayer = match.players.find((player) => player.mainPlayer);
+            mainPlayer.win? playersArr.push(...match.players.filter((player) => player.win && !player.mainPlayer))
+            : playersArr.push(...match.players.filter((player) => !player.win && !player.mainPlayer))
 			
 		});
 

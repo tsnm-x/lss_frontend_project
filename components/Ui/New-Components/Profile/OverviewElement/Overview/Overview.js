@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import OverviewCards from "../OverviewCards/OverviewCards";
 import OverviewLeft from "../OverviewLeft/OverviewLeft";
 import AdsImg from "../../../../../../public/assets/new-images/Profile/ads.png";
 import Image from "next/image";
 import CardContext from "../../../../../../Context/CardContext";
 import Ads from "../../../../../shared/New-Componets/Ads/Ads";
+import { useRouter } from "next/router";
 
 const Overview = (props) => {
     const { expand, setCardExpand, expandControl } = useContext(CardContext);
+    const router = useRouter();
 
     return (
         <section className=" my-[60px] relative ">

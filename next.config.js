@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: false,
 	images: {
-		domains: ["ddragon.leagueoflegends.com", "ddragon.canisback.com", "static.wikia.nocookie.net"],
+		domains: ["ddragon.leagueoflegends.com", "ddragon.canisback.com", "static.wikia.nocookie.net", 'localhost'],
 	},
 	typescript: {
 		// !! WARN !!

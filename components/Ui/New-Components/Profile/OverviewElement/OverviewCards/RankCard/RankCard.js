@@ -75,21 +75,14 @@ const RankCard = (props) => {
     };
     return (
         <div
-            className={`bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex ${
-                props.expand
-                    ? props.mainExpand
-                        ? "  "
-                        : ""
-                    : ""
-            } `}
+            className={`bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex
+             `}
         >
             <div
                 className={` ${
                     props.className
                         ? props.className
-                        : `grid grid-cols-3 gap-3 content-center justify-center ${
-                              props.expand ? "   " : ""
-                          }`
+                        : `grid grid-cols-3 gap-3 content-center justify-center`
                 } `}
             >
                 {[
@@ -109,11 +102,7 @@ const RankCard = (props) => {
                             } ${
                                 props.imgClassName
                                     ? props.imgClassName
-                                    : `w-[32px] h-[32px]  ${
-                                          props.expand
-                                              ? "  "
-                                              : "not expanded"
-                                      }`
+                                    : `w-[32px] h-[32px]`
                             }`}
                             key={index}
                         >
@@ -131,15 +120,7 @@ const RankCard = (props) => {
             </div>
             <div>
                 <div
-                    className={`relative w-[26px] h-[26px] rounded-full mt-3 ml-3 ${
-                        props.expand
-                            ? ` ${
-                                  props.mainExpand
-                                      ? " "
-                                      : ""
-                              } `
-                            : ""
-                    }`}
+                    className={`relative w-[26px] h-[26px] rounded-full mt-3 ml-3`}
                 >
                     {mainPlayer?.item6 && (<Image src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`} className="rounded-full" alt="small img" layout="fill" />)}
                 </div>
