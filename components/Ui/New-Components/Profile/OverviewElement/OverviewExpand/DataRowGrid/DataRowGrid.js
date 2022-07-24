@@ -12,33 +12,41 @@ const HeaderRow = (props) => {
         <div
             className={` grid ${
                 props.reverce
-                    ? "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr]"
-                    : "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr]"
+                    ? "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr]"
+                    : "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr]"
             }`}
         >
             <div
                 className={
                     props.reverce
-                        ? "order-1 text-center"
-                        : " order-5 text-right "
+                        ? " order-5 text-center "
+                        : "order-1 text-center"
                 }
             >
                 <h4 className=" font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize ">
                     Damage Dealt
                 </h4>
             </div>
-            <div className={props.reverce ? "order-2" : " order-4 "}></div>
+            <div className={props.reverce ? " order-4 " : "order-2"}></div>
             <div className={props.reverce ? "order-3" : "order-3"}>
-                <h4 className=" font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize ">
+                <h4
+                    className={`font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize ${
+                        props.reverce ? "text-right" : ""
+                    }`}
+                >
                     Score
                 </h4>
             </div>
-            <div className={props.reverce ? "order-4" : "order-2"}>
-                <h4 className=" font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text uppercase ">
+            <div className={props.reverce ? "order-2" : "order-4"}>
+                <h4
+                    className={`font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text uppercase ${
+                        props.reverce ? "text-right" : ""
+                    }`}
+                >
                     cs
                 </h4>
             </div>
-            <div className={props.reverce ? "order-5" : "order-1 text-right "}>
+            <div className={props.reverce ? "order-1 text-right " : "order-5"}>
                 <h4 className=" font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize ">
                     {props.reverce ? "blue team" : "red team "}
                 </h4>
@@ -166,14 +174,29 @@ const DataRow = (props) => {
                                 : "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] bg-[#251122] "
                         }`}
                     >
-                        <div>
+                        {/* damage dealt  */}
+                        <div
+                            className={` ${
+                                props.reverce ? "order-5" : "order-1"
+                            }`}
+                        >
                             <h1 className=" sf-bold-14 text-white text-center  ">
                                 {data.damage}
                             </h1>
-                            <div className=" w-[80px] h-[6px] rounded-full bg-accent-color mx-auto"></div>
+                            <div
+                                className={`w-[80px] h-[6px] rounded-full ${
+                                    props.reverce
+                                        ? "bg-accent-color-2"
+                                        : "bg-accent-color"
+                                }  mx-auto`}
+                            ></div>
                         </div>
                         {/* batches  */}
-                        <div className=" flex gap-x-[3px] ">
+                        <div
+                            className={` flex gap-x-[3px] ${
+                                props.reverce ? "order-4 justify-end " : "order-2"
+                            }`}
+                        >
                             {data.batches.map((batch, index) => {
                                 return (
                                     <div
@@ -192,7 +215,11 @@ const DataRow = (props) => {
                             })}
                         </div>
                         {/* kda  */}
-                        <div>
+                        <div
+                            className={` ${
+                                props.reverce ? "order-3 text-right " : "order-3"
+                            }`}
+                        >
                             <h1 className=" sf-bold-14 text-white   ">
                                 {data.score.main}
                             </h1>
@@ -201,7 +228,11 @@ const DataRow = (props) => {
                             </h1>
                         </div>
                         {/* cs  */}
-                        <div>
+                        <div
+                            className={` ${
+                                props.reverce ? "order-2 text-right " : "order-4"
+                            } `}
+                        >
                             <h1 className=" sf-bold-14 text-white   ">
                                 {data.cs.cs} cs
                             </h1>
@@ -210,7 +241,7 @@ const DataRow = (props) => {
                             </h1>
                         </div>
                         {/* profile with batch  */}
-                        <div className=" flex gap-x-2 "> 
+                        <div className={` flex gap-x-2 ${props.reverce ? 'order-1 justify-end': 'order-5'}`}>
                             {/* profile  */}
                             <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
                                 <Image
@@ -276,8 +307,8 @@ const DataRowGrid = () => {
             <div className="container">
                 {/* header row  */}
                 <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
-                    <HeaderRow reverce={true} />
                     <HeaderRow />
+                    <HeaderRow reverce={true} />
                 </div>
                 {/* data  */}
                 <div className=" grid grid-cols-2 gap-x-5 ">
