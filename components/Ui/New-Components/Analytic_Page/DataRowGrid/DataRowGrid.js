@@ -241,7 +241,7 @@ const DataRow = (props) => {
                             </h1>
                         </div>
                         {/* profile with batch  */}
-                        <div className={` flex gap-x-2 ${props.reverce ? 'order-1 justify-end': 'order-5'}`}>
+                        <div className={` flex gap-x-2 ${props.reverce ? 'order-1 flex-row-reverse': 'order-5'}`}>
                             {/* profile  */}
                             <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
                                 <Image
