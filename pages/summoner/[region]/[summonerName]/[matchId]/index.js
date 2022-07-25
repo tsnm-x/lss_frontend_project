@@ -5,6 +5,9 @@ import AnalyticsViewBtns from "../../../../../components/Ui/New-Components/Analy
 import ProfileCompareBar from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/ProfileCompareBar/ProfileCompareBar";
 import LosAndWinRow from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/LosAndWinRow/LosAndWinRow";
 import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Page/DataRowGrid/DataRowGrid";
+import GameStaticsGraph from "../../../../../components/Ui/New-Components/Analytic_Page/GameStaticsGraph/GameStaticsGraph";
+
+
 
 
 const MatchSimulator = () => {
@@ -17,8 +20,8 @@ const MatchSimulator = () => {
                 <ProfileCompareBar />
                 <LosAndWinRow />
                 <DataRowGrid />
+                <GameStaticsGraph />
             </div>
-            
         </>
     );
 };
