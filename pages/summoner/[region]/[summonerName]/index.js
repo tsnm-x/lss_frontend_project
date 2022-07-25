@@ -67,7 +67,7 @@ const Summoner = () => {
 		window.localStorage.setItem("region", region);
 
 		if (matches[0]) {
-			if(matches[0]?.players?.find((player) => player.mainPlayer == true)?.summonerName === summonerName){
+			if((matches[0]?.players?.find((player) => player.mainPlayer == true)?.summonerName).toLowerCase() === (summonerName).toLowerCase()){
 				setMainPlayer(
 					matches[0]?.players.find((player) => {
 						return player.mainPlayer == true;
@@ -86,6 +86,8 @@ const Summoner = () => {
 		
 					setMainPlayerChamps(champions);
 				}
+
+				
 
 			} else {
 				CardsExpandHandler(-1);
@@ -132,7 +134,7 @@ const Summoner = () => {
 				}
 			);
 		}
-	}, [matches, router]);
+	}, [router, matches]);
 
 	function convertM(value) {
 		const sec = parseInt(value); // convert value to number if it's string

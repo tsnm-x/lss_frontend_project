@@ -582,11 +582,11 @@ const DataRow = (props) => {
                                 : " bg-accent-color"
                         }`}
                         style={{
-                            width: `${
-                                (!props?.totalDamageDealtToChampions
-                                    ? 50
-                                    : props?.totalDamageDealtToChampions / (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) *
-                                100
+                            width: `${getMaxDamageDealt() ?
+                                ((props?.totalDamageDealtToChampions / (getMaxDamageDealt())) *
+                                100)
+                                : ((props?.totalDamageDealtToChampions / (1)) *
+                                100)
                             }%`,
                         }}
                     ></div>

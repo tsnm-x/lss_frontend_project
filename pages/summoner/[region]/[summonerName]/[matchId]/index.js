@@ -8,8 +8,6 @@ import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Pa
 import GameStaticsGraph from "../../../../../components/Ui/New-Components/Analytic_Page/GameStaticsGraph/GameStaticsGraph";
 
 
-
-
 const MatchSimulator = () => {
     return (
         <>
