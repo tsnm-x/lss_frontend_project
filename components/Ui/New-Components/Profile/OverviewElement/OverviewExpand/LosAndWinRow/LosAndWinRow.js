@@ -152,7 +152,7 @@ const LosAndWinRow = (props) => {
         <section>
             <div className="container">
                 <div
-                    className=" mb-[37px] bg-card-&-content-box px-[25px] h-10 flex justify-center 
+                    className=" bg-card-&-content-box px-[25px] h-10 flex justify-center 
 																items-center gap-x-[72px]   
 																"
                 >

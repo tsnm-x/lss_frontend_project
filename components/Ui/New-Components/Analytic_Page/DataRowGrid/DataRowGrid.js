@@ -1,9 +1,9 @@
 import React from "react";
-import ProfileImg from "../../../../../../../public/assets/new-images/Profile/Jhin.png";
-import batch1 from "../../../../../../../public/assets/new-images/Profile/card/batch1.png";
-import batch2 from "../../../../../../../public/assets/new-images/Profile/card/batch2.png";
-import power1 from "../../../../../../../public/assets/new-images/Profile/card/SummonerFlash.png";
-import power2 from "../../../../../../../public/assets/new-images/Profile/card/SummonerHeal.png";
+import ProfileImg from "../../../../../public/assets/new-images/Profile/Jhin.png";
+import batch1 from "../../../../../public/assets/new-images/Profile/card/batch1.png";
+import batch2 from "../../../../../public/assets/new-images/Profile/card/batch2.png";
+import power1 from "../../../../../public/assets/new-images/Profile/card/SummonerFlash.png";
+import power2 from "../../../../../public/assets/new-images/Profile/card/SummonerHeal.png";
 import Image from "next/image";
 import Classess from "./DataRowGrid.module.css";
 
@@ -168,7 +168,7 @@ const DataRow = (props) => {
                 return (
                     <div
                         key={index}
-                        className={`  grid items-center  ${
+                        className={`  grid items-center rounded-[5px]  ${
                             props.reverce
                                 ? "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] bg-[#191531]  "
                                 : "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] bg-[#251122] "
@@ -304,7 +304,7 @@ const DataRow = (props) => {
 const DataRowGrid = () => {
     return (
         <section>
-            <div className="container">
+            <div className="container px-4">
                 {/* header row  */}
                 <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
                     <HeaderRow />

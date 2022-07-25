@@ -4,7 +4,7 @@ import ProfileIntro from "../../../../../components/Ui/New-Components/Analytic_P
 import AnalyticsViewBtns from "../../../../../components/Ui/New-Components/Analytic_Page/AnalyticsViewBtns/AnalyticsViewBtns";
 import ProfileCompareBar from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/ProfileCompareBar/ProfileCompareBar";
 import LosAndWinRow from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/LosAndWinRow/LosAndWinRow";
-import DataRowGrid from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/DataRowGrid/DataRowGrid";
+import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Page/DataRowGrid/DataRowGrid";
 
 
 const MatchSimulator = () => {
@@ -18,6 +18,7 @@ const MatchSimulator = () => {
                 <LosAndWinRow />
                 <DataRowGrid />
             </div>
+            
         </>
     );
 };
