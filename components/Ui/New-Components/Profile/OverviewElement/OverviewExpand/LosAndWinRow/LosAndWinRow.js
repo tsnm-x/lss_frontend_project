@@ -51,110 +51,74 @@ const LosAndWinRow = (props) => {
         ? props?.frames[props?.selectedFrame]
         : undefined;
 
-    // useEffect(() => {
-    // 	if (!props.showSimulatedGraph) {
-    // 		setLostTeam(props.match?.teams?.filter((team) => !team.win)[0]);
-    // 		setWinnerTeam(props.match?.teams?.filter((team) => team.win)[0]);
-    // 		setLostTeamPlayers(props.match?.players?.filter((player) => !player.win));
-    // 		setWinningTeamPlayers(props.match?.players?.filter((player) => player.win));
-    // 		setMainPlayer(
-    // 			props.match?.players?.filter((player) => player.mainPlayer)[0]
-    // 		);
-    // 	} else {
-    // 		let frame = props.matchTimelineData?.frames[props.selectedFrame];
-    // 		setLostTeam(frame?.redTeam);
-    // 		setWinnerTeam(frame?.blueTeam);
-    // 		setWinningTeamPlayers([
-    // 			frame?.participant1,
-    // 			frame?.participant2,
-    // 			frame?.participant3,
-    // 			frame?.participant4,
-    // 			frame?.participant5,
-    // 		]);
-    // 		setLostTeamPlayers([
-    // 			frame?.participant6,
-    // 			frame?.participant7,
-    // 			frame?.participant8,
-    // 			frame?.participant9,
-    // 			frame?.participant10,
-    // 		]);
-    // 	}
-    // }, [props.showSimulatedGraph, props.selectedFrame, props.matchTimelineData]);
+    useEffect(() => {
+        if(frame){
+            console.log(frame)
+            setLostTeam(frame?.redTeam);
+            setWinnerTeam(frame?.blueTeam);
+            setWinningTeamPlayers([
+                frame?.participant1,
+                frame?.participant2,
+                frame?.participant3,
+                frame?.participant4,
+                frame?.participant5,
+            ]);
+            setLostTeamPlayers([
+                frame?.participant6,
+                frame?.participant7,
+                frame?.participant8,
+                frame?.participant9,
+                frame?.participant10,
+            ]);
+        }
 
-    // useEffect(() => {
-    // 	let totalDeaths = 0;
-    // 	let totalKills = 0;
-    // 	let totalAssists = 0;
-    // 	let totalGold = 0;
+    }, [props.selectedFrame, props.matchTimelineData, frame]);
 
-    // 	if (!props.showSimulatedGraph) {
-    // 		lostTeamPlayers.forEach((player) => {
-    // 			totalDeaths = totalDeaths + player?.deaths;
-    // 			totalKills = totalKills + player?.kills;
-    // 			totalAssists = totalAssists + player?.assists;
-    // 			totalGold = totalGold + player?.goldEarned;
-    // 		});
+    useEffect(() => {
+    	let totalDeaths = 0;
+    	let totalKills = 0;
+    	let totalAssists = 0;
 
-    // 		setLostTeamStats({ totalDeaths, totalKills, totalAssists, totalGold });
-    // 	} else {
-    // 		lostTeamPlayers.forEach((player) => {
-    // 			totalDeaths = totalDeaths + player?.stats?.death;
-    // 			totalKills = totalKills + player?.stats?.kill;
-    // 			totalAssists = totalAssists + player?.stats?.assist;
-    // 		});
+        lostTeamPlayers.forEach((player) => {
+            totalDeaths = totalDeaths + player?.stats?.death;
+            totalKills = totalKills + player?.stats?.kill;
+            totalAssists = totalAssists + player?.stats?.assist;
+        });
 
-    // 		setLostTeamStats({
-    // 			totalDeaths,
-    // 			totalKills,
-    // 			totalAssists,
-    // 			totalGold: lostTeam?.gold,
-    // 		});
-    // 	}
-    // }, [lostTeamPlayers]);
+        setLostTeamStats({
+            totalDeaths,
+            totalKills,
+            totalAssists,
+            totalGold: lostTeam?.gold,
+        });
+    }, [lostTeamPlayers]);
 
-    // useEffect(() => {
-    // 	let totalDeaths = 0;
-    // 	let totalKills = 0;
-    // 	let totalAssists = 0;
-    // 	let totalGold = 0;
+    useEffect(() => {
+    	let totalDeaths = 0;
+    	let totalKills = 0;
+    	let totalAssists = 0;
 
-    // 	if (!props.showSimulatedGraph) {
-    // 		winningTeamPlayers.forEach((player) => {
-    // 			totalDeaths = totalDeaths + player?.deaths;
-    // 			totalKills = totalKills + player?.kills;
-    // 			totalAssists = totalAssists + player?.assists;
-    // 			totalGold = parseInt(totalGold) + player?.goldEarned;
-    // 		});
+        winningTeamPlayers.forEach((player) => {
+            totalDeaths = totalDeaths + player?.stats?.death;
+            totalKills = totalKills + player?.stats?.kill;
+            totalAssists = totalAssists + player?.stats?.assist;
+        });
 
-    // 		setWinningTeamStats({
-    // 			totalDeaths,
-    // 			totalKills,
-    // 			totalAssists,
-    // 			totalGold,
-    // 		});
-    // 	} else {
-    // 		winningTeamPlayers.forEach((player) => {
-    // 			totalDeaths = totalDeaths + player?.stats?.death;
-    // 			totalKills = totalKills + player?.stats?.kill;
-    // 			totalAssists = totalAssists + player?.stats?.assist;
-    // 		});
-
-    // 		setWinningTeamStats({
-    // 			totalDeaths,
-    // 			totalKills,
-    // 			totalAssists,
-    // 			totalGold: winnerTeam?.gold,
-    // 		});
-    // 	}
-    // }, [winningTeamPlayers]);
+        setWinningTeamStats({
+            totalDeaths,
+            totalKills,
+            totalAssists,
+            totalGold: winnerTeam?.gold,
+        });
+    }, [winningTeamPlayers]);
 
     return (
         <section>
             <div className="container">
                 <div
                     className=" bg-card-&-content-box px-[25px] h-10 flex justify-center 
-																items-center gap-x-[72px]   
-																"
+                                items-center gap-x-[72px]   
+                                "
                 >
                     {/* loss  */}
                     {lostTeam && lostTeamStats && (
@@ -162,76 +126,63 @@ const LosAndWinRow = (props) => {
                             <div>
                                 <IconAndCount
                                     imgClassName=" desktop:w-[24px] desktop:h-[20px] "
-                                    // txt={`${(
-                                    //     lostTeamStats?.totalGold / 1000
-                                    // ).toFixed(1)}k`}
-                                    txt={`62.3k`}
+                                    txt={`${(
+                                        lostTeamStats?.totalGold / 1000
+                                    ).toFixed(1) ? (
+                                        lostTeamStats?.totalGold / 1000
+                                    ).toFixed(1) : 0}k`}
                                     img={KiloIconRed}
                                 />
                             </div>
                             <div className=" flex items-center gap-x-5 ">
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={3}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? lostTeam?.Dragon?.kills
-                                    //             ? lostTeam?.Dragon?.kills
-                                    //             : 0
-                                    //         : lostTeam?.objectives?.dragon
-                                    //               ?.kills
-                                    // }`}
+                                    txt={`${
+                                       lostTeam?.Dragon?.kills
+                                        ? lostTeam?.Dragon?.kills
+                                        : 0
+                                           
+                                    }`}
                                     img={AlienRed}
                                 />
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={2}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? lostTeam?.Baron?.kills
-                                    //             ? lostTeam?.Baron?.kills
-                                    //             : 0
-                                    //         : lostTeam?.objectives?.baron?.kills
-                                    // }`}
+                                    txt={`${
+                                         lostTeam?.Baron?.kills
+                                            ? lostTeam?.Baron?.kills
+                                            : 0
+                                    }`}
                                     img={baronRed}
                                 />
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={2}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? lostTeam?.Baron?.kills
-                                    //             ? lostTeam?.Baron?.kills
-                                    //             : 0
-                                    //         : lostTeam?.objectives?.baron?.kills
-                                    // }`}
+                                    txt={`${
+                                        lostTeam?.Baron?.kills
+                                            ? lostTeam?.Baron?.kills
+                                            : 0
+                                    }`}
                                     img={baronRed}
                                 />
                             </div>
                             <div className=" flex items-center gap-x-5 ">
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={5}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? lostTeam?.Tower?.kills
-                                    //             ? lostTeam?.Tower?.kills
-                                    //             : 0
-                                    //         : lostTeam?.objectives?.tower?.kills
-                                    // }`}
+                                    txt={`${
+                                        lostTeam?.Tower?.kills
+                                            ? lostTeam?.Tower?.kills
+                                            : 0
+                                
+                                    }`}
                                     img={towerRed}
                                 />
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={3}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? lostTeam?.Inhibitor?.kills
-                                    //             ? lostTeam?.Inhibitor?.kills
-                                    //             : 0
-                                    //         : lostTeam?.objectives?.inhibitor
-                                    //               ?.kills
-                                    // }`}
+                                    txt={`${
+                                        lostTeam?.Inhibitor?.kills
+                                            ? lostTeam?.Inhibitor?.kills
+                                            : 0
+                                        
+                                    }`}
                                     img={roundRed}
                                 />
                             </div>
@@ -264,69 +215,41 @@ const LosAndWinRow = (props) => {
                             <div className=" flex items-center gap-x-5 ">
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={3}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? winnerTeam?.Inhibitor?.kills
-                                    //         : winnerTeam?.objectives?.inhibitor
-                                    //               ?.kills
-                                    // }`}
+                                    txt={`${ winnerTeam?.Inhibitor?.kills? winnerTeam?.Inhibitor?.kills : 0 }`}
                                     img={roundBlue}
                                 />
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={2}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? winnerTeam?.Tower?.kills
-                                    //         : winnerTeam?.objectives?.tower
-                                    //               ?.kills
-                                    // }`}
+
+                                    txt={`${ winnerTeam?.Tower?.kills? winnerTeam?.Tower?.kills : 0}`}
                                     img={towerBlue}
                                 />
                             </div>
                             <div className=" flex items-center gap-x-5 ">
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={2}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? winnerTeam?.Baron?.kills
-                                    //         : winnerTeam?.objectives?.baron
-                                    //               ?.kills
-                                    // }`}
+                                    txt={`${ winnerTeam?.Baron?.kills? winnerTeam?.Baron?.kills : 0}`}
                                     img={baronBlue}
                                 />
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={2}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? winnerTeam?.Baron?.kills
-                                    //         : winnerTeam?.objectives?.baron
-                                    //               ?.kills
-                                    // }`}
+                                    txt={`${ winnerTeam?.Baron?.kills? winnerTeam?.Baron?.kills : 0}`}
                                     img={baronBlue}
                                 />
                                 <IconAndCount
                                     imgClassName=" desktop:w-[20px] desktop:h-[20px] "
-                                    txt={2}
-                                    // txt={`${
-                                    //     props.showSimulatedGraph
-                                    //         ? winnerTeam?.Dragon?.kills
-                                    //         : winnerTeam?.objectives?.dragon
-                                    //               ?.kills
-                                    // }`}
+                                    txt={`${winnerTeam?.Dragon?.kills ? winnerTeam?.Dragon?.kills : 0}`}
                                     img={AlienBlue}
                                 />
                             </div>
                             <div>
                                 <IconAndCount
                                     imgClassName=" desktop:w-[24px] desktop:h-[20px] "
-                                    // txt={`${(
-                                    //     winningTeamStats?.totalGold / 1000
-                                    // ).toFixed(1)}k`}
-                                    txt={`${25.3}k`}
+                                    txt={`${(
+                                        winningTeamStats?.totalGold / 1000
+                                    ).toFixed(1) ?(
+                                        winningTeamStats?.totalGold / 1000
+                                    ).toFixed(1) : 0}k`}
                                     img={KiloIconBlue}
                                 />
                             </div>

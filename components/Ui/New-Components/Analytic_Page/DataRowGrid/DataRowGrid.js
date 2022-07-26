@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfileImg from "../../../../../public/assets/new-images/Profile/Jhin.png";
 import batch1 from "../../../../../public/assets/new-images/Profile/card/batch1.png";
 import batch2 from "../../../../../public/assets/new-images/Profile/card/batch2.png";
@@ -6,6 +6,9 @@ import power1 from "../../../../../public/assets/new-images/Profile/card/Summone
 import power2 from "../../../../../public/assets/new-images/Profile/card/SummonerHeal.png";
 import Image from "next/image";
 import Classess from "./DataRowGrid.module.css";
+import useHttp from "../../../../../hook/useHttp";
+import PlayerRow from "../../Profile/OverviewElement/OverviewExpand/PlayerCompare/PlayerRow";
+import { useRouter } from "next/router";
 
 const HeaderRow = (props) => {
     return (
@@ -56,252 +59,34 @@ const HeaderRow = (props) => {
 };
 
 const DataRow = (props) => {
-    const data = [
-        {
-            damage: 45.259,
-            batches: ["", "", "", "", "", ""],
-            score: {
-                main: "5/9/1",
-                kda: 0.77,
-            },
-            cs: {
-                cs: 189,
-                csMin: 7.5,
-            },
-            team: {
-                profile: {
-                    img: ProfileImg,
-                    id: 25,
-                },
-                power: [power1, power2],
-                batch: [batch1, batch2],
-            },
-        },
-        {
-            damage: 45.259,
-            batches: ["", "", "", "", "", ""],
-
-            score: {
-                main: "5/9/1",
-                kda: 0.77,
-            },
-            cs: {
-                cs: 189,
-                csMin: 7.5,
-            },
-            team: {
-                profile: {
-                    img: ProfileImg,
-                    id: 25,
-                },
-                power: [power1, power2],
-                batch: [batch1, batch2],
-            },
-        },
-        {
-            damage: 45.259,
-            batches: ["", "", "", "", "", ""],
-
-            score: {
-                main: "5/9/1",
-                kda: 0.77,
-            },
-            cs: {
-                cs: 189,
-                csMin: 7.5,
-            },
-            team: {
-                profile: {
-                    img: ProfileImg,
-                    id: 25,
-                },
-                power: [power1, power2],
-                batch: [batch1, batch2],
-            },
-        },
-        {
-            damage: 45.259,
-            batches: ["", "", "", "", "", ""],
-
-            score: {
-                main: "5/9/1",
-                kda: 0.77,
-            },
-            cs: {
-                cs: 189,
-                csMin: 7.5,
-            },
-            team: {
-                profile: {
-                    img: ProfileImg,
-                    id: 25,
-                },
-                power: [power1, power2],
-                batch: [batch1, batch2],
-            },
-        },
-        {
-            damage: 45.259,
-            batches: ["", "", "", "", "", ""],
-
-            score: {
-                main: "5/9/1",
-                kda: 0.77,
-            },
-            cs: {
-                cs: 189,
-                csMin: 7.5,
-            },
-            team: {
-                profile: {
-                    img: ProfileImg,
-                    id: 25,
-                },
-                power: [power1, power2],
-                batch: [batch1, batch2],
-            },
-        },
-    ];
+    
     return (
         <div className=" flex flex-col gap-y-3">
-            {data.map((data, index) => {
+            {props.players && props.players?.map((player, index) => {
                 return (
-                    <div
+                    <PlayerRow
                         key={index}
-                        className={`  grid items-center rounded-[5px]  ${
-                            props.reverce
-                                ? "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] bg-[#191531]  "
-                                : "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] bg-[#251122] "
-                        }`}
-                    >
-                        {/* damage dealt  */}
-                        <div
-                            className={` ${
-                                props.reverce ? "order-5" : "order-1"
-                            }`}
-                        >
-                            <h1 className=" sf-bold-14 text-white text-center  ">
-                                {data.damage}
-                            </h1>
-                            <div
-                                className={`w-[80px] h-[6px] rounded-full ${
-                                    props.reverce
-                                        ? "bg-accent-color-2"
-                                        : "bg-accent-color"
-                                }  mx-auto`}
-                            ></div>
-                        </div>
-                        {/* batches  */}
-                        <div
-                            className={` flex gap-x-[3px] ${
-                                props.reverce ? "order-4 justify-end " : "order-2"
-                            }`}
-                        >
-                            {data.batches.map((batch, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
-                                    >
-                                        {batch.length ? (
-                                            <Image
-                                                src={""}
-                                                alt="batch image"
-                                                layout="fill"
-                                            />
-                                        ) : null}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        {/* kda  */}
-                        <div
-                            className={` ${
-                                props.reverce ? "order-3 text-right " : "order-3"
-                            }`}
-                        >
-                            <h1 className=" sf-bold-14 text-white   ">
-                                {data.score.main}
-                            </h1>
-                            <h1 className=" sf-bold-10 text-grayed-text   ">
-                                KDA {data.score.kda}
-                            </h1>
-                        </div>
-                        {/* cs  */}
-                        <div
-                            className={` ${
-                                props.reverce ? "order-2 text-right " : "order-4"
-                            } `}
-                        >
-                            <h1 className=" sf-bold-14 text-white   ">
-                                {data.cs.cs} cs
-                            </h1>
-                            <h1 className=" sf-bold-10 text-grayed-text   ">
-                                {data.cs.csMin} cs/min
-                            </h1>
-                        </div>
-                        {/* profile with batch  */}
-                        <div className={` flex gap-x-2 ${props.reverce ? 'order-1 flex-row-reverse': 'order-5'}`}>
-                            {/* profile  */}
-                            <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
-                                <Image
-                                    src={data.team.profile.img}
-                                    alt=" profile image"
-                                    layout="fill"
-                                    className="rounded-[5px] "
-                                />
-                                {/* batch  */}
-                                <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
-                                    <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
-                                        {data.team.profile.id}
-                                    </div>
-                                </div>
-                            </div>
-                            {/* power  */}
-                            <div>
-                                {data.team.power.map((pwr, index) => {
-                                    return (
-                                        <div
-                                            className=" relative w-[22px] h-[22px] rounded-[5px] "
-                                            key={index}
-                                        >
-                                            <Image
-                                                src={pwr}
-                                                alt=" power img"
-                                                layout="fill"
-                                                className=" rounded-[5px] "
-                                            />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            {/* batch  */}
-                            <div>
-                                {data.team.batch.map((batch, index) => {
-                                    return (
-                                        <div
-                                            className=" relative w-[22px] h-[22px] rounded-[5px] "
-                                            key={index}
-                                        >
-                                            <Image
-                                                src={batch}
-                                                alt=" batch img"
-                                                layout="fill"
-                                                className=" rounded-[5px] "
-                                            />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                );
+                        match={props.match}
+                        reverce={props.reverce}
+                        player={player}
+                        region={props?.region}
+                        setSelectedPlayer={props.setSelectedPlayer}
+                        selectedPlayer={props.selectedPlayer}
+                        players={props.players}
+                        setPlayers={props.setPlayers}
+                        selectedFrame={props.selectedFrame}
+                        matchTimelineData={props.matchTimelineData}
+                        simulatorPlayers={props.simulatorPlayers}
+                        setSimulatorPlayers={props?.setSimulatorPlayers}
+                    />
+                )
             })}
         </div>
     );
 };
 
-const DataRowGrid = () => {
+const DataRowGrid = (props) => {
+    const router = useRouter();
     return (
         <section>
             <div className="container px-4">
@@ -313,8 +98,32 @@ const DataRowGrid = () => {
                 {/* data  */}
                 <div className=" grid grid-cols-2 gap-x-5 ">
                     {/* data row  */}
-                    <DataRow />
-                    <DataRow reverce={true} />
+                    <DataRow 
+                        reverce={false}
+                        match={props.match}
+                        region={router?.query?.region}
+                        frames={props.matchTimelineData?.frames}
+                        matchTimelineData={props.matchTimelineData}
+                        selectedFrame={props.selectedFrame}
+                        selectedPlayer={props.selectedPlayer}
+                        setSelectedPlayer={props.setSelectedPlayer}
+                        players={props?.leftTeam}
+                        simulatorPlayers={props.simulatorPlayerRed}
+                        setSimulatorPlayers={props?.setSimulatorPlayerRed}
+                    />
+                    <DataRow
+                        region={router?.query?.region} 
+                        reverce={true}
+                        match={props.match}
+                        frames={props.matchTimelineData?.frames}
+                        matchTimelineData={props.matchTimelineData}
+                        selectedFrame={props.selectedFrame}
+                        selectedPlayer={props.selectedPlayer}
+                        setSelectedPlayer={props.setSelectedPlayer}
+                        players={props?.rightTeam}
+                        simulatorPlayers={props.simulatorPlayerBlue}
+                        setSimulatorPlayers={props?.setSimulatorPlayerBlue}
+                    />
                 </div>
             </div>
         </section>

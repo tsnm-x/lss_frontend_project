@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import Image from "next/image";
 import GraphImg from "../../../../../public/assets/new-images/Profile/card/CardExpand/Graph/Expanded-Card.jpg";
 
 const GameStaticsGraph = (props) => {
+    const frames = props?.frames;
+	const [framePointer, setFramePointer] = useState(15);
+
     const [btns, setBtns] = useState([
         {
             txt: "power",
@@ -21,6 +24,10 @@ const GameStaticsGraph = (props) => {
             dot: false,
         },
     ]);
+
+    useEffect(() => {
+		props.frameChange(15);
+	}, []);
 
     return (
         <section>
@@ -57,6 +64,17 @@ const GameStaticsGraph = (props) => {
                 </div>
                 {/* graph cards  */}
                 <div className=" mt-5 ">
+                    <input
+                        className="text-full-dark w-[600px]"
+                        type="range"
+                        min="0"
+                        max={(frames?.length - 2).toString()}
+                        value={framePointer}
+                        onChange={(e) => {
+                            setFramePointer(e.target.value);
+                            props.frameChange(e.target.value);
+                        }}
+                    />
                     {/* left graph  */}
                     <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
                         <h1 className=" sf-bold-40 capitalize ">coming soon</h1>

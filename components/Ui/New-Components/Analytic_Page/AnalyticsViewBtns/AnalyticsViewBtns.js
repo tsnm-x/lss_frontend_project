@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Classess from "./AnalyticsViewBtns.module.css";
 
-const AnalyticsViewBtns = () => {
-    const router =  useRouter();
+const AnalyticsViewBtns = (props) => {
     const [btns, setBtns] = useState([
         {
             txt: "overview",
@@ -72,7 +70,7 @@ const AnalyticsViewBtns = () => {
                     {/* leave btn  */}
                     <Link href={{
                         pathname: "/summoner/[region]/[summonerName]",
-                        query: {region: router?.query?.region, summonerName: router?.query?.summonerName}
+                        query: {region: props?.region, summonerName: props?.summonerName}
                     }}><button
                         className={`${Classess.btn} bg-accent-color text-white `}
                     >

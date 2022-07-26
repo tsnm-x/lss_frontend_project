@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ProfileOne from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/first.png";
 import ProfileTwo from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/sec.png";
@@ -45,44 +45,87 @@ const Profile = (props) => {
 };
 
 const LeftBatchBar = (props) => {
+
+    const [centralImg, setCenteralImg] = useState("")
+
+    const imgHandler = (type) => {
+        switch(type){
+            case "AIR_DRAGON":
+                return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201"
+            case "WATER_DRAGON":
+                return "https://static.wikia.nocookie.net/leagueoflegends/images/c/c6/Ocean_Dragon_buff.png/revision/latest?cb=20191117184400"
+            case "FIRE_DRAGON":
+                return "https://static.wikia.nocookie.net/leagueoflegends/images/3/3f/Infernal_Dragon_buff.png/revision/latest?cb=20191117184224"
+            case "EARTH_DRAGON":
+                return "https://static.wikia.nocookie.net/leagueoflegends/images/9/9e/Mountain_Dragon_buff.png/revision/latest?cb=20191117184251"
+            case "HEXTECH_DRAGON":
+                return "https://static.wikia.nocookie.net/leagueoflegends/images/1/1e/Hextech_Dragon_buff.png/revision/latest?cb=20211231073400"
+            default:
+                return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201"
+        }
+    }
+
+    const addEmptyBatches = (length) =>{
+        let arr = []
+        for(let i = 0; i < length; i++){
+            arr.push(i)
+        }
+        return arr;
+    }
+
+    useEffect(()=>{
+        console.log(props.dragonData);
+        if(props.dragonData?.length){
+            if(props.dragonData[1]?.length){
+                setCenteralImg(imgHandler(props.dragonData[1][props.dragonData[1].length-1].type))
+            }
+        }
+    }, [props.dragonData])
+
     return (
         <div className=" w-[612px] h-[45px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
             {/* center batch  */}
             <div className=" flex justify-center items-end row-start-1 col-start-1 ">
                 <div className=" relative w-[50px] h-[50px] ">
-                    <Image src={CenterBatch} alt="center batch" layout="fill" />
+                    {centralImg && <Image src={centralImg} alt="center batch" layout="fill" />}
                 </div>
             </div>
             {/* left right batch  */}
             <div className=" row-start-1 col-start-1 grid grid-cols-2 bg-transparent rounded-t-[10px] ">
-                {props.batches.map((batch, index) => {
+                {props.dragonData.map((batch, index) => {
                     return (
                         <div
                             key={index}
                             className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] ${
-                                batch.active ? "border-[#72B2E3] border" : ""
+                                index === 1 ? "border-[#72B2E3] border" : ""
                             } `}
                         >
-                            {batch.batch.map((batch, index) => {
+                            {batch?.map((event, index) => {
                                 return (
                                     <div
                                         key={index}
                                         className={`w-[30px] h-[30px] relative rounded-full ${
-                                            !batch.img
+                                            !event.type
                                                 ? "bg-mix-white-black"
                                                 : "  bg-transparent "
                                         }`}
                                     >
-                                        {batch.img ? (
+                                        {imgHandler(event.type) ? (
                                             <Image
-                                                src={batch.img}
-                                                alt={batch.alt}
+                                                src={imgHandler(event.type)}
+                                                alt={event.type}
                                                 layout="fill"
                                             />
                                         ) : null}
                                     </div>
                                 );
                             })}
+                            {batch?.length < 4 ? addEmptyBatches(4 - batch?.length)?.map((elem) => {
+                                return (
+                                    <div key={elem} className={`w-[30px] h-[30px] relative rounded-full bg-mix-white-black`}></div>
+                                )
+                            })
+                            : null}
                         </div>
                     );
                 })}
@@ -95,7 +138,21 @@ const RightBtns = (props) => {
     return <div></div>;
 };
 
-const ProfileCompareBar = () => {
+const ProfileCompareBar = (props) => {
+
+    const [dragonData, setDragonData] = useState([])
+
+    useEffect(()=>{
+        if(props.matchTimelineData?.frames){
+            setDragonData(
+                [
+                    props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents, 
+                    props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents
+                ]
+            )
+        }
+    }, [props.matchTimelineData, props.selectedFrame])
+
     const profileData = [
         {
             img: ProfileOne,
@@ -110,28 +167,6 @@ const ProfileCompareBar = () => {
             color: "#24C2AD",
         },
     ];
-
-    // batch img list
-    const batchList = [
-        {
-            batch: [
-                { img: Batch1, alt: "green batch" },
-                { img: Batch2, alt: "half green batch" },
-                { img: undefined, alt: "blank img" },
-                { img: undefined, alt: "blank img" },
-            ],
-            active: false,
-        },
-        {
-            batch: [
-                { img: Batch3, alt: "green batch" },
-                { img: Batch2, alt: "half green batch" },
-                { img: Batch2, alt: "half green batch" },
-                { img: Batch2, alt: "half green batch" },
-            ],
-            active: true,
-        },
-    ];
     return (
         <section>
             <div className="container bg-[#110a1b] mt-4 ">
@@ -144,7 +179,7 @@ const ProfileCompareBar = () => {
                     </div>
                     {/* center batch bar  */}
                     <div className=" row-start-1 col-start-1 flex justify-center">
-                        <LeftBatchBar batches={batchList} />
+                        <LeftBatchBar dragonData={dragonData} {...props} />
                     </div>
                     {/* right side bans  */}
                     <div className=" flex items-center justify-end  row-start-1 col-start-1  ">
