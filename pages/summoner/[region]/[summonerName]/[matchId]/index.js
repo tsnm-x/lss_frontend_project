@@ -125,9 +125,7 @@ const MatchSimulator = ({query}) => {
                     body: { region, matchId:fullMatchId },
                 },
                 (res) => {
-                    console.log(res);
                     if (res?.status === 200) {
-                        console.log(res.data.matchTimeline)
                         let matchTimeline = addDragonTimers(res.data.matchTimeline);
                         matchTimeline = addBaronTimers(matchTimeline);
                         matchTimeline = addHaroldTimers(matchTimeline);

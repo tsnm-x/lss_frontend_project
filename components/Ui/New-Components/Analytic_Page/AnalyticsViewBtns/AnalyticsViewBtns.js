@@ -4,6 +4,7 @@ import Classess from "./AnalyticsViewBtns.module.css";
 import Router, { useRouter } from "next/router";
 
 const AnalyticsViewBtns = (props) => {
+
     const [btns, setBtns] = useState([
         {
             txt: "overview",
@@ -31,6 +32,13 @@ const AnalyticsViewBtns = (props) => {
             return modifyedState;
         });
     };
+
+    const goHome  = () => {
+        Router.push({
+            pathname: "/summoner/[region]/[summonerName]",
+            query: {region: props?.region, summonerName: props?.summonerName}
+        })
+    }
 
     return (
         <section>
@@ -69,10 +77,10 @@ const AnalyticsViewBtns = (props) => {
                         </div>
                     </div>
                     {/* leave btn  */}
-                    <Link href={
+                    {/* <Link href={
                         {
                             pathname: "/summoner/[region]/[summonerName]",
-                            query: {region: props?.region, summonerName: props?.summonerName}
+                            query: {region: router.query?.region, summonerName: router.query?.summonerName}
                         }
                     }
                     >
@@ -81,7 +89,14 @@ const AnalyticsViewBtns = (props) => {
                         >
                             Leave
                         </button>
-                    </Link> 
+                    </Link>  */}
+
+                        <button
+                            className={`${Classess.btn} bg-accent-color text-white `}
+                            onClick={() => goHome()}
+                        >
+                            Leave
+                        </button>
                 </div>
             </div>
         </section>

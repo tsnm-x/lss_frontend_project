@@ -74,13 +74,14 @@ const LeftBatchBar = (props) => {
     }
 
     useEffect(()=>{
-        console.log(props.dragonData);
-        if(props.dragonData?.length){
-            if(props.dragonData[1]?.length){
-                setCenteralImg(imgHandler(props.dragonData[1][props.dragonData[1].length-1].type))
+        if(props.dragonDataBlue?.length && props.dragonDataRed?.length ){
+            if(props.dragonDataBlue?.length >= props.dragonDataRed?.length){
+                setCenteralImg(imgHandler(props.dragonDataBlue[props.dragonDataBlue.length-1].type))
+            } else {
+                setCenteralImg(imgHandler(props.dragonDataRed[props.dragonDataRed.length-1].type))
             }
         }
-    }, [props.dragonData])
+    }, [props.dragonDataBlue, props.dragonDataRed])
 
     return (
         <div className=" w-[612px] h-[45px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
@@ -92,43 +93,67 @@ const LeftBatchBar = (props) => {
             </div>
             {/* left right batch  */}
             <div className=" row-start-1 col-start-1 grid grid-cols-2 bg-transparent rounded-t-[10px] ">
-                {props.dragonData.map((batch, index) => {
-                    return (
-                        <div
-                            key={index}
-                            className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] ${
-                                index === 1 ? "border-[#72B2E3] border" : ""
-                            } `}
-                        >
-                            {batch?.map((event, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`w-[30px] h-[30px] relative rounded-full ${
-                                            !event.type
-                                                ? "bg-mix-white-black"
-                                                : "  bg-transparent "
-                                        }`}
-                                    >
-                                        {imgHandler(event.type) ? (
-                                            <Image
-                                                src={imgHandler(event.type)}
-                                                alt={event.type}
-                                                layout="fill"
-                                            />
-                                        ) : null}
-                                    </div>
-                                );
-                            })}
-                            {batch?.length < 4 ? addEmptyBatches(4 - batch?.length)?.map((elem) => {
-                                return (
-                                    <div key={elem} className={`w-[30px] h-[30px] relative rounded-full bg-mix-white-black`}></div>
-                                )
-                            })
-                            : null}
-                        </div>
-                    );
-                })}
+                <div
+                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] `}
+                >
+                    {props.dragonDataRed?.length < 4 ? addEmptyBatches(4 - props.dragonDataRed?.length)?.map((elem) => {
+                        return (
+                            <div key={elem} className={`w-[30px] h-[30px] relative rounded-full bg-mix-white-black`}></div>
+                        )
+                    })
+                    : null}
+                    {props.dragonDataRed?.slice().reverse().map((event, index) => {
+                        return (
+                            <div
+                                key={index}
+                                className={`w-[30px] h-[30px] relative rounded-full ${
+                                    !event.type
+                                        ? "bg-mix-white-black"
+                                        : "  bg-transparent "
+                                }`}
+                            >
+                                {imgHandler(event.type) ? (
+                                    <Image
+                                        src={imgHandler(event.type)}
+                                        alt={event.type}
+                                        layout="fill"
+                                    />
+                                ) : null}
+                            </div>
+                        );
+                    })}
+                    
+                </div>
+                <div
+                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] border-[#72B2E3] border `}
+                >
+                    {props.dragonDataBlue?.map((event, index) => {
+                        return (
+                            <div
+                                key={index}
+                                className={`w-[30px] h-[30px] relative rounded-full ${
+                                    !event.type
+                                        ? "bg-mix-white-black"
+                                        : "  bg-transparent "
+                                }`}
+                            >
+                                {imgHandler(event.type) ? (
+                                    <Image
+                                        src={imgHandler(event.type)}
+                                        alt={event.type}
+                                        layout="fill"
+                                    />
+                                ) : null}
+                            </div>
+                        );
+                    })}
+                    {props.dragonDataBlue?.length < 4 ? addEmptyBatches(4 - props.dragonDataBlue?.length)?.map((elem) => {
+                        return (
+                            <div key={elem} className={`w-[30px] h-[30px] relative rounded-full bg-mix-white-black`}></div>
+                        )
+                    })
+                    : null}
+                </div>
             </div>
         </div>
     );
@@ -140,16 +165,13 @@ const RightBtns = (props) => {
 
 const ProfileCompareBar = (props) => {
 
-    const [dragonData, setDragonData] = useState([])
+    const [dragonDataRed, setDragonDataRed] = useState([]);
+    const [dragonDataBlue, setDragonDataBlue] = useState([]);
 
     useEffect(()=>{
         if(props.matchTimelineData?.frames){
-            setDragonData(
-                [
-                    props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents, 
-                    props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents
-                ]
-            )
+            setDragonDataRed(props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents);
+            setDragonDataBlue(props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents)
         }
     }, [props.matchTimelineData, props.selectedFrame])
 
@@ -179,7 +201,7 @@ const ProfileCompareBar = (props) => {
                     </div>
                     {/* center batch bar  */}
                     <div className=" row-start-1 col-start-1 flex justify-center">
-                        <LeftBatchBar dragonData={dragonData} {...props} />
+                        <LeftBatchBar dragonDataRed={dragonDataRed} dragonDataBlue={dragonDataBlue} {...props} />
                     </div>
                     {/* right side bans  */}
                     <div className=" flex items-center justify-end  row-start-1 col-start-1  ">
