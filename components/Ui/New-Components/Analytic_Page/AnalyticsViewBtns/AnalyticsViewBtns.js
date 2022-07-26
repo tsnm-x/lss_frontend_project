@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Classess from "./AnalyticsViewBtns.module.css";
+import Router, { useRouter } from "next/router";
 
 const AnalyticsViewBtns = (props) => {
     const [btns, setBtns] = useState([
@@ -68,14 +69,19 @@ const AnalyticsViewBtns = (props) => {
                         </div>
                     </div>
                     {/* leave btn  */}
-                    <Link href={{
-                        pathname: "/summoner/[region]/[summonerName]",
-                        query: {region: props?.region, summonerName: props?.summonerName}
-                    }}><button
-                        className={`${Classess.btn} bg-accent-color text-white `}
+                    <Link href={
+                        {
+                            pathname: "/summoner/[region]/[summonerName]",
+                            query: {region: Router.query?.region, summonerName: Router.query?.summonerName}
+                        }
+                    }
                     >
-                        Leave
-                    </button></Link> 
+                        <button
+                            className={`${Classess.btn} bg-accent-color text-white `}
+                        >
+                            Leave
+                        </button>
+                    </Link> 
                 </div>
             </div>
         </section>

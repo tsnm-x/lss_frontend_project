@@ -63,6 +63,7 @@ const Summoner = () => {
 	}, [ranks]);
 
 	useEffect(() => {
+		console.log(router)
 		const { region, summonerName } = router.query;
 		window.localStorage.setItem("region", region);
 

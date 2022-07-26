@@ -6,14 +6,13 @@ import ProfileCompareBar from "../../../../../components/Ui/New-Components/Profi
 import LosAndWinRow from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/LosAndWinRow/LosAndWinRow";
 import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Page/DataRowGrid/DataRowGrid";
 import GameStaticsGraph from "../../../../../components/Ui/New-Components/Analytic_Page/GameStaticsGraph/GameStaticsGraph";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import useHttp from "../../../../../hook/useHttp";
 import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
 
 
 const MatchSimulator = () => {
-    const router = useRouter();
     const [fullMatchId, setFullMatchId] = useState("");
     const [selectedPlayer, setSelectedPlayer] = useState({});
     const [matchTimelineData, setMatchTimelineData] = useState({});
@@ -35,6 +34,23 @@ const MatchSimulator = () => {
 	for (let i = 0; i < players?.length; i++) {
 		players[i].standingId = i + 1;
 	}
+
+	useEffect(()=>{
+		console.log(Router)
+		const {matchId, region, summonerName} = Router.query
+		
+		const regex = /^[0-9]+$/
+		if(matchId?.match(regex)){
+			setFullMatchId(`${region}_${matchId}`);
+		} 
+		else {
+			Router.push({
+				pathname: "/summoner/[region]/[summonerName]",
+				query: {region, summonerName}
+			})
+		}
+		
+    }, [Router])
 
 	useEffect(() => {
 		if(players){
@@ -68,24 +84,10 @@ const MatchSimulator = () => {
             setSimulatorPlayerRed(leftTeam[index]);
         }
 	}, [index]);
-    
-
-    useEffect(()=>{
-        const {matchId, region, summonerName} = router?.query
-        const regex = /^[0-9]+$/
-        if(!matchId?.match(regex)){
-            router?.push({
-                pathname: "/summoner/[region]/[summonerName]",
-                query: {region, summonerName}
-            })
-        } else {
-            setFullMatchId(`${region}_${matchId}`);
-        }
-    }, [router])
 
     useEffect(()=>{
         if(fullMatchId){
-            const {region, summonerName} = router?.query
+            const {region, summonerName} = Router.query
             if (matches[0] && !match) {
                 setMatch(matches?.filter((match)=> match.matchId === fullMatchId)[0])
                    
@@ -125,7 +127,7 @@ const MatchSimulator = () => {
     useEffect(()=>{
 
         if(fullMatchId){
-            const {region} = router?.query
+            const {region} = Router.query
             sendRequest(
                 {
                     url: "/matchTimeline",
@@ -283,10 +285,7 @@ const MatchSimulator = () => {
                 match={match}
             />
             <div className=" bg-[#140a22] mb-[100px] ">
-                <AnalyticsViewBtns 
-                    region={router?.query?.region}
-                    summonerName={router?.query?.summonerName}
-                />
+                <AnalyticsViewBtns />
                 <ProfileCompareBar 
                     frames={matchTimelineData?.frames}
                     matchTimelineData={matchTimelineData}
