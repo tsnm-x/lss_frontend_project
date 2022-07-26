@@ -75,30 +75,30 @@ const PlayerRow = (props) => {
 		return minutes;
 	}
 
-	useEffect(() => {
-		props.player.summonerId === props.selectedPlayer.summonerId ||
-		props.player.summonerId === props.simulatorPlayers.summonerId
-			? setActiveStyle(true)
-			: setActiveStyle(false);
-	});
+	// useEffect(() => {
+	// 	props.player.summonerId === props.selectedPlayer.summonerId ||
+	// 	props.player.summonerId === props.simulatorPlayers.summonerId
+	// 		? setActiveStyle(true)
+	// 		: setActiveStyle(false);
+	// });
 
 
-	useEffect(() => {
-		if (active) {
-			if (props.showRunes) {
-				props.setSelectedPlayer(props.player);
-			} else {
-				props.setSelectedPlayer({});
-				props.setSimulatorPlayers(props.player);
-			}
-		}
-	}, [active]);
+	// useEffect(() => {
+	// 	if (active) {
+	// 		if (props.showRunes) {
+	// 			props.setSelectedPlayer(props.player);
+	// 		} else {
+	// 			props.setSelectedPlayer({});
+	// 			props.setSimulatorPlayers(props.player);
+	// 		}
+	// 	}
+	// }, [active]);
 
-	useEffect(() => {
-		props.selectedPlayer.summonerId === props.player.summonerId
-			? setActive(true)
-			: setActive(false);
-	}, [props.selectedPlayer]);
+	// useEffect(() => {
+	// 	props.selectedPlayer.summonerId === props.player.summonerId
+	// 		? setActive(true)
+	// 		: setActive(false);
+	// }, [props.selectedPlayer]);
 
 
 	const selectStyleIcons = (id) => {

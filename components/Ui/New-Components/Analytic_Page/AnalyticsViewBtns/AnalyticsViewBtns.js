@@ -72,7 +72,7 @@ const AnalyticsViewBtns = (props) => {
                     <Link href={
                         {
                             pathname: "/summoner/[region]/[summonerName]",
-                            query: {region: Router.query?.region, summonerName: Router.query?.summonerName}
+                            query: {region: props?.region, summonerName: props?.summonerName}
                         }
                     }
                     >

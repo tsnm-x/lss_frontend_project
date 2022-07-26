@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
 
 
-const MatchSimulator = () => {
+const MatchSimulator = ({query}) => {
+    const {region, summonerName, matchId} = query
     const [fullMatchId, setFullMatchId] = useState("");
     const [selectedPlayer, setSelectedPlayer] = useState({});
     const [matchTimelineData, setMatchTimelineData] = useState({});
@@ -34,23 +35,6 @@ const MatchSimulator = () => {
 	for (let i = 0; i < players?.length; i++) {
 		players[i].standingId = i + 1;
 	}
-
-	useEffect(()=>{
-		console.log(Router)
-		const {matchId, region, summonerName} = Router.query
-		
-		const regex = /^[0-9]+$/
-		if(matchId?.match(regex)){
-			setFullMatchId(`${region}_${matchId}`);
-		} 
-		else {
-			Router.push({
-				pathname: "/summoner/[region]/[summonerName]",
-				query: {region, summonerName}
-			})
-		}
-		
-    }, [Router])
 
 	useEffect(() => {
 		if(players){
@@ -84,10 +68,17 @@ const MatchSimulator = () => {
             setSimulatorPlayerRed(leftTeam[index]);
         }
 	}, [index]);
+    
+
+    useEffect(()=>{
+        const regex = /^[0-9]+$/
+        if(matchId?.match(regex)) {
+            setFullMatchId(`${region}_${matchId}`);
+        }
+    }, [])
 
     useEffect(()=>{
         if(fullMatchId){
-            const {region, summonerName} = Router.query
             if (matches[0] && !match) {
                 setMatch(matches?.filter((match)=> match.matchId === fullMatchId)[0])
                    
@@ -127,7 +118,6 @@ const MatchSimulator = () => {
     useEffect(()=>{
 
         if(fullMatchId){
-            const {region} = Router.query
             sendRequest(
                 {
                     url: "/matchTimeline",
@@ -285,7 +275,10 @@ const MatchSimulator = () => {
                 match={match}
             />
             <div className=" bg-[#140a22] mb-[100px] ">
-                <AnalyticsViewBtns />
+                <AnalyticsViewBtns 
+                    region={region}
+                    summonerName={summonerName}
+                />
                 <ProfileCompareBar 
                     frames={matchTimelineData?.frames}
                     matchTimelineData={matchTimelineData}
@@ -319,5 +312,9 @@ const MatchSimulator = () => {
         </>
     );
 };
+
+MatchSimulator.getInitialProps = ({query}) => {
+	return {query}
+}
 
 export default MatchSimulator;
