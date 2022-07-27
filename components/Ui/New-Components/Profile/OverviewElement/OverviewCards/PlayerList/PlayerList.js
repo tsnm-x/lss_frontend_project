@@ -1,24 +1,10 @@
 import React, { useContext } from "react";
 import { BiExpand } from "react-icons/bi";
 import Image from "next/image";
-import CardContext from "../../../../../../../Context/CardContext";
-import FullCardContext from "../../../../../../../Context/CardContext";
-// player list
-import Atrox from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Aatrox.png";
-import Akali from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Akali.png";
-import Amumu from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Amumu.png";
-import Hecarim from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Hecarim.png";
-import Irelia from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Irelia.png";
-import Jayce from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Jayce.png";
-import Jhin from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Jhin.png";
-import Rell from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Rell.png";
-import Seraphine from "../../../../../../../public/assets/new-images/Profile/card/playerlist/Seraphine.png";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
 const PlayerList = (props) => {
-    const CardExpand = useContext(CardContext);
-    const FullCardExpand = useContext(FullCardContext);
     const router = useRouter();
 
     const orderedPlayersList = [];
@@ -40,8 +26,7 @@ const PlayerList = (props) => {
     return (
         <div
             className={`bg-card-&-content-box grid grid-cols-[auto_30px] 
-            smDesktop:grid-cols-[auto_33px] 
-            ${props.expand ? "  " : ""} `}
+            smDesktop:grid-cols-[auto_33px] `}
         >
             {/* player lists  */}
             <div className="h-full relative py-[10px] pl-[18px] pr-[60px]  ">
@@ -59,14 +44,12 @@ const PlayerList = (props) => {
                     {orderedPlayersList.map((player, index) => {
                         return (
                             <div
-                                className={`flex items-center justify-start mb-1 ${
-                                    props.expand ? "" : ""
-                                }`}
+                                className={`flex items-center justify-start mb-1`}
                                 key={index}
                             >
                                 <div
                                     className={`border border-[#707070] relative w-[22px] h-[22px] rounded-full mr-[8px] 
-                                    ${props.expand ? " " : ""}`}
+                                    `}
                                 >
                                     <Image
                                         src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${player?.championName}.png`}
@@ -87,7 +70,7 @@ const PlayerList = (props) => {
                                                     ? "text-accent-color-2"
                                                     : "text-accent-color"
                                                 : "text-grayed-text"
-                                        } ${props.expand ? " " : ""}`}
+                                        } `}
                                     >
                                         {player?.summonerName?.slice(0, 7)}
                                         {player?.summonerName?.length >= 7 && "..."}
@@ -100,14 +83,11 @@ const PlayerList = (props) => {
             </div>
             {/* right side expand btn  */}
             <div
-                onClick={() => {
-                    // CardExpand.expandControl(props.index, props)
-                    FullCardExpand.expandTrue();
-                }}
+                onClick={() => props.ExpandFullHandler()}
                 className={`h-full w-[30px] flex items-center justify-center
-              rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[33px]  ${
-                  mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
-              }`}
+                rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[33px]  ${
+                mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
+            }`}
             >
                 <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
             </div>

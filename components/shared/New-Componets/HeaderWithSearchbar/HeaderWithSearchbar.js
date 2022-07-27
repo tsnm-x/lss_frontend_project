@@ -3,6 +3,7 @@ import ProfileSearchBox from "../../../Ui/New-Components/universal/ProfileSearch
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 import SkirmishSimulatorAppBtn from "../../../Ui/New-Components/universal/Btn/SkirmishSimulatorAppBtn/SkirmishSimulatorAppBtn";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 
 const HeaderWithSearchbar = (props) => {
@@ -13,7 +14,7 @@ const HeaderWithSearchbar = (props) => {
                 className={`container pl-0 flex relative h-[22px] smTablet:h-[45px]`}
             >
                 {/* logo  */}
-                <Logo className=" hidden smTablet:block smTablet:text-[32px] smTablet:leading-[37px] smTablet:order-1 cursor-pointer"/>
+                <Link href={"/"}><Logo className=" hidden smTablet:block smTablet:text-[32px] smTablet:leading-[37px] smTablet:order-1 cursor-pointer"/></Link>
                 {/* resp btn  */}
                 <div
                     className=" absolute left-0 inline-block smTablet:static smTablet:order-3 smTablet:flex 

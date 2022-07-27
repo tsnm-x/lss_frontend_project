@@ -228,6 +228,21 @@ const Precision = (props) => {
 				return {
                     firstSlot: [
                         {
+                            id: 8214,
+                            image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/SummonAery/SummonAery.png"
+                        },
+                        {
+                            id: 8229,
+                            image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png"
+                        },
+                        {
+                            id: 8230,
+                            image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png"
+                        }
+
+                    ],
+                    secondSlot: [
+                        {
                             id: 8224,
                             image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png",
                         },
@@ -240,7 +255,7 @@ const Precision = (props) => {
                             image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png",
                         }
                     ],
-                    secondSlot: [
+                    thirdSlot: [
                         {
                             id: 8210,
                             image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png",
@@ -254,7 +269,7 @@ const Precision = (props) => {
                             image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png",
                         }
                     ],
-                    thirdSlot: [
+                    fouthSlot: [
                         {
                             id: 8237,
                             image: "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Scorch/Scorch.png",

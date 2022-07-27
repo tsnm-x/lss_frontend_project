@@ -13,12 +13,14 @@ import useHttp from "../../../../../../../hook/useHttp";
 import GbatchImg from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/g-batch.png";
 import RoundBatch1 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-1.png";
 import RoundBatch2 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-2.png";
+import { useRouter } from "next/router";
 
 const PlayerRow = (props) => {
 	const [active, setActive] = useState(false);
 	const [rank, setRank] = useState([]);
 	const { sendRequest } = useHttp();
 	const [activeStyle, setActiveStyle] = useState(false);
+	const router = useRouter();
 
 	const matchTimelineData = props.matchTimelineData;
 	const frames = matchTimelineData?.frames;
@@ -60,52 +62,12 @@ const PlayerRow = (props) => {
 		return 0;
 	};
 
-	const getMaxDamageDealt = () => {
-		let maxDamageDealt = props.match?.players[0]?.totalDamageDealt;
-
-		props.match?.players.forEach((player, index) => {
-			if (index !== props.match?.players?.length - 1) {
-				if (
-					maxDamageDealt <= props.match?.players[index + 1]?.totalDamageDealt
-				) {
-					maxDamageDealt = props.match?.players[index + 1]?.totalDamageDealt;
-				}
-			}
-			return;
-		});
-
-		return maxDamageDealt;
-	};
-
 	const correctParticipant = frames
 		? frames[selectedFrame][`participant${props.player.standingId}`]
 		: {};
 
-	const renderedItems = props.showSimulatedGraph
-		? correctParticipant?.items
-		: [
-				props.player?.item0,
-				props.player?.item1,
-				props.player?.item2,
-				props.player?.item3,
-				props.player?.item4,
-				props.player?.item5,
-		  ];
+	const renderedItems = correctParticipant?.items
 
-	const selectGameType = () => {
-		switch (props?.match?.queueId) {
-			case 420:
-				return "RANKED_SOLO_5x5";
-			case 440:
-				return "RANKED_FLEX_SR";
-			default:
-				return "RANKED_SOLO_5x5";
-		}
-	};
-
-	// useEffect(() => {
-	// 	console.log(props.match.players);
-	// }, [props.match]);
 
 	function convertM(value) {
 		const sec = parseInt(value); // convert value to number if it's string
@@ -113,128 +75,191 @@ const PlayerRow = (props) => {
 		return minutes;
 	}
 
-	useEffect(() => {
-		props.player.summonerId === props.selectedPlayer.summonerId ||
-		props.player.summonerId === props.simulatorPlayers.summonerId
-			? setActiveStyle(true)
-			: setActiveStyle(false);
-	});
+	// useEffect(() => {
+	// 	props.player.summonerId === props.selectedPlayer.summonerId ||
+	// 	props.player.summonerId === props.simulatorPlayers.summonerId
+	// 		? setActiveStyle(true)
+	// 		: setActiveStyle(false);
+	// });
 
-	useEffect(() => {
-		sendRequest(
-			{
-				url: "/summonerRanks",
-				method: "POST",
-				body: {
-					region: props?.region,
-					summonerRiotId: props?.player?.summonerId,
-				},
-			},
-			(res) => {
-				if (res) {
-					setRank(res.data.ranks);
-				}
-			}
-		);
-	}, [props.player.summonerName]);
 
-	useEffect(() => {
-		if (active) {
-			if (props.showRunes) {
-				props.setSelectedPlayer(props.player);
-			} else {
-				props.setSelectedPlayer({});
-				props.setSimulatorPlayers(props.player);
-			}
-		}
-	}, [active]);
+	// useEffect(() => {
+	// 	if (active) {
+	// 		if (props.showRunes) {
+	// 			props.setSelectedPlayer(props.player);
+	// 		} else {
+	// 			props.setSelectedPlayer({});
+	// 			props.setSimulatorPlayers(props.player);
+	// 		}
+	// 	}
+	// }, [active]);
 
-	useEffect(() => {
-		props.selectedPlayer.summonerId === props.player.summonerId
-			? setActive(true)
-			: setActive(false);
-	}, [props.selectedPlayer]);
+	// useEffect(() => {
+	// 	props.selectedPlayer.summonerId === props.player.summonerId
+	// 		? setActive(true)
+	// 		: setActive(false);
+	// }, [props.selectedPlayer]);
 
-	const rankQueue = selectGameType();
-	const rankSolo = rank.find((el) => el.queueType === rankQueue);
 
-	const getRankbatch = (rank) => {
-		switch (rank.tier) {
-			case "IRON":
-				return Emblem_Iron;
+	const selectStyleIcons = (id) => {
+        switch(id) {
+            case 8112:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png"
+            case 8124:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Predator/Predator.png"
+            case 8128:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png"
+            case 9923:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png"
+            case 8126:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/CheapShot/CheapShot.png"
+            case 8139:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TasteOfBlood/GreenTerror_TasteOfBlood.png"
+            case 8143:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/SuddenImpact/SuddenImpact.png"
+            case 8136:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/ZombieWard/ZombieWard.png"
+            case 8120:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/GhostPoro/GhostPoro.png"
+            case 8138:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/EyeballCollection/EyeballCollection.png"
+            case 8135:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TreasureHunter/TreasureHunter.png"
+            case 8134:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/IngeniousHunter/IngeniousHunter.png"
+            case 8105:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/RelentlessHunter/RelentlessHunter.png"
+            case 8106:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/UltimateHunter/UltimateHunter.png"
+            case 8351:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png"
+            case 8360:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png"
+            case 8369:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png"
+            case 8306:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png"
+            case 8304:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png"
+            case 8313:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/PerfectTiming/PerfectTiming.png"
+            case 8321:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png"
+            case 8316:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png"
+            case 8345:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png"
+            case 8347:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png"
+            case 8410:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png"
+            case 8352:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png" 
+            case 8005:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png"
 
-			case "BRONZE":
-				return Emblem_Bronze;
+            case 8008:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png"
+            case 8021:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png"
+            case 8010:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Conqueror/Conqueror.png"
+            
+            case 9101:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Overheal.png"
+        
+            case 9111:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Triumph.png"
+        
+            case 8009:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png"
+        
+            case 9104:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png"
+        
+            case 9105:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png"
+        
+            case 9103:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png"
+        
+            case 8014:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png"
+        
+            case 8017:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CutDown/CutDown.png"
+        
+            case 8299:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/LastStand/LastStand.png"
+            case 8437:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png"
+        
+            case 8439:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png"
+        
+            case 8465:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png"
+        
+            case 8446:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Demolish/Demolish.png"
+        
+            case 8463:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png"
+        
+            case 8401:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/MirrorShell/MirrorShell.png"
+        
+            case 8429:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Conditioning/Conditioning.png"
+        
+            case 8444:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png"
+        
+            case 8473:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/BonePlating/BonePlating.png"
+        
+            case 8451:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png"
+        
+            case 8453:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Revitalize/Revitalize.png"
+        
+            case 8242:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Unflinching/Unflinching.png"
+            case 8214:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/SummonAery/SummonAery.png"
+            case 8229:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png"
+            case 8230:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png"
+            case 8224:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png"
+            case 8226:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ManaflowBand/ManaflowBand.png"
+        
+            case 8275:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png"
+        
+            case 8210:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png"
+        
+            case 8234:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Celerity/CelerityTemp.png"
+        
+            case 8233:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png"
+        
+            case 8237:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Scorch/Scorch.png"
+        
+            case 8232:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Waterwalking/Waterwalking.png"
+        
+            case 8236:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/GatheringStorm/GatheringStorm.png"
+        }
+    }
 
-			case "SILVER":
-				return Emblem_Silver;
-
-			case "GOLD":
-				return Emblem_Gold;
-
-			case "PLATINUM":
-				return Emblem_Platinum;
-
-			case "DIAMOND":
-				return Emblem_Diamond;
-
-			case "MASTER":
-				return Emblem_Master;
-
-			case "GRANDMASTER":
-				return Emblem_Grandmaster;
-
-			case "CHALLENGER":
-				return Emblem_Challenger;
-		}
-	};
-
-	const getTierIntials = (rank) => {
-		switch (rank.tier) {
-			case "IRON":
-				return "IR";
-
-			case "BRONZE":
-				return "BR";
-
-			case "SILVER":
-				return "S";
-
-			case "GOLD":
-				return "G";
-
-			case "PLATINUM":
-				return "PL";
-
-			case "DIAMOND":
-				return "D";
-
-			case "MASTER":
-				return "M";
-
-			case "GRANDMASTER":
-				return "GR";
-
-			case "CHALLENGER":
-				return "CH";
-		}
-	};
-
-	const rankConverter = (rank) => {
-		switch (rank) {
-			case "I":
-				return 1;
-
-			case "II":
-				return 2;
-
-			case "III":
-				return 3;
-
-			case "IV":
-				return 4;
-		}
-	};
 
 	const styleSelector = (id) => {
 		switch (id) {
@@ -312,352 +337,155 @@ const PlayerRow = (props) => {
 
 	return (
 		<div
-			className={` flex justify-between w-full items-center cursor-pointer relative mb-[10px] last:mb-0 rounded-[3px] desktop:mb-4 desktop:last:mb-0 ${
-				props.reverse
-					? `px-3 desktop:grid  ${
-							props.showRunes
-								? "desktop:grid-cols-[85px_120px_210px_60px]"
-								: " desktop:grid-cols-[2fr_2fr_2fr_4fr_2fr]"
-					  }`
-					: ` px-3 desktop:grid  ${
-							props.showRunes
-								? "desktop:grid-cols-[60px_210px_120px_85px]"
-								: " desktop:grid-cols-[2fr_4fr_2fr_2fr_2fr]"
-					  }`
-			} ${
-				props.player.summonerId === props.selectedPlayer.summonerId ||
-				props.player.summonerId === props.simulatorPlayers.summonerId
-					? props.reverse
-						? " bg-accent-color-2"
-						: "bg-accent-color "
-					: props.reverse
-					? "bg-[#181631]"
-					: " bg-[#251122]"
+			className={`  grid items-center rounded-[5px]  ${
+				props.reverce
+					? "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] bg-[#191531]  "
+					: "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] bg-[#251122] "
 			}`}
-			onClick={() => setActive(true)}
 		>
+			{/* damage dealt  */}
 			<div
 				className={` ${
-					props.reverse
-						? "order-5 col-start-5 col-end-6 "
-						: "order-1 col-start-1 col-end-2 "
-				}`}
+					props.reverce ? "order-5" : "order-1"
+				}  flex-col jutify-center`}
 			>
-				{props.showSimulatedGraph ? (
-					<h6
-						className={`sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
-												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
-					>
-						{correctParticipant?.totalDamageDoneToChampions}
-					</h6>
-				) : (
-					<h6 className=" sf-bold-12 text-center text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
-						{props.player?.totalDamageDealt}
-					</h6>
-				)}
-				{/* progress bar  */}
-				{props.showSimulatedGraph ? (
-					<div
-						className={`${
-							activeStyle ? " bg-[#251122]" : "bg-accent-color"
-						} h-full`}
-						style={{
-							width: `${
-								(!correctParticipant?.totalDamageDoneToChampions
-									? 50
-									: correctParticipant?.totalDamageDoneToChampions / (getMaxDamageDealtInTimeline() ? getMaxDamageDealtInTimeline() : 1)) *
-								100
-							}%`,
-						}}
-					></div>) : getMaxDamageDealt() &&
-				(<div
-					className={`w-full h-[6.5px] bg-[#706A76] overflow-hidden rounded-full mt-1`}
-				>
-					<div
-						className={`${
-							activeStyle ? " bg-[#251122]" : "bg-accent-color"
-						} h-full`}
-						style={{
-							width: `${
-								(!props.player?.totalDamageDealt
-									? 50
-									: props.player?.totalDamageDealt / (getMaxDamageDealt() ? getMaxDamageDealt() : 1)) *
-								100
-							}%`,
-						}}
-					></div>
-				</div>)
-				}
+				<h1 className=" sf-bold-14 text-white text-center  ">
+					{correctParticipant.totalDamageDoneToChampions}
+				</h1>
+				<div
+                    className={`w-4/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] justify-self-center mx-auto`}
+                    
+                >
+                    <div
+                        className={`h-full rounded-full ${
+                            props.reverce
+                                ? " bg-accent-color-2"
+                                : " bg-accent-color"
+                        }`}
+                        style={{
+                            width: `${getMaxDamageDealtInTimeline() ?
+                                ((correctParticipant?.totalDamageDoneToChampions / (getMaxDamageDealtInTimeline())) *
+                                100)
+                                : ((correctParticipant?.totalDamageDoneToChampions / (1)) *
+                                100)
+                            }%`,
+                        }}
+                    ></div>
+                </div>
 			</div>
 			{/* batches  */}
 			<div
-				className={`flex justify-center  ${
-					props.reverse
-						? "order-4 col-start-4 col-end-5"
-						: "order-2 col-start-2 col-end-3"
-				} `}
+				className={` flex gap-x-[3px] ${
+					props.reverce ? "order-4 justify-end " : "order-2"
+				}`}
 			>
-				{renderedItems?.map((batch, index) => {
+				{[0, 1, 2, 3, 4, 5].map((index) => {
 					return (
 						<div
 							key={index}
-							className=" w-[22px] h-[22px] relative rounded-5px mr-1 last:mr-0 smDesktop:w-[25px] smDesktop:h-[25px] desktop:w-[30px] desktop:h-[30px] "
+							className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
 						>
-							{batch !== 0 && (
+							{renderedItems ? (
 								<Image
-									src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/item/${batch}.png`}
+									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${renderedItems[index]}.png`}
 									alt="batch image"
 									layout="fill"
-									className=" rounded-5px"
 								/>
-							)}
+							) : null}
 						</div>
 					);
 				})}
 			</div>
-			{/* g batch  */}
-			{/* {!props.showRunes && !props.showSimulatedGraph && rankSolo ? (
-                <div
-                    className={`flex items-center ${
-                        props.reverse
-                            ? "order-3 col-start-3 col-end-4"
-                            : "order-3 col-start-3 col-end-4"
-                    }`}
-                >
-                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
-                        {getTierIntials(rankSolo)}
-                        {rankConverter(rankSolo?.rank)}
-                    </h6>
-                    <div className=" relative w-10 h-10 desktop:w-[52px] desktop:h-[52px] ">
-                        <Image
-                            src={getRankbatch(rankSolo)}
-                            alt="season batch"
-                            layout="fill"
-                        />
-                    </div>
-                </div>
-            ) : props.showSimulatedGraph ? (
-                <div
-                    className={`flex items-center ${
-                        props.reverse
-                            ? "order-3 col-start-3 col-end-4"
-                            : "order-3 col-start-3 col-end-4"
-                    }`}
-                >
-                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text ">
-                        Level {"  "}
-                        {frames
-                            ? correctParticipant?.level
-                            : props?.player?.champLevel}
-                    </h6>
-                </div>
-            ) : null} */}
-			{/* {!props.showRunes ? (
-                <div
-                    className={`flex items-center ${
-                        props.reverse ? "order-3" : "order-3"
-                    }`}
-                >
-                    <h6 className=" mr-[10px] sf-bold-15 text-[14px] leading-4 text-light-text desktop:text-lg ">
-                        G2
-                    </h6>
-                    <div className=" relative w-10 h-10 desktop:w-[52px] desktop:h-[52px] ">
-                        <Image
-                            src={GbatchImg}
-                            alt="season batch"
-                            layout="fill"
-                        />
-                    </div>
-                </div>
-            ) : null} */}
-			{/* name  */}
-			{/* <h5
-                className={`font-sf-pro-text text-[13px] leading-[15px] text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] desktop:text-lg ${
-                    props.reverse
-                        ? "order-2 col-start-2 col-end-3 "
-                        : "order-4 col-start-4 col-end-5"
-                }`}
-                title={props?.player?.summonerName}
-            > */}
-			{/* {props?.player?.summonerName} */}
-			{/* {props?.player?.summonerName?.slice(0, 7)}
-                {props?.player?.summonerName?.length >= 7 && "..."}
-            </h5> */}
+			{/* kda  */}
 			<div
-				className={` flex flex-col ${
-					props.reverse
-						? "order-2 col-start-3 col-end-4 items-end "
-						: "order-4 col-start-3 col-end-4"
+				className={` ${
+					props.reverce ? "order-3 text-right " : "order-3"
 				}`}
 			>
-				{props.showSimulatedGraph ? (
-					<h6
-						className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
-												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
-					>
-						{correctParticipant?.stats?.kill}/{correctParticipant?.stats?.death}
-						/{correctParticipant?.stats?.assist}
-					</h6>
-				) : (
-					<h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
-						{props?.player?.kills}/{props?.player?.deaths}/
-						{props?.player?.assists}
-					</h6>
-				)}
-
-				{props.showSimulatedGraph ? (
-					<p
-						className={`sf-bold-12 uppercase ${
-							activeStyle ? "text-[#251122]" : "text-grayed-text"
-						} font-bold`}
-					>
-						kda:
-						{correctParticipant?.stats?.death ? (
-							(correctParticipant?.stats?.assist +
-								correctParticipant?.stats?.kill) /
+				<h1 className=" sf-bold-14 text-white   ">
+				{correctParticipant?.stats?.kill}/{correctParticipant?.stats?.death}/
+						{correctParticipant?.stats?.assist}
+				</h1>
+				<h1 className=" sf-bold-10 text-grayed-text   ">
+					KDA {correctParticipant?.stats?.death ? (
+							(correctParticipant?.stats?.assist + correctParticipant?.stats?.kill) /
 							(correctParticipant?.stats?.death)
 						).toFixed(2) : "Perfect"}
-					</p>
-				) : (
-					<p
-						className={`sf-bold-12 uppercase ${
-							activeStyle ? "text-[#251122]" : "text-grayed-text"
-						} font-bold`}
-					>
-						kda:
-						{props.player?.deaths ? (
-							(props.player?.assists + props?.player?.kills) /
-							(props.player?.deaths)
-						).toFixed(2) : "Perfect"}
-					</p>
-				)}
+				</h1>
 			</div>
-			{/* cs min  */}
+			{/* cs  */}
 			<div
-				className={` flex flex-col row-start-1 ${
-					props.reverse
-						? "order-2 col-start-2 col-end-3 items-end "
-						: "order-4 col-start-4 col-end-5"
+				className={` ${
+					props.reverce ? "order-2 text-right " : "order-4"
 				}`}
 			>
-				{props.showSimulatedGraph ? (
-					<h6
-						className={`sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] 
-												 ${props.showRunes ? "" : "desktop:text-[17px] desktop:leading-[20px]"} `}
-					>
-						{correctParticipant?.stats?.creepScore} cs
-					</h6>
-				) : (
-					<h6 className=" sf-bold-12 text-light-text font-bold smDesktop:text-[14px] smDesktop:leading-[16px] smDesktop:mb-[2px] desktop:text-[17px] desktop:leading-[20px] ">
-						{props.player?.totalMinionsKilled} cs
-					</h6>
-				)}
-
-				{props.showSimulatedGraph ? (
-					<p
-						className={`sf-bold-12 uppercase ${
-							activeStyle ? "text-[#251122]" : "text-grayed-text"
-						} font-bold`}
-					>
-						{(
-							correctParticipant?.stats?.creepScore /
-							(frameDetails?.timestamp / 60000)
-						)?.toFixed(1)}{" "}
-						cs/min
-					</p>
-				) : (
-					<p
-						className={`sf-bold-12 uppercase ${
-							activeStyle ? "text-[#251122]" : "text-grayed-text"
-						} font-bold`}
-					>
-						{(
-							props.player?.totalMinionsKilled / convertM(props.match?.duration)
-						)?.toFixed(1)}{" "}
-						cs/min
-					</p>
-				)}
+				<h1 className=" sf-bold-14 text-white   ">
+					{correctParticipant?.stats?.creepScore} cs
+				</h1>
+				<h1 className=" sf-bold-10 text-grayed-text   ">
+					{(correctParticipant?.stats?.creepScore /props.selectedFrame
+                )?.toFixed(1)} cs/min
+				</h1>
 			</div>
-			{/* profile image  */}
-			<div
-				className={` flex justify-between py-[2px]  ${
-					props.reverse
-						? "order-1 justify-end col-start-1 col-end-2 flex-row-reverse "
-						: "order-5 col-start-5 col-end-6"
-				}`}
-			>
-				<div
-					className={`relative w-[40px] h-[40px] smDesktop:w-[43px] smDesktop:h-[43px] desktop:w-[52px] desktop:h-[52px] ${
-						props.reverse ? "order-1" : "order-2"
-					}`}
-				>
-					{props?.player?.profileIcon && (
-						<>
-							<Image
-								src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player.championName}.png`}
-								alt="profile Image"
-								layout="fill"
-								className=" rounded-[4px] "
-							/>
+			{/* profile with batch  */}
+			<div className={` flex gap-x-2 ${props.reverce ? 'order-1 flex-row-reverse': 'order-5'}`}>
+				{/* profile  */}
+				<div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
+					<Image
+						src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player?.championName}.png`}
+						alt=" profile image"
+						layout="fill"
+						className="rounded-[5px] "
+					/>
+					{/* batch  */}
+					<div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
+						<div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
+							{correctParticipant?.level}
+						</div>
+					</div>
+				</div>
+				{/* power  */}
+				<div>
+					{[props.player?.summoner1Id, props.player?.summoner2Id].map((img, index) => {
+						return (
 							<div
-								className=" absolute font-sf-pro-text font-bold text-grayed-text bg-[#110A1B] p-[2px_3px] text-[9px]
-                             leading-[12px] rounded-full border-[#707070] border -bottom-2 left-[18px] "
+								className=" relative w-[22px] h-[22px] rounded-[5px] "
+								key={index}
 							>
-								{props.showSimulatedGraph
-									? correctParticipant.level
-									: props.player?.champLevel}
+								{selectSpell(img) && <Image
+									src={selectSpell(img)}
+									alt=" power img"
+									layout="fill"
+									className=" rounded-[5px] "
+								/>}
 							</div>
-						</>
-					)}
+						);
+					})}
 				</div>
-				<div className={` mr-[5px] ${props.reverse ? "order-2 " : "order-2 "}`}>
-					<div className=" relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] ">
-						<Image
-							src={selectSpell(props.player.summoner1Id)}
-							alt="flash batch"
-							layout="fill"
-						/>
-					</div>
-					<div className=" relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] ">
-						<Image
-							src={selectSpell(props.player.summoner2Id)}
-							alt="teleport batch"
-							layout="fill"
-						/>
-					</div>
-				</div>
-				<div
-					className={` ${
-						props.reverse
-							? "order-2 ml-[9px] desktop:ml-1 "
-							: "order-2 mr-[9px] desktop:mr-1 "
-					}`}
-				>
+				{/* batch  */}
+				<div>
 					<div
-						className={`relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] rounded-full ${
-							activeStyle ? "bg-[#251122]" : "bg-transparent "
-						}`}
+						className=" relative w-[22px] h-[22px] rounded-[5px] "
 					>
-						<Image
-							src={styleSelector(props.player.perks?.styles[0]?.style)}
-							alt="flash batch"
+						{selectStyleIcons(props?.player?.perks?.styles[0]?.selections[0]?.perk) &&<Image
+							src={selectStyleIcons(props?.player?.perks?.styles[0]?.selections[0]?.perk)}
+							alt=" batch img"
 							layout="fill"
-						/>
+							className=" rounded-[5px] "
+						/>}
 					</div>
 					<div
-						className={`relative w-5 h-5 smDesktop:w-[22px] smDesktop:h-[21px] desktop:w-[25px] desktop:h-[25px] desktop:mb-[2px] rounded-full ${
-							activeStyle ? "bg-[#251122]" : "bg-transparent "
-						}`}
+						className=" relative w-[22px] h-[22px] rounded-[5px] "
 					>
-						<Image
-							src={styleSelector(props.player.perks?.styles[1]?.style)}
-							alt="teleport batch"
+						{styleSelector(props.player?.perks?.styles[1]?.style) && <Image
+							src={styleSelector(props.player?.perks?.styles[1]?.style)}
+							alt=" batch img"
 							layout="fill"
-						/>
+							className=" rounded-[5px] "
+						/>}
 					</div>
 				</div>
 			</div>
-			{/* indicator  */}
 		</div>
 	);
 };

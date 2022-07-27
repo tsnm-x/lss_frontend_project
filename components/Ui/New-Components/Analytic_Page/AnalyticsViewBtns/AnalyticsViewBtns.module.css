@@ -1,0 +1,7 @@
+.indicator {
+  @apply w-[15px] bg-accent-color rounded-[2px] h-[80px];
+}
+
+.btn {
+  @apply px-4 pt-[6px] pb-[8px] rounded-[8px] font-sf-pro-text font-bold  text-[14px] leading-5 capitalize
+}

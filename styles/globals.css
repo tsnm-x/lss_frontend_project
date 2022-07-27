@@ -139,6 +139,9 @@
     .sf-bold-15 {
         @apply font-sf-pro-text font-bold text-[15px] leading-[20px];
     }
+    .sf-bold-14 {
+        @apply font-sf-pro-text font-bold text-[14px] leading-[18px];
+    }
     
     .sf-bold-12 {
         @apply font-sf-pro-text text-[12px] leading-[14px];
