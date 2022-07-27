@@ -29,20 +29,14 @@ const MatchSimulator = ({ query }) => {
 	const [match, setMatch] = useState({});
 	const matches = useSelector((state) => state.profile.profile);
 	const dispatch = useDispatch();
-	const players = match.players
-		? JSON.parse(JSON.stringify(match.players))
-		: JSON.parse(JSON.stringify([]));
-
-	for (let i = 0; i < players?.length; i++) {
-		players[i].standingId = i + 1;
-	}
+	const [playersWithId, setPlayersWithId] = useState([]);
 
 	useEffect(() => {
-		if (players) {
-			setLeftTeam(players.filter((player) => !player.win));
-			setRightTeam(players.filter((player) => player.win));
+		if (playersWithId) {
+			setLeftTeam(playersWithId.filter((player) => !player.win));
+			setRightTeam(playersWithId.filter((player) => player.win));
 		}
-	}, [players]);
+	}, [playersWithId]);
 
 	useEffect(() => {
 		leftTeam.find((player) => player.mainPlayer)
@@ -76,6 +70,8 @@ const MatchSimulator = ({ query }) => {
 			setFullMatchId(`${region}_${matchId}`);
 		}
 	}, []);
+
+	// console.log("re rendered at Index");
 
 	useEffect(() => {
 		if (fullMatchId) {
@@ -111,7 +107,16 @@ const MatchSimulator = ({ query }) => {
 	}, [matches, fullMatchId]);
 
 	useEffect(() => {
-		match && setMainPlayer(match.players?.find((player) => player.mainPlayer));
+		if (match.players) {
+			setMainPlayer(match.players?.find((player) => player.mainPlayer));
+
+			const players = JSON.parse(JSON.stringify(match.players));
+
+			for (let i = 0; i < players?.length; i++) {
+				players[i].standingId = i + 1;
+			}
+			setPlayersWithId(players);
+		}
 	}, [match]);
 
 	const frameChange = (e) => {

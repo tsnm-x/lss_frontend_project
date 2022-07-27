@@ -1,28 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import "./GoldDiffChart.module.css";
 
 const GoldDiffChart = (props) => {
-	console.log(props.goldFrames);
-
 	class Chart {
-		constructor(container) {
-			this.container = container;
+		constructor(container, margins) {
+			this.dimensions = this.setdimensions(container, ...margins);
+			this.svg = this.setSVG(container);
 			this.xValueKey;
 			this.yValueKey;
-			this.dimensions = {};
-			this.svg;
+			this.xValueName;
+			this.yValueName;
 			this.rangeX;
 			this.rangeY;
 			this.maxYvalue;
 			this.minYvalue;
 			this.maxYabsValue;
-			this.line;
 			this.area;
-		}
-
-		setChartDataFields(xValue, yValue) {
-			this.xValueKey = xValue;
-			this.yValueKey = yValue;
+			this.line;
+			this.tooltip = {};
+			this.sliderCallFunction;
 		}
 
 		gradPoints(max = this.maxYvalue, min = this.minYvalue) {
@@ -36,17 +33,33 @@ const GoldDiffChart = (props) => {
 			return [p2, p3, Math.round(max / p)];
 		}
 
-		setdimensions(top, right, bottom, left) {
-			this.dimensions.width =
-				this.container._groups[0][0].clientWidth - left - right;
-			this.dimensions.height =
-				this.container._groups[0][0].clientHeight - top - bottom;
-			this.dimensions.margins = [top, right, bottom, left];
+		bisect(data, xValue, xValueKey = this.xValueKey) {
+			return data[d3.bisector((d) => d[xValueKey]).center(data, xValue)];
 		}
 
-		setSVG() {
-			this.svg = d3
-				.select(this.container._groups[0][0])
+		setChartDataFields(xKey, yKey, xName, yName) {
+			this.xValueKey = xKey;
+			this.yValueKey = yKey;
+			this.xValueName = xName;
+			this.yValueName = yName;
+		}
+
+		setSliderCallFunction(func) {
+			this.sliderCallFunction = func;
+		}
+
+		setdimensions(container, top, right, bottom, left) {
+			return {
+				width: container.clientWidth - left - right,
+				height: container.clientHeight - top - bottom,
+				margins: [top, right, bottom, left],
+			};
+		}
+
+		setSVG(container) {
+			// console.log(container);
+			return d3
+				.select(container)
 				.append("svg")
 				.attr(
 					"width",
@@ -71,6 +84,15 @@ const GoldDiffChart = (props) => {
 				);
 		}
 
+		setDataValues(data, xValue = this.xValueKey, yValue = this.yValueKey) {
+			this.maxYvalue = +d3.max(data, (d) => d[yValue]);
+			this.minYvalue = +d3.min(data, (d) => d[yValue]);
+			this.maxYabsValue = Math.max(
+				Math.abs(this.maxYvalue),
+				Math.abs(this.minYvalue)
+			);
+		}
+
 		setRanges(
 			maxWidth = this.dimensions.width,
 			maxHeight = this.dimensions.height
@@ -93,15 +115,6 @@ const GoldDiffChart = (props) => {
 				.y1((d) => this.rangeY(d[yValue]));
 		}
 
-		setDataValues(data, xValue = this.xValueKey, yValue = this.yValueKey) {
-			this.maxYvalue = +d3.max(data, (d) => d[yValue]);
-			this.minYvalue = +d3.min(data, (d) => d[yValue]);
-			this.maxYabsValue = Math.max(
-				Math.abs(this.maxYvalue),
-				Math.abs(this.minYvalue)
-			);
-		}
-
 		createLine(xValue = this.xValueKey, yValue = this.yValueKey) {
 			this.line = d3
 				.line()
@@ -110,55 +123,22 @@ const GoldDiffChart = (props) => {
 				.y((d) => this.rangeY(d[yValue]));
 		}
 
-		appendZeroAxis() {
-			this.svg
-				.append("line")
-				.attr("class", "zero-axis")
-				.style("stroke-dasharray", "5, 5")
-				.attr("x1", 0)
-				.attr("y1", this.rangeY(0))
-				.attr("x2", this.dimensions.width)
-				.attr("y2", this.rangeY(0));
-		}
-
-		appendRightBorder() {
-			this.svg
-				.append("line")
-				.attr("class", "right-border")
-				.style("stroke-dasharray", "3, 2")
-				.attr("x1", this.dimensions.width)
-				.attr("y1", 0)
-				.attr("x2", this.dimensions.width)
-				.attr("y2", this.dimensions.height);
-		}
-
-		appendAxisTitles(yTitle) {
-			this.svg
-				.append("text")
-				.attr("class", "axis-unit")
-				.attr(
-					"transform",
-					"translate(" + (-this.dimensions.margins[3] + 5) + ",15)"
-				)
-				.text(yTitle);
-		}
-
-		appendLine(data, line) {
-			this.svg
-				.append("path")
-				.data([data])
-				.attr("class", "line")
-				.attr("stroke", "url(#gradientLine)")
-				.attr("d", line);
-		}
-
-		appendArea(data, area) {
+		appendArea(data, area = this.area) {
 			this.svg
 				.append("path")
 				.data([data])
 				.attr("class", "area")
 				.attr("fill", "url(#gradient)")
 				.attr("d", area);
+		}
+
+		appendLine(data, line = this.line) {
+			this.svg
+				.append("path")
+				.data([data])
+				.attr("class", "line")
+				.attr("stroke", "url(#gradientLine)")
+				.attr("d", line);
 		}
 
 		defineGrad() {
@@ -172,22 +152,16 @@ const GoldDiffChart = (props) => {
 				.attr("y2", 1)
 				.selectAll("stop")
 				.data([
-					{ offset: 0, stopColor: "blue", opacity: 1 },
-					{ offset: this.gradPoints()[0], stopColor: "blue", opacity: 0 },
-					{ offset: this.gradPoints()[1], stopColor: "red", opacity: 0 },
-					{ offset: 100, stopColor: "red", opacity: 1 },
+					{ offset: 0, stopColor: "#5D7CF6", opacity: 1 },
+					{ offset: this.gradPoints()[0], stopColor: "#5D7CF6", opacity: 0 },
+					{ offset: this.gradPoints()[1], stopColor: "#D55460", opacity: 0 },
+					{ offset: 100, stopColor: "#D55460", opacity: 1 },
 				])
 				.enter()
 				.append("stop")
-				.attr("offset", function (d) {
-					return d.offset + "%";
-				})
-				.attr("stop-color", function (d) {
-					return d.stopColor;
-				})
-				.attr("stop-opacity", function (d) {
-					return d.opacity;
-				});
+				.attr("offset", (d) => d.offset + "%")
+				.attr("stop-color", (d) => d.stopColor)
+				.attr("stop-opacity", (d) => d.opacity);
 
 			d3.select("svg")
 				.append("defs")
@@ -199,76 +173,202 @@ const GoldDiffChart = (props) => {
 				.attr("y2", 1)
 				.selectAll("stop")
 				.data([
-					{ offset: 0, color: "blue" },
-					{ offset: this.gradPoints()[2], color: "blue" },
-					{ offset: this.gradPoints()[2], color: "red" },
-					{ offset: 100, color: "red" },
+					{ offset: 0, color: "#5D7CF6" },
+					{ offset: this.gradPoints()[2], color: "#5D7CF6" },
+					{ offset: this.gradPoints()[2], color: "#D55460" },
+					{ offset: 100, color: "#D55460" },
 				])
 				.enter()
 				.append("stop")
-				.attr("offset", function (d) {
-					return d.offset + "%";
-				})
-				.attr("stop-color", function (d) {
-					return d.color;
-				});
+				.attr("offset", (d) => d.offset + "%")
+				.attr("stop-color", (d) => d.color);
 		}
 
-		appendAxis(xRange, yRange) {
+		appendAxis(xRange = this.rangeX, yRange = this.rangeY) {
 			this.svg
 				.append("g")
 				.attr("transform", "translate(0," + this.dimensions.height + ")")
 				.call(
 					d3
 						.axisBottom(xRange)
-						.tickFormat((d) => d3.timeFormat("%H:%M")(d3.timeParse("%M")(d)))
+						.tickFormat((d) => d3.timeFormat("%M:%S")(d3.timeParse("%M")(d)))
 				);
 
 			this.svg.append("g").call(
 				d3.axisLeft(yRange).tickFormat((d) => {
-					d = Math.round(d / 100) / 10;
 					let pre = d > 0 ? "+" : "";
-					return pre + d + "K";
+					if (Math.abs(d) / 1000 >= 1) d = pre + d / 1000 + "K";
+					return d;
 				})
 			);
 		}
 
+		appendAxisTitles(yTitle = this.yValueName) {
+			this.svg
+				.append("text")
+				.attr("class", "axis-unit")
+				.attr(
+					"transform",
+					"translate(" + (-this.dimensions.margins[3] + 5) + ",15)"
+				)
+				.text(yTitle);
+		}
+
+		appendZeroAxis() {
+			this.svg
+				.append("line")
+				.attr("class", "zero-axis")
+				.style("stroke-dasharray", "3, 3")
+				.attr("x1", 0)
+				.attr("y1", this.rangeY(0))
+				.attr("x2", this.dimensions.width)
+				.attr("y2", this.rangeY(0));
+		}
+
+		appendRightBorder() {
+			this.svg
+				.append("line")
+				.attr("class", "right-border")
+				.style("stroke-dasharray", "2, 1")
+				.attr("x1", this.dimensions.width)
+				.attr("y1", 0)
+				.attr("x2", this.dimensions.width)
+				.attr("y2", this.dimensions.height);
+		}
+
+		tooltipInit(
+			data,
+			xValue = this.xValueKey,
+			yValue = this.yValueKey,
+			xText = this.xValueName,
+			yText = this.yValueName
+		) {
+			let rangeFor1Minute = this.rangeX(1);
+
+			d3.select("svg")
+				.append("g")
+				.attr("id", "slider")
+				.attr("pointer-events", "none")
+				.attr("display", "none");
+			this.tooltip.node = d3.select("#slider");
+			this.tooltip.node
+				.append("rect")
+				.attr("stroke-width", "1")
+				.attr(
+					"stroke-dasharray",
+					`0, 15, ${this.dimensions.height}, 15, ${this.dimensions.height}`
+				)
+				.attr("x", -rangeFor1Minute)
+				.attr("height", this.dimensions.height)
+				.attr("width", rangeFor1Minute);
+			this.tooltip.node
+				.append("line")
+				.attr("stroke-width", "3")
+				.attr("x1", 0)
+				.attr("y1", 0)
+				.attr("x2", 0)
+				.attr("y2", this.dimensions.height)
+				.attr("transform", "translate(-2, 0)");
+
+			this.tooltip.show = (d) => {
+				this.tooltip.node.node().removeAttribute("display");
+				this.tooltip.node
+					.node()
+					.setAttribute(
+						"transform",
+						`translate(${this.rangeX(d[xValue]) + this.dimensions.margins[3]},${
+							this.dimensions.margins[0]
+						})`
+					);
+				this.sliderCallFunction(d[xValue], d[yValue]);
+			};
+
+			this.tooltip.hide = () => {
+				this.tooltip.node.node().setAttribute("display", "none");
+			};
+
+			d3.select("svg")
+				.append("g")
+				.attr(
+					"transform",
+					"translate(" +
+						this.dimensions.margins[3] +
+						"," +
+						this.dimensions.margins[0] +
+						")"
+				)
+				.attr("fill", "none")
+				.attr("pointer-events", "all")
+				.selectAll("rect")
+				.data(
+					d3.pairs([...data, { [xValue]: data[data.length - 1][xValue] + 1 }])
+				)
+				.join("rect")
+				.attr("x", ([a, b]) => this.rangeX(a[xValue] - 1))
+				.attr("height", this.dimensions.height)
+				.attr(
+					"width",
+					([a, b]) => this.rangeX(b[xValue]) - this.rangeX(a[xValue])
+				)
+				.on("mouseover", (event, [a]) => this.tooltip.show(a))
+				.on("mouseout", () => this.tooltip.hide());
+		}
+
 		draw(data) {
-			this.setSVG();
 			this.setDataValues(data);
 			this.setRanges();
 			this.scaleRanges(data);
 			this.defineGrad();
 			this.createArea();
 			this.createLine();
-			this.appendAxis(this.rangeX, this.rangeY);
+			this.appendAxis();
 			this.appendZeroAxis();
+			this.appendAxisTitles();
 			this.appendRightBorder();
-			this.appendAxisTitles("Gold");
-			this.appendArea(data, this.area);
-			this.appendLine(data, this.line);
+			this.appendArea(data);
+			this.appendLine(data);
+			this.tooltipInit(data);
 		}
 	}
+
 	const ref = useRef();
 
 	// let goldChart = d3.select(ref.current);
 	let goldChart;
 
-	useEffect(() => {
-		if (ref.current) {
-			// let goldChart = new Chart(d3.select(ref.current));
-			// goldChart = new Chart(goldChart);
+	if (props.goldFrames.length !== 0) {
+		d3.select("svg").remove();
+		// d3.select(goldChart).remove();
 
-			if (ref.current) {
-				goldChart = new Chart(d3.select(ref.current));
-				goldChart.setChartDataFields("Time", "goldDifference");
-				goldChart.setdimensions(20, 20, 30, 40);
-				goldChart.draw(props.goldFrames);
-			}
+		if (d3.select("svg")?._groups[0][0]?.tagName === "svg") {
+			d3.select("svg").remove();
+			goldChart = new Chart(
+				d3.select(ref.current)?._groups[0][0],
+				[20, 20, 30, 40]
+			);
 
-			// goldChart.append("circle").attr("cx", 150).attr("cy", 70).attr("r", 50);
+			goldChart.setChartDataFields("Time", "goldDifference", "Time", "Gold");
+
+			goldChart.setSliderCallFunction((a, b) =>
+				console.log("a = " + a + " b = " + b)
+			);
+
+			goldChart.draw(props.goldFrames);
+		} else {
+			goldChart = new Chart(
+				d3.select(ref.current)?._groups[0][0],
+				[20, 20, 30, 40]
+			);
+
+			goldChart.setChartDataFields("Time", "goldDifference", "Time", "Gold");
+
+			goldChart.setSliderCallFunction((a, b) =>
+				console.log("a = " + a + " b = " + b)
+			);
+
+			goldChart.draw(props.goldFrames);
 		}
-	}, [props.goldFrames]);
+	}
 
 	return (
 		<div className={`w-[782px] h-[452px] relative`}>

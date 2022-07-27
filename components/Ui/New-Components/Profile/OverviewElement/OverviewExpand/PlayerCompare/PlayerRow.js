@@ -385,7 +385,7 @@ const PlayerRow = (props) => {
 							key={index}
 							className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
 						>
-							{renderedItems ? (
+							{renderedItems && renderedItems[index] ? (
 								<Image
 									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${renderedItems[index]}.png`}
 									alt="batch image"
