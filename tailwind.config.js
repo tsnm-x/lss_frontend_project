@@ -88,6 +88,7 @@ module.exports = {
                 gotham: "Gotham",
                 NEDGEN: "NEDGEN",
                 "sf-pro-text": "sf-pro-text",
+                "mazin": "mazin-bold"
             },
             borderRadius: {
                 // old 1.0
