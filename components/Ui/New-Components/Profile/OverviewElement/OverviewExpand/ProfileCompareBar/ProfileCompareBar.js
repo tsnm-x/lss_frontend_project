@@ -74,12 +74,10 @@ const LeftBatchBar = (props) => {
     }
 
     useEffect(()=>{
-        if(props.dragonDataBlue?.length && props.dragonDataRed?.length ){
-            if(props.dragonDataBlue?.length >= props.dragonDataRed?.length){
-                setCenteralImg(imgHandler(props.dragonDataBlue[props.dragonDataBlue.length-1].type))
-            } else {
-                setCenteralImg(imgHandler(props.dragonDataRed[props.dragonDataRed.length-1].type))
-            }
+        if(props.dragonDataBlue?.length >= props.dragonDataRed?.length){
+            setCenteralImg(imgHandler(props.dragonDataBlue[props.dragonDataBlue.length-1]?.type))
+        } else {
+            setCenteralImg(imgHandler(props.dragonDataRed[props.dragonDataRed.length-1]?.type))
         }
     }, [props.dragonDataBlue, props.dragonDataRed])
 
@@ -170,8 +168,12 @@ const ProfileCompareBar = (props) => {
 
     useEffect(()=>{
         if(props.matchTimelineData?.frames){
-            setDragonDataRed(props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents);
+            props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents? 
+            setDragonDataRed(props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents)
+            : setDragonDataRed([]);
+            props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents? 
             setDragonDataBlue(props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents)
+            : setDragonDataBlue([]);
         }
     }, [props.matchTimelineData, props.selectedFrame])
 
