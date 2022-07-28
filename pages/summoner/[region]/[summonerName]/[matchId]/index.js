@@ -6,6 +6,7 @@ import ProfileCompareBar from "../../../../../components/Ui/New-Components/Profi
 import LosAndWinRow from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/LosAndWinRow/LosAndWinRow";
 import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Page/DataRowGrid/DataRowGrid";
 import GameStaticsGraph from "../../../../../components/Ui/New-Components/Analytic_Page/GameStaticsGraph/GameStaticsGraph";
+import SimulationData from "../../../../../components/Ui/New-Components/Profile/OverviewElement/SimulateGame/Simulation/SimulationData/SimulationData";
 import Router, { useRouter } from "next/router";
 import useHttp from "../../../../../hook/useHttp";
 import { useDispatch, useSelector } from "react-redux";
@@ -125,32 +126,31 @@ const MatchSimulator = ({ query }) => {
 
 	// lifecycle event => state => lifecycle event => state
 	useEffect(() => {
-        if(fullMatchId){
-            sendRequest(
-                {
-                    url: "/matchTimeline",
-                    method: "POST",
-                    body: { region, matchId:fullMatchId },
-                },
-                (res) => {
-                    if (res?.status === 200) {
+		if (fullMatchId) {
+			sendRequest(
+				{
+					url: "/matchTimeline",
+					method: "POST",
+					body: { region, matchId: fullMatchId },
+				},
+				(res) => {
+					if (res?.status === 200) {
 						let matchTimeline = addDragonTimers(res.data.matchTimeline);
 						matchTimeline = addBaronTimers(matchTimeline);
 						matchTimeline = addHaroldTimers(matchTimeline);
-                        setMatchTimelineData(matchTimeline);
+						setMatchTimelineData(matchTimeline);
+					}
+				}
+			);
+		}
+	}, [fullMatchId]);
 
-                    }
-                }
-            );
-        }
-    }, [fullMatchId])
-
-    const addDragonTimers = (matchTimeline) => {
-		console.log("-1")
+	const addDragonTimers = (matchTimeline) => {
+		console.log("-1");
 		matchTimeline?.frames[
 			matchTimeline?.frames?.length - 2
 		]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
-			console.log("0")
+			console.log("0");
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
 			if (seconds < 10) {
@@ -159,20 +159,19 @@ const MatchSimulator = ({ query }) => {
 
 			for (let i = 1; i <= 5; i++) {
 				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[
-						date.getMinutes() + i
-					].dragonRespawn = `${5 - i}:${seconds}`;
+					matchTimeline.frames[date.getMinutes() + i].dragonRespawn = `${
+						5 - i
+					}:${seconds}`;
 				}
 			}
 		});
-
 
 		console.log(matchTimeline);
 
 		matchTimeline?.frames[
 			matchTimeline?.frames?.length - 2
 		]?.redTeam?.Dragon?.KillEvents.forEach((kill) => {
-			console.log("1")
+			console.log("1");
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
 			if (seconds < 10) {
@@ -181,9 +180,9 @@ const MatchSimulator = ({ query }) => {
 
 			for (let i = 1; i <= 5; i++) {
 				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[
-						date.getMinutes() + i
-					].dragonRespawn = `${5 - i}:${seconds}`;
+					matchTimeline.frames[date.getMinutes() + i].dragonRespawn = `${
+						5 - i
+					}:${seconds}`;
 				}
 			}
 		});
@@ -203,9 +202,9 @@ const MatchSimulator = ({ query }) => {
 
 			for (let i = 1; i <= 5; i++) {
 				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[
-						date.getMinutes() + i
-					].baronRespawn = `${5 - i}:${seconds}`;
+					matchTimeline.frames[date.getMinutes() + i].baronRespawn = `${
+						5 - i
+					}:${seconds}`;
 				}
 			}
 		});
@@ -221,9 +220,9 @@ const MatchSimulator = ({ query }) => {
 
 			for (let i = 1; i <= 5; i++) {
 				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[
-						date.getMinutes() + i
-					].baronRespawn = `${5 - i}:${seconds}`;
+					matchTimeline.frames[date.getMinutes() + i].baronRespawn = `${
+						5 - i
+					}:${seconds}`;
 				}
 			}
 		});
@@ -246,9 +245,9 @@ const MatchSimulator = ({ query }) => {
 					if (date.getMinutes() >= 20) {
 						return;
 					}
-					matchTimeline.frames[
-						date.getMinutes() + i
-					].riftHeraldRespawn = `${5 - i}:${seconds}`;
+					matchTimeline.frames[date.getMinutes() + i].riftHeraldRespawn = `${
+						5 - i
+					}:${seconds}`;
 				}
 			}
 		});
@@ -267,9 +266,9 @@ const MatchSimulator = ({ query }) => {
 					if (date.getMinutes() >= 20) {
 						return;
 					}
-					matchTimeline.frames[
-						date.getMinutes() + i
-					].riftHeraldRespawn = `${5 - i}:${seconds}`;
+					matchTimeline.frames[date.getMinutes() + i].riftHeraldRespawn = `${
+						5 - i
+					}:${seconds}`;
 				}
 			}
 		});
@@ -277,52 +276,56 @@ const MatchSimulator = ({ query }) => {
 		return matchTimeline;
 	};
 
-    return (
-        <>
-            <HeaderWithSearchbar />
-            <ProfileIntro 
-                mainPlayer={mainPlayer}
-                match={match}
-            />
-            <div className=" bg-[#140a22] mb-[100px] ">
-                <AnalyticsViewBtns 
-                    region={region}
-                    summonerName={summonerName}
-                />
-                <ProfileCompareBar 
+	return (
+		<>
+			<HeaderWithSearchbar />
+			<ProfileIntro mainPlayer={mainPlayer} match={match} />
+			<div className=" bg-[#140a22] mb-[100px] ">
+				<AnalyticsViewBtns region={region} summonerName={summonerName} />
+				<ProfileCompareBar
 					teams={match.teams}
 					players={match.players}
-                    frames={matchTimelineData?.frames}
-                    matchTimelineData={matchTimelineData}
-                    selectedFrame={selectedFrame}
-                />
-                <LosAndWinRow 
-                    frames={matchTimelineData?.frames}
-                    matchTimelineData={matchTimelineData}
-                    selectedFrame={selectedFrame} 
-                />
-                <DataRowGrid 
-                    match={match}
-                    frames={matchTimelineData?.frames}
-                    matchTimelineData={matchTimelineData}
-                    selectedFrame={selectedFrame}
-                    leftTeam={leftTeam}
-                    rightTeam={rightTeam}
-                    selectedPlayer={selectedPlayer}
-                    setSelectedPlayer={setSelectedPlayer}
-                    simulatorPlayerRed={simulatorPlayerRed}
-                    setSimulatorPlayerRed={setSimulatorPlayerRed}
-                    simulatorPlayerBlue={simulatorPlayerBlue}
-                    setSimulatorPlayerBlue={setSimulatorPlayerBlue}
-                />
-                <GameStaticsGraph 
-                    selectedFrame={selectedFrame}
-                    frames={matchTimelineData?.frames}
-                    frameChange={frameChange}
-                />
-            </div>
-        </>
-    );
+					frames={matchTimelineData?.frames}
+					matchTimelineData={matchTimelineData}
+					selectedFrame={selectedFrame}
+				/>
+				<LosAndWinRow
+					frames={matchTimelineData?.frames}
+					matchTimelineData={matchTimelineData}
+					selectedFrame={selectedFrame}
+				/>
+				<DataRowGrid
+					match={match}
+					frames={matchTimelineData?.frames}
+					matchTimelineData={matchTimelineData}
+					selectedFrame={selectedFrame}
+					leftTeam={leftTeam}
+					rightTeam={rightTeam}
+					selectedPlayer={selectedPlayer}
+					setSelectedPlayer={setSelectedPlayer}
+					simulatorPlayerRed={simulatorPlayerRed}
+					setSimulatorPlayerRed={setSimulatorPlayerRed}
+					simulatorPlayerBlue={simulatorPlayerBlue}
+					setSimulatorPlayerBlue={setSimulatorPlayerBlue}
+				/>
+				<GameStaticsGraph
+					selectedFrame={selectedFrame}
+					frames={matchTimelineData?.frames}
+					frameChange={frameChange}
+					simulatorPlayerRed={simulatorPlayerRed}
+					simulatorPlayerBlue={simulatorPlayerBlue}
+				/>
+				{/* <button>Sim data</button> */}
+				<SimulationData
+					selectedFrame={selectedFrame}
+					frames={matchTimelineData?.frames}
+					frameChange={frameChange}
+					simulatorPlayerRed={simulatorPlayerRed}
+					simulatorPlayerBlue={simulatorPlayerBlue}
+				/>
+			</div>
+		</>
+	);
 };
 
 MatchSimulator.getInitialProps = ({ query }) => {

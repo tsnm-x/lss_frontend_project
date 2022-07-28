@@ -362,9 +362,10 @@ const GoldDiffChart = (props) => {
 
 			goldChart.setChartDataFields("Time", "goldDifference", "Time", "Gold");
 
-			goldChart.setSliderCallFunction((a, b) =>
-				console.log("a = " + a + " b = " + b)
-			);
+			goldChart.setSliderCallFunction((a, b) => {
+				props.frameChange(a - 1);
+				// console.log("a = " + a + " b = " + b);
+			});
 
 			goldChart.draw(props.goldFrames);
 		}

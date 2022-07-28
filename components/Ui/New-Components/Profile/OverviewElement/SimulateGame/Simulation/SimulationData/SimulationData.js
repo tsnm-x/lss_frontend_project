@@ -125,7 +125,14 @@ const ProfileRow = (props) => {
 
 // the main component that rendering -------------------------------------------------------------------------------------------
 const SimulationData = (props) => {
+	// // console.log(props);
 	const [framesCount, setFramesCount] = useState(0);
+	const [isLog, setIsLog] = useState(true);
+	const [logArr, setLogArr] = useState([]);
+	const [powerArr, setPowerArr] = useState([]);
+
+	const frames = props?.frames;
+
 	const ProfileData = [
 		{
 			reverce: false,
@@ -180,53 +187,6 @@ const SimulationData = (props) => {
 
 	// console.log(props.simulatorPlayerRed);
 
-	// console.log(props);
-	const frames = props.frames;
-
-	const sendData = () => {
-		if (!frames) return;
-		const redPlayer =
-			frames[framesCount][`participant${props.simulatorPlayerRed?.standingId}`];
-		const bluePlayer =
-			frames[framesCount][
-				`participant${props.simulatorPlayerBlue?.standingId}`
-			];
-
-		const JSONString = {
-			APIMatchInfo: {
-				version: "12.10.1",
-				championInfo: [
-					{
-						champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
-						champLevel: redPlayer.level || 18,
-						// items: [0, 0, 0, 0, 0, 0],
-						items: redPlayer?.items || [1037, 1037, 1037, 1037, 1037, 1037],
-						// ability: redPlayer?.ability,
-						// runes: props.simulatorPlayerRed?.perks,
-						// spells: [props.simulatorPlayerRed?.summoner1Id,props.simulatorPlayerRed?.summoner1Id]
-					},
-					{
-						champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
-						champLevel: bluePlayer.level || 18, // props.simulatorPlayerBlue?.championName,
-						// items: [1037, 1037, 1037, 1037, 1037, 1037],
-						items: bluePlayer?.items || [0, 0, 0, 0, 0, 0],
-						// ability: bluePlayer?.ability,
-						// runes: props.simulatorPlayerBlue?.perks,
-						// spells: [props.simulatorPlayerBlue?.summoner1Id,props.simulatorPlayerBlue?.summoner1Id]
-					},
-				],
-			},
-		};
-
-		// loop based on the frames of the game
-		// send the data of the frame for the two selected champions
-		unityContext.send(
-			"Simulator Manager",
-			"LoadData", // ManualSimulate // loop send 20 frames rapidly
-			JSON.stringify(JSONString) //
-		);
-	};
-
 	// if (frames) {
 	// 	frames.map((frame) => {
 	// 		const redPlayer =
@@ -272,23 +232,23 @@ const SimulationData = (props) => {
 	// 	});
 	// }
 
-	const redPlayer = frames
-		? frames[props.selectedFrame][
-				`participant${props.simulatorPlayerRed?.standingId}`
-		  ]
-		: {};
-	const bluePlayer = frames
-		? frames[props.selectedFrame][
-				`participant${props.simulatorPlayerBlue?.standingId}`
-		  ]
-		: {};
+	// const redPlayer = frames
+	// 	? frames[props.selectedFrame][
+	// 			`participant${props.simulatorPlayerRed?.standingId}`
+	// 	  ]
+	// 	: {};
+	// const bluePlayer = frames
+	// 	? frames[props.selectedFrame][
+	// 			`participant${props.simulatorPlayerBlue?.standingId}`
+	// 	  ]
+	// 	: {};
 
-	console.log(
-		redPlayer,
-		bluePlayer,
-		props.simulatorPlayerRed,
-		props.simulatorPlayerBlue
-	);
+	// console.log(
+	// 	redPlayer,
+	// 	bluePlayer,
+	// 	props.simulatorPlayerRed,
+	// 	props.simulatorPlayerBlue
+	// );
 
 	// const redPlayerItems = [item0, item1, item2, item3, item4, item5];
 
@@ -298,13 +258,46 @@ const SimulationData = (props) => {
 	// const redPlayerItems = redPlayer?.items.filter((e) => {});
 
 	// name , level , items
+	// const JSONString = {
+	// 	APIMatchInfo: {
+	// 		version: "12.10.1",
+	// 		championInfo: [
+	// 			{
+	// 				champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
+	// 				champLevel: redPlayer?.level || 18,
+	// 				// items: [0, 0, 0, 0, 0, 0],
+	// 				items: redPlayer?.items || [1037, 1037, 1037, 1037, 1037, 1037],
+	// 				// ability: redPlayer?.ability,
+	// 				// runes: props.simulatorPlayerRed?.perks,
+	// 				// spells: [props.simulatorPlayerRed?.summoner1Id,props.simulatorPlayerRed?.summoner1Id]
+	// 			},
+	// 			{
+	// 				champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
+	// 				champLevel: bluePlayer?.level || 18, // props.simulatorPlayerBlue?.championName,
+	// 				// items: [1037, 1037, 1037, 1037, 1037, 1037],
+	// 				items: bluePlayer?.items || [0, 0, 0, 0, 0, 0],
+	// 				// ability: bluePlayer?.ability,
+	// 				// runes: props.simulatorPlayerBlue?.perks,
+	// 				// spells: [props.simulatorPlayerBlue?.summoner1Id,props.simulatorPlayerBlue?.summoner1Id]
+	// 			},
+	// 		],
+	// 	},
+	// };
+
+	const redPlayer = frames
+		? frames[framesCount][`participant${props.simulatorPlayerRed?.standingId}`]
+		: "";
+	const bluePlayer = frames
+		? frames[framesCount][`participant${props.simulatorPlayerBlue?.standingId}`]
+		: "";
+
 	const JSONString = {
 		APIMatchInfo: {
 			version: "12.10.1",
 			championInfo: [
 				{
 					champName: `${props.simulatorPlayerRed?.championName || "Ashe"}`,
-					champLevel: redPlayer.level || 18,
+					champLevel: redPlayer?.level || 18,
 					// items: [0, 0, 0, 0, 0, 0],
 					items: redPlayer?.items || [1037, 1037, 1037, 1037, 1037, 1037],
 					// ability: redPlayer?.ability,
@@ -313,7 +306,7 @@ const SimulationData = (props) => {
 				},
 				{
 					champName: `${props.simulatorPlayerBlue?.championName || "Garen"}`,
-					champLevel: bluePlayer.level || 18, // props.simulatorPlayerBlue?.championName,
+					champLevel: bluePlayer?.level || 18, // props.simulatorPlayerBlue?.championName,
 					// items: [1037, 1037, 1037, 1037, 1037, 1037],
 					items: bluePlayer?.items || [0, 0, 0, 0, 0, 0],
 					// ability: bluePlayer?.ability,
@@ -324,13 +317,14 @@ const SimulationData = (props) => {
 		},
 	};
 
-	console.log(JSON.stringify(JSONString));
+	// console.log(JSON.stringify(JSONString));
 
 	// SendMessage("Simulator Manager", "LoadData", JSONString);
 
 	const clicked = () => {
 		// loop based on the frames of the game
 		// send the data of the frame for the two selected champions
+		console.log(framesCount);
 		unityContext.send(
 			"Simulator Manager",
 			"LoadData", // ManualSimulate
@@ -338,29 +332,41 @@ const SimulationData = (props) => {
 		);
 	};
 
-	// 	unityContext.
-	// 	addEventListener("GameOver", handleGameOver);
-	// 	return () => {
-	// 		removeEventListener("GameOver", handleGameOver);
-	// 	};
-	// }, [addEventListener, removeEventListener, handleGameOver]);
+	// console.log(powerArr);
+	// console.log(logArr);
+
+	unityContext.on("HelloString", function (str) {
+		if (framesCount >= frames?.length - 3) {
+			return;
+		}
+		setFramesCount(framesCount++);
+
+		console.log(JSON.parse(str));
+
+		// if (isLog === true) {
+		// 	console.log("here1");
+		// 	setLogArr((logArr) => [...logArr, log]);
+		// 	setIsLog(!isLog);
+		// } else {
+		// 	console.log("here2");
+		// 	setPowerArr((powerArr) => [...powerArr, dmg]);
+		// 	setIsLog(!isLog);
+		// }
+
+		clicked();
+
+		// rerender and recall send function with the array
+		// const parsedData = JSON.parse(str);
+		// console.log(str, "hello 1");
+		// send to d3
+	});
 
 	useEffect(() => {
 		window.alert = console.log;
 
-		unityContext.on("HelloString", function (str) {
-			if (framesCount > frames.length - 2) {
-				return;
-			}
-			// push data to an array
-			props.callback(str);
-			// send next frame
-			setFramesCount(framesCount + 1);
-			sendData();
-			// rerender and recall send function with the array
-			console.log(str);
-			// send to d3
-		});
+		// unityContext.on("HelloString2", function (str2) {
+		// 	console.log(str2, "hello 2");
+		// });
 
 		// returned function will be called on component unmount
 		return () => {
@@ -371,11 +377,11 @@ const SimulationData = (props) => {
 	return (
 		<>
 			<div className="  rounded-5px bg-[#4777fc0f] w-[325px] h-[371px]  ">
-				<button onClick={clicked}>Start Sim</button>
+				<button onClick={clicked}>Start Sim!</button>
 				<Unity
 					style={{
-						width: "0%",
-						height: "0%",
+						width: "100%",
+						height: "100%",
 						background: "#231F20",
 						justifySelf: "center",
 						alignSelf: "center",
