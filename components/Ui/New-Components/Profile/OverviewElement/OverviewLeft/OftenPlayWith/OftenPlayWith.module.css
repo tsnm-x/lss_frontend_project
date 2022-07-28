@@ -1,0 +1,6 @@
+.whiteHead {
+    @apply font-mazin font-bold text-white text-[12px] leading-[15px];
+}
+.smallHead {
+    @apply font-mazin font-bold text-grayed-text text-[10px] leading-[12.5px];
+}
