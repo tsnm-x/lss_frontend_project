@@ -198,10 +198,6 @@ const SimulationData = (props) => {
 		},
 	};
 
-	// console.log(JSON.stringify(JSONString));
-
-	// SendMessage("Simulator Manager", "LoadData", JSONString);
-	// console.log(framesCount);
 	const clicked = () => {
 		setStarted(true);
 		// loop based on the frames of the game
@@ -224,28 +220,11 @@ const SimulationData = (props) => {
 			return;
 		}
 		setFramesCount(framesCount + 1);
-		// console.log(framesCount);
-
-		// console.log(JSON.parse(str));
+		console.log(framesCount);
 
 		setLogArr([...logArr, JSON.parse(str)]);
 
 		clicked();
-
-		// if (isLog === true) {
-		// 	console.log("here1");
-		//
-		// 	setIsLog(!isLog);
-		// } else {
-		// 	console.log("here2");
-		// 	setPowerArr((powerArr) => [...powerArr, dmg]);
-		// 	setIsLog(!isLog);
-		// }
-
-		// rerender and recall send function with the array
-		// const parsedData = JSON.parse(str);
-		// console.log(str, "hello 1");
-		// send to d3
 	});
 
 	useEffect(() => {
@@ -279,7 +258,7 @@ const SimulationData = (props) => {
 				/>
 				<div className="bg-white text-xl">
 					{isLog
-						? logArr[props.selectedFrame].skirmishLog.map((log, i) => (
+						? logArr[props.selectedFrame]?.skirmishLog.map((log, i) => (
 								<p key={i}>{log}</p>
 						  ))
 						: started
