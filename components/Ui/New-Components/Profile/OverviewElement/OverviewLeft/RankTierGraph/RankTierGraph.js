@@ -37,16 +37,14 @@ const Btns = (props) => {
             <div className={`flex ${props.className}`}>
                 <button
                     className={` ${active === "SOLO" ? 'text-light-text': 'text-grayed-text'} font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                                bg-buttons-gray px-[7px] py-[9px] capitalize smDesktop:text-[11px] 
-                                smDesktop:leading-[13px] mr-[3px] `}
+                                bg-[#3e3847] px-[10px] py-[12px] capitalize smDesktop:text-[14px] smDesktop:leading-[17px] mr-3 `}
                     onClick={() => rankHandler("SOLO")}
                 >
                     Ranked solo
                 </button>
                 <button
                     className={` ${active === "FLEX" ? 'text-light-text': 'text-grayed-text'} font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                                bg-buttons-gray px-[7px] py-[9px] capitalize smDesktop:text-[11px] 
-                                smDesktop:leading-[13px]  `}
+                                bg-[#3e3847] px-[10px] py-[12px] capitalize  smDesktop:text-[14px] smDesktop:leading-[17px] `}
                     onClick={() => rankHandler("FLEX")}
                 >
                     ranked flex
@@ -167,14 +165,11 @@ const TierGraph = (props) => {
 const RankTierGraph = (props) => {
     return (
         <div
-            className="  p-[20px_17px_10px_17px]  bg-card-&-content-box rounded
-            smDesktop:p-[25px_22px_15px_22px] "
+            className="  p-[20px_17px_10px_17px]  bg-[#1e1728] rounded
+            smDesktop:p-[20px_25px] "
         >
             {/* top btns  */}
-            <Btns
-                rankSolo={props?.rankSolo}
-                rankFlex={props?.rankFlex}
-            />
+            <Btns rankSolo={props?.rankSolo} rankFlex={props?.rankFlex} />
         </div>
     );
 };

@@ -65,6 +65,7 @@ const DataRow = (props) => {
             {props.players && props.players?.map((player, index) => {
                 return (
                     <PlayerRow
+                        active={index === 1}
                         key={index}
                         match={props.match}
                         reverce={props.reverce}

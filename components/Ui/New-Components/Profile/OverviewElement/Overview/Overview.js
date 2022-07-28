@@ -15,8 +15,8 @@ const Overview = (props) => {
         <section className=" my-[60px] relative ">
             <div
                 className={`container laptop:grid 
-                laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[280px_auto]
-                 smDesktop:gap-x-[61px] laptop:gap-x-[22px] `}
+                laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[300px_auto]
+                 smDesktop:gap-x-[31px] laptop:gap-x-[22px] `}
             >
                 {/* left side  */}
                 {!expand && 
