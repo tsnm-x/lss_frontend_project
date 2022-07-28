@@ -1,0 +1,29 @@
+.chart {
+	display: block;
+	height: 500px;
+	width: 800px;
+}
+
+.line {
+	fill: none;
+	stroke-width: 2;
+}
+
+.domain,
+.tick line {
+	display: none;
+}
+
+.tick {
+	color: white;
+}
+
+.zero-axis,
+.right-border {
+	stroke: grey;
+}
+
+.axis-unit {
+	font-size: 12px;
+	fill: #6b6b6b;
+}

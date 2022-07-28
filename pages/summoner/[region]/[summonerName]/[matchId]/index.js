@@ -11,32 +11,31 @@ import useHttp from "../../../../../hook/useHttp";
 import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
 
-
-const MatchSimulator = ({query}) => {
-    const {region, summonerName, matchId} = query
-    const [fullMatchId, setFullMatchId] = useState("");
-    const [selectedPlayer, setSelectedPlayer] = useState({});
-    const [matchTimelineData, setMatchTimelineData] = useState({});
+const MatchSimulator = ({ query }) => {
+	const { region, summonerName, matchId } = query;
+	const [fullMatchId, setFullMatchId] = useState("");
+	const [selectedPlayer, setSelectedPlayer] = useState({});
+	const [matchTimelineData, setMatchTimelineData] = useState({});
 	const [simulatorPlayerRed, setSimulatorPlayerRed] = useState({});
 	const [simulatorPlayerBlue, setSimulatorPlayerBlue] = useState({});
 	const [index, setIndex] = useState(0);
 	const [leftTeam, setLeftTeam] = useState([]);
 	const [rightTeam, setRightTeam] = useState([]);
-    const [selectedFrame, setSelectedFrame] = useState(
+	const [selectedFrame, setSelectedFrame] = useState(
 		matchTimelineData?.frames?.length - 2 || 0
 	);
-    const { hasError, sendRequest } = useHttp();
-    const [mainPlayer, setMainPlayer] = useState("")
-    const [match, setMatch] = useState({});
-    const matches = useSelector((state) => state.profile.profile);
-    const dispatch = useDispatch();
-	const [playersWithId, setPlayersWithId] = useState([])
+	const { hasError, sendRequest } = useHttp();
+	const [mainPlayer, setMainPlayer] = useState("");
+	const [match, setMatch] = useState({});
+	const matches = useSelector((state) => state.profile.profile);
+	const dispatch = useDispatch();
+	const [playersWithId, setPlayersWithId] = useState([]);
 
 	useEffect(() => {
-		if(playersWithId){
-            setLeftTeam(playersWithId.filter((player) => !player.win));
-		    setRightTeam(playersWithId.filter((player) => player.win));
-        }
+		if (playersWithId) {
+			setLeftTeam(playersWithId.filter((player) => !player.win));
+			setRightTeam(playersWithId.filter((player) => player.win));
+		}
 	}, [playersWithId]);
 
 	useEffect(() => {
@@ -59,69 +58,73 @@ const MatchSimulator = ({query}) => {
 
 	useEffect(() => {
 		setSelectedPlayer({});
-        if (index) {
-            setSimulatorPlayerBlue(rightTeam[index]);
-            setSimulatorPlayerRed(leftTeam[index]);
-        }
+		if (index) {
+			setSimulatorPlayerBlue(rightTeam[index]);
+			setSimulatorPlayerRed(leftTeam[index]);
+		}
 	}, [index]);
-    
 
-    useEffect(()=>{
-        const regex = /^[0-9]+$/
-        if(matchId?.match(regex)) {
-            setFullMatchId(`${region}_${matchId}`);
-        }
-    }, [])
+	useEffect(() => {
+		const regex = /^[0-9]+$/;
+		if (matchId?.match(regex)) {
+			setFullMatchId(`${region}_${matchId}`);
+		}
+	}, []);
 
-    useEffect(()=>{
-        if(fullMatchId){
-            if (matches[0] && !match) {
-                setMatch(matches?.filter((match)=> match.matchId === fullMatchId)[0])
-                   
-          } else {
-                sendRequest(
-                    {
-                        url: "/summonerByName",
-                        method: "POST",
-                        body: { region, summonerName },
-                    },
-                    (res) => {
-                        if (res?.status === 200) {	
-                            dispatch(
-                                profileAction.setProfileDataPage({
-                                    profile: res.data.matches,
-                                    region,
-                                    summonerName,
-                                })
-                            );
+	// console.log("re rendered at Index");
 
-                            setMatch(res.data?.matches?.filter((match) => match?.matchId === fullMatchId)[0])
-                        }
-                    }
-                );
-            }
-        }
-    }, [matches, fullMatchId])
+	useEffect(() => {
+		if (fullMatchId) {
+			if (matches[0] && !match) {
+				setMatch(matches?.filter((match) => match.matchId === fullMatchId)[0]);
+			} else {
+				sendRequest(
+					{
+						url: "/summonerByName",
+						method: "POST",
+						body: { region, summonerName },
+					},
+					(res) => {
+						if (res?.status === 200) {
+							dispatch(
+								profileAction.setProfileDataPage({
+									profile: res.data.matches,
+									region,
+									summonerName,
+								})
+							);
 
-    useEffect(()=>{
-        if(match.players){
-			setMainPlayer(match.players?.find((player) => player.mainPlayer))
+							setMatch(
+								res.data?.matches?.filter(
+									(match) => match?.matchId === fullMatchId
+								)[0]
+							);
+						}
+					}
+				);
+			}
+		}
+	}, [matches, fullMatchId]);
 
-			const players = JSON.parse(JSON.stringify(match.players))
+	useEffect(() => {
+		if (match.players) {
+			setMainPlayer(match.players?.find((player) => player.mainPlayer));
+
+			const players = JSON.parse(JSON.stringify(match.players));
 
 			for (let i = 0; i < players?.length; i++) {
 				players[i].standingId = i + 1;
 			}
 			setPlayersWithId(players);
 		}
-    }, [match])
+	}, [match]);
 
-    const frameChange = (e) => {
+	const frameChange = (e) => {
 		setSelectedFrame(e);
 	};
 
-    useEffect(()=>{
-
+	// lifecycle event => state => lifecycle event => state
+	useEffect(() => {
         if(fullMatchId){
             sendRequest(
                 {
@@ -322,8 +325,8 @@ const MatchSimulator = ({query}) => {
     );
 };
 
-MatchSimulator.getInitialProps = ({query}) => {
-	return {query}
-}
+MatchSimulator.getInitialProps = ({ query }) => {
+	return { query };
+};
 
 export default MatchSimulator;

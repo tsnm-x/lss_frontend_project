@@ -84,6 +84,14 @@
     src: url("/assets/old-images/fonts/Sf-pro-display/Sf-pro-display-bold.woff2")
         format("woff2");
 }
+/* mazin fonts  */
+@font-face {
+    font-family: "mazin-bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/assets/old-images/fonts/Mazin-Bold/Mazin-Bold.woff2")
+        format("woff2");
+}
 
 /* global font component  */
 @layer components {
@@ -142,7 +150,7 @@
     .sf-bold-14 {
         @apply font-sf-pro-text font-bold text-[14px] leading-[18px];
     }
-    
+
     .sf-bold-12 {
         @apply font-sf-pro-text text-[12px] leading-[14px];
     }

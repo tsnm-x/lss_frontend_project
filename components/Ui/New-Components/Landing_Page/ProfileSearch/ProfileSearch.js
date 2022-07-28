@@ -236,7 +236,7 @@ const ProfileSearch = (props) => {
                             <h4
                                 className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 `}
                             >
-                                {activeListDetails.selectedItem.name}
+                                {activeListDetails.selectedItem?.name}
                             </h4>
                             <BiCaretDown className=" text-white text-[20px] " />
                         </div>
