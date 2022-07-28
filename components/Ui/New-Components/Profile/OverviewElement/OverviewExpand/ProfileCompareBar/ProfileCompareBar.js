@@ -27,7 +27,7 @@ const Profile = (props) => {
 			{/* name  */}
 			<div>
 				<h2 className=" text-white font-sf-pro-text font-bold text-[11px] leading-[13px] ">
-					{props.left} Left
+					{props.left}
 				</h2>
 				<h2
 					className={`font-sf-pro-text capitalize font-bold text-[11px] leading-[13px]`}
@@ -231,7 +231,7 @@ const ProfileCompareBar = (props) => {
 			name: "baron nashor",
 			left:
 				props?.frames && props?.frames[props.selectedFrame]?.baronRespawn
-					? props?.frames[props.selectedFrame]?.baronRespawn
+					? props?.frames[props.selectedFrame]?.baronRespawn + " Left"
 					: "Alive",
 			color: "#8C3DCF",
 		},
@@ -240,7 +240,7 @@ const ProfileCompareBar = (props) => {
 			name: "elder drake",
 			left:
 				props?.frames && props?.frames[props.selectedFrame]?.dragonRespawn
-					? props?.frames[props.selectedFrame]?.dragonRespawn
+					? props?.frames[props.selectedFrame]?.dragonRespawn + " Left"
 					: "Alive",
 			color: "#24C2AD",
 		},
