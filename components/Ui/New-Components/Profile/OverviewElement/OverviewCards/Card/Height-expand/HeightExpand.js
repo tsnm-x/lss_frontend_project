@@ -521,11 +521,11 @@ const DataRow = (props) => {
             {/* cs  */}
             <div className=" flex flex-col justify-center ">
                 <h1 className={` text-center ${Classes.cellTitle}`}>
-                    {props?.totalMinionsKilled} cs
+                    {props?.neutralMinionsKilled} cs
                 </h1>
                 <h1 className={` text-center ${Classes.secTitle}`}>
                 {(
-                    props?.totalMinionsKilled / convertM(props.match?.duration)
+                    props?.neutralMinionsKilled / convertM(props.match?.duration)
                 )?.toFixed(1)} cs/min
                 </h1>
             </div>

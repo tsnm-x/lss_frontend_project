@@ -131,9 +131,9 @@ const MatchSimulator = ({query}) => {
                 },
                 (res) => {
                     if (res?.status === 200) {
-                        let matchTimeline = addDragonTimers(res.data.matchTimeline);
-                        matchTimeline = addBaronTimers(matchTimeline);
-                        matchTimeline = addHaroldTimers(matchTimeline);
+						let matchTimeline = addDragonTimers(res.data.matchTimeline);
+						matchTimeline = addBaronTimers(matchTimeline);
+						matchTimeline = addHaroldTimers(matchTimeline);
                         setMatchTimelineData(matchTimeline);
 
                     }
@@ -143,29 +143,11 @@ const MatchSimulator = ({query}) => {
     }, [fullMatchId])
 
     const addDragonTimers = (matchTimeline) => {
-		if (matchTimeline?.matchTimeline) {
-			matchTimeline?.matchTimeline?.frames[
-				matchTimeline?.matchTimeline?.frames?.length - 2
-			]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
-				let date = new Date(kill.timeStamp);
-				let seconds = 60 - date.getSeconds();
-				if (seconds < 10) {
-					seconds = "0" + seconds;
-				}
-
-				for (let i = 1; i <= 5; i++) {
-					if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-						matchTimeline.matchTimeline.frames[
-							date.getMinutes() + i
-						].dragonRespawn = `${5 - i}:${seconds}`;
-					}
-				}
-			});
-		}
-
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
-		]?.redTeam?.Dragon?.KillEvents.forEach((kill) => {
+		console.log("-1")
+		matchTimeline?.frames[
+			matchTimeline?.frames?.length - 2
+		]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
+			console.log("0")
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
 			if (seconds < 10) {
@@ -173,8 +155,30 @@ const MatchSimulator = ({query}) => {
 			}
 
 			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.matchTimeline.frames[
+				if (matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.frames[
+						date.getMinutes() + i
+					].dragonRespawn = `${5 - i}:${seconds}`;
+				}
+			}
+		});
+
+
+		console.log(matchTimeline);
+
+		matchTimeline?.frames[
+			matchTimeline?.frames?.length - 2
+		]?.redTeam?.Dragon?.KillEvents.forEach((kill) => {
+			console.log("1")
+			let date = new Date(kill.timeStamp);
+			let seconds = 60 - date.getSeconds();
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			for (let i = 1; i <= 5; i++) {
+				if (matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.frames[
 						date.getMinutes() + i
 					].dragonRespawn = `${5 - i}:${seconds}`;
 				}
@@ -185,8 +189,8 @@ const MatchSimulator = ({query}) => {
 	};
 
 	const addBaronTimers = (matchTimeline) => {
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
+		matchTimeline?.frames[
+			matchTimeline?.frames?.length - 2
 		]?.blueTeam?.Baron?.KillEvents.forEach((kill) => {
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
@@ -195,16 +199,16 @@ const MatchSimulator = ({query}) => {
 			}
 
 			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.matchTimeline.frames[
+				if (matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.frames[
 						date.getMinutes() + i
 					].baronRespawn = `${5 - i}:${seconds}`;
 				}
 			}
 		});
 
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
+		matchTimeline?.frames[
+			matchTimeline?.frames?.length - 2
 		]?.redTeam?.Baron?.KillEvents.forEach((kill) => {
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
@@ -213,8 +217,8 @@ const MatchSimulator = ({query}) => {
 			}
 
 			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.matchTimeline.frames[
+				if (matchTimeline.frames[date.getMinutes() + i]) {
+					matchTimeline.frames[
 						date.getMinutes() + i
 					].baronRespawn = `${5 - i}:${seconds}`;
 				}
@@ -225,8 +229,8 @@ const MatchSimulator = ({query}) => {
 	};
 
 	const addHaroldTimers = (matchTimeline) => {
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
+		matchTimeline?.frames[
+			matchTimeline?.frames?.length - 2
 		]?.blueTeam?.riftHerald?.KillEvents.forEach((kill) => {
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
@@ -235,19 +239,19 @@ const MatchSimulator = ({query}) => {
 			}
 
 			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+				if (matchTimeline.frames[date.getMinutes() + i]) {
 					if (date.getMinutes() >= 20) {
 						return;
 					}
-					matchTimeline.matchTimeline.frames[
+					matchTimeline.frames[
 						date.getMinutes() + i
 					].riftHeraldRespawn = `${5 - i}:${seconds}`;
 				}
 			}
 		});
 
-		matchTimeline?.matchTimeline?.frames[
-			matchTimeline?.matchTimeline?.frames?.length - 2
+		matchTimeline?.frames[
+			matchTimeline?.frames?.length - 2
 		]?.redTeam?.riftHerald?.KillEvents.forEach((kill) => {
 			let date = new Date(kill.timeStamp);
 			let seconds = 60 - date.getSeconds();
@@ -256,11 +260,11 @@ const MatchSimulator = ({query}) => {
 			}
 
 			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.matchTimeline.frames[date.getMinutes() + i]) {
+				if (matchTimeline.frames[date.getMinutes() + i]) {
 					if (date.getMinutes() >= 20) {
 						return;
 					}
-					matchTimeline.matchTimeline.frames[
+					matchTimeline.frames[
 						date.getMinutes() + i
 					].riftHeraldRespawn = `${5 - i}:${seconds}`;
 				}
@@ -283,6 +287,8 @@ const MatchSimulator = ({query}) => {
                     summonerName={summonerName}
                 />
                 <ProfileCompareBar 
+					teams={match.teams}
+					players={match.players}
                     frames={matchTimelineData?.frames}
                     matchTimelineData={matchTimelineData}
                     selectedFrame={selectedFrame}
