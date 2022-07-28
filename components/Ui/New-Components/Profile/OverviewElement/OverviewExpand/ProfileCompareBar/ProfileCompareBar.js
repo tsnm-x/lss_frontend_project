@@ -74,9 +74,9 @@ const LeftBatchBar = (props) => {
     }
 
     useEffect(()=>{
-        if(props.dragonDataBlue?.length >= props.dragonDataRed?.length){
+        if(props.dragonDataBlue?.length === 4){
             setCenteralImg(imgHandler(props.dragonDataBlue[props.dragonDataBlue.length-1]?.type))
-        } else {
+        } else if(props.dragonDataRed?.length === 4){
             setCenteralImg(imgHandler(props.dragonDataRed[props.dragonDataRed.length-1]?.type))
         }
     }, [props.dragonDataBlue, props.dragonDataRed])
@@ -92,7 +92,9 @@ const LeftBatchBar = (props) => {
             {/* left right batch  */}
             <div className=" row-start-1 col-start-1 grid grid-cols-2 bg-transparent rounded-t-[10px] ">
                 <div
-                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] `}
+                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] ${
+                        props.dragonDataRed?.length === 4 ? "border-[#72B2E3] border" : ""
+                    }`}
                 >
                     {props.dragonDataRed?.length < 4 ? addEmptyBatches(4 - props.dragonDataRed?.length)?.map((elem) => {
                         return (
@@ -123,7 +125,9 @@ const LeftBatchBar = (props) => {
                     
                 </div>
                 <div
-                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] border-[#72B2E3] border `}
+                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] ${
+                        props.dragonDataBlue?.length === 4 ? "border-[#72B2E3] border" : ""
+                    } `}
                 >
                     {props.dragonDataBlue?.map((event, index) => {
                         return (
@@ -165,15 +169,35 @@ const ProfileCompareBar = (props) => {
 
     const [dragonDataRed, setDragonDataRed] = useState([]);
     const [dragonDataBlue, setDragonDataBlue] = useState([]);
+    const [redBans, setRedBans] = useState({});
+    const [blueBans, setBlueBans]= useState({});
+
+    useEffect(() =>{
+        if(props.teams){
+            setRedBans(props.teams?.filter((team) => !team.win)[0])
+            setBlueBans(props.teams?.filter((team) => team.win)[0])
+        }
+    }, [props.teams])
+
 
     useEffect(()=>{
         if(props.matchTimelineData?.frames){
-            props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents? 
-            setDragonDataRed(props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents)
-            : setDragonDataRed([]);
-            props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents? 
-            setDragonDataBlue(props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents)
-            : setDragonDataBlue([]);
+            const lastFrame = props.matchTimelineData.frames[props.matchTimelineData.frames.length - 1];
+            if(lastFrame.teamId === 200){
+                props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents? 
+                setDragonDataRed(props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents)
+                : setDragonDataRed([]);
+                props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents? 
+                setDragonDataBlue(props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents)
+                : setDragonDataBlue([]);
+            } else {
+                props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents? 
+                setDragonDataRed(props.matchTimelineData?.frames[props.selectedFrame]?.redTeam?.Dragon?.KillEvents)
+                : setDragonDataRed([]);
+                props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents? 
+                setDragonDataBlue(props.matchTimelineData?.frames[props.selectedFrame]?.blueTeam?.Dragon?.KillEvents)
+                : setDragonDataBlue([]);
+            }
         }
     }, [props.matchTimelineData, props.selectedFrame])
 
@@ -181,16 +205,22 @@ const ProfileCompareBar = (props) => {
         {
             img: ProfileOne,
             name: "baron nashor",
-            left: "12:35",
+            left: props?.frames && props?.frames[props.selectedFrame]?.baronRespawn ? props?.frames[props.selectedFrame]?.baronRespawn : "0:00",
             color: "#8C3DCF",
         },
         {
             img: ProfileTwo,
             name: "elder drake",
-            left: "2:15",
+            left: props?.frames && props?.frames[props.selectedFrame]?.dragonRespawn ? props?.frames[props.selectedFrame]?.dragonRespawn : "0:00",
             color: "#24C2AD",
         },
     ];
+
+    const selectChampName = (id) => {
+        
+        
+    }
+
     return (
         <section>
             <div className="container bg-[#110a1b] mt-4 ">
@@ -209,19 +239,19 @@ const ProfileCompareBar = (props) => {
                     <div className=" flex items-center justify-end  row-start-1 col-start-1  ">
                         {/*  left	 */}
                         <div className=" flex items-center ">
-                            {[Red1, Red2, Red3, Red4, Red5].map(
-                                (batch, index) => {
+                            {redBans?.bans?.map(
+                                (ban, index) => {
                                     return (
                                         <div
                                             key={index}
                                             className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
                                         >
-                                            <Image
-                                                src={batch}
+                                            {selectChampName(ban?.championId) && <Image
+                                                src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(ban?.championId)}.png`}
                                                 alt="btns img"
                                                 layout="fill"
                                                 className=" rounded-full "
-                                            />
+                                            />}
                                         </div>
                                     );
                                 }
@@ -231,19 +261,19 @@ const ProfileCompareBar = (props) => {
                         <h5 className=" sf-bold-14 text-white mx-6 ">Bans</h5>
                         {/*  right	 */}
                         <div className=" flex items-center ">
-                            {[Blue1, Blue2, Blue3, Blue4, Blue5].map(
-                                (batch, index) => {
+                            {blueBans?.bans?.map(
+                                (ban, index) => {
                                     return (
                                         <div
                                             key={index}
                                             className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
                                         >
-                                            <Image
-                                                src={batch}
+                                            {selectChampName(ban?.championId) && <Image
+                                                src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(ban?.championId)}.png`}
                                                 alt="btns img"
                                                 layout="fill"
                                                 className=" rounded-full "
-                                            />
+                                            />}
                                         </div>
                                     );
                                 }

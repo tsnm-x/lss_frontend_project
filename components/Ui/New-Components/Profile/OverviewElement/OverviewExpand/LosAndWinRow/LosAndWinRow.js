@@ -54,22 +54,42 @@ const LosAndWinRow = (props) => {
     useEffect(() => {
         if(frame){
             console.log(frame)
-            setLostTeam(frame?.redTeam);
-            setWinnerTeam(frame?.blueTeam);
-            setWinningTeamPlayers([
-                frame?.participant1,
-                frame?.participant2,
-                frame?.participant3,
-                frame?.participant4,
-                frame?.participant5,
-            ]);
-            setLostTeamPlayers([
-                frame?.participant6,
-                frame?.participant7,
-                frame?.participant8,
-                frame?.participant9,
-                frame?.participant10,
-            ]);
+            const lastFrame = props.matchTimelineData.frames[props.matchTimelineData.frames.length - 1]
+            if(lastFrame.teamId === 200){
+                setWinnerTeam(frame?.redTeam);
+                setLostTeam(frame?.blueTeam);
+                setLostTeamPlayers([
+                    frame?.participant1,
+                    frame?.participant2,
+                    frame?.participant3,
+                    frame?.participant4,
+                    frame?.participant5,
+                ]);
+                setWinningTeamPlayers([
+                    frame?.participant6,
+                    frame?.participant7,
+                    frame?.participant8,
+                    frame?.participant9,
+                    frame?.participant10,
+                ]);
+            } else {
+                setLostTeam(frame?.redTeam);
+                setWinnerTeam(frame?.blueTeam);
+                setWinningTeamPlayers([
+                    frame?.participant1,
+                    frame?.participant2,
+                    frame?.participant3,
+                    frame?.participant4,
+                    frame?.participant5,
+                ]);
+                setLostTeamPlayers([
+                    frame?.participant6,
+                    frame?.participant7,
+                    frame?.participant8,
+                    frame?.participant9,
+                    frame?.participant10,
+                ]);
+            }
         }
 
     }, [props.selectedFrame, props.matchTimelineData, frame]);
