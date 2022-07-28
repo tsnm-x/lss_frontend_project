@@ -336,25 +336,28 @@ const PlayerRow = (props) => {
 	};
 
 	return (
-		<div
-			className={`  grid items-center rounded-[5px]  ${
-				props.reverce
-					? "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] bg-[#191531]  "
-					: "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] bg-[#251122] "
-			}`}
-		>
-			{/* damage dealt  */}
-			<div
-				className={` ${
-					props.reverce ? "order-5" : "order-1"
-				}  flex-col jutify-center`}
-			>
-				<h1 className=" sf-bold-14 text-white text-center  ">
-					{correctParticipant.totalDamageDoneToChampions}
-				</h1>
-				<div
+        <div
+            className={`  grid items-center rounded-[5px]  ${
+                props.reverce
+                    ? `grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] ${
+                          props.active ? "bg-[#5D7CF6]" : "bg-[#191531]"
+                      } `
+                    : `grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] ${
+                          props.active ? " bg-[#D55460]" : "bg-[#251122]"
+                      } `
+            }`}
+        >
+            {/* damage dealt  */}
+            <div
+                className={` ${
+                    props.reverce ? "order-5" : "order-1"
+                }  flex-col jutify-center`}
+            >
+                <h1 className=" sf-bold-14 text-white text-center  ">
+                    {correctParticipant.totalDamageDoneToChampions}
+                </h1>
+                <div
                     className={`w-4/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] justify-self-center mx-auto`}
-                    
                 >
                     <div
                         className={`h-full rounded-full ${
@@ -363,131 +366,159 @@ const PlayerRow = (props) => {
                                 : " bg-accent-color"
                         }`}
                         style={{
-                            width: `${getMaxDamageDealtInTimeline() ?
-                                ((correctParticipant?.totalDamageDoneToChampions / (getMaxDamageDealtInTimeline())) *
-                                100)
-                                : ((correctParticipant?.totalDamageDoneToChampions / (1)) *
-                                100)
+                            width: `${
+                                getMaxDamageDealtInTimeline()
+                                    ? (correctParticipant?.totalDamageDoneToChampions /
+                                          getMaxDamageDealtInTimeline()) *
+                                      100
+                                    : (correctParticipant?.totalDamageDoneToChampions /
+                                          1) *
+                                      100
                             }%`,
                         }}
                     ></div>
                 </div>
-			</div>
-			{/* batches  */}
-			<div
-				className={` flex gap-x-[3px] ${
-					props.reverce ? "order-4 justify-end " : "order-2"
-				}`}
-			>
-				{[0, 1, 2, 3, 4, 5].map((index) => {
-					return (
-						<div
-							key={index}
-							className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
-						>
-							{renderedItems && renderedItems[index] ? (
-								<Image
-									src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${renderedItems[index]}.png`}
-									alt="batch image"
-									layout="fill"
-								/>
-							) : null}
-						</div>
-					);
-				})}
-			</div>
-			{/* kda  */}
-			<div
-				className={` ${
-					props.reverce ? "order-3 text-right " : "order-3"
-				}`}
-			>
-				<h1 className=" sf-bold-14 text-white   ">
-				{correctParticipant?.stats?.kill}/{correctParticipant?.stats?.death}/
-						{correctParticipant?.stats?.assist}
-				</h1>
-				<h1 className=" sf-bold-10 text-grayed-text   ">
-					KDA {correctParticipant?.stats?.death ? (
-							(correctParticipant?.stats?.assist + correctParticipant?.stats?.kill) /
-							(correctParticipant?.stats?.death)
-						).toFixed(2) : "Perfect"}
-				</h1>
-			</div>
-			{/* cs  */}
-			<div
-				className={` ${
-					props.reverce ? "order-2 text-right " : "order-4"
-				}`}
-			>
-				<h1 className=" sf-bold-14 text-white   ">
-					{correctParticipant?.stats?.creepScore} cs
-				</h1>
-				<h1 className=" sf-bold-10 text-grayed-text   ">
-					{(correctParticipant?.stats?.creepScore /props.selectedFrame
-                )?.toFixed(1)} cs/min
-				</h1>
-			</div>
-			{/* profile with batch  */}
-			<div className={` flex gap-x-2 ${props.reverce ? 'order-1 flex-row-reverse': 'order-5'}`}>
-				{/* profile  */}
-				<div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
-					<Image
-						src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player?.championName}.png`}
-						alt=" profile image"
-						layout="fill"
-						className="rounded-[5px] "
-					/>
-					{/* batch  */}
-					<div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
-						<div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
-							{correctParticipant?.level}
-						</div>
-					</div>
-				</div>
-				{/* power  */}
-				<div>
-					{[props.player?.summoner1Id, props.player?.summoner2Id].map((img, index) => {
-						return (
-							<div
-								className=" relative w-[22px] h-[22px] rounded-[5px] "
-								key={index}
-							>
-								{selectSpell(img) && <Image
-									src={selectSpell(img)}
-									alt=" power img"
-									layout="fill"
-									className=" rounded-[5px] "
-								/>}
-							</div>
-						);
-					})}
-				</div>
-				{/* batch  */}
-				<div>
-					<div
-						className=" relative w-[22px] h-[22px] rounded-[5px] "
-					>
-						{selectStyleIcons(props?.player?.perks?.styles[0]?.selections[0]?.perk) &&<Image
-							src={selectStyleIcons(props?.player?.perks?.styles[0]?.selections[0]?.perk)}
-							alt=" batch img"
-							layout="fill"
-							className=" rounded-[5px] "
-						/>}
-					</div>
-					<div
-						className=" relative w-[22px] h-[22px] rounded-[5px] "
-					>
-						{styleSelector(props.player?.perks?.styles[1]?.style) && <Image
-							src={styleSelector(props.player?.perks?.styles[1]?.style)}
-							alt=" batch img"
-							layout="fill"
-							className=" rounded-[5px] "
-						/>}
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+            </div>
+            {/* batches  */}
+            <div
+                className={` flex gap-x-[3px] ${
+                    props.reverce ? "order-4 justify-end " : "order-2"
+                }`}
+            >
+                {[0, 1, 2, 3, 4, 5].map((index) => {
+                    return (
+                        <div
+                            key={index}
+                            className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
+                        >
+                            {renderedItems && renderedItems[index] ? (
+                                <Image
+                                    src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${renderedItems[index]}.png`}
+                                    alt="batch image"
+                                    layout="fill"
+                                />
+                            ) : null}
+                        </div>
+                    );
+                })}
+            </div>
+            {/* kda  */}
+            <div
+                className={` ${
+                    props.reverce ? "order-3 text-right " : "order-3"
+                }`}
+            >
+                <h1 className=" sf-bold-14 text-white   ">
+                    {correctParticipant?.stats?.kill}/
+                    {correctParticipant?.stats?.death}/
+                    {correctParticipant?.stats?.assist}
+                </h1>
+                <h1 className=" sf-bold-10 text-grayed-text   ">
+                    KDA{" "}
+                    {correctParticipant?.stats?.death
+                        ? (
+                              (correctParticipant?.stats?.assist +
+                                  correctParticipant?.stats?.kill) /
+                              correctParticipant?.stats?.death
+                          ).toFixed(2)
+                        : "Perfect"}
+                </h1>
+            </div>
+            {/* cs  */}
+            <div
+                className={` ${
+                    props.reverce ? "order-2 text-right " : "order-4"
+                }`}
+            >
+                <h1 className=" sf-bold-14 text-white   ">
+                    {correctParticipant?.stats?.creepScore} cs
+                </h1>
+                <h1 className=" sf-bold-10 text-grayed-text   ">
+                    {(
+                        correctParticipant?.stats?.creepScore /
+                        props.selectedFrame
+                    )?.toFixed(1)}{" "}
+                    cs/min
+                </h1>
+            </div>
+            {/* profile with batch  */}
+            <div
+                className={` flex gap-x-2 ${
+                    props.reverce ? "order-1 flex-row-reverse" : "order-5"
+                }`}
+            >
+                {/* profile  */}
+                <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
+                    <Image
+                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player?.championName}.png`}
+                        alt=" profile image"
+                        layout="fill"
+                        className="rounded-[5px] "
+                    />
+                    {/* batch  */}
+                    <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
+                        <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
+                            {correctParticipant?.level}
+                        </div>
+                    </div>
+                </div>
+                {/* power  */}
+                <div>
+                    {[props.player?.summoner1Id, props.player?.summoner2Id].map(
+                        (img, index) => {
+                            return (
+                                <div
+                                    className=" relative w-[22px] h-[22px] rounded-[5px] "
+                                    key={index}
+                                >
+                                    {selectSpell(img) && (
+                                        <Image
+                                            src={selectSpell(img)}
+                                            alt=" power img"
+                                            layout="fill"
+                                            className=" rounded-[5px] "
+                                        />
+                                    )}
+                                </div>
+                            );
+                        }
+                    )}
+                </div>
+                {/* batch  */}
+                <div>
+                    <div className=" relative w-[22px] h-[22px] rounded-[5px] ">
+                        {selectStyleIcons(
+                            props?.player?.perks?.styles[0]?.selections[0]?.perk
+                        ) && (
+                            <Image
+                                src={selectStyleIcons(
+                                    props?.player?.perks?.styles[0]
+                                        ?.selections[0]?.perk
+                                )}
+                                alt=" batch img"
+                                layout="fill"
+                                className=" rounded-[5px] "
+                            />
+                        )}
+                    </div>
+                    <div className=" relative w-[22px] h-[22px] rounded-[5px] ">
+                        {styleSelector(
+                            props.player?.perks?.styles[1]?.style
+                        ) && (
+                            <Image
+                                src={styleSelector(
+                                    props.player?.perks?.styles[1]?.style
+                                )}
+                                alt=" batch img"
+                                layout="fill"
+                                className=" rounded-[5px] "
+                            />
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default PlayerRow;
