@@ -12,7 +12,7 @@ const PlayerRow = (props) => {
     return (
         <div
             className=" laptop:grid laptop:grid-cols-[100px_55px_48px]
-         laptop:justify-between laptop:bg-[#1e1728] laptop:pl-[16px] laptop:pr-[14px]
+         laptop:justify-between laptop:bg-[#272030] laptop:pl-[16px] laptop:pr-[14px]
           laptop:rounded-[5px] laptop:py-1 laptop:mb-[14px] last:mb-0 "
         >
             {/* name  */}
@@ -212,7 +212,7 @@ const OftenPlayWith = () => {
 
     return (
         <div
-            className=" px-[13px] py-[17px] rounded-5px bg-card-&-content-box laptop:mt-[10px]
+            className=" px-[13px] py-[17px] rounded-5px bg-[rgba(36,30,44,0.65)] laptop:mt-[10px]
              smDesktop:mt-[27px] smDesktop:py-[35px] smDesktop:px-[15px] "
         >
             <div className=" flex items-center smDesktop:ml-[15px] ">
