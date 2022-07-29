@@ -3,6 +3,7 @@ import { GoPrimitiveDot } from "react-icons/go";
 import GoldDiffChart from "../../Profile/OverviewElement/SimulateGame/Simulation/GoldDiffChart/GoldDiffChart";
 import Image from "next/image";
 import GraphImg from "../../../../../public/assets/new-images/Profile/card/CardExpand/Graph/Expanded-Card.jpg";
+import SimulationData from "../../Profile/OverviewElement/SimulateGame/Simulation/SimulationData/SimulationData";
 
 const GameStaticsGraph = (props) => {
 	const frames = props?.frames;
@@ -91,7 +92,7 @@ const GameStaticsGraph = (props) => {
 				</div>
 				{/* graph cards  */}
 				<div className=" mt-5 ">
-					<input
+					{/* <input
 						className="text-full-dark w-[600px]"
 						type="range"
 						min="0"
@@ -101,13 +102,27 @@ const GameStaticsGraph = (props) => {
 							setFramePointer(e.target.value);
 							props.frameChange(e.target.value);
 						}}
-					/>
+					/> */}
 					{/* left graph  */}
 					{/* <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
 						<h1 className=" sf-bold-40 capitalize ">coming soon</h1>
 					</div> */}
 					<br /> <br />
-					<GoldDiffChart goldFrames={goldFrames} />
+					<GoldDiffChart
+						goldFrames={goldFrames}
+						frameChange={props.frameChange}
+					/>
+					{/* <PowerDiffChart dataFromUnity= {}/> */}
+				</div>
+
+				<div className=" flex justify-between items-center px-10 ">
+					{/* <div>{ChartComponent}</div> */}
+					{/* <SimulationData
+						frames={frames}
+						selectedFrame={props.selectedFrame}
+						simulatorPlayerRed={props.simulatorPlayerRed}
+						simulatorPlayerBlue={props.simulatorPlayerBlue}
+					/> */}
 				</div>
 			</div>
 		</section>
