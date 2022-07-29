@@ -25,20 +25,13 @@ const PlayerList = (props) => {
 
     return (
         <div
-            className={`bg-card-&-content-box grid grid-cols-[auto_30px] 
-            smDesktop:grid-cols-[auto_33px] `}
+            className={`${
+                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+            } grid grid-cols-[auto_30px] 
+            smDesktop:grid-cols-[auto_50px] `}
         >
             {/* player lists  */}
             <div className="h-full relative py-[10px] pl-[18px] pr-[60px]  ">
-                {props.index === 0 ? (
-                    <div
-                        className=" font-sf-pro-text text-[10px] leading-3 font-bold text-accent-color bg-[#2F2937] py-[3px] px-[28px]
-                 rounded-bl-[18px] absolute top-0 right-0 "
-                    >
-                        Ace
-                    </div>
-                ) : null}
-
                 {/* players  */}
                 <div className=" grid grid-cols-2 gap-x-1 ">
                     {orderedPlayersList.map((player, index) => {
@@ -58,11 +51,16 @@ const PlayerList = (props) => {
                                         className=" rounded-full"
                                     />
                                 </div>
-                                <Link href={{
-                                    pathname:'/summoner/[region]/[summonerName]',
-                                    query: {region: router?.query.region, summonerName: player?.summonerName}
-
-                                }}>
+                                <Link
+                                    href={{
+                                        pathname:
+                                            "/summoner/[region]/[summonerName]",
+                                        query: {
+                                            region: router?.query.region,
+                                            summonerName: player?.summonerName,
+                                        },
+                                    }}
+                                >
                                     <h6
                                         className={`gotham-mid-15 capitalize cursor-pointer ${
                                             player?.mainPlayer
@@ -73,7 +71,8 @@ const PlayerList = (props) => {
                                         } `}
                                     >
                                         {player?.summonerName?.slice(0, 7)}
-                                        {player?.summonerName?.length >= 7 && "..."}
+                                        {player?.summonerName?.length >= 7 &&
+                                            "..."}
                                     </h6>
                                 </Link>
                             </div>
@@ -84,10 +83,10 @@ const PlayerList = (props) => {
             {/* right side expand btn  */}
             <div
                 onClick={() => props.ExpandFullHandler()}
-                className={`h-full w-[30px] flex items-center justify-center
-                rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[33px]  ${
-                mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
-            }`}
+                className={`h-full w-[50px] flex items-center justify-center
+                rounded-5px cursor-pointer  ${
+                    mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
+                }`}
             >
                 <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
             </div>

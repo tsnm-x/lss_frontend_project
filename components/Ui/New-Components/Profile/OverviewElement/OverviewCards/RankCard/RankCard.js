@@ -12,9 +12,9 @@ const RankCard = (props) => {
         setMainPlayer(main);
     }, [props.match]);
 
-    useEffect(()=>{
-        console.log(mainPlayer)
-    }, [mainPlayer])
+    useEffect(() => {
+        console.log(mainPlayer);
+    }, [mainPlayer]);
 
     const mythicHighlighter = (id) => {
         switch (id) {
@@ -75,54 +75,64 @@ const RankCard = (props) => {
     };
     return (
         <div
-            className={`bg-card-&-content-box px-[17px] py-[27px]  border-r border-background flex
+            className={`${
+                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+            } px-[20px] py-4 border-r border-background
              `}
         >
-            <div
-                className={` ${
-                    props.className
-                        ? props.className
-                        : `grid grid-cols-3 gap-3 content-center justify-center`
-                } `}
-            >
-                {[
-                    mainPlayer?.item0,
-                    mainPlayer?.item1,
-                    mainPlayer?.item2,
-                    mainPlayer?.item3,
-                    mainPlayer?.item4,
-                    mainPlayer?.item5,
-                ].map((item, index) => {
-                    return (
-                        <div
-                            className={`relative rounded-full bg-[#2f2936] ${
-                                mythicHighlighter(item)
-                                    ? "border-2 border-[#D55460]"
-                                    : ""
-                            } ${
-                                props.imgClassName
-                                    ? props.imgClassName
-                                    : `w-[32px] h-[32px]`
-                            }`}
-                            key={index}
-                        >
-                            {item !== 0 && (
-                                <Image
-                                    className={`rounded-full`}
-                                    src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
-                                    alt="batch image"
-                                    layout="fill"
-                                />
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
-            <div>
+            <h3 className=" font-sf-pro-text font-bold text-[12px] leading-[14.5px] text-nav-btn ">
+                Build
+            </h3>
+            <div className=" flex mt-4 ">
                 <div
-                    className={`relative w-[26px] h-[26px] rounded-full mt-3 ml-3`}
+                    className={` ${
+                        props.className
+                            ? props.className
+                            : `grid grid-cols-3 gap-[10px] content-center justify-center`
+                    } `}
                 >
-                    {mainPlayer?.item6 && (<Image src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`} className="rounded-full" alt="small img" layout="fill" />)}
+                    {[
+                        mainPlayer?.item0,
+                        mainPlayer?.item1,
+                        mainPlayer?.item2,
+                        mainPlayer?.item3,
+                        mainPlayer?.item4,
+                        mainPlayer?.item5,
+                    ].map((item, index) => {
+                        return (
+                            <div
+                                className={`relative rounded-full bg-[#2f2936] ${
+                                    mythicHighlighter(item)
+                                        ? "border-2 border-[#D55460]"
+                                        : ""
+                                } ${
+                                    props.imgClassName
+                                        ? props.imgClassName
+                                        : `w-[30px] h-[30px]`
+                                }`}
+                                key={index}
+                            >
+                                {item !== 0 && (
+                                    <Image
+                                        className={`rounded-full`}
+                                        src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
+                                        alt="batch image"
+                                        layout="fill"
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className={`relative w-[25px] h-[25px] rounded-full ml-[10px]`}>
+                    {mainPlayer?.item6 && (
+                        <Image
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`}
+                            className="rounded-full"
+                            alt="small img"
+                            layout="fill"
+                        />
+                    )}
                 </div>
             </div>
         </div>

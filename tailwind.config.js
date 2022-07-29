@@ -66,6 +66,8 @@ module.exports = {
                 background: "#140A22",
                 "footer-bg": "#18112b",
                 "text-gray-200": "#9D9D9D",
+                winOpacity: "#191531",
+                defeatOpacity: "#251122",
             },
             fontSize: {
                 // old 1.0
@@ -88,7 +90,7 @@ module.exports = {
                 gotham: "Gotham",
                 NEDGEN: "NEDGEN",
                 "sf-pro-text": "sf-pro-text",
-                "mazin": "mazin-bold"
+                mazin: "mazin-bold",
             },
             borderRadius: {
                 // old 1.0

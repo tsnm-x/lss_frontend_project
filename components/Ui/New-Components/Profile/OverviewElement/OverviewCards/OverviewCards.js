@@ -7,7 +7,6 @@ import ShowMore from "../../../universal/Btn/ShowMore/ShowMore";
 import ExpandCard from "../OverviewExpand/ExpandCard/ExpandCard";
 import Ads from "../../../../../shared/New-Componets/Ads/Ads";
 
-
 const OverviewCards = (props) => {
     const { cards } = props;
     const [loaderViewer, setLoaderViewer] = useState(true);
@@ -53,7 +52,7 @@ const OverviewCards = (props) => {
                 setSelectedMatchType={props?.setSelectedMatchType}
                 ControlBtnLists={props?.ControlBtnLists}
             />
-            <div className="smDesktop:flex smDesktop:justify-between ">
+            <div className="smDesktop:flex smDesktop:justify-between smDesktop:max-w-[885px] ">
                 <div
                     className={` relative ${
                         props.expand
@@ -99,15 +98,15 @@ const OverviewCards = (props) => {
                             props.selectedMatchType === "ranked flex" &&
                             rankedFlex.map((match, index) => {
                                 return (
-                                        <Card
-                                            key={index}
-                                            index={index}
-                                            match={match}
-                                            region={props?.region}
-                                            expand={props.expand}
-                                            setExpand={props.setExpand}
-                                            expandControl={props.expandControl}
-                                        />
+                                    <Card
+                                        key={index}
+                                        index={index}
+                                        match={match}
+                                        region={props?.region}
+                                        expand={props.expand}
+                                        setExpand={props.setExpand}
+                                        expandControl={props.expandControl}
+                                    />
                                 );
                             })}
 
@@ -127,25 +126,28 @@ const OverviewCards = (props) => {
                                 );
                             })}
 
-						{!loaderViewer && (
-							<div className="text-white flex justify-center">
-								No #
-								{props.selectedMatchType === "all"
-									? "ranked solo"
-									: props.selectedMatchType}
-								# games have een found for this summoner
-							</div>
-						)}
-					</div>
-					{/* show more btn  */}
-					<ShowMore region={props?.region} summonerName={props?.summonerName}/>
-				</div>
-				{/* {!props.expand ? (
+                        {!loaderViewer && (
+                            <div className="text-white flex justify-center">
+                                No #
+                                {props.selectedMatchType === "all"
+                                    ? "ranked solo"
+                                    : props.selectedMatchType}
+                                # games have een found for this summoner
+                            </div>
+                        )}
+                    </div>
+                    {/* show more btn  */}
+                    <ShowMore
+                        region={props?.region}
+                        summonerName={props?.summonerName}
+                    />
+                </div>
+                {/* {!props.expand ? (
 					<Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />
 				) : null} */}
-			</div>
-		</aside>
-	);
+            </div>
+        </aside>
+    );
 };
 
 export default OverviewCards;

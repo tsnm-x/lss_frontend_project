@@ -72,25 +72,21 @@ const LeftSide = (props) => {
     return (
         <>
             {props.mainPlayer && (
-                <div
-                    className={`font-sf-pro-text font-bold mr-[30px]  `}
-                >
+                <div className={`font-sf-pro-text font-bold mr-[30px]  `}>
                     <h4
                         className={` capitalize ${
                             props?.mainPlayer?.win
                                 ? "text-accent-color-2"
-                                : "text-accent-color"
+                                : " text-nav-btn"
                         }`}
                     >
                         <span
-                            className={` mr-1 ${
+                            className={` mr-[10px] ${
                                 props.expand
                                     ? `text-[23px] leading-7 ${
-                                          props.mainExpand
-                                              ? ""
-                                              : " "
+                                          props.mainExpand ? "" : " "
                                       } `
-                                    : " text-[17px] leading-5  "
+                                    : " text-[18px] leading-5  "
                             }`}
                         >
                             {props?.mainPlayer?.win ? "Victory" : "Defeat"}
@@ -99,9 +95,7 @@ const LeftSide = (props) => {
                             className={`text-light-text ${
                                 props.expand
                                     ? `text-base leading-[19px]  ${
-                                          props.mainExpand
-                                              ? ""
-                                              : " "
+                                          props.mainExpand ? "" : " "
                                       } `
                                     : "text-[12px] leading-[14px]"
                             }`}
@@ -113,9 +107,7 @@ const LeftSide = (props) => {
                         className={`${
                             props.expand
                                 ? `text-[15px] leading-[18px] mt-2 ${
-                                      props.mainExpand
-                                          ? ""
-                                          : "  "
+                                      props.mainExpand ? "" : "  "
                                   }`
                                 : "text-[12px] leading-[14px] mt-1  "
                         } text-grayed-text`}
@@ -126,13 +118,9 @@ const LeftSide = (props) => {
                         className={` text-light-text ${
                             props.expand
                                 ? `text-[32px] leading-[39px] mt-[18px] smDesktop:text-[37px] smDesktop:leading-[44px]
-                             ${
-                                 props.mainExpand
-                                     ? ""
-                                     : "  "
-                             }
+                             ${props.mainExpand ? "" : "  "}
                               `
-                                : "text-[25px] leading-[30px] mt-[10px]  "
+                                : "text-[22px] leading-[26px] mt-[10px]  "
                         } `}
                     >
                         {props?.mainPlayer?.kills}/{props?.mainPlayer?.deaths}/
@@ -146,7 +134,7 @@ const LeftSide = (props) => {
                                           ? ""
                                           : " text-[25px] leading-[30px] mt-5 "
                                   }`
-                                : "text-[12px] leading-[14px] mt-[10px]  "
+                                : "text-[12px] leading-[14px] mt-[15px]  "
                         } `}
                     >
                         {getGameStart(props?.match?.gameStartTimestamp)}
@@ -216,200 +204,195 @@ const RightSide = (props) => {
         }
     };
 
-    const styleSelector = (id) =>{
-
+    const styleSelector = (id) => {
         switch (id) {
-			case 8100:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png";
-			case 8300:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
-			case 8000:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7201_Precision.png";
-			case 8400:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7204_Resolve.png";
-			case 8200:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7202_Sorcery.png";
+            case 8100:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png";
+            case 8300:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+            case 8000:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7201_Precision.png";
+            case 8400:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7204_Resolve.png";
+            case 8200:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7202_Sorcery.png";
 
-			// todo: add image placeholder as default
-			default:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
-		}
-
-    }
+            // todo: add image placeholder as default
+            default:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+        }
+    };
 
     const selectStyleIcons = (mainId, subId) => {
-        switch (mainId){
+        switch (mainId) {
             case 8100:
-				switch(subId) {
+                switch (subId) {
                     case 8112:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png";
                     case 8124:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Predator/Predator.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Predator/Predator.png";
                     case 8128:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png";
                     case 9923:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png";
                     case 8126:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/CheapShot/CheapShot.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/CheapShot/CheapShot.png";
                     case 8139:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TasteOfBlood/GreenTerror_TasteOfBlood.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TasteOfBlood/GreenTerror_TasteOfBlood.png";
                     case 8143:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/SuddenImpact/SuddenImpact.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/SuddenImpact/SuddenImpact.png";
                     case 8136:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/ZombieWard/ZombieWard.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/ZombieWard/ZombieWard.png";
                     case 8120:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/GhostPoro/GhostPoro.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/GhostPoro/GhostPoro.png";
                     case 8138:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/EyeballCollection/EyeballCollection.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/EyeballCollection/EyeballCollection.png";
                     case 8135:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TreasureHunter/TreasureHunter.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TreasureHunter/TreasureHunter.png";
                     case 8134:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/IngeniousHunter/IngeniousHunter.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/IngeniousHunter/IngeniousHunter.png";
                     case 8105:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/RelentlessHunter/RelentlessHunter.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/RelentlessHunter/RelentlessHunter.png";
                     case 8106:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/UltimateHunter/UltimateHunter.png"  
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/UltimateHunter/UltimateHunter.png";
                 }
-			case 8300:
-				switch(subId) {
+            case 8300:
+                switch (subId) {
                     case 8351:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png";
                     case 8360:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png";
                     case 8369:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png";
                     case 8306:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png";
                     case 8304:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png";
                     case 8313:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/PerfectTiming/PerfectTiming.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/PerfectTiming/PerfectTiming.png";
                     case 8321:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png";
                     case 8316:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png";
                     case 8345:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png";
                     case 8347:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png";
                     case 8410:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png";
                     case 8352:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png";
                 }
-			case 8000:
-				switch(subId) {
-                    
+            case 8000:
+                switch (subId) {
                     case 8005:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png";
 
                     case 8008:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png";
                     case 8021:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png";
                     case 8010:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Conqueror/Conqueror.png"
-                    
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Conqueror/Conqueror.png";
+
                     case 9101:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Overheal.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Overheal.png";
+
                     case 9111:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Triumph.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Triumph.png";
+
                     case 8009:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png";
+
                     case 9104:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png";
+
                     case 9105:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png";
+
                     case 9103:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png";
+
                     case 8014:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png";
+
                     case 8017:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CutDown/CutDown.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CutDown/CutDown.png";
+
                     case 8299:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/LastStand/LastStand.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/LastStand/LastStand.png";
                 }
-			case 8400:
-				switch (subId) {
+            case 8400:
+                switch (subId) {
                     case 8437:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png";
+
                     case 8439:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png";
+
                     case 8465:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png";
+
                     case 8446:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Demolish/Demolish.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Demolish/Demolish.png";
+
                     case 8463:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png";
+
                     case 8401:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/MirrorShell/MirrorShell.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/MirrorShell/MirrorShell.png";
+
                     case 8429:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Conditioning/Conditioning.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Conditioning/Conditioning.png";
+
                     case 8444:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png";
+
                     case 8473:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/BonePlating/BonePlating.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/BonePlating/BonePlating.png";
+
                     case 8451:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png";
+
                     case 8453:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Revitalize/Revitalize.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Revitalize/Revitalize.png";
+
                     case 8242:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Unflinching/Unflinching.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Unflinching/Unflinching.png";
                 }
-			case 8200:
-				switch (subId) {  
+            case 8200:
+                switch (subId) {
                     case 8224:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png";
+
                     case 8226:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ManaflowBand/ManaflowBand.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ManaflowBand/ManaflowBand.png";
+
                     case 8275:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png";
+
                     case 8210:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png";
+
                     case 8234:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Celerity/CelerityTemp.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Celerity/CelerityTemp.png";
+
                     case 8233:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png";
+
                     case 8237:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Scorch/Scorch.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Scorch/Scorch.png";
+
                     case 8232:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Waterwalking/Waterwalking.png"
-                
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Waterwalking/Waterwalking.png";
+
                     case 8236:
-                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/GatheringStorm/GatheringStorm.png"
+                        return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/GatheringStorm/GatheringStorm.png";
                 }
         }
-    }
+    };
 
-    useEffect(() => {
-    }, [props.mainPlayer]);
+    useEffect(() => {}, [props.mainPlayer]);
     useEffect(() => {
         let totalKills = 0;
         let winState = props?.mainPlayer?.win;
@@ -437,19 +420,17 @@ const RightSide = (props) => {
     return (
         <div>
             {/* top images  */}
-            <div className=" flex items-center ">
+            <div className=" flex items-center gap-x-2 ">
                 <div
                     className={`${
                         props.expand
                             ? `laptop:w-[95px] laptop:h-[95px] smDesktop:w-[98px] smDesktop:h-[98px] ${
-                                  props.mainExpand
-                                      ? "  "
-                                      : "  "
+                                  props.mainExpand ? "  " : "  "
                               }`
-                            : "laptop:w-[62px] laptop:h-[62px] smDesktop:w-[65px] smDesktop:h-[65px]  "
-                    } relative mr-1 `}
+                            : "laptop:w-[63px] laptop:h-[63px] laptop:border laptop:border-white rounded-[16px]  "
+                    } relative `}
                 >
-                    <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
+                    <div className=" relative overflow-hidden laptop:w-full laptop:h-full laptop:rounded-[16px]  ">
                         <Image
                             src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.mainPlayer?.championName}.png`}
                             alt="profile image"
@@ -458,104 +439,112 @@ const RightSide = (props) => {
                     </div>
                     <div
                         className={` text-white font-gotham font-medium text-[9px] leading-[7px] flex items-center justify-center laptop:w-[18px] 
-                          laptop:h-[18px] laptop:rounded-full laptop:border laptop:border-grayed-text laptop:italic
-                          laptop:absolute laptop:left-[40%] laptop:-bottom-[6px]
+                          laptop:h-[18px] laptop:rounded-full laptop:border laptop:border-white
+                          laptop:absolute laptop:left-[40%] laptop:-bottom-[10px]
                           laptop:bg-background `}
                     >
                         {props?.mainPlayer?.champLevel}
                     </div>
                 </div>
-                {/* power and batches  */}
-                <div className=" flex ">
-                    {/* powers  */}
-                    <div className=" mr-2 ">
-                        {[
-                            props.mainPlayer?.summoner1Id,
-                            props.mainPlayer?.summoner2Id,
-                        ].map((power, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className={` relative ${
-                                        props.expand
-                                            ? `w-[45px] h-[45px] mb-[6px] ${
-                                                  props.mainExpand
-                                                      ? ""
-                                                      : ""
-                                              }`
-                                            : " w-[29px] h-[29px] rounded-5px smDesktop:w-[31px] smDesktop:h-[31px] smDesktop:first:mb-1 "
-                                    }`}
-                                >
-                                    <Image
-                                        src={selectSpell(power)}
-                                        alt="summoner flash image"
-                                        layout="fill"
-                                        className=" rounded-5px "
-                                    />
-                                </div>
-                            );
-                        })}
+                {/* powers  */}
+                <div>
+                    {[
+                        props.mainPlayer?.summoner1Id,
+                        props.mainPlayer?.summoner2Id,
+                    ].map((power, index) => {
+                        return (
+                            <div
+                                key={index}
+                                className={` relative ${
+                                    props.expand
+                                        ? `w-[45px] h-[45px] mb-[6px] ${
+                                              props.mainExpand ? "" : ""
+                                          }`
+                                        : " w-[30px] h-[30px] rounded-5px smDesktop:first:mb-1 "
+                                }`}
+                            >
+                                <Image
+                                    src={selectSpell(power)}
+                                    alt="summoner flash image"
+                                    layout="fill"
+                                    className=" rounded-5px "
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+                {/* batch  */}
+                <div>
+                    {/* data.batch  */}
+                    <div
+                        className={` relative ${
+                            props.expand
+                                ? `w-[45px] h-[45px] mb-[6px] ${
+                                      props.mainExpand ? "" : ""
+                                  }`
+                                : " w-[30px] h-[30px] rounded-5px mb-1 "
+                        }`}
+                    >
+                        {selectStyleIcons(
+                            props?.mainPlayer?.perks?.styles[0]?.style,
+                            props?.mainPlayer?.perks?.styles[0]?.selections[0]
+                                .perk
+                        ) && (
+                            <Image
+                                src={selectStyleIcons(
+                                    props?.mainPlayer?.perks?.styles[0]?.style,
+                                    props?.mainPlayer?.perks?.styles[0]
+                                        ?.selections[0].perk
+                                )}
+                                alt="summoner flash image"
+                                layout="fill"
+                                className=" rounded-5px "
+                            />
+                        )}
                     </div>
-                    {/* batch  */}
-                    <div className=" mr-2 ">
-                        {/* data.batch  */}
-                        
-                        <div
-                            className={` relative ${
-                                props.expand
-                                    ? `w-[45px] h-[45px] mb-[6px] ${
-                                            props.mainExpand
-                                                ? ""
-                                                : ""
-                                        }`
-                                    : " w-[29px] h-[29px] rounded-5px "
-                            }`}
-                        >
-                            {selectStyleIcons(props?.mainPlayer?.perks?.styles[0]?.style, props?.mainPlayer?.perks?.styles[0]?.selections[0].perk ) && <Image
-                                src={selectStyleIcons(props?.mainPlayer?.perks?.styles[0]?.style, props?.mainPlayer?.perks?.styles[0]?.selections[0].perk )}
+                    <div
+                        className={` relative ${
+                            props.expand
+                                ? `w-[45px] h-[45px] mb-[6px] ${
+                                      props.mainExpand ? "" : ""
+                                  }`
+                                : " w-[30px] h-[30px] rounded-5px "
+                        }`}
+                    >
+                        {props?.mainPlayer?.perks?.styles[1]?.style && (
+                            <Image
+                                src={styleSelector(
+                                    props?.mainPlayer?.perks?.styles[1]?.style
+                                )}
                                 alt="summoner flash image"
                                 layout="fill"
                                 className=" rounded-5px "
-                            />}
-                        </div>
-                        <div
-                            className={` relative ${
-                                props.expand
-                                    ? `w-[45px] h-[45px] mb-[6px] ${
-                                            props.mainExpand
-                                                ? ""
-                                                : ""
-                                        }`
-                                    : " w-[29px] h-[29px] rounded-5px "
-                            }`}
-                        >
-                            {props?.mainPlayer?.perks?.styles[1]?.style && <Image
-                                src={styleSelector(props?.mainPlayer?.perks?.styles[1]?.style)}
-                                alt="summoner flash image"
-                                layout="fill"
-                                className=" rounded-5px "
-                            />}
-                        </div>
+                            />
+                        )}
                     </div>
                 </div>
             </div>
             {/* bottom texts  */}
             <div
-                className={`font-sf-pro-text font-bold text-[9.5px] leading-[11px] pl-2 mt-[17px]   ${props.mainExpand ? "" : " "}`}
+                className={`font-sf-pro-text font-bold text-[9.5px] leading-[11px] mt-[17px]   ${
+                    props.mainExpand ? "" : " "
+                }`}
             >
                 <p className=" text-grayed-text ">
                     <span className=" text-accent-color-2">
-                        {props.mainPlayer?.deaths ? (
-                            (props.mainPlayer?.assists +
-                                props.mainPlayer?.kills) /
-                            (props.mainPlayer?.deaths)
-                        ).toFixed(2): "Perfect"}{props.mainPlayer?.deaths ? ":1" : ""}
-                        
+                        {props.mainPlayer?.deaths
+                            ? (
+                                  (props.mainPlayer?.assists +
+                                      props.mainPlayer?.kills) /
+                                  props.mainPlayer?.deaths
+                              ).toFixed(2)
+                            : "Perfect"}
+                        {props.mainPlayer?.deaths ? ":1" : ""}
                     </span>{" "}
                     KDA
                 </p>
                 {viewer && (
-                    <p className=" text-grayed-text mt-[2px] ">{kp}% KP</p>
+                    <p className=" text-grayed-text ">{kp}% KP</p>
                 )}
             </div>
         </div>
@@ -574,8 +563,10 @@ const StatusCard = (props) => {
 
     return (
         <div
-            className={`  bg-card-&-content-box
-             flex items-center border-r border-background   ${
+            className={`  ${
+                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+            }
+             flex border-r border-background   ${
                  props.expand
                      ? " py-6 px-[30px] smDesktop:px-[28px] smDesktop:py-[38px]  "
                      : "p-5 pt-[15px] "
