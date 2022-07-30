@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
 import ProfileOne from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/first.png";
 import ProfileTwo from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/sec.png";
 import CenterBatch from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/batch.png";
@@ -229,15 +230,9 @@ const ProfileCompareBar = (props) => {
 	useEffect(()=>{
 		let url = "http://ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
 			
-		fetch(url, {
-			method: 'GET',
-			headers: {
-			  accept: 'application/json',
-			},
-		  })
-		.then(res => res.json())
-		.then((json) => {
-			setJson(json)
+		axios.get(url)
+		.then((res) => {
+			setJson(res.data)
 		});
 	}, [])
 
