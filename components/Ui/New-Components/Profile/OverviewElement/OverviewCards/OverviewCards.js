@@ -61,7 +61,7 @@ const OverviewCards = (props) => {
                     }`}
                 >
                     {/* card container  */}
-                    <div className=" ">
+                    <div className=" flex flex-col flex-wrap gap-y-[5px] ">
                         {props.matches[0] &&
                             props.selectedMatchType === "all" &&
                             props.matches.map((match, index) => {
