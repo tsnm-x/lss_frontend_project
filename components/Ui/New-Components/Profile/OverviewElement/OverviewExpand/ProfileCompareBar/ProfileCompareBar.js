@@ -229,11 +229,15 @@ const ProfileCompareBar = (props) => {
 
 	useEffect(()=>{
 		let url = "http://ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
-			
-		axios.get(url)
-		.then((res) => {
-			setJson(res.data)
-		});
+		
+		try {
+			axios.get(url)
+			.then((res) => {
+				setJson(res.data)
+			});
+		} catch(error) {
+			console.log(error)
+		}
 	}, [])
 
 	const profileData = [
