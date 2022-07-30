@@ -228,8 +228,13 @@ const ProfileCompareBar = (props) => {
 
 	useEffect(()=>{
 		let url = "http://ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
-	
-		fetch(url)
+			
+		fetch(url, {
+			method: 'GET',
+			headers: {
+			  accept: 'application/json',
+			},
+		  })
 		.then(res => res.json())
 		.then((json) => {
 			setJson(json)
