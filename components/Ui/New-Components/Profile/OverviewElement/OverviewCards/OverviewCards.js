@@ -57,7 +57,7 @@ const OverviewCards = (props) => {
                     className={` relative ${
                         props.expand
                             ? "w-full mt-[8px] "
-                            : "mt-5 smDesktop:w-[862px] desktop:w-full desktop:mr-11  "
+                            : "mt-5 smDesktop:w-full desktop:mr-11  "
                     }`}
                 >
                     {/* card container  */}

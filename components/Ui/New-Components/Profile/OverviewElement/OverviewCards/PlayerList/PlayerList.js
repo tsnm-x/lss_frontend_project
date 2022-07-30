@@ -31,17 +31,17 @@ const PlayerList = (props) => {
             smDesktop:grid-cols-[auto_50px] `}
         >
             {/* player lists  */}
-            <div className="h-full relative py-[10px] pl-[18px] pr-[60px]  ">
+            <div className="h-full relative pl-[29px] py-[10px]  ">
                 {/* players  */}
-                <div className=" grid grid-cols-2 gap-x-1 ">
+                <div className=" grid grid-cols-[repeat(2,100px)] gap-x-[18px] gap-y-1 ">
                     {orderedPlayersList.map((player, index) => {
                         return (
                             <div
-                                className={`flex items-center justify-start mb-1`}
+                                className={`flex items-center justify-start  `}
                                 key={index}
                             >
                                 <div
-                                    className={`border border-[#707070] relative w-[22px] h-[22px] rounded-full mr-[8px] 
+                                    className={`border border-[#707070] relative w-[20px] h-[20px] rounded-full mr-[18px] 
                                     `}
                                 >
                                     <Image
@@ -62,7 +62,7 @@ const PlayerList = (props) => {
                                     }}
                                 >
                                     <h6
-                                        className={`gotham-mid-15 capitalize cursor-pointer ${
+                                        className={` sf-bold-14 capitalize cursor-pointer w-[62px] ${
                                             player?.mainPlayer
                                                 ? player?.win
                                                     ? "text-accent-color-2"
@@ -71,8 +71,8 @@ const PlayerList = (props) => {
                                         } `}
                                     >
                                         {player?.summonerName?.slice(0, 7)}
-                                        {player?.summonerName?.length >= 7 &&
-                                            "..."}
+                                        {/* {player?.summonerName?.length >= 7 &&
+                                            "..."} */}
                                     </h6>
                                 </Link>
                             </div>

@@ -39,7 +39,7 @@ const Card = (props) => {
                 className={` rounded-5px overflow-hidden grid  border-b border-background ${
                     props.index == CardContextObj.expandCardNo
                         ? "grid-cols-[37%_auto_33px]"
-                        : " grid-cols-[336px_186px_40%]"
+                        : " grid-cols-[336px_186px_361px]"
                 } ${props.className}`}
             >
                 <StatusCard expand={props.index == CardContextObj.expandCardNo} {...props} />
