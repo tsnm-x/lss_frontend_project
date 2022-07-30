@@ -65,7 +65,6 @@ const DataRow = (props) => {
             {props.players && props.players?.map((player, index) => {
                 return (
                     <PlayerRow
-                        active={index === 1}
                         key={index}
                         match={props.match}
                         reverce={props.reverce}
@@ -77,8 +76,8 @@ const DataRow = (props) => {
                         setPlayers={props.setPlayers}
                         selectedFrame={props.selectedFrame}
                         matchTimelineData={props.matchTimelineData}
-                        simulatorPlayers={props.simulatorPlayers}
-                        setSimulatorPlayers={props?.setSimulatorPlayers}
+                        simulatorPlayer={props.simulatorPlayer}
+                        setSimulatorPlayer={props?.setSimulatorPlayer}
                     />
                 )
             })}
@@ -109,8 +108,8 @@ const DataRowGrid = (props) => {
                         selectedPlayer={props.selectedPlayer}
                         setSelectedPlayer={props.setSelectedPlayer}
                         players={props?.leftTeam}
-                        simulatorPlayers={props.simulatorPlayerRed}
-                        setSimulatorPlayers={props?.setSimulatorPlayerRed}
+                        simulatorPlayer={props.simulatorPlayerRed}
+                        setSimulatorPlayer={props?.setSimulatorPlayerRed}
                     />
                     <DataRow
                         region={router?.query?.region} 
@@ -122,8 +121,8 @@ const DataRowGrid = (props) => {
                         selectedPlayer={props.selectedPlayer}
                         setSelectedPlayer={props.setSelectedPlayer}
                         players={props?.rightTeam}
-                        simulatorPlayers={props.simulatorPlayerBlue}
-                        setSimulatorPlayers={props?.setSimulatorPlayerBlue}
+                        simulatorPlayer={props.simulatorPlayerBlue}
+                        setSimulatorPlayer={props?.setSimulatorPlayerBlue}
                     />
                 </div>
             </div>

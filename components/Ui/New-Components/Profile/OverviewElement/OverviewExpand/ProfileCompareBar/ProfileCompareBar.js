@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
 import ProfileOne from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/first.png";
 import ProfileTwo from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/sec.png";
 import CenterBatch from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/batch.png";
@@ -177,6 +178,7 @@ const ProfileCompareBar = (props) => {
 	const [dragonDataBlue, setDragonDataBlue] = useState([]);
 	const [redBans, setRedBans] = useState({});
 	const [blueBans, setBlueBans] = useState({});
+	const [json, setJson] = useState({})
 
 	useEffect(() => {
 		if (props.teams) {
@@ -225,6 +227,19 @@ const ProfileCompareBar = (props) => {
 		}
 	}, [props.matchTimelineData, props.selectedFrame]);
 
+	useEffect(()=>{
+		let url = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+		
+		try {
+			axios.get(url)
+			.then((res) => {
+				setJson(res.data)
+			});
+		} catch(error) {
+			console.log(error)
+		}
+	}, [])
+
 	const profileData = [
 		{
 			img: ProfileOne,
@@ -246,7 +261,15 @@ const ProfileCompareBar = (props) => {
 		},
 	];
 
-	const selectChampName = (id) => {};
+	const selectChampName = (id) => {
+
+		for(let champion in json.data){
+			if(parseInt(json.data[champion].key) === parseInt(id)){
+				console.log(json.data[champion].id)
+				return json.data[champion].id
+			}
+		}
+	};
 
 	return (
 		<section>
@@ -276,7 +299,7 @@ const ProfileCompareBar = (props) => {
 										key={index}
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
-										{selectChampName(ban?.championId) && (
+										{(
 											<Image
 												src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(
 													ban?.championId
@@ -300,7 +323,7 @@ const ProfileCompareBar = (props) => {
 										key={index}
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
-										{selectChampName(ban?.championId) && (
+										{(
 											<Image
 												src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(
 													ban?.championId
