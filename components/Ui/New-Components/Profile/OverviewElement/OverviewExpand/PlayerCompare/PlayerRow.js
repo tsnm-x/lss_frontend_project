@@ -340,12 +340,14 @@ const PlayerRow = (props) => {
             className={`  grid items-center rounded-[5px]  ${
                 props.reverce
                     ? `grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] ${
-                          props.active ? "bg-[#5D7CF6]" : "bg-[#191531]"
+                        props.simulatorPlayer.summonerName === props.player.summonerName ? "bg-[#5D7CF6]" : "bg-[#191531]"
                       } `
                     : `grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] ${
-                          props.active ? " bg-[#D55460]" : "bg-[#251122]"
+                        props.simulatorPlayer.summonerName === props.player.summonerName ? " bg-[#D55460]" : "bg-[#251122]"
                       } `
             }`}
+
+            onClick={() => props.setSimulatorPlayer(props.player)}
         >
             {/* damage dealt  */}
             <div

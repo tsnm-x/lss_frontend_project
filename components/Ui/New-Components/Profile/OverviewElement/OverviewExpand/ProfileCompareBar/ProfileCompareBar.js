@@ -177,6 +177,7 @@ const ProfileCompareBar = (props) => {
 	const [dragonDataBlue, setDragonDataBlue] = useState([]);
 	const [redBans, setRedBans] = useState({});
 	const [blueBans, setBlueBans] = useState({});
+	const [json, setJson] = useState({})
 
 	useEffect(() => {
 		if (props.teams) {
@@ -225,6 +226,16 @@ const ProfileCompareBar = (props) => {
 		}
 	}, [props.matchTimelineData, props.selectedFrame]);
 
+	useEffect(()=>{
+		let url = "http://ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+	
+		fetch(url)
+		.then(res => res.json())
+		.then((json) => {
+			setJson(json)
+		});
+	}, [])
+
 	const profileData = [
 		{
 			img: ProfileOne,
@@ -246,7 +257,15 @@ const ProfileCompareBar = (props) => {
 		},
 	];
 
-	const selectChampName = (id) => {};
+	const selectChampName = (id) => {
+
+		for(let champion in json.data){
+			if(parseInt(json.data[champion].key) === parseInt(id)){
+				console.log(json.data[champion].id)
+				return json.data[champion].id
+			}
+		}
+	};
 
 	return (
 		<section>
@@ -276,7 +295,7 @@ const ProfileCompareBar = (props) => {
 										key={index}
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
-										{selectChampName(ban?.championId) && (
+										{(
 											<Image
 												src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(
 													ban?.championId
@@ -300,7 +319,7 @@ const ProfileCompareBar = (props) => {
 										key={index}
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
-										{selectChampName(ban?.championId) && (
+										{(
 											<Image
 												src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(
 													ban?.championId
