@@ -228,7 +228,7 @@ const ProfileCompareBar = (props) => {
 	}, [props.matchTimelineData, props.selectedFrame]);
 
 	useEffect(()=>{
-		let url = "http://ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+		let url = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
 		
 		try {
 			axios.get(url)
