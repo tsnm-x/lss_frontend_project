@@ -11,9 +11,9 @@ const BuildCard = (props) => {
         setMainPlayer(main);
     }, [props.match]);
 
-    useEffect(()=>{
-        console.log(mainPlayer)
-    }, [mainPlayer])
+    useEffect(() => {
+        console.log(mainPlayer);
+    }, [mainPlayer]);
 
     const mythicHighlighter = (id) => {
         switch (id) {
@@ -73,11 +73,13 @@ const BuildCard = (props) => {
         }
     };
     return (
-        <div className=" px-5 py-4 bg-[#241e2c] ">
-            <h3 className=" text-accent-color font-sf-pro-text font-bold text-[15px] capitalize leading-[18px] ">
-                build
-            </h3>
-            <div className=" flex justify-center gap-x-3 mt-5 ">
+        <div
+            className={`px-5 py-4 ${
+                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+            }`}
+        >
+            <h3 className=" text-accent-color sf-bold-12 capitalize ">build</h3>
+            <div className=" flex ml-[10px] gap-x-[10px] mt-5 ">
                 {/* large  */}
                 {[
                     mainPlayer?.item0,
@@ -85,12 +87,12 @@ const BuildCard = (props) => {
                     mainPlayer?.item2,
                     mainPlayer?.item3,
                     mainPlayer?.item4,
-                    mainPlayer?.item5
+                    mainPlayer?.item5,
                 ].map((img, index) => {
                     return (
                         <div
                             key={index}
-                            className= {`w-[46px] h-[46px] rounded-full relative bg-[#2f2937]  ${
+                            className={`w-[50px] h-[50px] rounded-full relative bg-[#2f2937]  ${
                                 mythicHighlighter(img)
                                     ? "border-2 border-[#D55460]"
                                     : ""
@@ -108,14 +110,16 @@ const BuildCard = (props) => {
                     );
                 })}
                 {/* small img  */}
-                {mainPlayer?.item6 && <div className=" w-[33px] h-[33px] relative rounded-full ">
-                    <Image
-                        src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`}
-                        alt=" rank img"
-                        layout="fill"
-                        className=" rounded-full"
-                    />
-                </div>}
+                {mainPlayer?.item6 && (
+                    <div className=" w-[30px] h-[30px] relative rounded-full ">
+                        <Image
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`}
+                            alt=" rank img"
+                            layout="fill"
+                            className=" rounded-full"
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

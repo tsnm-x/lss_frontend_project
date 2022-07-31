@@ -6,9 +6,9 @@
 
 .cellTitle {
     @apply font-sf-pro-text font-bold 
-                     text-[13px] leading-[15px] text-[#FFFAFF];
+                     text-[14px] leading-[17px] text-[#FFFAFF];
 }
 .secTitle {
-    @apply font-sf-pro-text font-bold text-[10px] leading-[12px]
+    @apply font-sf-pro-text font-bold text-[12px] leading-[14.3px]
       text-[#858DA3] ;
 }

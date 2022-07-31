@@ -38,7 +38,7 @@ const Card = (props) => {
             <div
                 className={` rounded-5px overflow-hidden grid  border-b border-background ${
                     props.index == CardContextObj.expandCardNo
-                        ? "grid-cols-[37%_auto_33px]"
+                        ? "grid-cols-[336px_498px_50px]"
                         : " grid-cols-[336px_186px_361px]"
                 } ${props.className}`}
             >
@@ -64,7 +64,7 @@ const Card = (props) => {
                             ExpandFullHandler();
                         }}
                         className={`h-full w-[30px] flex items-center justify-center
-                                                    rounded-tr-5px rounded-br-5px cursor-pointer smDesktop:w-[50px]  ${
+                                                    rounded-tr-5px rounded-5px cursor-pointer smDesktop:w-[50px]  ${
                                                         mainPlayer?.win
                                                             ? "bg-accent-color-2"
                                                             : "bg-accent-color"

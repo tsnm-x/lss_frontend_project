@@ -152,7 +152,7 @@
     }
 
     .sf-bold-12 {
-        @apply font-sf-pro-text text-[12px] leading-[14px];
+        @apply font-sf-pro-text text-[12px] leading-[14px] font-bold;
     }
     .sf-bold-11 {
         @apply font-sf-pro-text font-bold text-[11px] leading-[10px];
