@@ -34,9 +34,8 @@ const ShowMore = (props) => {
 		setStart(start + 10);
 	};
     return (
-        <button onClick={getMoreMatches} className={`${Classes.BtnWrap}`}>
-            <h3 className={` sf-bold-40 ${Classes.BtnTxt}`}>Show more</h3>
-            <BsChevronDown className=" text-[20px]  text-white mx-auto desktop:mt-6 " />
+        <button onClick={getMoreMatches} className={` sf-bold-18 bg-nav-btn text-center block w-full rounded-5px mt-[10px]    `}>
+            <h3 className={` sf-bold-18 text-white capitalize py-[15px] `}>Show more</h3>
         </button>
     );
 };
