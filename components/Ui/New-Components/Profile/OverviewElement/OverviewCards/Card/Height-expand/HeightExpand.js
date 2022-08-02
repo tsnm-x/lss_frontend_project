@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import useHttp from "../../../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Btns = () => {
     const [btns, setBtns] = useState([
@@ -52,14 +53,14 @@ const HeaderBar = (props) => {
             <h1 className=" sf-bold-10 capitalize text-grayed-text ml-[15px] ">
                 <span
                     className={` ${
-                        props.type === "Defeat"
+                        !props.won
                             ? "text-accent-color"
                             : "text-accent-color-2"
                     } sf-bold-14 mr-[5px] `}
                 >
-                    {props.type}
+                    {props.won? "Victory" : "Defeat"}
                 </span>{" "}
-                {props.type === "Defeat" ? "(Red Team)" : "(Blue Team)"}
+                {!props.won ? "(Red Team)" : "(Blue Team)"}
             </h1>
             <h1 className=" sf-bold-10  capitalize text-grayed-text text-center "></h1>
             <h1 className=" sf-bold-10  capitalize text-grayed-text ">
@@ -85,7 +86,18 @@ const DataRow = (props) => {
     const [rankSolo, setRankSolo] = useState();
     const [active, setActive] = useState(false);
     const { sendRequest } = useHttp();
+    const champions = useSelector((state) => state.champions.champions);
     const router = useRouter();
+    const items = useSelector((state) => state.items.items);
+
+    const getItem = (item) => {
+        return items[item]?.image
+    }
+
+
+    const getChampion = (player) => {
+        return champions[player]?.image;
+    }
 
     const getMaxDamageDealt = () => {
         let maxDamageDealt =
@@ -488,7 +500,7 @@ const DataRow = (props) => {
     return (
         <div
             className={`grid grid-cols-[130px_99px_97px_93px_215px_120px_111px] rounded-5px mb-1 last:mb-0 ${
-                props.type === "Victory" ? "bg-[#181631]" : "bg-[#251122]"
+                props.won ? "bg-[#181631]" : "bg-[#251122]"
             } `}
         >
             {/*  profile  */}
@@ -544,23 +556,31 @@ const DataRow = (props) => {
                 {/* profile img  */}
                 <div>
                     <div className=" relative w-11 h-11 rounded-[5px] ">
-                        {props?.championName && (
-                            <Image
-                                src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props?.championName}.png`}
-                                alt="profile img "
-                                className=" rounded-[5px]"
-                                layout="fill"
-                            />
-                        )}
+                        {getChampion(props?.championName) && <div
+                            className="rounded-[10px]"
+                            style={{
+                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(props?.championName)?.sprite}') no-repeat`,
+                                width: `${getChampion(props?.championName)?.w}px`,
+                                height: `${getChampion(props?.championName)?.h}px`,
+                                backgroundPosition: `-${getChampion(props?.championName)?.x}px -${getChampion(props?.championName)?.y}px`,
+                                // backgroundSize: "1000% 300%",
+                                // zoom: `0.38`
+                            }}
+                        ></div>}
                     </div>
                 </div>
             </div>
             {/* name  */}
             <div className=" flex flex-col justify-center ">
-                <h1 className={` sf-bold-14 text-white capitalize `}>Name</h1>
-                <h1 className={` sf-bold-12 text-[#4DC7BE] capitalize`}>
-                    platinum 4
-                </h1>
+                <Link href={{
+                    pathname: "/summoner/[region]/[summonerName]",
+                    query: {region: router?.query?.region, summonerName: props?.summonerName}
+                }}>
+                    <h1 className={`sf-bold-14 text-white capitalize cursor-pointer`}>
+                        {props?.summonerName?.slice(0,7)}
+                    </h1>
+                </Link>
+                {Rank}
             </div>
             {/* creep score  */}
             <div className=" flex flex-col justify-center ">
@@ -605,25 +625,33 @@ const DataRow = (props) => {
                             key={index}
                             className=" relative rounded-[5px] w-[25px] h-[25px] bg-[#301d2d] "
                         >
-                            {img ? (
-                                <Image
-                                    src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${img}.png`}
-                                    alt="rank img"
-                                    layout="fill"
-                                    className=" rounded-[5px] "
-                                />
-                            ) : null}
+                            {img !== 0 && getItem(img) && getItem(img)?.sprite && (<div
+                                className={`rounded-[5px]`}
+                                style={{
+                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(img)?.sprite}') no-repeat`,
+                                    width: `${getItem(img)?.w}px`,
+                                    height: `${getItem(img)?.h}px`,
+                                    backgroundPosition: `-${getItem(img)?.x}px -${getItem(img)?.y}px`,
+                                    // backgroundSize: "contain",
+                                    zoom: `0.52`
+                                }}
+                            ></div>)}
                         </div>
                     );
                 })}
                 {
                     <div className=" relative w-5 h-5 rounded-[5px] ">
-                        <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${props?.item6}.png`}
-                            alt="small rank img"
-                            layout="fill"
-                            className=" rounded-[5px] "
-                        />
+                        {props?.item6 !== 0 && getItem(props?.item6) && getItem(props?.item6)?.sprite && (<div
+                                className={`rounded-[5px]`}
+                                style={{
+                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(props?.item6)?.sprite}') no-repeat`,
+                                    width: `${getItem(props?.item6)?.w}px`,
+                                    height: `${getItem(props?.item6)?.h}px`,
+                                    backgroundPosition: `-${getItem(props?.item6)?.x}px -${getItem(props?.item6)?.y}px`,
+                                    // backgroundSize: "contain",
+                                    zoom: `0.4`
+                                }}
+                            ></div>)}
                     </div>
                 }
             </div>
@@ -637,7 +665,7 @@ const DataRow = (props) => {
                 >
                     <div
                         className={`h-full rounded-full ${
-                            props.type === "Victory"
+                            props.won
                                 ? " bg-accent-color-2"
                                 : " bg-accent-color"
                         }`}
@@ -671,14 +699,14 @@ const ExpandDataRows = (props) => {
     return (
         <div>
             {/* header  */}
-            <HeaderBar type={props.type} />
+            <HeaderBar won={props.type} />
             <div className=" px-[9px] mt-[10px] ">
                 {props.team?.map((data, index) => {
                     return (
                         <DataRow
                             key={index}
                             {...data}
-                            type={props.type}
+                            won={props.type}
                             match={props.match}
                         />
                     );
@@ -689,27 +717,43 @@ const ExpandDataRows = (props) => {
 };
 
 const HeightExpand = (props) => {
-    const [losingTeam, setLosingTeam] = useState([]);
-    const [winningTeam, setWinningTeam] = useState([]);
+    const [firstTeam, setFirstTeam] = useState([]);
+    const [secondTeam, setSecondTeam] = useState([]);
+    const [mainPlayer, setMainPlayer] = useState({});
+    const [wonGame, setWonGame] = useState(false);
+
 
     useEffect(() => {
-        setLosingTeam(props.match?.players?.filter((player) => !player.win));
-        setWinningTeam(props.match?.players?.filter((player) => player.win));
+        setMainPlayer(props.match?.players?.find((player) => player.mainPlayer))
     }, [props.match?.players]);
+
+    useEffect(()=>{
+        if(mainPlayer?.summonerName){
+            if (mainPlayer.win){
+                setFirstTeam(props.match?.players?.filter((player) => player.win))
+                setSecondTeam(props.match?.players?.filter((player) => !player.win))
+                setWonGame(true)
+            } else if (!mainPlayer.win){
+                setFirstTeam(props.match?.players?.filter((player) => !player.win))
+                setSecondTeam(props.match?.players?.filter((player) => player.win))
+                setWonGame(false)
+            }
+        }
+    }, [mainPlayer])
     return (
         <div className=" mb-14 ">
             <Btns />
-            <ExpandDataRows
-                team={losingTeam}
-                type={"Defeat"}
+            {mainPlayer && <ExpandDataRows
+                team={firstTeam}
+                type={wonGame}
                 match={props.match}
-            />
+            />}
             <SimulateComponets match={props?.match} />
-            <ExpandDataRows
-                team={winningTeam}
-                type={"Victory"}
+            {mainPlayer && <ExpandDataRows
+                team={secondTeam}
+                type={!wonGame}
                 match={props.match}
-            />
+            />}
         </div>
     );
 };

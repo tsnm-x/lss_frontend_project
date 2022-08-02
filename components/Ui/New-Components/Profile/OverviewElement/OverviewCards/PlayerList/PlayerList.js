@@ -3,9 +3,16 @@ import { BiExpand } from "react-icons/bi";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const PlayerList = (props) => {
+    const champions = useSelector((state) => state.champions.champions);
     const router = useRouter();
+
+
+    const getChampion = (player) => {
+        return champions[player]?.image;
+    }
 
     const orderedPlayersList = [];
     orderedPlayersList[0] = props.match.players[5];
@@ -44,12 +51,17 @@ const PlayerList = (props) => {
                                     className={`border border-[#707070] relative w-[20px] h-[20px] rounded-full mr-[18px] 
                                     `}
                                 >
-                                    <Image
-                                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${player?.championName}.png`}
-                                        alt={player?.summonerName + "image"}
-                                        layout="fill"
-                                        className=" rounded-full"
-                                    />
+                                    {getChampion(player.championName) && <div
+                                        className="rounded-full"
+                                        style={{
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(player.championName)?.sprite}') no-repeat`,
+                                            width: `${getChampion(player.championName)?.w}px`,
+                                            height: `${getChampion(player.championName)?.h}px`,
+                                            backgroundPosition: `-${getChampion(player.championName)?.x}px -${getChampion(player.championName)?.y}px`,
+                                            // backgroundSize: "1000% 300%",
+                                            zoom: `0.38`
+                                        }}
+                                    ></div>} 
                                 </div>
                                 <Link
                                     href={{
