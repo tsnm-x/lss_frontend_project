@@ -230,6 +230,9 @@
     .mazin-bold-14 {
         @apply font-mazin font-bold text-[14px] leading-[18px];
     }
+    .mazin-bold-12 {
+        @apply font-mazin font-bold text-[12px] leading-[15px];
+    }
     /* container  */
     .container {
         /* @apply laptop:pl-[50px]; */

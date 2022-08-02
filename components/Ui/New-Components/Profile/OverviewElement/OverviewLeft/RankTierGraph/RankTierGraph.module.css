@@ -1,0 +1,14 @@
+.rankIcon {
+    @apply grid w-[100px] h-[100px] grid-cols-1 grid-rows-1 items-center
+     justify-items-center rounded-full border-[2px] border-[#A8B9E4] ;
+}
+.rankImg {
+  @apply w-[75px] h-[75px] relative row-start-1 col-start-1;
+}
+
+.rankMask {
+    @apply w-[63.31px] h-[49px] bg-[#A0ACB4] row-start-1 col-start-1;
+    filter: blur(35px);
+    transform: matrix(1, 0, 0, -1, 0, 0);
+    opacity: 0.4;
+}
