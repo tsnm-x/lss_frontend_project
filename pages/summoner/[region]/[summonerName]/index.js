@@ -11,6 +11,9 @@ import { profileAction } from "../../../../store/profile";
 import { axiosInstance } from "../../../../network/axiosConfig";
 import CardContext from "../../../../Context/CardContext";
 import { champAction } from "../../../../store/champMostPlayed";
+import { championsAction } from "../../../../store/champions";
+import axios from "axios";
+import { itemsAction } from "../../../../store/items";
 
 const Summoner = () => {
 	const [view, setView] = useState("overview");
@@ -44,6 +47,33 @@ const Summoner = () => {
 			},
 		},
 	];
+
+	useEffect(() => {
+		let champUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+		let itemUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/item.json"
+		
+		try {
+			axios.get(champUrl)
+			.then((res) => {
+				dispatch(
+					championsAction.setChampions(
+						{champions: res.data.data}
+					)
+				)
+			});
+
+			axios.get(itemUrl)
+			.then((res) => {
+				dispatch(
+					itemsAction.setItems(
+						{items: res.data.data}
+					)
+				)
+			});
+		} catch(error) {
+			console.log(error)
+		}
+	}, [])
 
 	useEffect(() => {
 		const { region } = router.query;

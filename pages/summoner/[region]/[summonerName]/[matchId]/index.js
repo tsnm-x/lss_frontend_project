@@ -11,6 +11,8 @@ import Router, { useRouter } from "next/router";
 import useHttp from "../../../../../hook/useHttp";
 import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
+import axios from "axios";
+import { championsAction } from "../../../../../store/champions";
 
 const MatchSimulator = ({ query }) => {
 	const { region, summonerName, matchId } = query;
@@ -31,6 +33,28 @@ const MatchSimulator = ({ query }) => {
 	const matches = useSelector((state) => state.profile.profile);
 	const dispatch = useDispatch();
 	const [playersWithId, setPlayersWithId] = useState([]);
+	const champions = useSelector((state) => state.champions.champions);
+
+	useEffect(()=>{
+		if(!champions){
+			let champUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+	
+			
+			try {
+				axios.get(champUrl)
+				.then((res) => {
+					dispatch(
+						championsAction.setChampions(
+							{champions: res.data.data}
+						)
+					)
+				});
+
+			} catch(error) {
+				console.log(error)
+			}
+		}
+	}, [])
 
 	useEffect(() => {
 		if (playersWithId) {

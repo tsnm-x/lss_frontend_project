@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import SmallImg from "../../../../../../../public/assets/new-images/Profile/card/five.png";
+import { useSelector } from "react-redux";
 
 const RankCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
+    const items = useSelector((state) => state.items.items);
+
+    const getItem = (item) => {
+        if(items && item){
+            return items[item]?.image
+        }
+    }
 
     useEffect(() => {
         let main = props?.match?.players.find((player) => {
@@ -80,7 +87,11 @@ const RankCard = (props) => {
             } px-[20px] py-4 border-r border-background
              `}
         >
-            <h3 className=" font-sf-pro-text font-bold text-[12px] leading-[14.5px] text-nav-btn ">
+            <h3 className={` font-sf-pro-text font-bold text-[12px] leading-[14.5px] ${
+                mainPlayer?.win
+                ? "text-accent-color-2"
+                : " text-nav-btn"
+            }`}>
                 Build
             </h3>
             <div className=" flex mt-4 ">
@@ -101,38 +112,44 @@ const RankCard = (props) => {
                     ].map((item, index) => {
                         return (
                             <div
-                                className={`relative rounded-full bg-[#2f2936] ${
-                                    mythicHighlighter(item)
-                                        ? "border-2 border-[#D55460]"
-                                        : ""
-                                } ${
+                                className={`relative rounded-full bg-[#2f2936]  ${
                                     props.imgClassName
                                         ? props.imgClassName
                                         : `w-[30px] h-[30px]`
                                 }`}
                                 key={index}
                             >
-                                {item !== 0 && (
-                                    <Image
-                                        className={`rounded-full`}
-                                        src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${item}.png`}
-                                        alt="batch image"
-                                        layout="fill"
-                                    />
-                                )}
+                                {item !== 0 && getItem(item) && getItem(item)?.sprite && (<div
+                                className={`rounded-full ${
+                                    mythicHighlighter(item)
+                                        ? mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
+                                        : ""
+                                }`}
+                                    style={{
+                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(item)?.sprite}') no-repeat`,
+                                        width: `${getItem(item)?.w}px`,
+                                        height: `${getItem(item)?.h}px`,
+                                        backgroundPosition: `-${getItem(item)?.x}px -${getItem(item)?.y}px`,
+                                        // backgroundSize: "contain",
+                                        zoom: `0.63`
+                                    }}
+                                ></div>)}
                             </div>
                         );
                     })}
                 </div>
                 <div className={`relative w-[25px] h-[25px] rounded-full ml-[10px]`}>
-                    {mainPlayer?.item6 && (
-                        <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`}
-                            className="rounded-full"
-                            alt="small img"
-                            layout="fill"
-                        />
-                    )}
+                    {mainPlayer?.item6 !== 0 && getItem(mainPlayer?.item6) && getItem(mainPlayer?.item6)?.sprite && (<div
+                        className={`rounded-full`}
+                        style={{
+                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(mainPlayer?.item6)?.sprite}') no-repeat`,
+                            width: `${getItem(mainPlayer?.item6)?.w}px`,
+                            height: `${getItem(mainPlayer?.item6)?.h}px`,
+                            backgroundPosition: `-${getItem(mainPlayer?.item6)?.x}px -${getItem(mainPlayer?.item6)?.y}px`,
+                            // backgroundSize: "contain",
+                            zoom: `0.5`
+                        }}
+                    ></div>)}
                 </div>
             </div>
         </div>

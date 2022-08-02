@@ -17,6 +17,9 @@ import Blue2 from "../../../../../../../public/assets/new-images/Profile/btns/bt
 import Blue3 from "../../../../../../../public/assets/new-images/Profile/btns/btn8.png";
 import Blue4 from "../../../../../../../public/assets/new-images/Profile/btns/btn9.png";
 import Blue5 from "../../../../../../../public/assets/new-images/Profile/btns/btn10.png";
+import { useSelector } from "react-redux";
+import { itemsAction } from "../../../../../../../store/items";
+import { championsAction } from "../../../../../../../store/champions";
 
 const Profile = (props) => {
 	return (
@@ -178,7 +181,8 @@ const ProfileCompareBar = (props) => {
 	const [dragonDataBlue, setDragonDataBlue] = useState([]);
 	const [redBans, setRedBans] = useState({});
 	const [blueBans, setBlueBans] = useState({});
-	const [json, setJson] = useState({})
+	const [ready, setReady] = useState(false);
+	const champions = useSelector((state) => state.champions.champions)
 
 	useEffect(() => {
 		if (props.teams) {
@@ -186,6 +190,12 @@ const ProfileCompareBar = (props) => {
 			setBlueBans(props.teams?.filter((team) => team.win)[0]);
 		}
 	}, [props.teams]);
+
+	useEffect(()=>{
+		if(champions) {
+			setReady(true)
+		}
+	}, [champions])
 
 	useEffect(() => {
 		if (props.matchTimelineData?.frames) {
@@ -227,19 +237,6 @@ const ProfileCompareBar = (props) => {
 		}
 	}, [props.matchTimelineData, props.selectedFrame]);
 
-	useEffect(()=>{
-		let url = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
-		
-		try {
-			axios.get(url)
-			.then((res) => {
-				setJson(res.data)
-			});
-		} catch(error) {
-			console.log(error)
-		}
-	}, [])
-
 	const profileData = [
 		{
 			img: ProfileOne,
@@ -263,10 +260,9 @@ const ProfileCompareBar = (props) => {
 
 	const selectChampName = (id) => {
 
-		for(let champion in json.data){
-			if(parseInt(json.data[champion].key) === parseInt(id)){
-				console.log(json.data[champion].id)
-				return json.data[champion].id
+		for(let champion in champions){
+			if(parseInt(champions[champion].key) === parseInt(id)){
+				return champions[champion]?.image
 			}
 		}
 	};
@@ -299,16 +295,18 @@ const ProfileCompareBar = (props) => {
 										key={index}
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
-										{(
-											<Image
-												src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(
-													ban?.championId
-												)}.png`}
-												alt="btns img"
-												layout="fill"
-												className=" rounded-full "
-											/>
-										)}
+										{ready && selectChampName(ban?.championId) && <div
+											className="rounded-full"
+											style={{
+												background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${selectChampName(ban?.championId)?.sprite}') no-repeat`,
+												width: `${selectChampName(ban?.championId)?.w}px`,
+												height: `${selectChampName(ban?.championId)?.h}px`,
+												backgroundPosition: `-${selectChampName(ban?.championId)?.x}px -${selectChampName(ban?.championId)?.y}px`,
+												// backgroundSize: "1000% 300%",
+												zoom: `0.6`,
+												filter: 'grayscale(100%)'
+											}}
+										></div>}
 									</div>
 								);
 							})}
@@ -323,16 +321,18 @@ const ProfileCompareBar = (props) => {
 										key={index}
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
-										{(
-											<Image
-												src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${selectChampName(
-													ban?.championId
-												)}.png`}
-												alt="btns img"
-												layout="fill"
-												className=" rounded-full "
-											/>
-										)}
+										{ready && selectChampName(ban?.championId) && <div
+											className="rounded-full"
+											style={{
+												background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${selectChampName(ban?.championId)?.sprite}') no-repeat`,
+												width: `${selectChampName(ban?.championId)?.w}px`,
+												height: `${selectChampName(ban?.championId)?.h}px`,
+												backgroundPosition: `-${selectChampName(ban?.championId)?.x}px -${selectChampName(ban?.championId)?.y}px`,
+												// backgroundSize: "1000% 300%",
+												zoom: `0.6`,
+												filter: 'grayscale(100%)'
+											}}
+										></div>} 
 									</div>
 								);
 							})}
