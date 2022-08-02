@@ -12,7 +12,7 @@ const Overview = (props) => {
     const router = useRouter();
 
     return (
-        <section className=" my-[60px] relative ">
+        <section className=" my-[20px] relative ">
             <div
                 className={`container laptop:grid 
                 laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[300px_auto]

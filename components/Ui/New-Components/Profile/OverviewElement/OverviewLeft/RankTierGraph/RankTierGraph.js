@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Image from 'next/image'
-import BatchImg from '../../../../../../../public/assets/new-images/Profile/batch-img.png'
+import Image from "next/image";
+import TierGraphIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Profile-page/on-the-way-icon.svg";
+import SilverRankIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Rank-Icon/Silver.png";
+import Classess from "./RankTierGraph.module.css";
+import { CgCheckO, CgCloseO } from "react-icons/cg";
+import BatchImg from "../../../../../../../public/assets/new-images/Profile/batch-img.png";
 import Emblem_Iron from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-iron.png";
 import Emblem_Bronze from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-bronze.png";
 import Emblem_Silver from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-silver.png";
@@ -12,53 +16,150 @@ import Emblem_Grandmaster from "../../../../../../../public/assets/new-images/Pr
 import Emblem_Challenger from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-challenger.png";
 import Emblem_Unranked from "../../../../../../../public/assets/new-images/Profile/Ranks/unranked.png";
 
-
-// top buttons 
+// top buttons
 const Btns = (props) => {
     const [rank, setRank] = useState({});
-    const [active, setActive] = useState("SOLO")
+    const [active, setActive] = useState("SOLO");
+    const [rankMatch, setRankMatch] = useState({
+        color: "848CA3",
+        borderColor: "A8B9E4",
+        mask: {
+            color: "A0ACB4",
+            progress: 50,
+        },
+        match: [
+            {
+                victory: true,
+            },
+            {
+                victory: true,
+            },
+            {
+                victory: false,
+            },
+            {
+                victory: false,
+            },
+            {
+                victory: undefined,
+            },
+        ],
+    });
 
-    useEffect(()=>{
-        setRank(props?.rankSolo)
-    }, [props])
+    const iconColor = "#" + rankMatch.color;
+
+    useEffect(() => {
+        setRank(props?.rankSolo);
+    }, [props]);
 
     const rankHandler = (rankType) => {
-        if(rankType === "SOLO"){
-            setRank(props?.rankSolo)
-            setActive("SOLO")
-        } else if(rankType === "FLEX"){
-            setRank(props?.rankFlex)
-            setActive("FLEX")
+        if (rankType === "SOLO") {
+            setRank(props?.rankSolo);
+            setActive("SOLO");
+        } else if (rankType === "FLEX") {
+            setRank(props?.rankFlex);
+            setActive("FLEX");
         }
-    }
+    };
 
+    const matchElement = rankMatch.match.map((match, index) => {
+        return (
+            <div key={index} className={` w-5 h-5 rounded-full bg-[#272131] `}>
+                {match.victory === undefined ? null : match.victory ? (
+                    <CgCheckO
+                        className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full  `}
+                    />
+                ) : (
+                    <CgCloseO
+                        className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
+                    />
+                )}
+            </div>
+        );
+    });
     return (
         <>
+            {/* buttons  */}
             <div className={`flex ${props.className}`}>
                 <button
-                    className={` ${active === "SOLO" ? 'text-light-text': 'text-grayed-text'} font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
+                    className={` ${
+                        active === "SOLO"
+                            ? "text-light-text"
+                            : "text-grayed-text"
+                    } font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
                                 bg-[#3e3847] px-[10px] py-[12px] capitalize smDesktop:text-[14px] smDesktop:leading-[17px] mr-3 `}
                     onClick={() => rankHandler("SOLO")}
                 >
                     Ranked solo
                 </button>
                 <button
-                    className={` ${active === "FLEX" ? 'text-light-text': 'text-grayed-text'} font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                                bg-[#3e3847] px-[10px] py-[12px] capitalize  smDesktop:text-[14px] smDesktop:leading-[17px] `}
+                    className={` ${
+                        active === "FLEX"
+                            ? "text-light-text"
+                            : "text-grayed-text"
+                    } font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
+                                bg-[#3e3847] px-[10px] py-[12px]  smDesktop:text-[14px] smDesktop:leading-[17px] `}
                     onClick={() => rankHandler("FLEX")}
                 >
-                    ranked flex
+                    Ranked FLEX
                 </button>
-                
             </div>
-            <Batch 
-                rank={rank}
-            />
-        </>      
+            {/* graph component  */}
+            <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
+                {/* rank icon  */}
+                <div className={`${Classess.rankIcon}`}>
+                    {/* img  */}
+                    <div className={`${Classess.rankImg}`}>
+                        <Image
+                            src={SilverRankIcon}
+                            alt="rank icon"
+                            className=" rounded-full"
+                            layout="fill"
+                        />
+                    </div>
+                    {/* bg mask  */}
+                    <div className={`${Classess.rankMask}`}></div>
+                </div>
+                {/* match  */}
+                <div className=" mt-3 ">
+                    <div className=" flex flex-col items-end mr-[26px] ">
+                        <h3
+                            className={`font-mazin text-[18px] leading-[23px] text-[#${rankMatch.color}]`}
+                        >
+                            Silver I
+                        </h3>
+                        <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
+                            100lp
+                        </h1>
+                        <h4 className=" font-sf-pro-text text-[11px] leading-[13.1px] font-[500] text-[#5d7cf6] mr-[3px] ">
+                            54.62% <span className=" text-white ">WR</span>
+                        </h4>
+                    </div>
+                    {/* match result  */}
+                    <div className=" flex gap-x-[6px] justify-end mt-[18px]  ">
+                        {matchElement}
+                    </div>
+                </div>
+            </div>
+            {/* text   */}
+            <div className=" flex items-center mt-[30px] ">
+                <h6 className=" mazin-bold-12 mr-[30px] text-white ">
+                    Tier Graph is on the way!
+                </h6>
+                <button className=" relative w-[23px] h-[23px] ">
+                    <Image
+                        src={TierGraphIcon}
+                        alt="tier graph icon"
+                        layout="fill"
+                    />
+                </button>
+            </div>
+            {/* <Batch rank={rank} /> */}
+        </>
     );
 };
 
-// center batch 
+// center batch
 const Batch = (props) => {
     const iconSelector = (id) => {
         switch (id) {
@@ -91,11 +192,11 @@ const Batch = (props) => {
             default:
                 return Emblem_Unranked;
         }
-    }
+    };
 
-    useEffect(()=>{
-        console.log(props.rank)
-    }, [props.rank])
+    useEffect(() => {
+        console.log(props.rank);
+    }, [props.rank]);
     return (
         <>
             {props.rank && (
@@ -115,7 +216,10 @@ const Batch = (props) => {
                                 className=" laptop:gotham-mid-15
                         laptop:text-light-text "
                             >
-                                {props.rank?.tier?.charAt(0) + props.rank?.tier?.slice(1).toLowerCase()}{" "}
+                                {props.rank?.tier?.charAt(0) +
+                                    props.rank?.tier
+                                        ?.slice(1)
+                                        .toLowerCase()}{" "}
                                 {props.rank?.rank}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-9 mt-[4px]  ">
@@ -125,8 +229,7 @@ const Batch = (props) => {
                         {/* percentage  */}
                         <div>
                             <h5 className=" text-light-text laptop:gotham-mid-9 uppercase text-right">
-                                {props.rank?.wins}w {props.rank?.losses}
-                                l
+                                {props.rank?.wins}w {props.rank?.losses}l
                             </h5>
                             <p className=" text-light-text laptop:gotham-mid-9 uppercase text-right mt-[4px] ">
                                 {(
@@ -143,9 +246,9 @@ const Batch = (props) => {
             )}
         </>
     );
-}
+};
 
-// tier graph 
+// tier graph
 const TierGraph = (props) => {
     return (
         <div
@@ -160,13 +263,13 @@ const TierGraph = (props) => {
             />
         </div>
     );
-}
+};
 
 const RankTierGraph = (props) => {
     return (
         <div
-            className="  p-[20px_17px_10px_17px]  bg-[#1e1728] rounded
-            smDesktop:p-[20px_25px] "
+            className="   bg-[#1e1728] rounded
+            px-[25px] pt-5 pb-[36px] "
         >
             {/* top btns  */}
             <Btns rankSolo={props?.rankSolo} rankFlex={props?.rankFlex} />

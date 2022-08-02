@@ -8,11 +8,11 @@ const OverviewChampionBtns = (props) => {
     const router = useRouter();
 
     return (
-        <section className=" laptop:mt-[9px] bg-[#1e1629] pt-[15px] ">
-            <div className=" container flex ">
+        <section className=" laptop:mt-[9px] bg-[#1e1629] py-3 ">
+            <div className=" container flex justify-between ">
                 {/* buttons  */}
-                <div className=" flex ">
-                    <div className=" mr-[21px] ">
+                <div className=" flex items-center  ">
+                    <div className=" relative mr-[40px] ">
                         <Link
                             href={{
                                 pathname: "/summoner/[region]/[summonerName]",
@@ -24,8 +24,7 @@ const OverviewChampionBtns = (props) => {
                         >
                             <button
                                 onClick={() => controller("overview")}
-                                className={`laptop:sf-mid-21 laptop:capitalize 
-                        text-grayed-text ${
+                                className={` mazin-bold-21 capitalize  ${
                             currentView === "overview"
                                 ? " text-accent-color"
                                 : "text-grayed-text"
@@ -35,14 +34,13 @@ const OverviewChampionBtns = (props) => {
                             </button>
                         </Link>
                         {currentView === "overview" ? (
-                            <div className=" bg-accent-color w-full h-[4px] mx-auto mt-[20px] "></div>
+                            <div className=" bg-accent-color w-full h-[4px] absolute -bottom-[20.5px]  "></div>
                         ) : null}
                     </div>
-                    <div>
+                    <div className=" relative ">
                         <button
                             onClick={() => controller("champPool")}
-                            className={` font-mazin laptop:capitalize 
-                    text-grayed-text  ${
+                            className={` mazin-bold-21 capitalize ${
                         currentView === "champPool"
                             ? " text-accent-color"
                             : "text-grayed-text"
@@ -51,12 +49,21 @@ const OverviewChampionBtns = (props) => {
                             champion pool
                         </button>
                         {currentView === "champPool" ? (
-                            <div className=" bg-accent-color w-full h-[4px] mx-auto mt-[20px] "></div>
+                            <div className=" bg-accent-color w-full h-[4px] absolute -bottom-[20.5px] "></div>
                         ) : null}
                     </div>
                 </div>
-                {/* report text  */}
-                <div>
+                {/* report texts and btn  */}
+                <div className=" flex items-center mr-[180px] ">
+                    {/* btn  */}
+                    <div className=" mr-[88px] ">
+                        <h6 className=" mazin-bold-16 text-white ">
+                            Have you encountered a problem during your visit?
+                        </h6>
+                        <h6 className=" mazin-bold-14 text-[#8e8a94] mt-[6px] ">
+                            Have you encountered a problem during your visit?
+                        </h6>
+                    </div>
                     {/* button  */}
                     <button className=" bg-[#e3e3f2] w-[103px] h-[32px] flex items-center justify-center rounded-5px  ">
                         {" "}
