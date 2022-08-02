@@ -172,22 +172,20 @@ const ProfileSearch = (props) => {
     }
 
     function searchHandler(e) {
-        if (e.key === "Enter") {
-            console.log("Entered!");
-            console.log(activeListDetails.selectedItem.serverName);
-            e.preventDefault();
-            sendRequest(
-                {
-                    url: "/summonerName",
-                    method: "GET",
-                    params: {
-                        region: activeListDetails.selectedItem.serverName,
-                        summonerName: search,
-                    },
+        e.preventDefault();
+        console.log("Entered!");
+        console.log(activeListDetails.selectedItem.serverName);
+        sendRequest(
+            {
+                url: "/summonerName",
+                method: "GET",
+                params: {
+                    region: activeListDetails.selectedItem.serverName,
+                    summonerName: search,
                 },
-                requestHandler
-            );
-        }
+            },
+            requestHandler
+        );
     }
 
     return (
@@ -244,13 +242,12 @@ const ProfileSearch = (props) => {
                         <input
                             type="search"
                             onChange={searchInput}
-                            onKeyDown={(event) => searchHandler(event)}
                             value={search}
                             placeholder="Find your Summoner name..."
                             className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px]  ${classes.searchBox} ${props.searchBox}`}
                         />
                         {!props.hideSearch && (
-                            <button className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px]  ">
+                            <button onClick={(e) => searchHandler(e)} className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px]  ">
                                 <FiSearch className=" text-[#AAA0A8] text-[20px] smTablet:text-[28px] " />
                             </button>
                         )}
