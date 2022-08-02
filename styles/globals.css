@@ -220,6 +220,16 @@
     .nedgen-regular-5 {
         @apply font-NEDGEN text-[5px] leading-[6px];
     }
+
+    .mazin-bold-21 {
+        @apply font-mazin font-bold text-[21px] leading-[27px];
+    }
+    .mazin-bold-16 {
+        @apply font-mazin font-bold text-base leading-5;
+    }
+    .mazin-bold-14 {
+        @apply font-mazin font-bold text-[14px] leading-[18px];
+    }
     /* container  */
     .container {
         /* @apply laptop:pl-[50px]; */
