@@ -8,7 +8,7 @@ const OverviewChampionBtns = (props) => {
     const router = useRouter();
 
     return (
-        <section className=" laptop:mt-[9px] bg-[#1e1629] py-3  ">
+        <section className=" laptop:mt-[9px] bg-[#1e1629] py-3 ">
             <div className=" container flex justify-between ">
                 {/* buttons  */}
                 <div className=" flex items-center  ">
