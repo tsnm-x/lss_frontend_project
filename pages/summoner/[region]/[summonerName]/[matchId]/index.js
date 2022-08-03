@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
 import axios from "axios";
 import { championsAction } from "../../../../../store/champions";
+import { itemsAction } from "../../../../../store/items";
 
 const MatchSimulator = ({ query }) => {
 	const { region, summonerName, matchId } = query;
@@ -34,9 +35,10 @@ const MatchSimulator = ({ query }) => {
 	const dispatch = useDispatch();
 	const [playersWithId, setPlayersWithId] = useState([]);
 	const champions = useSelector((state) => state.champions.champions);
+	const items = useSelector((state) => state.items.items);
 
 	useEffect(()=>{
-		if(!champions){
+		if(!Object.keys(champions)[0]){
 			let champUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
 	
 			
@@ -49,6 +51,25 @@ const MatchSimulator = ({ query }) => {
 						)
 					)
 				});
+
+			} catch(error) {
+				console.log(error)
+			}
+		}
+
+		if(!Object.keys(items)[0]){
+			let itemUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/item.json"
+	
+			
+			try {
+				axios.get(itemUrl)
+			.then((res) => {
+				dispatch(
+					itemsAction.setItems(
+						{items: res.data.data}
+					)
+				)
+			});
 
 			} catch(error) {
 				console.log(error)

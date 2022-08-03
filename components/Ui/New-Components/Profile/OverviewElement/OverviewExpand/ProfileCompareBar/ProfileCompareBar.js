@@ -89,6 +89,8 @@ const LeftBatchBar = (props) => {
 			setCenteralImg(
 				centralImgHandler(props.dragonDataRed[props.dragonDataRed.length - 1]?.type)
 			);
+		} else {
+			setCenteralImg(null)
 		}
 	}, [props.dragonDataBlue, props.dragonDataRed]);
 
@@ -96,7 +98,7 @@ const LeftBatchBar = (props) => {
 		<div className=" w-[612px] h-[45px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
 			{/* center batch  */}
 			<div className=" flex justify-center items-end row-start-1 col-start-1 ">
-				<div className=" relative w-[50px] h-[50px] ">
+				<div className=" relative w-[100px] h-[47px] ">
 					{centralImg && (
 						<Image src={centralImg} alt="center batch" layout="fill" />
 					)}
@@ -301,17 +303,17 @@ const ProfileCompareBar = (props) => {
 								return (
 									<div
 										key={index}
-										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
+										className={` w-[30px] h-[30px] relative rounded-full -ml-1  border border-[#D55460]`}
 									>
 										{ready && selectChampName(ban?.championId) && <div
-											className="rounded-full border-2 border-[#FFFFFF]"
+											className="rounded-full "
 											style={{
 												background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${selectChampName(ban?.championId)?.sprite}') no-repeat`,
 												width: `${selectChampName(ban?.championId)?.w}px`,
 												height: `${selectChampName(ban?.championId)?.h}px`,
 												backgroundPosition: `-${selectChampName(ban?.championId)?.x}px -${selectChampName(ban?.championId)?.y}px`,
 												// backgroundSize: "1000% 300%",
-												zoom: `0.6`,
+												zoom: `0.59`,
 												filter: 'grayscale(100%)'
 											}}
 										></div>}
@@ -327,17 +329,17 @@ const ProfileCompareBar = (props) => {
 								return (
 									<div
 										key={index}
-										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
+										className={` w-[30px] h-[30px] relative rounded-full -ml-1 border border-[#198cff] `}
 									>
 										{ready && selectChampName(ban?.championId) && <div
-											className="rounded-full border-2 border-[#FFFFFF]"
+											className="rounded-full "
 											style={{
 												background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${selectChampName(ban?.championId)?.sprite}') no-repeat`,
 												width: `${selectChampName(ban?.championId)?.w}px`,
 												height: `${selectChampName(ban?.championId)?.h}px`,
 												backgroundPosition: `-${selectChampName(ban?.championId)?.x}px -${selectChampName(ban?.championId)?.y}px`,
 												// backgroundSize: "1000% 300%",
-												zoom: `0.6`,
+												zoom: `0.59`,
 												filter: 'grayscale(100%)'
 											}}
 										></div>} 
