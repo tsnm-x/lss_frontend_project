@@ -83,12 +83,12 @@ const RankCard = (props) => {
     return (
         <div
             className={`${
-                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
             } px-[20px] py-4 border-r border-background
              `}
         >
             <h3 className={` font-sf-pro-text font-bold text-[12px] leading-[14.5px] ${
-                mainPlayer?.win
+                props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" : mainPlayer?.win
                 ? "text-accent-color-2"
                 : " text-nav-btn"
             }`}>
@@ -122,7 +122,7 @@ const RankCard = (props) => {
                                 {item !== 0 && getItem(item) && getItem(item)?.sprite && (<div
                                 className={`rounded-full ${
                                     mythicHighlighter(item)
-                                        ? mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
+                                        ? props?.convertM(props?.match?.duration) <= 5 ? "border-2 border-[#FEFCE8]" :  mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
                                         : ""
                                 }`}
                                     style={{

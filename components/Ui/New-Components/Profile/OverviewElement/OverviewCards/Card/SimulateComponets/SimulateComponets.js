@@ -162,24 +162,30 @@ const SimulateComponets = (props) => {
 
     const router = useRouter();
 
+    const goToSimulation = () => {
+        if(!(props?.convertM(props?.match?.duration) <= 5)){
+            router.push(
+                {
+                    pathname: `/summoner/[region]/[summonerName]/[matchId]`,
+                    query: {
+                        region: router.query?.region,
+                        summonerName: router.query?.summonerName,
+                        matchId: props.match?.matchId?.substr(router.query?.region?.length+1)
+                    }
+                }
+            )
+        }
+    }
+
     return (
         <div className=" flex justify-around items-center my-3 ">
             <Batch team={lostTeam} teamStats={lostTeamStats}/>
             {/* simulate btn  */}
-            <Link href={{
-                pathname: `/summoner/[region]/[summonerName]/[matchId]`,
-                query: {
-                    region: router.query?.region,
-                    summonerName: router.query?.summonerName,
-                    matchId: props.match?.matchId?.substr(router.query?.region?.length+1)
-                }
-            }}>
-            <button className=" font-sf-pro-text text-[14px] leading-[16px] font-bold 
+            <button onClick={goToSimulation} className=" font-sf-pro-text text-[14px] leading-[16px] font-bold 
              capitalize px-[25px] py-[15px] rounded-[5px]
               bg-accent-color text-light-text ">
                 simulate game
             </button>
-            </Link>
             <Batch type={"victory"}  team={winnerTeam} teamStats={winningTeamStats}/>
         </div>
     );

@@ -100,7 +100,7 @@ const MatchSimulator = ({ query }) => {
 
 	useEffect(() => {
 		if (fullMatchId) {
-			if (matches[0] && !match) {
+			if (matches[0] && !match?.player) {
 				setMatch(matches?.filter((match) => match.matchId === fullMatchId)[0]);
 			} else {
 				sendRequest(
@@ -132,7 +132,7 @@ const MatchSimulator = ({ query }) => {
 	}, [matches, fullMatchId]);
 
 	useEffect(() => {
-		if (match.players) {
+		if (match?.players) {
 			setMainPlayer(match.players?.find((player) => player.mainPlayer));
 
 			const players = JSON.parse(JSON.stringify(match.players));
@@ -307,8 +307,8 @@ const MatchSimulator = ({ query }) => {
 			<div className=" bg-[#140a22] mb-[100px] ">
 				<AnalyticsViewBtns region={region} summonerName={summonerName} />
 				<ProfileCompareBar
-					teams={match.teams}
-					players={match.players}
+					teams={match?.teams}
+					players={match?.players}
 					frames={matchTimelineData?.frames}
 					matchTimelineData={matchTimelineData}
 					selectedFrame={selectedFrame}

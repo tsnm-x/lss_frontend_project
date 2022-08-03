@@ -152,7 +152,8 @@ const DataRow = (props) => {
     function RankCompGenerator(color, text) {
         let component = (
             <h1
-                className={` capitalize ${Classes.secTitle}`}
+                className={` capitalize font-sf-pro-text text-[12px] leading-[14.3px]
+                text-[#858DA3]`}
                 style={{ color: color ? color : "#706A76" }}
             >
                 {text ? text : `Level ${props?.summonerLevel}`}
@@ -748,7 +749,7 @@ const HeightExpand = (props) => {
                 type={wonGame}
                 match={props.match}
             />}
-            <SimulateComponets match={props?.match} />
+            <SimulateComponets match={props?.match} convertM={props?.convertM}/>
             {mainPlayer && <ExpandDataRows
                 team={secondTeam}
                 type={!wonGame}

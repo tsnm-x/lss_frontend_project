@@ -67,6 +67,8 @@ const ProfileSearch = (props) => {
     useEffect(()=>{
         if(window.localStorage.getItem('region')){
             const finder = selectionNameList.find((regionObj) => regionObj.serverName === window.localStorage.getItem('region'));
+            const oldList = [...selectionNameList];
+            const modifyedList = [];
             setActiveListDetails((prevState)=>{
                 return {
                     selectedItem: finder,
@@ -74,6 +76,25 @@ const ProfileSearch = (props) => {
                     index: 0,
                 }
             })
+            setSelectionName(() => {
+                oldList.forEach((list, listIndex) => {
+                    if (list.serverName === window.localStorage.getItem('region')) {
+                        list.active = true;
+                        // change active item state
+                        setActiveListDetails((prevState) => {
+                            return {
+                                selectedItem: list,
+                                showList: false,
+                                index: listIndex,
+                            };
+                        });
+                    } else {
+                        list.active = false;
+                    }
+                    modifyedList.push(list);
+                });
+                return modifyedList;
+            });
         }
     }, [])
 

@@ -91,7 +91,7 @@ const ProfileIntro = (props) => {
                 {/* left side img  */}
                 <div className=" rounded-[15px] relative w-[110px] h-[110px] border border-white mr-[35px] ">
                     {props.mainPlayer && <Image
-                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/${props.mainPlayer?.profileIcon}.png`}
+                        src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${props.mainPlayer?.championName}.png`}
                         alt=" profile image"
                         layout="fill"
                         className=" rounded-[15px] "

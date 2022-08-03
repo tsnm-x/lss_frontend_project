@@ -76,6 +76,7 @@ const LeftSide = (props) => {
                 <div className={`font-sf-pro-text font-bold mr-[30px]  `}>
                     <h4
                         className={` capitalize ${
+                            props?.convertM(props.match?.duration) <= 5 ? "text-yellow-50" : 
                             props?.mainPlayer?.win
                                 ? "text-accent-color-2"
                                 : " text-nav-btn"
@@ -90,7 +91,7 @@ const LeftSide = (props) => {
                                     : " text-[18px] leading-5  "
                             }`}
                         >
-                            {props?.mainPlayer?.win ? "Victory" : "Defeat"}
+                            {props?.convertM(props.match?.duration) <= 5 ? "Remake" : props?.mainPlayer?.win ? "Victory" : "Defeat"}
                         </span>{" "}
                         <span
                             className={`text-light-text ${
@@ -581,7 +582,7 @@ const StatusCard = (props) => {
     return (
         <div
             className={`  ${
-                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
             }
              flex border-r border-background   ${
                  props.expand

@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const BuildCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
+    const items = useSelector((state) => state.items.items);
+
+    const getItem = (item) => {
+        if(items && item){
+            return items[item]?.image
+        }
+    }
 
     useEffect(() => {
         let main = props?.match?.players.find((player) => {
@@ -75,10 +83,16 @@ const BuildCard = (props) => {
     return (
         <div
             className={`px-5 py-4 ${
-                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
             }`}
         >
-            <h3 className=" text-accent-color sf-bold-12 capitalize ">build</h3>
+            <h3 className={` sf-bold-12 capitalize ${
+                mainPlayer?.win
+                ? "text-accent-color-2"
+                : " text-nav-btn"
+            }`}>
+                build
+            </h3>
             <div className=" flex ml-[10px] gap-x-[10px] mt-5 ">
                 {/* large  */}
                 {[
@@ -88,24 +102,27 @@ const BuildCard = (props) => {
                     mainPlayer?.item3,
                     mainPlayer?.item4,
                     mainPlayer?.item5,
-                ].map((img, index) => {
+                ].map((item, index) => {
                     return (
                         <div
                             key={index}
-                            className={`w-[50px] h-[50px] rounded-full relative bg-[#2f2937]  ${
-                                mythicHighlighter(img)
-                                    ? "border-2 border-[#D55460]"
-                                    : ""
-                            } `}
+                            className={`w-[50px] h-[50px] rounded-full relative bg-[#2f2937]  `}
                         >
-                            {img ? (
-                                <Image
-                                    src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${img}.png`}
-                                    alt="image"
-                                    layout="fill"
-                                    className=" rounded-full "
-                                />
-                            ) : null}
+                            {item !== 0 && getItem(item) && getItem(item)?.sprite && (<div
+                                className={`rounded-full ${
+                                    mythicHighlighter(item)
+                                        ? props?.convertM(props?.match?.duration) <= 5 ? "border-2 border-[#FEFCE8]" :  mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
+                                        : ""
+                                } `}
+                                    style={{
+                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(item)?.sprite}') no-repeat`,
+                                        width: `${getItem(item)?.w}px`,
+                                        height: `${getItem(item)?.h}px`,
+                                        backgroundPosition: `-${getItem(item)?.x}px -${getItem(item)?.y}px`,
+                                        // backgroundSize: "contain",
+                                        zoom: `1.05`
+                                    }}
+                                ></div>)}
                         </div>
                     );
                 })}

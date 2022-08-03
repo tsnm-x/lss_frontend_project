@@ -15,16 +15,17 @@ const PlayerList = (props) => {
     }
 
     const orderedPlayersList = [];
-    orderedPlayersList[0] = props.match.players[5];
-    orderedPlayersList[1] = props.match.players[0];
-    orderedPlayersList[2] = props.match.players[6];
-    orderedPlayersList[3] = props.match.players[1];
-    orderedPlayersList[4] = props.match.players[7];
-    orderedPlayersList[5] = props.match.players[2];
-    orderedPlayersList[6] = props.match.players[8];
-    orderedPlayersList[7] = props.match.players[3];
-    orderedPlayersList[8] = props.match.players[9];
-    orderedPlayersList[9] = props.match.players[4];
+    orderedPlayersList[0] = props.match.players[0];
+    orderedPlayersList[1] = props.match.players[5];
+    orderedPlayersList[2] = props.match.players[1];
+    orderedPlayersList[3] = props.match.players[6];
+    orderedPlayersList[4] = props.match.players[2];
+    orderedPlayersList[5] = props.match.players[7];
+    orderedPlayersList[6] = props.match.players[3];
+    orderedPlayersList[7] = props.match.players[8];
+    orderedPlayersList[8] = props.match.players[4];
+    orderedPlayersList[9] = props.match.players[9];
+
 
     let mainPlayer = props.match.players.find((player) => {
         return player.mainPlayer == true;
@@ -33,7 +34,7 @@ const PlayerList = (props) => {
     return (
         <div
             className={`${
-                mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
             } grid grid-cols-[auto_30px] 
             smDesktop:grid-cols-[auto_50px] `}
         >
@@ -76,7 +77,7 @@ const PlayerList = (props) => {
                                     <h6
                                         className={` sf-bold-14 capitalize cursor-pointer w-[62px] ${
                                             player?.mainPlayer
-                                                ? player?.win
+                                                ? props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" : player?.win
                                                     ? "text-accent-color-2"
                                                     : "text-accent-color"
                                                 : "text-grayed-text"
@@ -97,7 +98,7 @@ const PlayerList = (props) => {
                 onClick={() => props.ExpandFullHandler()}
                 className={`h-full w-[50px] flex items-center justify-center
                 rounded-5px cursor-pointer  ${
-                    mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
+                    props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-50" : mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color"
                 }`}
             >
                 <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
