@@ -89,6 +89,8 @@ const LeftBatchBar = (props) => {
 			setCenteralImg(
 				centralImgHandler(props.dragonDataRed[props.dragonDataRed.length - 1]?.type)
 			);
+		} else {
+			setCenteralImg(null)
 		}
 	}, [props.dragonDataBlue, props.dragonDataRed]);
 
@@ -96,7 +98,7 @@ const LeftBatchBar = (props) => {
 		<div className=" w-[612px] h-[45px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
 			{/* center batch  */}
 			<div className=" flex justify-center items-end row-start-1 col-start-1 ">
-				<div className=" relative w-[50px] h-[50px] ">
+				<div className=" relative w-[100px] h-[47px] ">
 					{centralImg && (
 						<Image src={centralImg} alt="center batch" layout="fill" />
 					)}
