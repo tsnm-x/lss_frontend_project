@@ -262,7 +262,7 @@ const ProfileSearch = (props) => {
                     onChange={searchInput}
                     value={search}
                     placeholder="Find your Summoner name..."
-                    className={` w-full h-full bg-white rounded-[5px] pl-[141px] pr-[92px] sf-bold-16 text-[#8f8b94]  `}
+                    className={` w-full h-full bg-white rounded-[5px] pl-[146px] pr-[92px] sf-bold-16 text-[#8f8b94] font-bold  `}
                 />
                 {!props.hideSearch && (
                     <button
