@@ -87,10 +87,10 @@ const Btns = (props) => {
         }
     };
 
-    const matchElement = rankMatch.match.map((match, index) => {
+    const matchElement = rank?.miniSeries?.progress && [...rank?.miniSeries?.progress]?.map((match, index) => {
         return (
             <div key={index} className={` w-5 h-5 rounded-full bg-[#272131] `}>
-                {match.victory === undefined ? null : match.victory ? (
+                {match === "L"? (
                     <CgCheckO
                         className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full  `}
                     />
