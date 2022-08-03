@@ -224,6 +224,10 @@
         @apply font-NEDGEN text-[5px] leading-[6px];
     }
 
+    
+    .mazin-bold-30 {
+        @apply font-mazin font-bold text-[30px] leading-[38px];
+    }
     .mazin-bold-21 {
         @apply font-mazin font-bold text-[21px] leading-[27px];
     }

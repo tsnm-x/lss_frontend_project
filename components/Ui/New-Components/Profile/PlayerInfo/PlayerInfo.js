@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Profile from "../../universal/Profile/Profile";
 import Image from "next/image";
 import { useSelector } from "react-redux";
+import Classess from './PlayerInfo.module.css'
 const PlayerInfo = (props) => {
     const champion = useSelector((state)=> state.champMostPlayed.champions);
 
@@ -17,9 +18,14 @@ const PlayerInfo = (props) => {
 
     return (
         <section className="relative">
+            {/* bottom shadow  */}
+            <div className={Classess.profileMask}>
+
+            </div>
+            {/* content container  */}
             <div
-                className=" container relative z-30 laptop:flex laptop:items-end 
-             laptop:pt-[67px] laptop:pb-[31px] desktop:pt-[150px]  "
+                className=" container relative z-40 flex items-end 
+             pt-[25px] pb-[60px] "
             >
                 <Profile
                     btnDetails={props?.btnDetails}
@@ -44,7 +50,7 @@ const PlayerInfo = (props) => {
                 
             
             {/* cover photo mask  */}
-            <div className="w-full h-full absolute left-0 top-0 z-20 coverImg_mask"></div>
+            <div className={Classess.bgImgMask}></div>
         </section>
     );
 };

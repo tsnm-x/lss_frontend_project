@@ -1,4 +1,21 @@
-.bgImg {
-  background: transparent url('../../../../../public/assets/new-images/Profile/profile-cover-image.png') no-repeat center center;
-  background-size: cover;
+.profileMask {
+    @apply absolute z-30 h-full w-[40%];
+    background: linear-gradient(
+        272.11deg,
+        rgba(30, 22, 41, 0) 2.05%,
+        #1e1629 64.42%
+    );
+    backdrop-filter: blur(40px);
+    clip-path: polygon(0% 0%, 65% 0, 100% 100%, 0% 100%);
+}
+
+.bgImgMask {
+    @apply w-[86%] h-full absolute right-0 top-0 z-20;
+    background: rgb(20, 10, 34);
+    background: linear-gradient(
+        90deg,
+        rgba(20, 10, 34, 1) 0%,
+        rgba(9, 9, 121, 0) 50%,
+        rgba(20, 10, 34, 1) 100%
+    );
 }
