@@ -3,20 +3,11 @@ import Image from "next/image";
 import axios from "axios";
 import ProfileOne from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/first.png";
 import ProfileTwo from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/sec.png";
-import CenterBatch from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/batch.png";
-import Batch1 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/batch-1.png";
-import Batch2 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/batch-2.png";
-import Batch3 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/batch-3.png";
-import Red1 from "../../../../../../../public/assets/new-images/Profile/btns/btn1.png";
-import Red2 from "../../../../../../../public/assets/new-images/Profile/btns/btn2.png";
-import Red3 from "../../../../../../../public/assets/new-images/Profile/btns/btn3.png";
-import Red4 from "../../../../../../../public/assets/new-images/Profile/btns/btn4.png";
-import Red5 from "../../../../../../../public/assets/new-images/Profile/btns/btn5.png";
-import Blue1 from "../../../../../../../public/assets/new-images/Profile/btns/btn6.png";
-import Blue2 from "../../../../../../../public/assets/new-images/Profile/btns/btn7.png";
-import Blue3 from "../../../../../../../public/assets/new-images/Profile/btns/btn8.png";
-import Blue4 from "../../../../../../../public/assets/new-images/Profile/btns/btn9.png";
-import Blue5 from "../../../../../../../public/assets/new-images/Profile/btns/btn10.png";
+import cloudDragon from "../../../../../../../public/assets/new-images/Svg/Cloud_Dragon.svg"
+import hextechDragon from "../../../../../../../public/assets/new-images/Svg/Hextech_Dragon.svg"
+import infernalDragon from "../../../../../../../public/assets/new-images/Svg/Infernal_Dragon.svg"
+import mountainDragon from "../../../../../../../public/assets/new-images/Svg/Mountain_Dragon.svg"
+import oceanDragon from "../../../../../../../public/assets/new-images/Svg/Ocean_Dragon.svg"
 import { useSelector } from "react-redux";
 import { itemsAction } from "../../../../../../../store/items";
 import { championsAction } from "../../../../../../../store/champions";
@@ -64,6 +55,23 @@ const LeftBatchBar = (props) => {
 		}
 	};
 
+	const centralImgHandler = (type) => {
+		switch (type) {
+			case "AIR_DRAGON":
+				return cloudDragon;
+			case "WATER_DRAGON":
+				return oceanDragon
+			case "FIRE_DRAGON":
+				return infernalDragon
+			case "EARTH_DRAGON":
+				return mountainDragon
+			case "HEXTECH_DRAGON":
+				return hextechDragon
+			default:
+				return cloudDragon
+		}
+	};
+
 	const addEmptyBatches = (length) => {
 		let arr = [];
 		for (let i = 0; i < length; i++) {
@@ -75,11 +83,11 @@ const LeftBatchBar = (props) => {
 	useEffect(() => {
 		if (props.dragonDataBlue?.length === 4) {
 			setCenteralImg(
-				imgHandler(props.dragonDataBlue[props.dragonDataBlue.length - 1]?.type)
+				centralImgHandler(props.dragonDataBlue[props.dragonDataBlue.length - 1]?.type)
 			);
 		} else if (props.dragonDataRed?.length === 4) {
 			setCenteralImg(
-				imgHandler(props.dragonDataRed[props.dragonDataRed.length - 1]?.type)
+				centralImgHandler(props.dragonDataRed[props.dragonDataRed.length - 1]?.type)
 			);
 		}
 	}, [props.dragonDataBlue, props.dragonDataRed]);
@@ -296,7 +304,7 @@ const ProfileCompareBar = (props) => {
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
 										{ready && selectChampName(ban?.championId) && <div
-											className="rounded-full"
+											className="rounded-full border-2 border-[#FFFFFF]"
 											style={{
 												background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${selectChampName(ban?.championId)?.sprite}') no-repeat`,
 												width: `${selectChampName(ban?.championId)?.w}px`,
@@ -322,7 +330,7 @@ const ProfileCompareBar = (props) => {
 										className={` w-[30px] h-[30px] relative rounded-full -ml-1  `}
 									>
 										{ready && selectChampName(ban?.championId) && <div
-											className="rounded-full"
+											className="rounded-full border-2 border-[#FFFFFF]"
 											style={{
 												background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${selectChampName(ban?.championId)?.sprite}') no-repeat`,
 												width: `${selectChampName(ban?.championId)?.w}px`,

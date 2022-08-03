@@ -62,6 +62,31 @@ const Btns = (props) => {
         }
     };
 
+    const iconSelector = (id) => {
+        switch (id) {
+            case "IRON":
+                return Emblem_Iron;
+            case "BRONZE":
+                return Emblem_Bronze;
+            case "SILVER":
+                return Emblem_Silver;
+            case "GOLD":
+                return Emblem_Gold;
+            case "PLATINUM":
+                return Emblem_Platinum;
+            case "DIAMOND":
+                return Emblem_Diamond;
+            case "MASTER":
+                return Emblem_Master;
+            case "GRANDMASTER":
+                return Emblem_Grandmaster;
+            case "CHALLENGER":
+                return Emblem_Challenger;
+            default:
+                return Emblem_Unranked;
+        }
+    };
+
     const matchElement = rankMatch.match.map((match, index) => {
         return (
             <div key={index} className={` w-5 h-5 rounded-full bg-[#272131] `}>
@@ -105,13 +130,13 @@ const Btns = (props) => {
                 </button>
             </div>
             {/* graph component  */}
-            <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
+            {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon}`}>
                     {/* img  */}
                     <div className={`${Classess.rankImg}`}>
                         <Image
-                            src={SilverRankIcon}
+                            src={iconSelector(rank?.tier)}
                             alt="rank icon"
                             className=" rounded-full"
                             layout="fill"
@@ -126,21 +151,31 @@ const Btns = (props) => {
                         <h3
                             className={`font-mazin text-[18px] leading-[23px] text-[#${rankMatch.color}]`}
                         >
-                            Silver I
+                            {rank?.tier?.charAt(0) +
+                                    rank?.tier
+                                        ?.slice(1)
+                                        .toLowerCase()}{" "}
+                                {rank?.rank}
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
-                            100lp
+                            {rank?.leaguePoints? rank?.leaguePoints: 0}lp
                         </h1>
                         <h4 className=" font-sf-pro-text text-[11px] leading-[13.1px] font-[500] text-[#5d7cf6] mr-[3px] ">
-                            54.62% <span className=" text-white ">WR</span>
+                        {(
+                                    (rank?.wins /
+                                        (rank?.wins +
+                                            rank?.losses)) *
+                                    100
+                                ).toFixed(2)}
+                                % <span className=" text-white ">WR</span>
                         </h4>
                     </div>
                     {/* match result  */}
-                    <div className=" flex gap-x-[6px] justify-end mt-[18px]  ">
+                    {rank?.miniSeries && (<div className=" flex gap-x-[6px] justify-end mt-[18px]  ">
                         {matchElement}
-                    </div>
+                    </div>)}
                 </div>
-            </div>
+            </div>)}
             {/* text   */}
             <div className=" flex items-center mt-[30px] ">
                 <h6 className=" mazin-bold-12 mr-[30px] text-white ">

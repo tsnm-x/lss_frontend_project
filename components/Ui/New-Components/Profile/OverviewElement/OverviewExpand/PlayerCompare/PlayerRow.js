@@ -14,6 +14,7 @@ import GbatchImg from "../../../../../../../public/assets/new-images/Profile/car
 import RoundBatch1 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-1.png";
 import RoundBatch2 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-2.png";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const PlayerRow = (props) => {
 	const [active, setActive] = useState(false);
@@ -21,6 +22,19 @@ const PlayerRow = (props) => {
 	const { sendRequest } = useHttp();
 	const [activeStyle, setActiveStyle] = useState(false);
 	const router = useRouter();
+    const items = useSelector((state) => state.items.items);
+    const champions = useSelector((state) => state.champions.champions);
+
+
+    const getChampion = (player) => {
+        return champions[player]?.image;
+    }
+
+    const getItem = (item) => {
+        if(items && item){
+            return items[item]?.image
+        }
+    }
 
 	const matchTimelineData = props.matchTimelineData;
 	const frames = matchTimelineData?.frames;
@@ -393,13 +407,18 @@ const PlayerRow = (props) => {
                             key={index}
                             className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
                         >
-                            {renderedItems && renderedItems[index] ? (
-                                <Image
-                                    src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${renderedItems[index]}.png`}
-                                    alt="batch image"
-                                    layout="fill"
-                                />
-                            ) : null}
+                            {renderedItems && renderedItems[index] && getItem(renderedItems[index])?.sprite ? (
+                                <div
+                                    className="rounded-[5px]"
+                                    style={{
+                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(renderedItems[index])?.sprite}') no-repeat`,
+                                        width: `${getItem(renderedItems[index])?.w}px`,
+                                        height: `${getItem(renderedItems[index])?.h}px`,
+                                        backgroundPosition: `-${getItem(renderedItems[index])?.x}px -${getItem(renderedItems[index])?.y}px`,
+                                        // backgroundSize: "contain",
+                                        zoom: `0.522`
+                                    }}
+                                ></div>) : null}
                         </div>
                     );
                 })}
@@ -451,12 +470,17 @@ const PlayerRow = (props) => {
             >
                 {/* profile  */}
                 <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
-                    <Image
-                        src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/champion/${props.player?.championName}.png`}
-                        alt=" profile image"
-                        layout="fill"
-                        className="rounded-[5px] "
-                    />
+                {getChampion(props?.player?.championName) && <div
+                    className="rounded-[5px]"
+                    style={{
+                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(props?.player?.championName)?.sprite}') no-repeat`,
+                        width: `${getChampion(props?.player?.championName)?.w}px`,
+                        height: `${getChampion(props?.player?.championName)?.h}px`,
+                        backgroundPosition: `-${getChampion(props?.player?.championName)?.x}px -${getChampion(props?.player?.championName)?.y}px`,
+                        // backgroundSize: "1000% 300%",
+                        zoom: `0.95`
+                    }}
+                ></div>} 
                     {/* batch  */}
                     <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
                         <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
