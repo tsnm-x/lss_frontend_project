@@ -64,21 +64,28 @@ const ProfileSearch = (props) => {
         index: 0,
     });
 
-    useEffect(()=>{
-        if(window.localStorage.getItem('region')){
-            const finder = selectionNameList.find((regionObj) => regionObj.serverName === window.localStorage.getItem('region'));
+    useEffect(() => {
+        if (window.localStorage.getItem("region")) {
+            const finder = selectionNameList.find(
+                (regionObj) =>
+                    regionObj.serverName ===
+                    window.localStorage.getItem("region")
+            );
             const oldList = [...selectionNameList];
             const modifyedList = [];
-            setActiveListDetails((prevState)=>{
+            setActiveListDetails((prevState) => {
                 return {
                     selectedItem: finder,
                     showList: false,
                     index: 0,
-                }
-            })
+                };
+            });
             setSelectionName(() => {
                 oldList.forEach((list, listIndex) => {
-                    if (list.serverName === window.localStorage.getItem('region')) {
+                    if (
+                        list.serverName ===
+                        window.localStorage.getItem("region")
+                    ) {
                         list.active = true;
                         // change active item state
                         setActiveListDetails((prevState) => {
@@ -96,7 +103,7 @@ const ProfileSearch = (props) => {
                 return modifyedList;
             });
         }
-    }, [])
+    }, []);
 
     const CountryListShowHideHandler = () => {
         setActiveListDetails((prevState) => {
@@ -211,69 +218,60 @@ const ProfileSearch = (props) => {
 
     return (
         <>
-            {/* small screen  */}
-            <div
-                className={`w-full ${props.className ? props.className : null}`}
-            >
-                {/* search form  */}
-                <form action="/" className="w-full ">
-                    <div className=" relative ">
-                        {/* country box list  */}
-                        {activeListDetails.showList && (
-                            <div
-                                className={` 
+            <div className=" relative w-[450px] h-[45px] ">
+                {/* country box list  */}
+                {activeListDetails.showList && (
+                    <div
+                        className={` 
                                             absolute left-0 top-[100px] bg-light-text rounded p-[10px_12px] smTablet:w-[175px] smTablet:top-[70px]
-                                            tablet:py-[7px] tablet:px-[10px]
+                                            tablet:py-[7px] tablet:px-[10px] z-[100]
                                             `}
-                            >
-                                {selectionNameList.map((country, index) => {
-                                    return (
-                                        <div
-                                            key={"country " + country.name}
-                                            onClick={() =>
-                                                btnActiveHandler(index)
-                                            }
-                                            className={` py-[6px] mb-1 cursor-pointer last:mb-0 ${
-                                                country.active
-                                                    ? " bg-accent-color rounded text-white"
-                                                    : " bg-[#AAA0A826] text-[#AAA0A8]"
-                                            }`}
-                                        >
-                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 laptop:text-[11px]  ">
-                                                {country.fullName}
-                                            </p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        )}
-                        {/* country select box  */}
-                        <div
-                            onClick={CountryListShowHideHandler}
-                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] tablet:py-[22px]  `}
-                        >
-                            <h4
-                                className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 `}
-                            >
-                                {activeListDetails.selectedItem?.name}
-                            </h4>
-                            <BiCaretDown className=" text-white text-[20px] " />
-                        </div>
-                        {/* sumonner name box  */}
-                        <input
-                            type="search"
-                            onChange={searchInput}
-                            value={search}
-                            placeholder="Find your Summoner name..."
-                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px]  ${classes.searchBox} ${props.searchBox}`}
-                        />
-                        {!props.hideSearch && (
-                            <button onClick={(e) => searchHandler(e)} className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px]  ">
-                                <FiSearch className=" text-[#AAA0A8] text-[20px] smTablet:text-[28px] " />
-                            </button>
-                        )}
+                    >
+                        {selectionNameList.map((country, index) => {
+                            return (
+                                <div
+                                    key={"country " + country.name}
+                                    onClick={() => btnActiveHandler(index)}
+                                    className={` py-[6px] mb-1 cursor-pointer last:mb-0 ${
+                                        country.active
+                                            ? " bg-accent-color rounded text-white"
+                                            : " bg-[#AAA0A826] text-[#AAA0A8]"
+                                    }`}
+                                >
+                                    <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 laptop:text-[11px]  ">
+                                        {country.fullName}
+                                    </p>
+                                </div>
+                            );
+                        })}
                     </div>
-                </form>
+                )}
+                {/* country select box  */}
+                <div
+                    onClick={CountryListShowHideHandler}
+                    className={` absolute flex  justify-center items-center bg-[#d55460] w-[110px] h-full rounded cursor-pointer   `}
+                >
+                    <BiCaretDown className=" text-white text-[13px] mr-[10px] " />
+                    <h4 className={` text-white uppercase sf-bold-14`}>
+                        {activeListDetails.selectedItem?.name}
+                    </h4>
+                </div>
+                {/* sumonner name box  */}
+                <input
+                    type="search"
+                    onChange={searchInput}
+                    value={search}
+                    placeholder="Find your Summoner name..."
+                    className={` w-full h-full bg-white rounded-[5px] pl-[146px] pr-[92px] sf-bold-16 text-[#8f8b94] font-bold  `}
+                />
+                {!props.hideSearch && (
+                    <button
+                        onClick={(e) => searchHandler(e)}
+                        className="absolute right-[18px] top-[10px] "
+                    >
+                        <FiSearch className=" text-black text-[22px] " />
+                    </button>
+                )}
             </div>
         </>
     );
