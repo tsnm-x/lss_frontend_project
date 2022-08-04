@@ -60,7 +60,7 @@ const HeaderBar = (props) => {
                 >
                     {props.won? "Victory" : "Defeat"}
                 </span>{" "}
-                {!props.won ? "(Red Team)" : "(Blue Team)"}
+                {!props?.blueTeam ? "(Red Team)" : "(Blue Team)"}
             </h1>
             <h1 className=" sf-bold-10  capitalize text-grayed-text text-center "></h1>
             <h1 className=" sf-bold-10  capitalize text-grayed-text ">
@@ -700,7 +700,7 @@ const ExpandDataRows = (props) => {
     return (
         <div>
             {/* header  */}
-            <HeaderBar won={props.type} />
+            <HeaderBar won={props.type} blueTeam={props?.blueTeam}/>
             <div className=" px-[9px] mt-[10px] ">
                 {props.team?.map((data, index) => {
                     return (
@@ -722,11 +722,23 @@ const HeightExpand = (props) => {
     const [secondTeam, setSecondTeam] = useState([]);
     const [mainPlayer, setMainPlayer] = useState({});
     const [wonGame, setWonGame] = useState(false);
-
+    const [index, setIndex] = useState();
+    const [isBlue, setIsBlue] = useState(false);
 
     useEffect(() => {
-        setMainPlayer(props.match?.players?.find((player) => player.mainPlayer))
+        setMainPlayer(props.match?.players?.find((player, idx) => {
+            if(player.mainPlayer){
+                setIndex(idx)
+            }
+            return player.mainPlayer
+        }))
     }, [props.match?.players]);
+
+    useEffect(() => {
+        if(index){
+            index <= 4 ? setIsBlue(true) : setIsBlue(false)
+        }
+    }, [index])
 
     useEffect(()=>{
         if(mainPlayer?.summonerName){
@@ -745,12 +757,14 @@ const HeightExpand = (props) => {
         <div className=" mb-14 ">
             <Btns />
             {mainPlayer && <ExpandDataRows
+                blueTeam={isBlue}
                 team={firstTeam}
                 type={wonGame}
                 match={props.match}
             />}
             <SimulateComponets match={props?.match} convertM={props?.convertM}/>
             {mainPlayer && <ExpandDataRows
+                blueTeam={!isBlue}
                 team={secondTeam}
                 type={!wonGame}
                 match={props.match}
