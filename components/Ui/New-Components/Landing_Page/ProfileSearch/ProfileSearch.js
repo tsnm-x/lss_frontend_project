@@ -212,9 +212,7 @@ const ProfileSearch = (props) => {
     return (
         <>
             {/* small screen  */}
-            <div
-                className={`w-full ${props.className ? props.className : null}`}
-            >
+            <div className={` w-[500px] h-[70px] `}>
                 {/* search form  */}
                 <form action="/" className="w-full ">
                     <div className=" relative ">
@@ -250,7 +248,7 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={` absolute h-full hidden justify-center items-center bg-accent-color w-[250px] rounded cursor-pointer smTablet:flex smTablet:w-[161px] smTablet:py-[20px] tablet:py-[22px]  `}
+                            className={` absolute bg-[#d55460] w-[111px] h-[70px] rounded-5px flex justify-center items-center `}
                         >
                             <h4
                                 className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 `}
@@ -265,11 +263,15 @@ const ProfileSearch = (props) => {
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
-                            className={` w-full py-[10px] pl-[12px] bg-white rounded-[5px] mobile:sf-regular-14 mobile:p-[8px_11px] smTablet:gotham-mid-18 smTablet:mr-[10px] smTablet:py-[20px] smTablet:pl-[195px]  ${classes.searchBox} ${props.searchBox}`}
+                            className={` rounded-5px w-[500px] h-[70px] pl-[147px] 
+                            font-mazin font-[600] text-[16px] leading-[20.4px] text-[rgba(0,0,0,0.5)] `}
                         />
                         {!props.hideSearch && (
-                            <button onClick={(e) => searchHandler(e)} className="absolute right-3 top-[10px] mobile:top-[5px] smTablet:top-[15px]  ">
-                                <FiSearch className=" text-[#AAA0A8] text-[20px] smTablet:text-[28px] " />
+                            <button
+                                onClick={(e) => searchHandler(e)}
+                                className="absolute top-[20px] right-[26px]  "
+                            >
+                                <FiSearch className=" text-[#D55460] text-[28px] " />
                             </button>
                         )}
                     </div>

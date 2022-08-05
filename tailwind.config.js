@@ -90,7 +90,7 @@ module.exports = {
                 gotham: "Gotham",
                 NEDGEN: "NEDGEN",
                 "sf-pro-text": "sf-pro-text",
-                mazin: "mazin-bold",
+                mazin: "mazin",
             },
             borderRadius: {
                 // old 1.0

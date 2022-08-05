@@ -86,10 +86,38 @@
 }
 /* mazin fonts  */
 @font-face {
-    font-family: "mazin-bold";
+    font-family: "mazin";
+    font-style: normal;
+    font-weight: 900;
+    src: url("/assets/old-images/fonts/Mazin/mazin-black.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "mazin";
     font-style: normal;
     font-weight: 700;
-    src: url("/assets/old-images/fonts/Mazin-Bold/Mazin-Bold.woff2")
+    src: url("/assets/old-images/fonts/Mazin/mazin-bold.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "mazin";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/assets/old-images/fonts/Mazin/mazin-medium.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "mazin";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/old-images/fonts/Mazin/mazin-regular.woff2")
+        format("woff2");
+}
+@font-face {
+    font-family: "mazin";
+    font-style: normal;
+    font-weight: 300;
+    src: url("/assets/old-images/fonts/Mazin/mazin-light.woff2")
         format("woff2");
 }
 
@@ -156,7 +184,6 @@
     .sf-bold-14 {
         @apply font-sf-pro-text font-bold text-[14px] leading-[18px];
     }
-
     .sf-bold-12 {
         @apply font-sf-pro-text text-[12px] leading-[14px] font-bold;
     }
@@ -196,35 +223,27 @@
     .sf-regular-14 {
         @apply font-sf-pro-text text-[14px] leading-[16px];
     }
-
     .sf-regular-10 {
         @apply font-sf-pro-text text-[10px] leading-[12px];
     }
-
     .nedgen-regular-80 {
         @apply font-NEDGEN text-[80px] leading-[92px];
     }
     .nedgen-regular-60 {
         @apply font-NEDGEN text-[60px] leading-[69px];
     }
-
     .nedgen-regular-24 {
         @apply font-NEDGEN text-[24px] leading-[27px];
     }
-
     .nedgen-regular-14 {
         @apply font-NEDGEN text-[14px] leading-[16px];
     }
-
     .nedgen-regular-10 {
         @apply font-NEDGEN text-[10px] leading-[12px];
     }
-
     .nedgen-regular-5 {
         @apply font-NEDGEN text-[5px] leading-[6px];
     }
-
-    
     .mazin-bold-30 {
         @apply font-mazin font-bold text-[30px] leading-[38px];
     }
