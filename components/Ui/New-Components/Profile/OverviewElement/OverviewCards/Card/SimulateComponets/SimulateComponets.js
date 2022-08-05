@@ -30,7 +30,7 @@ const Batch = (props) => {
         <div
             className={` w-[200px] py-[15px] px-[20px] rounded-[5px] grid
              grid-cols-[2fr_1fr_1fr] grid-rows-2 gap-y-3 ${
-                 props.type === "victory" ? "bg-[#181631]" : "bg-[#251122]"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : props.type === "victory" ? "bg-[#181631]" : "bg-[#251122]"
              } `}
         >
             {/* sord  */}
@@ -179,14 +179,14 @@ const SimulateComponets = (props) => {
 
     return (
         <div className=" flex justify-around items-center my-3 ">
-            <Batch team={lostTeam} teamStats={lostTeamStats}/>
+            <Batch team={lostTeam} teamStats={lostTeamStats} match={props?.match} convertM={props?.convertM}/>
             {/* simulate btn  */}
             <button onClick={goToSimulation} className=" font-sf-pro-text text-[14px] leading-[16px] font-bold 
              capitalize px-[25px] py-[15px] rounded-[5px]
               bg-accent-color text-light-text ">
                 simulate game
             </button>
-            <Batch type={"victory"}  team={winnerTeam} teamStats={winningTeamStats}/>
+            <Batch type={"victory"} team={winnerTeam} teamStats={winningTeamStats} match={props?.match} convertM={props?.convertM}/>
         </div>
     );
 };

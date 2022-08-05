@@ -3,7 +3,7 @@ import Image from "next/image";
 import TierGraphIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Profile-page/on-the-way-icon.svg";
 import SilverRankIcon from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Rank-Icon/Silver.png";
 import Classess from "./RankTierGraph.module.css";
-import { CgCheckO, CgCloseO } from "react-icons/cg";
+import { CgCheckO, CgCloseO, CgAbstract } from "react-icons/cg";
 import BatchImg from "../../../../../../../public/assets/new-images/Profile/batch-img.png";
 import Emblem_Iron from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-iron.png";
 import Emblem_Bronze from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-bronze.png";
@@ -90,15 +90,16 @@ const Btns = (props) => {
     const matchElement = rank?.miniSeries?.progress && [...rank?.miniSeries?.progress]?.map((match, index) => {
         return (
             <div key={index} className={` w-5 h-5 rounded-full bg-[#272131] `}>
-                {match === "L"? (
+                {match === "W"? (
                     <CgCheckO
                         className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full  `}
                     />
-                ) : (
+                ) : match === "L"? (
                     <CgCloseO
                         className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
                     />
-                )}
+                ) : (<div className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}></div>)
+                }
             </div>
         );
     });

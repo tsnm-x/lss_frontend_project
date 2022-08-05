@@ -196,7 +196,7 @@ const Summoner = () => {
 					deaths = deaths + mainPlayerChamps[j].deaths;
 					assists = assists + mainPlayerChamps[j].assists;
 					kills = kills + mainPlayerChamps[j].kills;
-					totalCs = totalCs + mainPlayerChamps[j].neutralMinionsKilled;
+					totalCs = totalCs + mainPlayerChamps[j].neutralMinionsKilled + mainPlayerChamps[j].neutralMinionsKilled;
 					mainPlayerChamps[j].win ? winCount++ : lossCount++;
 					totalMatches++;
 					totalDuration = totalDuration + mainPlayerChamps[j].duration;
