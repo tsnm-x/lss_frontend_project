@@ -54,7 +54,7 @@ const GameStaticsGraph = (props) => {
 	// console.log(goldFrames);
 
 	useEffect(() => {
-		props.frameChange(15);
+		props.frameChange(5);
 	}, []);
 
 	return (
