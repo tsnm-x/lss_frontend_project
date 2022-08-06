@@ -93,7 +93,7 @@ const GameStaticsGraph = (props) => {
 				{/* graph cards  */}
 				<div className=" mt-5 ">
 					<input
-						className="text-full-dark w-[600px]"
+						className="text-full-dark w-[100%]"
 						type="range"
 						min="0"
 						max={(frames?.length - 2).toString()}
