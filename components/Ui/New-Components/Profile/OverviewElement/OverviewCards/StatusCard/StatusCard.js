@@ -153,6 +153,7 @@ const RightSide = (props) => {
     const [viewer, setViewer] = useState(false);
     const champions = useSelector((state) => state.champions.champions);
     const [champDetails, setChampDetails] = useState({})
+    const runes = useSelector(state => state.runes.runes) 
 
     useEffect(()=>{
         props?.mainPlayer?.championName && getChampion(champions)
@@ -240,164 +241,32 @@ const RightSide = (props) => {
         }
     };
 
-    const selectStyleIcons = (id) => {
-        switch (id) {
-            case 8112:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Electrocute/Electrocute.png";
-            case 8124:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/Predator/Predator.png";
-            case 8128:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png";
-            case 9923:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png";
-            case 8126:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/CheapShot/CheapShot.png";
-            case 8139:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TasteOfBlood/GreenTerror_TasteOfBlood.png";
-            case 8143:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/SuddenImpact/SuddenImpact.png";
-            case 8136:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/ZombieWard/ZombieWard.png";
-            case 8120:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/GhostPoro/GhostPoro.png";
-            case 8138:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/EyeballCollection/EyeballCollection.png";
-            case 8135:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/TreasureHunter/TreasureHunter.png";
-            case 8134:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/IngeniousHunter/IngeniousHunter.png";
-            case 8105:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/RelentlessHunter/RelentlessHunter.png";
-            case 8106:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Domination/UltimateHunter/UltimateHunter.png";
-            case 8351:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png";
-            case 8360:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png";
-            case 8369:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png";
-            case 8306:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png";
-            case 8304:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png";
-            case 8313:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/PerfectTiming/PerfectTiming.png";
-            case 8321:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png";
-            case 8316:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png";
-            case 8345:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png";
-            case 8347:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png";
-            case 8410:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png";
-            case 8352:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png";
-            case 8005:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png";
+ 
 
-            case 8008:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png";
-            case 8021:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png";
-            case 8010:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Conqueror/Conqueror.png";
-
-            case 9101:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Overheal.png";
-
-            case 9111:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/Triumph.png";
-
-            case 8009:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png";
-
-            case 9104:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png";
-
-            case 9105:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png";
-
-            case 9103:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png";
-
-            case 8014:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png";
-
-            case 8017:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Precision/CutDown/CutDown.png";
-
-            case 8299:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/LastStand/LastStand.png";
-            case 8437:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png";
-
-            case 8439:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png";
-
-            case 8465:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Guardian/Guardian.png";
-
-            case 8446:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Demolish/Demolish.png";
-
-            case 8463:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png";
-
-            case 8401:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/MirrorShell/MirrorShell.png";
-
-            case 8429:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Conditioning/Conditioning.png";
-
-            case 8444:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png";
-
-            case 8473:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/BonePlating/BonePlating.png";
-
-            case 8451:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png";
-
-            case 8453:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Resolve/Revitalize/Revitalize.png";
-
-            case 8242:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Unflinching/Unflinching.png";
-            case 8214:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/SummonAery/SummonAery.png";
-            case 8229:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png";
-            case 8230:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png";
-            case 8224:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png";
-            case 8226:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/ManaflowBand/ManaflowBand.png";
-
-            case 8275:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png";
-
-            case 8210:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png";
-
-            case 8234:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Celerity/CelerityTemp.png";
-
-            case 8233:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png";
-
-            case 8237:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Scorch/Scorch.png";
-
-            case 8232:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/Waterwalking/Waterwalking.png";
-
-            case 8236:
-                return "https://ddragon.canisback.com/img/perk-images/Styles/Sorcery/GatheringStorm/GatheringStorm.png";
+    const findRuneDetails = (id) => {
+        if(runes && id){
+            const selectedRune = runes.filter(rune => rune?.id === id);
+            return selectedRune[0]
         }
-    };
+    }
+
+    const findRuneIcon = (id) => {
+        const rune = findRuneDetails(id);
+        return rune?.icon
+    }
+
+    const getRuneDescription= (rune) => {
+        if(runes && rune){
+            const selectedRune = findRuneDetails(rune)
+            return (
+                <div>
+                    <h1>{selectedRune?.name}</h1>
+                    <small dangerouslySetInnerHTML={{ __html: selectedRune?.longDesc }}></small>
+                </div>
+            )
+        }
+    }
+
 
     useEffect(() => {}, [props.mainPlayer]);
     useEffect(() => {
@@ -497,7 +366,7 @@ const RightSide = (props) => {
                 <div>
                     {/* data.batch  */}
                     <div
-                        className={` relative ${
+                        className={` relative group ${
                             props.expand
                                 ? `w-[45px] h-[45px] mb-[6px] ${
                                       props.mainExpand ? "" : ""
@@ -505,19 +374,25 @@ const RightSide = (props) => {
                                 : " w-[30px] h-[30px] rounded-5px mb-1 "
                         }`}
                     >
-                        {selectStyleIcons(
-                            props?.mainPlayer?.perks?.styles[0]?.selections[0]
-                                .perk
+                        {findRuneIcon(
+                            props?.mainPlayer?.perks?.styles[0]?.selections[0].perk
                         ) && (
-                            <Image
-                                src={selectStyleIcons(
-                                    props?.mainPlayer?.perks?.styles[0]
-                                        ?.selections[0].perk
-                                )}
-                                alt="summoner flash image"
-                                layout="fill"
-                                className=" rounded-5px "
-                            />
+                            <div>
+                                <Image
+                                    src={`https://ddragon.canisback.com/img/${findRuneIcon(props?.mainPlayer?.perks?.styles[0]?.selections[0].perk )}`}
+                                    alt="summoner flash image"
+                                    layout="fill"
+                                    className=" rounded-5px "
+                                />
+                                <div
+                                    className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-500 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100'
+                                >
+                                    <span>{getRuneDescription(props?.mainPlayer?.perks?.styles[0]?.selections[0].perk)}</span>
+                                    <div
+                                        className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
+                                    />
+                                </div>
+                            </div>
                         )}
                     </div>
                     <div

@@ -1,117 +1,137 @@
-import React, { useEffect, useState } from "react";
-import HeaderWithSearchbar from "../../../../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar";
-import ProfileIntro from "../../../../../components/Ui/New-Components/Analytic_Page/ProfileIntro/ProfileIntro";
-import AnalyticsViewBtns from "../../../../../components/Ui/New-Components/Analytic_Page/AnalyticsViewBtns/AnalyticsViewBtns";
-import ProfileCompareBar from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/ProfileCompareBar/ProfileCompareBar";
-import LosAndWinRow from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/LosAndWinRow/LosAndWinRow";
-import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Page/DataRowGrid/DataRowGrid";
-import GameStaticsGraph from "../../../../../components/Ui/New-Components/Analytic_Page/GameStaticsGraph/GameStaticsGraph";
-import SimulationData from "../../../../../components/Ui/New-Components/Profile/OverviewElement/SimulateGame/Simulation/SimulationData/SimulationData";
-import Router, { useRouter } from "next/router";
-import useHttp from "../../../../../hook/useHttp";
+import React, { useState, useEffect } from "react";
+import HeaderWithSearchbar from "../../../../components/shared/New-Componets/HeaderWithSearchbar/HeaderWithSearchbar";
+import PlayerInfo from "../../../../components/Ui/New-Components/Profile/PlayerInfo/PlayerInfo";
+import OverviewChampion from "../../../../components/Ui/New-Components/Profile/OverviewChampionBtns/OverviewChampionBtns";
+import Table from "../../../../components/Ui/New-Components/Profile/TableElement/Table/Table";
+import Overview from "../../../../components/Ui/New-Components/Profile/OverviewElement/Overview/Overview";
+import useHttp from "../../../../hook/useHttp";
 import { useDispatch, useSelector } from "react-redux";
-import { profileAction } from "../../../../../store/profile";
+import { useRouter } from "next/router";
+import { profileAction } from "../../../../store/profile";
+import { axiosInstance } from "../../../../network/axiosConfig";
+import CardContext from "../../../../Context/CardContext";
+import { champAction } from "../../../../store/champMostPlayed";
+import { championsAction } from "../../../../store/champions";
 import axios from "axios";
-import { championsAction } from "../../../../../store/champions";
-import { itemsAction } from "../../../../../store/items";
+import { itemsAction } from "../../../../store/items";
+import { runeAction } from "../../../../store/runes";
 
-const MatchSimulator = ({ query }) => {
-	const { region, summonerName, matchId } = query;
-	const [fullMatchId, setFullMatchId] = useState("");
-	const [selectedPlayer, setSelectedPlayer] = useState({});
-	const [matchTimelineData, setMatchTimelineData] = useState({});
-	const [simulatorPlayerRed, setSimulatorPlayerRed] = useState({});
-	const [simulatorPlayerBlue, setSimulatorPlayerBlue] = useState({});
-	const [index, setIndex] = useState(0);
-	const [leftTeam, setLeftTeam] = useState([]);
-	const [rightTeam, setRightTeam] = useState([]);
-	const [selectedFrame, setSelectedFrame] = useState(
-		matchTimelineData?.frames?.length - 2 || 0
-	);
-	const { hasError, sendRequest } = useHttp();
-	const [mainPlayer, setMainPlayer] = useState("");
-	const [match, setMatch] = useState({});
-	const matches = useSelector((state) => state.profile.profile);
+const Summoner = () => {
+	const [view, setView] = useState("overview");
+	const [cardProps, setCardProps] = useState({});
+	const [cardExpand, setCardExpand] = useState(false);
+	const [expandCardNo, setExpandCardNo] = useState(null);
+	const [mainPlayer, setMainPlayer] = useState({});
+	const [seasonMostPlayedList, setSeasonMostPlayedList] = useState([]);
+	const { sendRequest, hasError } = useHttp();
+	const [mainPlayerChamps, setMainPlayerChamps] = useState([]);
+	const router = useRouter();
+	let champions = [];
+	const [mostPlayedChamp, setMostPlayedChamp] = useState({});
 	const dispatch = useDispatch();
-	const [playersWithId, setPlayersWithId] = useState([]);
-	const champions = useSelector((state) => state.champions.champions);
-	const items = useSelector((state) => state.items.items);
+
+	const matches = useSelector((state) => state.profile.profile);
+	const otherData = useSelector((state) => state.profile);
+
+	const [ranks, setRanks] = useState([]);
+
+	const btnDetails = [
+		{ text: "refresh", url: "" },
+		{
+			text: "live simulator",
+			url: {
+				pathname: `/summoner/[region]/[summonerName]/livesimulator`,
+				query: {
+					region: router.query?.region,
+					summonerName: router.query?.summonerName,
+				},
+			},
+		},
+	];
 
 	useEffect(() => {
-		if (!Object.keys(champions)[0]) {
-			let champUrl =
-				"//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+		let champUrl =
+			"//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
+		let itemUrl =
+			"//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/item.json";
+		let runesUrl =
+			"//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/runesReforged.json";
 
-			try {
-				axios.get(champUrl).then((res) => {
-					dispatch(championsAction.setChampions({ champions: res.data.data }));
+		try {
+			axios.get(champUrl).then((res) => {
+				dispatch(championsAction.setChampions({ champions: res.data.data }));
+			});
+
+			axios.get(itemUrl).then((res) => {
+				dispatch(itemsAction.setItems({ items: res.data.data }));
+			});
+
+			axios.get(runesUrl).then((res) => {
+				let runes = [];
+				res?.data?.forEach((item) => {
+					item?.slots?.forEach((slot) => {
+						runes?.push(...slot?.runes);
+					});
 				});
-			} catch (error) {
-				console.log(error);
-			}
-		}
 
-		if (!Object.keys(items)[0]) {
-			let itemUrl =
-				"//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/item.json";
-
-			try {
-				axios.get(itemUrl).then((res) => {
-					dispatch(itemsAction.setItems({ items: res.data.data }));
-				});
-			} catch (error) {
-				console.log(error);
-			}
+				if (runes[0]) {
+					dispatch(runeAction.setRunes({ runes }));
+				}
+			});
+		} catch (error) {
+			console.log(error);
 		}
 	}, []);
 
 	useEffect(() => {
-		if (playersWithId) {
-			setLeftTeam(playersWithId.filter((player) => !player.win));
-			setRightTeam(playersWithId.filter((player) => player.win));
-		}
-	}, [playersWithId]);
+		const { region } = router.query;
+		mainPlayer &&
+			axiosInstance
+				.post("/summonerRanks", {
+					region,
+					summonerRiotId: mainPlayer?.summonerRiotId,
+				})
+				.then((res) => {
+					setRanks(res.data.ranks);
+				});
+	}, [mainPlayer]);
 
 	useEffect(() => {
-		leftTeam.find((player) => player.mainPlayer)
-			? leftTeam.find((player, index) => {
-					if (player.mainPlayer) {
-						setIndex(index);
-						return true;
-					}
-					return false;
-			  })
-			: rightTeam.find((player, index) => {
-					if (player.mainPlayer) {
-						setIndex(index);
-						return true;
-					}
-					return false;
-			  });
-	}, [leftTeam, rightTeam]);
+		console.log(ranks);
+	}, [ranks]);
 
 	useEffect(() => {
-		setSelectedPlayer({});
-		if (index) {
-			setSimulatorPlayerBlue(rightTeam[index]);
-			setSimulatorPlayerRed(leftTeam[index]);
-		}
-	}, [index]);
+		console.log(router);
+		const { region, summonerName } = router.query;
+		window.localStorage.setItem("region", region);
 
-	useEffect(() => {
-		const regex = /^[0-9]+$/;
-		if (matchId?.match(regex)) {
-			setFullMatchId(`${region}_${matchId}`);
-		}
-	}, []);
+		if (matches[0]) {
+			if (
+				matches[0]?.players
+					?.find((player) => player.mainPlayer == true)
+					?.summonerName.toLowerCase() === summonerName.toLowerCase()
+			) {
+				setMainPlayer(
+					matches[0]?.players.find((player) => {
+						return player.mainPlayer == true;
+					})
+				);
 
-	// console.log("re rendered at Index");
+				if (!seasonMostPlayedList[0]) {
+					matches?.forEach((match) => {
+						const mainPlayerArr = match.players.filter(
+							(player) => player.mainPlayer === true
+						);
+						mainPlayerArr.forEach((obj) => {
+							champions.push({ ...obj, duration: match.duration });
+						});
+					});
 
-	useEffect(() => {
-		if (fullMatchId) {
-			if (matches[0] && !match?.player) {
-				setMatch(matches?.filter((match) => match.matchId === fullMatchId)[0]);
+					setMainPlayerChamps(champions);
+				}
 			} else {
+				CardsExpandHandler(-1);
+				setSeasonMostPlayedList([]);
 				sendRequest(
 					{
 						url: "/summonerByName",
@@ -127,242 +147,184 @@ const MatchSimulator = ({ query }) => {
 									summonerName,
 								})
 							);
-
-							setMatch(
-								res.data?.matches?.filter(
-									(match) => match?.matchId === fullMatchId
-								)[0]
-							);
 						}
 					}
 				);
 			}
-		}
-	}, [matches, fullMatchId]);
-
-	useEffect(() => {
-		if (match?.players) {
-			setMainPlayer(match.players?.find((player) => player.mainPlayer));
-
-			const players = JSON.parse(JSON.stringify(match.players));
-
-			for (let i = 0; i < players?.length; i++) {
-				players[i].standingId = i + 1;
-			}
-			setPlayersWithId(players);
-		}
-	}, [match]);
-
-	const frameChange = (e) => {
-		setSelectedFrame(e);
-	};
-
-	// lifecycle event => state => lifecycle event => state
-	useEffect(() => {
-		if (fullMatchId) {
+		} else {
+			CardsExpandHandler(-1);
+			setSeasonMostPlayedList([]);
 			sendRequest(
 				{
-					url: "/matchTimeline",
+					url: "/summonerByName",
 					method: "POST",
-					body: { region, matchId: fullMatchId },
+					body: { region, summonerName },
 				},
 				(res) => {
 					if (res?.status === 200) {
-						let matchTimeline = addDragonTimers(res.data.matchTimeline);
-						matchTimeline = addBaronTimers(matchTimeline);
-						matchTimeline = addHaroldTimers(matchTimeline);
-						setMatchTimelineData(matchTimeline);
+						dispatch(
+							profileAction.setProfileDataPage({
+								profile: res.data.matches,
+								region,
+								summonerName,
+							})
+						);
 					}
 				}
 			);
 		}
-	}, [fullMatchId]);
+	}, [router, matches]);
 
-	const addDragonTimers = (matchTimeline) => {
-		console.log("-1");
-		matchTimeline?.frames[
-			matchTimeline?.frames?.length - 2
-		]?.blueTeam?.Dragon?.KillEvents.forEach((kill) => {
-			console.log("0");
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
+	function convertM(value) {
+		const sec = parseInt(value); // convert value to number if it's string
+		let minutes = Math.floor(sec / 60); // get minutes
+		return minutes;
+	}
 
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[date.getMinutes() + i].dragonRespawn = `${
-						5 - i
-					}:${seconds}`;
+	useEffect(() => {
+		let maxcount = 0;
+		let deaths = 0;
+		let assists = 0;
+		let kills = 0;
+		let winCount = 0;
+		let lossCount = 0;
+		let totalCs = 0;
+		let totalMatches = 0;
+		let avgCs = 0;
+		let totalDuration = 0;
+		let totalDamageDealt = 0;
+
+		for (let i = 0; i < mainPlayerChamps.length; i++) {
+			let count = 0;
+			for (let j = 0; j < mainPlayerChamps.length; j++) {
+				if (
+					mainPlayerChamps[i].championName == mainPlayerChamps[j].championName
+				) {
+					count++;
+					deaths = deaths + mainPlayerChamps[j].deaths;
+					assists = assists + mainPlayerChamps[j].assists;
+					kills = kills + mainPlayerChamps[j].kills;
+					totalCs =
+						totalCs +
+						mainPlayerChamps[j].neutralMinionsKilled +
+						mainPlayerChamps[j].neutralMinionsKilled;
+					mainPlayerChamps[j].win ? winCount++ : lossCount++;
+					totalMatches++;
+					totalDuration = totalDuration + mainPlayerChamps[j].duration;
+					totalDamageDealt =
+						totalDamageDealt + mainPlayerChamps[j].totalDamageDealtToChampions;
 				}
 			}
-		});
 
-		console.log(matchTimeline);
+			if (count > maxcount) {
+				maxcount = count;
+				avgCs = totalCs / totalMatches / convertM(totalDuration);
 
-		matchTimeline?.frames[
-			matchTimeline?.frames?.length - 2
-		]?.redTeam?.Dragon?.KillEvents.forEach((kill) => {
-			console.log("1");
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
+				setSeasonMostPlayedList([
+					...seasonMostPlayedList,
+					{
+						...mainPlayerChamps[i],
+						totalDeaths: deaths,
+						totalAssists: assists,
+						totalKills: kills,
+						winCount,
+						lossCount,
+						avgCs,
+						totalDamageDealt,
+					},
+				]);
 			}
 
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[date.getMinutes() + i].dragonRespawn = `${
-						5 - i
-					}:${seconds}`;
-				}
-			}
-		});
+			deaths = 0;
+			assists = 0;
+			kills = 0;
+			winCount = 0;
+			lossCount = 0;
+			totalCs = 0;
+			totalMatches = 0;
+			avgCs = 0;
+			totalDuration = 0;
+			totalDamageDealt = 0;
+		}
+	}, [mainPlayerChamps]);
 
-		return matchTimeline;
+	useEffect(() => {
+		dispatch(champAction.setChamp(seasonMostPlayedList));
+		if (seasonMostPlayedList[0]) {
+			const newChamps = mainPlayerChamps.filter(
+				(champion) =>
+					champion.championName !==
+					seasonMostPlayedList[seasonMostPlayedList.length - 1].championName
+			);
+
+			console.log(newChamps);
+
+			if (newChamps[0]) {
+				setMainPlayerChamps(newChamps);
+			}
+		}
+	}, [seasonMostPlayedList]);
+
+	const ControlBtnLists = ["all", "ranked solo", "normals", "ranked flex"];
+	const [selectedMatchType, setSelectedMatchType] = useState("all");
+
+	const rankSolo = ranks.find((el) => el.queueType === "RANKED_SOLO_5x5");
+	const rankFlex = ranks.find((el) => el.queueType === "RANKED_FLEX_SR");
+
+	const viewController = (action) => {
+		console.log(action);
+		view === action ? null : setView(action);
 	};
 
-	const addBaronTimers = (matchTimeline) => {
-		matchTimeline?.frames[
-			matchTimeline?.frames?.length - 2
-		]?.blueTeam?.Baron?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[date.getMinutes() + i].baronRespawn = `${
-						5 - i
-					}:${seconds}`;
-				}
-			}
-		});
-
-		matchTimeline?.frames[
-			matchTimeline?.frames?.length - 2
-		]?.redTeam?.Baron?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.frames[date.getMinutes() + i]) {
-					matchTimeline.frames[date.getMinutes() + i].baronRespawn = `${
-						5 - i
-					}:${seconds}`;
-				}
-			}
-		});
-
-		return matchTimeline;
-	};
-
-	const addHaroldTimers = (matchTimeline) => {
-		matchTimeline?.frames[
-			matchTimeline?.frames?.length - 2
-		]?.blueTeam?.riftHerald?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.frames[date.getMinutes() + i]) {
-					if (date.getMinutes() >= 20) {
-						return;
-					}
-					matchTimeline.frames[date.getMinutes() + i].riftHeraldRespawn = `${
-						5 - i
-					}:${seconds}`;
-				}
-			}
-		});
-
-		matchTimeline?.frames[
-			matchTimeline?.frames?.length - 2
-		]?.redTeam?.riftHerald?.KillEvents.forEach((kill) => {
-			let date = new Date(kill.timeStamp);
-			let seconds = 60 - date.getSeconds();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-			}
-
-			for (let i = 1; i <= 5; i++) {
-				if (matchTimeline.frames[date.getMinutes() + i]) {
-					if (date.getMinutes() >= 20) {
-						return;
-					}
-					matchTimeline.frames[date.getMinutes() + i].riftHeraldRespawn = `${
-						5 - i
-					}:${seconds}`;
-				}
-			}
-		});
-
-		return matchTimeline;
+	const CardsExpandHandler = (ClickedCardIndexNo, otherProps) => {
+		setExpandCardNo(ClickedCardIndexNo);
+		console.log("card expand handler");
+		setCardProps(otherProps);
 	};
 
 	return (
-		<>
-			<HeaderWithSearchbar />
-			<ProfileIntro mainPlayer={mainPlayer} match={match} />
-			<div className=" bg-[#140a22] mb-[100px] ">
-				<AnalyticsViewBtns region={region} summonerName={summonerName} />
-				<ProfileCompareBar
-					teams={match?.teams}
-					players={match?.players}
-					frames={matchTimelineData?.frames}
-					matchTimelineData={matchTimelineData}
-					selectedFrame={selectedFrame}
+		<div>
+			<HeaderWithSearchbar className=" laptop:py-[16px] " />
+			{mainPlayer && (
+				<PlayerInfo
+					btnDetails={btnDetails}
+					summonerName={otherData?.summonerName}
+					profileIcon={mainPlayer?.profileIcon}
+					summonerLevel={mainPlayer?.summonerLevel}
+					region={router.query?.region}
+					rankSolo={rankSolo}
+					rankFlex={rankFlex}
 				/>
-				<LosAndWinRow
-					frames={matchTimelineData?.frames}
-					matchTimelineData={matchTimelineData}
-					selectedFrame={selectedFrame}
-				/>
-				<DataRowGrid
-					match={match}
-					frames={matchTimelineData?.frames}
-					matchTimelineData={matchTimelineData}
-					selectedFrame={selectedFrame}
-					leftTeam={leftTeam}
-					rightTeam={rightTeam}
-					selectedPlayer={selectedPlayer}
-					setSelectedPlayer={setSelectedPlayer}
-					simulatorPlayerRed={simulatorPlayerRed}
-					setSimulatorPlayerRed={setSimulatorPlayerRed}
-					simulatorPlayerBlue={simulatorPlayerBlue}
-					setSimulatorPlayerBlue={setSimulatorPlayerBlue}
-				/>
-				<GameStaticsGraph
-					selectedFrame={selectedFrame}
-					frames={matchTimelineData?.frames}
-					frameChange={frameChange}
-					simulatorPlayerRed={simulatorPlayerRed}
-					simulatorPlayerBlue={simulatorPlayerBlue}
-				/>
-				{/* <button>Sim data</button> */}
-				{/* <SimulationData
-					selectedFrame={selectedFrame}
-					frames={matchTimelineData?.frames}
-					frameChange={frameChange}
-					simulatorPlayerRed={simulatorPlayerRed}
-					simulatorPlayerBlue={simulatorPlayerBlue}
-				/> */}
-			</div>
-		</>
+			)}
+			<OverviewChampion controller={viewController} currentView={view} />
+			{view === "overview" ? (
+				<CardContext.Provider
+					value={{
+						expand: cardExpand,
+						setCardExpand: setCardExpand,
+						expandControl: CardsExpandHandler,
+						expandCardNo: expandCardNo,
+						cardProps: cardProps,
+					}}
+				>
+					{mainPlayer && (
+						<Overview
+							selectedMatchType={selectedMatchType}
+							ControlBtnLists={ControlBtnLists}
+							setSelectedMatchType={setSelectedMatchType}
+							matches={matches}
+							region={router.query?.region}
+							summonerName={mainPlayer?.summonerName}
+							rankSolo={rankSolo}
+							rankFlex={rankFlex}
+						/>
+					)}
+				</CardContext.Provider>
+			) : (
+				<Table controller={viewController} />
+			)}
+		</div>
 	);
 };
 
-MatchSimulator.getInitialProps = ({ query }) => {
-	return { query };
-};
-
-export default MatchSimulator;
+export default Summoner;

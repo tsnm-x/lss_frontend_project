@@ -7,7 +7,7 @@ import SimulationData from "../../Profile/OverviewElement/SimulateGame/Simulatio
 
 const GameStaticsGraph = (props) => {
 	const frames = props?.frames;
-	const [framePointer, setFramePointer] = useState(15);
+	const [framePointer, setFramePointer] = useState(5);
 
 	let goldFrames = [];
 
@@ -54,7 +54,7 @@ const GameStaticsGraph = (props) => {
 	// console.log(goldFrames);
 
 	useEffect(() => {
-		props.frameChange(15);
+		props.frameChange(5);
 	}, []);
 
 	return (
