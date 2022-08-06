@@ -227,7 +227,7 @@ const ProfileSearch = (props) => {
                         {activeListDetails.showList && (
                             <div
                                 className={` absolute left-0 top-[65px] bg-[#e7e6e9] 
-                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] pt-[21px] `}
+                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] pt-[21px]`}
                             >
                                 {selectionNameList.map((country, index) => {
                                     return (
@@ -239,7 +239,7 @@ const ProfileSearch = (props) => {
                                             className={` w-full h-[25px] rounded-5px cursor-pointer
                                              flex items-center justify-center ${
                                                  country.active
-                                                     ? " bg-accent-color rounded text-white"
+                                                     ? " bg-[#d55460] rounded text-white"
                                                      : " bg-[#AAA0A826] text-[#AAA0A8]"
                                              }`}
                                         >
@@ -254,7 +254,7 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={` absolute bg-[#d55460] w-[111px] h-[70px] rounded-5px flex justify-center items-center gap-x-2 `}
+                            className={` absolute bg-[#d55460] cursor-pointer w-[111px] h-[70px] rounded-5px flex justify-center items-center gap-x-2 `}
                         >
                             <h4
                                 className={` text-white uppercase inter-bold-14 `}
