@@ -87,22 +87,30 @@ const Btns = (props) => {
         }
     };
 
-    const matchElement = rank?.miniSeries?.progress && [...rank?.miniSeries?.progress]?.map((match, index) => {
-        return (
-            <div key={index} className={` w-5 h-5 rounded-full bg-[#272131] `}>
-                {match === "W"? (
-                    <CgCheckO
-                        className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full  `}
-                    />
-                ) : match === "L"? (
-                    <CgCloseO
-                        className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
-                    />
-                ) : (<div className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}></div>)
-                }
-            </div>
-        );
-    });
+    const matchElement =
+        rank?.miniSeries?.progress &&
+        [...rank?.miniSeries?.progress]?.map((match, index) => {
+            return (
+                <div
+                    key={index}
+                    className={` w-5 h-5 rounded-full bg-[#272131] `}
+                >
+                    {match === "W" ? (
+                        <CgCheckO
+                            className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full  `}
+                        />
+                    ) : match === "L" ? (
+                        <CgCloseO
+                            className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
+                        />
+                    ) : (
+                        <div
+                            className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
+                        ></div>
+                    )}
+                </div>
+            );
+        });
     return (
         <>
             {/* buttons  */}
@@ -131,7 +139,8 @@ const Btns = (props) => {
                 </button>
             </div>
             {/* graph component  */}
-            {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
+            {/* {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] "> */}
+            <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon}`}>
                     {/* img  */}
@@ -153,30 +162,29 @@ const Btns = (props) => {
                             className={`font-mazin text-[18px] leading-[23px] text-[#${rankMatch.color}]`}
                         >
                             {rank?.tier?.charAt(0) +
-                                    rank?.tier
-                                        ?.slice(1)
-                                        .toLowerCase()}{" "}
-                                {rank?.rank}
+                                rank?.tier?.slice(1).toLowerCase()}{" "}
+                            {rank?.rank}
+                            -
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
-                            {rank?.leaguePoints? rank?.leaguePoints: 0}lp
+                            {rank?.leaguePoints ? rank?.leaguePoints : 0}lp
                         </h1>
                         <h4 className=" font-sf-pro-text text-[11px] leading-[13.1px] font-[500] text-[#5d7cf6] mr-[3px] ">
-                        {(
-                                    (rank?.wins /
-                                        (rank?.wins +
-                                            rank?.losses)) *
-                                    100
-                                ).toFixed(2)}
-                                % <span className=" text-white ">WR</span>
+                            {(
+                                (rank?.wins / (rank?.wins + rank?.losses)) *
+                                100
+                            ).toFixed(2)}
+                            % <span className=" text-white ">WR</span>
                         </h4>
                     </div>
                     {/* match result  */}
-                    {rank?.miniSeries && (<div className=" flex gap-x-[6px] justify-end mt-[18px]  ">
-                        {matchElement}
-                    </div>)}
+                    {rank?.miniSeries && (
+                        <div className=" flex gap-x-[6px] justify-end mt-[18px]  ">
+                            {matchElement}
+                        </div>
+                    )}
                 </div>
-            </div>)}
+            </div>
             {/* text   */}
             <div className=" flex items-center mt-[30px] ">
                 <h6 className=" mazin-bold-12 mr-[30px] text-white ">
@@ -285,21 +293,21 @@ const Batch = (props) => {
 };
 
 // tier graph
-const TierGraph = (props) => {
-    return (
-        <div
-            className={`  relative w-[163px] h-[70px] mt-3 ${props.className}
-         smDesktop:w-full smDesktop:h-[105px] smDesktop:mt-4 desktop:mt-6 `}
-        >
-            <Image
-                src={TierGraphImg}
-                alt="tier graph component"
-                layout="fill"
-                className=" rounded-5px  "
-            />
-        </div>
-    );
-};
+// const TierGraph = (props) => {
+//     return (
+//         <div
+//             className={`  relative w-[163px] h-[70px] mt-3 ${props.className}
+//          smDesktop:w-full smDesktop:h-[105px] smDesktop:mt-4 desktop:mt-6 `}
+//         >
+//             <Image
+//                 src={TierGraphImg}
+//                 alt="tier graph component"
+//                 layout="fill"
+//                 className=" rounded-5px  "
+//             />
+//         </div>
+//     );
+// };
 
 const RankTierGraph = (props) => {
     return (
