@@ -49,6 +49,7 @@ const Btns = (props) => {
     const iconColor = "#" + rankMatch.color;
 
     useEffect(() => {
+        rankHandler("SOLO");
         setRank(props?.rankSolo);
     }, [props]);
 
@@ -161,19 +162,18 @@ const Btns = (props) => {
                         <h3
                             className={`font-mazin text-[18px] leading-[23px] text-[#${rankMatch.color}]`}
                         >
-                            {rank?.tier?.charAt(0) +
-                                rank?.tier?.slice(1).toLowerCase()}{" "}
-                            {rank?.rank}
-                            -
+                            {rank?.tier ? rank?.tier?.charAt(0) +
+                                rank?.tier?.slice(1).toLowerCase() + " " + rank?.rank 
+                                : "-"}
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
                             {rank?.leaguePoints ? rank?.leaguePoints : 0}lp
                         </h1>
                         <h4 className=" font-sf-pro-text text-[11px] leading-[13.1px] font-[500] text-[#5d7cf6] mr-[3px] ">
-                            {(
+                            { rank?.wins || rank?.losses ? (
                                 (rank?.wins / (rank?.wins + rank?.losses)) *
                                 100
-                            ).toFixed(2)}
+                            ).toFixed(2) : 0}
                             % <span className=" text-white ">WR</span>
                         </h4>
                     </div>
