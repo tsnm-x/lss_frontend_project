@@ -14,6 +14,7 @@ import { profileAction } from "../../../../../store/profile";
 import axios from "axios";
 import { championsAction } from "../../../../../store/champions";
 import { itemsAction } from "../../../../../store/items";
+import { runeAction } from "../../../../../store/runes";
 
 const MatchSimulator = ({ query }) => {
 	const { region, summonerName, matchId } = query;
@@ -36,6 +37,7 @@ const MatchSimulator = ({ query }) => {
 	const [playersWithId, setPlayersWithId] = useState([]);
 	const champions = useSelector((state) => state.champions.champions);
 	const items = useSelector((state) => state.items.items);
+	const runes = useSelector(state => state.runes.runes);
 
 	useEffect(()=>{
 		if(!Object.keys(champions)[0]){
@@ -71,6 +73,32 @@ const MatchSimulator = ({ query }) => {
 				)
 			});
 
+			} catch(error) {
+				console.log(error)
+			}
+		}
+
+		if(!Object.keys(runes)[0]){
+			let runesUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/runesReforged.json"
+
+			try{
+				axios.get(runesUrl)
+				.then((res) => {
+					let runes = []
+					res?.data?.forEach(item => {
+						item?.slots?.forEach(slot => {
+							runes?.push(...slot?.runes)
+						})
+					})
+
+					if(runes[0]){
+						dispatch(
+							runeAction.setRunes(
+								{runes}
+							)
+						)
+					}
+				});
 			} catch(error) {
 				console.log(error)
 			}

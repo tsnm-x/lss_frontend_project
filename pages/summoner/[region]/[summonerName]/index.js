@@ -14,6 +14,7 @@ import { champAction } from "../../../../store/champMostPlayed";
 import { championsAction } from "../../../../store/champions";
 import axios from "axios";
 import { itemsAction } from "../../../../store/items";
+import { runeAction } from "../../../../store/runes";
 
 const Summoner = () => {
 	const [view, setView] = useState("overview");
@@ -50,7 +51,8 @@ const Summoner = () => {
 
 	useEffect(() => {
 		let champUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/champion.json";
-		let itemUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/item.json"
+		let itemUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/item.json";
+		let runesUrl = "//ddragon.leagueoflegends.com/cdn/12.14.1/data/en_US/runesReforged.json"
 		
 		try {
 			axios.get(champUrl)
@@ -69,6 +71,24 @@ const Summoner = () => {
 						{items: res.data.data}
 					)
 				)
+			});
+
+			axios.get(runesUrl)
+			.then((res) => {
+				let runes = []
+				res?.data?.forEach(item => {
+					item?.slots?.forEach(slot => {
+						runes?.push(...slot?.runes)
+					})
+				})
+
+				if(runes[0]){
+					dispatch(
+						runeAction.setRunes(
+							{runes}
+						)
+					)
+				}
 			});
 		} catch(error) {
 			console.log(error)

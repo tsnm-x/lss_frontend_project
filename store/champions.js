@@ -7,7 +7,6 @@ const championsSlice = createSlice({
 	},
 	reducers: {
 		setChampions(state, { payload }) {
-			console.log(payload, "====> payload");
 			state.champions = payload.champions;
 		}
 	},
