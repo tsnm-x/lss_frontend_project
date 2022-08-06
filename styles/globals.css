@@ -89,15 +89,13 @@
     font-family: "mazin";
     font-style: normal;
     font-weight: 900;
-    src: url("/assets/old-images/fonts/Mazin/mazin-black.woff2")
-        format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/mazin-black.woff2") format("woff2");
 }
 @font-face {
     font-family: "mazin";
     font-style: normal;
     font-weight: 700;
-    src: url("/assets/old-images/fonts/Mazin/mazin-bold.woff2")
-        format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/mazin-bold.woff2") format("woff2");
 }
 @font-face {
     font-family: "mazin";
@@ -117,8 +115,13 @@
     font-family: "mazin";
     font-style: normal;
     font-weight: 300;
-    src: url("/assets/old-images/fonts/Mazin/mazin-light.woff2")
-        format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/mazin-light.woff2") format("woff2");
+}
+@font-face {
+    font-style: normal;
+    font-family: "inter";
+    font-weight: 700;
+    src: url("/assets/old-images/fonts/Inter/Inter-bold.woff2") format("woff2");
 }
 
 /* global font component  */
@@ -258,6 +261,12 @@
     }
     .mazin-bold-12 {
         @apply font-mazin font-bold text-[12px] leading-[15px];
+    }
+    .mazin-bold-10 {
+        @apply font-mazin text-[10px] leading-[13px] font-[600];
+    }
+    .inter-bold-14 {
+        @apply font-inter text-[14px] leading-[20px] font-bold;
     }
     /* container  */
     .container {

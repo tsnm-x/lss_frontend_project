@@ -18,19 +18,19 @@ const ProfileSearch = (props) => {
             name: "NA",
             serverName: "NA1",
             active: true,
-            fullName: "north america",
+            fullName: "North America",
         },
         {
             name: "euw",
             serverName: "EUW1",
             active: false,
-            fullName: "europe west",
+            fullName: "Europe West",
         },
         {
             name: "eun",
             serverName: "EUN1",
             active: false,
-            fullName: "Eu Nordic and East",
+            fullName: "EU Nord/East",
         },
         {
             name: "kr",
@@ -48,13 +48,13 @@ const ProfileSearch = (props) => {
             name: "lan",
             serverName: "LA1",
             active: false,
-            fullName: "Latin America North",
+            fullName: "Latin America N",
         },
         {
             name: "las",
             serverName: "LA2",
             active: false,
-            fullName: "Latin America South",
+            fullName: "Latin America S",
         },
     ]);
 
@@ -64,21 +64,28 @@ const ProfileSearch = (props) => {
         index: 0,
     });
 
-    useEffect(()=>{
-        if(window.localStorage.getItem('region')){
-            const finder = selectionNameList.find((regionObj) => regionObj.serverName === window.localStorage.getItem('region'));
+    useEffect(() => {
+        if (window.localStorage.getItem("region")) {
+            const finder = selectionNameList.find(
+                (regionObj) =>
+                    regionObj.serverName ===
+                    window.localStorage.getItem("region")
+            );
             const oldList = [...selectionNameList];
             const modifyedList = [];
-            setActiveListDetails((prevState)=>{
+            setActiveListDetails((prevState) => {
                 return {
                     selectedItem: finder,
                     showList: false,
                     index: 0,
-                }
-            })
+                };
+            });
             setSelectionName(() => {
                 oldList.forEach((list, listIndex) => {
-                    if (list.serverName === window.localStorage.getItem('region')) {
+                    if (
+                        list.serverName ===
+                        window.localStorage.getItem("region")
+                    ) {
                         list.active = true;
                         // change active item state
                         setActiveListDetails((prevState) => {
@@ -96,7 +103,7 @@ const ProfileSearch = (props) => {
                 return modifyedList;
             });
         }
-    }, [])
+    }, []);
 
     const CountryListShowHideHandler = () => {
         setActiveListDetails((prevState) => {
@@ -212,17 +219,15 @@ const ProfileSearch = (props) => {
     return (
         <>
             {/* small screen  */}
-            <div className={` w-[500px] h-[70px] `}>
+            <div className={` w-[500px] h-[70px] mx-auto `}>
                 {/* search form  */}
                 <form action="/" className="w-full ">
                     <div className=" relative ">
                         {/* country box list  */}
                         {activeListDetails.showList && (
                             <div
-                                className={` 
-                                            absolute left-0 top-[100px] bg-light-text rounded p-[10px_12px] smTablet:w-[175px] smTablet:top-[70px]
-                                            tablet:py-[7px] tablet:px-[10px]
-                                            `}
+                                className={` absolute left-0 top-[65px] bg-[#e7e6e9] 
+                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] pt-[21px] `}
                             >
                                 {selectionNameList.map((country, index) => {
                                     return (
@@ -231,13 +236,14 @@ const ProfileSearch = (props) => {
                                             onClick={() =>
                                                 btnActiveHandler(index)
                                             }
-                                            className={` py-[6px] mb-1 cursor-pointer last:mb-0 ${
-                                                country.active
-                                                    ? " bg-accent-color rounded text-white"
-                                                    : " bg-[#AAA0A826] text-[#AAA0A8]"
-                                            }`}
+                                            className={` w-full h-[25px] rounded-5px cursor-pointer
+                                             flex items-center justify-center ${
+                                                 country.active
+                                                     ? " bg-accent-color rounded text-white"
+                                                     : " bg-[#AAA0A826] text-[#AAA0A8]"
+                                             }`}
                                         >
-                                            <p className=" sf-bold-15 capitalize text-center smTablet:sf-bold-10 laptop:text-[11px]  ">
+                                            <p className=" mazin-bold-10 text-center capitalize ">
                                                 {country.fullName}
                                             </p>
                                         </div>
@@ -248,14 +254,14 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={` absolute bg-[#d55460] w-[111px] h-[70px] rounded-5px flex justify-center items-center `}
+                            className={` absolute bg-[#d55460] w-[111px] h-[70px] rounded-5px flex justify-center items-center gap-x-2 `}
                         >
                             <h4
-                                className={` text-white mr-[16px] uppercase  smTablet:gotham-mid-15 `}
+                                className={` text-white uppercase inter-bold-14 `}
                             >
                                 {activeListDetails.selectedItem?.name}
                             </h4>
-                            <BiCaretDown className=" text-white text-[20px] " />
+                            <BiCaretDown className=" text-white text-[16px] " />
                         </div>
                         {/* sumonner name box  */}
                         <input

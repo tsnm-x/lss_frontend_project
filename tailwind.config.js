@@ -91,6 +91,7 @@ module.exports = {
                 NEDGEN: "NEDGEN",
                 "sf-pro-text": "sf-pro-text",
                 mazin: "mazin",
+                inter: "inter",
             },
             borderRadius: {
                 // old 1.0
