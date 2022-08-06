@@ -14,6 +14,7 @@ const OverviewCards = (props) => {
     const [rankedSolo, setRankedSolo] = useState([]);
     const [normals, setNormals] = useState([]);
     const [rankedFlex, setRankedFlex] = useState([]);
+    console.log("props on overview cards", props);
 
     useEffect(() => {
         setRankedSolo(
@@ -54,96 +55,99 @@ const OverviewCards = (props) => {
                 ControlBtnLists={props?.ControlBtnLists}
             />
             <div className="smDesktop:flex smDesktop:justify-between smDesktop:max-w-[885px] ">
-                <div className=" relative mx-auto mt-8">
-                    <LoadingIndicator />
-                </div>
-                {/* <div
-                    className={` relative ${
-                        props.expand
-                            ? "w-full mt-[8px] "
-                            : "mt-5 smDesktop:w-full desktop:mr-11  "
-                    }`}
-                >
-                    <div className=" flex flex-col flex-wrap gap-y-[5px] pb-[36px]  ">
-                        {props.matches[0] &&
-                            props.selectedMatchType === "all" &&
-                            props.matches.map((match, index) => {
-                                return (
-                                    <Card
-                                        key={index}
-                                        index={index}
-                                        match={match}
-                                        region={props?.region}
-                                        expand={props.expand}
-                                        setExpand={props.setExpand}
-                                        expandControl={props.expandControl}
-                                    />
-                                );
-                            })}
-
-                        {rankedSolo[0] &&
-                            props.selectedMatchType === "ranked solo" &&
-                            rankedSolo.map((match, index) => {
-                                return (
-                                    <Card
-                                        key={index}
-                                        index={index}
-                                        match={match}
-                                        region={props?.region}
-                                        expand={props.expand}
-                                        setExpand={props.setExpand}
-                                        expandControl={props.expandControl}
-                                    />
-                                );
-                            })}
-
-                        {rankedFlex[0] &&
-                            props.selectedMatchType === "ranked flex" &&
-                            rankedFlex.map((match, index) => {
-                                return (
-                                    <Card
-                                        key={index}
-                                        index={index}
-                                        match={match}
-                                        region={props?.region}
-                                        expand={props.expand}
-                                        setExpand={props.setExpand}
-                                        expandControl={props.expandControl}
-                                    />
-                                );
-                            })}
-
-                        {normals[0] &&
-                            props.selectedMatchType === "normals" &&
-                            normals.map((match, index) => {
-                                return (
-                                    <Card
-                                        key={index}
-                                        index={index}
-                                        match={match}
-                                        region={props?.region}
-                                        expand={props.expand}
-                                        setExpand={props.setExpand}
-                                        expandControl={props.expandControl}
-                                    />
-                                );
-                            })}
-
-                        {!loaderViewer && (
-                            <div className="text-white flex justify-center">
-                                No #
-                                {props.selectedMatchType === "all"
-                                    ? "ranked solo"
-                                    : props.selectedMatchType}
-                                # games have een found for this summoner
-                            </div>
-                        )}
+                {!props.matches[0] ? (
+                    <div className=" relative mx-auto mt-8">
+                        <LoadingIndicator />
                     </div>
-                    <ShowMore
-                        region={props?.region}
-                        summonerName={props?.summonerName}
-                    />
-                </div> */}
+                ) : (
+                    <div
+                        className={` relative ${
+                            props.expand
+                                ? "w-full mt-[8px] "
+                                : "mt-5 smDesktop:w-full desktop:mr-11  "
+                        }`}
+                    >
+                        <div className=" flex flex-col flex-wrap gap-y-[5px] pb-[36px]  ">
+                            {props.matches[0] &&
+                                props.selectedMatchType === "all" &&
+                                props.matches.map((match, index) => {
+                                    return (
+                                        <Card
+                                            key={index}
+                                            index={index}
+                                            match={match}
+                                            region={props?.region}
+                                            expand={props.expand}
+                                            setExpand={props.setExpand}
+                                            expandControl={props.expandControl}
+                                        />
+                                    );
+                                })}
+
+                            {rankedSolo[0] &&
+                                props.selectedMatchType === "ranked solo" &&
+                                rankedSolo.map((match, index) => {
+                                    return (
+                                        <Card
+                                            key={index}
+                                            index={index}
+                                            match={match}
+                                            region={props?.region}
+                                            expand={props.expand}
+                                            setExpand={props.setExpand}
+                                            expandControl={props.expandControl}
+                                        />
+                                    );
+                                })}
+
+                            {rankedFlex[0] &&
+                                props.selectedMatchType === "ranked flex" &&
+                                rankedFlex.map((match, index) => {
+                                    return (
+                                        <Card
+                                            key={index}
+                                            index={index}
+                                            match={match}
+                                            region={props?.region}
+                                            expand={props.expand}
+                                            setExpand={props.setExpand}
+                                            expandControl={props.expandControl}
+                                        />
+                                    );
+                                })}
+
+                            {normals[0] &&
+                                props.selectedMatchType === "normals" &&
+                                normals.map((match, index) => {
+                                    return (
+                                        <Card
+                                            key={index}
+                                            index={index}
+                                            match={match}
+                                            region={props?.region}
+                                            expand={props.expand}
+                                            setExpand={props.setExpand}
+                                            expandControl={props.expandControl}
+                                        />
+                                    );
+                                })}
+
+                            {!loaderViewer && (
+                                <div className="text-white flex justify-center">
+                                    No #
+                                    {props.selectedMatchType === "all"
+                                        ? "ranked solo"
+                                        : props.selectedMatchType}
+                                    # games have een found for this summoner
+                                </div>
+                            )}
+                        </div>
+                        <ShowMore
+                            region={props?.region}
+                            summonerName={props?.summonerName}
+                        />
+                    </div>
+                )}
             </div>
         </aside>
     );
