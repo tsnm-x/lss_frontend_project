@@ -4,6 +4,7 @@ import { CgMenuLeftAlt } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
 import { AiOutlineMenu } from "react-icons/ai";
 import SkirmishSimulatorAppBtn from "../../../Ui/New-Components/universal/Btn/SkirmishSimulatorAppBtn/SkirmishSimulatorAppBtn";
+import LanguageSelect from "../HeaderWithSearchbar/LanguageSelect/LanguageSelect";
 // components
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
@@ -16,7 +17,8 @@ const Header = (props) => {
         <header>
             <div className={`${classes.header__container} py-[25px]  `}>
                 {/* resp menu btn  */}
-                <div className={`  ${classes.btnWrap}`}>
+                <div className={`  ${classes.btnWrap} gap-x-[30px] `}>
+                    <LanguageSelect />
                     {/* <SkirmishSimulatorAppBtn className=" hidden smTablet:block smTablet:sf-bold-20 smTablet:p-[6px_12px] smTablet:mr-[45px] tablet:mr-[80px] desktop:mr-[92px] " /> */}
                     <button
                         onClick={menuBtnHandler}
