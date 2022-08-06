@@ -151,7 +151,7 @@ const RankCard = (props) => {
                                         ></div>
                                         
                                         <div
-                                            className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-500 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100'
+                                            className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
                                         >
                                             <span>{getItemDetails(item)}</span>
                                             <div
