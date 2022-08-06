@@ -70,7 +70,7 @@ const GameStaticsGraph = (props) => {
 					</p>
 				</div>
 				{/* buttons  */}
-				<div className=" flex items-center gap-x-5 mt-3 ">
+				{/* <div className=" flex items-center gap-x-5 mt-3 ">
 					{btns.map((btn, index) => {
 						return (
 							<button
@@ -89,7 +89,7 @@ const GameStaticsGraph = (props) => {
 							</button>
 						);
 					})}
-				</div>
+				</div> */}
 				{/* graph cards  */}
 				<div className=" mt-5 ">
 					<input
@@ -108,10 +108,10 @@ const GameStaticsGraph = (props) => {
 						<h1 className=" sf-bold-40 capitalize ">coming soon</h1>
 					</div> */}
 					<br /> <br />
-					<GoldDiffChart
+					{/* <GoldDiffChart
 						goldFrames={goldFrames}
 						frameChange={props.frameChange}
-					/>
+					/> */}
 					{/* <PowerDiffChart dataFromUnity= {}/> */}
 				</div>
 
