@@ -9,12 +9,12 @@ import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
 const Header = (props) => {
     const menuBtnHandler = () => {
-        props.menuBtnClick()
+        props.menuBtnClick();
     };
 
     return (
-        <header className=" py-[36px] ">
-            <div className={`${classes.header__container}  `}>
+        <header>
+            <div className={`${classes.header__container} py-[25px]  `}>
                 {/* resp menu btn  */}
                 <div className={`  ${classes.btnWrap}`}>
                     {/* <SkirmishSimulatorAppBtn className=" hidden smTablet:block smTablet:sf-bold-20 smTablet:p-[6px_12px] smTablet:mr-[45px] tablet:mr-[80px] desktop:mr-[92px] " /> */}
@@ -56,8 +56,7 @@ const Header = (props) => {
                 {/* logo  */}
                 <div className={`${classes.logo__wrapper}`}>
                     <Logo
-                        className={` smMobile:text-[24px] smMobile:leading-[27px] mobile:text-[24px] mobile:leading-[27px]
-                                    laptop:text-[24px] laptop:leading-[27px] `}
+                        className={` text-[32px] leading-[30.4px] font-[400] `}
                     />
                 </div>
             </div>
