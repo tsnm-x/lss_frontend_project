@@ -31,7 +31,7 @@ const Card = (props) => {
     return (
         <>
             <div
-                className={` rounded-5px overflow-hidden grid  border-b border-background ${
+                className={` rounded-5px grid  border-b border-background ${
                     props.index == CardContextObj.expandCardNo
                         ? "grid-cols-[336px_498px_50px]"
                         : " grid-cols-[336px_186px_361px]"

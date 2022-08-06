@@ -53,12 +53,13 @@ const HeaderBar = (props) => {
             <h1 className=" sf-bold-10 capitalize text-grayed-text ml-[15px] ">
                 <span
                     className={` ${
+                        props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" :
                         !props.won
                             ? "text-accent-color"
                             : "text-accent-color-2"
                     } sf-bold-14 mr-[5px] `}
                 >
-                    {props.won? "Victory" : "Defeat"}
+                    {props?.convertM(props?.match?.duration) <= 5 ? "Remake" : props.won? "Victory" : "Defeat"}
                 </span>{" "}
                 {!props?.blueTeam ? "(Red Team)" : "(Blue Team)"}
             </h1>
@@ -501,7 +502,7 @@ const DataRow = (props) => {
     return (
         <div
             className={`grid grid-cols-[130px_99px_97px_93px_215px_120px_111px] rounded-5px mb-1 last:mb-0 ${
-                props.won ? "bg-[#181631]" : "bg-[#251122]"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : props.won ? "bg-[#181631]" : "bg-[#251122]"
             } `}
         >
             {/*  profile  */}
@@ -586,11 +587,11 @@ const DataRow = (props) => {
             {/* creep score  */}
             <div className=" flex flex-col justify-center ">
                 <h1 className={` ${Classes.cellTitle}`}>
-                    {props?.neutralMinionsKilled} cs
+                    {props?.neutralMinionsKilled +  props?.totalMinionsKilled} cs
                 </h1>
                 <h1 className={` ${Classes.secTitle}`}>
                     {(
-                        props?.neutralMinionsKilled /
+                        (props?.neutralMinionsKilled +  props?.totalMinionsKilled) /
                         convertM(props.match?.duration)
                     )?.toFixed(1)}{" "}
                     cs/min
@@ -666,7 +667,7 @@ const DataRow = (props) => {
                 >
                     <div
                         className={`h-full rounded-full ${
-                            props.won
+                            props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-50" : props.won
                                 ? " bg-accent-color-2"
                                 : " bg-accent-color"
                         }`}
@@ -700,7 +701,7 @@ const ExpandDataRows = (props) => {
     return (
         <div>
             {/* header  */}
-            <HeaderBar won={props.type} blueTeam={props?.blueTeam}/>
+            <HeaderBar won={props.type} blueTeam={props?.blueTeam} match={props.match} convertM={props?.convertM}/>
             <div className=" px-[9px] mt-[10px] ">
                 {props.team?.map((data, index) => {
                     return (
@@ -709,6 +710,7 @@ const ExpandDataRows = (props) => {
                             {...data}
                             won={props.type}
                             match={props.match}
+                            convertM={props?.convertM}
                         />
                     );
                 })}
@@ -761,6 +763,7 @@ const HeightExpand = (props) => {
                 team={firstTeam}
                 type={wonGame}
                 match={props.match}
+                convertM={props?.convertM}
             />}
             <SimulateComponets match={props?.match} convertM={props?.convertM}/>
             {mainPlayer && <ExpandDataRows
@@ -768,6 +771,7 @@ const HeightExpand = (props) => {
                 team={secondTeam}
                 type={!wonGame}
                 match={props.match}
+                convertM={props?.convertM}
             />}
         </div>
     );

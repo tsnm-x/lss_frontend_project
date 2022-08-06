@@ -92,7 +92,7 @@ const GameStaticsGraph = (props) => {
 				</div>
 				{/* graph cards  */}
 				<div className=" mt-5 ">
-					{/* <input
+					<input
 						className="text-full-dark w-[600px]"
 						type="range"
 						min="0"
@@ -102,7 +102,7 @@ const GameStaticsGraph = (props) => {
 							setFramePointer(e.target.value);
 							props.frameChange(e.target.value);
 						}}
-					/> */}
+					/>
 					{/* left graph  */}
 					{/* <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
 						<h1 className=" sf-bold-40 capitalize ">coming soon</h1>

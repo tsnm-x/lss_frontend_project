@@ -216,6 +216,12 @@ const ProfileSearch = (props) => {
         );
     }
 
+    function doSearch(e){
+        if (e.key === "Enter") {
+            searchHandler(e)
+        }
+    }
+
     return (
         <>
             <div className=" relative w-[450px] h-[45px] ">
@@ -260,6 +266,7 @@ const ProfileSearch = (props) => {
                 <input
                     type="search"
                     onChange={searchInput}
+                    onKeyDown={event => doSearch(event)}
                     value={search}
                     placeholder="Find your Summoner name..."
                     className={` w-full h-full bg-white rounded-[5px] pl-[146px] pr-[92px] sf-bold-16 text-[#8f8b94] font-bold  `}

@@ -87,7 +87,7 @@ const BuildCard = (props) => {
             }`}
         >
             <h3 className={` sf-bold-12 capitalize ${
-                mainPlayer?.win
+                props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" : mainPlayer?.win
                 ? "text-accent-color-2"
                 : " text-nav-btn"
             }`}>

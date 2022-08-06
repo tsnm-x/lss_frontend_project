@@ -12,6 +12,19 @@ const RankCard = (props) => {
         }
     }
 
+    const getItemDetails = (item) => {
+        if(items && item){
+            return (
+                <div>
+                    <h1>{items[item]?.name}</h1>
+                    <p>{mythicHighlighter(item)? "mythic" : "not mythic"}</p>
+                    <small dangerouslySetInnerHTML={{ __html: items[item]?.description }}></small>
+                    <p>{items[item]?.gold?.total}G</p>
+                </div>
+            )
+        }
+    }
+
     useEffect(() => {
         let main = props?.match?.players.find((player) => {
             return player.mainPlayer == true;
@@ -119,21 +132,36 @@ const RankCard = (props) => {
                                 }`}
                                 key={index}
                             >
-                                {item !== 0 && getItem(item) && getItem(item)?.sprite && (<div
-                                className={`rounded-full ${
-                                    mythicHighlighter(item)
-                                        ? props?.convertM(props?.match?.duration) <= 5 ? "border-2 border-[#FEFCE8]" :  mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
-                                        : ""
-                                }`}
-                                    style={{
-                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(item)?.sprite}') no-repeat`,
-                                        width: `${getItem(item)?.w}px`,
-                                        height: `${getItem(item)?.h}px`,
-                                        backgroundPosition: `-${getItem(item)?.x}px -${getItem(item)?.y}px`,
-                                        // backgroundSize: "contain",
-                                        zoom: `0.63`
-                                    }}
-                                ></div>)}
+                                {item !== 0 && getItem(item) && getItem(item)?.sprite && (
+                                    <div className="relative group">
+                                        <div
+                                            className={`rounded-full ${
+                                            mythicHighlighter(item)
+                                                ? props?.convertM(props?.match?.duration) <= 5 ? "border-2 border-[#FEFCE8]" :  mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
+                                                : ""
+                                            }`}
+                                            style={{
+                                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(item)?.sprite}') no-repeat`,
+                                                width: `${getItem(item)?.w}px`,
+                                                height: `${getItem(item)?.h}px`,
+                                                backgroundPosition: `-${getItem(item)?.x}px -${getItem(item)?.y}px`,
+                                                // backgroundSize: "contain",
+                                                zoom: `0.63`
+                                            }}
+                                        ></div>
+                                        
+                                        <div
+                                            className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100'
+                                        >
+                                            <span>{getItemDetails(item)}</span>
+                                            <div
+                                                className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
+                                
                             </div>
                         );
                     })}
