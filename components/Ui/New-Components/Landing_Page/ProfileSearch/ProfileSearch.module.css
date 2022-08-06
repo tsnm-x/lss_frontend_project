@@ -9,13 +9,53 @@
 } */
 
 .searchBox {
- /* @apply  desktop:py-[32px] desktop:pl-[310px]; */
-      
-      /* @apply desktop:gotham-mid-25; */
-}
+    /* @apply  desktop:py-[32px] desktop:pl-[310px]; */
 
+    /* @apply desktop:gotham-mid-25; */
+}
 
 .countryList {
-  @apply absolute left-0 top-[100px] bg-light-text rounded w-[250px]
+    @apply absolute left-0 top-[100px] bg-light-text rounded w-[250px]
           p-[10px_12px];
 }
+
+.indicator {
+    background-color: #d9d9d9;
+    transform-origin: bottom;
+}
+
+.indicator:nth-child(1) {
+    animation: loading1 6s infinite;
+}
+.indicator:nth-child(2) {
+    animation: loading1 6s infinite;
+    animation-delay: 2s;
+}
+.indicator:nth-child(3) {
+    animation: loading1 6s infinite;
+    animation-delay: 4s;
+}
+
+@keyframes loading1 {
+    0% {
+        background-color: #d9d9d9;
+        transform: scaleY(1);
+    }
+    8% {
+        background-color: #d55460;
+        transform: scaleY(1.2);
+    }
+    25% {
+        background-color: #d55460;
+        transform: scaleY(1.2);
+    }
+    33% {
+        background-color: #d9d9d9;
+        transform: scaleY(1);
+    }
+    100% {
+        background-color: #d9d9d9;
+        transform: scaleY(1);
+    }
+}
+

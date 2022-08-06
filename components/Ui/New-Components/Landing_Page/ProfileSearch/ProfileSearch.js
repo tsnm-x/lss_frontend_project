@@ -11,6 +11,7 @@ const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
     const { sendRequest } = useHttp();
     const dispatch = useDispatch();
+    const [hideSearch, setHideSearch] = useState(false);
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [showCountryList, setShowCountryList] = useState(false);
     const [selectionNameList, setSelectionName] = useState([
@@ -201,6 +202,7 @@ const ProfileSearch = (props) => {
 
     function searchHandler(e) {
         e.preventDefault();
+        setHideSearch(true);
         console.log("Entered!");
         console.log(activeListDetails.selectedItem.serverName);
         sendRequest(
@@ -265,6 +267,8 @@ const ProfileSearch = (props) => {
                         </div>
                         {/* sumonner name box  */}
                         <input
+                            disabled={hideSearch}
+                            style={{backgroundColor: 'white'}}
                             type="search"
                             onChange={searchInput}
                             value={search}
@@ -272,14 +276,26 @@ const ProfileSearch = (props) => {
                             className={` rounded-5px w-[500px] h-[70px] pl-[147px] 
                             font-mazin font-[600] text-[16px] leading-[20.4px] text-[rgba(0,0,0,0.5)] `}
                         />
-                        {!props.hideSearch && (
-                            <button
-                                onClick={(e) => searchHandler(e)}
-                                className="absolute top-[20px] right-[26px]  "
-                            >
+
+                        <button
+                            onClick={(e) => searchHandler(e)}
+                            className="absolute top-[20px] right-[26px]  "
+                        >
+                            {hideSearch ? (
+                                <div className=" flex gap-x-[3px] mt-[6px] ">
+                                    {["", "", ""].map((item, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className={`w-[10px] h-5 ${classes.indicator}`}
+                                            ></div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
                                 <FiSearch className=" text-[#D55460] text-[28px] " />
-                            </button>
-                        )}
+                            )}
+                        </button>
                     </div>
                 </form>
             </div>
