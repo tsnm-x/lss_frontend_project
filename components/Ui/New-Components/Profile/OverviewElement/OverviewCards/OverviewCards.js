@@ -6,6 +6,7 @@ import Card from "./Card/Card";
 import ShowMore from "../../../universal/Btn/ShowMore/ShowMore";
 import ExpandCard from "../OverviewExpand/ExpandCard/ExpandCard";
 import Ads from "../../../../../shared/New-Componets/Ads/Ads";
+import LoadingIndicator from "../../../../../../components/shared/New-Componets/LoadingIndicator/LoadingIndicator";
 
 const OverviewCards = (props) => {
     const { cards } = props;
@@ -53,14 +54,16 @@ const OverviewCards = (props) => {
                 ControlBtnLists={props?.ControlBtnLists}
             />
             <div className="smDesktop:flex smDesktop:justify-between smDesktop:max-w-[885px] ">
-                <div
+                <div className=" relative mx-auto mt-8">
+                    <LoadingIndicator />
+                </div>
+                {/* <div
                     className={` relative ${
                         props.expand
                             ? "w-full mt-[8px] "
                             : "mt-5 smDesktop:w-full desktop:mr-11  "
                     }`}
                 >
-                    {/* card container  */}
                     <div className=" flex flex-col flex-wrap gap-y-[5px] pb-[36px]  ">
                         {props.matches[0] &&
                             props.selectedMatchType === "all" &&
@@ -136,15 +139,11 @@ const OverviewCards = (props) => {
                             </div>
                         )}
                     </div>
-                    {/* show more btn  */}
                     <ShowMore
                         region={props?.region}
                         summonerName={props?.summonerName}
                     />
-                </div>
-                {/* {!props.expand ? (
-					<Ads className=" smDesktop:w-[105px] smDesktop:h-[1155px] smDesktop:mt-4 desktop:w-[200px] " />
-				) : null} */}
+                </div> */}
             </div>
         </aside>
     );

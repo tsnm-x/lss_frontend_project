@@ -19,12 +19,12 @@ const Overview = (props) => {
                  smDesktop:gap-x-[31px] laptop:gap-x-[22px] `}
             >
                 {/* left side  */}
-                {!expand && 
-                    <OverviewLeft 
+                {!expand && (
+                    <OverviewLeft
                         rankSolo={props?.rankSolo}
                         rankFlex={props?.rankFlex}
                     />
-                }
+                )}
                 {/* center  */}
                 <OverviewCards
                     region={props?.region}
@@ -40,11 +40,7 @@ const Overview = (props) => {
                         expand ? "smDesktop:ml-0" : "smDesktop:ml-[61px]"
                     }`}
                 />
-                
             </div>
-                <div className="absolute right-0 top-[60px] w-[170px] h-full smDesktop:hidden ">
-                    <Ads className="w-[170px] h-[1105px]" />
-                </div>
         </section>
     );
 };
