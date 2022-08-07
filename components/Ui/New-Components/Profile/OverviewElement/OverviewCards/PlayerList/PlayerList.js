@@ -97,7 +97,7 @@ const PlayerList = (props) => {
                 onClick={() => props.ExpandFullHandler()}
                 className={`h-full w-[50px] flex items-center justify-center
                 rounded-5px cursor-pointer  ${
-                    props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-50" : mainPlayer?.win ? "bg-accent-color-2" : "bg-accent-color hover:bg-[#612d3d]"
+                    props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-50" : mainPlayer?.win ? "bg-accent-color-2 hover:bg-[#353c74]" : "bg-accent-color hover:bg-[#612d3d]"
                 }`}
             >
                 <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />

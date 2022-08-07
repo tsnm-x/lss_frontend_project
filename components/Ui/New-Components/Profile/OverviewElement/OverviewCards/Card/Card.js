@@ -37,20 +37,22 @@ const Card = (props) => {
                         : " grid-cols-[336px_186px_361px]"
                 } ${props.className}`}
             >
-                <StatusCard expand={props.index == CardContextObj.expandCardNo} {...props} convertM={convertM}/>
-                {props.index == CardContextObj.expandCardNo?
-                (
-                    <BuildCard {...props}  convertM={convertM}/>
+                <StatusCard
+                    expand={props.index == CardContextObj.expandCardNo}
+                    {...props}
+                    convertM={convertM}
+                />
+                {props.index == CardContextObj.expandCardNo ? (
+                    <BuildCard {...props} convertM={convertM} />
                 ) : (
                     <>
-                            <RankCard {...props}  convertM={convertM}/>
-                            <PlayerList
-                                index={props.index}
-                                ExpandFullHandler={ExpandFullHandler}
-                                {...props}
-                                convertM={convertM}
-                            />
-                            
+                        <RankCard {...props} convertM={convertM} />
+                        <PlayerList
+                            index={props.index}
+                            ExpandFullHandler={ExpandFullHandler}
+                            {...props}
+                            convertM={convertM}
+                        />
                     </>
                 )}
                 {/* right side expand bar  */}
@@ -61,17 +63,22 @@ const Card = (props) => {
                         }}
                         className={`h-full w-[30px] flex items-center justify-center
                                                     rounded-tr-5px rounded-5px cursor-pointer smDesktop:w-[50px]  ${
-                                                        convertM(props.match.duration) <= 5 ? "bg-yellow-50" :
-                                                        mainPlayer?.win
-                                                            ? "bg-accent-color-2"
-                                                            : "bg-accent-color"
+                                                        convertM(
+                                                            props.match.duration
+                                                        ) <= 5
+                                                            ? "bg-yellow-50"
+                                                            : mainPlayer?.win
+                                                            ? "bg-accent-color-2 hover:bg-[#353c74]"
+                                                            : "bg-accent-color hover:bg-[#612d3d]"
                                                     }`}
                     >
                         <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
                     </div>
                 )}
             </div>
-            {props.index === CardContextObj.expandCardNo? <HeightExpand {...props} convertM={convertM}/> : null}
+            {props.index === CardContextObj.expandCardNo ? (
+                <HeightExpand {...props} convertM={convertM} />
+            ) : null}
         </>
     );
 };
