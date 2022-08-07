@@ -66,8 +66,8 @@ module.exports = {
                 background: "#140A22",
                 "footer-bg": "#18112b",
                 "text-gray-200": "#9D9D9D",
-                winOpacity: "#191531",
-                defeatOpacity: "#251122",
+                winOpacity: "#24213d",
+                defeatOpacity: "#301d2e",
             },
             fontSize: {
                 // old 1.0
