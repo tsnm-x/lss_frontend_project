@@ -5,9 +5,7 @@ import { BsPerson } from "react-icons/bs";
 import Classess from "./OftenPlayWith.module.css";
 
 const PlayerRow = (props) => {
-    useEffect(() => {
-        console.log(props.winCount + props.lossCount);
-    }, [props]);
+    useEffect(() => {}, [props]);
 
     return (
         <div
@@ -29,21 +27,31 @@ const PlayerRow = (props) => {
             </div>
             {/* kda  */}
             <div>
-                <h1 className={`${Classess.whiteHead} uppercase `}>{props.totalDeaths
-                            ? (
-                                  (props.totalAssists + props.totalKills) /
-                                  props.totalDeaths
-                              ).toFixed(2)
-                            : "Perfect"} kda</h1>
-                <h2 className={` ${Classess.smallHead}`}>{props.totalKills}/{props.totalDeaths}/{props.totalAssists}</h2>
+                <h1 className={`${Classess.whiteHead} uppercase `}>
+                    {props.totalDeaths
+                        ? (
+                              (props.totalAssists + props.totalKills) /
+                              props.totalDeaths
+                          ).toFixed(2)
+                        : "Perfect"}{" "}
+                    kda
+                </h1>
+                <h2 className={` ${Classess.smallHead}`}>
+                    {props.totalKills}/{props.totalDeaths}/{props.totalAssists}
+                </h2>
             </div>
             {/* games  */}
             <div>
-                <h1 className={`${Classess.whiteHead} uppercase `}>{(
+                <h1 className={`${Classess.whiteHead} uppercase `}>
+                    {(
                         (props.winCount / (props.winCount + props.lossCount)) *
                         100
-                    ).toFixed(0)} %</h1>
-                <h2 className={` ${Classess.smallHead}`}>{props.winCount + props.lossCount} Games</h2>
+                    ).toFixed(0)}{" "}
+                    %
+                </h1>
+                <h2 className={` ${Classess.smallHead}`}>
+                    {props.winCount + props.lossCount} Games
+                </h2>
             </div>
             {/* <div
                 className="  laptop:relative laptop:w-[20px] laptop:h-[20px] laptop:border laptop:border-mix-white-black rounded-full

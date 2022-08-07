@@ -89,33 +89,45 @@
     font-family: "mazin";
     font-style: normal;
     font-weight: 900;
-    src: url("/assets/old-images/fonts/Mazin/mazin-black.woff2") format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/Black.woff2") format("woff2");
+}
+@font-face {
+    font-family: "mazin";
+    font-style: normal;
+    font-weight: 800;
+    src: url("/assets/old-images/fonts/Mazin/ExtraBold.woff2") format("woff2");
 }
 @font-face {
     font-family: "mazin";
     font-style: normal;
     font-weight: 700;
-    src: url("/assets/old-images/fonts/Mazin/mazin-bold.woff2") format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/Bold.woff2") format("woff2");
 }
 @font-face {
     font-family: "mazin";
     font-style: normal;
-    font-weight: 500;
-    src: url("/assets/old-images/fonts/Mazin/mazin-medium.woff2")
+    font-weight: 600;
+    src: url("/assets/old-images/fonts/Mazin/Medium.woff2")
         format("woff2");
 }
 @font-face {
     font-family: "mazin";
     font-style: normal;
     font-weight: 400;
-    src: url("/assets/old-images/fonts/Mazin/mazin-regular.woff2")
+    src: url("/assets/old-images/fonts/Mazin/Regular.woff2")
         format("woff2");
 }
 @font-face {
     font-family: "mazin";
     font-style: normal;
-    font-weight: 300;
-    src: url("/assets/old-images/fonts/Mazin/mazin-light.woff2") format("woff2");
+    font-weight: 200;
+    src: url("/assets/old-images/fonts/Mazin/Thin.woff2") format("woff2");
+}
+@font-face {
+    font-family: "mazin";
+    font-style: normal;
+    font-weight: 100;
+    src: url("/assets/old-images/fonts/Mazin/Light.woff2") format("woff2");
 }
 @font-face {
     font-style: normal;

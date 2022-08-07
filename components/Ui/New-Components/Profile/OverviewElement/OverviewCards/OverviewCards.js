@@ -14,7 +14,6 @@ const OverviewCards = (props) => {
     const [rankedSolo, setRankedSolo] = useState([]);
     const [normals, setNormals] = useState([]);
     const [rankedFlex, setRankedFlex] = useState([]);
-    console.log("props on overview cards", props);
 
     useEffect(() => {
         setRankedSolo(
