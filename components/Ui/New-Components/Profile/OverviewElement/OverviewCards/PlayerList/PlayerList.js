@@ -35,11 +35,10 @@ const PlayerList = (props) => {
         <div
             className={`${
                 props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
-            } grid grid-cols-[auto_30px] 
-            smDesktop:grid-cols-[auto_50px] `}
+            } grid grid-cols-[311px_50px] `}
         >
             {/* player lists  */}
-            <div className="h-full relative pl-[29px] py-[10px]  ">
+            <div className="h-full relative pl-[29px] py-[10px] w-[320px] ">
                 {/* players  */}
                 <div className=" grid grid-cols-[repeat(2,100px)] gap-x-[18px] gap-y-1 ">
                     {orderedPlayersList.map((player, index) => {

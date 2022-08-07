@@ -83,7 +83,7 @@ const BuildCard = (props) => {
     return (
         <div
             className={`px-5 py-4 ${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity w-[518px] " : " bg-defeatOpacity w-[518px] "
             }`}
         >
             <h3 className={` sf-bold-12 capitalize ${
