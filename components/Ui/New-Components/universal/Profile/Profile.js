@@ -68,13 +68,13 @@ const Profile = (props) => {
                 {/* buttons  */}
                 <div className=" mt-[10px] flex gap-x-[10px] ">
                     <button
-                        className=" w-[90px] h-[50px] flex items-center justify-center rounded-5px bg-[#D55460] font-sf-pro-text font-[500] text-[15px] leading-[18px] text-white capitalize "
+                        className=" w-[90px] h-[50px] flex items-center justify-center rounded-5px bg-[#D55460] font-sf-pro-text font-[500] text-[15px] leading-[18px] text-white capitalize hover:bg-[#793442] "
                         onClick={refreshHandler}
                     >
                         {props?.btnDetails[0].text}
                     </button>
                     <Link href={props?.btnDetails[1].url}>
-                        <button className=" w-[140px] h-[50px] flex items-center justify-center rounded-5px bg-[#f5f5f5] font-sf-pro-text font-[500] text-[15px] leading-[18px] text-[#140A22] capitalize  ">
+                        <button className=" w-[140px] h-[50px] flex items-center justify-center rounded-5px bg-[#f5f5f5] font-sf-pro-text font-[500] text-[15px] leading-[18px] text-[#140A22] capitalize hover:bg-[#8a8488]  ">
                             {props?.btnDetails[1].text}
                         </button>
                     </Link>

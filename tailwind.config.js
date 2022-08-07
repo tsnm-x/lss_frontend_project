@@ -59,7 +59,7 @@ module.exports = {
                 "user-color": "#D14631",
                 "btn-active": "##F65D68",
                 logo: "#FF4656",
-                "accent-color": "#FC4754",
+                "accent-color": "#d55460",
                 "accent-color-2": "#5D7CF6",
                 "accent-color-3": "#E46956",
                 "accent-color-4": "#FC7D47",
