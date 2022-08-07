@@ -10,7 +10,7 @@ import CardContext from "../../../../../../../Context/CardContext";
 
 const Card = (props) => {
     const [addClass, setAddClass] = useState(false);
-    const CardContextObj = useContext(CardContext)
+    const CardContextObj = useContext(CardContext);
 
     let mainPlayer = props.match.players.find((player) => {
         return player.mainPlayer == true;
@@ -20,13 +20,13 @@ const Card = (props) => {
         const sec = parseInt(value, 10); // convert value to number if it's string
         let hours = Math.floor(sec / 3600); // get hours
         let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
-        return minutes  // Return is MM : SS
-    }
+        return minutes; // Return is MM : SS
+    };
 
     const ExpandFullHandler = () => {
-        props.index === CardContextObj.expandCardNo? 
-        CardContextObj.expandControl(-1) 
-        : CardContextObj.expandControl(props.index);
+        props.index === CardContextObj.expandCardNo
+            ? CardContextObj.expandControl(-1)
+            : CardContextObj.expandControl(props.index);
     };
     return (
         <>

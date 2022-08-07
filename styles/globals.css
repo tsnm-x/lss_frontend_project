@@ -226,6 +226,9 @@
     .sf-mid-18 {
         @apply font-sf-pro-text font-medium text-[18px] leading-[21px];
     }
+    .sf-mid-16 {
+        @apply font-sf-pro-text font-medium text-[16px] leading-[19px];
+    }
     .sf-mid-14 {
         @apply font-sf-pro-text font-medium text-[14px] leading-[16px];
     }
