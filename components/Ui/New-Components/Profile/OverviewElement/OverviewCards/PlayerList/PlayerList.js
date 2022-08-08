@@ -34,8 +34,12 @@ const PlayerList = (props) => {
     return (
         <div
             className={`${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
-            } grid grid-cols-[311px_50px] `}
+                props?.convertM(props?.match?.duration) <= 5
+                    ? "bg-[#3a3242]"
+                    : mainPlayer?.win
+                    ? " bg-winOpacity"
+                    : " bg-defeatOpacity"
+            } grid grid-cols-[311px_50px] rounded-tr-5px rounded-br-5px `}
         >
             {/* player lists  */}
             <div className="h-full relative pl-[29px] py-[10px] w-[320px] ">
@@ -51,17 +55,39 @@ const PlayerList = (props) => {
                                     className={`border border-[#707070] relative w-[20px] h-[20px] rounded-full mr-[18px] 
                                     `}
                                 >
-                                    {getChampion(player.championName) && <div
-                                        className="rounded-full"
-                                        style={{
-                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(player.championName)?.sprite}') no-repeat`,
-                                            width: `${getChampion(player.championName)?.w}px`,
-                                            height: `${getChampion(player.championName)?.h}px`,
-                                            backgroundPosition: `-${getChampion(player.championName)?.x}px -${getChampion(player.championName)?.y}px`,
-                                            // backgroundSize: "1000% 300%",
-                                            zoom: `0.38`
-                                        }}
-                                    ></div>} 
+                                    {getChampion(player.championName) && (
+                                        <div
+                                            className="rounded-full"
+                                            style={{
+                                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                    getChampion(
+                                                        player.championName
+                                                    )?.sprite
+                                                }') no-repeat`,
+                                                width: `${
+                                                    getChampion(
+                                                        player.championName
+                                                    )?.w
+                                                }px`,
+                                                height: `${
+                                                    getChampion(
+                                                        player.championName
+                                                    )?.h
+                                                }px`,
+                                                backgroundPosition: `-${
+                                                    getChampion(
+                                                        player.championName
+                                                    )?.x
+                                                }px -${
+                                                    getChampion(
+                                                        player.championName
+                                                    )?.y
+                                                }px`,
+                                                // backgroundSize: "1000% 300%",
+                                                zoom: `0.38`,
+                                            }}
+                                        ></div>
+                                    )}
                                 </div>
                                 <Link
                                     href={{
@@ -76,7 +102,11 @@ const PlayerList = (props) => {
                                     <h6
                                         className={` sf-bold-14 capitalize cursor-pointer w-[62px] ${
                                             player?.mainPlayer
-                                                ? props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" : player?.win
+                                                ? props?.convertM(
+                                                      props?.match?.duration
+                                                  ) <= 5
+                                                    ? "text-yellow-50"
+                                                    : player?.win
                                                     ? "text-accent-color-2"
                                                     : "text-accent-color"
                                                 : "text-grayed-text"
@@ -97,7 +127,11 @@ const PlayerList = (props) => {
                 onClick={() => props.ExpandFullHandler()}
                 className={`h-full w-[50px] flex items-center justify-center
                 rounded-5px cursor-pointer  ${
-                    props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-50" : mainPlayer?.win ? "bg-accent-color-2 hover:bg-[#353c74]" : "bg-accent-color hover:bg-[#612d3d]"
+                    props?.convertM(props?.match?.duration) <= 5
+                        ? "bg-[#cfbbbd] hover:bg-[#675b67]"
+                        : mainPlayer?.win
+                        ? "bg-accent-color-2 hover:bg-[#353c74]"
+                        : "bg-accent-color hover:bg-[#612d3d]"
                 }`}
             >
                 <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
