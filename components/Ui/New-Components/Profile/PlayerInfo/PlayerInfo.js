@@ -37,7 +37,7 @@ const PlayerInfo = (props) => {
             </div>
             {/* cover photo  */}
             {championId && <div
-                className={` w-full h-full absolute left-0 top-0 `}
+                className={` w-[80%] h-full absolute right-0 top-0 `}
                 
             >
               {championId && <Image
