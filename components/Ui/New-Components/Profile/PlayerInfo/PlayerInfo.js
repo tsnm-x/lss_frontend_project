@@ -24,7 +24,7 @@ const PlayerInfo = (props) => {
             </div>
             {/* content container  */}
             <div
-                className=" container relative z-40 flex items-end 
+                className=" container max-w-sm-container relative z-40 flex items-end 
              pt-[25px] pb-[60px] "
             >
                 <Profile

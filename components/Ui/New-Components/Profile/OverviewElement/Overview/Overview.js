@@ -14,9 +14,9 @@ const Overview = (props) => {
     return (
         <section className=" my-[20px] relative ">
             <div
-                className={`container laptop:grid 
-                laptop:grid-cols-[220px_825px] smDesktop:grid-cols-[300px_auto]
-                 smDesktop:gap-x-[31px] laptop:gap-x-[22px] `}
+                className={`container grid 
+                grid-cols-[300px_885px]
+                gap-x-[31px] max-w-sm-container `}
             >
                 {/* left side  */}
                 {!expand && (

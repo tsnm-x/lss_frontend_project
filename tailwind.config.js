@@ -33,6 +33,7 @@ module.exports = {
             maxWidth: {
                 // old 1.0
                 "max-container": "1370px",
+                "sm-container": "1216px"
             },
             colors: {
                 // old 1.0
