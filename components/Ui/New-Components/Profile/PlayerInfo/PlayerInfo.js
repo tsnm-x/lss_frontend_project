@@ -31,6 +31,7 @@ const PlayerInfo = (props) => {
                     btnDetails={props?.btnDetails}
                     summonerName={props?.summonerName}
                     profileIcon={props?.profileIcon}
+                    lastModified={props?.lastModified}
                     summonerLevel={props?.summonerLevel}
                     region={props?.region}
                 />
