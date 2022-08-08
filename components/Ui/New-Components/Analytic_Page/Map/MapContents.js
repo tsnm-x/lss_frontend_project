@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MapContent from "./mapContent";
+import MapContent from "./MapContent";
 
 const MapContents = (props) => {
 	const unorderedListStyle = {

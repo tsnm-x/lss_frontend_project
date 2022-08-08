@@ -2,7 +2,7 @@ import React from "react";
 import map from "../../../../../public/assets/new-images/Map/img-lol-map.svg";
 import Image from "next/image";
 
-import MapContents from "./mapContents";
+import MapContents from "./MapContents";
 
 const Map = (props) => {
 	const stylemap = {
