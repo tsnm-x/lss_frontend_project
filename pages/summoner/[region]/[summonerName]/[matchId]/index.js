@@ -5,6 +5,7 @@ import AnalyticsViewBtns from "../../../../../components/Ui/New-Components/Analy
 import ProfileCompareBar from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/ProfileCompareBar/ProfileCompareBar";
 import LosAndWinRow from "../../../../../components/Ui/New-Components/Profile/OverviewElement/OverviewExpand/LosAndWinRow/LosAndWinRow";
 import DataRowGrid from "../../../../../components/Ui/New-Components/Analytic_Page/DataRowGrid/DataRowGrid";
+import Map from "../../../../../components/Ui/New-Components/Analytic_Page/Map/Map";
 import GameStaticsGraph from "../../../../../components/Ui/New-Components/Analytic_Page/GameStaticsGraph/GameStaticsGraph";
 import SimulationData from "../../../../../components/Ui/New-Components/Profile/OverviewElement/SimulateGame/Simulation/SimulationData/SimulationData";
 import Router, { useRouter } from "next/router";
@@ -223,7 +224,7 @@ const MatchSimulator = ({ query }) => {
 			}
 		});
 
-		console.log(matchTimeline);
+		// console.log(matchTimeline);
 
 		matchTimeline?.frames[
 			matchTimeline?.frames?.length - 2
@@ -332,13 +333,34 @@ const MatchSimulator = ({ query }) => {
 
 		return matchTimeline;
 	};
+	console.log(match);
+
+	const [btns, setBtns] = useState([
+		{
+			txt: "overview",
+			active: true,
+		},
+		{
+			txt: "runes",
+			active: false,
+		},
+		{
+			txt: "map details",
+			active: false,
+		},
+	]);
 
 	return (
 		<>
 			<HeaderWithSearchbar />
 			<ProfileIntro mainPlayer={mainPlayer} match={match} />
 			<div className=" bg-[#140a22] mb-[100px] ">
-				<AnalyticsViewBtns region={region} summonerName={summonerName} />
+				<AnalyticsViewBtns
+					btns={btns}
+					setBtns={setBtns}
+					region={region}
+					summonerName={summonerName}
+				/>
 				<ProfileCompareBar
 					teams={match?.teams}
 					players={match?.players}
@@ -351,20 +373,31 @@ const MatchSimulator = ({ query }) => {
 					matchTimelineData={matchTimelineData}
 					selectedFrame={selectedFrame}
 				/>
-				<DataRowGrid
-					match={match}
-					frames={matchTimelineData?.frames}
-					matchTimelineData={matchTimelineData}
-					selectedFrame={selectedFrame}
-					leftTeam={leftTeam}
-					rightTeam={rightTeam}
-					selectedPlayer={selectedPlayer}
-					setSelectedPlayer={setSelectedPlayer}
-					simulatorPlayerRed={simulatorPlayerRed}
-					setSimulatorPlayerRed={setSimulatorPlayerRed}
-					simulatorPlayerBlue={simulatorPlayerBlue}
-					setSimulatorPlayerBlue={setSimulatorPlayerBlue}
-				/>
+				{btns[0]?.active ? (
+					<DataRowGrid
+						match={match}
+						frames={matchTimelineData?.frames}
+						matchTimelineData={matchTimelineData}
+						selectedFrame={selectedFrame}
+						leftTeam={leftTeam}
+						rightTeam={rightTeam}
+						selectedPlayer={selectedPlayer}
+						setSelectedPlayer={setSelectedPlayer}
+						simulatorPlayerRed={simulatorPlayerRed}
+						setSimulatorPlayerRed={setSimulatorPlayerRed}
+						simulatorPlayerBlue={simulatorPlayerBlue}
+						setSimulatorPlayerBlue={setSimulatorPlayerBlue}
+					/>
+				) : btns[1].active ? (
+					<h1>Runes</h1>
+				) : (
+					<Map
+						match={match}
+						selectedFrame={selectedFrame}
+						frames={matchTimelineData?.frames}
+					/>
+				)}
+
 				<GameStaticsGraph
 					selectedFrame={selectedFrame}
 					frames={matchTimelineData?.frames}
