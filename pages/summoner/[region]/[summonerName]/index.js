@@ -97,6 +97,7 @@ const Summoner = () => {
 
 	useEffect(() => {
 		const { region } = router.query;
+		console.log(mainPlayer);
 		mainPlayer &&
 			axiosInstance
 				.post("/summonerRanks", {
@@ -304,6 +305,7 @@ const Summoner = () => {
 					btnDetails={btnDetails}
 					summonerName={otherData?.summonerName}
 					profileIcon={mainPlayer?.profileIcon}
+					lastModified={mainPlayer?.lastModified}
 					summonerLevel={mainPlayer?.summonerLevel}
 					region={router.query?.region}
 					rankSolo={rankSolo}

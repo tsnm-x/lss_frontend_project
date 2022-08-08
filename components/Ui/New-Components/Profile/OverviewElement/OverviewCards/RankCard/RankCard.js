@@ -96,15 +96,23 @@ const RankCard = (props) => {
     return (
         <div
             className={`${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5
+                    ? "bg-[#3a3242]"
+                    : mainPlayer?.win
+                    ? " bg-winOpacity"
+                    : " bg-defeatOpacity"
             } px-[20px] py-4 border-r border-background
              `}
         >
-            <h3 className={` font-sf-pro-text font-bold text-[12px] leading-[14.5px] ${
-                props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" : mainPlayer?.win
-                ? "text-accent-color-2"
-                : " text-nav-btn"
-            }`}>
+            <h3
+                className={` font-sf-pro-text font-bold text-[12px] leading-[14.5px] ${
+                    props?.convertM(props?.match?.duration) <= 5
+                        ? "text-yellow-50"
+                        : mainPlayer?.win
+                        ? "text-accent-color-2"
+                        : " text-nav-btn"
+                }`}
+            >
                 Build
             </h3>
             <div className=" flex mt-4 ">
@@ -132,52 +140,77 @@ const RankCard = (props) => {
                                 }`}
                                 key={index}
                             >
-                                {item !== 0 && getItem(item) && getItem(item)?.sprite && (
-                                    <div className="relative group">
-                                        <div
-                                            className={`rounded-full ${
-                                            mythicHighlighter(item)
-                                                ? props?.convertM(props?.match?.duration) <= 5 ? "border-2 border-[#FEFCE8]" :  mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
-                                                : ""
-                                            }`}
-                                            style={{
-                                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(item)?.sprite}') no-repeat`,
-                                                width: `${getItem(item)?.w}px`,
-                                                height: `${getItem(item)?.h}px`,
-                                                backgroundPosition: `-${getItem(item)?.x}px -${getItem(item)?.y}px`,
-                                                // backgroundSize: "contain",
-                                                zoom: `0.63`
-                                            }}
-                                        ></div>
-                                        
-                                        <div
-                                            className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                        >
-                                            <span>{getItemDetails(item)}</span>
+                                {item !== 0 &&
+                                    getItem(item) &&
+                                    getItem(item)?.sprite && (
+                                        <div className="relative group">
                                             <div
-                                                className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                            />
-                                        </div>
-                                    </div>
-                                )}
+                                                className={`rounded-full ${
+                                                    mythicHighlighter(item)
+                                                        ? props?.convertM(
+                                                              props?.match
+                                                                  ?.duration
+                                                          ) <= 5
+                                                            ? "border-2 border-[#FEFCE8]"
+                                                            : mainPlayer?.win
+                                                            ? "border-2 border-[#198cff]"
+                                                            : "border-2 border-[#D55460]"
+                                                        : ""
+                                                }`}
+                                                style={{
+                                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                        getItem(item)?.sprite
+                                                    }') no-repeat`,
+                                                    width: `${
+                                                        getItem(item)?.w
+                                                    }px`,
+                                                    height: `${
+                                                        getItem(item)?.h
+                                                    }px`,
+                                                    backgroundPosition: `-${
+                                                        getItem(item)?.x
+                                                    }px -${getItem(item)?.y}px`,
+                                                    // backgroundSize: "contain",
+                                                    zoom: `0.63`,
+                                                }}
+                                            ></div>
 
-                                
+                                            <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                                <span>
+                                                    {getItemDetails(item)}
+                                                </span>
+                                                <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
+                                            </div>
+                                        </div>
+                                    )}
                             </div>
                         );
                     })}
                 </div>
-                <div className={`relative w-[25px] h-[25px] rounded-full ml-[10px]`}>
-                    {mainPlayer?.item6 !== 0 && getItem(mainPlayer?.item6) && getItem(mainPlayer?.item6)?.sprite && (<div
-                        className={`rounded-full`}
-                        style={{
-                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(mainPlayer?.item6)?.sprite}') no-repeat`,
-                            width: `${getItem(mainPlayer?.item6)?.w}px`,
-                            height: `${getItem(mainPlayer?.item6)?.h}px`,
-                            backgroundPosition: `-${getItem(mainPlayer?.item6)?.x}px -${getItem(mainPlayer?.item6)?.y}px`,
-                            // backgroundSize: "contain",
-                            zoom: `0.5`
-                        }}
-                    ></div>)}
+                <div
+                    className={`relative w-[25px] h-[25px] rounded-full ml-[10px]`}
+                >
+                    {mainPlayer?.item6 !== 0 &&
+                        getItem(mainPlayer?.item6) &&
+                        getItem(mainPlayer?.item6)?.sprite && (
+                            <div
+                                className={`rounded-full`}
+                                style={{
+                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                        getItem(mainPlayer?.item6)?.sprite
+                                    }') no-repeat`,
+                                    width: `${getItem(mainPlayer?.item6)?.w}px`,
+                                    height: `${
+                                        getItem(mainPlayer?.item6)?.h
+                                    }px`,
+                                    backgroundPosition: `-${
+                                        getItem(mainPlayer?.item6)?.x
+                                    }px -${getItem(mainPlayer?.item6)?.y}px`,
+                                    // backgroundSize: "contain",
+                                    zoom: `0.5`,
+                                }}
+                            ></div>
+                        )}
                 </div>
             </div>
         </div>

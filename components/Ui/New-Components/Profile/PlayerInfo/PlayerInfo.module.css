@@ -1,5 +1,5 @@
 .profileMask {
-    @apply absolute z-30 h-full w-[40%];
+    @apply absolute z-30 h-full w-[42vw] desktop:w-[43vw];
     background: linear-gradient(
         272.11deg,
         rgba(30, 22, 41, 0) 2.05%,
@@ -7,6 +7,12 @@
     );
     backdrop-filter: blur(40px);
     clip-path: polygon(0% 0%, 65% 0, 100% 100%, 0% 100%);
+}
+
+@media only screen and (min-width: 1800px) {
+    .profileMask {
+        clip-path: polygon(0% 0%, 32vw 0, 100% 100%, 0% 100%);
+    }
 }
 
 .bgImgMask {

@@ -457,7 +457,11 @@ const StatusCard = (props) => {
     return (
         <div
             className={` rounded-tl-5px rounded-bl-5px  ${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity" : " bg-defeatOpacity"
+                props?.convertM(props?.match?.duration) <= 5
+                    ? "bg-[#3a3242]"
+                    : mainPlayer?.win
+                    ? " bg-winOpacity"
+                    : " bg-defeatOpacity"
             }
              flex border-r border-background   ${
                  props.expand

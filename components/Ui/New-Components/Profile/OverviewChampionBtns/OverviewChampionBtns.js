@@ -9,7 +9,7 @@ const OverviewChampionBtns = (props) => {
 
     return (
         <section className=" bg-[#1e1629] py-3 ">
-            <div className=" container flex justify-between ">
+            <div className=" container flex justify-between max-w-sm-container ">
                 {/* buttons  */}
                 <div className=" flex items-center  ">
                     <div className=" relative mr-[40px] ">
@@ -54,7 +54,7 @@ const OverviewChampionBtns = (props) => {
                     </div>
                 </div>
                 {/* report texts and btn  */}
-                <div className=" flex items-center mr-[180px] ">
+                <div className=" flex items-center ">
                     {/* btn  */}
                     <div className=" mr-[88px] ">
                         <h6 className=" mazin-bold-16 text-white ">
