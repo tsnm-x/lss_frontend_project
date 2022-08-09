@@ -6,6 +6,7 @@ import GraphImg from "../../../../../public/assets/new-images/Profile/card/CardE
 import SimulationData from "../../Profile/OverviewElement/SimulateGame/Simulation/SimulationData/SimulationData";
 import Classess from "./GameStaticsGraph.module.css";
 import UnfoldIcon from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Play-Pause/unfold.svg";
+import { MdOutlineCircle } from "react-icons/md";
 
 // green icon
 import greenBaron from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-baron-r.png";
@@ -362,6 +363,15 @@ const GameStaticsGraph = (props) => {
                             />
                         </div>
                     </div>
+                </div>
+                {/* simulate matchup btn  */}
+                <div className=" mt-[40px] ">
+                    <button className=" w-[181px] h-[32px] flex items-center justify-center bg-[#d55460] rounded-[5px] mx-auto ">
+                        <MdOutlineCircle className=" text-[18px] text-white mr-[8px]  " />
+                        <h3 className=" text-white font-inter font-bold capitalize text-[14px] leading-[20px] ">
+                            simulate matchup
+                        </h3>
+                    </button>
                 </div>
                 {/* <div className=" flex items-center ">
 					<h5 className=" sf-bold-15 text-[16px] leading-[19px] text-white mr-4 ">
