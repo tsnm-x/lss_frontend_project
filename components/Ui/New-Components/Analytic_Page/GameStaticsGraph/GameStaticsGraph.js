@@ -156,16 +156,16 @@ const GameStaticsGraph = (props) => {
 
     return (
         <section>
-            <div className="container mt-6 px-[15px] ">
+            <div className="container pt-6 px-[18px] bg-[#110a1b] max-w-[1340px] pb-[40vh] ">
                 {/* texts  */}
                 <div className=" py-2 rounded-5px bg-[#1b1424] ">
-                    <h1 className=" font-mazin font-bold text-[10px] leading-[140%] text-[#AAA0A8] ml-[155px] ">
+                    <h1 className=" font-mazin font-bold text-[10px] leading-[140%] text-[#AAA0A8] ml-[150px] ">
                         LSS.GG Replay /{" "}
                         <span className=" text-white">Timeline</span>
                     </h1>
                 </div>
                 {/* slider  */}
-                <div className=" mt-[14px] flex items-center ml-[155px] ">
+                <div className=" mt-[14px] flex items-center ml-[150px] ">
                     <div className="w-[1000px] relative ">
                         {/* border gradient  */}
                         <div className=" w-full left-0 top-0">

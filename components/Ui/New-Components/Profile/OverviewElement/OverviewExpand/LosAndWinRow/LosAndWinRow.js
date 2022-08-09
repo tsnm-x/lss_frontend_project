@@ -200,7 +200,7 @@ const LosAndWinRow = (props) => {
 							/>
 						</div>
 					) : (
-						<div className=" flex gap-x-12 items-center">
+						<div className=" flex gap-x-[27px] items-center">
 							<p className=" font-sf-pro-text text-[14px] leading-[16px] text-accent-color font-bold desktop:text-base   ">
 								Defeat
 							</p>

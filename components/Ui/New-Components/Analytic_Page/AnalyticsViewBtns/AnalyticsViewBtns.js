@@ -25,7 +25,7 @@ const AnalyticsViewBtns = (props) => {
 	};
 	return (
 		<section>
-			<div className="container flex items-center bg-card-&-content-box max-w-[1340px] ">
+			<div className="container flex items-center bg-card-&-content-box max-w-[1340px] rounded-tr-5px rounded-br-5px  ">
 				{/* indicator left  */}
 				<div className={`${Classess.indicator}`}></div>
 				<div className=" flex justify-between items-center w-full pl-[30px] pr-[25px] py-5 ">

@@ -87,7 +87,7 @@ const ProfileIntro = (props) => {
     return (
         <>
             <section className=" relative ">
-                <div className="container flex h-[225px] items-center relative z-50 ">
+                <div className="container flex h-[225px] items-center relative z-50 pl-[90px]  ">
                     {/* left side img  */}
                     <div className=" rounded-[15px] relative w-[110px] h-[110px] border border-white mr-[35px] ">
                         {props.mainPlayer && (

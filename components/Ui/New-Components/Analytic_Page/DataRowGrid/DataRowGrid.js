@@ -15,35 +15,39 @@ const HeaderRow = (props) => {
         <div
             className={` grid w-[640px] ${
                 props.reverce
-                    ? "grid-cols-[101px_76px_154px_165px_144px]"
+                    ? "grid-cols-[101px_106px_124px_165px_144px]"
                     : "grid-cols-[144px_165px_154px_76px_101px]"
             }`}
         >
             <div
                 className={
                     props.reverce
-                        ? " order-5 text-center "
-                        : "order-1 text-center"
+                        ? " order-5 mr-[15px] text-right "
+                        : " order-1 ml-[15px] "
                 }
             >
                 <h4 className=" font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize ">
                     Damage Dealt
                 </h4>
             </div>
-            <div className={props.reverce ? " order-4 " : "order-2"}></div>
+            <div className={props.reverce ? " order-4 " : "order-2"}>
+                <h4 className=" font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize text-center ">
+                    Items
+                </h4>
+            </div>
             <div className={props.reverce ? "order-3" : "order-3"}>
                 <h4
                     className={`font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text capitalize ${
-                        props.reverce ? "text-right" : ""
+                        props.reverce ? " ml-[36px] " : " ml-[52px] "
                     }`}
                 >
                     Score
                 </h4>
             </div>
-            <div className={props.reverce ? "order-2" : "order-4"}>
+            <div className={props.reverce ? "order-2" : "order-4 "}>
                 <h4
                     className={`font-sf-pro-text font-bold text-[14px] leading-[17px] text-grayed-text uppercase ${
-                        props.reverce ? "text-right" : ""
+                        props.reverce ? " ml-[48px] " : ""
                     }`}
                 >
                     cs
@@ -61,7 +65,7 @@ const HeaderRow = (props) => {
 const DataRow = (props) => {
     
     return (
-        <div className=" flex flex-col gap-y-3">
+        <div className=" flex flex-col gap-y-[10px] ">
             {props.players && props.players?.map((player, index) => {
                 return (
                     <PlayerRow
@@ -89,7 +93,7 @@ const DataRowGrid = (props) => {
     const router = useRouter();
     return (
         <section>
-            <div className="container max-w-[1340px] px-4 pt-1 bg-[#110a1b] ">
+            <div className="container max-w-[1340px] px-[18px] pt-1 bg-[#110a1b] ">
                 {/* header row  */}
                 <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
                     <HeaderRow />
@@ -125,6 +129,7 @@ const DataRowGrid = (props) => {
                         setSimulatorPlayer={props?.setSimulatorPlayerBlue}
                     />
                 </div>
+                {/* game statics graph  */}
             </div>
         </section>
     );
