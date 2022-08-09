@@ -5,7 +5,7 @@ const DataRow = (props) => {
     console.log(props);
     return (
         <div
-            className={` max-w-[351px] h-[45px] flex items-center gap-x-[32.7px] px-[30px] rounded-5px ${
+            className={` max-w-[351px] h-[45px] flex items-center gap-x-[32.7px] px-[30px] rounded-5px cursor-pointer ${
                 props.reverse
                     ? " flex-row-reverse bg-[#191531]"
                     : " bg-[#251122] "
