@@ -5,6 +5,8 @@ import Image from "next/image";
 import GraphImg from "../../../../../public/assets/new-images/Profile/card/CardExpand/Graph/Expanded-Card.jpg";
 import SimulationData from "../../Profile/OverviewElement/SimulateGame/Simulation/SimulationData/SimulationData";
 import Classess from "./GameStaticsGraph.module.css";
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
 
 // green icon
 import greenBaron from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-baron-r.png";
@@ -201,8 +203,8 @@ const GameStaticsGraph = (props) => {
                                                 width: score.w + "px",
                                                 height: `${score.h}px`,
                                                 position: "absolute",
-																							left: `${score.left}px`,
-																								top: `3px`
+                                                left: `${score.left}px`,
+                                                top: `3px`,
                                             }}
                                         >
                                             <Image
@@ -215,31 +217,52 @@ const GameStaticsGraph = (props) => {
                                 })}
                             </div>
                             {/* slide  */}
-                            <div className={`${Classess.sliderSlide} w-full `}>
-                                <svg
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 865 1"
+                            <div
+                                className={`${Classess.sliderSlide} w-full relative h-[1px] `}
+                            >
+                                <div className=" w-full absolute left-0 top-0 ">
+                                    <svg
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 865 1"
+                                    >
+                                        <path stroke="url(#a)" d="M0 .5h865" />
+                                        <defs>
+                                            <linearGradient
+                                                id="a"
+                                                x1="0"
+                                                y1="1.999"
+                                                x2="865"
+                                                y2="1.132"
+                                                gradientUnits="userSpaceOnUse"
+                                            >
+                                                <stop stopColor="#5D7CF6" />
+                                                <stop
+                                                    offset="1"
+                                                    stopColor="#D55460"
+                                                />
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div
+                                    className=" w-[40px] h-[30px] rounded-[1px] 
+																border border-[rgba(0,0,0,0.04)] relative -top-[15px] left-[10%]   "
                                 >
-                                    <path stroke="url(#a)" d="M0 .5h865" />
-                                    <defs>
-                                        <linearGradient
-                                            id="a"
-                                            x1="0"
-                                            y1="1.999"
-                                            x2="865"
-                                            y2="1.132"
-                                            gradientUnits="userSpaceOnUse"
-                                        >
-                                            <stop stopColor="#5D7CF6" />
-                                            <stop
-                                                offset="1"
-                                                stopColor="#D55460"
-                                            />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                                    <div
+                                        className=" bg-[#5d6182] w-[40px] h-[30px] rounded-[1px] 
+																border border-[rgba(0,0,0,0.04)] absolute flex items-center justify-center z-[50]  "
+                                    >
+                                        <h1 className=" font-inter font-[700] text-[10px] leading-[14px] text-white">
+                                            3:00
+                                        </h1>
+                                    </div>
+                                    <div className=" w-[2px] h-[70px] bg-[#5D6182] absolute left-[18px] -top-[21px]"></div>
+                                </div>
                             </div>
+                            {/* <div>
+                                <Slider />
+                            </div> */}
                             {/* bottom icon bar */}
                             <div className=" w-full h-[25px] relative ">
                                 {teamObject.redTeam.map((score, index) => {
@@ -250,8 +273,8 @@ const GameStaticsGraph = (props) => {
                                                 width: score.w + "px",
                                                 height: `${score.h}px`,
                                                 position: "absolute",
-																							left: `${score.left}px`,
-																								top: `2px`
+                                                left: `${score.left}px`,
+                                                top: `2px`,
                                             }}
                                         >
                                             <Image
@@ -298,7 +321,7 @@ const GameStaticsGraph = (props) => {
 				</div> */}
                 {/* graph cards  */}
                 <div className=" mt-5 ">
-                    <input
+                    {/* <input
                         className="text-full-dark w-[100%]"
                         type="range"
                         min="0"
@@ -308,7 +331,7 @@ const GameStaticsGraph = (props) => {
                             setFramePointer(e.target.value);
                             props.frameChange(e.target.value);
                         }}
-                    />
+                    /> */}
                     {/* left graph  */}
                     {/* <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
 						<h1 className=" sf-bold-40 capitalize ">coming soon</h1>
