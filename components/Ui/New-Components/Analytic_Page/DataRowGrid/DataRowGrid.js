@@ -13,10 +13,10 @@ import { useRouter } from "next/router";
 const HeaderRow = (props) => {
     return (
         <div
-            className={` grid ${
+            className={` grid w-[640px] ${
                 props.reverce
-                    ? "grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr]"
-                    : "grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr]"
+                    ? "grid-cols-[101px_76px_154px_165px_144px]"
+                    : "grid-cols-[144px_165px_154px_76px_101px]"
             }`}
         >
             <div
@@ -89,7 +89,7 @@ const DataRowGrid = (props) => {
     const router = useRouter();
     return (
         <section>
-            <div className="container px-4 mt-1">
+            <div className="container max-w-[1340px] px-4 pt-1 bg-[#110a1b] ">
                 {/* header row  */}
                 <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
                     <HeaderRow />
@@ -98,7 +98,7 @@ const DataRowGrid = (props) => {
                 {/* data  */}
                 <div className=" grid grid-cols-2 gap-x-5 ">
                     {/* data row  */}
-                    <DataRow 
+                    <DataRow
                         reverce={false}
                         match={props.match}
                         region={router?.query?.region}
@@ -112,7 +112,7 @@ const DataRowGrid = (props) => {
                         setSimulatorPlayer={props?.setSimulatorPlayerRed}
                     />
                     <DataRow
-                        region={router?.query?.region} 
+                        region={router?.query?.region}
                         reverce={true}
                         match={props.match}
                         frames={props.matchTimelineData?.frames}

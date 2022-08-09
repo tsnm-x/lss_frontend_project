@@ -285,16 +285,21 @@ const PlayerRow = (props) => {
 
 	return (
         <div
-            className={`  grid items-center rounded-[5px]  ${
+            className={`  grid items-center rounded-[5px] cursor-pointer  ${
                 props.reverce
                     ? `grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] ${
-                        props.simulatorPlayer.summonerName === props.player.summonerName ? "bg-[#5D7CF6]" : "bg-[#191531]"
+                          props.simulatorPlayer.summonerName ===
+                          props.player.summonerName
+                              ? "bg-[#5D7CF6]"
+                              : "bg-[#191531]"
                       } `
-                    : `grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] ${
-                        props.simulatorPlayer.summonerName === props.player.summonerName ? " bg-[#D55460]" : "bg-[#251122]"
+                    : `grid-cols-[144px_165px_144px_83px_104px] ${
+                          props.simulatorPlayer.summonerName ===
+                          props.player.summonerName
+                              ? " bg-[#D55460]"
+                              : "bg-[#251122]"
                       } `
             }`}
-
             onClick={() => props.setSimulatorPlayer(props.player)}
         >
             {/* damage dealt  */}
@@ -307,11 +312,19 @@ const PlayerRow = (props) => {
                     {correctParticipant.totalDamageDoneToChampions}
                 </h1>
                 <div
-                    className={`w-4/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] justify-self-center mx-auto`}
+                    className={` w-[80.1px] rounded-5px h-[6.5px] bg-[#3b374c] mt-[2px] justify-self-center mx-auto ${
+                        props.simulatorPlayer.summonerName ===
+                        props.player.summonerName
+                            ? "bg-[#241122]"
+                            : "bg-[#191531]"
+                    }`}
                 >
                     <div
-                        className={`h-full rounded-full ${
-                            props.reverce
+                        className={`h-full rounded-5px  ${
+                            props.simulatorPlayer.summonerName ===
+                            props.player.summonerName
+                                ? "bg-white"
+                                : props.reverce
                                 ? " bg-accent-color-2"
                                 : " bg-accent-color"
                         }`}
@@ -341,29 +354,42 @@ const PlayerRow = (props) => {
                             key={index}
                             className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
                         >
-                            {renderedItems && renderedItems[index] && getItem(renderedItems[index])?.sprite ? (
+                            {renderedItems &&
+                            renderedItems[index] &&
+                            getItem(renderedItems[index])?.sprite ? (
                                 <div className="relative group">
                                     <div
                                         className="rounded-[5px]"
                                         style={{
-                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(renderedItems[index])?.sprite}') no-repeat`,
-                                            width: `${getItem(renderedItems[index])?.w}px`,
-                                            height: `${getItem(renderedItems[index])?.h}px`,
-                                            backgroundPosition: `-${getItem(renderedItems[index])?.x}px -${getItem(renderedItems[index])?.y}px`,
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                getItem(renderedItems[index])
+                                                    ?.sprite
+                                            }') no-repeat`,
+                                            width: `${
+                                                getItem(renderedItems[index])?.w
+                                            }px`,
+                                            height: `${
+                                                getItem(renderedItems[index])?.h
+                                            }px`,
+                                            backgroundPosition: `-${
+                                                getItem(renderedItems[index])?.x
+                                            }px -${
+                                                getItem(renderedItems[index])?.y
+                                            }px`,
                                             // backgroundSize: "contain",
-                                            zoom: `0.522`
+                                            zoom: `0.522`,
                                         }}
                                     ></div>
-                                    <div
-                                        className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                    >
-                                        <span>{getItemDetails(renderedItems[index])}</span>
-                                        <div
-                                            className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                        />
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                        <span>
+                                            {getItemDetails(
+                                                renderedItems[index]
+                                            )}
+                                        </span>
+                                        <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                     </div>
                                 </div>
-                                ) : null}
+                            ) : null}
                         </div>
                     );
                 })}
@@ -415,17 +441,30 @@ const PlayerRow = (props) => {
             >
                 {/* profile  */}
                 <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
-                {getChampion(props?.player?.championName) && <div
-                    className="rounded-[5px]"
-                    style={{
-                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(props?.player?.championName)?.sprite}') no-repeat`,
-                        width: `${getChampion(props?.player?.championName)?.w}px`,
-                        height: `${getChampion(props?.player?.championName)?.h}px`,
-                        backgroundPosition: `-${getChampion(props?.player?.championName)?.x}px -${getChampion(props?.player?.championName)?.y}px`,
-                        // backgroundSize: "1000% 300%",
-                        zoom: `0.95`
-                    }}
-                ></div>} 
+                    {getChampion(props?.player?.championName) && (
+                        <div
+                            className="rounded-[5px]"
+                            style={{
+                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                    getChampion(props?.player?.championName)
+                                        ?.sprite
+                                }') no-repeat`,
+                                width: `${
+                                    getChampion(props?.player?.championName)?.w
+                                }px`,
+                                height: `${
+                                    getChampion(props?.player?.championName)?.h
+                                }px`,
+                                backgroundPosition: `-${
+                                    getChampion(props?.player?.championName)?.x
+                                }px -${
+                                    getChampion(props?.player?.championName)?.y
+                                }px`,
+                                // backgroundSize: "1000% 300%",
+                                zoom: `0.95`,
+                            }}
+                        ></div>
+                    )}
                     {/* batch  */}
                     <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
                         <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
@@ -463,19 +502,22 @@ const PlayerRow = (props) => {
                         ) && (
                             <div>
                                 <Image
-                                    src={`https://ddragon.canisback.com/img/${findRuneIcon(props?.player?.perks?.styles[0]?.selections[0]?.perk)}`}
+                                    src={`https://ddragon.canisback.com/img/${findRuneIcon(
+                                        props?.player?.perks?.styles[0]
+                                            ?.selections[0]?.perk
+                                    )}`}
                                     alt=" batch img"
                                     layout="fill"
                                     className=" rounded-[5px] "
                                 />
-                                <div
-                                    className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                    
-                                >
-                                    <span>{getRuneDescription(props?.player?.perks?.styles[0]?.selections[0]?.perk)}</span>
-                                    <div
-                                        className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                    />
+                                <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                    <span>
+                                        {getRuneDescription(
+                                            props?.player?.perks?.styles[0]
+                                                ?.selections[0]?.perk
+                                        )}
+                                    </span>
+                                    <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                 </div>
                             </div>
                         )}

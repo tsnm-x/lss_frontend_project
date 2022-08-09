@@ -134,7 +134,7 @@ const LosAndWinRow = (props) => {
 
 	return (
 		<section>
-			<div className="container">
+			<div className="container max-w-[1340px] ">
 				<div
 					className=" bg-card-&-content-box px-[25px] h-10 flex justify-center 
                                 items-center gap-x-[72px]   

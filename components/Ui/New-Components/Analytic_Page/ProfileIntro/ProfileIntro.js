@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import ProfileImg from "../../../../../public/assets/new-images/Profile/Jhin.png";
-import DefeatCoverImg from '../../../../../public/assets/new-images/Profile/defeat-cover.png'
+import DefeatCoverImg from "../../../../../public/assets/new-images/Profile/defeat-cover.png";
 import Classess from "./ProfileIntro.module.css";
 
 const ProfileIntro = (props) => {
@@ -86,42 +86,6 @@ const ProfileIntro = (props) => {
 
     return (
         <>
-            {/* <section className="relative"> */}
-            {/* bottom shadow  */}
-            {/* <div className={Classess.profileMask}></div> */}
-            {/* content container  */}
-            {/* <div
-                    className=" container max-w-sm-container relative z-40 flex items-end 
-             pt-[25px] pb-[60px] "
-                >
-                    <Profile
-                        btnDetails={props?.btnDetails}
-                        summonerName={props?.summonerName}
-                        profileIcon={props?.profileIcon}
-                        lastModified={props?.lastModified}
-                        summonerLevel={props?.summonerLevel}
-                        region={props?.region}
-                    />
-                </div> */}
-            {/* cover photo  */}
-            {/* {championId && (
-                    <div className={` w-[80%] h-full absolute right-0 top-0 `}>
-                        {championId && (
-                            <Image
-                                src={`/assets/new-images/Profile/championBackgrounds/champId ${championId}.png`}
-                                alt="cover image"
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                        )}
-                    </div>
-                )} */}
-
-            {/* cover photo mask  */}
-            {/* <div className={Classess.bgImgMask}></div>
-            </section> */}
-
-            {/* bottom section  */}
             <section className=" relative ">
                 <div className="container flex h-[225px] items-center relative z-50 ">
                     {/* left side img  */}
