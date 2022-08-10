@@ -98,7 +98,7 @@ const Summoner = () => {
 	useEffect(() => {
 		const { region, summonerName } = router.query;
 		console.log(mainPlayer);
-		mainPlayer && mainPlayer.summonerName.toLowerCase() === summonerName.toLowerCase() &&
+		mainPlayer && mainPlayer.summonerName?.toLowerCase() === summonerName?.toLowerCase() &&
 			axiosInstance
 				.post("/summonerRanks", {
 					region,
