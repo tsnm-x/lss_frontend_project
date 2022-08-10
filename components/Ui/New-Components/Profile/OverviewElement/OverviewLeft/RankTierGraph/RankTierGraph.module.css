@@ -7,8 +7,7 @@
 }
 
 .rankMask {
-    @apply w-[63.31px] h-[49px] bg-[#A0ACB4] row-start-1 col-start-1 mt-24;
+    @apply w-[63.31px] h-[49px] row-start-1 col-start-1 mt-24;
     filter: blur(35px);
     transform: matrix(1, 0, 0, -1, 0, 0);
-    opacity: 0.4;
 }

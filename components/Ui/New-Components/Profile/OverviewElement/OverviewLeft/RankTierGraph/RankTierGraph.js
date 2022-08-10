@@ -88,6 +88,56 @@ const Btns = (props) => {
         }
     };
 
+    const colorSelector = (id) => {
+        switch (id) {
+            case "IRON":
+                return "#7B6D6D";
+            case "BRONZE":
+                return "#D09989";
+            case "SILVER":
+                return "#A8B9E4";
+            case "GOLD":
+                return "#F8CA80";
+            case "PLATINUM":
+                return "#4DC7BE";
+            case "DIAMOND":
+                return "#4FADDF";
+            case "MASTER":
+                return "#CA70F2";
+            case "GRANDMASTER":
+                return "#EB3649";
+            case "CHALLENGER":
+                return "#3C8DB4";
+            default:
+                return "transparent";
+        }
+    }
+
+    const bgSelector = (id) => {
+        switch (id) {
+            case "IRON":
+                return "bg-[#7B6D6D]";
+            case "BRONZE":
+                return "bg-[#D09989]";
+            case "SILVER":
+                return "bg-[#A8B9E4]";
+            case "GOLD":
+                return "bg-[#F8CA80]";
+            case "PLATINUM":
+                return "bg-[#4DC7BE]";
+            case "DIAMOND":
+                return "bg-[#4FADDF]";
+            case "MASTER":
+                return "bg-[#CA70F2]";
+            case "GRANDMASTER":
+                return "bg-[#EB3649]";
+            case "CHALLENGER":
+                return "bg-[#3C8DB4]";
+            default:
+                return "transparent";
+        }
+    }
+
     const matchElement =
         rank?.miniSeries?.progress &&
         [...rank?.miniSeries?.progress]?.map((match, index) => {
@@ -145,8 +195,8 @@ const Btns = (props) => {
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon}`}>
                     <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
-                        <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="2.6666666666666665" stroke="var(--shade6)" shapeRendering="geometricPrecision"></circle>
-                        {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} strokeWidth="4" strokeLinecap="round" stroke="#CD8837" shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
+                        <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="0.5" stroke="#AAA0A8" shapeRendering="geometricPrecision"></circle>
+                        {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} strokeWidth="4" strokeLinecap="round" stroke={`${colorSelector(rank?.tier)}`} shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
                     </svg>
                     {/* img  */}
                     <div className={`${Classess.rankImg}`}>
@@ -158,7 +208,9 @@ const Btns = (props) => {
                         />
                     </div>
                     {/* bg mask  */}
-                    <div className={`${Classess.rankMask}`}></div>
+                    <div className={` ${bgSelector(rank?.tier)} ${Classess.rankMask}`} style={{
+                        opacity: `${rank?.leaguePoints/100}`
+                    }}></div>
                 </div>
                 {/* match  */}
                 <div className=" mt-3 ">
@@ -168,7 +220,7 @@ const Btns = (props) => {
                         >
                             {rank?.tier ? rank?.tier?.charAt(0) +
                                 rank?.tier?.slice(1).toLowerCase()
-                                : "-"}
+                                : "-"}{rank?.tier === "GRANDMASTER" || rank?.tier === "MASTER" || rank?.tier === "CHALLENGER" ?  "" : ` ${rank?.rank}`}
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
                             {rank?.leaguePoints ? rank?.leaguePoints : 0}lp
