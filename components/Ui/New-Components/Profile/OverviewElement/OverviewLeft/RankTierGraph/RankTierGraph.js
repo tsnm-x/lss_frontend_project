@@ -20,38 +20,37 @@ import Emblem_Unranked from "../../../../../../../public/assets/new-images/Profi
 const Btns = (props) => {
     const [rank, setRank] = useState({});
     const [active, setActive] = useState("SOLO");
-    const [rankMatch, setRankMatch] = useState({
-        color: "848CA3",
-        borderColor: "A8B9E4",
-        mask: {
-            color: "A0ACB4",
-            progress: 50,
-        },
-        match: [
-            {
-                victory: true,
-            },
-            {
-                victory: true,
-            },
-            {
-                victory: false,
-            },
-            {
-                victory: false,
-            },
-            {
-                victory: undefined,
-            },
-        ],
-    });
-
-    const iconColor = "#" + rankMatch.color;
+    const [rankMatch, setRankMatch] = useState("848CA3");
 
     useEffect(() => {
         rankHandler("SOLO");
         props?.rankSolo? setRank(props?.rankSolo): setRank({});
     }, [props]);
+    
+    const textColor = (id) => {
+        switch (id) {
+            case "IRON":
+                return "text-[#7B6D6D]";
+            case "BRONZE":
+                return "text-[#D09989]";
+            case "SILVER":
+                return "text-[#A8B9E4]";
+            case "GOLD":
+                return "text-[#F8CA80]";
+            case "PLATINUM":
+                return "text-[#4DC7BE]";
+            case "DIAMOND":
+                return "text-[#4FADDF]";
+            case "MASTER":
+                return "text-[#CA70F2]";
+            case "GRANDMASTER":
+                return "text-[#EB3649]";
+            case "CHALLENGER":
+                return "text-[#3C8DB4]";
+            default:
+                return "transparent";
+        }
+    }
 
     const rankHandler = (rankType) => {
         if (rankType === "SOLO") {
@@ -216,7 +215,7 @@ const Btns = (props) => {
                 <div className=" mt-3 ">
                     <div className=" flex flex-col items-end mr-[26px] ">
                         <h3
-                            className={`font-mazin text-[18px] leading-[23px] text-[#${rankMatch.color}]`}
+                            className={`font-mazin text-[18px] leading-[23px] font-bold ${textColor(rank?.tier)}`}
                         >
                             {rank?.tier ? rank?.tier?.charAt(0) +
                                 rank?.tier?.slice(1).toLowerCase()
