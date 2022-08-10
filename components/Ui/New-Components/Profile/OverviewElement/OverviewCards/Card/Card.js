@@ -64,7 +64,7 @@ const Card = (props) => {
                         className={`h-full w-[30px] flex items-center justify-center
                                                     rounded-tr-5px rounded-5px cursor-pointer smDesktop:w-[50px]  ${
                                                         convertM(
-                                                            props.match.duration
+                                                            props?.match?.duration
                                                         ) <= 5
                                                             ? "bg-yellow-50"
                                                             : mainPlayer?.win

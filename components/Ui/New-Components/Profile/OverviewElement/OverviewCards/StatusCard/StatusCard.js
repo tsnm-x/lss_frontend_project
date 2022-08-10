@@ -170,55 +170,55 @@ const RightSide = (props) => {
     const selectSpell = (id) => {
         switch (id) {
             case 21:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerBarrier.png";
 
             case 4:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerFlash.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerFlash.png";
 
             case 1:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBoost.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerBoost.png";
 
             case 14:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerDot.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerDot.png";
 
             case 3:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerExhaust.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerExhaust.png";
 
             case 6:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHaste.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerHaste.png";
 
             case 7:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHeal.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerHeal.png";
 
             case 13:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerMana.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerMana.png";
 
             case 30:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroRecall.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerPoroRecall.png";
 
             case 31:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroThrow.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerPoroThrow.png";
 
             case 11:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSmite.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerSmite.png";
 
             case 39:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowURFSnowball_Mark.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerSnowURFSnowball_Mark.png";
 
             case 32:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowball.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerSnowball.png";
 
             case 12:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerTeleport.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/SummonerTeleport.png";
 
             case 54:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookPlaceholder.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/Summoner_UltBookPlaceholder.png";
 
             case 55:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
 
             default:
-                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
+                return "http://ddragon.leagueoflegends.com/cdn/12.14.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
         }
     };
 

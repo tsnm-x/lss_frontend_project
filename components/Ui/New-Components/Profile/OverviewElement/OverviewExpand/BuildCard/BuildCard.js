@@ -130,7 +130,7 @@ const BuildCard = (props) => {
                 {mainPlayer?.item6 && (
                     <div className=" w-[30px] h-[30px] relative rounded-full ">
                         <Image
-                            src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/item/${mainPlayer?.item6}.png`}
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/item/${mainPlayer?.item6}.png`}
                             alt=" rank img"
                             layout="fill"
                             className=" rounded-full"

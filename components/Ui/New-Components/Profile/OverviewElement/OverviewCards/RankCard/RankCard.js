@@ -210,7 +210,7 @@ const RankCard = (props) => {
                                     zoom: `0.5`,
                                 }}
                             ></div>
-                        )}
+                    )}
                 </div>
             </div>
         </div>

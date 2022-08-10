@@ -144,6 +144,10 @@ const Btns = (props) => {
             <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon}`}>
+                    <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
+                        <circle r="48" cx="50%" cy="50%" fill="transparent" stroke-dasharray="301.59289474462014" stroke-dashoffset="1" stroke-width="2.6666666666666665" stroke="var(--shade6)" shape-rendering="geometricPrecision"></circle>
+                        {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" stroke-dasharray={`${(2 * (Math.PI) * 48 )}`} stroke-dashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} stroke-width="4" stroke-linecap="round" stroke="#CD8837" shape-rendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
+                    </svg>
                     {/* img  */}
                     <div className={`${Classess.rankImg}`}>
                         <Image
@@ -163,7 +167,7 @@ const Btns = (props) => {
                             className={`font-mazin text-[18px] leading-[23px] text-[#${rankMatch.color}]`}
                         >
                             {rank?.tier ? rank?.tier?.charAt(0) +
-                                rank?.tier?.slice(1).toLowerCase() + " " + rank?.rank 
+                                rank?.tier?.slice(1).toLowerCase()
                                 : "-"}
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
@@ -263,8 +267,7 @@ const Batch = (props) => {
                                 {props.rank?.tier?.charAt(0) +
                                     props.rank?.tier
                                         ?.slice(1)
-                                        .toLowerCase()}{" "}
-                                {props.rank?.rank}
+                                        .toLowerCase()}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-9 mt-[4px]  ">
                                 {props.rank?.leaguePoints} lp
