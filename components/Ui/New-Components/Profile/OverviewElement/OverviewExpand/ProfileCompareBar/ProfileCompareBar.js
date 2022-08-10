@@ -279,7 +279,7 @@ const ProfileCompareBar = (props) => {
 
 	return (
 		<section>
-			<div className="container bg-[#110a1b] mt-4 ">
+			<div className="container bg-[#110a1b] pt-4 max-w-[1340px] ">
 				<div className=" grid grid-cols-1 grid-rows-1 px-3 border-b border-[#140a22] ">
 					{/* profiles  */}
 					<div className=" flex items-center gap-x-6 row-start-1 col-start-1 ">

@@ -17,48 +17,52 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 const PlayerRow = (props) => {
-	const [active, setActive] = useState(false);
-	const [rank, setRank] = useState([]);
-	const { sendRequest } = useHttp();
-	const [activeStyle, setActiveStyle] = useState(false);
-	const router = useRouter();
+    const [active, setActive] = useState(false);
+    const [rank, setRank] = useState([]);
+    const { sendRequest } = useHttp();
+    const [activeStyle, setActiveStyle] = useState(false);
+    const router = useRouter();
     const items = useSelector((state) => state.items.items);
     const champions = useSelector((state) => state.champions.champions);
-    const runes = useSelector(state => state.runes.runes) 
+    const runes = useSelector((state) => state.runes.runes);
 
     const getChampion = (player) => {
         return champions[player]?.image;
-    }
+    };
 
     const getItem = (item) => {
-        if(items && item){
-            return items[item]?.image
+        if (items && item) {
+            return items[item]?.image;
         }
-    }
+    };
 
     const findRuneDetails = (id) => {
-        if(runes && id){
-            const selectedRune = runes.filter(rune => rune?.id === id);
-            return selectedRune[0]
+        if (runes && id) {
+            const selectedRune = runes.filter((rune) => rune?.id === id);
+            return selectedRune[0];
         }
-    }
+    };
 
     const findRuneIcon = (id) => {
         const rune = findRuneDetails(id);
-        return rune?.icon
-    }
+        return rune?.icon;
+    };
 
-    const getRuneDescription= (rune) => {
-        if(runes && rune){
-            const selectedRune = findRuneDetails(rune)
+    const getRuneDescription = (rune) => {
+        if (runes && rune) {
+            const selectedRune = findRuneDetails(rune);
             return (
                 <div>
                     <h1>{selectedRune?.name}</h1>
-                    <small dangerouslySetInnerHTML={{ __html: selectedRune?.longDesc }}></small>
+                    <small
+                        dangerouslySetInnerHTML={{
+                            __html: selectedRune?.longDesc,
+                        }}
+                    ></small>
                 </div>
-            )
+            );
         }
-    }
+    };
 
     const mythicHighlighter = (id) => {
         switch (id) {
@@ -119,214 +123,237 @@ const PlayerRow = (props) => {
     };
 
     const getItemDetails = (item) => {
-        if(items && item){
+        if (items && item) {
             return (
                 <div>
                     <h1>{items[item]?.name}</h1>
-                    <p>{mythicHighlighter(item)? "mythic" : "not mythic"}</p>
-                    <small dangerouslySetInnerHTML={{ __html: items[item]?.description }}></small>
+                    <p>{mythicHighlighter(item) ? "mythic" : "not mythic"}</p>
+                    <small
+                        dangerouslySetInnerHTML={{
+                            __html: items[item]?.description,
+                        }}
+                    ></small>
                     <p>{items[item]?.gold?.total}G</p>
                 </div>
-            )
+            );
         }
+    };
+
+    const matchTimelineData = props.matchTimelineData;
+    const frames = matchTimelineData?.frames;
+    const matchMetaData = matchTimelineData?.metaData;
+    const selectedFrame = props.selectedFrame;
+
+    const frameDetails = frames ? frames[selectedFrame] : null;
+
+    const LastFrame = frames ? frames[frames.length - 2] : null;
+
+    const getMaxDamageDealtInTimeline = () => {
+        if (LastFrame) {
+            const participants = [
+                LastFrame.participant1,
+                LastFrame.participant2,
+                LastFrame.participant3,
+                LastFrame.participant4,
+                LastFrame.participant5,
+                LastFrame.participant6,
+                LastFrame.participant7,
+                LastFrame.participant8,
+                LastFrame.participant9,
+                LastFrame.participant10,
+            ];
+
+            let maxDamage = participants[0]?.totalDamageDoneToChampions;
+
+            participants.forEach((participant, index) => {
+                if (index !== participants.length - 1) {
+                    if (
+                        maxDamage <=
+                        participants[index + 1]?.totalDamageDoneToChampions
+                    ) {
+                        maxDamage =
+                            participants[index + 1]?.totalDamageDoneToChampions;
+                    }
+                    return;
+                }
+                return;
+            });
+            return maxDamage;
+        }
+        return 0;
+    };
+
+    const correctParticipant = frames
+        ? frames[selectedFrame][`participant${props.player.standingId}`]
+        : {};
+
+    const renderedItems = correctParticipant?.items;
+
+    function convertM(value) {
+        const sec = parseInt(value); // convert value to number if it's string
+        let minutes = Math.floor(sec / 60); // get minutes
+        return minutes;
     }
 
-	const matchTimelineData = props.matchTimelineData;
-	const frames = matchTimelineData?.frames;
-	const matchMetaData = matchTimelineData?.metaData;
-	const selectedFrame = props.selectedFrame;
+    // useEffect(() => {
+    // 	props.player.summonerId === props.selectedPlayer.summonerId ||
+    // 	props.player.summonerId === props.simulatorPlayers.summonerId
+    // 		? setActiveStyle(true)
+    // 		: setActiveStyle(false);
+    // });
 
-	const frameDetails = frames ? frames[selectedFrame] : null;
+    // useEffect(() => {
+    // 	if (active) {
+    // 		if (props.showRunes) {
+    // 			props.setSelectedPlayer(props.player);
+    // 		} else {
+    // 			props.setSelectedPlayer({});
+    // 			props.setSimulatorPlayers(props.player);
+    // 		}
+    // 	}
+    // }, [active]);
 
-	const LastFrame = frames ? frames[frames.length - 2] : null;
+    // useEffect(() => {
+    // 	props.selectedPlayer.summonerId === props.player.summonerId
+    // 		? setActive(true)
+    // 		: setActive(false);
+    // }, [props.selectedPlayer]);
 
-	const getMaxDamageDealtInTimeline = () => {
-		if (LastFrame) {
-			const participants = [
-				LastFrame.participant1,
-				LastFrame.participant2,
-				LastFrame.participant3,
-				LastFrame.participant4,
-				LastFrame.participant5,
-				LastFrame.participant6,
-				LastFrame.participant7,
-				LastFrame.participant8,
-				LastFrame.participant9,
-				LastFrame.participant10,
-			];
+    const styleSelector = (id) => {
+        switch (id) {
+            case 8100:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png";
+            case 8300:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+            case 8000:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7201_Precision.png";
+            case 8400:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7204_Resolve.png";
+            case 8200:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7202_Sorcery.png";
 
-			let maxDamage = participants[0]?.totalDamageDoneToChampions;
+            // todo: add image placeholder as default
+            default:
+                return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
+        }
+    };
 
-			participants.forEach((participant, index) => {
-				if (index !== participants.length - 1) {
-					if (maxDamage <= participants[index + 1]?.totalDamageDoneToChampions) {
-						maxDamage = participants[index + 1]?.totalDamageDoneToChampions;
-					}
-					return;
-				}
-				return;
-			});
-			return maxDamage;
-		}
-		return 0;
-	};
+    const selectSpell = (id) => {
+        switch (id) {
+            case 21:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
 
-	const correctParticipant = frames
-		? frames[selectedFrame][`participant${props.player.standingId}`]
-		: {};
+            case 4:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerFlash.png";
 
-	const renderedItems = correctParticipant?.items
+            case 1:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBoost.png";
 
+            case 14:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerDot.png";
 
-	function convertM(value) {
-		const sec = parseInt(value); // convert value to number if it's string
-		let minutes = Math.floor(sec / 60); // get minutes
-		return minutes;
-	}
+            case 3:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerExhaust.png";
 
-	// useEffect(() => {
-	// 	props.player.summonerId === props.selectedPlayer.summonerId ||
-	// 	props.player.summonerId === props.simulatorPlayers.summonerId
-	// 		? setActiveStyle(true)
-	// 		: setActiveStyle(false);
-	// });
+            case 6:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHaste.png";
 
+            case 7:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHeal.png";
 
-	// useEffect(() => {
-	// 	if (active) {
-	// 		if (props.showRunes) {
-	// 			props.setSelectedPlayer(props.player);
-	// 		} else {
-	// 			props.setSelectedPlayer({});
-	// 			props.setSimulatorPlayers(props.player);
-	// 		}
-	// 	}
-	// }, [active]);
+            case 13:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerMana.png";
 
-	// useEffect(() => {
-	// 	props.selectedPlayer.summonerId === props.player.summonerId
-	// 		? setActive(true)
-	// 		: setActive(false);
-	// }, [props.selectedPlayer]);
+            case 30:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroRecall.png";
 
-	const styleSelector = (id) => {
-		switch (id) {
-			case 8100:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png";
-			case 8300:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
-			case 8000:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7201_Precision.png";
-			case 8400:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7204_Resolve.png";
-			case 8200:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7202_Sorcery.png";
+            case 31:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroThrow.png";
 
-			// todo: add image placeholder as default
-			default:
-				return "https://ddragon.canisback.com/img/perk-images/Styles/7203_Whimsy.png";
-		}
-	};
+            case 11:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSmite.png";
 
-	const selectSpell = (id) => {
-		switch (id) {
-			case 21:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
+            case 39:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowURFSnowball_Mark.png";
 
-			case 4:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerFlash.png";
+            case 32:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowball.png";
 
-			case 1:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBoost.png";
+            case 12:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerTeleport.png";
 
-			case 14:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerDot.png";
+            case 54:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookPlaceholder.png";
 
-			case 3:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerExhaust.png";
+            case 55:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
 
-			case 6:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHaste.png";
+            default:
+                return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
+        }
+    };
 
-			case 7:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerHeal.png";
-
-			case 13:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerMana.png";
-
-			case 30:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroRecall.png";
-
-			case 31:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerPoroThrow.png";
-
-			case 11:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSmite.png";
-
-			case 39:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowURFSnowball_Mark.png";
-
-			case 32:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerSnowball.png";
-
-			case 12:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerTeleport.png";
-
-			case 54:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookPlaceholder.png";
-
-			case 55:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/Summoner_UltBookSmitePlaceholder.png";
-
-			default:
-				return "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/spell/SummonerBarrier.png";
-		}
-	};
-
-	return (
+    return (
         <div
-            className={`  grid items-center rounded-[5px]  ${
+            className={`  grid items-center rounded-[5px] cursor-pointer max-w-[644px]  ${
                 props.reverce
-                    ? `grid-cols-[1.2fr_1fr_1fr_2fr_1.2fr] ${
-                        props.simulatorPlayer.summonerName === props.player.summonerName ? "bg-[#5D7CF6]" : "bg-[#191531]"
+                    ? `grid-cols-[105px_118px_115px_165px_145px] ${
+                          props.simulatorPlayer.summonerName ===
+                          props.player.summonerName
+                              ? "bg-[#4d65ca]"
+                              : "bg-[#181531]"
                       } `
-                    : `grid-cols-[1.2fr_2fr_1fr_1fr_1.2fr] ${
-                        props.simulatorPlayer.summonerName === props.player.summonerName ? " bg-[#D55460]" : "bg-[#251122]"
+                    : `grid-cols-[145px_165px_145px_83px_105px] ${
+                          props.simulatorPlayer.summonerName ===
+                          props.player.summonerName
+                              ? " bg-[#ad4552]"
+                              : "bg-[#241122]"
                       } `
             }`}
-
             onClick={() => props.setSimulatorPlayer(props.player)}
         >
             {/* damage dealt  */}
             <div
                 className={` ${
-                    props.reverce ? "order-5" : "order-1"
-                }  flex-col jutify-center`}
+                    props.reverce
+                        ? "order-5 ml-auto mr-[14px] "
+                        : "order-1 ml-[14px] "
+                }   `}
             >
-                <h1 className=" sf-bold-14 text-white text-center  ">
-                    {correctParticipant.totalDamageDoneToChampions}
-                </h1>
-                <div
-                    className={`w-4/6 h-[6.5px] rounded-full bg-[#706a76] mt-[6px] justify-self-center mx-auto`}
-                >
+                <div className=" w-[80px] ">
+                    <h1 className=" sf-bold-14 text-white text-center  ">
+                        {correctParticipant.totalDamageDoneToChampions}
+                    </h1>
                     <div
-                        className={`h-full rounded-full ${
-                            props.reverce
-                                ? " bg-accent-color-2"
-                                : " bg-accent-color"
+                        className={` w-[80.1px] rounded-5px overflow-hidden h-[6.5px] bg-[#3b374c] mt-[2px] justify-self-center mx-auto ${
+                            props.simulatorPlayer.summonerName ===
+                            props.player.summonerName
+                                ? "bg-[#241122]"
+                                : "bg-[#191531]"
                         }`}
-                        style={{
-                            width: `${
-                                getMaxDamageDealtInTimeline()
-                                    ? (correctParticipant?.totalDamageDoneToChampions /
-                                          getMaxDamageDealtInTimeline()) *
-                                      100
-                                    : (correctParticipant?.totalDamageDoneToChampions /
-                                          1) *
-                                      100
-                            }%`,
-                        }}
-                    ></div>
+                    >
+                        <div
+                            className={`h-full rounded-5px  ${
+                                props.simulatorPlayer.summonerName ===
+                                props.player.summonerName
+                                    ? "bg-white"
+                                    : props.reverce
+                                    ? " bg-accent-color-2"
+                                    : " bg-accent-color"
+                            }`}
+                            style={{
+                                width: `${
+                                    getMaxDamageDealtInTimeline()
+                                        ? (correctParticipant?.totalDamageDoneToChampions /
+                                              getMaxDamageDealtInTimeline()) *
+                                          100
+                                        : (correctParticipant?.totalDamageDoneToChampions /
+                                              1) *
+                                          100
+                                }%`,
+                            }}
+                        ></div>
+                    </div>
                 </div>
             </div>
             {/* batches  */}
@@ -339,39 +366,52 @@ const PlayerRow = (props) => {
                     return (
                         <div
                             key={index}
-                            className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] relative  "
+                            className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] overflow-hidden relative  "
                         >
-                            {renderedItems && renderedItems[index] && getItem(renderedItems[index])?.sprite ? (
-                                <div className="relative group">
+                            {renderedItems &&
+                            renderedItems[index] &&
+                            getItem(renderedItems[index])?.sprite ? (
+                                <div className="relative group rounded-5px ">
                                     <div
                                         className="rounded-[5px]"
                                         style={{
-                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(renderedItems[index])?.sprite}') no-repeat`,
-                                            width: `${getItem(renderedItems[index])?.w}px`,
-                                            height: `${getItem(renderedItems[index])?.h}px`,
-                                            backgroundPosition: `-${getItem(renderedItems[index])?.x}px -${getItem(renderedItems[index])?.y}px`,
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                getItem(renderedItems[index])
+                                                    ?.sprite
+                                            }') no-repeat`,
+                                            width: `${
+                                                getItem(renderedItems[index])?.w
+                                            }px`,
+                                            height: `${
+                                                getItem(renderedItems[index])?.h
+                                            }px`,
+                                            backgroundPosition: `-${
+                                                getItem(renderedItems[index])?.x
+                                            }px -${
+                                                getItem(renderedItems[index])?.y
+                                            }px`,
                                             // backgroundSize: "contain",
-                                            zoom: `0.522`
+                                            zoom: `0.522`,
                                         }}
                                     ></div>
-                                    <div
-                                        className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                    >
-                                        <span>{getItemDetails(renderedItems[index])}</span>
-                                        <div
-                                            className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                        />
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                        <span>
+                                            {getItemDetails(
+                                                renderedItems[index]
+                                            )}
+                                        </span>
+                                        <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                     </div>
                                 </div>
-                                ) : null}
+                            ) : null}
                         </div>
                     );
                 })}
             </div>
-            {/* kda  */}
+            {/* kda / score */}
             <div
                 className={` ${
-                    props.reverce ? "order-3 text-right " : "order-3"
+                    props.reverce ? "order-3 ml-[20px] " : "order-3 ml-[50px] "
                 }`}
             >
                 <h1 className=" sf-bold-14 text-white   ">
@@ -379,7 +419,14 @@ const PlayerRow = (props) => {
                     {correctParticipant?.stats?.death}/
                     {correctParticipant?.stats?.assist}
                 </h1>
-                <h1 className=" sf-bold-10 text-grayed-text   ">
+                <h1
+                    className={`sf-bold-10  ${
+                        props.simulatorPlayer.summonerName ===
+                        props.player.summonerName
+                            ? " text-[#241E2C]"
+                            : "text-grayed-text"
+                    }`}
+                >
                     KDA{" "}
                     {correctParticipant?.stats?.death
                         ? (
@@ -393,13 +440,20 @@ const PlayerRow = (props) => {
             {/* cs  */}
             <div
                 className={` ${
-                    props.reverce ? "order-2 text-right " : "order-4"
+                    props.reverce ? "order-2 ml-[38px] " : "order-4"
                 }`}
             >
                 <h1 className=" sf-bold-14 text-white   ">
                     {correctParticipant?.stats?.creepScore} cs
                 </h1>
-                <h1 className=" sf-bold-10 text-grayed-text   ">
+                <h1
+                    className={`sf-bold-10  ${
+                        props.simulatorPlayer.summonerName ===
+                        props.player.summonerName
+                            ? " text-[#241E2C]"
+                            : "text-grayed-text"
+                    }`}
+                >
                     {(
                         correctParticipant?.stats?.creepScore /
                         props.selectedFrame
@@ -409,37 +463,61 @@ const PlayerRow = (props) => {
             </div>
             {/* profile with batch  */}
             <div
-                className={` flex gap-x-2 ${
+                className={` flex gap-x-[3px] ${
                     props.reverce ? "order-1 flex-row-reverse" : "order-5"
                 }`}
             >
-                {/* profile  */}
-                <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
-                {getChampion(props?.player?.championName) && <div
-                    className="rounded-[5px]"
-                    style={{
-                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(props?.player?.championName)?.sprite}') no-repeat`,
-                        width: `${getChampion(props?.player?.championName)?.w}px`,
-                        height: `${getChampion(props?.player?.championName)?.h}px`,
-                        backgroundPosition: `-${getChampion(props?.player?.championName)?.x}px -${getChampion(props?.player?.championName)?.y}px`,
-                        // backgroundSize: "1000% 300%",
-                        zoom: `0.95`
-                    }}
-                ></div>} 
-                    {/* batch  */}
-                    <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
-                        <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
-                            {correctParticipant?.level}
+                <div
+                    className={` flex gap-x-[3px] w-[94px] ${
+                        props.reverce ? "flex-row-reverse" : ""
+                    }`}
+                >
+                    {/* profile  */}
+                    <div className=" relative w-[45px] h-[45px] rounded-[5px]  ">
+                        {getChampion(props?.player?.championName) && (
+                            <div
+                                className="rounded-[5px]"
+                                style={{
+                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                        getChampion(props?.player?.championName)
+                                            ?.sprite
+                                    }') no-repeat`,
+                                    width: `${
+                                        getChampion(props?.player?.championName)
+                                            ?.w
+                                    }px`,
+                                    height: `${
+                                        getChampion(props?.player?.championName)
+                                            ?.h
+                                    }px`,
+                                    backgroundPosition: `-${
+                                        getChampion(props?.player?.championName)
+                                            ?.x
+                                    }px -${
+                                        getChampion(props?.player?.championName)
+                                            ?.y
+                                    }px`,
+                                    // backgroundSize: "1000% 300%",
+                                    zoom: `0.95`,
+                                }}
+                            ></div>
+                        )}
+                        {/* batch  */}
+                        <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
+                            <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
+                                {correctParticipant?.level}
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/* power  */}
-                <div>
-                    {[props.player?.summoner1Id, props.player?.summoner2Id].map(
-                        (img, index) => {
+                    {/* power  */}
+                    <div className=" flex flex-col gap-y-[3px] ">
+                        {[
+                            props.player?.summoner1Id,
+                            props.player?.summoner2Id,
+                        ].map((img, index) => {
                             return (
                                 <div
-                                    className=" relative w-[22px] h-[22px] rounded-[5px] "
+                                    className=" relative w-[21px] h-[21px] rounded-[5px] "
                                     key={index}
                                 >
                                     {selectSpell(img) && (
@@ -452,47 +530,65 @@ const PlayerRow = (props) => {
                                     )}
                                 </div>
                             );
-                        }
-                    )}
-                </div>
-                {/* batch  */}
-                <div>
-                    <div className=" relative group w-[22px] h-[22px] rounded-[5px] ">
-                        {findRuneIcon(
-                            props?.player?.perks?.styles[0]?.selections[0]?.perk
-                        ) && (
-                            <div>
+                        })}
+                    </div>
+                    {/* batch  */}
+                    <div className=" flex flex-col gap-y-[3px] ">
+                        <div className=" relative group w-[21px] h-[21px] rounded-[5px] ">
+                            {findRuneIcon(
+                                props?.player?.perks?.styles[0]?.selections[0]
+                                    ?.perk
+                            ) && (
+                                <div
+                                    className={`w-[21.1px] h-[21.1px] rounded-5px ${
+                                        props.simulatorPlayer.summonerName ===
+                                        props.player.summonerName
+                                            ? "bg-[#15091b]"
+                                            : "bg-transparent"
+                                    }`}
+                                >
+                                    <Image
+                                        src={`https://ddragon.canisback.com/img/${findRuneIcon(
+                                            props?.player?.perks?.styles[0]
+                                                ?.selections[0]?.perk
+                                        )}`}
+                                        alt=" batch img"
+                                        layout="fill"
+                                        className=" rounded-[5px] "
+                                    />
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                        <span>
+                                            {getRuneDescription(
+                                                props?.player?.perks?.styles[0]
+                                                    ?.selections[0]?.perk
+                                            )}
+                                        </span>
+                                        <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <div
+                            className={`relative w-[21px] h-[21px] rounded-[5px] ${
+                                props.simulatorPlayer.summonerName ===
+                                props.player.summonerName
+                                    ? "bg-[#241122]"
+                                    : "bg-[#191531]"
+                            }`}
+                        >
+                            {styleSelector(
+                                props.player?.perks?.styles[1]?.style
+                            ) && (
                                 <Image
-                                    src={`https://ddragon.canisback.com/img/${findRuneIcon(props?.player?.perks?.styles[0]?.selections[0]?.perk)}`}
+                                    src={styleSelector(
+                                        props.player?.perks?.styles[1]?.style
+                                    )}
                                     alt=" batch img"
                                     layout="fill"
                                     className=" rounded-[5px] "
                                 />
-                                <div
-                                    className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                    
-                                >
-                                    <span>{getRuneDescription(props?.player?.perks?.styles[0]?.selections[0]?.perk)}</span>
-                                    <div
-                                        className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                    />
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    <div className=" relative w-[22px] h-[22px] rounded-[5px] ">
-                        {styleSelector(
-                            props.player?.perks?.styles[1]?.style
-                        ) && (
-                            <Image
-                                src={styleSelector(
-                                    props.player?.perks?.styles[1]?.style
-                                )}
-                                alt=" batch img"
-                                layout="fill"
-                                className=" rounded-[5px] "
-                            />
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -134,7 +134,7 @@ const LosAndWinRow = (props) => {
 
 	return (
 		<section>
-			<div className="container">
+			<div className="container max-w-[1340px] ">
 				<div
 					className=" bg-card-&-content-box px-[25px] h-10 flex justify-center 
                                 items-center gap-x-[72px]   
@@ -200,7 +200,7 @@ const LosAndWinRow = (props) => {
 							/>
 						</div>
 					) : (
-						<div className=" flex gap-x-12 items-center">
+						<div className=" flex gap-x-[27px] items-center">
 							<p className=" font-sf-pro-text text-[14px] leading-[16px] text-accent-color font-bold desktop:text-base   ">
 								Defeat
 							</p>

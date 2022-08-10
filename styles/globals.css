@@ -283,6 +283,9 @@
     .inter-bold-14 {
         @apply font-inter text-[14px] leading-[20px] font-bold;
     }
+    .inter-bold-10 {
+        @apply font-inter text-[10px] leading-[140%] font-bold;
+    }
     /* container  */
     .container {
         /* @apply laptop:pl-[50px]; */

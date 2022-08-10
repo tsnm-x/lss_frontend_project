@@ -1,0 +1,15 @@
+.sliderComp {
+    width: 1000px;
+    /* height: 50px; */
+    background: linear-gradient(
+        90.14deg,
+        rgba(20, 23, 38, 0.17) 0%,
+        rgba(217, 217, 217, 0.12) 100%
+    );
+    border-radius: 5px;
+}
+
+
+.sliderSlide {
+  @apply w-full
+}
