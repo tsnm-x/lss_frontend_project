@@ -38,42 +38,44 @@ const Profile = (props) => {
     };
 
     const convertToDate = (timeStamp) => {
-        if(timeStamp){
+        if (timeStamp) {
             const now = new Date();
-            const updateTime = (now.getTime() - new Date(timeStamp)?.getTime()) / 86400000;
-            if(updateTime >= 1){
-                return Math.ceil(updateTime) + "days ago"
+            const updateTime =
+                (now.getTime() - new Date(timeStamp)?.getTime()) / 86400000;
+            if (updateTime >= 1) {
+                return Math.ceil(updateTime) + "days ago";
             } else {
-                let hours = updateTime * 24
-                let minutes = hours * 24
-                let seconds = minutes * 24
-                
-                if(hours >= 1){
-                    return Math.ceil(hours) + " hours ago"
-                } else if(minutes >= 1){
-                    return Math.ceil(minutes) + " minutes ago"
-                } else if(seconds >= 1){
-                    return Math.ceil(seconds) + " seconds ago"
-                } 
-                return "just now"
+                let hours = updateTime * 24;
+                let minutes = hours * 24;
+                let seconds = minutes * 24;
+
+                if (hours >= 1) {
+                    return Math.ceil(hours) + " hours ago";
+                } else if (minutes >= 1) {
+                    return Math.ceil(minutes) + " minutes ago";
+                } else if (seconds >= 1) {
+                    return Math.ceil(seconds) + " seconds ago";
+                }
+                return "just now";
             }
-            
         }
 
-        return "fetching..."
-    }
+        return "fetching...";
+    };
 
     return (
         <div className=" flex gap-x-[35px] ">
             {/* profile image  */}
             <div className=" relative w-[115px] h-[115px] ">
                 <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
-                    <Image
-                        src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/profileicon/${props.profileIcon}.png`}
-                        alt="profile image"
-                        layout="fill"
-                        className=" rounded-[20px]"
-                    />
+                    {props.profileIcon && (
+                        <Image
+                            src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/profileicon/${props.profileIcon}.png`}
+                            alt="profile image"
+                            layout="fill"
+                            className=" rounded-[20px]"
+                        />
+                    )}
                 </div>
                 <div
                     className=" w-[35px] h-[35px] rounded-full border-[#F5F5F5] border flex 
