@@ -137,6 +137,44 @@ const Btns = (props) => {
         }
     }
 
+    const determineProgress = (lp) => {
+        if(rank || lp){
+            if(rank?.tier === "MASTER"){
+                const progress = (600 - lp)/600
+
+                if(progress >= 1){
+                    return `${1 * (2 * (Math.PI) * 48 )}`
+                }
+                
+                return `${progress * (2 * (Math.PI) * 48 )}`
+                
+            } else if(rank?.tier === "GRANDMASTER"){
+                const progress = ((900-600) - (lp-600))/(900-600)
+                if(progress >= 1){
+                    return `${1 * (2 * (Math.PI) * 48 )}`
+                }
+                return `${progress * (2 * (Math.PI) * 48 )}`
+                
+            } else if(rank?.tier === "CHALLENGER"){
+                const progress = ((1700-900) - (lp-900))/(1700-900)
+
+                if(progress >= 1){
+                    return `${1 * (2 * (Math.PI) * 48 )}`
+                }
+                
+                return `${progress * (2 * (Math.PI) * 48 )}`
+                
+            }
+    
+            
+            const progress = (100 - lp) / 100
+            
+            return `${progress * (2 * (Math.PI) * 48 )}`
+             
+        }
+        
+    }
+
     const matchElement =
         rank?.miniSeries?.progress &&
         [...rank?.miniSeries?.progress]?.map((match, index) => {
@@ -185,7 +223,7 @@ const Btns = (props) => {
                                 bg-[#3e3847] px-[10px] py-[12px]  smDesktop:text-[14px] smDesktop:leading-[17px] `}
                     onClick={() => rankHandler("FLEX")}
                 >
-                    Ranked FLEX
+                    Ranked Flex
                 </button>
             </div>
             {/* graph component  */}
@@ -193,10 +231,12 @@ const Btns = (props) => {
             <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon}`}>
-                    <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
-                        <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="0.5" stroke="#AAA0A8" shapeRendering="geometricPrecision"></circle>
-                        {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} strokeWidth="4" strokeLinecap="round" stroke={`${colorSelector(rank?.tier)}`} shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
-                    </svg>
+                    <div className={`row-start-2 col-start-1`}>
+                        <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
+                            <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="0.5" stroke="#AAA0A8" shapeRendering="geometricPrecision"></circle>
+                            {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${determineProgress(rank?.leaguePoints)}`} strokeWidth="2" strokeLinecap="round" stroke={`${colorSelector(rank?.tier)}`} shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
+                        </svg>
+                    </div>
                     {/* img  */}
                     <div className={`${Classess.rankImg}`}>
                         <Image
@@ -208,21 +248,21 @@ const Btns = (props) => {
                     </div>
                     {/* bg mask  */}
                     <div className={` ${bgSelector(rank?.tier)} ${Classess.rankMask}`} style={{
-                        opacity: `${rank?.leaguePoints/100}`
+                        opacity: `${(rank?.leaguePoints >= 101 ? (80/100) : (rank?.leaguePoints/100)) * (0.65)}`
                     }}></div>
                 </div>
                 {/* match  */}
                 <div className=" mt-3 ">
-                    <div className=" flex flex-col items-end mr-[26px] ">
+                    <div className=" flex flex-col text-center ">
                         <h3
                             className={`font-mazin text-[18px] leading-[23px] font-bold ${textColor(rank?.tier)}`}
                         >
                             {rank?.tier ? rank?.tier?.charAt(0) +
                                 rank?.tier?.slice(1).toLowerCase()
-                                : "-"}{rank?.tier === "GRANDMASTER" || rank?.tier === "MASTER" || rank?.tier === "CHALLENGER" ?  "" : ` ${rank?.rank}`}
+                                : "-"}{rank?.tier ? rank?.tier === "GRANDMASTER" || rank?.tier === "MASTER" || rank?.tier === "CHALLENGER" ?  "" : ` ${rank?.rank}` : ""}
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
-                            {rank?.leaguePoints ? rank?.leaguePoints : 0}lp
+                            {rank?.leaguePoints ? rank?.leaguePoints : 0} lp
                         </h1>
                         <h4 className=" font-sf-pro-text text-[11px] leading-[13.1px] font-[500] text-[#5d7cf6] mr-[3px] ">
                             { rank?.wins || rank?.losses ? (
