@@ -132,16 +132,19 @@ const ProfileIntro = (props) => {
                     </div>
                 </div>
 
-                <div className={` w-[80%] h-full absolute right-0 top-0 z-30 `}>
-                    <Image
-                        src={DefeatCoverImg}
-                        alt="cover image"
-                        layout="fill"
-                        objectFit="cover"
-                    />
+                <div>
+                    <div
+                        className={` w-[80%] h-full absolute right-0 top-0 z-30 `}
+                    >
+                        <Image
+                            src={DefeatCoverImg}
+                            alt="cover image"
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    </div>
+                    <div className={`${Classess.bgImgMask}  z-40`}></div>
                 </div>
-
-                <div className={`${Classess.bgImgMask}  z-40`}></div>
             </section>
         </>
     );

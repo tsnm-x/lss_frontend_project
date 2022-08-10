@@ -26,7 +26,7 @@ const HeaderWithSearchbar = (props) => {
                     {/* language select  */}
                     <LanguageSelect />
                     {/* resp nav bar  */}
-                    <button className=" w-[35px] flex flex-col justify-between h-[27px]  ">
+                    <button className=" w-[35px] flex flex-col justify-between h-[24px]  ">
                         {["", "", ""].map((item, index) => {
                             return (
                                 <div

@@ -64,7 +64,7 @@ const Profile = (props) => {
     };
 
     return (
-        <div className=" flex gap-x-[35px] ">
+        <div className=" flex gap-x-[35px] relative z-50 ">
             {/* profile image  */}
             <div className=" relative w-[115px] h-[115px] ">
                 <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">

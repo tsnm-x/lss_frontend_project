@@ -16,6 +16,6 @@
 }
 
 .bgImgMask {
-    @apply w-[86%] h-full absolute right-0 top-0 z-20;
+    @apply w-full h-full absolute right-0 top-0 z-20;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #140A22 100%);;
 }

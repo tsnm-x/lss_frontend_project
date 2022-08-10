@@ -145,8 +145,8 @@ const Btns = (props) => {
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon}`}>
                     <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
-                        <circle r="48" cx="50%" cy="50%" fill="transparent" stroke-dasharray="301.59289474462014" stroke-dashoffset="1" stroke-width="2.6666666666666665" stroke="var(--shade6)" shape-rendering="geometricPrecision"></circle>
-                        {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" stroke-dasharray={`${(2 * (Math.PI) * 48 )}`} stroke-dashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} stroke-width="4" stroke-linecap="round" stroke="#CD8837" shape-rendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
+                        <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="2.6666666666666665" stroke="var(--shade6)" shapeRendering="geometricPrecision"></circle>
+                        {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} strokeWidth="4" strokeLinecap="round" stroke="#CD8837" shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
                     </svg>
                     {/* img  */}
                     <div className={`${Classess.rankImg}`}>
