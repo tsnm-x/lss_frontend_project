@@ -405,7 +405,7 @@ const GameStaticsGraph = (props) => {
                 {/* graph cards  */}
                 <div className=" mt-5 ">
                     <input
-                        className="text-full-dark w-[100%]"
+                        className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
                         type="range"
                         min="0"
                         max={(frames?.length - 2).toString()}

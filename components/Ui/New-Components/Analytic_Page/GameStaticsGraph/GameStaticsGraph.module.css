@@ -11,5 +11,43 @@
 
 
 .sliderSlide {
-  @apply w-full
+  @apply w-full;
+  -webkit-appearance:none;
+  appearance:none;
+  background: linear-gradient(
+        90.14deg,
+        rgba(20, 23, 38, 0.17) 0%,
+        rgba(217, 217, 217, 0.12) 100%
+    );
+}
+
+.sliderSlide::-webkit-slider-runnable-track {
+  background: linear-gradient(
+        to right,
+        rgba(20, 23, 38, 0.17) 0%,
+        rgba(217, 217, 217, 0.12) 100%
+    );
+    height: 1.5px;
+}
+
+.sliderSlide::-moz-range-track {
+  background: linear-gradient(
+        to right,
+        rgba(20, 23, 38, 0.17) 0%,
+        rgba(217, 217, 217, 0.12) 100%
+    );
+
+    height: 1.5px;
+}
+
+.sliderSlide::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+   appearance: none;
+   @apply bg-[#5d6182] w-[40px] h-[30px] rounded-[1px] 
+   border border-[rgba(0,0,0,0.04)] z-[50];
+   margin-top: -15px;
+}
+
+.sliderSlide::-webkit-slider-thumb:before {
+  content: "3:00"
 }
