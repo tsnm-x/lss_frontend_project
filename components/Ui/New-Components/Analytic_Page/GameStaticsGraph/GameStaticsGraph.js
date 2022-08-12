@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import GoldDiffChart from "../../Profile/OverviewElement/SimulateGame/Simulation/GoldDiffChart/GoldDiffChart";
 import Image from "next/image";
@@ -23,6 +23,27 @@ import redVector from "../../../../../public/assets/new-images/Profile/card/Card
 const GameStaticsGraph = (props) => {
     const frames = props?.frames;
     const [framePointer, setFramePointer] = useState(5);
+    const [step, setStep] = useState(0);
+    const ref = useRef(null);
+
+    function convertHMS(value) {
+        if(value){
+            const sec = value / 1000; // convert value to number if it's string
+            let hours = Math.floor(sec / 3600); // get hours
+            let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+            let seconds = (sec - (hours * 3600) - (minutes * 60)).toFixed(0); //  get seconds
+            // add 0 if value < 10; Example: 2 => 02
+            if (minutes < 10) {
+                minutes = minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            return minutes + ":" + seconds;
+        }
+
+        return "0:00"
+    }
 
     const teamObject = {
         blueTeam: [
@@ -155,6 +176,11 @@ const GameStaticsGraph = (props) => {
         props.frameChange(5);
     }, []);
 
+    useEffect(() => {
+        const calcStep =
+          (ref.current.offsetWidth - 40)  / ref.current.max;
+        setStep(calcStep);
+      }, [frames, framePointer]);
     return (
         <section>
             <div className="container pt-6 px-[18px] bg-[#110a1b] max-w-[1340px] pb-[40vh] ">
@@ -404,17 +430,32 @@ const GameStaticsGraph = (props) => {
 				</div> */}
                 {/* graph cards  */}
                 <div className=" mt-5 ">
-                    <input
-                        className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
-                        type="range"
-                        min="0"
-                        max={(frames?.length - 2).toString()}
-                        value={framePointer}
-                        onChange={(e) => {
-                            setFramePointer(e.target.value);
-                            props.frameChange(e.target.value);
-                        }}
-                    />
+                    <div className={`${Classess.parent} grid grid-cols-1 grid-rows-1`}>
+                        <input
+                            className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
+                            type="range"
+                            id="range"
+                            min="0"
+                            max={(frames?.length - 2).toString()}
+                            value={framePointer}
+                            onChange={(e) => {
+                                setFramePointer(e.target.value);
+                                props.frameChange(e.target.value);
+                            }}
+                            ref={ref}
+                        />
+                        {frames && <label className={`${Classess.bubble} text-white text-center font-inter w-[40px] h-[30px]`} 
+                            htmlFor="range"
+                            style={{
+                                transform: `translate(${framePointer * step}px, -25%)`,
+                                fontSize: `0.7rem`
+                            }}
+                        > 
+                            {convertHMS(frames[props?.selectedFrame]?.timestamp)}
+                        </label>}
+                    </div>
+                    
+
                     {/* left graph  */}
                     {/* <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
 						<h1 className=" sf-bold-40 capitalize ">coming soon</h1>

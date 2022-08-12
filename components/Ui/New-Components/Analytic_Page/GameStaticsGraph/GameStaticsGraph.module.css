@@ -47,7 +47,11 @@
    border border-[rgba(0,0,0,0.04)] z-[50];
    margin-top: -15px;
 }
+.bubble{
+  position:absolute;
+  pointer-events: none;
+}
 
-.sliderSlide::-webkit-slider-thumb:before {
-  content: "3:00"
+.parent{
+  position:relative;
 }

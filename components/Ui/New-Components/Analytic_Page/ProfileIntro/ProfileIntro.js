@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ProfileImg from "../../../../../public/assets/new-images/Profile/Jhin.png";
 import DefeatCoverImg from "../../../../../public/assets/new-images/Profile/defeat-cover.png";
 import Classess from "./ProfileIntro.module.css";
 
 const ProfileIntro = (props) => {
+
+    const [championId, setChampionId] = useState();
+
+    useEffect(() => {
+        if (props.mainPlayer) {
+            setChampionId(props.mainPlayer?.championId);
+        }
+    }, [props.mainPlayer]);
     const profileDetails = {
         name: "defeat",
         rank: {
@@ -133,16 +141,16 @@ const ProfileIntro = (props) => {
                 </div>
 
                 <div>
-                    <div
+                    {championId && <div
                         className={` w-[80%] h-full absolute right-0 top-0 z-30 `}
                     >
                         <Image
-                            src={DefeatCoverImg}
+                            src={`/assets/new-images/Profile/championBackgrounds/champId ${championId}.png`}
                             alt="cover image"
                             layout="fill"
                             objectFit="cover"
                         />
-                    </div>
+                    </div>}
                     <div className={`${Classess.bgImgMask}  z-40`}></div>
                 </div>
             </section>
