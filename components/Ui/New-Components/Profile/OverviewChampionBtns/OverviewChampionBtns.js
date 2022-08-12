@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { BiMessage } from "react-icons/bi";
+import { BiMessageAlt } from "react-icons/bi";
 
 const OverviewChampionBtns = (props) => {
     const { controller, currentView } = props;
@@ -25,10 +25,10 @@ const OverviewChampionBtns = (props) => {
                             <button
                                 onClick={() => controller("overview")}
                                 className={` mazin-bold-21 capitalize  ${
-                            currentView === "overview"
-                                ? " text-accent-color"
-                                : "text-grayed-text"
-                        } `}
+                                    currentView === "overview"
+                                        ? " text-accent-color"
+                                        : "text-grayed-text"
+                                } `}
                             >
                                 overview
                             </button>
@@ -41,10 +41,10 @@ const OverviewChampionBtns = (props) => {
                         <button
                             onClick={() => controller("champPool")}
                             className={` mazin-bold-21 capitalize ${
-                        currentView === "champPool"
-                            ? " text-accent-color"
-                            : "text-grayed-text"
-                    } `}
+                                currentView === "champPool"
+                                    ? " text-accent-color"
+                                    : "text-grayed-text"
+                            } `}
                         >
                             champion pool
                         </button>
@@ -65,10 +65,10 @@ const OverviewChampionBtns = (props) => {
                         </h6>
                     </div>
                     {/* button  */}
-                    <button className=" bg-[#e3e3f2] w-[103px] h-[32px] flex items-center justify-center rounded-5px  ">
+                    <button className=" bg-white hover:bg-[rgba(227,227,242,0.3)] w-[103px] h-[32px] flex items-center justify-center rounded-5px  ">
                         {" "}
-                        <div className=" bg-white mr-2 px-[1px] py-[0.5px]  ">
-                            <BiMessage className=" text-accent-color text-[17px] " />{" "}
+                        <div className=" mr-2 px-[1px] py-[0.5px]  ">
+                            <BiMessageAlt className=" text-accent-color text-[17px] " />{" "}
                         </div>
                         <h5 className=" sf-bold-14 text-accent-color capitalize ">
                             report
