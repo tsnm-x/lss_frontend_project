@@ -44,7 +44,7 @@ const OverviewCards = (props) => {
     }, [rankedSolo, normals, rankedFlex, props.selectedMatchType]);
     return (
         <aside
-            className={`w-full smDesktop:w-[initial] desktop:mt-[37px]  ${
+            className={`w-[initial]   ${
                 props.expand && "card-expand"
             } ${props.className} `}
         >
