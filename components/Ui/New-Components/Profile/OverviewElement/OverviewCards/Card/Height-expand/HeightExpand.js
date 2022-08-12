@@ -439,7 +439,11 @@ const DataRow = (props) => {
     return (
         <div
             className={`grid grid-cols-[130px_99px_97px_93px_215px_120px_111px] rounded-5px mb-1 last:mb-0 ${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : props.won ? "bg-[#181631]" : "bg-[#251122]"
+                props?.convertM(props?.match?.duration) <= 5
+                    ? "bg-[#3a3242]"
+                    : props.won
+                    ? "bg-[#181631]"
+                    : "bg-[#251122]"
             } `}
         >
             {/*  profile  */}
@@ -452,18 +456,22 @@ const DataRow = (props) => {
                         ) && (
                             <div>
                                 <Image
-                                    src={`https://ddragon.canisback.com/img/${findRuneIcon(props?.perks?.styles[0]?.selections[0]?.perk )}`}
+                                    src={`https://ddragon.canisback.com/img/${findRuneIcon(
+                                        props?.perks?.styles[0]?.selections[0]
+                                            ?.perk
+                                    )}`}
                                     alt="rank image"
                                     layout="fill"
                                     className=" rounded-5px "
                                 />
-                                <div
-                                    className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                >
-                                    <span>{getRuneDescription(props?.perks?.styles[0]?.selections[0]?.perk)}</span>
-                                    <div
-                                        className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                    />
+                                <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                    <span>
+                                        {getRuneDescription(
+                                            props?.perks?.styles[0]
+                                                ?.selections[0]?.perk
+                                        )}
+                                    </span>
+                                    <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                 </div>
                             </div>
                         )}
@@ -503,28 +511,47 @@ const DataRow = (props) => {
                 {/* profile img  */}
                 <div>
                     <div className=" relative w-11 h-11 rounded-[5px] ">
-                        {getChampion(props?.championName) && <div
-                            className="rounded-[10px]"
-                            style={{
-                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getChampion(props?.championName)?.sprite}') no-repeat`,
-                                width: `${getChampion(props?.championName)?.w}px`,
-                                height: `${getChampion(props?.championName)?.h}px`,
-                                backgroundPosition: `-${getChampion(props?.championName)?.x}px -${getChampion(props?.championName)?.y}px`,
-                                // backgroundSize: "1000% 300%",
-                                // zoom: `0.38`
-                            }}
-                        ></div>}
+                        {getChampion(props?.championName) && (
+                            <div
+                                className="rounded-[10px]"
+                                style={{
+                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                        getChampion(props?.championName)?.sprite
+                                    }') no-repeat`,
+                                    width: `${
+                                        getChampion(props?.championName)?.w
+                                    }px`,
+                                    height: `${
+                                        getChampion(props?.championName)?.h
+                                    }px`,
+                                    backgroundPosition: `-${
+                                        getChampion(props?.championName)?.x
+                                    }px -${
+                                        getChampion(props?.championName)?.y
+                                    }px`,
+                                    // backgroundSize: "1000% 300%",
+                                    // zoom: `0.38`
+                                }}
+                            ></div>
+                        )}
                     </div>
                 </div>
             </div>
             {/* name  */}
             <div className=" flex flex-col justify-center ">
-                <Link href={{
-                    pathname: "/summoner/[region]/[summonerName]",
-                    query: {region: router?.query?.region, summonerName: props?.summonerName}
-                }}>
-                    <h1 className={`sf-bold-14 text-white capitalize cursor-pointer`}>
-                        {props?.summonerName?.slice(0,7)}
+                <Link
+                    href={{
+                        pathname: "/summoner/[region]/[summonerName]",
+                        query: {
+                            region: router?.query?.region,
+                            summonerName: props?.summonerName,
+                        },
+                    }}
+                >
+                    <h1
+                        className={`sf-bold-14 text-white capitalize cursor-pointer`}
+                    >
+                        {props?.summonerName?.slice(0, 7)}
                     </h1>
                 </Link>
                 {Rank}
@@ -532,11 +559,12 @@ const DataRow = (props) => {
             {/* creep score  */}
             <div className=" flex flex-col justify-center ">
                 <h1 className={` ${Classes.cellTitle}`}>
-                    {props?.neutralMinionsKilled +  props?.totalMinionsKilled} cs
+                    {props?.neutralMinionsKilled + props?.totalMinionsKilled} cs
                 </h1>
                 <h1 className={` ${Classes.secTitle}`}>
                     {(
-                        (props?.neutralMinionsKilled +  props?.totalMinionsKilled) /
+                        (props?.neutralMinionsKilled +
+                            props?.totalMinionsKilled) /
                         convertM(props.match?.duration)
                     )?.toFixed(1)}{" "}
                     cs/min
@@ -577,21 +605,21 @@ const DataRow = (props) => {
                                     <div
                                         className={`rounded-[5px]`}
                                         style={{
-                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(img)?.sprite}') no-repeat`,
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                getItem(img)?.sprite
+                                            }') no-repeat`,
                                             width: `${getItem(img)?.w}px`,
                                             height: `${getItem(img)?.h}px`,
-                                            backgroundPosition: `-${getItem(img)?.x}px -${getItem(img)?.y}px`,
+                                            backgroundPosition: `-${
+                                                getItem(img)?.x
+                                            }px -${getItem(img)?.y}px`,
                                             // backgroundSize: "contain",
-                                            zoom: `0.52`
+                                            zoom: `0.52`,
                                         }}
                                     ></div>
-                                    <div
-                                        className='absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100'
-                                    >
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
                                         <span>{getItemDetails(img)}</span>
-                                        <div
-                                            className='absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white'
-                                        />
+                                        <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                     </div>
                                 </div>
                             )}
@@ -600,17 +628,25 @@ const DataRow = (props) => {
                 })}
                 {
                     <div className=" relative w-5 h-5 rounded-[5px] ">
-                        {props?.item6 !== 0 && getItem(props?.item6) && getItem(props?.item6)?.sprite && (<div
-                                className={`rounded-[5px]`}
-                                style={{
-                                    background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(props?.item6)?.sprite}') no-repeat`,
-                                    width: `${getItem(props?.item6)?.w}px`,
-                                    height: `${getItem(props?.item6)?.h}px`,
-                                    backgroundPosition: `-${getItem(props?.item6)?.x}px -${getItem(props?.item6)?.y}px`,
-                                    // backgroundSize: "contain",
-                                    zoom: `0.4`
-                                }}
-                            ></div>)}
+                        {props?.item6 !== 0 &&
+                            getItem(props?.item6) &&
+                            getItem(props?.item6)?.sprite && (
+                                <div
+                                    className={`rounded-[5px]`}
+                                    style={{
+                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                            getItem(props?.item6)?.sprite
+                                        }') no-repeat`,
+                                        width: `${getItem(props?.item6)?.w}px`,
+                                        height: `${getItem(props?.item6)?.h}px`,
+                                        backgroundPosition: `-${
+                                            getItem(props?.item6)?.x
+                                        }px -${getItem(props?.item6)?.y}px`,
+                                        // backgroundSize: "contain",
+                                        zoom: `0.4`,
+                                    }}
+                                ></div>
+                            )}
                     </div>
                 }
             </div>
@@ -624,7 +660,9 @@ const DataRow = (props) => {
                 >
                     <div
                         className={`h-full rounded-full ${
-                            props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-50" : props.won
+                            props?.convertM(props?.match?.duration) <= 5
+                                ? "bg-yellow-50"
+                                : props.won
                                 ? " bg-accent-color-2"
                                 : " bg-accent-color"
                         }`}

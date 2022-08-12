@@ -30,7 +30,7 @@ const Batch = (props) => {
         <div
             className={` w-[200px] py-[15px] px-[20px] rounded-[5px] grid
              grid-cols-[2fr_1fr_1fr] grid-rows-2 gap-y-3 ${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : props.type === "victory" ? "bg-[#181631]" : "bg-[#251122]"
+                props?.convertM(props?.match?.duration) <= 5 ? " bg-whiteOpacity" : props.type === "victory" ? "bg-[#181631]" : "bg-[#251122]"
              } `}
         >
             {/* sord  */}

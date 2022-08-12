@@ -83,14 +83,22 @@ const BuildCard = (props) => {
     return (
         <div
             className={`px-5 py-4 ${
-                props?.convertM(props?.match?.duration) <= 5 ? "bg-yellow-900" : mainPlayer?.win ? " bg-winOpacity w-[518px] " : " bg-defeatOpacity w-[518px] "
+                props?.convertM(props?.match?.duration) <= 5
+                    ? " bg-whiteOpacity"
+                    : mainPlayer?.win
+                    ? " bg-winOpacity w-[518px] "
+                    : " bg-defeatOpacity w-[518px] "
             }`}
         >
-            <h3 className={` sf-bold-12 capitalize ${
-                props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" : mainPlayer?.win
-                ? "text-accent-color-2"
-                : " text-nav-btn"
-            }`}>
+            <h3
+                className={` sf-bold-12 capitalize ${
+                    props?.convertM(props?.match?.duration) <= 5
+                        ? "text-yellow-50"
+                        : mainPlayer?.win
+                        ? "text-accent-color-2"
+                        : " text-nav-btn"
+                }`}
+            >
                 build
             </h3>
             <div className=" flex ml-[10px] gap-x-[10px] mt-5 ">
@@ -106,23 +114,37 @@ const BuildCard = (props) => {
                     return (
                         <div
                             key={index}
-                            className={`w-[50px] h-[50px] rounded-full relative bg-[#2f2937]  `}
+                            className={`w-[50px] h-[50px] rounded-full relative bg-[rgba(217,217,217,0.1)]  `}
                         >
-                            {item !== 0 && getItem(item) && getItem(item)?.sprite && (<div
-                                className={`rounded-full ${
-                                    mythicHighlighter(item)
-                                        ? props?.convertM(props?.match?.duration) <= 5 ? "border-2 border-[#FEFCE8]" :  mainPlayer?.win? "border-2 border-[#198cff]" : "border-2 border-[#D55460]"
-                                        : ""
-                                } `}
-                                    style={{
-                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${getItem(item)?.sprite}') no-repeat`,
-                                        width: `${getItem(item)?.w}px`,
-                                        height: `${getItem(item)?.h}px`,
-                                        backgroundPosition: `-${getItem(item)?.x}px -${getItem(item)?.y}px`,
-                                        // backgroundSize: "contain",
-                                        zoom: `1.05`
-                                    }}
-                                ></div>)}
+                            {item !== 0 &&
+                                getItem(item) &&
+                                getItem(item)?.sprite && (
+                                    <div
+                                        className={`rounded-full ${
+                                            mythicHighlighter(item)
+                                                ? props?.convertM(
+                                                      props?.match?.duration
+                                                  ) <= 5
+                                                    ? "border-2 border-[#FEFCE8]"
+                                                    : mainPlayer?.win
+                                                    ? "border-2 border-[#198cff]"
+                                                    : "border-2 border-[#D55460]"
+                                                : ""
+                                        } `}
+                                        style={{
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                getItem(item)?.sprite
+                                            }') no-repeat`,
+                                            width: `${getItem(item)?.w}px`,
+                                            height: `${getItem(item)?.h}px`,
+                                            backgroundPosition: `-${
+                                                getItem(item)?.x
+                                            }px -${getItem(item)?.y}px`,
+                                            // backgroundSize: "contain",
+                                            zoom: `1.05`,
+                                        }}
+                                    ></div>
+                                )}
                         </div>
                     );
                 })}

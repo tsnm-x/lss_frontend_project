@@ -33,7 +33,7 @@ module.exports = {
             maxWidth: {
                 // old 1.0
                 "max-container": "1370px",
-                "sm-container": "1216px"
+                "sm-container": "1216px",
             },
             colors: {
                 // old 1.0
@@ -69,6 +69,7 @@ module.exports = {
                 "text-gray-200": "#9D9D9D",
                 winOpacity: "#24213d",
                 defeatOpacity: "#301d2e",
+                whiteOpacity: "#3a3242",
             },
             fontSize: {
                 // old 1.0

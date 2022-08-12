@@ -133,7 +133,7 @@ const RankCard = (props) => {
                     ].map((item, index) => {
                         return (
                             <div
-                                className={`relative rounded-full bg-[#2f2936]  ${
+                                className={`relative rounded-full bg-[rgba(217,217,217,0.1)]  ${
                                     props.imgClassName
                                         ? props.imgClassName
                                         : `w-[30px] h-[30px]`
