@@ -101,11 +101,11 @@ const Profile = (props) => {
                     >
                         {props?.btnDetails[0].text}
                     </button>
-                    <Link href={props?.btnDetails[1].url}>
+                    {/* <Link href={props?.btnDetails[1].url}>
                         <button className=" w-[140px] h-[50px] flex items-center justify-center rounded-5px bg-[#f5f5f5] font-sf-pro-text font-[500] text-[15px] leading-[18px] text-[#140A22] capitalize hover:bg-[#8a8488]  ">
                             {props?.btnDetails[1].text}
                         </button>
-                    </Link>
+                    </Link> */}
                 </div>
                 {/* last update  */}
                 <div className=" rounded-full border-white border px-4 py-[6px] inline-flex items-center gap-x-2 mt-[15px] ">
