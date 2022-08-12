@@ -230,8 +230,8 @@ const Btns = (props) => {
             {/* {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] "> */}
             <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
                 {/* rank icon  */}
-                <div className={`${Classess.rankIcon}`}>
-                    <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
+                <div className={`${Classess.rankIcon} relative`}>
+                    <svg width="108" height="108" viewBox="0 0 100 100" className=" block absolute top-0" >
                         <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="2.6666666666666665" stroke="var(--shade6)" shapeRendering="geometricPrecision"></circle>
                         {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${((100 - rank?.leaguePoints)/ 100) * (2 * (Math.PI) * 48 )}`} strokeWidth="4" strokeLinecap="round" stroke="#CD8837" shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
                     </svg>
