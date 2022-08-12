@@ -60,8 +60,8 @@ const OverviewChampionBtns = (props) => {
                         <h6 className=" mazin-bold-16 text-white ">
                             Have you encountered a problem during your visit?
                         </h6>
-                        <h6 className=" mazin-bold-14 text-[#8e8a94] mt-[6px] ">
-                            Have you encountered a problem during your visit?
+                        <h6 className=" mazin-bold-14 text-[#8e8a94] mt-[6px] tracking-[0.3px] ">
+                            We listen better than League’s Balance Team :)
                         </h6>
                     </div>
                     {/* button  */}

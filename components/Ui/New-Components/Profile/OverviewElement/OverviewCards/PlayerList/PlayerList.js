@@ -4,15 +4,15 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import Classess from "./PlayerList.module.css";
 
 const PlayerList = (props) => {
     const champions = useSelector((state) => state.champions.champions);
     const router = useRouter();
 
-
     const getChampion = (player) => {
         return champions[player]?.image;
-    }
+    };
 
     const orderedPlayersList = [];
     orderedPlayersList[0] = props.match.players[0];
@@ -25,7 +25,6 @@ const PlayerList = (props) => {
     orderedPlayersList[7] = props.match.players[8];
     orderedPlayersList[8] = props.match.players[4];
     orderedPlayersList[9] = props.match.players[9];
-
 
     let mainPlayer = props.match.players.find((player) => {
         return player.mainPlayer == true;
@@ -100,7 +99,8 @@ const PlayerList = (props) => {
                                     }}
                                 >
                                     <h6
-                                        className={` sf-bold-14 capitalize cursor-pointer w-[62px] ${
+                                        title={player?.summonerName}
+                                        className={` sf-bold-14 capitalize cursor-pointer w-[62px] relative ${
                                             player?.mainPlayer
                                                 ? props?.convertM(
                                                       props?.match?.duration
@@ -110,11 +110,26 @@ const PlayerList = (props) => {
                                                     ? "text-accent-color-2"
                                                     : "text-accent-color"
                                                 : "text-grayed-text"
-                                        } `}
+                                        } ${Classess.playerName} `}
                                     >
                                         {player?.summonerName?.slice(0, 7)}
                                         {/* {player?.summonerName?.length >= 7 &&
                                             "..."} */}
+                                        <div
+                                            className={`${
+                                                Classess.playerUnderline
+                                            } ${
+                                                player?.mainPlayer
+                                                    ? props?.convertM(
+                                                          props?.match?.duration
+                                                      ) <= 5
+                                                        ? "bg-yellow-50"
+                                                        : player?.win
+                                                        ? "bg-accent-color-2"
+                                                        : "bg-accent-color"
+                                                    : "bg-grayed-text"
+                                            } `}
+                                        ></div>
                                     </h6>
                                 </Link>
                             </div>

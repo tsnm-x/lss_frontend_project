@@ -1,0 +1,8 @@
+.playerUnderline {
+    @apply w-0 absolute h-[2px] rounded-full;
+    transition: width 0.3s;
+}
+
+.playerName:hover .playerUnderline {
+    width: 100%;
+}
