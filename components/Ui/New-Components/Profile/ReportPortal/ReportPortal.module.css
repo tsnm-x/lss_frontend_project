@@ -7,5 +7,5 @@
 }
 
 .headMsg {
-    @apply font-sf-pro-text font-[500] text-[18px] leading-[20px] text-[#8e8a94] mt-3
+    @apply font-sf-pro-text font-[500] text-[18px] leading-[20px] text-[#8e8a94] mt-[14px];
  }

@@ -16,6 +16,17 @@ const RightImg = () => {
             active: false,
         },
     ]);
+
+    const btnHandler = (id) => {
+        setFormBtn((prevState) => {
+            const newState = [...prevState];
+            newState.forEach((item, index) => {
+                index === id ? (item.active = true) : (item.active = false);
+            });
+            return newState;
+        });
+    };
+
     return (
         <div className=" w-[697px] bg-[#1e1629] pt-[28px] pl-[75px] pr-[100px] ">
             <div className=" ">
@@ -43,10 +54,28 @@ const RightImg = () => {
                     </div>
                 </div>
                 {/* form btn  */}
-                <div>
-                    <div>
-                        <span></span>
-                    </div>
+                <div className=" flex gap-x-[70px] mt-[44px]  ">
+                    {formBtn.map((btn, index) => {
+                        return (
+                            <div
+                                key={index}
+                                className=" cursor-pointer"
+                                onClick={() => btnHandler(index)}
+                            >
+                                <p
+                                    className={`text-[#D55460] ${
+                                        btn.active ? "" : "text-[#8e8a94]"
+                                    } font-mazin font-bold 
+                                        text-[18px] leading-[20px] capitalize `}
+                                >
+                                    {btn.text}
+                                </p>
+                                {btn.active ? (
+                                    <div className=" w-[90%] mx-auto mt-2 h-[3px] bg-[#D55460] "></div>
+                                ) : null}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
