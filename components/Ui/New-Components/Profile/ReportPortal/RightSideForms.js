@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Classess from "./ReportPortal.module.css";
 import GoBackIcon from "../../../../../public/assets/new-images/Profile/ReportBackdrop/go back.png";
-import { BsArrowReturnLeft } from "react-icons/bs";
 import Image from "next/image";
-import { useState } from "react";
+import ReportIssue from "./ReportIssue";
+import WriteReview from "./WriteAReview";
 
 const RightImg = () => {
     const [formBtn, setFormBtn] = useState([
@@ -28,7 +28,7 @@ const RightImg = () => {
     };
 
     return (
-        <div className=" w-[697px] bg-[#1e1629] pt-[28px] pl-[75px] pr-[100px] ">
+        <div className=" w-[697px] bg-[#1e1629] pt-[28px] pb-[140px] pl-[75px] pr-[100px] ">
             <div className=" ">
                 {/* go back btn  */}
                 <button className={`${Classess.goBackBtn} ml-auto `}>
@@ -77,6 +77,7 @@ const RightImg = () => {
                         );
                     })}
                 </div>
+                {formBtn[0].active ? <ReportIssue /> : <WriteReview />}
             </div>
         </div>
     );

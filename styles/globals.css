@@ -107,15 +107,13 @@
     font-family: "mazin";
     font-style: normal;
     font-weight: 600;
-    src: url("/assets/old-images/fonts/Mazin/Medium.woff2")
-        format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/Medium.woff2") format("woff2");
 }
 @font-face {
     font-family: "mazin";
     font-style: normal;
     font-weight: 400;
-    src: url("/assets/old-images/fonts/Mazin/Regular.woff2")
-        format("woff2");
+    src: url("/assets/old-images/fonts/Mazin/Regular.woff2") format("woff2");
 }
 @font-face {
     font-family: "mazin";
@@ -132,8 +130,9 @@
 @font-face {
     font-style: normal;
     font-family: "inter";
-    font-weight: 700;
-    src: url("/assets/old-images/fonts/Inter/Inter-bold.woff2") format("woff2");
+    /* font-weight: 700; */
+    /* src: url("/assets/old-images/fonts/Inter/Inter-bold.woff2") format("woff2"); */
+    src: url("/assets/old-images/fonts/Inter/Inter.woff2") format("woff2");
 }
 
 /* global font component  */
