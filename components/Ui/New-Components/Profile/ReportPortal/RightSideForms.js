@@ -5,7 +5,7 @@ import Image from "next/image";
 import ReportIssue from "./ReportIssue";
 import WriteReview from "./WriteAReview";
 
-const RightImg = () => {
+const RightImg = (props) => {
     const [formBtn, setFormBtn] = useState([
         {
             text: "report issue",
@@ -31,7 +31,7 @@ const RightImg = () => {
         <div className=" w-[697px] bg-[#1e1629] pt-[28px] pb-[140px] pl-[75px] pr-[100px] ">
             <div className=" ">
                 {/* go back btn  */}
-                <button className={`${Classess.goBackBtn} ml-auto `}>
+                <button className={`${Classess.goBackBtn} ml-auto `} onClick={props.back}>
                     <div className=" relative w-[14px] h-[12.5px] mr-[9px] ">
                         <Image
                             src={GoBackIcon}

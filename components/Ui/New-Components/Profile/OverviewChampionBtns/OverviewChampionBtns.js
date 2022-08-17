@@ -65,7 +65,10 @@ const OverviewChampionBtns = (props) => {
                         </h6>
                     </div>
                     {/* button  */}
-                    <button className=" bg-white hover:bg-[rgba(227,227,242,0.3)] w-[103px] h-[32px] flex items-center justify-center rounded-5px  ">
+                    <button
+                        className=" bg-white hover:bg-[rgba(227,227,242,0.3)] w-[103px] h-[32px] flex items-center justify-center rounded-5px  "
+                        onClick={props.reportBtn}
+                    >
                         {" "}
                         <div className=" mr-2 px-[1px] py-[0.5px]  ">
                             <BiMessageAlt className=" text-accent-color text-[17px] " />{" "}

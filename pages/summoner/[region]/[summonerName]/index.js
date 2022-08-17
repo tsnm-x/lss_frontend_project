@@ -18,6 +18,7 @@ import { runeAction } from "../../../../store/runes";
 import ReportPortal from "../../../../components/Ui/New-Components/Profile/ReportPortal/ReportPortal";
 
 const Summoner = () => {
+    const [reportWindow, setReportWindow] = useState(false);
     const [view, setView] = useState("overview");
     const [cardProps, setCardProps] = useState({});
     const [cardExpand, setCardExpand] = useState(false);
@@ -295,6 +296,10 @@ const Summoner = () => {
         setCardProps(otherProps);
     };
 
+    const reportWindowHandler = () => {
+        return setReportWindow(!reportWindow);
+    };
+
     return (
         <>
             <div>
@@ -314,6 +319,7 @@ const Summoner = () => {
                 <OverviewChampion
                     controller={viewController}
                     currentView={view}
+                    reportBtn={reportWindowHandler}
                 />
                 {view === "overview" ? (
                     <CardContext.Provider
@@ -343,7 +349,7 @@ const Summoner = () => {
                 )}
             </div>
             {/* portal  */}
-            <ReportPortal />
+            {reportWindow && <ReportPortal back={reportWindowHandler} />}
         </>
     );
 };
