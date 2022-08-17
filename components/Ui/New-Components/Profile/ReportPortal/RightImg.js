@@ -66,7 +66,7 @@ const RightImg = () => {
                                     className={`text-[#D55460] ${
                                         btn.active ? "" : "text-[#8e8a94]"
                                     } font-mazin font-bold 
-                                        text-[18px] leading-[20px] capitalize `}
+                                        text-[16px] leading-[20px] capitalize  `}
                                 >
                                     {btn.text}
                                 </p>
