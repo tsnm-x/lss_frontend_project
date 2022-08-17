@@ -1,4 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import ReportPortal from '../components/Ui/New-Components/Profile/ReportPortal/ReportPortal'
+
 
 export default class MyDocument extends Document {
   render() {

@@ -1,0 +1,11 @@
+.goBackBtn {
+    @apply bg-[#d55460] font-inter font-[700] text-[14px] leading-[20px] text-white rounded-[4px] px-[16px] pt-[6px] pb-[8px] flex items-center;
+}
+
+.fromHeading {
+    @apply font-mazin font-bold text-[35px] leading-[20px] text-white;
+}
+
+.headMsg {
+    @apply font-sf-pro-text font-[500] text-[18px] leading-[20px] text-[#8e8a94] mt-3
+ }
