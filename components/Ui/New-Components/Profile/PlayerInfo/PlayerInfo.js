@@ -22,7 +22,7 @@ const PlayerInfo = (props) => {
             <div className={Classess.profileMask}></div>
             {/* content container  */}
             <div
-                className=" container overflow-x-hidden max-w-sm-container h-[245px] flex items-center relative 
+                className=" container max-w-sm-container h-[245px] flex items-center relative 
               "
             >
                 <Profile
