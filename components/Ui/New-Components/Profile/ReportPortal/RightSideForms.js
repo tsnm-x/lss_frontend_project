@@ -28,7 +28,7 @@ const RightImg = (props) => {
     };
 
     return (
-        <div className=" w-[697px] h-screen overflow-y-auto bg-[#1e1629] pt-[28px] pb-[140px] pl-[75px] pr-[85px] ">
+        <div className=" w-[697px] h-screen overflow-y-auto overflow-x-hidden bg-[#1e1629] pt-[28px] pb-[140px] pl-[75px] pr-[85px] ">
             <div className=" w-[537px] ">
                 {/* go back btn  */}
                 <button className={`${Classess.goBackBtn} ml-auto mr-[10px] `} onClick={props.back}>
