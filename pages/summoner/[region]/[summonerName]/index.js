@@ -349,7 +349,7 @@ const Summoner = () => {
                 )}
             </div>
             {/* portal  */}
-            {true && <ReportPortal back={reportWindowHandler} />}
+            {reportWindow && <ReportPortal back={reportWindowHandler} />}
         </>
     );
 };

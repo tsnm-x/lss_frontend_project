@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "./Form/Input";
-import Classess from "./ReportPortal.module.css";
+import Input from "./Input";
+import Classess from "../ReportPortal.module.css";
 import { BiMessageRounded } from "react-icons/bi";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 
