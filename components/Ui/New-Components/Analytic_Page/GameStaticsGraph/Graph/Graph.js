@@ -18,7 +18,27 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  {
+    id: 'uniqueid5', //typescript crashes without id
+    afterDraw: function (chart, easing) {
+      if (chart.tooltip._active && chart.tooltip._active.length) {
+        const activePoint = chart.tooltip._active[0];
+        const ctx = chart.ctx;
+        const x = activePoint.element.x;
+        const topY = chart.scales.y.top;
+        const bottomY = chart.scales.y.bottom;
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x, topY);
+        ctx.lineTo(x, bottomY);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#5d6182';
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+  }
 );
 
 function Graph(props){
@@ -40,7 +60,12 @@ function Graph(props){
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
+    
     plugins: {
+      legend: {
+        display: false
+      },
       title: {
         display: false,
         text: 'Chart.js Line Chart',
@@ -76,8 +101,14 @@ function Graph(props){
       <>
         {props.selectedPlayers && 
         <Line
-          options={options}
+          options={{
+            ...options,
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            }}} 
           data={data}
+          style={{width: "58vw", height: "32vh"}}
         />}
       </>
   )

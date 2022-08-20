@@ -213,7 +213,7 @@ const GameStaticsGraph = (props) => {
                 <div className=" mt-[14px] flex items-center ml-[150px] ">
                     <div
                         className={`w-[1000px] relative ${
-                            expand ? "h-[50px]" : "h-[360px] "
+                            !expand ? "h-[50px]" : "h-[360px] "
                         } [transition:height_0.4s]`}
                     >
                         <div className="w-[1000px] relative ">
@@ -431,11 +431,11 @@ const GameStaticsGraph = (props) => {
 
                         <div
                             className={`  rounded-5px w-full mt-[20px] ${
-                                expand ? "h-0" : "h-[290px]"
+                                !expand ? "h-0" : "h-[290px]"
                             } [transition:height_0.4s] flex items-center justify-center `}
                         >
-                            <div className={`w-9/12 ${
-                                    expand ? "opacity-[0]" : "opacity-[1] "
+                            <div className={` ${
+                                    !expand ? "opacity-[0]" : "opacity-[1] "
                                 }`}>
                                 <Graph frames={frames} selectedPlayers={selectedPlayers}/>
                             </div>
@@ -452,7 +452,7 @@ const GameStaticsGraph = (props) => {
                     </div>
                 </div>
                 {/* simulate matchup btn  */}
-                <div className={` ${expand ? "mt-[30px]" : "mt-[45px] "}`}>
+                <div className={` ${!expand ? "mt-[30px]" : "mt-[45px] "}`}>
                     <button className=" w-[181px] h-[32px] flex items-center justify-center bg-[#d55460] rounded-[5px] mx-auto ">
                         <MdOutlineCircle className=" text-[18px] text-white mr-[8px]  " />
                         <h3
