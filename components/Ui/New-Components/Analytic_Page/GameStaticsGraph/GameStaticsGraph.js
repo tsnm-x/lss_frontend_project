@@ -7,6 +7,7 @@ import SimulationData from "../../Profile/OverviewElement/SimulateGame/Simulatio
 import Classess from "./GameStaticsGraph.module.css";
 import UnfoldIcon from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Play-Pause/unfold.svg";
 import { MdOutlineCircle } from "react-icons/md";
+import Graph from "./Graph/Graph";
 
 // green icon
 import greenBaron from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-baron-r.png";
@@ -25,6 +26,17 @@ const GameStaticsGraph = (props) => {
     const [framePointer, setFramePointer] = useState(5);
     const [step, setStep] = useState(0);
     const ref = useRef(null);
+    const [selectedPlayers, setSelectedPlayers] = useState([])
+
+
+    useEffect(()=>{
+        console.log(props.playersWithId)
+        if(props.frames){
+            const player1 = props.playersWithId?.find((player) => player?.summonerName === props.simulatorPlayerBlue.summonerName);
+            const player2 = props.playersWithId?.find((player) => player?.summonerName === props.simulatorPlayerRed.summonerName);
+            setSelectedPlayers([player1, player2])
+        }
+    }, [props])
 
     function convertHMS(value) {
         if (value) {
@@ -418,18 +430,25 @@ const GameStaticsGraph = (props) => {
                         {/* graph element  */}
 
                         <div
-                            className={` bg-red-900 rounded-5px w-full mt-[20px] ${
+                            className={`  rounded-5px w-full mt-[20px] ${
                                 expand ? "h-0" : "h-[290px]"
                             } [transition:height_0.4s] flex items-center justify-center `}
                         >
-                            <h1
+                            <div className={`w-9/12 ${
+                                    expand ? "opacity-[0]" : "opacity-[1] "
+                                }`}>
+                                <Graph frames={frames} selectedPlayers={selectedPlayers}/>
+                            </div>
+                            
+                            {/* <h1
                                 className={`text-white text-4xl capitalize font-bold [transition:opacity_0.2s] ${
                                     expand ? "opacity-[0]" : "opacity-[1] "
                                 }`}
                             >
                                 coming soon
-                            </h1>
+                            </h1> */}
                         </div>
+
                     </div>
                 </div>
                 {/* simulate matchup btn  */}
