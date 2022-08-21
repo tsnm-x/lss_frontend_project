@@ -8,6 +8,7 @@ import Classess from "./GameStaticsGraph.module.css";
 import UnfoldIcon from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Play-Pause/unfold.svg";
 import { MdOutlineCircle } from "react-icons/md";
 import Graph from "./Graph/Graph";
+import GraphElement from "./Graph/GraphElement";
 
 // green icon
 import greenBaron from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-baron-r.png";
@@ -426,29 +427,12 @@ const GameStaticsGraph = (props) => {
                                 />
                             </div>
                         </div>
-
                         {/* graph element  */}
-
-                        <div
-                            className={`  rounded-5px w-full mt-[20px] ${
-                                !expand ? "h-0" : "h-[290px]"
-                            } [transition:height_0.4s] flex items-center justify-center `}
-                        >
-                            <div className={` ${
-                                    !expand ? "opacity-[0]" : "opacity-[1] "
-                                }`}>
-                                <Graph frames={frames} selectedPlayers={selectedPlayers}/>
-                            </div>
-                            
-                            {/* <h1
-                                className={`text-white text-4xl capitalize font-bold [transition:opacity_0.2s] ${
-                                    expand ? "opacity-[0]" : "opacity-[1] "
-                                }`}
-                            >
-                                coming soon
-                            </h1> */}
-                        </div>
-
+                        <GraphElement
+                            frames={frames}
+                            selectedPlayers={selectedPlayers}
+                            expand={expand}
+                        />
                     </div>
                 </div>
                 {/* simulate matchup btn  */}
@@ -529,24 +513,24 @@ const GameStaticsGraph = (props) => {
                     {/* left graph  */}
                     {/* <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
 						<h1 className=" sf-bold-40 capitalize ">coming soon</h1>
-					</div> */}
+					</div>
                     <br /> <br />
-                    {/* <GoldDiffChart
+                    <GoldDiffChart
 						goldFrames={goldFrames}
 						frameChange={props.frameChange}
-					/> */}
-                    {/* <PowerDiffChart dataFromUnity= {}/> */}
+					/>
+                    <PowerDiffChart dataFromUnity= {}/> */}
                 </div>
 
-                <div className=" flex justify-between items-center px-10 ">
-                    {/* <div>{ChartComponent}</div> */}
-                    {/* <SimulationData
+                {/* <div className=" flex justify-between items-center px-10 ">
+                    <div>{ChartComponent}</div>
+                    <SimulationData
 						frames={frames}
 						selectedFrame={props.selectedFrame}
 						simulatorPlayerRed={props.simulatorPlayerRed}
 						simulatorPlayerBlue={props.simulatorPlayerBlue}
-					/> */}
-                </div>
+					/>
+                </div> */}
             </div>
         </section>
     );
