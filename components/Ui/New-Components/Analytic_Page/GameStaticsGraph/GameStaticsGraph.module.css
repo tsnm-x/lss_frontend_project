@@ -55,3 +55,11 @@
 .parent{
   position:relative;
 }
+
+
+.graphBgBorder {
+  @apply w-full h-full absolute left-0 top-0 z-40 ;
+  background-image: url('../../../../../public/assets/new-images/Profile-Graph/background-border.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Graph from "./Graph";
+import Classess from '../GameStaticsGraph.module.css'
 // player img list
 import ImgOne from "../../../../../../public/assets/new-images/Profile-Graph/one.png";
 import ImgTwo from "../../../../../../public/assets/new-images/Profile-Graph/two.png";
@@ -61,7 +62,7 @@ const GraphElement = (props) => {
 
     return (
         <div
-            className={`  rounded-5px w-[92%] ml-auto mt-[20px] ${
+            className={`  rounded-5px w-[90%] ml-auto mt-[20px] mr-[25px] ${
                 !props.expand ? "h-0" : "h-[290px]"
             } [transition:height_0.4s] `}
         >
