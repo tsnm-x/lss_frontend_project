@@ -30,7 +30,7 @@ const GraphElement = (props) => {
     const [selectedColors, setSelectedColors] = useState([]);
     const [unselectedColors, setUnselectedColors] = useState(colors);
     const champions = useSelector((state) => state.champions.champions);
-    const [selectedPlayers, setSelectedPlayers] = useState([]);
+    const [selectedPlayers, setSelectedPlayers] = useState([props.mainPlayer]);
     const [btnList, setBtnList] = useState([
         {
             txt: "Damage Dealt",
@@ -50,6 +50,9 @@ const GraphElement = (props) => {
         },
     ]);
 
+    useEffect(()=>{
+        setSelectedPlayers([props.mainPlayer])
+    }, [props.mainPlayer])
 
     // useEffect(()=>{
         
@@ -155,7 +158,7 @@ const GraphElement = (props) => {
                                                 >
                                                     <div
                                                         className={` w-full h-full  ${
-                                                            selectedPlayers.filter((player) => player.summonerName === member.summonerName)[0] ? (imgIndex === 0 && "border border-[#D55460]") || (imgIndex === 1 && "border border-[#5D7CF6]") : ""
+                                                            selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? (imgIndex === 0 && "border border-[#D55460]") || (imgIndex === 1 && "border border-[#5D7CF6]") : ""
                                                         } bg-transparent absolute left-0 top-0 rounded-5px z-50 `}
                                                     ></div>
                                                     {getChampion(member?.championName) && (

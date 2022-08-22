@@ -443,6 +443,7 @@ const GameStaticsGraph = (props) => {
                                 frames={frames}
                                 selectedFrame={props.selectedFrame}
                                 expand={expand}
+                                mainPlayer={props.playersWithId?.find((player) => player?.mainPlayer)}
                             />
                         </div>
 
