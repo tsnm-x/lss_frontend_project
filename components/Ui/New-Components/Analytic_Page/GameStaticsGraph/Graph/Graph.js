@@ -115,6 +115,11 @@ function Graph(props){
         <Line
           options={{
             ...options,
+            elements: {
+              point:{
+                  radius: 0
+              }
+            },
             interaction: {
               mode: 'index',
               intersect: false,
