@@ -415,6 +415,8 @@ const MatchSimulator = ({ query }) => {
                     simulatorPlayerRed={simulatorPlayerRed}
                     simulatorPlayerBlue={simulatorPlayerBlue}
                     playersWithId={playersWithId}
+                    rightTeam={rightTeam}
+                    leftTeam={leftTeam}
                 />
                 {/* <button>Sim data</button> */}
                 {/* <SimulationData

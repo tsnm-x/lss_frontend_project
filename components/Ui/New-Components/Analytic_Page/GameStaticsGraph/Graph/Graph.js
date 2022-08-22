@@ -43,12 +43,25 @@ ChartJS.register(
 
 function Graph(props){
 
+  const getSelectedVal = (frame, player) => {
+    switch(props.selectedBtn.txt){
+      case "Damage Dealt":
+        return frame[`participant${player?.standingId}`]?.totalDamageDoneToChampions
+      case "Creep Score":
+        return frame[`participant${player?.standingId}`]?.stats?.creepScore
+      case "Gold":
+        return frame[`participant${player?.standingId}`]?.totalGold
+      case "Experience":
+        return frame[`participant${player?.standingId}`]?.xp
+    }
+  }
+
   const dataFetcher = (player) => {
     const data = []
     props.frames?.forEach((frame, index) => {
       if(index << frames.length-2){
          data.push(
-          {x:`${index}:00`,y:frame[`participant${player?.standingId}`]?.totalDamageDoneToChampions}
+          {x:`${index}:00`,y:getSelectedVal(frame, player)}
          )
       }
     });
@@ -99,7 +112,6 @@ function Graph(props){
 
   return (
       <>
-        {props.selectedPlayers && 
         <Line
           options={{
             ...options,
@@ -110,7 +122,7 @@ function Graph(props){
           data={data}
           // style={{width: "58vw", height: "32vh"}}
             style={{width: '900px', height: '180px'}}
-        />}
+        />
       </>
   )
 }

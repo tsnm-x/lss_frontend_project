@@ -438,8 +438,10 @@ const GameStaticsGraph = (props) => {
                             </div>
                             {/* graph element  */}
                             <GraphElement
+                                leftTeam={props?.leftTeam}
+                                rightTeam={props?.rightTeam}
                                 frames={frames}
-                                selectedPlayers={selectedPlayers}
+                                selectedFrame={props.selectedFrame}
                                 expand={expand}
                             />
                         </div>

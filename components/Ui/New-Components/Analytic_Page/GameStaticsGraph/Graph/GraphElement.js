@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Graph from "./Graph";
 import Classess from '../GameStaticsGraph.module.css'
 // player img list
@@ -10,43 +10,84 @@ import ImgFive from "../../../../../../public/assets/new-images/Profile-Graph/fi
 import ImgSix from "../../../../../../public/assets/new-images/Profile-Graph/six.png";
 import ImgSeven from "../../../../../../public/assets/new-images/Profile-Graph/deven.png";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const GraphElement = (props) => {
+    
+    const colors = [
+        "#D55460",
+        "#5D7CF6",
+        "#FEFCE8",
+        "#5E22C5",
+        "#A855F7",
+        "#EC4899",
+        "#2DD4BF",
+        "#F97316",
+        "#0EA5E9",
+        "#6366F1"
+    ]
+
+    const [selectedColors, setSelectedColors] = useState([]);
+    const [unselectedColors, setUnselectedColors] = useState(colors);
+    const champions = useSelector((state) => state.champions.champions);
+    const [selectedPlayers, setSelectedPlayers] = useState([]);
     const [btnList, setBtnList] = useState([
         {
             txt: "Damage Dealt",
             active: true,
         },
         {
-            txt: "CS/Time",
+            txt: "Creep Score",
             active: false,
         },
         {
-            txt: "Gold/Time",
+            txt: "Gold",
             active: false,
         },
         {
-            txt: "XP/Time",
+            txt: "Experience",
             active: false,
         },
     ]);
 
-    const playerList = {
-        red: [
-            { img: ImgOne, active: true, border: "#d55460" },
-            { img: ImgTwo, active: false },
-            { img: ImgThree, active: true, border: "#5d7cf6" },
-            { img: ImgFour, active: false },
-            { img: ImgFive, active: false },
-        ],
-        blue: [
-            { img: ImgSix, active: false },
-            { img: ImgSeven, active: true, border: "#ffd964" },
-            { img: ImgThree, active: false },
-            { img: ImgFour, active: false },
-            { img: ImgFive, active: false },
-        ],
+
+    // useEffect(()=>{
+        
+    //     let unselected = [];
+    //     let selected = [...selectedColors]
+    //     for(let color of colors){
+    //         const finder = selected.find((selectedColor) => selectedColor === color) 
+    //         ? selected.find((selectedColor) => selectedColor === color) : "";
+    //         if(!finder){
+    //             unselected.push(color);
+    //         }
+    //     }
+    //     setUnselectedColors(unselected)
+        
+    // }, [selectedColors])
+
+    // const getBg = (color) => {
+    //     console.log(selectedColors);
+    //     console.log(unselectedColors);
+    //     return `border border-[${color}]`
+    // }
+
+    const getChampion = (player) => {
+        return champions[player]?.image;
     };
+
+    const addOrRemovePlayer = (player) => {
+        const finder = selectedPlayers?.find((member) => member?.summonerName === player?.summonerName) ?
+        selectedPlayers?.find((member) => member?.summonerName === player?.summonerName) : {};
+
+        if(finder?.summonerName){
+            setSelectedPlayers(selectedPlayers.filter((member) => member?.summonerName !== player?.summonerName))
+        } else {
+            // setSelectedColors([...selectedColors, unselectedColors[0]])
+            setSelectedPlayers([...selectedPlayers, player]);
+        }
+
+    }
 
     const btnHandler = (id) => {
         setBtnList((prevState) => {
@@ -94,40 +135,62 @@ const GraphElement = (props) => {
                     </div>
                     {/* img btns  */}
                     <div className=" flex gap-x-[10px]  ">
-                        {Object.keys(playerList).map((imgList, imgIndex) => {
+                        {[props?.leftTeam, props?.rightTeam].map((team, imgIndex) => {
                             return (
                                 <div
                                     className={` flex items-center justify-center gap-x-[5px] px-[10px] py-[6px] rounded-5px ${
-                                        imgList === "red"
+                                        imgIndex === 0
                                             ? "bg-[#241122]"
                                             : "bg-[#181531] "
                                     }`}
                                     key={imgIndex}
                                 >
-                                    {playerList[imgList].map(
-                                        (component, index) => {
+                                    {team.map(
+                                        (member, index) => {
                                             return (
                                                 <div
                                                     key={index}
-                                                    className=" relative w-[35px] h-[35px] rounded-5px "
+                                                    className=" relative w-[35px] h-[35px] rounded-5px cursor-pointer"
+                                                    onClick={() => addOrRemovePlayer(member)}
                                                 >
                                                     <div
                                                         className={` w-full h-full  ${
-                                                            component.active &&
-                                                            `border-[${component.border}] border-[2px]`
+                                                            selectedPlayers.filter((player) => player.summonerName === member.summonerName)[0] ? (imgIndex === 0 && "border border-[#D55460]") || (imgIndex === 1 && "border border-[#5D7CF6]") : ""
                                                         } bg-transparent absolute left-0 top-0 rounded-5px z-50 `}
                                                     ></div>
-                                                    <Image
-                                                        src={component.img}
-                                                        alt="player image"
-                                                        layout="fill"
-                                                        className=" rounded-5px "
-                                                    />
+                                                    {getChampion(member?.championName) && (
+                                                        <div
+                                                            className="rounded-[5px]"
+                                                            style={{
+                                                                background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                                    getChampion(member?.championName)
+                                                                        ?.sprite
+                                                                }') no-repeat`,
+                                                                width: `${
+                                                                    getChampion(member?.championName)
+                                                                        ?.w
+                                                                }px`,
+                                                                height: `${
+                                                                    getChampion(member?.championName)
+                                                                        ?.h
+                                                                }px`,
+                                                                backgroundPosition: `-${
+                                                                    getChampion(member?.championName)
+                                                                        ?.x
+                                                                }px -${
+                                                                    getChampion(member?.championName)
+                                                                        ?.y
+                                                                }px`,
+                                                                // backgroundSize: "1000% 300%",
+                                                                zoom: `0.75`,
+                                                            }}
+                                                        ></div>
+                                                    )}
                                                 </div>
                                             );
                                         }
                                     )}
-                                    {console.log(playerList[imgList])}
+                                    
                                     {/* {imgList.map((img, index) => {
                                     return (
                                         <div key={index} className=" relative w-[35px] h-[35px] rounded-5px ">
@@ -149,7 +212,9 @@ const GraphElement = (props) => {
                 <div>
                     <Graph
                         frames={props.frames}
-                        selectedPlayers={props.selectedPlayers}
+                        selectedFrame={props.selectedFrame}
+                        selectedPlayers={selectedPlayers}
+                        selectedBtn={btnList.filter((btn) => btn.active)[0]}
                     />
                 </div>
             </div>
