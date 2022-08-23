@@ -135,15 +135,15 @@ const ProfileCompareBar = (props) => {
 	return (
 		<section>
 			<div className="container bg-[#110a1b] pt-4 max-w-[1340px] ">
-				<div className=" flex justify-between px-[15px]  border-b border-[#140a22] ">
+				<div className=" flex justify-between border-b border-[#140a22] ">
 					{/* profiles  */}
-					<div className=" flex items-center gap-x-6 row-start-1 col-start-1 ">
+					<div className=" flex items-center gap-x-6 row-start-1 col-start-1 w-[280px] pl-[15px] ">
 						{profileData.map((profile, index) => {
 							return <Profile key={index} {...profile} />;
 						})}
 					</div>
 					{/* center batch bar  */}
-					<div className="  flex justify-center w-[600px] ">
+					<div className="  flex justify-center w-[600px] ml-[50px] ">
 						<DrakeBatches
 							dragonDataRed={dragonDataRed}
 							dragonDataBlue={dragonDataBlue}
@@ -151,7 +151,7 @@ const ProfileCompareBar = (props) => {
 						/>
 					</div>
 					{/* right side bans  */}
-					<div className=" flex items-center justify-end  row-start-1 col-start-1  ">
+					<div className=" flex items-center justify-end  row-start-1 col-start-1 w-[330px] pr-[15px] ">
 						{/*  left	 */}
 						<div className=" flex items-center ">
 							{redBans?.bans?.map((ban, index) => {
