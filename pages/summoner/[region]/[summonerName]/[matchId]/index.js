@@ -418,6 +418,7 @@ const MatchSimulator = ({ query }) => {
                 )}
 
                 <GameStaticsGraph
+                    match={match}
                     selectedFrame={selectedFrame}
                     frames={matchTimelineData?.frames}
                     frameChange={frameChange}
