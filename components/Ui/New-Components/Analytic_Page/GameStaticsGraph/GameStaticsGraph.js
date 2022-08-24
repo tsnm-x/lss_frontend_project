@@ -43,7 +43,7 @@ const GameStaticsGraph = (props) => {
         const sec = parseInt(value, 10); // convert value to number if it's string
         let hours = Math.floor(sec / 3600); // get hours
         let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
-        let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
+        let seconds = (sec - hours * 3600 - minutes * 60).toFixed(0); //  get seconds
         // add 0 if value < 10; Example: 2 => 02
         if (hours < 10) {
             hours = "0" + hours;
@@ -62,7 +62,7 @@ const GameStaticsGraph = (props) => {
             const sec = value / 1000; // convert value to number if it's string
             let hours = Math.floor(sec / 3600); // get hours
             let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
-            let seconds = (sec - hours * 3600 - minutes * 60).toFixed(0); //  get seconds
+            let seconds = Math.floor(sec - hours * 3600 - minutes * 60).toFixed(0); //  get seconds
             // add 0 if value < 10; Example: 2 => 02
             if (minutes < 10) {
                 minutes = minutes;
@@ -325,7 +325,7 @@ const GameStaticsGraph = (props) => {
                                                 />
                                             </svg>
                                         </div>
-                                        {frames && <h4 className=" inter-bold-10 text-white z-10">
+                                        {frames && <h4 className=" inter-bold-10 text-white ">
                                         {convertHMS(frames[props?.selectedFrame]?.timestamp)}/{getDuration(props.match?.duration)}
                                         </h4>}
                                     </div>
