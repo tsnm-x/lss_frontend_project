@@ -437,14 +437,14 @@ const GameStaticsGraph = (props) => {
                                 </div>
                             </div>
                             {/* graph element  */}
-                            <GraphElement
+                            {expand && <GraphElement
                                 leftTeam={props?.leftTeam}
                                 rightTeam={props?.rightTeam}
                                 frames={frames}
                                 selectedFrame={props.selectedFrame}
                                 expand={expand}
                                 mainPlayer={props.playersWithId?.find((player) => player?.mainPlayer)}
-                            />
+                            />}
                         </div>
 
                         {/* background border  */}

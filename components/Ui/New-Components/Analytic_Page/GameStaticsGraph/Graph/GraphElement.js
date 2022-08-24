@@ -86,9 +86,12 @@ const GraphElement = (props) => {
 
         console.log(color[member.summonerName])
         if(Object.keys(color)){
-            const classes = `border border-[${color[member.summonerName]}]`
-            return classes;
+            return color[member.summonerName]
         }
+    }
+
+    const getBorder = () => {
+        return 'border'
     }
 
     const getChampion = (player) => {
@@ -178,8 +181,11 @@ const GraphElement = (props) => {
                                                 >
                                                     <div
                                                         className={` w-full h-full  ${
-                                                            selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getBg(member) : ""
+                                                            selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getBorder() : ""
                                                         } bg-transparent absolute left-0 top-0 rounded-5px z-50 `}
+                                                        style={{
+                                                            borderColor: `${selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getBg(member) : ""}`
+                                                        }}
                                                     ></div>
                                                     {getChampion(member?.championName) && (
                                                         <div
