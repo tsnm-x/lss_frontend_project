@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Batch from '../../../../../../../public/assets/new-images/Profile/Vector.png'
-
+import Batch from "../../../../../../../public/assets/new-images/Profile/Vector.png";
 
 const DrakeBatches = (props) => {
     const [centralImg, setCenteralImg] = useState("");
@@ -67,7 +66,7 @@ const DrakeBatches = (props) => {
     }, [props.dragonDataBlue, props.dragonDataRed]);
 
     return (
-        <div className=" w-full h-[40px] bg-card-&-content-box grid grid-cols-1 grid-rows-1 rounded-t-[10px] ">
+        <div className=" w-full h-[40px] bg-card-&-content-box rounded-t-[10px] relative ">
             {/* center items  */}
             <div className=" relative">
                 {/* left batch  */}
@@ -101,6 +100,8 @@ const DrakeBatches = (props) => {
                 {/* right batch  */}
                 <div className=" w-[300px] h-[40px] absolute right-0 top-0  "></div>
             </div>
+            {/* batch  */}
+
             {/* center batch  */}
             {/* <div className=" flex justify-center items-end row-start-1 col-start-1 ">
                 <div className=" relative w-[100px] h-[47px] ">
@@ -114,34 +115,65 @@ const DrakeBatches = (props) => {
                 </div>
             </div> */}
             {/* left right batch  */}
-            {/* <div className=" row-start-1 col-start-1 grid grid-cols-2 bg-transparent rounded-t-[10px] ">
+            <div className=" absolute left-0 top-0 w-full h-full grid grid-cols-2 bg-transparent rounded-t-[10px] ">
                 <div
-                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] ${
+                    className={`rounded-tr-[10px] flex items-center ${
                         props.dragonDataRed?.length === 4
                             ? "border-[#72B2E3] border"
                             : ""
                     }`}
                 >
-                    {props.dragonDataRed?.length < 4
-                        ? addEmptyBatches(4 - props.dragonDataRed?.length)?.map(
-                              (elem) => {
+                    <div className=" flex items-center gap-x-[5px] ml-[110px] ">
+                        {props.dragonDataRed?.length < 4
+                            ? addEmptyBatches(
+                                  4 - props.dragonDataRed?.length
+                              )?.map((elem) => {
                                   return (
                                       <div
                                           key={elem}
-                                          className={`w-[30px] h-[30px] relative rounded-full bg-mix-white-black`}
+                                          className={`w-[26px] h-[26px] relative rounded-full bg-[#2b2c41]`}
                                       ></div>
                                   );
-                              }
-                          )
-                        : null}
-                    {props.dragonDataRed
-                        ?.slice()
-                        .reverse()
-                        .map((event, index) => {
+                              })
+                            : null}
+                        {props.dragonDataRed
+                            ?.slice()
+                            .reverse()
+                            .map((event, index) => {
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`w-[26px] h-[26px] relative rounded-full ${
+                                            !event.type
+                                                ? "bg-mix-white-black"
+                                                : "  bg-transparent "
+                                        }`}
+                                    >
+                                        {imgHandler(event.type) ? (
+                                            <Image
+                                                src={imgHandler(event.type)}
+                                                alt={event.type}
+                                                layout="fill"
+                                            />
+                                        ) : null}
+                                    </div>
+                                );
+                            })}
+                    </div>
+                </div>
+                <div
+                    className={`rounded-tr-[10px] flex items-center justify-end ${
+                        props.dragonDataBlue?.length === 4
+                            ? "border-[#72B2E3] border"
+                            : ""
+                    } `}
+                >
+                    <div className=" flex items-center gap-x-[5px] mr-[110px] ">
+                        {props.dragonDataBlue?.map((event, index) => {
                             return (
                                 <div
                                     key={index}
-                                    className={`w-[30px] h-[30px] relative rounded-full ${
+                                    className={`w-[26px] h-[26px] relative rounded-full ${
                                         !event.type
                                             ? "bg-mix-white-black"
                                             : "  bg-transparent "
@@ -157,48 +189,21 @@ const DrakeBatches = (props) => {
                                 </div>
                             );
                         })}
+                        {props.dragonDataBlue?.length < 4
+                            ? addEmptyBatches(
+                                  4 - props.dragonDataBlue?.length
+                              )?.map((elem) => {
+                                  return (
+                                      <div
+                                          key={elem}
+                                          className={`w-[26px] h-[26px] relative rounded-full bg-[#2b2c41]`}
+                                      ></div>
+                                  );
+                              })
+                            : null}
+                    </div>
                 </div>
-                <div
-                    className={`rounded-tr-[10px] flex items-center justify-center gap-x-[6px] ${
-                        props.dragonDataBlue?.length === 4
-                            ? "border-[#72B2E3] border"
-                            : ""
-                    } `}
-                >
-                    {props.dragonDataBlue?.map((event, index) => {
-                        return (
-                            <div
-                                key={index}
-                                className={`w-[30px] h-[30px] relative rounded-full ${
-                                    !event.type
-                                        ? "bg-mix-white-black"
-                                        : "  bg-transparent "
-                                }`}
-                            >
-                                {imgHandler(event.type) ? (
-                                    <Image
-                                        src={imgHandler(event.type)}
-                                        alt={event.type}
-                                        layout="fill"
-                                    />
-                                ) : null}
-                            </div>
-                        );
-                    })}
-                    {props.dragonDataBlue?.length < 4
-                        ? addEmptyBatches(
-                              4 - props.dragonDataBlue?.length
-                          )?.map((elem) => {
-                              return (
-                                  <div
-                                      key={elem}
-                                      className={`w-[30px] h-[30px] relative rounded-full bg-mix-white-black`}
-                                  ></div>
-                              );
-                          })
-                        : null}
-                </div>
-            </div> */}
+            </div>
         </div>
     );
 };

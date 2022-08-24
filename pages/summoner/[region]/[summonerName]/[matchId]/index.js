@@ -17,7 +17,8 @@ import { championsAction } from "../../../../../store/champions";
 import { itemsAction } from "../../../../../store/items";
 import { runeAction } from "../../../../../store/runes";
 import Runes from "../../../../../components/Ui/New-Components/Analytic_Page/Runes/Runes";
-
+import ReportPortal from "../../../../../components/Ui/New-Components/Profile/ReportPortal/ReportPortal";
+import ReportContext from "../../../../../Context/ReportContext";
 
 const MatchSimulator = ({ query }) => {
     const { region, summonerName, matchId } = query;
@@ -360,6 +361,12 @@ const MatchSimulator = ({ query }) => {
         },
     ]);
 
+    const [reportPortal, setReportPortal] = useState(false);
+
+    const handleReport = () => {
+        setReportPortal(!reportPortal);
+    };
+
     return (
         <>
             <HeaderWithSearchbar />
@@ -370,7 +377,9 @@ const MatchSimulator = ({ query }) => {
                     setBtns={setBtns}
                     region={region}
                     summonerName={summonerName}
+                    report={handleReport}
                 />
+
                 <ProfileCompareBar
                     teams={match?.teams}
                     players={match?.players}
@@ -399,7 +408,7 @@ const MatchSimulator = ({ query }) => {
                         setSimulatorPlayerBlue={setSimulatorPlayerBlue}
                     />
                 ) : btns[1].active ? (
-                  <Runes />
+                    <Runes />
                 ) : (
                     <Map
                         match={match}
@@ -426,6 +435,7 @@ const MatchSimulator = ({ query }) => {
 					simulatorPlayerRed={simulatorPlayerRed}
 					simulatorPlayerBlue={simulatorPlayerBlue}
 				/> */}
+                {reportPortal && <ReportPortal back={handleReport} />}
             </div>
         </>
     );
