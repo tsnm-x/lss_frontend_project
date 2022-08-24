@@ -190,7 +190,7 @@ const GameStaticsGraph = (props) => {
     }, []);
 
     useEffect(() => {
-        const calcStep = (ref.current.offsetWidth - 40) / ref.current.max;
+        const calcStep = (ref.current?.offsetWidth - 40) / ref.current?.max;
         setStep(calcStep);
     }, [frames, framePointer]);
 
@@ -345,7 +345,40 @@ const GameStaticsGraph = (props) => {
                                         <div
                                             className={`${Classess.sliderSlide} w-full relative h-[1px] `}
                                         >
-                                            <div className=" w-full absolute left-0 top-0 ">
+                                            <div
+                                                className={`${Classess.parent} grid grid-cols-1 grid-rows-1 z-50`}
+                                            >
+                                                <input
+                                                    className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
+                                                    type="range"
+                                                    id="range"
+                                                    min="0"
+                                                    max={(frames?.length - 2).toString()}
+                                                    value={framePointer}
+                                                    onChange={(e) => {
+                                                        setFramePointer(e.target.value);
+                                                        props.frameChange(e.target.value);
+                                                    }}
+                                                    ref={ref}
+                                                />
+                                                {frames && (
+                                                    <label
+                                                        className={`${Classess.bubble} text-white text-center font-inter w-[40px] h-[30px]`}
+                                                        htmlFor="range"
+                                                        style={{
+                                                            transform: `translate(${
+                                                                framePointer * step
+                                                            }px, -25%)`,
+                                                            fontSize: `0.7rem`,
+                                                        }}
+                                                    >
+                                                        {convertHMS(
+                                                            frames[props?.selectedFrame]?.timestamp
+                                                        )}
+                                                    </label>
+                                                )}
+                                            </div>
+                                            {/* <div className=" w-full absolute left-0 top-0 ">
                                                 <svg
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -372,8 +405,8 @@ const GameStaticsGraph = (props) => {
                                                         </linearGradient>
                                                     </defs>
                                                 </svg>
-                                            </div>
-                                            <div
+                                            </div> */}
+                                            {/* <div
                                                 className=" w-[40px] h-[30px] rounded-[1px] 
 																border border-[rgba(0,0,0,0.04)] relative -top-[15px] left-[10%]   "
                                             >
@@ -386,7 +419,7 @@ const GameStaticsGraph = (props) => {
                                                     </h1>
                                                 </div>
                                                 <div className=" w-[2px] h-[70px] bg-[#5D6182] absolute left-[18px] -top-[21px]"></div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         {/* <div>
                                 <Slider />
@@ -496,7 +529,7 @@ const GameStaticsGraph = (props) => {
                     <div
                         className={`${Classess.parent} grid grid-cols-1 grid-rows-1`}
                     >
-                        <input
+                        {/* <input
                             className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
                             type="range"
                             id="range"
@@ -524,7 +557,7 @@ const GameStaticsGraph = (props) => {
                                     frames[props?.selectedFrame]?.timestamp
                                 )}
                             </label>
-                        )}
+                        )} */}
                     </div>
                     {/* left graph  */}
                     {/* <div className=" relative w-[760px] h-[300px] border border-accent-color rounded-[10px] text-accent-color flex items-center justify-center ">
