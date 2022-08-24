@@ -78,6 +78,7 @@ const AnalyticsViewBtns = (props) => {
                         leaveBtn={true}
                         goHome={goHome}
                         reportBtn={props.report}
+                        listenTxt={false}
                     />
                 </div>
             </div>
