@@ -50,30 +50,46 @@ const GraphElement = (props) => {
         },
     ]);
 
+    useEffect(()=> {
+        shiftArr();
+    }, [])
+
+
     useEffect(()=>{
-        setSelectedPlayers([props.mainPlayer])
+        setSelectedPlayers([props.mainPlayer]);
+        setSelectedColors([{[props?.mainPlayer?.summonerName]: colors[0]}])
     }, [props.mainPlayer])
 
-    // useEffect(()=>{
-        
-    //     let unselected = [];
-    //     let selected = [...selectedColors]
-    //     for(let color of colors){
-    //         const finder = selected.find((selectedColor) => selectedColor === color) 
-    //         ? selected.find((selectedColor) => selectedColor === color) : "";
-    //         if(!finder){
-    //             unselected.push(color);
-    //         }
-    //     }
-    //     setUnselectedColors(unselected)
-        
-    // }, [selectedColors])
+    const shiftArr = () => {
+        let unselected = [...unselectedColors];
+        unselected.shift();
+        setUnselectedColors(unselected)
+    }
 
-    // const getBg = (color) => {
-    //     console.log(selectedColors);
-    //     console.log(unselectedColors);
-    //     return `border border-[${color}]`
-    // }
+    const addToArr = (summonerName) => {
+        let color = selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === summonerName)?
+        selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === summonerName): {};
+
+        if(Object.keys(color)){
+            setUnselectedColors([...unselectedColors, color[summonerName]])
+        }
+
+    }
+
+    useEffect(()=>{
+        console.log(unselectedColors)
+    }, [unselectedColors])
+
+    const getBg = (member) => {
+        const color = selectedColors?.find((obj) => Object.keys(obj)[0] === member?.summonerName)? 
+        selectedColors.find((obj) => Object.keys(obj)[0] === member.summonerName) : {};
+
+        console.log(color[member.summonerName])
+        if(Object.keys(color)){
+            const classes = `border border-[${color[member.summonerName]}]`
+            return classes;
+        }
+    }
 
     const getChampion = (player) => {
         return champions[player]?.image;
@@ -84,9 +100,13 @@ const GraphElement = (props) => {
         selectedPlayers?.find((member) => member?.summonerName === player?.summonerName) : {};
 
         if(finder?.summonerName){
+            setSelectedColors(selectedColors.filter((obj) => Object.keys(obj)[0] !== player.summonerName))
+            addToArr(player?.summonerName);
             setSelectedPlayers(selectedPlayers.filter((member) => member?.summonerName !== player?.summonerName))
+
         } else {
-            // setSelectedColors([...selectedColors, unselectedColors[0]])
+            setSelectedColors([...selectedColors, {[player.summonerName]: unselectedColors[0]}]);
+            shiftArr();
             setSelectedPlayers([...selectedPlayers, player]);
         }
 
@@ -158,7 +178,7 @@ const GraphElement = (props) => {
                                                 >
                                                     <div
                                                         className={` w-full h-full  ${
-                                                            selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? (imgIndex === 0 && "border border-[#D55460]") || (imgIndex === 1 && "border border-[#5D7CF6]") : ""
+                                                            selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getBg(member) : ""
                                                         } bg-transparent absolute left-0 top-0 rounded-5px z-50 `}
                                                     ></div>
                                                     {getChampion(member?.championName) && (
@@ -217,6 +237,7 @@ const GraphElement = (props) => {
                         frames={props.frames}
                         selectedFrame={props.selectedFrame}
                         selectedPlayers={selectedPlayers}
+                        selectedColors={selectedColors}
                         selectedBtn={btnList.filter((btn) => btn.active)[0]}
                     />
                 </div>

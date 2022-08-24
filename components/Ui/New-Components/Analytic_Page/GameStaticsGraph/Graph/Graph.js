@@ -65,8 +65,6 @@ function Graph(props){
          )
       }
     });
-
-    console.log(data);
     return data;
     
   }
@@ -102,8 +100,16 @@ function Graph(props){
         return {
           label: `${player?.championName}`,
           data: dataFetcher(player),
-          borderColor: 'rgb(53, 162, 235)',
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+          borderColor: `${
+            props.selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === player?.summonerName)? 
+            props.selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === player?.summonerName)[player?.summonerName]
+            : ''
+          }`,
+          backgroundColor: `${
+            props.selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === player?.summonerName)? 
+            props.selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === player?.summonerName)[player?.summonerName]
+            : ''
+          }`,
           showLine: true
         }
       })
