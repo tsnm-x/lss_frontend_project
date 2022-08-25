@@ -13,24 +13,10 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 
 const GraphElement = (props) => {
-    
-    const colors = [
-        "#D55460",
-        "#5D7CF6",
-        "#FEFCE8",
-        "#5E22C5",
-        "#A855F7",
-        "#EC4899",
-        "#2DD4BF",
-        "#F97316",
-        "#0EA5E9",
-        "#6366F1"
-    ]
 
-    const [selectedColors, setSelectedColors] = useState([]);
-    const [unselectedColors, setUnselectedColors] = useState(colors);
     const champions = useSelector((state) => state.champions.champions);
-    const [selectedPlayers, setSelectedPlayers] = useState([props.mainPlayer]);
+    let selectedColors = [];
+    const [selectedPlayers, setSelectedPlayers] = useState([props.selectedPlayerOne, props.selectedPlayerTwo]);
     const [btnList, setBtnList] = useState([
         {
             txt: "Damage Dealt",
@@ -50,48 +36,47 @@ const GraphElement = (props) => {
         },
     ]);
 
-    useEffect(()=> {
-        shiftArr();
-    }, [])
-
-
-    useEffect(()=>{
-        setSelectedPlayers([props.mainPlayer]);
-        setSelectedColors([{[props?.mainPlayer?.summonerName]: colors[0]}])
-    }, [props.mainPlayer])
-
-    const shiftArr = () => {
-        let unselected = [...unselectedColors];
-        unselected.shift();
-        setUnselectedColors(unselected)
-    }
-
-    const addToArr = (summonerName) => {
-        let color = selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === summonerName)?
-        selectedColors?.find((colorObj) => Object.keys(colorObj)[0] === summonerName): {};
-
-        if(Object.keys(color)){
-            setUnselectedColors([...unselectedColors, color[summonerName]])
-        }
-
-    }
-
-    useEffect(()=>{
-        console.log(unselectedColors)
-    }, [unselectedColors])
-
-    const getBg = (member) => {
-        const color = selectedColors?.find((obj) => Object.keys(obj)[0] === member?.summonerName)? 
-        selectedColors.find((obj) => Object.keys(obj)[0] === member.summonerName) : {};
-
-        console.log(color[member.summonerName])
-        if(Object.keys(color)){
-            return color[member.summonerName]
-        }
-    }
-
     const getBorder = () => {
         return 'border'
+    }
+
+    const getColorBorder = (teamIndex, index, member) => {
+        const color = getColor(teamIndex, index);
+        if(color){
+            selectedColors = [...selectedColors, {[member?.summonerName]: color}];
+            return color
+        }
+    }
+
+    const getColor = (teamIndex, index) => {
+        if(teamIndex){
+            switch(index){
+                case 0:
+                    return "#975DF6";
+                case 1:
+                    return "#F65DE7"
+                case 2:
+                    return "#5DB6F6"
+                case 3:
+                    return "#9F9F9F";
+                case 4:
+                    return "#964F4F"
+            }
+        } else {
+            switch(index){
+                case 0:
+                    return "#FF5942";
+                case 1:
+                    return "#FFCA42"
+                case 2:
+                    return "#51FF42"
+                case 3:
+                    return "#6FB49F";
+                case 4:
+                    return "#585E90"
+            }
+        } 
+        return null
     }
 
     const getChampion = (player) => {
@@ -103,13 +88,10 @@ const GraphElement = (props) => {
         selectedPlayers?.find((member) => member?.summonerName === player?.summonerName) : {};
 
         if(finder?.summonerName){
-            setSelectedColors(selectedColors.filter((obj) => Object.keys(obj)[0] !== player.summonerName))
-            addToArr(player?.summonerName);
+            selectedColors = selectedColors.filter((obj) => Object.keys(obj)[0] !== player.summonerName);
             setSelectedPlayers(selectedPlayers.filter((member) => member?.summonerName !== player?.summonerName))
 
         } else {
-            setSelectedColors([...selectedColors, {[player.summonerName]: unselectedColors[0]}]);
-            shiftArr();
             setSelectedPlayers([...selectedPlayers, player]);
         }
 
@@ -184,10 +166,36 @@ const GraphElement = (props) => {
                                                             selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getBorder() : ""
                                                         } bg-transparent absolute left-0 top-0 rounded-5px z-50 `}
                                                         style={{
-                                                            borderColor: `${selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getBg(member) : ""}`
+                                                            borderColor: `${selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getColorBorder(imgIndex, index, member) : ""}`
                                                         }}
                                                     ></div>
                                                     {getChampion(member?.championName) && (
+                                                        <div className="relative">
+                                                            <div className="absolute rounded-[5px]" style={{
+                                                                backgroundColor: `${selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? getColorBorder(imgIndex, index, member) : ""}`,
+                                                                width: `${
+                                                                    getChampion(member?.championName)
+                                                                        ?.w
+                                                                }px`,
+                                                                height: `${
+                                                                    getChampion(member?.championName)
+                                                                        ?.h
+                                                                }px`,
+                                                                backgroundPosition: `-${
+                                                                    getChampion(member?.championName)
+                                                                        ?.x
+                                                                }px -${
+                                                                    getChampion(member?.championName)
+                                                                        ?.y
+                                                                }px`,
+                                                                // backgroundSize: "1000% 300%",
+                                                                zoom: `0.75`,
+                                                                opacity: `${selectedPlayers.filter((player) => player?.summonerName === member?.summonerName)[0] ? 
+                                                                    getColorBorder(imgIndex, index, member)?
+                                                                    "0.4" : "0"
+                                                                    : ""
+                                                                }`
+                                                            }}></div>
                                                         <div
                                                             className="rounded-[5px]"
                                                             style={{
@@ -214,6 +222,7 @@ const GraphElement = (props) => {
                                                                 zoom: `0.75`,
                                                             }}
                                                         ></div>
+                                                        </div>
                                                     )}
                                                 </div>
                                             );

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Batch from "../../../../../../../public/assets/new-images/Profile/Vector.png";
+import CloudDragon from "../../../../../../../public/assets/new-images/simulation/dragons/cloud.png";
+import OceanDragon from "../../../../../../../public/assets/new-images/simulation/dragons/ocean.png";
+import InfernalDragon from "../../../../../../../public/assets/new-images/simulation/dragons/infernal.png";
+import MountainDragon from "../../../../../../../public/assets/new-images/simulation/dragons/mountain.png";
+import HextechDragon from "../../../../../../../public/assets/new-images/simulation/dragons/hextech.png";
 
 const DrakeBatches = (props) => {
     const [centralImg, setCenteralImg] = useState("");
@@ -8,17 +13,17 @@ const DrakeBatches = (props) => {
     const imgHandler = (type) => {
         switch (type) {
             case "AIR_DRAGON":
-                return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201";
+                return CloudDragon;
             case "WATER_DRAGON":
-                return "https://static.wikia.nocookie.net/leagueoflegends/images/c/c6/Ocean_Dragon_buff.png/revision/latest?cb=20191117184400";
+                return OceanDragon;
             case "FIRE_DRAGON":
-                return "https://static.wikia.nocookie.net/leagueoflegends/images/3/3f/Infernal_Dragon_buff.png/revision/latest?cb=20191117184224";
+                return InfernalDragon;
             case "EARTH_DRAGON":
-                return "https://static.wikia.nocookie.net/leagueoflegends/images/9/9e/Mountain_Dragon_buff.png/revision/latest?cb=20191117184251";
+                return MountainDragon;
             case "HEXTECH_DRAGON":
-                return "https://static.wikia.nocookie.net/leagueoflegends/images/1/1e/Hextech_Dragon_buff.png/revision/latest?cb=20211231073400";
+                return HextechDragon;
             default:
-                return "https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/Cloud_Dragon_buff.png/revision/latest?cb=20191117184201";
+                return CloudDragon;
         }
     };
 

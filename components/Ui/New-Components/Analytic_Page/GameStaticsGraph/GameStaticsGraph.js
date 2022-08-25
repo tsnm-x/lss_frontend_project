@@ -494,7 +494,8 @@ const GameStaticsGraph = (props) => {
                                 frames={frames}
                                 selectedFrame={props.selectedFrame}
                                 expand={expand}
-                                mainPlayer={props.playersWithId?.find((player) => player?.mainPlayer)}
+                                selectedPlayerOne={props.simulatorPlayerRed}
+                                selectedPlayerTwo={props.simulatorPlayerBlue}
                             />}
                         </div>
 

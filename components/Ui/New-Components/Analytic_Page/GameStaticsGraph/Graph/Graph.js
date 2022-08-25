@@ -132,7 +132,7 @@ function Graph(props){
             }}} 
           data={data}
           // style={{width: "58vw", height: "32vh"}}
-            style={{width: '900px', height: '180px'}}
+            style={{width: '900px', height: '300px'}}
         />
       </>
   )

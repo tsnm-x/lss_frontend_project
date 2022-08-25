@@ -46,6 +46,7 @@
    @apply bg-[#5d6182] w-[40px] h-[30px] rounded-[1px] 
    border border-[rgba(0,0,0,0.04)] z-[50];
    margin-top: -15px;
+   opacity: 0.4;
 }
 .bubble{
   position:absolute;
