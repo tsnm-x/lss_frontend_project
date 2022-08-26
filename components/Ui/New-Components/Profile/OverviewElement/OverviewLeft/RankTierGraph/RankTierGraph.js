@@ -230,7 +230,7 @@ const Btns = (props) => {
             {/* {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] "> */}
             <div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] ">
                 {/* rank icon  */}
-                <div className={`${Classess.rankIcon} relative`}>
+                <div className={`${Classess.rankIcon} relative ml-[3px]`}>
                     <div className={`row-start-2 col-start-1`}>
                         <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
                             <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="0.5" stroke="#AAA0A8" shapeRendering="geometricPrecision"></circle>
