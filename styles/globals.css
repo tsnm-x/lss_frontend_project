@@ -309,4 +309,19 @@
             linear-gradient(180deg, #140f1014 0%, #140a22 100%) 0% 0% no-repeat
             padding-box;
     }
+
+    /* hover discription style  */
+    .hover-dis stats, .hover-dis li, .hover-dis maintext {
+        @apply font-sf-pro-text text-[14px] leading-[16px] font-[500] text-white ;
+    }
+    .hover-dis stats attention {
+        @apply text-[#ff4256] ;
+    }
+    .hover-dis  li{
+        list-style: none;
+        margin-top: 12px;
+    }
+    .hover-dis li passive, .hover-dis raritymythic, .hover-dis active {
+        font-weight: 700;
+    }
 }
