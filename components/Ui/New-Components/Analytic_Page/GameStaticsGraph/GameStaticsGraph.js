@@ -7,7 +7,6 @@ import SimulationData from "../../Profile/OverviewElement/SimulateGame/Simulatio
 import Classess from "./GameStaticsGraph.module.css";
 import UnfoldIcon from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Play-Pause/unfold.svg";
 import { MdOutlineCircle } from "react-icons/md";
-import Graph from "./Graph/Graph";
 import GraphElement from "./Graph/GraphElement";
 
 // green icon
@@ -15,23 +14,25 @@ import greenBaron from "../../../../../public/assets/new-images/Profile/card/Car
 import greenTower from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-tower-r.png";
 import greenVector from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/Vector.png";
 import greenVector2 from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/Vector-1.png";
-
+import greenInhibitor from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/blue/round.png"
 // red icon
 import redTower from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/icon-tower-r.png";
 import redSquare from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/square.png";
 import redSoul from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/Soul.png";
 import redVector from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/Vector.png";
-
+import redInhibitor from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/round-r.png"
 const GameStaticsGraph = (props) => {
     const frames = props?.frames;
     const [framePointer, setFramePointer] = useState(5);
     const [step, setStep] = useState(0);
     const ref = useRef(null);
     const [selectedPlayers, setSelectedPlayers] = useState([])
+    const [winningTeamId , setWinningTeamId] = useState("");
+    const [losingTeamId, setLosingTeamId] = useState("");
 
 
     useEffect(()=>{
-        console.log(props.playersWithId)
+        console.log(props?.frames)
         if(props.frames){
             const player1 = props.playersWithId?.find((player) => player?.summonerName === props.simulatorPlayerBlue.summonerName);
             const player2 = props.playersWithId?.find((player) => player?.summonerName === props.simulatorPlayerRed.summonerName);
@@ -76,84 +77,31 @@ const GameStaticsGraph = (props) => {
         return "0:00";
     }
 
-    const teamObject = {
-        blueTeam: [
-            {
-                img: greenVector2,
-                left: 210,
-                w: 14,
-                h: 13,
-            },
-            {
-                img: greenVector,
-                left: 303,
-                w: 13,
-                h: 15,
-            },
-            {
-                img: greenTower,
-                left: 501,
-                w: 12,
-                h: 16,
-            },
-            {
-                img: greenBaron,
-                left: 687,
-                w: 17.3,
-                h: 17.3,
-            },
-        ],
-        redTeam: [
-            {
-                img: redTower,
-                left: 145,
-                w: 12,
-                h: 16,
-            },
-            {
-                img: redVector,
-                left: 420,
-                w: 13,
-                h: 15,
-            },
-            {
-                img: redTower,
-                left: 460,
-                w: 12,
-                h: 16,
-            },
-            {
-                img: redVector,
-                left: 535,
-                w: 13,
-                h: 15,
-            },
-            {
-                img: redTower,
-                left: 635,
-                w: 12,
-                h: 16,
-            },
-            {
-                img: redVector,
-                left: 655,
-                w: 13,
-                h: 15,
-            },
-            {
-                img: redSquare,
-                left: 725,
-                w: 16.5,
-                h: 16.5,
-            },
-            {
-                img: redSoul,
-                left: 785,
-                w: 20,
-                h: 20,
-            },
-        ],
-    };
+    const getMinutes = (value) => {
+        const sec = value / 1000; // convert value to number if it's string
+        let hours = Math.floor(sec / 3600); // get hours
+        let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+
+        return minutes
+    }
+
+    useEffect(() => {
+		if (frames) {
+			const lastFrame =
+				frames[
+					frames.length - 1
+				];
+			if (lastFrame.teamId === 200) {
+				setLosingTeamId("blueTeam")
+                setWinningTeamId("redTeam")
+					
+			} else {
+                setLosingTeamId("redTeam")
+				setWinningTeamId("blueTeam")
+			}
+		}
+	}, [frames]);
+
     let goldFrames = [];
 
     const [btns, setBtns] = useState([
@@ -217,6 +165,84 @@ const GameStaticsGraph = (props) => {
     const expandHandler = () => {
         setExpand(!expand);
     };
+
+    const blueIconsHandler = (arr, type) => {
+        return (arr?.map((killedItem, index) => {
+            return (
+                <div
+                    key={index}
+                    style={{
+                        width:"14px",
+                        height: `14px`,
+                        position:
+                            "absolute",
+                        left: `${(getMinutes(killedItem?.timeStamp) / (frames?.length -2))* 100}%`,
+                        top: `3px`,
+                    }}
+                >
+                    <Image
+                        src={blueIconsFinder(type)}
+                        alt="score icons"
+                        layout="fill"
+                    />
+                </div>
+            );
+        }))
+    }
+
+    const blueIconsFinder = (killedItemType) => {
+        switch(killedItemType){
+            case "Dragon":
+                return greenVector
+            case "Baron":
+                return greenBaron
+            case "Inhibitor":
+                return greenInhibitor
+            case "Tower":
+                return greenTower
+            case "riftHerald":
+                return greenVector
+        }
+    }
+
+    const redIconsFinder = (killedItemType) => {
+        switch(killedItemType){
+            case "Dragon":
+                return redVector
+            case "Baron":
+                return redBaron
+            case "Inhibitor":
+                return redInhibitor
+            case "Tower":
+                return redTower
+            case "riftHerald":
+                return redVector
+        }
+    }
+
+    const redIconsHandler = (arr, type) => {
+        return (arr?.map((killedItem, index) => {
+            return (
+                <div
+                    key={index}
+                    style={{
+                        width:"14px",
+                        height: `14px`,
+                        position:
+                            "absolute",
+                        left: `${(getMinutes(killedItem?.timeStamp) / (frames?.length -2))* 100}%`,
+                        top: `3px`,
+                    }}
+                >
+                    <Image
+                        src={redIconsFinder(type)}
+                        alt="score icons"
+                        layout="fill"
+                    />
+                </div>
+            );
+        }))
+    }
 
     return (
         <section>
@@ -333,31 +359,11 @@ const GameStaticsGraph = (props) => {
                                     <div className=" w-full flex flex-col h-full ">
                                         {/* top icon bar */}
                                         <div className=" w-full h-[25px] relative ">
-                                            {teamObject.blueTeam.map(
-                                                (score, index) => {
-                                                    return (
-                                                        <div
-                                                            key={index}
-                                                            style={{
-                                                                width:
-                                                                    score.w +
-                                                                    "px",
-                                                                height: `${score.h}px`,
-                                                                position:
-                                                                    "absolute",
-                                                                left: `${score.left}px`,
-                                                                top: `3px`,
-                                                            }}
-                                                        >
-                                                            <Image
-                                                                src={score.img}
-                                                                alt="score icons"
-                                                                layout="fill"
-                                                            />
-                                                        </div>
-                                                    );
-                                                }
-                                            )}
+                                            {winningTeamId && blueIconsHandler(frames[frames?.length -2][winningTeamId]?.Dragon?.KillEvents, "Dragon")}
+                                            {winningTeamId && blueIconsHandler(frames[frames?.length -2][winningTeamId]?.Baron?.KillEvents, "Baron")}
+                                            {winningTeamId && blueIconsHandler(frames[frames?.length -2][winningTeamId]?.Inhibitor?.KillEvents, "Inhibitor")}
+                                            {winningTeamId && blueIconsHandler(frames[frames?.length -2][winningTeamId]?.Tower?.KillEvents, "Tower")}
+                                            {winningTeamId && blueIconsHandler(frames[frames?.length -2][winningTeamId]?.riftHerald?.KillEvents, "riftHerald")}
                                         </div>
                                         {/* slide  */}
                                         <div
@@ -444,31 +450,11 @@ const GameStaticsGraph = (props) => {
                             </div> */}
                                         {/* bottom icon bar */}
                                         <div className=" w-full h-[25px] relative ">
-                                            {teamObject.redTeam.map(
-                                                (score, index) => {
-                                                    return (
-                                                        <div
-                                                            key={index}
-                                                            style={{
-                                                                width:
-                                                                    score.w +
-                                                                    "px",
-                                                                height: `${score.h}px`,
-                                                                position:
-                                                                    "absolute",
-                                                                left: `${score.left}px`,
-                                                                top: `2px`,
-                                                            }}
-                                                        >
-                                                            <Image
-                                                                src={score.img}
-                                                                alt="score icons"
-                                                                layout="fill"
-                                                            />
-                                                        </div>
-                                                    );
-                                                }
-                                            )}
+                                        {losingTeamId && redIconsHandler(frames[frames?.length -2][losingTeamId]?.Dragon?.KillEvents, "Dragon")}
+                                        {losingTeamId && redIconsHandler(frames[frames?.length -2][losingTeamId]?.Baron?.KillEvents, "Baron")}
+                                        {losingTeamId && redIconsHandler(frames[frames?.length -2][losingTeamId]?.Inhibitor?.KillEvents, "Inhibitor")}
+                                        {losingTeamId && redIconsHandler(frames[frames?.length -2][losingTeamId]?.Tower?.KillEvents, "Tower")}
+                                        {losingTeamId && redIconsHandler(frames[frames?.length -2][losingTeamId]?.riftHerald?.KillEvents, "riftHerald")}
                                         </div>
                                     </div>
                                 </div>
