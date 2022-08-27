@@ -296,7 +296,7 @@ const RightSide = (props) => {
     return (
         <div>
             {/* top images  */}
-            <div className=" flex items-center gap-x-2 ">
+            <div className=" flex items-start gap-x-2 ">
                 <div
                     className={`${
                         props.expand
@@ -363,7 +363,7 @@ const RightSide = (props) => {
                     })}
                 </div>
                 {/* batch  */}
-                <div>
+                <div className=" flex flex-col gap-y-1 items-center ">
                     {/* data.batch  */}
                     <div
                         className={` relative group ${
@@ -371,7 +371,7 @@ const RightSide = (props) => {
                                 ? `w-[45px] h-[45px] mb-[6px] ${
                                       props.mainExpand ? "" : ""
                                   }`
-                                : " w-[30px] h-[30px] rounded-5px mb-1 "
+                                : " w-[30px] h-[30px] rounded-5px "
                         }`}
                     >
                         {findRuneIcon(
@@ -401,7 +401,7 @@ const RightSide = (props) => {
                                 ? `w-[45px] h-[45px] mb-[6px] ${
                                       props.mainExpand ? "" : ""
                                   }`
-                                : " w-[30px] h-[30px] rounded-5px "
+                                : " w-[20px] h-[20px] rounded-5px mt-[3px] "
                         }`}
                     >
                         {props?.mainPlayer?.perks?.styles[1]?.style && (
