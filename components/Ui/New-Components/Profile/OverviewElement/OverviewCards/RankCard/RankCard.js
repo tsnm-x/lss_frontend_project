@@ -265,7 +265,7 @@ const RankCard = (props) => {
                                                                     item
                                                                 )
                                                                     ? "mythic"
-                                                                    : "not mythic"}
+                                                                    : null}
                                                             </p>
                                                         </div>
                                                     </div>
