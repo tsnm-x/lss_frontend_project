@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const HoverDiscription = (props) => {
     return (
@@ -17,7 +18,17 @@ const HoverDiscription = (props) => {
                 {/* top header  */}
                 <div className=" flex items-center ">
                     {/* img  */}
-                    <div className={`rounded-full `} style={props.style}></div>
+                    <div className={` ${props.border} `} style={props.style}>
+                        {props.img && (
+                            <div className={` relative w-[${props.img.width}] h-[${props.img.height}]`}>
+                                <Image
+                                    src={props.img.src}
+                                    alt={props.img.alt}
+                                    layout="fill"
+                                />
+                            </div>
+                        )}
+                    </div>
                     <div className=" flex ml-3 ">
                         {props.name && (
                             <h3 className=" font-sf-pro-text font-[700] text-[18px] leading-[22px] text-white mr-3 ">
