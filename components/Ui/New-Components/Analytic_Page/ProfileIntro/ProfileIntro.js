@@ -101,7 +101,7 @@ const ProfileIntro = (props) => {
                     className=" container max-w-sm-container h-[245px] flex items-center relative 
               "
                 >
-                    <div className=" relative z-50 flex ">
+                    <div className=" relative z-50 flex items-center ">
                         {/* left side img  */}
                         <div className=" relative rounded-[15px] w-[110px] h-[110px] border border-white mr-[35px] ">
                             {props.mainPlayer && (
@@ -123,26 +123,7 @@ const ProfileIntro = (props) => {
                                 {convertHMS(props.match?.duration)} .{" "}
                                 {getGameStart(props.match?.gameStartTimestamp)}
                             </p>
-                            <div className=" grid grid-cols-4 grid-rows-2 mt-[10px] ">
-                                {profileDetails.rankStyle.map((item, index) => {
-                                    return (
-                                        <div
-                                            className={`${
-                                                Classess.profileRankOption
-                                            } ${
-                                                index >= 4
-                                                    ? index === 4
-                                                        ? "bg-[#D58A54]"
-                                                        : " bg-accent-color "
-                                                    : "bg-[#5d7cf6]"
-                                            }`}
-                                            key={index}
-                                        >
-                                            {item.name}
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                            
                         </div>
                     </div>
                     {/* background image  */}
