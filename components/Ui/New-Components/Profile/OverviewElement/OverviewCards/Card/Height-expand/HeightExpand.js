@@ -797,7 +797,7 @@ const HeightExpand = (props) => {
         }
     }, [mainPlayer]);
     return (
-        <div className=" mb-14 ">
+        <div className=" pb-[36px] bg-[#110A1B] -mt-[5px] rounded-5px ">
             <Btns />
             {mainPlayer && (
                 <ExpandDataRows
