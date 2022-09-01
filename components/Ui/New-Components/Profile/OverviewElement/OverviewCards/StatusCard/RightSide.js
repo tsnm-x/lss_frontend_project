@@ -323,24 +323,30 @@ const RightSide = (props) => {
             </div>
             {/* bottom texts  */}
             <div
-                className={`font-sf-pro-text font-bold text-[9.5px] leading-[11px] mt-[17px]   ${
+                className={`font-sf-pro-text font-bold text-[9.5px] leading-[11px] mt-[15px] grid grid-cols-[85px_auto]    ${
                     props.mainExpand ? "" : " "
                 }`}
             >
-                <p className=" text-grayed-text ">
-                    <span className=" text-accent-color-2">
-                        {props.mainPlayer?.deaths
-                            ? (
-                                  (props.mainPlayer?.assists +
-                                      props.mainPlayer?.kills) /
-                                  props.mainPlayer?.deaths
-                              ).toFixed(2)
-                            : "Perfect"}
-                        {props.mainPlayer?.deaths ? ":1" : ""}
-                    </span>{" "}
-                    KDA
-                </p>
-                {viewer && <p className=" text-grayed-text ">{kp}% KP</p>}
+                <div>
+                    <p className=" text-grayed-text ">
+                        <span className=" text-accent-color-2">
+                            {props.mainPlayer?.deaths
+                                ? (
+                                      (props.mainPlayer?.assists +
+                                          props.mainPlayer?.kills) /
+                                      props.mainPlayer?.deaths
+                                  ).toFixed(2)
+                                : "Perfect"}
+                            {props.mainPlayer?.deaths ? ":1" : ""}
+                        </span>{" "}
+                        KDA
+                    </p>
+                    {viewer && <p className=" text-grayed-text ">{kp}% KP</p>}
+                </div>
+                <div>
+                    <p className=" text-accent-color-2 ">185 cs</p>
+                    <p className=" text-grayed-text ">7.75 cs/min</p>
+                </div>
             </div>
         </div>
     );
