@@ -35,9 +35,9 @@ const HoverDiscription = (props) => {
                                 {props.name}
                             </h3>
                         )}
-                        {props.mythic && (
+                        {props.role && (
                             <p className=" font-sf-pro-text text-[9px] leading-[11px] font-[700] text-[#FF4256] capitalize ">
-                                mythic
+                                {props.role}
                             </p>
                         )}
                     </div>

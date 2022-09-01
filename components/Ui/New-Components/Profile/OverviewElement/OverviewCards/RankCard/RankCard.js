@@ -201,7 +201,7 @@ const RankCard = (props) => {
                                                 items={items}
                                                 gold={items[item].gold.total}
                                                 name={items[item].name}
-                                                mythic={mythicHighlighter(item)}
+                                                role={mythicHighlighter(item) ? "mythic": null}
                                                 dis={items[item]?.description}
                                                 border={`${
                                                     mythicHighlighter(item)

@@ -1,11 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import Image from 'next/image'
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { useSelector } from "react-redux";
-import HoverDiscription from '../../Hover/HoverDiscription';
-
-
-
-
+import HoverDiscription from "../../Hover/HoverDiscription";
 
 const RightSide = (props) => {
     const [teamKills, setTeamKills] = useState(1);
@@ -262,22 +258,26 @@ const RightSide = (props) => {
                                             props?.mainPlayer?.perks?.styles[0]
                                                 ?.selections[0].perk
                                         )}`,
-                                        alt: 'dragon icon',
-                                        width: '30px',
-                                        height: '30px'
+                                        alt: "dragon icon",
+                                        width: "30px",
+                                        height: "30px",
                                     }}
+                                    name={props?.mainPlayer?.championName}
+                                    role="run"
+                                    dis={
+                                        findRuneDetails(
+                                            props?.mainPlayer?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        ).longDesc
+                                    }
+                                    gold={props?.mainPlayer?.goldEarned}
                                 />
-                                {console.log(
-                                    findRuneIcon(
-                                        props?.mainPlayer?.perks?.styles[0]
-                                            ?.selections[0].perk
-                                    )
-                                )}
+                                {console.log(props?.mainPlayer, "long dis")}
                             </div>
                         )}
                     </div>
                     <div
-                        className={` relative ${
+                        className={` relative group ${
                             props.expand
                                 ? `w-[45px] h-[45px] mb-[6px] ${
                                       props.mainExpand ? "" : ""
@@ -286,14 +286,37 @@ const RightSide = (props) => {
                         }`}
                     >
                         {props?.mainPlayer?.perks?.styles[1]?.style && (
-                            <Image
-                                src={styleSelector(
-                                    props?.mainPlayer?.perks?.styles[1]?.style
-                                )}
-                                alt="summoner flash image"
-                                layout="fill"
-                                className=" rounded-5px "
-                            />
+                            <>
+                                <Image
+                                    src={styleSelector(
+                                        props?.mainPlayer?.perks?.styles[1]
+                                            ?.style
+                                    )}
+                                    alt="summoner flash image"
+                                    layout="fill"
+                                    className=" rounded-5px "
+                                />
+                                <HoverDiscription
+                                    img={{
+                                        src: `https://ddragon.canisback.com/img/${findRuneIcon(
+                                            props?.mainPlayer?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        )}`,
+                                        alt: "dragon icon",
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                    name={props?.mainPlayer?.championName}
+                                    role="run"
+                                    dis={
+                                        findRuneDetails(
+                                            props?.mainPlayer?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        ).longDesc
+                                    }
+                                    gold={props?.mainPlayer?.goldEarned}
+                                />
+                            </>
                         )}
                     </div>
                 </div>
@@ -323,4 +346,4 @@ const RightSide = (props) => {
     );
 };
 
-export default RightSide
+export default RightSide;
