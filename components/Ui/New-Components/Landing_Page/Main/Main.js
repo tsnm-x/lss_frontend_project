@@ -9,9 +9,8 @@ const Main = (props) => {
         <main className={` ${props.className}`}>
             <div
                 className="
-                            container mobile:relative  mobile:w-[332px] mobile:h-[206px]
-                            mobile:flex mobile:items-end mobile:justify-center smTablet:container smTablet:h-[402px] tablet:max-w-[745px] tablet:h-[463px]
-                            laptop:items-center "
+                            container mobile:relative w-[730px] h-[454px] flex justify-center
+                             "
             >
                 {/* hightlight img  */}
                 <div
@@ -25,17 +24,10 @@ const Main = (props) => {
                     />
                 </div>
                 {/* profile search  */}
-                <div
-                    className=" 
-                                relative z-30 mobile:mb-[6px] mobile:w-[255px] mobile:mx-auto smTablet:w-full 
-                                smTablet:max-w-[initial] smTablet:mb-[52px]
-                                laptop:mb-0 laptop:w-[728px] laptop:mr-0 laptop:-ml-12
-                                
-                                "
-                >
+                <div className=" relative z-30 pt-[80px] ">
                     <div className=" block mb-[40px]  ">
-                        <Logo className=" nedgen-regular-60 leading-[57px] font-[400] text-center mb-[10px] " />
-                        <p className=" font-mazin font-[500] text-[#AAA0A8] text-[30px] leading-[38px] text-center flex flex-col items-center  ">
+                        <Logo className=" nedgen-regular-60 leading-[57px] font-[400] text-center mt-[45px] " />
+                        <p className=" font-mazin font-[600] text-[#AAA0A8] text-[31px] leading-[38px] text-center flex flex-col items-center mt-[16px] mr-2  ">
                             <span>Reach your potential with powerful</span>
                             <span>LoL Simulation tools</span>
                         </p>
