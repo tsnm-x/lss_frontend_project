@@ -16,7 +16,7 @@ const Main = (props) => {
                 {/* hightlight img  */}
                 <div
                     className=" 
-                            z-10 absolute  opacity-[36%] laptop:w-[730px] laptop:h-[455px]  "
+                            z-10 absolute  opacity-[80%] laptop:w-[730px] laptop:h-[455px]  "
                 >
                     <Image
                         src={AnimatedImage}
