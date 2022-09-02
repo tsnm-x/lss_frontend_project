@@ -207,6 +207,7 @@ const MatchSimulator = ({ query }) => {
                         );
                         matchTimeline = addBaronTimers(matchTimeline);
                         matchTimeline = addHaroldTimers(matchTimeline);
+                        console.log(matchTimeline);
                         setMatchTimelineData(matchTimeline);
                     }
                 }
@@ -235,7 +236,7 @@ const MatchSimulator = ({ query }) => {
             }
         });
 
-        // console.log(matchTimeline);
+        
 
         matchTimeline?.frames[
             matchTimeline?.frames?.length - 2
