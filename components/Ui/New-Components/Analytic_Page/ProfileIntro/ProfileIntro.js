@@ -5,7 +5,6 @@ import DefeatCoverImg from "../../../../../public/assets/new-images/Profile/defe
 import Classess from "./ProfileIntro.module.css";
 
 const ProfileIntro = (props) => {
-
     const [championId, setChampionId] = useState();
 
     useEffect(() => {
@@ -95,63 +94,58 @@ const ProfileIntro = (props) => {
     return (
         <>
             <section className=" relative ">
-                <div className="container flex h-[225px] items-center relative z-50 pl-[90px]  ">
-                    {/* left side img  */}
-                    <div className=" rounded-[15px] relative w-[110px] h-[110px] border border-white mr-[35px] ">
-                        {props.mainPlayer && (
-                            <Image
-                                src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${props.mainPlayer?.championName}.png`}
-                                alt=" profile image"
-                                layout="fill"
-                                className=" rounded-[15px] "
-                            />
-                        )}
-                    </div>
-                    {/* right side  */}
-                    <div>
-                        <h1 className=" font-sf-pro-text font-[700] text-white text-[30px] leading-[35.5px] capitalize ">
-                            {props.mainPlayer?.win ? "Victory" : "Defeat"}
-                        </h1>
-                        <p className=" font-sf-pro-text font-[500] text-[18px] leading-[21.5px] text-[#AAA0A8] capitalize mt-1 ">
-                            {selectGameType()} .{" "}
-                            {convertHMS(props.match?.duration)} .{" "}
-                            {getGameStart(props.match?.gameStartTimestamp)}
-                        </p>
-                        <div className=" grid grid-cols-4 grid-rows-2 mt-[10px] ">
-                            {profileDetails.rankStyle.map((item, index) => {
-                                return (
-                                    <div
-                                        className={`${
-                                            Classess.profileRankOption
-                                        } ${
-                                            index >= 4
-                                                ? index === 4
-                                                    ? "bg-[#D58A54]"
-                                                    : " bg-accent-color "
-                                                : "bg-[#5d7cf6]"
-                                        }`}
-                                        key={index}
-                                    >
-                                        {item.name}
-                                    </div>
-                                );
-                            })}
+                {/* bottom shadow  */}
+                <div className={Classess.profileMask}></div>
+                {/* content container  */}
+                <div
+                    className=" container max-w-sm-container h-[245px] flex items-center relative 
+              "
+                >
+                    <div className=" relative z-50 flex items-center ">
+                        {/* left side img  */}
+                        <div className=" relative rounded-[15px] w-[110px] h-[110px] border border-white mr-[35px] ">
+                            {props.mainPlayer && (
+                                <Image
+                                    src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/champion/${props.mainPlayer?.championName}.png`}
+                                    alt=" profile image"
+                                    layout="fill"
+                                    className=" rounded-[15px] "
+                                />
+                            )}
+                        </div>
+                        {/* right side  */}
+                        <div>
+                            <h1 className=" font-sf-pro-text font-[700] text-white text-[30px] leading-[35.5px] capitalize ">
+                                {props.mainPlayer?.win ? "Victory" : "Defeat"}
+                            </h1>
+                            <p className=" font-sf-pro-text font-[500] text-[18px] leading-[21.5px] text-[#AAA0A8] capitalize mt-1 ">
+                                {selectGameType()} .{" "}
+                                {convertHMS(props.match?.duration)} .{" "}
+                                {getGameStart(props.match?.gameStartTimestamp)}
+                            </p>
+                            
                         </div>
                     </div>
-                </div>
-
-                <div>
-                    {championId && <div
-                        className={` w-[80%] h-full absolute right-0 top-0 z-30 `}
-                    >
-                        <Image
-                            src={`/assets/new-images/Profile/championBackgrounds/champId ${championId}.png`}
-                            alt="cover image"
-                            layout="fill"
-                            objectFit="cover"
-                        />
-                    </div>}
-                    <div className={`${Classess.bgImgMask}  z-40`}></div>
+                    {/* background image  */}
+                    <div className=" w-screen max-w-[1536px] h-[245px] absolute left-[124px] top-0 ">
+                        {/* cover photo  */}
+                        {championId && (
+                            <div
+                                className={` w-full h-full absolute right-0 top-0 `}
+                            >
+                                {championId && (
+                                    <Image
+                                        src={`/assets/new-images/Profile/championBackgrounds/champId ${championId}.png`}
+                                        alt="cover image"
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                )}
+                            </div>
+                        )}
+                        {/* cover photo mask  */}
+                        <div className={Classess.bgImgMask}></div>
+                    </div>
                 </div>
             </section>
         </>

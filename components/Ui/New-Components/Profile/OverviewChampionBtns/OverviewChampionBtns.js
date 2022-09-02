@@ -55,7 +55,7 @@ const OverviewChampionBtns = (props) => {
                     </div>
                 </div>
                 {/* report texts and btn  */}
-                <OverviewReport {...props} listenTxt={true} />
+                <OverviewReport {...props} />
             </div>
         </section>
     );

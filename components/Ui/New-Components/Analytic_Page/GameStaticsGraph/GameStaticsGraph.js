@@ -258,7 +258,7 @@ const GameStaticsGraph = (props) => {
                 <div className=" mt-[14px] flex items-center ml-[150px] ">
                     <div
                         className={`w-[1000px] relative ${
-                            !expand ? "h-[50px]" : "h-[360px] "
+                            !expand ? "h-[50px]" : "h-[500px] "
                         } [transition:height_0.4s]`}
                     >
                         <div className=" relative z-50">

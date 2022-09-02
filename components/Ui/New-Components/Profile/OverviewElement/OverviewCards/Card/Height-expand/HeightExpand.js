@@ -53,13 +53,18 @@ const HeaderBar = (props) => {
             <h1 className=" sf-bold-10 capitalize text-grayed-text ml-[15px] ">
                 <span
                     className={` ${
-                        props?.convertM(props?.match?.duration) <= 5 ? "text-yellow-50" :
-                        !props.won
+                        props?.convertM(props?.match?.duration) <= 5
+                            ? "text-yellow-50"
+                            : !props.won
                             ? "text-accent-color"
                             : "text-accent-color-2"
                     } sf-bold-14 mr-[5px] `}
                 >
-                    {props?.convertM(props?.match?.duration) <= 5 ? "Remake" : props.won? "Victory" : "Defeat"}
+                    {props?.convertM(props?.match?.duration) <= 5
+                        ? "Remake"
+                        : props.won
+                        ? "Victory"
+                        : "Defeat"}
                 </span>{" "}
                 {!props?.blueTeam ? "(Red Team)" : "(Blue Team)"}
             </h1>
@@ -67,16 +72,12 @@ const HeaderBar = (props) => {
             <h1 className=" sf-bold-10  capitalize text-grayed-text ">
                 Creep Score
             </h1>
-            <h1 className=" sf-bold-10 capitalize text-grayed-text ">
-                score
-            </h1>
+            <h1 className=" sf-bold-10 capitalize text-grayed-text ">score</h1>
             <h1 className=" sf-bold-10  capitalize text-grayed-text ">items</h1>
             <h1 className=" sf-bold-10  capitalize text-grayed-text text-center ">
                 Damage Dealt
             </h1>
-            <h1 className=" sf-bold-10  capitalize text-grayed-text ">
-                gold
-            </h1>
+            <h1 className=" sf-bold-10  capitalize text-grayed-text ">gold</h1>
         </div>
     );
 };
@@ -90,16 +91,15 @@ const DataRow = (props) => {
     const champions = useSelector((state) => state.champions.champions);
     const router = useRouter();
     const items = useSelector((state) => state.items.items);
-    const runes = useSelector(state => state.runes.runes) 
+    const runes = useSelector((state) => state.runes.runes);
 
     const getItem = (item) => {
-        return items[item]?.image
-    }
-
+        return items[item]?.image;
+    };
 
     const getChampion = (player) => {
         return champions[player]?.image;
-    }
+    };
 
     const getMaxDamageDealt = () => {
         let maxDamageDealt =
@@ -154,7 +154,7 @@ const DataRow = (props) => {
     function RankCompGenerator(color, text) {
         let component = (
             <h1
-                className={` capitalize font-sf-pro-text text-[12px] leading-[14.3px]
+                className={` capitalize font-sf-pro-text text-[12px] leading-[14.3px] cursor-pointer
                 text-[#858DA3]`}
                 style={{ color: color ? color : "#706A76" }}
             >
@@ -342,28 +342,32 @@ const DataRow = (props) => {
     }
 
     const findRuneDetails = (id) => {
-        if(runes && id){
-            const selectedRune = runes.filter(rune => rune?.id === id);
-            return selectedRune[0]
+        if (runes && id) {
+            const selectedRune = runes.filter((rune) => rune?.id === id);
+            return selectedRune[0];
         }
-    }
+    };
 
     const findRuneIcon = (id) => {
         const rune = findRuneDetails(id);
-        return rune?.icon
-    }
+        return rune?.icon;
+    };
 
-    const getRuneDescription= (rune) => {
-        if(runes && rune){
-            const selectedRune = findRuneDetails(rune)
+    const getRuneDescription = (rune) => {
+        if (runes && rune) {
+            const selectedRune = findRuneDetails(rune);
             return (
                 <div>
                     <h1>{selectedRune?.name}</h1>
-                    <small dangerouslySetInnerHTML={{ __html: selectedRune?.longDesc }}></small>
+                    <small
+                        dangerouslySetInnerHTML={{
+                            __html: selectedRune?.longDesc,
+                        }}
+                    ></small>
                 </div>
-            )
+            );
         }
-    }
+    };
 
     const mythicHighlighter = (id) => {
         switch (id) {
@@ -424,17 +428,21 @@ const DataRow = (props) => {
     };
 
     const getItemDetails = (item) => {
-        if(items && item){
+        if (items && item) {
             return (
                 <div>
                     <h1>{items[item]?.name}</h1>
-                    <p>{mythicHighlighter(item)? "mythic" : "not mythic"}</p>
-                    <small dangerouslySetInnerHTML={{ __html: items[item]?.description }}></small>
+                    <p>{mythicHighlighter(item) ? "mythic" : "not mythic"}</p>
+                    <small
+                        dangerouslySetInnerHTML={{
+                            __html: items[item]?.description,
+                        }}
+                    ></small>
                     <p>{items[item]?.gold?.total}G</p>
                 </div>
-            )
+            );
         }
-    }
+    };
 
     return (
         <div
@@ -538,7 +546,7 @@ const DataRow = (props) => {
                 </div>
             </div>
             {/* name  */}
-            <div className=" flex flex-col justify-center ">
+            <div className=" flex flex-col justify-center group relative ">
                 <Link
                     href={{
                         pathname: "/summoner/[region]/[summonerName]",
@@ -555,6 +563,29 @@ const DataRow = (props) => {
                     </h1>
                 </Link>
                 {Rank}
+                <>
+                    {/* indicator  */}
+                    <div
+                        className={` transform  opacity-0 scale-y-0 -rotate-90 left-[75px] group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 transition-all ease-in-out duration-200 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] w-[12px] h-[6px] bg-[#d9d9d9] border absolute  z-20  `}
+                    ></div>
+                    <div
+                        className={`
+                                                        w-[112px] border bg-[#241E2C] p-[8px_15px] absolute z-10
+                                                         no-repeat left-[84px] top-[0px] 
+                                                         transform  opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 mt-2 transition-all ease-in-out duration-200
+                                                          `}
+                    >
+                        <h3 className=" font-mazin font-bold text-[15px] leading-[19px] text-[#4DC7BE]">
+                            Platinum 4
+                        </h3>
+                        <h2 className=" font-sf-pro-text font-bold text-[18px] leading-[22px] uppercase text-white ">
+                            61lp
+                        </h2>
+                        <p className=" font-sf-pro-text font-[500] text-[11px] leading-[13.2px] text-white mt-[2px] ">
+                            <span className=" text-[#5D7CF6]">54.62%</span> WR
+                        </p>
+                    </div>
+                </>
             </div>
             {/* creep score  */}
             <div className=" flex flex-col justify-center ">
@@ -696,7 +727,12 @@ const ExpandDataRows = (props) => {
     return (
         <div>
             {/* header  */}
-            <HeaderBar won={props.type} blueTeam={props?.blueTeam} match={props.match} convertM={props?.convertM}/>
+            <HeaderBar
+                won={props.type}
+                blueTeam={props?.blueTeam}
+                match={props.match}
+                convertM={props?.convertM}
+            />
             <div className=" px-[9px] mt-[10px] ">
                 {props.team?.map((data, index) => {
                     return (
@@ -723,51 +759,68 @@ const HeightExpand = (props) => {
     const [isBlue, setIsBlue] = useState(false);
 
     useEffect(() => {
-        setMainPlayer(props.match?.players?.find((player, idx) => {
-            if(player.mainPlayer){
-                setIndex(idx)
-            }
-            return player.mainPlayer
-        }))
+        setMainPlayer(
+            props.match?.players?.find((player, idx) => {
+                if (player.mainPlayer) {
+                    setIndex(idx);
+                }
+                return player.mainPlayer;
+            })
+        );
     }, [props.match?.players]);
 
     useEffect(() => {
-        if(index){
-            index <= 4 ? setIsBlue(true) : setIsBlue(false)
+        if (index) {
+            index <= 4 ? setIsBlue(true) : setIsBlue(false);
         }
-    }, [index])
+    }, [index]);
 
-    useEffect(()=>{
-        if(mainPlayer?.summonerName){
-            if (mainPlayer.win){
-                setFirstTeam(props.match?.players?.filter((player) => player.win))
-                setSecondTeam(props.match?.players?.filter((player) => !player.win))
-                setWonGame(true)
-            } else if (!mainPlayer.win){
-                setFirstTeam(props.match?.players?.filter((player) => !player.win))
-                setSecondTeam(props.match?.players?.filter((player) => player.win))
-                setWonGame(false)
+    useEffect(() => {
+        if (mainPlayer?.summonerName) {
+            if (mainPlayer.win) {
+                setFirstTeam(
+                    props.match?.players?.filter((player) => player.win)
+                );
+                setSecondTeam(
+                    props.match?.players?.filter((player) => !player.win)
+                );
+                setWonGame(true);
+            } else if (!mainPlayer.win) {
+                setFirstTeam(
+                    props.match?.players?.filter((player) => !player.win)
+                );
+                setSecondTeam(
+                    props.match?.players?.filter((player) => player.win)
+                );
+                setWonGame(false);
             }
         }
-    }, [mainPlayer])
+    }, [mainPlayer]);
     return (
-        <div className=" mb-14 ">
+        <div className=" pb-[36px] bg-[#110A1B] -mt-[5px] rounded-5px ">
             <Btns />
-            {mainPlayer && <ExpandDataRows
-                blueTeam={isBlue}
-                team={firstTeam}
-                type={wonGame}
-                match={props.match}
+            {mainPlayer && (
+                <ExpandDataRows
+                    blueTeam={isBlue}
+                    team={firstTeam}
+                    type={wonGame}
+                    match={props.match}
+                    convertM={props?.convertM}
+                />
+            )}
+            <SimulateComponets
+                match={props?.match}
                 convertM={props?.convertM}
-            />}
-            <SimulateComponets match={props?.match} convertM={props?.convertM}/>
-            {mainPlayer && <ExpandDataRows
-                blueTeam={!isBlue}
-                team={secondTeam}
-                type={!wonGame}
-                match={props.match}
-                convertM={props?.convertM}
-            />}
+            />
+            {mainPlayer && (
+                <ExpandDataRows
+                    blueTeam={!isBlue}
+                    team={secondTeam}
+                    type={!wonGame}
+                    match={props.match}
+                    convertM={props?.convertM}
+                />
+            )}
         </div>
     );
 };

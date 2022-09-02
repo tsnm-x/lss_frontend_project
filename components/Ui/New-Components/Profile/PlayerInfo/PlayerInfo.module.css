@@ -1,21 +1,21 @@
 .profileMask {
-    @apply absolute z-30 h-[102%] w-[42vw] desktop:w-[43vw] -top-[0.5px];
+    @apply absolute z-30 h-[102%] w-[55%] desktop:w-[55%] -top-[0.5px];
     background: linear-gradient(
         272.11deg,
         rgba(30, 22, 41, 0) 2.05%,
-        #1e1629 64.42%
+        #1e1629 46%
     );
-    backdrop-filter: blur(40px);
-    clip-path: polygon(0% 0%, 65% 0, 100% 100%, 0% 100%);
+    /* backdrop-filter: blur(40px); */
+    /* clip-path: polygon(0% 0%, 65% 0, 100% 100%, 0% 100%); */
 }
 
 @media only screen and (min-width: 1800px) {
     .profileMask {
-        clip-path: polygon(0% 0%, 32vw 0, 100% 100%, 0% 100%);
+        /* clip-path: polygon(0% 0%, 32vw 0, 100% 100%, 0% 100%); */
         background: linear-gradient(
         272.11deg,
         rgba(30, 22, 41, 0) 2.05%,
-        #1e1629 60%
+        #1e1629 45%
     );
     }
 }

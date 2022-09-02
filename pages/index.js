@@ -13,7 +13,8 @@
 // import IrealaImg from "../public/assets/Irelia.png";
 // import { profileAction } from "../store/profile";
 // import Router from "next/router";
-
+import MainWrapperGridBg from "../public/assets/new-images/landing-page/gradient-bg.png";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import classes from "../styles/index.module.css";
 import Header from "../components/shared/New-Componets/Header/Header";
@@ -108,9 +109,15 @@ export default function Home() {
 
     return (
         <>
-            <div
-                className={`h-screen flex flex-col justify-between ${classes.mainWrapper}`}
-            >
+            <div className={` w-screen h-screen absolute opacity-40  `}>
+                <Image
+                    src={MainWrapperGridBg}
+                    alt="bg grid img"
+                    layout="fill"
+                />
+            </div>
+            {/* content  */}
+            <div className={`h-screen flex flex-col justify-between `}>
                 <Header menuBtnClick={leftNavHandler} />
                 {/* main section  */}
                 <Main className=" laptop:my-[0]  " />

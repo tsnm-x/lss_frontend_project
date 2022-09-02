@@ -204,7 +204,7 @@ const ProfileSearch = (props) => {
         e.preventDefault();
         setHideSearch(true);
         console.log("Entered!");
-        console.log(activeListDetails.selectedItem.serverName);
+        // console.log(activeListDetails.selectedItem.serverName);
         sendRequest(
             {
                 url: "/summonerName",
