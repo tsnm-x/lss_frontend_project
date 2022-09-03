@@ -47,7 +47,7 @@ const LanguageSelect = (props) => {
         <div className=" relative ">
             <div
                 onClick={listShowHideHandler}
-                className=" relative z-[60] bg-headBorder rounded-[6px] p-[11px] flex items-center justify-between cursor-pointer w-[123px] "
+                className=" relative z-[60] bg-headBorder rounded-[6px] px-[11px] h-[45px] flex items-center justify-between cursor-pointer w-[123px] "
             >
                 <BiCaretDown className=" text-[17px] text-white mr-[8px] " />
                 { (
