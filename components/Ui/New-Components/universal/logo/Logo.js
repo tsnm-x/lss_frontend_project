@@ -5,7 +5,7 @@ const Logo = (props) => {
   return (
       <Link href="/">
           <h1
-              className={` font-NEDGEN text-[#d55460]  uppercase cursor-pointer ${
+              className={` font-NEDGEN text-red  uppercase cursor-pointer ${
                   props.className
                       ? props.className
                       : " text-[30px] leading-[40px]"

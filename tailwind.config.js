@@ -70,6 +70,8 @@ module.exports = {
                 winOpacity: "#24213d",
                 defeatOpacity: "#301d2e",
                 whiteOpacity: "#3a3242",
+                red: "#FF4256",
+                headBorder: "#282728",
             },
             fontSize: {
                 // old 1.0

@@ -295,7 +295,7 @@
         @apply smTablet:hidden;
     }
     body {
-        @apply bg-background overflow-x-hidden;
+        @apply bg-[#131213] overflow-x-hidden;
     }
     /* button  */
     .btn {
