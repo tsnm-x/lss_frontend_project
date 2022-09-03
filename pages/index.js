@@ -99,42 +99,16 @@ export default function Home() {
 
     const [leftNav, setLeftNav] = useState(false);
 
-    // overflow disable on leftnavigation
-    const leftNavHandler = () => {
-        setLeftNav(!leftNav);
-        !leftNav
-            ? (document.querySelector("body").style.overflow = "hidden")
-            : (document.querySelector("body").style.overflow = "initial");
-    };
-
     return (
         <>
-            <div className={` w-screen h-screen absolute opacity-40  `}>
-                <Image
-                    src={MainWrapperGridBg}
-                    alt="bg grid img"
-                    layout="fill"
-                />
-            </div>
             {/* content  */}
             <div className={`h-screen flex flex-col justify-between `}>
-                <Header menuBtnClick={leftNavHandler} />
+                <Header />
                 {/* main section  */}
                 <Main className=" laptop:my-[0]  " />
-                {/* sidebar  */}
-                {leftNav && (
-                    <Portal selector="#portal">
-                        <LeftNavigationPortal menuBtnClick={leftNavHandler} />
-                    </Portal>
-                )}
-                {/* advertise and download  */}
-                <AdvertiseAndDownloadNow className=" mobile:hidden " />
-                <HorizontalAds className=" hidden mobile:block smTablet:hidden" />
                 {/* footer section  */}
                 <Footer
                     className=" laptop:mt-[0px] "
-                    textStyle="text-grayed-text text-center smMobile:w-[244px]
-								 smTablet:container tablet:w-[722px] laptop:pb-[25px] desktop:py-[0px] "
                 />
             </div>
 
