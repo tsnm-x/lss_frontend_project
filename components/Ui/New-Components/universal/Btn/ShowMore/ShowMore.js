@@ -34,8 +34,18 @@ const ShowMore = (props) => {
 		setStart(start + 10);
 	};
     return (
-        <button onClick={getMoreMatches} className={` w-full h-[50px] flex items-center justify-center bg-headBorder rounded-5px `}>
-            <h3 className={` font-sf-pro-text font-bold text-center text-[18px] leading-[21.4px] text-[#979797]`}>Show More</h3>
+        <button
+            onClick={getMoreMatches}
+            className={` w-full h-[50px] flex items-center 
+				justify-center bg-headBorder hover:bg-[#353338] rounded-5px `}
+        >
+            <h3
+                className={` font-sf-pro-text font-bold 
+						text-center text-[18px] leading-[21.4px]
+						 text-[#979797]`}
+            >
+                Show More
+            </h3>
         </button>
     );
 };
