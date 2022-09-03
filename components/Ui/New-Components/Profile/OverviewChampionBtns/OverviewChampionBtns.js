@@ -3,17 +3,18 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BiMessageAlt } from "react-icons/bi";
 import OverviewReport from "./ReportBtn";
+import SmallBtn from "../../../../shared/Btn/SmallBtn";
 
 const OverviewChampionBtns = (props) => {
     const { controller, currentView } = props;
     const router = useRouter();
 
     return (
-        <section className=" bg-[#1e1629] py-3 ">
+        <section className=" bg-[#161416] py-3 ">
             <div className=" container flex justify-between max-w-sm-container ">
                 {/* buttons  */}
                 <div className=" flex items-center  ">
-                    <div className=" relative mr-[40px] ">
+                    <div className=" relative mr-[18px] ">
                         <Link
                             href={{
                                 pathname: "/summoner/[region]/[summonerName]",
@@ -23,35 +24,15 @@ const OverviewChampionBtns = (props) => {
                                 },
                             }}
                         >
-                            <button
-                                onClick={() => controller("overview")}
-                                className={` mazin-bold-21 capitalize  ${
-                                    currentView === "overview"
-                                        ? " text-accent-color"
-                                        : "text-grayed-text"
-                                } `}
-                            >
-                                overview
-                            </button>
+                            <SmallBtn click={() => controller("overview")}>
+                                Overview
+                            </SmallBtn>
                         </Link>
-                        {currentView === "overview" ? (
-                            <div className=" bg-accent-color w-full h-[4px] absolute -bottom-[20.5px]  "></div>
-                        ) : null}
                     </div>
                     <div className=" relative ">
-                        <button
-                            onClick={() => controller("champPool")}
-                            className={` mazin-bold-21 capitalize ${
-                                currentView === "champPool"
-                                    ? " text-accent-color"
-                                    : "text-grayed-text"
-                            } `}
-                        >
-                            champion pool
-                        </button>
-                        {currentView === "champPool" ? (
-                            <div className=" bg-accent-color w-full h-[4px] absolute -bottom-[20.5px] "></div>
-                        ) : null}
+                        <SmallBtn click={() => controller("champPool")}>
+                            Champion pool
+                        </SmallBtn>
                     </div>
                 </div>
                 {/* report texts and btn  */}
