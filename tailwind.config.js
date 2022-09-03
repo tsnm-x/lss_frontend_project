@@ -73,6 +73,7 @@ module.exports = {
                 red: "#FF4256",
                 headBorder: "#282728",
                 halfWhite: "#919192",
+                profileBorder: "#242326",
             },
             fontSize: {
                 // old 1.0

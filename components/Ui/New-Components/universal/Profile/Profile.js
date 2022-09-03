@@ -67,7 +67,7 @@ const Profile = (props) => {
         <div className=" flex gap-x-[35px] relative z-50 ">
             {/* profile image  */}
             <div className=" relative w-[115px] h-[115px] ">
-                <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
+                <div className=" relative overflow-hidden w-full h-full rounded-[20px] border border-[#242326]  ">
                     {props.profileIcon && (
                         <Image
                             src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/profileicon/${props.profileIcon}.png`}
@@ -77,12 +77,14 @@ const Profile = (props) => {
                         />
                     )}
                 </div>
-                <div
-                    className=" w-[35px] h-[35px] rounded-full border-[#F5F5F5] border flex 
-                items-center justify-center font-sf-pro-text font-[500] text-[14px] leading-[17px]
-                text-white mx-auto -mt-[10px] bg-[#140a22] relative  "
-                >
-                    {props.summonerLevel}
+                <div>
+                    <div
+                        className=" w-[53px] h-[23] bg-[#161416] flex items-center justify-center 
+                    rounded-[3px] text-white sf-mid-14 py-[3px] border border-[#242326] mx-auto relative -top-[12px]
+                     "
+                    >
+                        {props.summonerLevel}
+                    </div>
                 </div>
             </div>
             {/* profile details  */}
