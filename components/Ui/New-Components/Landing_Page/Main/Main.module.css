@@ -1,0 +1,4 @@
+.highImgMask {
+    @apply w-[210px] h-[570px] absolute right-0 top-0;
+    background: linear-gradient(90deg, rgba(19, 18, 19, 0) 0%, #131213 81.43%);
+}
