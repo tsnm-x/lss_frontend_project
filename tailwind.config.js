@@ -67,14 +67,15 @@ module.exports = {
                 background: "#140A22",
                 "footer-bg": "#18112b",
                 "text-gray-200": "#9D9D9D",
-                winOpacity: "#24213d",
-                defeatOpacity: "#301d2e",
-                whiteOpacity: "#3a3242",
+                winOpacity: "rgba(93, 124, 246, 0.05)",
+                defeatOpacity: "rgba(255, 66, 86, 0.05)",
+                whiteOpacity: "rgba(170, 160, 168, 0.05)",
                 red: "#FF4256",
                 headBorder: "#282728",
                 halfWhite: "#919192",
                 profileBorder: "#242326",
                 cardBg: "#161416",
+                blue: "#5D7CF6",
             },
             fontSize: {
                 // old 1.0

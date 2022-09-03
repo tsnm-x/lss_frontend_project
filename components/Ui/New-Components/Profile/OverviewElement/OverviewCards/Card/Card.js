@@ -69,7 +69,7 @@ const Card = (props) => {
                                                             ? "bg-yellow-50"
                                                             : mainPlayer?.win
                                                             ? "bg-accent-color-2 hover:bg-[#353c74]"
-                                                            : "bg-accent-color hover:bg-[#612d3d]"
+                                                            : " bg-red hover:bg-[#612d3d]"
                                                     }`}
                     >
                         <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />
