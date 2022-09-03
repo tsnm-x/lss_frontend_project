@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Batch from "../../../../../../../public/assets/new-images/Profile/Vector.png";
-import CloudDragon from "../../../../../../../public/assets/new-images/simulation/dragons/cloud.png";
-import OceanDragon from "../../../../../../../public/assets/new-images/simulation/dragons/ocean.png";
-import InfernalDragon from "../../../../../../../public/assets/new-images/simulation/dragons/infernal.png";
-import MountainDragon from "../../../../../../../public/assets/new-images/simulation/dragons/mountain.png";
-import HextechDragon from "../../../../../../../public/assets/new-images/simulation/dragons/hextech.png";
-
+import CloudDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Cloud_Dragon.svg";
+import OceanDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Ocean_Dragon.svg";
+import InfernalDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Infernal_Dragon.svg";
+import MountainDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Mountain_Dragon.svg";
+import HextechDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Hextech_Dragon.svg";
+import mutedCloudDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Muted_Cloud_Dragon.svg";
+import mutedOceanDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Muted_Ocean_Dragon.svg";
+import mutedInfernalDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Muted_Infernal_Dragon.svg";
+import mutedMountainDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Muted_Mountain_Dragon.svg";
+import mutedHextechDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Muted_Hextech_Dragon.svg";
+import coloredCloudDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Colored_Cloud_Dragon.svg";
+import coloredOceanDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Colored_Ocean_Dragon.svg";
+import coloredInfernalDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Colored_Infernal_Dragon.svg";
+import coloredMountainDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Colored_Mountain_Dragon.svg";
+import coloredHextechDragon from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Colored_Hextech_Dragon.svg";
+import emptyDragonImg from "../../../../../../../public/assets/new-images/simulation/Dragon_SVGs/Centeral_Empty_Img.svg"
 const DrakeBatches = (props) => {
     const [centralImg, setCenteralImg] = useState("");
 
@@ -27,22 +37,41 @@ const DrakeBatches = (props) => {
         }
     };
 
-    const centralImgHandler = (type) => {
+    const centralColoredImgHandler = (type) => {
         switch (type) {
             case "AIR_DRAGON":
-                return cloudDragon;
+                return coloredCloudDragon;
             case "WATER_DRAGON":
-                return oceanDragon;
+                return coloredOceanDragon;
             case "FIRE_DRAGON":
-                return infernalDragon;
+                return coloredInfernalDragon;
             case "EARTH_DRAGON":
-                return mountainDragon;
+                return coloredMountainDragon;
             case "HEXTECH_DRAGON":
-                return hextechDragon;
+                return coloredHextechDragon;
             default:
-                return cloudDragon;
+                return coloredCloudDragon;
         }
     };
+
+    const centralMutedImgHandler = (type) => {
+        switch (type) {
+            case "AIR_DRAGON":
+                return mutedCloudDragon;
+            case "WATER_DRAGON":
+                return mutedOceanDragon;
+            case "FIRE_DRAGON":
+                return mutedInfernalDragon;
+            case "EARTH_DRAGON":
+                return mutedMountainDragon;
+            case "HEXTECH_DRAGON":
+                return mutedHextechDragon;
+            default:
+                return mutedCloudDragon;
+        }
+    };
+
+
 
     const addEmptyBatches = (length) => {
         let arr = [];
@@ -53,20 +82,37 @@ const DrakeBatches = (props) => {
     };
 
     useEffect(() => {
-        if (props.dragonDataBlue?.length === 4) {
-            setCenteralImg(
-                centralImgHandler(
-                    props.dragonDataBlue[props.dragonDataBlue.length - 1]?.type
-                )
-            );
-        } else if (props.dragonDataRed?.length === 4) {
-            setCenteralImg(
-                centralImgHandler(
-                    props.dragonDataRed[props.dragonDataRed.length - 1]?.type
-                )
-            );
-        } else {
-            setCenteralImg(null);
+        if(props.dragonDataBlue?.length === 4 || props.dragonDataRed?.length === 4){
+            if (props.dragonDataBlue?.length === 4) {
+                setCenteralImg(
+                    centralColoredImgHandler(
+                        props.dragonDataBlue[props.dragonDataBlue.length - 1]?.type
+                    )
+                );
+            } else if (props.dragonDataRed?.length === 4) {
+                setCenteralImg(
+                    centralColoredImgHandler(
+                        props.dragonDataRed[props.dragonDataRed.length - 1]?.type
+                    )
+                );
+            }
+        } else if(props.dragonDataBlue?.length === 3 || props.dragonDataRed?.length === 3){
+            if (props.dragonDataBlue?.length === 3) {
+                setCenteralImg(
+                    centralMutedImgHandler(
+                        props.dragonDataBlue[props.dragonDataBlue.length - 1]?.type
+                    )
+                );
+            } else if (props.dragonDataRed?.length === 3) {
+                setCenteralImg(
+                    centralMutedImgHandler(
+                        props.dragonDataRed[props.dragonDataRed.length - 1]?.type
+                    )
+                );
+            }
+        }
+        else {
+            setCenteralImg(emptyDragonImg);
         }
     }, [props.dragonDataBlue, props.dragonDataRed]);
 
@@ -74,11 +120,9 @@ const DrakeBatches = (props) => {
         <div className=" w-full h-[40px] bg-card-&-content-box rounded-t-[10px] relative ">
             {/* center items  */}
             <div className=" relative">
-                {/* left batch  */}
-                <div className=" w-[300px] h-[40px] border-[#4895C1] border-[1px]  absolute left-0 top-0 "></div>
                 {/* center element  */}
-                <div className=" w-[40px] h-[40px] absolute left-[280px] top-0 flex justify-center  ">
-                    <svg
+                <div className=" w-[40px] h-[40px] absolute left-[280px] top-0 flex justify-center z-50">
+                    {/* <svg
                         className=" absolute left-0 top-0"
                         width="40"
                         height="40"
@@ -91,15 +135,18 @@ const DrakeBatches = (props) => {
                             stroke="#4895C1"
                             fill="#241e2c"
                         />
-                    </svg>
+                    </svg> */}
                     {/* batch img  */}
-                    <div className=" left-0 top-0 relative w-[16px] h-[18px]  mt-2  ">
-                        <Image
-                            src={Batch}
-                            alt="batch img"
-                            layout="fill"
-                            className=" w-full h-full"
-                        />
+                    <div className=" flex justify-center items-end row-start-1 col-start-1 ">
+                        <div className=" relative w-[100px] h-[40px] z-50">
+                            {centralImg && (
+                                <Image
+                                    src={centralImg}
+                                    alt="center batch"
+                                    layout="fill"
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
                 {/* right batch  */}
@@ -109,7 +156,7 @@ const DrakeBatches = (props) => {
 
             {/* center batch  */}
             {/* <div className=" flex justify-center items-end row-start-1 col-start-1 ">
-                <div className=" relative w-[100px] h-[47px] ">
+                <div className=" relative w-[100px] h-[47px] z-50">
                     {centralImg && (
                         <Image
                             src={centralImg}

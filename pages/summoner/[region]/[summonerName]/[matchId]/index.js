@@ -175,8 +175,11 @@ const MatchSimulator = ({ query }) => {
     }, [matches, fullMatchId]);
 
     useEffect(() => {
+
         if (match?.players) {
             setMainPlayer(match.players?.find((player) => player.mainPlayer));
+
+            console.log(match);
 
             const players = JSON.parse(JSON.stringify(match.players));
 
@@ -235,7 +238,7 @@ const MatchSimulator = ({ query }) => {
             }
         });
 
-        // console.log(matchTimeline);
+        
 
         matchTimeline?.frames[
             matchTimeline?.frames?.length - 2

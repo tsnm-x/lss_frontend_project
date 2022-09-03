@@ -20,6 +20,7 @@ import useHttp from "../../../../../../../../hook/useHttp";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import HoverDiscription from "../../../Hover/HoverDiscription";
 
 const Btns = () => {
     const [btns, setBtns] = useState([
@@ -472,7 +473,7 @@ const DataRow = (props) => {
                                     layout="fill"
                                     className=" rounded-5px "
                                 />
-                                <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                {/* <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
                                     <span>
                                         {getRuneDescription(
                                             props?.perks?.styles[0]
@@ -480,7 +481,30 @@ const DataRow = (props) => {
                                         )}
                                     </span>
                                     <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
-                                </div>
+                                </div> */}
+                                <HoverDiscription
+                                    img={{
+                                        src: `https://ddragon.canisback.com/img/${findRuneIcon(
+                                            props?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        )}`,
+                                        alt: "dragon icon",
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                    name={findRuneDetails(
+                                        props?.perks?.styles[0]
+                                            ?.selections[0].perk
+                                    ).name}
+                                    role="run"
+                                    dis={
+                                        findRuneDetails(
+                                            props?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        ).longDesc
+                                    }
+                                    gold={null}
+                                />
                             </div>
                         )}
                     </div>
@@ -648,10 +672,45 @@ const DataRow = (props) => {
                                             zoom: `0.52`,
                                         }}
                                     ></div>
-                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                    {/* <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
                                         <span>{getItemDetails(img)}</span>
                                         <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
-                                    </div>
+                                    </div> */}
+                                    <HoverDiscription
+                                        style={{
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                getItem(img)?.sprite
+                                            }') no-repeat`,
+                                            width: `${
+                                                getItem(img)?.w
+                                            }px`,
+                                            height: `${
+                                                getItem(img)?.h
+                                            }px`,
+                                            backgroundPosition: `-${
+                                                getItem(img)?.x
+                                            }px -${getItem(img)?.y}px`,
+                                            // backgroundSize: "contain",
+                                            zoom: `0.63`,
+                                        }}
+                                        items={items}
+                                        gold={items[img].gold.total}
+                                        name={items[img].name}
+                                        role={mythicHighlighter(img) ? "mythic": null}
+                                        dis={items[img]?.description}
+                                        border={`${
+                                            mythicHighlighter(img)
+                                                ? props?.convertM(
+                                                        props?.match
+                                                            ?.duration
+                                                    ) <= 5
+                                                    ? "border-2 border-[#FEFCE8]"
+                                                    : props?.win
+                                                    ? "border-2 border-[#198cff]"
+                                                    : "border-2 border-[#D55460]"
+                                                : ""
+                                        } rounded-full `}
+                                    />
                                 </div>
                             )}
                         </div>

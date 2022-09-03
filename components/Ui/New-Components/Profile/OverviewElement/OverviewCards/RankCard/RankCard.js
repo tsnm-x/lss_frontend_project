@@ -199,8 +199,8 @@ const RankCard = (props) => {
                                                     zoom: `0.63`,
                                                 }}
                                                 items={items}
-                                                gold={items[item].gold.total}
-                                                name={items[item].name}
+                                                gold={items[item]?.gold?.total}
+                                                name={items[item]?.name}
                                                 role={mythicHighlighter(item) ? "mythic": null}
                                                 dis={items[item]?.description}
                                                 border={`${
@@ -244,7 +244,7 @@ const RankCard = (props) => {
                                     // backgroundSize: "contain",
                                     zoom: `0.5`,
                                 }}
-                            ></div>
+                            ></div>  
                         )}
                 </div>
             </div>

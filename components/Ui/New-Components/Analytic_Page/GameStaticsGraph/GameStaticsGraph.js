@@ -261,7 +261,7 @@ const GameStaticsGraph = (props) => {
                             !expand ? "h-[50px]" : "h-[500px] "
                         } [transition:height_0.4s]`}
                     >
-                        <div className=" relative z-50">
+                        <div className=" relative">
                             <div className="w-[1000px] relative ">
                                 {/* border gradient  */}
                                 <div
@@ -370,7 +370,8 @@ const GameStaticsGraph = (props) => {
                                             className={`${Classess.sliderSlide} w-full relative h-[1px] `}
                                         >
                                             <div
-                                                className={`${Classess.parent} grid grid-cols-1 grid-rows-1 z-50`}
+                                                className={`${Classess.parent} grid grid-cols-1 grid-rows-1`}
+                                                style={{zIndex: 50}}
                                             >
                                                 <input
                                                     className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
@@ -436,7 +437,7 @@ const GameStaticsGraph = (props) => {
                                             >
                                                 <div
                                                     className=" bg-[#5d6182] w-[40px] h-[30px] rounded-[1px] 
-																border border-[rgba(0,0,0,0.04)] absolute flex items-center justify-center z-[50]  "
+																border border-[rgba(0,0,0,0.04)] absolute flex items-center justify-center z-[20]  "
                                                 >
                                                     <h1 className=" font-inter font-[700] text-[10px] leading-[14px] text-white">
                                                         3:00
