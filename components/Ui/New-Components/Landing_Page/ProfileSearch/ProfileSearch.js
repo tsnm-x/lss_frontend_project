@@ -6,6 +6,8 @@ import useHttp from "../../../../../hook/useHttp";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
+import { HiChevronDown } from "react-icons/hi";
+
 
 const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
@@ -228,8 +230,8 @@ const ProfileSearch = (props) => {
                         {/* country box list  */}
                         {activeListDetails.showList && (
                             <div
-                                className={` absolute left-0 top-[65px] bg-[#e7e6e9] 
-                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] pt-[21px]`}
+                                className={` absolute left-0 top-[75px] bg-headBorder rounded-[7px] 
+                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px]`}
                             >
                                 {selectionNameList.map((country, index) => {
                                     return (
@@ -241,7 +243,7 @@ const ProfileSearch = (props) => {
                                             className={` w-full h-[25px] rounded-5px cursor-pointer
                                              flex items-center justify-center ${
                                                  country.active
-                                                     ? " bg-[#d55460] rounded text-white"
+                                                     ? " bg-red rounded text-white"
                                                      : " bg-[#AAA0A826] text-[#AAA0A8]"
                                              }`}
                                         >
@@ -256,29 +258,29 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={CountryListShowHideHandler}
-                            className={` absolute bg-[#d55460] cursor-pointer w-[111px] h-[70px] rounded-5px flex justify-center items-center gap-x-2 `}
+                            className={` absolute bg-red cursor-pointer w-[105px] h-[58px] rounded-5px flex justify-center items-center gap-x-2 top-[6px] left-[6px] `}
                         >
                             <h4
-                                className={` text-white uppercase inter-bold-14 `}
+                                className={` font-mazin font-[600] text-[16px] leading-[20px] text-white uppercase `}
                             >
                                 {activeListDetails.selectedItem?.name}
                             </h4>
-                            <BiCaretDown className=" text-white text-[16px] " />
+                            <HiChevronDown className=" text-white text-[16px] " />
                         </div>
                         {/* sumonner name box  */}
                         <input
                             disabled={hideSearch}
-                            style={{backgroundColor: 'white'}}
+                            style={{ backgroundColor: "#242326" }}
                             type="search"
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
                             className={` rounded-5px w-[500px] h-[70px] pl-[147px] 
-                            font-mazin font-[600] text-[16px] leading-[20.4px] text-[rgba(0,0,0,0.5)] `}
+                            font-mazin font-[600] text-[16px] leading-[20.4px] text-halfWhite `}
                         />
                         <button
                             onClick={(e) => searchHandler(e)}
-                            className="absolute top-[20px] right-[26px]  "
+                            className="absolute top-[24px] right-[24px]  "
                         >
                             {hideSearch ? (
                                 <div className=" flex gap-x-[3px] mt-[6px] ">
@@ -292,7 +294,7 @@ const ProfileSearch = (props) => {
                                     })}
                                 </div>
                             ) : (
-                                <FiSearch className=" text-red text-[28px] " />
+                                <FiSearch className=" text-red text-[20px] " />
                             )}
                         </button>
                     </div>
