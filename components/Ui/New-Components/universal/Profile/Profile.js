@@ -110,12 +110,12 @@ const Profile = (props) => {
                     </Link> */}
                 </div>
                 {/* last update  */}
-                <div className=" rounded-full border-white border px-4 py-[6px] inline-flex items-center gap-x-2 mt-[15px] ">
+                {/* <div className=" rounded-full border-white border px-4 py-[6px] inline-flex items-center gap-x-2 mt-[15px] ">
                     <RiHistoryLine className=" text-[#d55460] text-[18px] " />
                     <p className=" text-white sf-regular-14">
                         Last Updated: {convertToDate(props?.lastModified)}
                     </p>
-                </div>
+                </div> */}
             </div>
         </div>
     );

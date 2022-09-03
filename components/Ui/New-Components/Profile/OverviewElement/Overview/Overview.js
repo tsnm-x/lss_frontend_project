@@ -12,7 +12,7 @@ const Overview = (props) => {
     const router = useRouter();
 
     return (
-        <section className=" my-[20px] relative ">
+        <section className=" my-[20px] mb-[240px] relative ">
             <div
                 className={`container grid 
                 grid-cols-[300px_885px]
