@@ -15,6 +15,12 @@ import Emblem_Master from "../../../../../../../public/assets/new-images/Profile
 import Emblem_Grandmaster from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-grandmaster.png";
 import Emblem_Challenger from "../../../../../../../public/assets/new-images/Profile/Ranks/ranked-tier-challenger.png";
 import Emblem_Unranked from "../../../../../../../public/assets/new-images/Profile/Ranks/unranked.png";
+import SmallBtn from "../../../../../../shared/Btn/SmallBtn";
+
+
+
+
+
 
 // top buttons
 const Btns = (props) => {
@@ -202,8 +208,11 @@ const Btns = (props) => {
     return (
         <>
             {/* buttons  */}
-            <div className={`flex ${props.className}`}>
-                <button
+            <div className={`flex gap-x-3 justify-center ${props.className}`}>
+                <SmallBtn click={() => rankHandler("SOLO")}>
+                    Ranked Solo
+                </SmallBtn>
+                {/* <button
                     className={` ${
                         active === "SOLO"
                             ? "text-light-text"
@@ -213,8 +222,11 @@ const Btns = (props) => {
                     onClick={() => rankHandler("SOLO")}
                 >
                     Ranked solo
-                </button>
-                <button
+                </button> */}
+                <SmallBtn click={() => rankHandler("FLEX")}>
+                    Ranked Flex
+                </SmallBtn>
+                {/* <button
                     className={` ${
                         active === "FLEX"
                             ? "text-light-text"
@@ -224,7 +236,7 @@ const Btns = (props) => {
                     onClick={() => rankHandler("FLEX")}
                 >
                     Ranked Flex
-                </button>
+                </button> */}
             </div>
             {/* graph component  */}
             {/* {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] "> */}
@@ -232,9 +244,43 @@ const Btns = (props) => {
                 {/* rank icon  */}
                 <div className={`${Classess.rankIcon} relative ml-[3px]`}>
                     <div className={`row-start-2 col-start-1`}>
-                        <svg width="108" height="108" viewBox="0 0 100 100" style={{display: "block"}}>
-                            <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray="301.59289474462014" strokeDashoffset="1" strokeWidth="0.5" stroke="#AAA0A8" shapeRendering="geometricPrecision"></circle>
-                            {rank?.leaguePoints && <circle r="48" cx="50%" cy="50%" fill="transparent" strokeDasharray={`${(2 * (Math.PI) * 48 )}`} strokeDashoffset={`${determineProgress(rank?.leaguePoints)}`} strokeWidth="2" strokeLinecap="round" stroke={`${colorSelector(rank?.tier)}`} shapeRendering="geometricPrecision" style={{transform: "rotate(-90deg)", transformOrigin: "center center"}}></circle>}
+                        <svg
+                            width="108"
+                            height="108"
+                            viewBox="0 0 100 100"
+                            style={{ display: "block" }}
+                        >
+                            <circle
+                                r="48"
+                                cx="50%"
+                                cy="50%"
+                                fill="transparent"
+                                strokeDasharray="301.59289474462014"
+                                strokeDashoffset="1"
+                                strokeWidth="0.5"
+                                stroke="#AAA0A8"
+                                shapeRendering="geometricPrecision"
+                            ></circle>
+                            {rank?.leaguePoints && (
+                                <circle
+                                    r="48"
+                                    cx="50%"
+                                    cy="50%"
+                                    fill="transparent"
+                                    strokeDasharray={`${2 * Math.PI * 48}`}
+                                    strokeDashoffset={`${determineProgress(
+                                        rank?.leaguePoints
+                                    )}`}
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    stroke={`${colorSelector(rank?.tier)}`}
+                                    shapeRendering="geometricPrecision"
+                                    style={{
+                                        transform: "rotate(-90deg)",
+                                        transformOrigin: "center center",
+                                    }}
+                                ></circle>
+                            )}
                         </svg>
                     </div>
                     {/* img  */}
@@ -247,28 +293,50 @@ const Btns = (props) => {
                         />
                     </div>
                     {/* bg mask  */}
-                    <div className={` ${bgSelector(rank?.tier)} ${Classess.rankMask}`} style={{
-                        opacity: `${(rank?.leaguePoints >= 101 ? (80/100) : (rank?.leaguePoints/100)) * (0.65)}`
-                    }}></div>
+                    <div
+                        className={` ${bgSelector(rank?.tier)} ${
+                            Classess.rankMask
+                        }`}
+                        style={{
+                            opacity: `${
+                                (rank?.leaguePoints >= 101
+                                    ? 80 / 100
+                                    : rank?.leaguePoints / 100) * 0.65
+                            }`,
+                        }}
+                    ></div>
                 </div>
                 {/* match  */}
                 <div className=" mt-3 ">
                     <div className=" flex flex-col text-center ">
                         <h3
-                            className={`font-mazin text-[18px] leading-[23px] font-bold ${textColor(rank?.tier)}`}
+                            className={`font-mazin text-[18px] leading-[23px] font-bold ${textColor(
+                                rank?.tier
+                            )}`}
                         >
-                            {rank?.tier ? rank?.tier?.charAt(0) +
-                                rank?.tier?.slice(1).toLowerCase()
-                                : "-"}{rank?.tier ? rank?.tier === "GRANDMASTER" || rank?.tier === "MASTER" || rank?.tier === "CHALLENGER" ?  "" : ` ${rank?.rank}` : ""}
+                            {rank?.tier
+                                ? rank?.tier?.charAt(0) +
+                                  rank?.tier?.slice(1).toLowerCase()
+                                : "-"}
+                            {rank?.tier
+                                ? rank?.tier === "GRANDMASTER" ||
+                                  rank?.tier === "MASTER" ||
+                                  rank?.tier === "CHALLENGER"
+                                    ? ""
+                                    : ` ${rank?.rank}`
+                                : ""}
                         </h3>
                         <h1 className=" font-sf-pro-text text-[21px] leading-[25px] text-white font-bold uppercase ">
                             {rank?.leaguePoints ? rank?.leaguePoints : 0} lp
                         </h1>
                         <h4 className=" font-sf-pro-text text-[11px] leading-[13.1px] font-[500] text-[#5d7cf6] mr-[3px] ">
-                            { rank?.wins || rank?.losses ? (
-                                (rank?.wins / (rank?.wins + rank?.losses)) *
-                                100
-                            ).toFixed(2) : 0}
+                            {rank?.wins || rank?.losses
+                                ? (
+                                      (rank?.wins /
+                                          (rank?.wins + rank?.losses)) *
+                                      100
+                                  ).toFixed(2)
+                                : 0}
                             % <span className=" text-white ">WR</span>
                         </h4>
                     </div>
@@ -282,7 +350,7 @@ const Btns = (props) => {
             </div>
             {/* text   */}
             <div className=" flex items-center mt-[30px] ">
-                <h6 className=" mazin-bold-12 mr-[30px] text-white ">
+                <h6 className=" mazin-bold-12 font-[600] mr-[30px] text-white ">
                     Tier Graph is on the way!
                 </h6>
                 <button className=" relative w-[23px] h-[23px] ">
@@ -406,9 +474,9 @@ const Batch = (props) => {
 const RankTierGraph = (props) => {
     return (
         <div
-            className="   bg-[#1e1728] rounded
+            className=" bg-cardBg rounded
             px-[25px] pt-5 pb-[36px] "
-        >
+        >   
             {/* top btns  */}
             <Btns rankSolo={props?.rankSolo} rankFlex={props?.rankFlex} />
         </div>

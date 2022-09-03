@@ -9,9 +9,9 @@ const PlayerRow = (props) => {
 
     return (
         <div
-            className=" laptop:grid laptop:grid-cols-[100px_55px_48px]
-         laptop:justify-between laptop:bg-[#272030] laptop:pl-[16px] laptop:pr-[14px]
-          laptop:rounded-[5px] laptop:py-1 laptop:mb-[14px] last:mb-0 "
+            className=" grid grid-cols-[100px_55px_48px]
+         justify-between bg-profileBorder pl-[16px] pr-[14px]
+          rounded-[5px] py-1 "
         >
             {/* name  */}
             <div className=" flex items-center ">
@@ -227,18 +227,19 @@ const OftenPlayWith = () => {
     }, [mostPlayedWithList]);
 
     return (
-        <div
-            className=" px-[13px] py-[17px] rounded-5px bg-[rgba(36,30,44,0.65)] laptop:mt-[10px]
-             smDesktop:mt-[27px] smDesktop:py-[35px] smDesktop:px-[15px] "
-        >
-            <div className=" flex items-center smDesktop:ml-[15px] ">
-                <div className=" w-[3px] h-[10px] bg-nav-btn"></div>
-                <h6 className=" font-mazin text-[14px] leading-[18px] font-medium text-nav-btn ml-2  ">
+        <div className=" bg-cardBg rounded-5px mt-[27px] ">
+            <div className=" flex items-center justify-between px-[16px] pt-[10px] pb-[15px] border-b border-headBorder ">
+                <h6 className=" text-white font-mazin text-[15px] leading-[19.15px] font-medium  ">
                     You often play with
                 </h6>
+                <div className=" w-[24px] h-[24px] flex items-center justify-center mr-[5px] ">
+                    <div className=" w-[14px] h-[2px] rounded-full bg-white "></div>
+                </div>
             </div>
             {/* card container  */}
-            <div className="laptop:mt-[30px] ">
+            <div
+                className={`  px-[6px] flex flex-col gap-y-[2px] pb-[40px] pt-[10px] `}
+            >
                 {mostPlayedWithList.length >= 10
                     ? mostPlayedWithList.slice(0, 10).map((player, index) => {
                           return <PlayerRow key={index} {...player} />;

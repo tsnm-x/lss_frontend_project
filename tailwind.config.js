@@ -74,6 +74,7 @@ module.exports = {
                 headBorder: "#282728",
                 halfWhite: "#919192",
                 profileBorder: "#242326",
+                cardBg: "#161416",
             },
             fontSize: {
                 // old 1.0
