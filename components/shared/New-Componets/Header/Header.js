@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Header.module.css";
 import SearchBar from "./SearchBar";
+import LanguageSelect from "../HeaderWithSearchbar/LanguageSelect/LanguageSelect";
 // components
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
@@ -43,11 +44,11 @@ const Header = (props) => {
                 <Logo className=" text-[19px] leading-[18px] " />
             </div>
             {/* right searchbar and language bar */}
-            <div>
+            <div className=" flex justify-between w-full pl-[15px] pr-[20px] ">
                 {/* search bar  */}
                 <SearchBar />
-                <div></div>
-                </div>
+                <LanguageSelect />
+            </div>
         </header>
     );
 };
