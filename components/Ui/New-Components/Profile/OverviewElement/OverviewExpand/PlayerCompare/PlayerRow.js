@@ -395,14 +395,6 @@ const PlayerRow = (props) => {
                                             zoom: `0.522`,
                                         }}
                                     ></div>
-                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
-                                        <span>
-                                            {getItemDetails(
-                                                renderedItems[index]
-                                            )}
-                                        </span>
-                                        <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
-                                    </div>
                                     {/* <HoverDiscription
                                         style={{
                                             background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
@@ -593,7 +585,7 @@ const PlayerRow = (props) => {
                                         </span>
                                         <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                     </div> */}
-                                    <HoverDiscription
+                                    {/* <HoverDiscription
                                     img={{
                                         src: `https://ddragon.canisback.com/img/${findRuneIcon(
                                             props?.player?.perks?.styles[0]
@@ -615,7 +607,7 @@ const PlayerRow = (props) => {
                                         ).longDesc
                                     }
                                     gold={null}
-                                />
+                                /> */}
                                 </div>
                             )}
                         </div>

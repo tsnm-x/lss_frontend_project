@@ -217,7 +217,7 @@ const Summoner = () => {
                     kills = kills + mainPlayerChamps[j].kills;
                     totalCs =
                         totalCs +
-                        mainPlayerChamps[j].neutralMinionsKilled +
+                        mainPlayerChamps[j].totalMinionsKilled +
                         mainPlayerChamps[j].neutralMinionsKilled;
                     mainPlayerChamps[j].win ? winCount++ : lossCount++;
                     totalMatches++;
