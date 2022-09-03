@@ -1,10 +1,6 @@
 import React from "react";
 import classes from "./Header.module.css";
-import { CgMenuLeftAlt } from "react-icons/cg";
-import { GrMenu } from "react-icons/gr";
-import { AiOutlineMenu } from "react-icons/ai";
-import SkirmishSimulatorAppBtn from "../../../Ui/New-Components/universal/Btn/SkirmishSimulatorAppBtn/SkirmishSimulatorAppBtn";
-import LanguageSelect from "../HeaderWithSearchbar/LanguageSelect/LanguageSelect";
+import SearchBar from "./SearchBar";
 // components
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
@@ -46,6 +42,12 @@ const Header = (props) => {
                 </div>
                 <Logo className=" text-[19px] leading-[18px] " />
             </div>
+            {/* right searchbar and language bar */}
+            <div>
+                {/* search bar  */}
+                <SearchBar />
+                <div></div>
+                </div>
         </header>
     );
 };

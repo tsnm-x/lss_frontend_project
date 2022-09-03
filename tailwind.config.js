@@ -72,6 +72,7 @@ module.exports = {
                 whiteOpacity: "#3a3242",
                 red: "#FF4256",
                 headBorder: "#282728",
+                halfWhite: "#919192",
             },
             fontSize: {
                 // old 1.0
