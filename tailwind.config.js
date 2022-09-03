@@ -76,6 +76,8 @@ module.exports = {
                 profileBorder: "#242326",
                 cardBg: "#161416",
                 blue: "#5D7CF6",
+                defeatDataRow: "rgba(255,66,86,0.1)",
+                winDataRow: "rgba(93,124,246,0.1)",
             },
             fontSize: {
                 // old 1.0

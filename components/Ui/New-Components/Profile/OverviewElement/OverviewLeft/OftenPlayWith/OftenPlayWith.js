@@ -9,7 +9,7 @@ const PlayerRow = (props) => {
 
     return (
         <div
-            className=" grid grid-cols-[100px_55px_48px]
+            className=" grid grid-cols-[100px_60px_48px]
          justify-between bg-profileBorder pl-[16px] pr-[14px]
           rounded-[5px] py-1 "
         >
