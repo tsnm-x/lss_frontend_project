@@ -15,6 +15,7 @@ import RoundBatch1 from "../../../../../../../public/assets/new-images/Profile/c
 import RoundBatch2 from "../../../../../../../public/assets/new-images/Profile/card/CardExpand/selected/round-batch-2.png";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import HoverDiscription from "../../Hover/HoverDiscription";
 
 const PlayerRow = (props) => {
     const [active, setActive] = useState(false);
@@ -402,6 +403,33 @@ const PlayerRow = (props) => {
                                         </span>
                                         <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
                                     </div>
+                                    {/* <HoverDiscription
+                                        style={{
+                                            background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                                getItem(renderedItems[index])
+                                                    ?.sprite
+                                            }') no-repeat`,
+                                            width: `${
+                                                getItem(renderedItems[index])?.w
+                                            }px`,
+                                            height: `${
+                                                getItem(renderedItems[index])?.h
+                                            }px`,
+                                            backgroundPosition: `-${
+                                                getItem(renderedItems[index])?.x
+                                            }px -${
+                                                getItem(renderedItems[index])?.y
+                                            }px`,
+                                            // backgroundSize: "contain",
+                                            zoom: `0.522`,
+                                        }}
+                                        items={items}
+                                        gold={items[renderedItems[index]]?.gold?.total}
+                                        name={items[renderedItems[index]]?.name}
+                                        role={mythicHighlighter(renderedItems[index]) ? "mythic": null}
+                                        dis={items[renderedItems[index]]?.description}
+                                        border={`rounded-full `}
+                                    /> */}
                                 </div>
                             ) : null}
                         </div>
@@ -556,7 +584,7 @@ const PlayerRow = (props) => {
                                         layout="fill"
                                         className=" rounded-[5px] "
                                     />
-                                    <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
+                                    {/* <div className="absolute left-1/2 transform -translate-x-1/2 border mt-2 transition-all ease-in-out duration-200 border-blue-gray w-125 text-center rounded-tiny p-2 text-2xs z-50 bg-white opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100">
                                         <span>
                                             {getRuneDescription(
                                                 props?.player?.perks?.styles[0]
@@ -564,7 +592,30 @@ const PlayerRow = (props) => {
                                             )}
                                         </span>
                                         <div className="absolute w-2.5 h-2.5 border-blue-gray border-t border-r transform left-1/2 -translate-1/2 bg-white" />
-                                    </div>
+                                    </div> */}
+                                    <HoverDiscription
+                                    img={{
+                                        src: `https://ddragon.canisback.com/img/${findRuneIcon(
+                                            props?.player?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        )}`,
+                                        alt: "dragon icon",
+                                        width: "30px",
+                                        height: "30px",
+                                    }}
+                                    name={findRuneDetails(
+                                        props?.player?.perks?.styles[0]
+                                            ?.selections[0].perk
+                                    )?.name}
+                                    role="rune"
+                                    dis={
+                                        findRuneDetails(
+                                            props?.player?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        ).longDesc
+                                    }
+                                    gold={null}
+                                />
                                 </div>
                             )}
                         </div>

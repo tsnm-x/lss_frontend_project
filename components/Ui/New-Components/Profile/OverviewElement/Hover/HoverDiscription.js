@@ -6,14 +6,14 @@ const HoverDiscription = (props) => {
         <>
             {/* indicator  */}
             <div
-                className={` transform  opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 mt-2 transition-all ease-in-out duration-200 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] w-[30px] h-[15px] bg-[#d9d9d9] border absolute left-277 top-[35px] z-20  `}
+                className={` transform  opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 mt-2 transition-all ease-in-out duration-200 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] w-[30px] h-[15px] bg-[#d9d9d9] border absolute left-277 top-[35px] z-50  `}
             ></div>
             <div
                 className={`
-                                                        w-[555px] border bg-[#241e2c] p-[17px_42px_27px_45px] absolute z-10
+                                                        w-[555px] border bg-[#241e2c] p-[17px_42px_27px_45px] absolute
                                                          no-repeat -left-[260px] top-[50px] 
                                                          transform  opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 mt-2 transition-all ease-in-out duration-200
-                                                          `}
+                                                          z-50`}
             >
                 {/* top header  */}
                 <div className=" flex items-center ">

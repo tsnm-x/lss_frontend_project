@@ -150,6 +150,15 @@ const RightSide = (props) => {
     useEffect(() => {
         if (kp) setViewer(true);
     }, [kp]);
+
+    function convertM(value) {
+        const sec = parseInt(value, 10); // convert value to number if it's string
+        let hours = Math.floor(sec / 3600); // get hours
+        let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+
+        return minutes;
+    }
+    
     return (
         <div>
             {/* top images  */}
@@ -262,15 +271,18 @@ const RightSide = (props) => {
                                         width: "30px",
                                         height: "30px",
                                     }}
-                                    name={props?.mainPlayer?.championName}
-                                    role="run"
+                                    name={findRuneDetails(
+                                        props?.mainPlayer?.perks?.styles[0]
+                                            ?.selections[0].perk
+                                    )?.name}
+                                    role="rune"
                                     dis={
                                         findRuneDetails(
                                             props?.mainPlayer?.perks?.styles[0]
                                                 ?.selections[0].perk
                                         ).longDesc
                                     }
-                                    gold={props?.mainPlayer?.goldEarned}
+                                    gold={null}
                                 />
                                 {console.log(props?.mainPlayer, "long dis")}
                             </div>
@@ -295,26 +307,6 @@ const RightSide = (props) => {
                                     alt="summoner flash image"
                                     layout="fill"
                                     className=" rounded-5px "
-                                />
-                                <HoverDiscription
-                                    img={{
-                                        src: `https://ddragon.canisback.com/img/${findRuneIcon(
-                                            props?.mainPlayer?.perks?.styles[0]
-                                                ?.selections[0].perk
-                                        )}`,
-                                        alt: "dragon icon",
-                                        width: "30px",
-                                        height: "30px",
-                                    }}
-                                    name={props?.mainPlayer?.championName}
-                                    role="run"
-                                    dis={
-                                        findRuneDetails(
-                                            props?.mainPlayer?.perks?.styles[0]
-                                                ?.selections[0].perk
-                                        ).longDesc
-                                    }
-                                    gold={props?.mainPlayer?.goldEarned}
                                 />
                             </>
                         )}
@@ -344,8 +336,13 @@ const RightSide = (props) => {
                     {viewer && <p className=" text-grayed-text ">{kp}% KP</p>}
                 </div>
                 <div>
-                    <p className=" text-accent-color-2 ">185 cs</p>
-                    <p className=" text-grayed-text ">7.75 cs/min</p>
+                    <p className=" text-accent-color-2 ">{props?.mainPlayer?.neutralMinionsKilled + props?.mainPlayer?.totalMinionsKilled} cs</p>
+                    <p className=" text-grayed-text ">{(
+                        (props?.mainPlayer?.neutralMinionsKilled +
+                            props?.mainPlayer?.totalMinionsKilled) /
+                        convertM(props.match?.duration)
+                    )?.toFixed(1)}{" "}
+                    cs/min</p>
                 </div>
             </div>
         </div>

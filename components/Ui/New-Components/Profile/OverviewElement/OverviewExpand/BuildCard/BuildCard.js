@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
+import HoverDiscription from "../../Hover/HoverDiscription";
 
 const BuildCard = (props) => {
     const [mainPlayer, setMainPlayer] = useState({});
@@ -145,6 +146,41 @@ const BuildCard = (props) => {
                                         }}
                                     ></div>
                                 )}
+                              <HoverDiscription
+                                    style={{
+                                        background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
+                                            getItem(item)?.sprite
+                                        }') no-repeat`,
+                                        width: `${
+                                            getItem(item)?.w
+                                        }px`,
+                                        height: `${
+                                            getItem(item)?.h
+                                        }px`,
+                                        backgroundPosition: `-${
+                                            getItem(item)?.x
+                                        }px -${getItem(item)?.y}px`,
+                                        // backgroundSize: "contain",
+                                        zoom: `0.63`,
+                                    }}
+                                    items={items}
+                                    gold={items[item]?.gold?.total}
+                                    name={items[item]?.name}
+                                    role={mythicHighlighter(item) ? "mythic": null}
+                                    dis={items[item]?.description}
+                                    border={`${
+                                        mythicHighlighter(item)
+                                            ? props?.convertM(
+                                                    props?.match
+                                                        ?.duration
+                                                ) <= 5
+                                                ? "border-2 border-[#FEFCE8]"
+                                                : mainPlayer?.win
+                                                ? "border-2 border-[#198cff]"
+                                                : "border-2 border-[#D55460]"
+                                            : ""
+                                    } rounded-full `}
+                                />  
                         </div>
                     );
                 })}

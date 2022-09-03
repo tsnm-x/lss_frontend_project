@@ -175,8 +175,11 @@ const MatchSimulator = ({ query }) => {
     }, [matches, fullMatchId]);
 
     useEffect(() => {
+
         if (match?.players) {
             setMainPlayer(match.players?.find((player) => player.mainPlayer));
+
+            console.log(match);
 
             const players = JSON.parse(JSON.stringify(match.players));
 
@@ -207,7 +210,6 @@ const MatchSimulator = ({ query }) => {
                         );
                         matchTimeline = addBaronTimers(matchTimeline);
                         matchTimeline = addHaroldTimers(matchTimeline);
-                        console.log(matchTimeline);
                         setMatchTimelineData(matchTimeline);
                     }
                 }
