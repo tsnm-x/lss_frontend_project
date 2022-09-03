@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import classes from "./SearchBar.module.css";
 import { FiSearch } from "react-icons/fi";
-import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 import useHttp from "../../../../hook/useHttp";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { profileAction } from "../../../../store/profile";
+import { HiChevronDown } from "react-icons/hi";
 
 const SearchBar = (props) => {
     const [search, setSearch] = useState("");
@@ -221,9 +221,12 @@ const SearchBar = (props) => {
     return (
         <>
             {/* small screen  */}
-            <div className={` w-[205px] h-[42px] rounded-[7px] bg-headBorder p-[10px] flex items-center`}>
+            <div className={` w-[280px] flex items-center justify-between `}>
                 {/* search form  */}
-                <form action="/" className="w-full ">
+                <form
+                    action="/"
+                    className="w-[205px] h-[42px] rounded-[7px] bg-headBorder p-[10px] flex items-center "
+                >
                     <div className=" flex items-center ">
                         <button
                             onClick={(e) => searchHandler(e)}
@@ -252,17 +255,17 @@ const SearchBar = (props) => {
                             onChange={searchInput}
                             value={search}
                             placeholder="Find Summoner name..."
-                            className={` text-[12px] leading-[15px] ml-[10px] text-halfWhite focus-visible:outline-none `}
+                            className={` mazin-bold-12 font-[600] ml-[10px] text-halfWhite focus-visible:outline-none `}
                         />
                     </div>
                 </form>
                 {/* country list  */}
-                <div>
+                <div className=" relative ">
                     {/* country box list  */}
-                    {/* {activeListDetails.showList && (
+                    {activeListDetails.showList && (
                         <div
-                            className={` absolute left-0 top-[65px] bg-[#e7e6e9] 
-                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] pt-[21px]`}
+                            className={` absolute left-0 top-[45px] bg-headBorder
+                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] z-[100] rounded-[7px]`}
                         >
                             {selectionNameList.map((country, index) => {
                                 return (
@@ -272,7 +275,7 @@ const SearchBar = (props) => {
                                         className={` w-full h-[25px] rounded-5px cursor-pointer
                                              flex items-center justify-center ${
                                                  country.active
-                                                     ? " bg-[#d55460] rounded text-white"
+                                                     ? " bg-red rounded text-white"
                                                      : " bg-[#AAA0A826] text-[#AAA0A8]"
                                              }`}
                                     >
@@ -283,17 +286,19 @@ const SearchBar = (props) => {
                                 );
                             })}
                         </div>
-                    )} */}
+                    )}
                     {/* country select box  */}
-                    {/* <div
+                    <div
                         onClick={CountryListShowHideHandler}
-                        className={` absolute bg-[#d55460] cursor-pointer w-[111px] h-[70px] rounded-5px flex justify-center items-center gap-x-2 `}
+                        className={` bg-headBorder w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
                     >
-                        <h4 className={` text-white uppercase inter-bold-14 `}>
+                        <h4
+                            className={` text-halfWhite mazin-bold-12 font-[600] uppercase mr-1 `}
+                        >
                             {activeListDetails.selectedItem?.name}
                         </h4>
-                        <BiCaretDown className=" text-white text-[16px] " />
-                    </div> */}
+                        <HiChevronDown className=" text-halfWhite text-[16px] " />
+                    </div>
                 </div>
             </div>
         </>
