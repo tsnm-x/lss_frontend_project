@@ -17,8 +17,6 @@ const RightSide = (props) => {
 
     const getChampion = (champs) => {
         if (champs && props?.mainPlayer?.championName) {
-            console.log(champs[props?.mainPlayer?.championName]);
-            console.log(props?.mainPlayer?.championName);
             setChampDetails(champs[props?.mainPlayer?.championName]?.image);
         }
     };
@@ -284,7 +282,6 @@ const RightSide = (props) => {
                                     }
                                     gold={null}
                                 />
-                                {console.log(props?.mainPlayer, "long dis")}
                             </div>
                         )}
                     </div>

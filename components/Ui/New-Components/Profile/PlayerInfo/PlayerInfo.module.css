@@ -13,14 +13,18 @@
     .profileMask {
         /* clip-path: polygon(0% 0%, 32vw 0, 100% 100%, 0% 100%); */
         background: linear-gradient(
-        272.11deg,
-        rgba(30, 22, 41, 0) 2.05%,
-        #1e1629 45%
-    );
+            272.11deg,
+            rgba(30, 22, 41, 0) 2.05%,
+            #1e1629 45%
+        );
     }
 }
 
 .bgImgMask {
-    @apply w-full h-full absolute right-0 top-0 z-20;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #140A22 100%);;
+    @apply absolute left-0 top-0 w-full h-full z-40;
+    background: linear-gradient(
+        270deg,
+        rgba(0, 0, 0, 0) 24.27%,
+        #131213 63.18%
+    );
 }

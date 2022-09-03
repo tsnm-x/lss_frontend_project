@@ -16,6 +16,10 @@ import axios from "axios";
 import { itemsAction } from "../../../../store/items";
 import { runeAction } from "../../../../store/runes";
 import ReportPortal from "../../../../components/Ui/New-Components/Profile/ReportPortal/ReportPortal";
+import Header from "../../../../components/shared/New-Componets/Header/Header";
+import Footer from "../../../../components/shared/New-Componets/Footer/Footer";
+import RequestAFeature from "../../../../components/Ui/RequestAFeature/RequestAFeature";
+
 
 const Summoner = () => {
     const [reportWindow, setReportWindow] = useState(false);
@@ -303,7 +307,8 @@ const Summoner = () => {
     return (
         <>
             <div>
-                <HeaderWithSearchbar className=" laptop:py-[16px] " />
+                {/* <HeaderWithSearchbar className=" laptop:py-[16px] " /> */}
+                <Header />
                 {mainPlayer && (
                     <PlayerInfo
                         btnDetails={btnDetails}
@@ -347,6 +352,8 @@ const Summoner = () => {
                 ) : (
                     <Table controller={viewController} />
                 )}
+                <RequestAFeature />
+                <Footer />
             </div>
             {/* portal  */}
             {reportWindow && <ReportPortal back={reportWindowHandler} />}

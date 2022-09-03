@@ -67,7 +67,7 @@ const Profile = (props) => {
         <div className=" flex gap-x-[35px] relative z-50 ">
             {/* profile image  */}
             <div className=" relative w-[115px] h-[115px] ">
-                <div className=" relative overflow-hidden border-[2px] laptop:w-full laptop:h-full laptop:rounded-[23px]  ">
+                <div className=" relative overflow-hidden w-full h-full rounded-[20px] border border-[#242326]  ">
                     {props.profileIcon && (
                         <Image
                             src={`http://ddragon.leagueoflegends.com/cdn/12.14.1/img/profileicon/${props.profileIcon}.png`}
@@ -77,12 +77,14 @@ const Profile = (props) => {
                         />
                     )}
                 </div>
-                <div
-                    className=" w-[35px] h-[35px] rounded-full border-[#F5F5F5] border flex 
-                items-center justify-center font-sf-pro-text font-[500] text-[14px] leading-[17px]
-                text-white mx-auto -mt-[10px] bg-[#140a22] relative  "
-                >
-                    {props.summonerLevel}
+                <div>
+                    <div
+                        className=" w-[53px] h-[23] bg-[#161416] flex items-center justify-center 
+                    rounded-[3px] text-white sf-mid-14 py-[3px] border border-[#242326] mx-auto relative -top-[12px]
+                     "
+                    >
+                        {props.summonerLevel}
+                    </div>
                 </div>
             </div>
             {/* profile details  */}
@@ -96,7 +98,7 @@ const Profile = (props) => {
                 {/* buttons  */}
                 <div className=" mt-[10px] flex gap-x-[10px] ">
                     <button
-                        className=" w-[90px] h-[50px] flex items-center justify-center rounded-5px bg-[#D55460] font-sf-pro-text font-[500] text-[15px] leading-[18px] text-white capitalize hover:bg-[#793442] "
+                        className=" w-[90px] h-[50px] flex items-center justify-center rounded-5px bg-red font-sf-pro-text font-[500] text-[15px] leading-[18px] text-white capitalize hover:bg-[#793442] "
                         onClick={refreshHandler}
                     >
                         {props?.btnDetails[0].text}
@@ -108,12 +110,12 @@ const Profile = (props) => {
                     </Link> */}
                 </div>
                 {/* last update  */}
-                <div className=" rounded-full border-white border px-4 py-[6px] inline-flex items-center gap-x-2 mt-[15px] ">
+                {/* <div className=" rounded-full border-white border px-4 py-[6px] inline-flex items-center gap-x-2 mt-[15px] ">
                     <RiHistoryLine className=" text-[#d55460] text-[18px] " />
                     <p className=" text-white sf-regular-14">
                         Last Updated: {convertToDate(props?.lastModified)}
                     </p>
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -38,7 +38,7 @@ const PlayerList = (props) => {
                     : mainPlayer?.win
                     ? " bg-winOpacity"
                     : " bg-defeatOpacity"
-            } grid grid-cols-[311px_50px] rounded-tr-5px rounded-br-5px `}
+            } grid grid-cols-[311px_54px] rounded-tr-5px rounded-br-5px `}
         >
             {/* player lists  */}
             <div className="h-full relative pl-[29px] py-[10px] w-[320px] ">
@@ -107,7 +107,7 @@ const PlayerList = (props) => {
                                                   ) <= 5
                                                     ? "text-yellow-50"
                                                     : player?.win
-                                                    ? "text-accent-color-2"
+                                                    ? "text-blue"
                                                     : "text-accent-color"
                                                 : "text-grayed-text"
                                         } ${Classess.playerName} `}
@@ -125,7 +125,7 @@ const PlayerList = (props) => {
                                                       ) <= 5
                                                         ? "bg-yellow-50"
                                                         : player?.win
-                                                        ? "bg-accent-color-2"
+                                                        ? "bg-blue"
                                                         : "bg-accent-color"
                                                     : "bg-grayed-text"
                                             } `}
@@ -140,13 +140,13 @@ const PlayerList = (props) => {
             {/* right side expand btn  */}
             <div
                 onClick={() => props.ExpandFullHandler()}
-                className={`h-full w-[50px] flex items-center justify-center
-                rounded-5px cursor-pointer  ${
+                className={`h-full w-[54px] flex items-center justify-center
+                rounded-5px cursor-pointer hover:opacity-50 ${
                     props?.convertM(props?.match?.duration) <= 5
-                        ? "bg-[#cfbbbd] hover:bg-[#675b67]"
+                        ? "bg-[#cfbbbd] "
                         : mainPlayer?.win
-                        ? "bg-accent-color-2 hover:bg-[#353c74]"
-                        : "bg-accent-color hover:bg-[#612d3d]"
+                        ? "bg-blue"
+                        : "bg-red "
                 }`}
             >
                 <BiExpand className=" border-[2px] border-[#141726] rounded-5px text-[18px] smDesktop:text-[20px] " />

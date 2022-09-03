@@ -50,7 +50,7 @@ const Btns = () => {
 // header bar
 const HeaderBar = (props) => {
     return (
-        <div className=" grid grid-cols-[140px_100px_97px_93px_215px_120px_120px] items-center py-2 bg-[#160f20] ">
+        <div className=" grid grid-cols-[140px_100px_97px_93px_215px_120px_120px] items-center py-2 bg-headBorder ">
             <h1 className=" sf-bold-10 capitalize text-grayed-text ml-[15px] ">
                 <span
                     className={` ${
@@ -451,8 +451,8 @@ const DataRow = (props) => {
                 props?.convertM(props?.match?.duration) <= 5
                     ? "bg-[#3a3242]"
                     : props.won
-                    ? "bg-[#181631]"
-                    : "bg-[#251122]"
+                    ? " bg-winDataRow"
+                    : " bg-defeatDataRow"
             } `}
         >
             {/*  profile  */}
@@ -492,10 +492,12 @@ const DataRow = (props) => {
                                         width: "30px",
                                         height: "30px",
                                     }}
-                                    name={findRuneDetails(
-                                        props?.perks?.styles[0]
-                                            ?.selections[0].perk
-                                    ).name}
+                                    name={
+                                        findRuneDetails(
+                                            props?.perks?.styles[0]
+                                                ?.selections[0].perk
+                                        ).name
+                                    }
                                     role="run"
                                     dis={
                                         findRuneDetails(
@@ -681,12 +683,8 @@ const DataRow = (props) => {
                                             background: `url('https://ddragon.leagueoflegends.com/cdn/12.14.1/img/sprite/${
                                                 getItem(img)?.sprite
                                             }') no-repeat`,
-                                            width: `${
-                                                getItem(img)?.w
-                                            }px`,
-                                            height: `${
-                                                getItem(img)?.h
-                                            }px`,
+                                            width: `${getItem(img)?.w}px`,
+                                            height: `${getItem(img)?.h}px`,
                                             backgroundPosition: `-${
                                                 getItem(img)?.x
                                             }px -${getItem(img)?.y}px`,
@@ -696,14 +694,17 @@ const DataRow = (props) => {
                                         items={items}
                                         gold={items[img].gold.total}
                                         name={items[img].name}
-                                        role={mythicHighlighter(img) ? "mythic": null}
+                                        role={
+                                            mythicHighlighter(img)
+                                                ? "mythic"
+                                                : null
+                                        }
                                         dis={items[img]?.description}
                                         border={`${
                                             mythicHighlighter(img)
                                                 ? props?.convertM(
-                                                        props?.match
-                                                            ?.duration
-                                                    ) <= 5
+                                                      props?.match?.duration
+                                                  ) <= 5
                                                     ? "border-2 border-[#FEFCE8]"
                                                     : props?.win
                                                     ? "border-2 border-[#198cff]"
@@ -856,7 +857,7 @@ const HeightExpand = (props) => {
         }
     }, [mainPlayer]);
     return (
-        <div className=" pb-[36px] bg-[#110A1B] -mt-[5px] rounded-5px ">
+        <div className=" pb-[36px] -mt-[5px] rounded-5px ">
             <Btns />
             {mainPlayer && (
                 <ExpandDataRows

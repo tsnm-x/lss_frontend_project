@@ -29,7 +29,7 @@ const TableBodyRow = (props) => {
             </div>
             <div className=" text-light-text">{props.avgCs.toFixed(2)}</div>
             <div className=" text-accent-color-3 ">
-                {props.goldPerMinute.toFixed(2)}{" "}
+                {/* {props.goldPerMinute.toFixed(2)}{" "} */}
                 <span className=" text-grayed-text capitalize text-[12px] ">
                     g/min
                 </span>

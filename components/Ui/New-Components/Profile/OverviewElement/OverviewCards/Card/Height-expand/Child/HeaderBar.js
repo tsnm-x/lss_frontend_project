@@ -3,7 +3,7 @@ import React from 'react'
 // header bar
 const HeaderBar = (props) => {
     return (
-        <div className=" grid grid-cols-[140px_100px_97px_93px_215px_120px_120px] items-center py-2 bg-[#160f20] ">
+        <div className=" grid grid-cols-[140px_100px_97px_93px_215px_120px_120px] items-center py-2 ">
             <h1 className=" sf-bold-10 capitalize text-grayed-text ml-[15px] ">
                 <span
                     className={` ${

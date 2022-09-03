@@ -47,7 +47,7 @@ const LanguageSelect = (props) => {
         <div className=" relative ">
             <div
                 onClick={listShowHideHandler}
-                className=" relative z-[60] bg-[#141726] rounded-[6px] p-[11px] flex items-center justify-between cursor-pointer w-[123px] "
+                className=" relative z-[60] bg-headBorder rounded-[6px] px-[11px] h-[45px] flex items-center justify-between cursor-pointer w-[123px] "
             >
                 <BiCaretDown className=" text-[17px] text-white mr-[8px] " />
                 { (
@@ -59,7 +59,7 @@ const LanguageSelect = (props) => {
             </div>
             {/* language list  */}
             {showLangList && (
-                <ul className="  absolute z-[55] left-0 top-[35px] w-[123px] pt-2 bg-[#141726] rounded-[6px]  ">
+                <ul className="  absolute z-[55] left-0 top-[35px] w-[123px] pt-2 bg-headBorder rounded-[6px]  ">
                     {languageList.map((language, index) => {
                         return (
                             <li

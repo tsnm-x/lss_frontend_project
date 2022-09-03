@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import classes from "./ProfileSearch.module.css";
+import classes from "./SearchBar.module.css";
 import { FiSearch } from "react-icons/fi";
-import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-import useHttp from "../../../../../hook/useHttp";
+import useHttp from "../../../../hook/useHttp";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { profileAction } from "../../../../../store/profile";
+import { profileAction } from "../../../../store/profile";
 import { HiChevronDown } from "react-icons/hi";
 
-
-const ProfileSearch = (props) => {
+const SearchBar = (props) => {
     const [search, setSearch] = useState("");
     const { sendRequest } = useHttp();
     const dispatch = useDispatch();
@@ -223,86 +221,88 @@ const ProfileSearch = (props) => {
     return (
         <>
             {/* small screen  */}
-            <div className={` w-[500px] h-[70px] mx-auto `}>
+            <div className={` w-[280px] flex items-center justify-between `}>
                 {/* search form  */}
-                <form action="/" className="w-full ">
-                    <div className=" relative ">
-                        {/* country box list  */}
-                        {activeListDetails.showList && (
-                            <div
-                                className={` absolute left-0 top-[75px] bg-headBorder rounded-[7px] 
-                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px]`}
-                            >
-                                {selectionNameList.map((country, index) => {
-                                    return (
-                                        <div
-                                            key={"country " + country.name}
-                                            onClick={() =>
-                                                btnActiveHandler(index)
-                                            }
-                                            className={` w-full h-[25px] rounded-5px cursor-pointer
-                                             flex items-center justify-center ${
-                                                 country.active
-                                                     ? " bg-red rounded text-white"
-                                                     : " bg-[#AAA0A826] text-[#AAA0A8]"
-                                             }`}
-                                        >
-                                            <p className=" mazin-bold-10 text-center capitalize ">
-                                                {country.fullName}
-                                            </p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        )}
-                        {/* country select box  */}
-                        <div
-                            onClick={CountryListShowHideHandler}
-                            className={` absolute bg-red cursor-pointer w-[105px] h-[58px] rounded-5px flex justify-center items-center gap-x-2 top-[6px] left-[6px] `}
-                        >
-                            <h4
-                                className={` font-mazin font-[600] text-[16px] leading-[20px] text-white uppercase `}
-                            >
-                                {activeListDetails.selectedItem?.name}
-                            </h4>
-                            <HiChevronDown className=" text-white text-[16px] " />
-                        </div>
-                        {/* sumonner name box  */}
-                        <input
-                            disabled={hideSearch}
-                            style={{ backgroundColor: "#242326" }}
-                            type="search"
-                            onChange={searchInput}
-                            value={search}
-                            placeholder="Find your Summoner name..."
-                            className={` rounded-5px w-[500px] h-[70px] pl-[147px] 
-                            font-mazin font-[600] text-[16px] leading-[20.4px] text-halfWhite `}
-                        />
+                <form
+                    action="/"
+                    className="w-[205px] h-[42px] rounded-[7px] bg-headBorder p-[10px] flex items-center "
+                >
+                    <div className=" flex items-center ">
                         <button
                             onClick={(e) => searchHandler(e)}
-                            className="absolute top-[24px] right-[24px]  "
+                            className="  "
                         >
                             {hideSearch ? (
-                                <div className=" flex gap-x-[3px] mt-[2px] ">
+                                <div className=" flex gap-x-[3px] mt-[6px] ">
                                     {["", "", ""].map((item, index) => {
                                         return (
                                             <div
                                                 key={index}
-                                                className={`w-[8px] h-[18px] ${classes.indicator}`}
+                                                className={`w-[10px] h-5 ${classes.indicator}`}
                                             ></div>
                                         );
                                     })}
                                 </div>
                             ) : (
-                                <FiSearch className=" text-red text-[20px] " />
-                                    
+                                <FiSearch className=" text-halfWhite text-[16px] " />
                             )}
                         </button>
+                        {/* sumonner name box  */}
+                        <input
+                            disabled={hideSearch}
+                            style={{ background: "transparent" }}
+                            type="search"
+                            onChange={searchInput}
+                            value={search}
+                            placeholder="Find Summoner name..."
+                            className={` mazin-bold-12 font-[600] ml-[10px] text-halfWhite focus-visible:outline-none `}
+                        />
                     </div>
                 </form>
+                {/* country list  */}
+                <div className=" relative ">
+                    {/* country box list  */}
+                    {activeListDetails.showList && (
+                        <div
+                            className={` absolute left-0 top-[45px] bg-headBorder
+                                flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] z-[100] rounded-[7px]`}
+                        >
+                            {selectionNameList.map((country, index) => {
+                                return (
+                                    <div
+                                        key={"country " + country.name}
+                                        onClick={() => btnActiveHandler(index)}
+                                        className={` w-full h-[25px] rounded-5px cursor-pointer
+                                             flex items-center justify-center ${
+                                                 country.active
+                                                     ? " bg-red rounded text-white"
+                                                     : " bg-[#AAA0A826] text-[#AAA0A8]"
+                                             }`}
+                                    >
+                                        <p className=" mazin-bold-10 text-center capitalize ">
+                                            {country.fullName}
+                                        </p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                    {/* country select box  */}
+                    <div
+                        onClick={CountryListShowHideHandler}
+                        className={` bg-headBorder w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
+                    >
+                        <h4
+                            className={` text-halfWhite mazin-bold-12 font-[600] uppercase mr-1 `}
+                        >
+                            {activeListDetails.selectedItem?.name}
+                        </h4>
+                        <HiChevronDown className=" text-halfWhite text-[16px] " />
+                    </div>
+                </div>
             </div>
         </>
     );
 };
 
-export default ProfileSearch;
+export default SearchBar;

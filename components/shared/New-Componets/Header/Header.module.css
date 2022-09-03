@@ -1,12 +1,7 @@
 .header__container {
-    @apply container pl-0 mx-auto flex relative smTablet:grid smTablet:grid-cols-2
-          desktop:justify-between mobile:max-w-[90%];
+    @apply w-[100%] flex ;
 }
 
-.logo__wrapper {
-    @apply text-center w-full smTablet:text-left
-          desktop:w-[initial] desktop:inline-block;
-}
 
 
 .btnWrap {

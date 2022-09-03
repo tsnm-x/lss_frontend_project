@@ -18,14 +18,14 @@ const OverviewReport = (props) => {
             {/* button  */}
             <div className=" flex gap-x-[5px] ">
                 <button
-                    className=" bg-white hover:bg-[rgba(227,227,242,0.3)] w-[103px] h-[32px] flex items-center justify-center rounded-5px  "
+                    className=" bg-headBorder hover:bg-[rgba(227,227,242,0.3)] w-[103px] h-[32px] flex items-center justify-center rounded-5px  "
                     onClick={props.reportBtn}
                 >
                     {" "}
                     <div className=" mr-2 px-[1px] py-[0.5px]  ">
-                        <BiMessageAlt className=" text-accent-color text-[17px] " />{" "}
+                        <BiMessageAlt className=" text-[#919192] text-[17px] " />{" "}
                     </div>
-                    <h5 className=" sf-bold-14 text-accent-color capitalize ">
+                    <h5 className=" sf-bold-14 text-[#919192] capitalize ">
                         report
                     </h5>
                 </button>
