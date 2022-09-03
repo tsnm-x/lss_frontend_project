@@ -39,7 +39,6 @@ const RankCard = (props) => {
     }, [props.match]);
 
     useEffect(() => {
-        console.log(mainPlayer);
     }, [mainPlayer]);
 
     const mythicHighlighter = (id) => {

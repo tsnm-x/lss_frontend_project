@@ -24,13 +24,19 @@ const OverviewChampionBtns = (props) => {
                                 },
                             }}
                         >
-                            <SmallBtn click={() => controller("overview")}>
+                            <SmallBtn
+                                click={() => controller("overview")}
+                                active={currentView === "overview"}
+                            >
                                 Overview
                             </SmallBtn>
                         </Link>
                     </div>
                     <div className=" relative ">
-                        <SmallBtn click={() => controller("champPool")}>
+                        <SmallBtn
+                            click={() => controller("champPool")}
+                            active={currentView === "champPool"}
+                        >
                             Champion pool
                         </SmallBtn>
                     </div>

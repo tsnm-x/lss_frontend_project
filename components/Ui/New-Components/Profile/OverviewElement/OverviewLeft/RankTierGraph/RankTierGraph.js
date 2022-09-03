@@ -209,7 +209,7 @@ const Btns = (props) => {
         <>
             {/* buttons  */}
             <div className={`flex gap-x-3 justify-center ${props.className}`}>
-                <SmallBtn click={() => rankHandler("SOLO")}>
+                <SmallBtn click={() => rankHandler("SOLO")} active={ active === "SOLO"} >
                     Ranked Solo
                 </SmallBtn>
                 {/* <button
@@ -223,7 +223,7 @@ const Btns = (props) => {
                 >
                     Ranked solo
                 </button> */}
-                <SmallBtn click={() => rankHandler("FLEX")}>
+                <SmallBtn click={() => rankHandler("FLEX")} active={ active === "FLEX"}>
                     Ranked Flex
                 </SmallBtn>
                 {/* <button
