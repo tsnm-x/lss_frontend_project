@@ -15,7 +15,7 @@ const Overview = (props) => {
         <section className=" my-[20px] mb-[240px] relative ">
             <div
                 className={`container grid 
-                grid-cols-[300px_885px]
+                grid-cols-[300px_898px]
                 gap-x-[31px] max-w-sm-container `}
             >
                 {/* left side  */}

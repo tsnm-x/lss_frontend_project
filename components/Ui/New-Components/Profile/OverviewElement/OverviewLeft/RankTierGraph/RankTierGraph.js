@@ -17,11 +17,6 @@ import Emblem_Challenger from "../../../../../../../public/assets/new-images/Pro
 import Emblem_Unranked from "../../../../../../../public/assets/new-images/Profile/Ranks/unranked.png";
 import SmallBtn from "../../../../../../shared/Btn/SmallBtn";
 
-
-
-
-
-
 // top buttons
 const Btns = (props) => {
     const [rank, setRank] = useState({});
@@ -30,9 +25,9 @@ const Btns = (props) => {
 
     useEffect(() => {
         rankHandler("SOLO");
-        props?.rankSolo? setRank(props?.rankSolo): setRank({});
+        props?.rankSolo ? setRank(props?.rankSolo) : setRank({});
     }, [props]);
-    
+
     const textColor = (id) => {
         switch (id) {
             case "IRON":
@@ -56,7 +51,7 @@ const Btns = (props) => {
             default:
                 return "transparent";
         }
-    }
+    };
 
     const rankHandler = (rankType) => {
         if (rankType === "SOLO") {
@@ -116,7 +111,7 @@ const Btns = (props) => {
             default:
                 return "transparent";
         }
-    }
+    };
 
     const bgSelector = (id) => {
         switch (id) {
@@ -141,45 +136,39 @@ const Btns = (props) => {
             default:
                 return "transparent";
         }
-    }
+    };
 
     const determineProgress = (lp) => {
-        if(rank || lp){
-            if(rank?.tier === "MASTER"){
-                const progress = (600 - lp)/600
+        if (rank || lp) {
+            if (rank?.tier === "MASTER") {
+                const progress = (600 - lp) / 600;
 
-                if(progress >= 1){
-                    return `${1 * (2 * (Math.PI) * 48 )}`
+                if (progress >= 1) {
+                    return `${1 * (2 * Math.PI * 48)}`;
                 }
-                
-                return `${progress * (2 * (Math.PI) * 48 )}`
-                
-            } else if(rank?.tier === "GRANDMASTER"){
-                const progress = ((900-600) - (lp-600))/(900-600)
-                if(progress >= 1){
-                    return `${1 * (2 * (Math.PI) * 48 )}`
-                }
-                return `${progress * (2 * (Math.PI) * 48 )}`
-                
-            } else if(rank?.tier === "CHALLENGER"){
-                const progress = ((1700-900) - (lp-900))/(1700-900)
 
-                if(progress >= 1){
-                    return `${1 * (2 * (Math.PI) * 48 )}`
+                return `${progress * (2 * Math.PI * 48)}`;
+            } else if (rank?.tier === "GRANDMASTER") {
+                const progress = (900 - 600 - (lp - 600)) / (900 - 600);
+                if (progress >= 1) {
+                    return `${1 * (2 * Math.PI * 48)}`;
                 }
-                
-                return `${progress * (2 * (Math.PI) * 48 )}`
-                
+                return `${progress * (2 * Math.PI * 48)}`;
+            } else if (rank?.tier === "CHALLENGER") {
+                const progress = (1700 - 900 - (lp - 900)) / (1700 - 900);
+
+                if (progress >= 1) {
+                    return `${1 * (2 * Math.PI * 48)}`;
+                }
+
+                return `${progress * (2 * Math.PI * 48)}`;
             }
-    
-            
-            const progress = (100 - lp) / 100
-            
-            return `${progress * (2 * (Math.PI) * 48 )}`
-             
+
+            const progress = (100 - lp) / 100;
+
+            return `${progress * (2 * Math.PI * 48)}`;
         }
-        
-    }
+    };
 
     const matchElement =
         rank?.miniSeries?.progress &&
@@ -209,34 +198,19 @@ const Btns = (props) => {
         <>
             {/* buttons  */}
             <div className={`flex gap-x-3 justify-center ${props.className}`}>
-                <SmallBtn click={() => rankHandler("SOLO")} active={ active === "SOLO"} >
+                <SmallBtn
+                    click={() => rankHandler("SOLO")}
+                    active={active === "SOLO"}
+                >
                     Ranked Solo
                 </SmallBtn>
-                {/* <button
-                    className={` ${
-                        active === "SOLO"
-                            ? "text-light-text"
-                            : "text-grayed-text"
-                    } font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                                bg-[#3e3847] px-[10px] py-[12px] capitalize smDesktop:text-[14px] smDesktop:leading-[17px] mr-3 `}
-                    onClick={() => rankHandler("SOLO")}
+
+                <SmallBtn
+                    click={() => rankHandler("FLEX")}
+                    active={active === "FLEX"}
                 >
-                    Ranked solo
-                </button> */}
-                <SmallBtn click={() => rankHandler("FLEX")} active={ active === "FLEX"}>
                     Ranked Flex
                 </SmallBtn>
-                {/* <button
-                    className={` ${
-                        active === "FLEX"
-                            ? "text-light-text"
-                            : "text-grayed-text"
-                    } font-sf-pro-text font-medium text-[9px] leading-[11px] rounded-[5px]
-                                bg-[#3e3847] px-[10px] py-[12px]  smDesktop:text-[14px] smDesktop:leading-[17px] `}
-                    onClick={() => rankHandler("FLEX")}
-                >
-                    Ranked Flex
-                </button> */}
             </div>
             {/* graph component  */}
             {/* {rank && (<div className=" grid grid-cols-[100px_125px] gap-x-[5px] mt-[30px] "> */}
@@ -424,9 +398,7 @@ const Batch = (props) => {
                         laptop:text-light-text "
                             >
                                 {props.rank?.tier?.charAt(0) +
-                                    props.rank?.tier
-                                        ?.slice(1)
-                                        .toLowerCase()}
+                                    props.rank?.tier?.slice(1).toLowerCase()}
                             </h4>
                             <p className=" text-text-gray-200 uppercase laptop:gotham-mid-9 mt-[4px]  ">
                                 {props.rank?.leaguePoints} lp
@@ -476,7 +448,7 @@ const RankTierGraph = (props) => {
         <div
             className=" bg-cardBg rounded
             px-[25px] pt-5 pb-[36px] "
-        >   
+        >
             {/* top btns  */}
             <Btns rankSolo={props?.rankSolo} rankFlex={props?.rankFlex} />
         </div>

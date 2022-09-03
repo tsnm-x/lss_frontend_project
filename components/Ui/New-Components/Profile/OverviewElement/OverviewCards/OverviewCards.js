@@ -53,7 +53,7 @@ const OverviewCards = (props) => {
                 setSelectedMatchType={props?.setSelectedMatchType}
                 ControlBtnLists={props?.ControlBtnLists}
             />
-            <div className="smDesktop:flex smDesktop:justify-between smDesktop:max-w-[885px] ">
+            <div className=" flex justify-between max-w-[898px] bg-cardBg p-[6px] mt-[2px] rounded-[4px]   ">
                 {!props.matches[0] ? (
                     <div className=" relative mx-auto mt-8">
                         <LoadingIndicator />
@@ -63,7 +63,7 @@ const OverviewCards = (props) => {
                         className={` relative ${
                             props.expand
                                 ? "w-full mt-[8px] "
-                                : "mt-5 smDesktop:w-full desktop:mr-11  "
+                                : " w-full "
                         }`}
                     >
                         <div className=" flex flex-col flex-wrap gap-y-[5px] pb-[36px]  ">

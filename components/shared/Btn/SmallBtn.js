@@ -12,7 +12,7 @@ const SmallBtn = (props) => {
             className={`rounded-[7px] p-[11px_13px] bg-[#242326] hover:bg-[#353338] font-inter font-[700]
              text-[12px] leading-[20px] flex items-center justify-center ${
                  props.active ? "text-white" : "text-[#919192] "
-             } `}
+             } ${props.className} `}
         >
             {props.children}
         </button>

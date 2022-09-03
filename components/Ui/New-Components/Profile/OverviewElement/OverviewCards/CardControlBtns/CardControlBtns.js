@@ -1,26 +1,22 @@
 import React from "react";
+import SmallBtn from "../../../../../../shared/Btn/SmallBtn";
 
 const CardControlBtns = (props) => {
     const filterMatches = (btn) => {
         props.setSelectedMatchType(btn);
     };
     return (
-        <div className="">
+        <div className=" bg-cardBg p-[6px] rounded-[4px] gap-x-[10px] inline-flex ">
             {props?.ControlBtnLists.map((btnName, index) => {
                 return (
-                    <button
+                    <SmallBtn
                         key={index}
-                        onClick={() => filterMatches(btnName)}
-                        className={` sf-mid-14 text-center capitalize  bg-[#3e3847] rounded-5px mr-[10px] h-10  ${
-                            index ? "w-[140px] " : "w-[100px]"
-                        } ${
-                            btnName === props.selectedMatchType
-                                ? "text-light-text"
-                                : "text-grayed-text"
-                        }`}
+                        click={() => filterMatches(btnName)}
+                        active={btnName === props.selectedMatchType}
+                        className=" capitalize "
                     >
                         {btnName}
-                    </button>
+                    </SmallBtn>
                 );
             })}
         </div>

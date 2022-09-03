@@ -140,7 +140,7 @@ const PlayerList = (props) => {
             {/* right side expand btn  */}
             <div
                 onClick={() => props.ExpandFullHandler()}
-                className={`h-full w-[50px] flex items-center justify-center
+                className={`h-full w-[54px] flex items-center justify-center
                 rounded-5px cursor-pointer  ${
                     props?.convertM(props?.match?.duration) <= 5
                         ? "bg-[#cfbbbd] hover:bg-[#675b67]"
