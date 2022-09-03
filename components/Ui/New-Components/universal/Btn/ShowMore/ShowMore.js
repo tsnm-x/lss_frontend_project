@@ -34,8 +34,8 @@ const ShowMore = (props) => {
 		setStart(start + 10);
 	};
     return (
-        <button onClick={getMoreMatches} className={` sf-bold-18 bg-nav-btn text-center block w-full rounded-5px mt-[10px]    `}>
-            <h3 className={` sf-bold-18 text-white capitalize py-[15px] `}>Show more</h3>
+        <button onClick={getMoreMatches} className={` w-full h-[50px] flex items-center justify-center bg-headBorder rounded-5px `}>
+            <h3 className={` font-sf-pro-text font-bold text-center text-[18px] leading-[21.4px] text-[#979797]`}>Show More</h3>
         </button>
     );
 };
