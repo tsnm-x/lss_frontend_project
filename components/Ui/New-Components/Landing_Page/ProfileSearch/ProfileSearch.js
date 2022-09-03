@@ -283,18 +283,19 @@ const ProfileSearch = (props) => {
                             className="absolute top-[24px] right-[24px]  "
                         >
                             {hideSearch ? (
-                                <div className=" flex gap-x-[3px] mt-[6px] ">
+                                <div className=" flex gap-x-[3px] mt-[2px] ">
                                     {["", "", ""].map((item, index) => {
                                         return (
                                             <div
                                                 key={index}
-                                                className={`w-[10px] h-5 ${classes.indicator}`}
+                                                className={`w-[8px] h-[18px] ${classes.indicator}`}
                                             ></div>
                                         );
                                     })}
                                 </div>
                             ) : (
                                 <FiSearch className=" text-red text-[20px] " />
+                                    
                             )}
                         </button>
                     </div>
