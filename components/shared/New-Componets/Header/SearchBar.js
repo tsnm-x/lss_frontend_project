@@ -225,12 +225,24 @@ const SearchBar = (props) => {
                 {/* search form  */}
                 <form
                     action="/"
-                    className="w-[205px] h-[42px] rounded-[7px] bg-headBorder p-[10px] flex items-center "
+                    className="w-[205px] h-[42px] rounded-[7px] bg-headBorder hover:bg-btnHoverBg flex items-center "
                 >
-                    <div className=" flex items-center ">
+                    <div className=" flex items-center w-full h-full relative ">
+                        <input
+                            disabled={hideSearch}
+                            style={{ background: "transparent" }}
+                            type="text"
+                            onChange={searchInput}
+                            value={search}
+                            placeholder="Find Summoner name..."
+                            className=" w-full h-full rounded-[7px] 
+                            absolute bg-transparent pl-[36px] mazin-bold-12 font-[600]
+                         text-halfWhite focus-within:outline-none focus-within:border
+                          focus:placeholder:text-white  "
+                        />
                         <button
                             onClick={(e) => searchHandler(e)}
-                            className="  "
+                            className=" absolute left-3 "
                         >
                             {hideSearch ? (
                                 <div className=" flex gap-x-[3px] mt-[6px] ">
@@ -248,7 +260,7 @@ const SearchBar = (props) => {
                             )}
                         </button>
                         {/* sumonner name box  */}
-                        <input
+                        {/* <input
                             disabled={hideSearch}
                             style={{ background: "transparent" }}
                             type="search"
@@ -256,7 +268,7 @@ const SearchBar = (props) => {
                             value={search}
                             placeholder="Find Summoner name..."
                             className={` mazin-bold-12 font-[600] ml-[10px] text-halfWhite focus-visible:outline-none `}
-                        />
+                        /> */}
                     </div>
                 </form>
                 {/* country list  */}

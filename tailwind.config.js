@@ -78,6 +78,10 @@ module.exports = {
                 blue: "#5D7CF6",
                 defeatDataRow: "rgba(255,66,86,0.1)",
                 winDataRow: "rgba(93,124,246,0.1)",
+                // button
+                btnBg: "#242326",
+                btnHoverBg: "#353338",
+                btnGrayTxt: "#919192",
             },
             fontSize: {
                 // old 1.0

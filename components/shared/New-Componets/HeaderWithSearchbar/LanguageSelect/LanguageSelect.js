@@ -47,15 +47,19 @@ const LanguageSelect = (props) => {
         <div className=" relative ">
             <div
                 onClick={listShowHideHandler}
-                className=" relative z-[60] bg-headBorder rounded-[6px] px-[11px] h-[45px] flex items-center justify-between cursor-pointer w-[123px] "
+                className={`relative z-[60] bg-headBorder hover:bg-btnHoverBg  ${
+                    showLangList ? " text-white " : "text-btnGrayTxt"
+                }
+                 rounded-[6px] px-[11px] h-[45px] flex items-center justify-between
+                 cursor-pointer w-[123px] `}
             >
-                <BiCaretDown className=" text-[17px] text-white mr-[8px] " />
-                { (
-                    <h6 className=" text-white sf-mid-16 pr-[5px] capitalize ">
+                <BiCaretDown className=" text-[17px]  mr-[8px] " />
+                {
+                    <h6 className=" sf-mid-16 pr-[5px] capitalize ">
                         {activeLanguage.name}
                     </h6>
-                )}
-                <TbWorld className=" text-[24px] text-white" />
+                }
+                <TbWorld className=" text-[24px]" />
             </div>
             {/* language list  */}
             {showLangList && (
@@ -65,7 +69,7 @@ const LanguageSelect = (props) => {
                             <li
                                 onClick={() => activeLangHandler(language.name)}
                                 key={index}
-                                className=" cursor-pointer p-[11px] pl-[16px]  flex items-center justify-between  "
+                                className=" cursor-pointer p-[11px] pl-[16px]  flex items-center justify-between hover:bg-btnHoverBg last:rounded-b-[6px]  "
                             >
                                 <h6 className=" text-white sf-mid-16 capitalize ">
                                     {language.name}
