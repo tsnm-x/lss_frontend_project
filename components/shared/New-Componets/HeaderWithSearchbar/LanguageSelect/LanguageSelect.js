@@ -53,7 +53,7 @@ const LanguageSelect = (props) => {
                  rounded-[6px] px-[11px] h-[45px] flex items-center justify-between
                  cursor-pointer w-[123px] `}
             >
-                <BiCaretDown className=" text-[17px]  mr-[8px] " />
+                <BiCaretDown className={` text-[17px] mr-[8px] transition-transform ${showLangList ? " rotate-180" : " rotate-0 "} `} />
                 {
                     <h6 className=" sf-mid-16 pr-[5px] capitalize ">
                         {activeLanguage.name}
@@ -69,7 +69,8 @@ const LanguageSelect = (props) => {
                             <li
                                 onClick={() => activeLangHandler(language.name)}
                                 key={index}
-                                className=" cursor-pointer p-[11px] pl-[16px]  flex items-center justify-between hover:bg-btnHoverBg last:rounded-b-[6px]  "
+                                className=" cursor-pointer p-[11px] pl-[16px]  flex items-center
+                                            justify-between hover:bg-btnHoverBg last:rounded-b-[6px]  "
                             >
                                 <h6 className=" text-white sf-mid-16 capitalize ">
                                     {language.name}

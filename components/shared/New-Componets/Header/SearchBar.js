@@ -276,7 +276,7 @@ const SearchBar = (props) => {
                     {/* country box list  */}
                     {activeListDetails.showList && (
                         <div
-                            className={` absolute left-0 top-[45px] bg-headBorder
+                            className={` absolute left-0 top-[45px] bg-headBorder 
                                 flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] z-[100] rounded-[7px]`}
                         >
                             {selectionNameList.map((country, index) => {
@@ -302,14 +302,16 @@ const SearchBar = (props) => {
                     {/* country select box  */}
                     <div
                         onClick={CountryListShowHideHandler}
-                        className={` bg-headBorder w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
+                        className={` bg-headBorder hover:bg-btnHoverBg w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
                     >
                         <h4
                             className={` text-halfWhite mazin-bold-12 font-[600] uppercase mr-1 `}
                         >
                             {activeListDetails.selectedItem?.name}
                         </h4>
-                        <HiChevronDown className=" text-halfWhite text-[16px] " />
+                        <HiChevronDown
+                            className={`text-halfWhite text-[16px] transition-transform ${activeListDetails.showList ? " rotate-180 " : " rotate-0 "}`}
+                        />
                     </div>
                 </div>
             </div>
