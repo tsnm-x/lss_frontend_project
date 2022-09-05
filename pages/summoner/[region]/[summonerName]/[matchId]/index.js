@@ -375,7 +375,7 @@ const MatchSimulator = ({ query }) => {
         <>
             {/* <HeaderWithSearchbar /> */}
             <Header />
-            <ProfileIntro mainPlayer={mainPlayer} match={match} />
+            {/* <ProfileIntro mainPlayer={mainPlayer} match={match} /> */}
             <div className=" bg-[#140a22] mb-[100px] ">
                 <AnalyticsViewBtns
                     btns={btns}

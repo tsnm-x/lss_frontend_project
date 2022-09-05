@@ -1,7 +1,12 @@
 .indicator {
-  @apply w-[15px] bg-accent-color rounded-[2px] h-[80px];
+    @apply w-[15px] bg-accent-color rounded-[2px] h-[80px];
 }
 
 .btn {
-  @apply px-4 pt-[6px] pb-[8px] rounded-[8px] font-sf-pro-text font-bold  text-[14px] leading-5 capitalize
+    /* @apply px-4 pt-[6px] pb-[8px] rounded-[8px]
+   font-sf-pro-text font-bold  text-[14px]
+    leading-5 capitalize; */
+    @apply p-[11px_13px] flex items-center justify-center h-[42px] rounded-[7px] 
+    font-inter font-bold text-[12px] leading-[20px]
+    capitalize bg-btnBg hover:bg-btnHoverBg  ;
 }
