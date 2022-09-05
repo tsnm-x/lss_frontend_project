@@ -92,7 +92,7 @@ const DataRow = (props) => {
 const DataRowGrid = (props) => {
     const router = useRouter();
     return (
-        <div className=" max-w-[1340px] px-[18px] pt-1 ">
+        <div className=" px-[18px] pt-1 ">
             {/* header row  */}
             <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
                 <HeaderRow />

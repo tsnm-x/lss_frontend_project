@@ -118,9 +118,7 @@ const IconAndCount = (props) => {
     }
 
     return (
-        <div
-            className={` flex smDesktop:items-center ${props.className}`}
-        >
+        <div className={` flex smDesktop:items-center ${props.className}`}>
             <div className={` relative ${props.imgClassName}`}>{setIcon}</div>
             <p className=" font-sf-pro-text text-[14px] leading-[16.7px] text-white font-bold   ">
                 {props.txt}
@@ -242,7 +240,7 @@ const LosAndWinRow = (props) => {
         >
             {/* loss  */}
             {lostTeam && lostTeamStats && (
-                <div className=" flex justify-between items-center font-bold w-[658px] pl-[18px] ">
+                <div className=" flex justify-start items-center font-bold w-[658px] pl-[18px] ">
                     <div className=" w-[127px] ">
                         <IconAndCount
                             txt={`${
@@ -311,7 +309,7 @@ const LosAndWinRow = (props) => {
                             red={true}
                         />
                     </div>
-                    <div className=" w-[120px] ">
+                    <div className=" w-[90px] ">
                         <IconAndCount
                             imgClassName=" w-[16.48px] h-[16.48px] mr-[12.84px] "
                             txt={`${
@@ -323,7 +321,7 @@ const LosAndWinRow = (props) => {
                         />
                     </div>
                     <div className=" text-right w-[51px] ">
-                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold text-red">
+                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold text-red  ">
                             Defeat
                         </p>
                     </div>
@@ -347,13 +345,13 @@ const LosAndWinRow = (props) => {
 
             {/* win  */}
             {winnerTeam && winningTeamStats && (
-                <div className=" flex justify-between items-center w-[658px] pr-[18px] ">
-                    <div className=" text-right w-[51px] ">
-                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold text-blue">
+                <div className=" flex justify-end items-center w-[658px] pr-[18px] ">
+                    <div className=" w-[51px] ">
+                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold text-blue ">
                             Victory
                         </p>
                     </div>
-                    <div className=" w-[120px] flex justify-end items-center ">
+                    <div className=" w-[90px] flex justify-end items-center ">
                         <IconAndCount
                             imgClassName=" w-[16.48px] h-[16.48px] mr-[12.84px] "
                             txt={`${
