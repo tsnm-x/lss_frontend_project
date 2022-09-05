@@ -277,8 +277,10 @@ const GameStaticsGraph = (props) => {
                 </SmallBtn>
                 <SmallBtn
                     className="bg-red hover:bg-red cursor-pointer
-                 text-white hover:text-white flex items-center gap-x-2 py-0 h-[42px]
+                 text-white hover:text-white flex items-center 
+                 gap-x-2 py-0 h-[42px] hover:opacity-70
                   "
+                    click={ () => undefined}
                 >
                     <div className=" relative w-[25px] h-[25px] rounded-full bg-cardBg ">
                         {/* <Image /> */}
@@ -293,6 +295,22 @@ const GameStaticsGraph = (props) => {
                     Show Graphs
                 </SmallBtn>
             </div>
+            {/* slider component  */}
+            <div>
+                {/* lss overview  */}
+                <div className=" bg-cardBg rounded-[3px] p-[6px] 
+                font-inter font-[700] w-[173px] h-[162px]
+                flex flex-col justify-between ">
+                    <h3 className="text-[16px] leading-[20px] text-white">LSS Overview</h3>
+                    <div className=" text-[10px] leading-[12px] text-btnGrayTxt flex flex-col ">
+                        <span>Check the game time synched</span>
+                        <span>scoreboard</span>
+                    </div>
+                    <div className=" rounded-[3px] bg-btnBg h-[92px] ">
+
+                    </div>
+                </div>
+            </div>
             {/* slider  */}
             <div className=" mt-[14px] flex items-center ml-[150px] ">
                 <div
@@ -302,7 +320,7 @@ const GameStaticsGraph = (props) => {
                 >
                     <div className=" relative">
                         <div className="w-[1000px] relative ">
-                            {/* border gradient  */}
+                            
                             <div
                                 className={` w-full ${
                                     expand ? " opacity-[0.2]" : " opacity-[1]"
@@ -368,12 +386,12 @@ const GameStaticsGraph = (props) => {
                                     </defs>
                                 </svg>
                             </div>
-                            {/* slider  */}
+                            
                             <div
                                 className={`${Classess.sliderComp} px-[15px] flex items-center gap-x-[17px] absolute left-0 top-0 `}
                             >
-                                {/* play / pause  */}
-                                <div className=" flex items-center gap-x-[9px] ">
+                               
+                                {/* <div className=" flex items-center gap-x-[9px] ">
                                     <div className=" w-[16px] h-[16px] ">
                                         <svg
                                             fill="none"
@@ -398,11 +416,11 @@ const GameStaticsGraph = (props) => {
                                             {getDuration(props.match?.duration)}
                                         </h4>
                                     )}
-                                </div>
-                                {/* slides  */}
+                                </div> */}
+                                
                                 <div className=" w-full flex flex-col h-full ">
-                                    {/* top icon bar */}
-                                    <div className=" w-full h-[25px] relative ">
+                                   
+                                    {/* <div className=" w-full h-[25px] relative ">
                                         {winningTeamId &&
                                             blueIconsHandler(
                                                 frames[frames?.length - 2][
@@ -438,12 +456,12 @@ const GameStaticsGraph = (props) => {
                                                 ]?.riftHerald?.KillEvents,
                                                 "riftHerald"
                                             )}
-                                    </div>
-                                    {/* slide  */}
+                                    </div> */}
+                                   
                                     <div
                                         className={`${Classess.sliderSlide} w-full relative h-[1px] `}
                                     >
-                                        <div
+                                        {/* <div
                                             className={`${Classess.parent} grid grid-cols-1 grid-rows-1`}
                                             style={{ zIndex: 50 }}
                                         >
@@ -484,7 +502,7 @@ const GameStaticsGraph = (props) => {
                                                     )}
                                                 </label>
                                             )}
-                                        </div>
+                                        </div> */}
                                         {/* <div className=" w-full absolute left-0 top-0 ">
                                                 <svg
                                                     fill="none"
@@ -532,7 +550,7 @@ const GameStaticsGraph = (props) => {
                                 <Slider />
                             </div> */}
                                     {/* bottom icon bar */}
-                                    <div className=" w-full h-[25px] relative ">
+                                    {/* <div className=" w-full h-[25px] relative ">
                                         {losingTeamId &&
                                             redIconsHandler(
                                                 frames[frames?.length - 2][
@@ -568,13 +586,13 @@ const GameStaticsGraph = (props) => {
                                                 ]?.riftHerald?.KillEvents,
                                                 "riftHerald"
                                             )}
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
 
                         {/* expand btn  */}
-                        <div
+                        {/* <div
                             onClick={expandHandler}
                             className=" w-[32px] h-[32px] bg-[#d55460] rounded-full flex justify-center items-center absolute -right-[76px] top-2 cursor-pointer "
                         >
@@ -585,9 +603,9 @@ const GameStaticsGraph = (props) => {
                                     layout="fill"
                                 />
                             </div>
-                        </div>
+                        </div> */}
                         {/* graph element  */}
-                        {expand && (
+                        {/* {expand && (
                             <GraphElement
                                 leftTeam={props?.leftTeam}
                                 rightTeam={props?.rightTeam}
@@ -597,7 +615,7 @@ const GameStaticsGraph = (props) => {
                                 selectedPlayerOne={props.simulatorPlayerRed}
                                 selectedPlayerTwo={props.simulatorPlayerBlue}
                             />
-                        )}
+                        )} */}
                     </div>
 
                     {/* background border  */}
