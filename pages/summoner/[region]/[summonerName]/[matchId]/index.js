@@ -19,6 +19,7 @@ import { runeAction } from "../../../../../store/runes";
 import Runes from "../../../../../components/Ui/New-Components/Analytic_Page/Runes/Runes";
 import ReportPortal from "../../../../../components/Ui/New-Components/Profile/ReportPortal/ReportPortal";
 import ReportContext from "../../../../../Context/ReportContext";
+import Header from '../../../../../components/shared/New-Componets/Header/Header';
 
 const MatchSimulator = ({ query }) => {
     const { region, summonerName, matchId } = query;
@@ -372,7 +373,8 @@ const MatchSimulator = ({ query }) => {
 
     return (
         <>
-            <HeaderWithSearchbar />
+            {/* <HeaderWithSearchbar /> */}
+            <Header />
             <ProfileIntro mainPlayer={mainPlayer} match={match} />
             <div className=" bg-[#140a22] mb-[100px] ">
                 <AnalyticsViewBtns
