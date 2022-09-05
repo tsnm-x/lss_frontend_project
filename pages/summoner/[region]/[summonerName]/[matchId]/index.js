@@ -21,6 +21,8 @@ import ReportPortal from "../../../../../components/Ui/New-Components/Profile/Re
 import ReportContext from "../../../../../Context/ReportContext";
 import Header from "../../../../../components/shared/New-Componets/Header/Header";
 import Image from "next/image";
+import LeftSideImg from "../../../../../public/assets/ads/Post/left-side.png";
+import RightSideImg from "../../../../../public/assets/ads/Post/right-side.png";
 
 const MatchSimulator = ({ query }) => {
     const { region, summonerName, matchId } = query;
@@ -381,10 +383,18 @@ const MatchSimulator = ({ query }) => {
                 summonerName={summonerName}
                 report={handleReport}
             />
-            <section>
-                <div className=" w-[1536px] h-[456px] gap-x-[1px] bg-headBorder flex  mx-auto ">
-                    <div className=" w-[90px] h-full bg-green-900 "></div>
-                    <div className=" w-[1352px] mx-auto rounded-[3px] bg-cardBg pt-[35px] ">
+            <section className=" bg-headBorder h-[calc(100vh_-_129px)] relative ">
+                <div className=" w-[1536px] h-[456px] gap-x-[1px] bg-headBorder flex  mx-auto relative z-20 ">
+                    <div className=" w-[90px] h-full bg-cardBg p-[3.33px]  ">
+                        <div className=" w-full h-full rounded-5px relative">
+                            <Image
+                                src={LeftSideImg}
+                                alt="google ads img"
+                                layout="fill"
+                            />
+                        </div>
+                    </div>
+                    <div className=" w-[1352px] mx-auto rounded-[3px] bg-cardBg pt-[35px] pb-[32px] ">
                         <ProfileCompareBar
                             teams={match?.teams}
                             players={match?.players}
@@ -422,10 +432,26 @@ const MatchSimulator = ({ query }) => {
                             />
                         )}
                     </div>
-                    <div className=" w-[90px] h-full bg-green-900 "></div>
+                    <div className=" w-[90px] h-full bg-cardBg p-[3.33px] ">
+                        <div className=" w-full h-full rounded-5px relative">
+                            <Image
+                                src={RightSideImg}
+                                alt="right side image"
+                                layout="fill"
+                            />
+                        </div>
+                    </div>
                 </div>
-
-                {/* <GameStaticsGraph
+                {/* bottom black mask  */}
+                <div
+                    className=" w-full h-[35vh] absolute left-0 bottom-0 "
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(180deg, rgba(19, 18, 19, 0) 1.54%, #131213 59.96%);",
+                    }}
+                ></div>
+                {/* slider  */}
+                <GameStaticsGraph
                     match={match}
                     selectedFrame={selectedFrame}
                     frames={matchTimelineData?.frames}
@@ -435,7 +461,7 @@ const MatchSimulator = ({ query }) => {
                     playersWithId={playersWithId}
                     rightTeam={rightTeam}
                     leftTeam={leftTeam}
-                /> */}
+                />
                 {/* <button>Sim data</button> */}
                 {/* <SimulationData
 					selectedFrame={selectedFrame}

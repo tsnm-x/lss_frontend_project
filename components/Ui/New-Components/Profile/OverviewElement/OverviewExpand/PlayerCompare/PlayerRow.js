@@ -523,7 +523,7 @@ const PlayerRow = (props) => {
                             ></div>
                         )}
                         {/* batch  */}
-                        <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
+                        <div className=" flex justify-center absolute -bottom-[6px] left-0 w-full ">
                             <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
                                 {correctParticipant?.level}
                             </div>
