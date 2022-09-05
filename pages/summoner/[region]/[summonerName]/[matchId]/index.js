@@ -384,7 +384,7 @@ const MatchSimulator = ({ query }) => {
             <section>
                 <div className=" w-[1536px] h-[456px] gap-x-[1px] bg-headBorder flex  mx-auto ">
                     <div className=" w-[90px] h-full bg-green-900 "></div>
-                    <div className=" w-[1352px] mx-auto rounded-[3px] bg-cardBg ">
+                    <div className=" w-[1352px] mx-auto rounded-[3px] bg-cardBg pt-[35px] ">
                         <ProfileCompareBar
                             teams={match?.teams}
                             players={match?.players}

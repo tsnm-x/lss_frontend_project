@@ -301,13 +301,13 @@ const PlayerRow = (props) => {
                     ? `grid-cols-[105px_118px_115px_165px_145px] ${
                           props.simulatorPlayer.summonerName ===
                           props.player.summonerName
-                              ? "bg-[#4d65ca]"
+                              ? "bg-blue"
                               : "bg-[#181531]"
                       } `
                     : `grid-cols-[145px_165px_145px_83px_105px] ${
                           props.simulatorPlayer.summonerName ===
                           props.player.summonerName
-                              ? " bg-[#ad4552]"
+                              ? " bg-red"
                               : "bg-[#241122]"
                       } `
             }`}
