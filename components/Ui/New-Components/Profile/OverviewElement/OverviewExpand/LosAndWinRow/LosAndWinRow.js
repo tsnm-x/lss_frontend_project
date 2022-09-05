@@ -119,7 +119,7 @@ const IconAndCount = (props) => {
 
     return (
         <div
-            className={` flex smDesktop:items-center first:mr-[10px] ${props.className}`}
+            className={` flex smDesktop:items-center ${props.className}`}
         >
             <div className={` relative ${props.imgClassName}`}>{setIcon}</div>
             <p className=" font-sf-pro-text text-[14px] leading-[16.7px] text-white font-bold   ">
@@ -237,12 +237,12 @@ const LosAndWinRow = (props) => {
     return (
         <div
             className=" bg-card-&-content-box h-10 flex justify-center w-[1340px] mx-auto
-                                items-center gap-x-[72px]   
+                                items-center   
                                 "
         >
             {/* loss  */}
             {lostTeam && lostTeamStats && (
-                <div className=" text-accent-color flex justify-between items-center font-bold w-[658px] pl-[18px] ">
+                <div className=" flex justify-between items-center font-bold w-[658px] pl-[18px] ">
                     <div className=" w-[127px] ">
                         <IconAndCount
                             txt={`${
@@ -323,7 +323,7 @@ const LosAndWinRow = (props) => {
                         />
                     </div>
                     <div className=" text-right w-[51px] ">
-                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold">
+                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold text-red">
                             Defeat
                         </p>
                     </div>
@@ -347,7 +347,87 @@ const LosAndWinRow = (props) => {
 
             {/* win  */}
             {winnerTeam && winningTeamStats && (
-                <div className=" text-accent-color-2 flex justify-between items-center w-3/6 font-bold ">
+                <div className=" flex justify-between items-center w-[658px] pr-[18px] ">
+                    <div className=" text-right w-[51px] ">
+                        <p className=" font-sf-pro-text text-[14px] leading-[17px] font-bold text-blue">
+                            Victory
+                        </p>
+                    </div>
+                    <div className=" w-[120px] flex justify-end items-center ">
+                        <IconAndCount
+                            imgClassName=" w-[16.48px] h-[16.48px] mr-[12.84px] "
+                            txt={`${
+                                lostTeam?.Inhibitor?.kills
+                                    ? lostTeam?.Inhibitor?.kills
+                                    : 0
+                            }`}
+                        />
+                    </div>
+                    <div className=" flex items-center justify-end gap-x-5 w-[156px] ">
+                        <IconAndCount
+                            imgClassName=" w-[12.07px] h-[16.09px] mr-[11.25px] "
+                            txt={`${
+                                lostTeam?.Tower?.kills
+                                    ? lostTeam?.Tower?.kills
+                                    : 0
+                            }`}
+                            type="tower"
+                        />
+                        <IconAndCount
+                            imgClassName=" w-[16.48px] h-[16.48px] mr-[12.27px] "
+                            txt={`${
+                                lostTeam?.Inhibitor?.kills
+                                    ? lostTeam?.Inhibitor?.kills
+                                    : 0
+                            }`}
+                            type="circle"
+                        />
+                    </div>
+                    <div className=" flex items-center justify-end gap-x-5 w-[186px] ">
+                        <IconAndCount
+                            imgClassName=" w-[17.27px] h-[17.27px] mr-[6.2px] "
+                            txt={`${
+                                lostTeam?.Dragon?.kills
+                                    ? lostTeam?.Dragon?.kills
+                                    : 0
+                            }`}
+                            type="dragon"
+                            red={true}
+                        />
+                        <IconAndCount
+                            imgClassName=" w-[17.28px] h-[17.27px] mr-[3.92px] "
+                            txt={`${
+                                lostTeam?.Baron?.kills
+                                    ? lostTeam?.Baron?.kills
+                                    : 0
+                            }`}
+                            type="baron"
+                            red={true}
+                        />
+                        <IconAndCount
+                            imgClassName=" w-[17.28px] h-[17.27px] mr-[3.92px] "
+                            txt={`${
+                                lostTeam?.Baron?.kills
+                                    ? lostTeam?.Baron?.kills
+                                    : 0
+                            }`}
+                            type="baron"
+                            red={true}
+                        />
+                    </div>
+                    <div className=" w-[127px] flex items-center justify-end ">
+                        <IconAndCount
+                            txt={`${
+                                (lostTeamStats?.totalGold / 1000).toFixed(1)
+                                    ? (lostTeamStats?.totalGold / 1000).toFixed(
+                                          1
+                                      )
+                                    : 0
+                            }k`}
+                            imgClassName=" w-[18.55px] h-[15.19px] mr-[8.4px] "
+                            type="gold"
+                        />
+                    </div>
                     {/* <div className=" flex items-center gap-x-5 ">
                         <IconAndCount
                             imgClassName=" desktop:w-[20px] desktop:h-[20px] "
