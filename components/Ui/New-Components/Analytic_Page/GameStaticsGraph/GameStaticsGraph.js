@@ -9,6 +9,9 @@ import UnfoldIcon from "../../../../../public/assets/new-images/Profile/card/Car
 import { MdOutlineCircle } from "react-icons/md";
 import GraphElement from "./Graph/GraphElement";
 import SmallBtn from "../../../../shared/Btn/SmallBtn";
+import OverviewImg from "../../../../../public/assets/new-images/slider/overview.png";
+import { FiSkipBack, FiSkipForward, FiShare } from "react-icons/fi";
+import { AiOutlinePause } from "react-icons/ai";
 
 // green icon
 import greenBaron from "../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-baron-r.png";
@@ -268,6 +271,21 @@ const GameStaticsGraph = (props) => {
         },
     });
 
+    const [playPauseNextBtns, setPlayPauseNextBtns] = useState([
+        {
+            icon: <FiSkipBack className=" text-white" size={16} />,
+        },
+        {
+            icon: <AiOutlinePause className=" text-blue" size={16} />,
+        },
+        {
+            icon: <FiSkipForward className=" text-white " size={16} />,
+        },
+        {
+            icon: <FiShare className=" text-red " size={16} />,
+        },
+    ]);
+
     return (
         <div className=" relative z-40 max-w-[1353px] mx-auto mt-[18px] ">
             {/* btn list  */}
@@ -280,7 +298,7 @@ const GameStaticsGraph = (props) => {
                  text-white hover:text-white flex items-center 
                  gap-x-2 py-0 h-[42px] hover:opacity-70
                   "
-                    click={ () => undefined}
+                    click={() => undefined}
                 >
                     <div className=" relative w-[25px] h-[25px] rounded-full bg-cardBg ">
                         {/* <Image /> */}
@@ -288,26 +306,60 @@ const GameStaticsGraph = (props) => {
                     <div className=" relative w-[25px] h-[25px] rounded-full bg-cardBg ">
                         {/* <Image /> */}
                     </div>
-                    <p className=" font-mazin font-[500] text-[12px] 
-                    leading-[15px] text-white ">Simulate Matchup</p>
+                    <p
+                        className=" font-mazin font-[500] text-[12px] 
+                    leading-[15px] text-white "
+                    >
+                        Simulate Matchup
+                    </p>
                 </SmallBtn>
                 <SmallBtn active={sliderBtns.showGraph.active}>
                     Show Graphs
                 </SmallBtn>
             </div>
             {/* slider component  */}
-            <div>
+            <div className=" flex items-center justify-between ">
                 {/* lss overview  */}
-                <div className=" bg-cardBg rounded-[3px] p-[6px] 
+                <div
+                    className=" bg-cardBg rounded-[3px] p-[6px] 
                 font-inter font-[700] w-[173px] h-[162px]
-                flex flex-col justify-between ">
-                    <h3 className="text-[16px] leading-[20px] text-white">LSS Overview</h3>
-                    <div className=" text-[10px] leading-[12px] text-btnGrayTxt flex flex-col ">
+                flex flex-col justify-between "
+                >
+                    <h3 className=" pl-[5px] text-[16px] leading-[20px] text-white">
+                        LSS Overview
+                    </h3>
+                    <div className=" pl-[5px]  text-[10px] leading-[12px] text-btnGrayTxt flex flex-col ">
                         <span>Check the game time synched</span>
                         <span>scoreboard</span>
                     </div>
-                    <div className=" rounded-[3px] bg-btnBg h-[92px] ">
-
+                    <div className=" rounded-[3px] bg-btnBg h-[92px] "></div>
+                </div>
+                {/* slider graph  */}
+                <div className=" w-[947px] ">
+                    {/* play pause btn  */}
+                    <div className=" bg-cardBg p-[6px] rounded-[3px] w-[96px] ">
+                        <div className=" bg-btnBg rounded-[3px] flex items-center justify-between px[5px] ">
+                            {playPauseNextBtns.map((btn, index) => {
+                                return (
+                                    <button
+                                        key={index}
+                                        className=" w-[16px] h-[16px] border-none "
+                                    >
+                                        {btn.icon}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+                {/* show graph  */}
+                <div className=" w-[173px] h-[162px] rounded-[3px] bg-cardBg p-[6px] ">
+                    <div className=" relative w-full h-full bg-btnBg rounded-[3px] ">
+                        <Image
+                            src={OverviewImg}
+                            alt="overview image"
+                            layout="fill"
+                        />
                     </div>
                 </div>
             </div>
@@ -320,7 +372,6 @@ const GameStaticsGraph = (props) => {
                 >
                     <div className=" relative">
                         <div className="w-[1000px] relative ">
-                            
                             <div
                                 className={` w-full ${
                                     expand ? " opacity-[0.2]" : " opacity-[1]"
@@ -386,12 +437,11 @@ const GameStaticsGraph = (props) => {
                                     </defs>
                                 </svg>
                             </div>
-                            
+
                             <div
                                 className={`${Classess.sliderComp} px-[15px] flex items-center gap-x-[17px] absolute left-0 top-0 `}
                             >
-                               
-                                {/* <div className=" flex items-center gap-x-[9px] ">
+                                <div className=" flex items-center gap-x-[9px] ">
                                     <div className=" w-[16px] h-[16px] ">
                                         <svg
                                             fill="none"
@@ -416,11 +466,10 @@ const GameStaticsGraph = (props) => {
                                             {getDuration(props.match?.duration)}
                                         </h4>
                                     )}
-                                </div> */}
-                                
+                                </div>
+
                                 <div className=" w-full flex flex-col h-full ">
-                                   
-                                    {/* <div className=" w-full h-[25px] relative ">
+                                    <div className=" w-full h-[25px] relative ">
                                         {winningTeamId &&
                                             blueIconsHandler(
                                                 frames[frames?.length - 2][
@@ -456,12 +505,12 @@ const GameStaticsGraph = (props) => {
                                                 ]?.riftHerald?.KillEvents,
                                                 "riftHerald"
                                             )}
-                                    </div> */}
-                                   
+                                    </div>
+
                                     <div
                                         className={`${Classess.sliderSlide} w-full relative h-[1px] `}
                                     >
-                                        {/* <div
+                                        <div
                                             className={`${Classess.parent} grid grid-cols-1 grid-rows-1`}
                                             style={{ zIndex: 50 }}
                                         >
@@ -502,49 +551,49 @@ const GameStaticsGraph = (props) => {
                                                     )}
                                                 </label>
                                             )}
-                                        </div> */}
-                                        {/* <div className=" w-full absolute left-0 top-0 ">
-                                                <svg
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 865 1"
-                                                >
-                                                    <path
-                                                        stroke="url(#a)"
-                                                        d="M0 .5h865"
-                                                    />
-                                                    <defs>
-                                                        <linearGradient
-                                                            id="a"
-                                                            x1="0"
-                                                            y1="1.999"
-                                                            x2="865"
-                                                            y2="1.132"
-                                                            gradientUnits="userSpaceOnUse"
-                                                        >
-                                                            <stop stopColor="#5D7CF6" />
-                                                            <stop
-                                                                offset="1"
-                                                                stopColor="#D55460"
-                                                            />
-                                                        </linearGradient>
-                                                    </defs>
-                                                </svg>
-                                            </div> */}
-                                        {/* <div
-                                                className=" w-[40px] h-[30px] rounded-[1px] 
-																border border-[rgba(0,0,0,0.04)] relative -top-[15px] left-[10%]   "
+                                        </div>
+                                        <div className=" w-full absolute left-0 top-0 ">
+                                            <svg
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 865 1"
                                             >
-                                                <div
-                                                    className=" bg-[#5d6182] w-[40px] h-[30px] rounded-[1px] 
+                                                <path
+                                                    stroke="url(#a)"
+                                                    d="M0 .5h865"
+                                                />
+                                                <defs>
+                                                    <linearGradient
+                                                        id="a"
+                                                        x1="0"
+                                                        y1="1.999"
+                                                        x2="865"
+                                                        y2="1.132"
+                                                        gradientUnits="userSpaceOnUse"
+                                                    >
+                                                        <stop stopColor="#5D7CF6" />
+                                                        <stop
+                                                            offset="1"
+                                                            stopColor="#D55460"
+                                                        />
+                                                    </linearGradient>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div
+                                            className=" w-[40px] h-[30px] rounded-[1px] 
+																border border-[rgba(0,0,0,0.04)] relative -top-[15px] left-[10%]   "
+                                        >
+                                            <div
+                                                className=" bg-[#5d6182] w-[40px] h-[30px] rounded-[1px] 
 																border border-[rgba(0,0,0,0.04)] absolute flex items-center justify-center z-[20]  "
-                                                >
-                                                    <h1 className=" font-inter font-[700] text-[10px] leading-[14px] text-white">
-                                                        3:00
-                                                    </h1>
-                                                </div>
-                                                <div className=" w-[2px] h-[70px] bg-[#5D6182] absolute left-[18px] -top-[21px]"></div>
-                                            </div> */}
+                                            >
+                                                <h1 className=" font-inter font-[700] text-[10px] leading-[14px] text-white">
+                                                    3:00
+                                                </h1>
+                                            </div>
+                                            <div className=" w-[2px] h-[70px] bg-[#5D6182] absolute left-[18px] -top-[21px]"></div>
+                                        </div>
                                     </div>
                                     {/* <div>
                                 <Slider />
