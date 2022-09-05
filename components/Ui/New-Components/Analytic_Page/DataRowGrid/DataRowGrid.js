@@ -92,46 +92,44 @@ const DataRow = (props) => {
 const DataRowGrid = (props) => {
     const router = useRouter();
     return (
-        <section>
-            <div className="container max-w-[1340px] px-[18px] pt-1 bg-[#110a1b] ">
-                {/* header row  */}
-                <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
-                    <HeaderRow />
-                    <HeaderRow reverce={true} />
-                </div>
-                {/* data  */}
-                <div className=" grid grid-cols-2 gap-x-5 ">
-                    {/* data row  */}
-                    <DataRow
-                        reverce={false}
-                        match={props.match}
-                        region={router?.query?.region}
-                        frames={props.matchTimelineData?.frames}
-                        matchTimelineData={props.matchTimelineData}
-                        selectedFrame={props.selectedFrame}
-                        selectedPlayer={props.selectedPlayer}
-                        setSelectedPlayer={props.setSelectedPlayer}
-                        players={props?.leftTeam}
-                        simulatorPlayer={props.simulatorPlayerRed}
-                        setSimulatorPlayer={props?.setSimulatorPlayerRed}
-                    />
-                    <DataRow
-                        region={router?.query?.region}
-                        reverce={true}
-                        match={props.match}
-                        frames={props.matchTimelineData?.frames}
-                        matchTimelineData={props.matchTimelineData}
-                        selectedFrame={props.selectedFrame}
-                        selectedPlayer={props.selectedPlayer}
-                        setSelectedPlayer={props.setSelectedPlayer}
-                        players={props?.rightTeam}
-                        simulatorPlayer={props.simulatorPlayerBlue}
-                        setSimulatorPlayer={props?.setSimulatorPlayerBlue}
-                    />
-                </div>
-                {/* game statics graph  */}
+        <div className=" max-w-[1340px] px-[18px] pt-1 ">
+            {/* header row  */}
+            <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 mb-[6px] ">
+                <HeaderRow />
+                <HeaderRow reverce={true} />
             </div>
-        </section>
+            {/* data  */}
+            <div className=" grid grid-cols-2 gap-x-5 ">
+                {/* data row  */}
+                <DataRow
+                    reverce={false}
+                    match={props.match}
+                    region={router?.query?.region}
+                    frames={props.matchTimelineData?.frames}
+                    matchTimelineData={props.matchTimelineData}
+                    selectedFrame={props.selectedFrame}
+                    selectedPlayer={props.selectedPlayer}
+                    setSelectedPlayer={props.setSelectedPlayer}
+                    players={props?.leftTeam}
+                    simulatorPlayer={props.simulatorPlayerRed}
+                    setSimulatorPlayer={props?.setSimulatorPlayerRed}
+                />
+                <DataRow
+                    region={router?.query?.region}
+                    reverce={true}
+                    match={props.match}
+                    frames={props.matchTimelineData?.frames}
+                    matchTimelineData={props.matchTimelineData}
+                    selectedFrame={props.selectedFrame}
+                    selectedPlayer={props.selectedPlayer}
+                    setSelectedPlayer={props.setSelectedPlayer}
+                    players={props?.rightTeam}
+                    simulatorPlayer={props.simulatorPlayerBlue}
+                    setSimulatorPlayer={props?.setSimulatorPlayerBlue}
+                />
+            </div>
+            {/* game statics graph  */}
+        </div>
     );
 };
 

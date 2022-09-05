@@ -19,7 +19,8 @@ import { runeAction } from "../../../../../store/runes";
 import Runes from "../../../../../components/Ui/New-Components/Analytic_Page/Runes/Runes";
 import ReportPortal from "../../../../../components/Ui/New-Components/Profile/ReportPortal/ReportPortal";
 import ReportContext from "../../../../../Context/ReportContext";
-import Header from '../../../../../components/shared/New-Componets/Header/Header';
+import Header from "../../../../../components/shared/New-Componets/Header/Header";
+import Image from "next/image";
 
 const MatchSimulator = ({ query }) => {
     const { region, summonerName, matchId } = query;
@@ -176,7 +177,6 @@ const MatchSimulator = ({ query }) => {
     }, [matches, fullMatchId]);
 
     useEffect(() => {
-
         if (match?.players) {
             setMainPlayer(match.players?.find((player) => player.mainPlayer));
 
@@ -238,8 +238,6 @@ const MatchSimulator = ({ query }) => {
                 }
             }
         });
-
-        
 
         matchTimeline?.frames[
             matchTimeline?.frames?.length - 2
@@ -376,53 +374,58 @@ const MatchSimulator = ({ query }) => {
             {/* <HeaderWithSearchbar /> */}
             <Header />
             {/* <ProfileIntro mainPlayer={mainPlayer} match={match} /> */}
-            <div className=" bg-[#140a22] mb-[100px] ">
-                <AnalyticsViewBtns
-                    btns={btns}
-                    setBtns={setBtns}
-                    region={region}
-                    summonerName={summonerName}
-                    report={handleReport}
-                />
+            <AnalyticsViewBtns
+                btns={btns}
+                setBtns={setBtns}
+                region={region}
+                summonerName={summonerName}
+                report={handleReport}
+            />
+            <section>
+                <div className=" w-[1536px] h-[456px] gap-x-[1px] bg-headBorder flex  mx-auto ">
+                    <div className=" w-[90px] h-full bg-green-900 "></div>
+                    <div className=" w-[1352px] mx-auto rounded-[3px] bg-cardBg ">
+                        <ProfileCompareBar
+                            teams={match?.teams}
+                            players={match?.players}
+                            frames={matchTimelineData?.frames}
+                            matchTimelineData={matchTimelineData}
+                            selectedFrame={selectedFrame}
+                        />
+                        <LosAndWinRow
+                            frames={matchTimelineData?.frames}
+                            matchTimelineData={matchTimelineData}
+                            selectedFrame={selectedFrame}
+                        />
+                        {btns[0]?.active ? (
+                            <DataRowGrid
+                                match={match}
+                                frames={matchTimelineData?.frames}
+                                matchTimelineData={matchTimelineData}
+                                selectedFrame={selectedFrame}
+                                leftTeam={leftTeam}
+                                rightTeam={rightTeam}
+                                selectedPlayer={selectedPlayer}
+                                setSelectedPlayer={setSelectedPlayer}
+                                simulatorPlayerRed={simulatorPlayerRed}
+                                setSimulatorPlayerRed={setSimulatorPlayerRed}
+                                simulatorPlayerBlue={simulatorPlayerBlue}
+                                setSimulatorPlayerBlue={setSimulatorPlayerBlue}
+                            />
+                        ) : btns[1].active ? (
+                            <Runes />
+                        ) : (
+                            <Map
+                                match={match}
+                                selectedFrame={selectedFrame}
+                                frames={matchTimelineData?.frames}
+                            />
+                        )}
+                    </div>
+                    <div className=" w-[90px] h-full bg-green-900 "></div>
+                </div>
 
-                <ProfileCompareBar
-                    teams={match?.teams}
-                    players={match?.players}
-                    frames={matchTimelineData?.frames}
-                    matchTimelineData={matchTimelineData}
-                    selectedFrame={selectedFrame}
-                />
-                <LosAndWinRow
-                    frames={matchTimelineData?.frames}
-                    matchTimelineData={matchTimelineData}
-                    selectedFrame={selectedFrame}
-                />
-                {btns[0]?.active ? (
-                    <DataRowGrid
-                        match={match}
-                        frames={matchTimelineData?.frames}
-                        matchTimelineData={matchTimelineData}
-                        selectedFrame={selectedFrame}
-                        leftTeam={leftTeam}
-                        rightTeam={rightTeam}
-                        selectedPlayer={selectedPlayer}
-                        setSelectedPlayer={setSelectedPlayer}
-                        simulatorPlayerRed={simulatorPlayerRed}
-                        setSimulatorPlayerRed={setSimulatorPlayerRed}
-                        simulatorPlayerBlue={simulatorPlayerBlue}
-                        setSimulatorPlayerBlue={setSimulatorPlayerBlue}
-                    />
-                ) : btns[1].active ? (
-                    <Runes />
-                ) : (
-                    <Map
-                        match={match}
-                        selectedFrame={selectedFrame}
-                        frames={matchTimelineData?.frames}
-                    />
-                )}
-
-                <GameStaticsGraph
+                {/* <GameStaticsGraph
                     match={match}
                     selectedFrame={selectedFrame}
                     frames={matchTimelineData?.frames}
@@ -432,7 +435,7 @@ const MatchSimulator = ({ query }) => {
                     playersWithId={playersWithId}
                     rightTeam={rightTeam}
                     leftTeam={leftTeam}
-                />
+                /> */}
                 {/* <button>Sim data</button> */}
                 {/* <SimulationData
 					selectedFrame={selectedFrame}
@@ -442,7 +445,7 @@ const MatchSimulator = ({ query }) => {
 					simulatorPlayerBlue={simulatorPlayerBlue}
 				/> */}
                 {reportPortal && <ReportPortal back={handleReport} />}
-            </div>
+            </section>
         </>
     );
 };
