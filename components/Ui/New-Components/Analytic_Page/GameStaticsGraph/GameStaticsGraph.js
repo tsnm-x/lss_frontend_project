@@ -431,6 +431,14 @@ const GameStaticsGraph = (props) => {
                             </div>
                             {/* top line mask  */}
                             <div className=" w-full h-[1px] bg-[#7C7B7D] opacity-10 absolute z-40 top-[28px] "></div>
+                            {/* player status  */}
+                            <div
+                                className=" px-[7px] py-[2px] font-mazin font-bold text-[9px]
+                             leading-[11px] bg-[rgba(255,66,86,0.2)] text-red
+                             rounded-[1.5px] absolute right-[15px] top-[21px] z-50 capitalize "
+                            >
+                                defeat
+                            </div>
                         </div>
                     </div>
                 </div>
