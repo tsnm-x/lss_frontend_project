@@ -408,9 +408,11 @@ const GameStaticsGraph = (props) => {
                     {/* timeline / match result  */}
                     <div className=" card h-[70.6px] mt-[2px] ">
                         <div className=" card-inner h-full relative ">
+                            {/* line mask  */}
+                            <div className=" w-full h-[5px] bg-[#4a484b] absolute z-20 top-[29px] "></div>
                             {/* background mask div  */}
                             <div
-                                className={`absolute top-0 left-0 h-full w-full grid gap-x-[1px]  `}
+                                className={`absolute top-0 left-0 h-full w-full grid gap-x-[1px] z-30  `}
                                 style={{
                                     gridTemplateColumns: ` 0.5fr repeat(${
                                         timeline[timeline.length - 1] / 3
@@ -425,7 +427,10 @@ const GameStaticsGraph = (props) => {
                                         ></div>
                                     );
                                 })}
+                                <div className=" h-full even:bg-[#232124] bg-[#242326] text-white text-center border-r border-[#1d1b1e]  "></div>
                             </div>
+                            {/* top line mask  */}
+                            <div className=" w-full h-[1px] bg-[#7C7B7D] opacity-10 absolute z-40 top-[28px] "></div>
                         </div>
                     </div>
                 </div>
