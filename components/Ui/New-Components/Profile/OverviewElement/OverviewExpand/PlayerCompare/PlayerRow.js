@@ -367,7 +367,7 @@ const PlayerRow = (props) => {
                     return (
                         <div
                             key={index}
-                            className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] overflow-hidden relative  "
+                            className={` w-[25px] h-[25px] rounded-[5px] overflow-hidden relative bg-[rgba(217,217,217,0.1)] `}
                         >
                             {renderedItems &&
                             renderedItems[index] &&
