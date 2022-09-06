@@ -286,10 +286,9 @@ const GameStaticsGraph = (props) => {
         },
     ]);
 
-    function NumberSlice() {
-        const num = 27;
-
-    }
+    const [timeline, setTimeline] = useState([
+        0, 3, 6, 9, 12, 15, 18, 21, 24, 27,
+    ]);
 
     return (
         <div className=" relative z-40 max-w-[1353px] mx-auto mt-[18px] ">
@@ -359,14 +358,47 @@ const GameStaticsGraph = (props) => {
                     {/* slider timeline */}
                     <div className=" card h-[57.6px] mt-[1px] ">
                         <div className=" h-full card-inner relative flex justify-between px-[20px] ">
-                            {[0, 3, 6, 9, 12, 15, 18, 21, 24, 27].map((number, index) => {
+                            {timeline.map((number, index) => {
                                 return (
-                                    <div key={index} className=" flex flex-col items-center ">
+                                    <div
+                                        key={index}
+                                        className=" flex flex-col items-center "
+                                    >
                                         <div className=" w-[1px] h-[3px] bg-gray_100 "></div>
-                                        <p className=" inter-bold-10 font-normal text-gray_100 ">{number.toString().length === 2 ? number : '0'+number }:00</p>
+                                        <p className=" inter-bold-10 font-normal text-gray_100 ">
+                                            {number.toString().length === 2
+                                                ? number
+                                                : "0" + number}
+                                            :00
+                                        </p>
                                     </div>
-                                )
+                                );
                             })}
+                        </div>
+                    </div>
+                    {/* timeline / match result  */}
+                    <div className=" card h-[70.6px] mt-[2px] ">
+                        <div className=" card-inner h-full relative ">
+                            {/* background mask div  */}
+                            <div
+                                className={`absolute top-0 left-0 h-full w-full grid  `}
+                                style={{
+                                    gridTemplateColumns: `repeat(${
+                                        timeline[timeline.length - 1] / 3 + 1
+                                    }, 1fr)`,
+                                }}
+                            >
+                                {timeline.map((cell, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className=" h-full even:bg-btnBg odd:bg-[#232124] text-white text-center
+                                             "
+                                        >
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
