@@ -82,6 +82,7 @@ module.exports = {
                 btnBg: "#242326",
                 btnHoverBg: "#353338",
                 btnGrayTxt: "#919192",
+                gray_100: "#a7a7a8",
             },
             fontSize: {
                 // old 1.0

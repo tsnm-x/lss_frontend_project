@@ -286,6 +286,11 @@ const GameStaticsGraph = (props) => {
         },
     ]);
 
+    function NumberSlice() {
+        const num = 27;
+
+    }
+
     return (
         <div className=" relative z-40 max-w-[1353px] mx-auto mt-[18px] ">
             {/* btn list  */}
@@ -348,6 +353,19 @@ const GameStaticsGraph = (props) => {
                                         {btn.icon}
                                     </button>
                                 );
+                            })}
+                        </div>
+                    </div>
+                    {/* slider timeline */}
+                    <div className=" card h-[57.6px] mt-[1px] ">
+                        <div className=" h-full card-inner relative flex justify-between px-[20px] ">
+                            {[0, 3, 6, 9, 12, 15, 18, 21, 24, 27].map((number, index) => {
+                                return (
+                                    <div key={index} className=" flex flex-col items-center ">
+                                        <div className=" w-[1px] h-[3px] bg-gray_100 "></div>
+                                        <p className=" inter-bold-10 font-normal text-gray_100 ">{number.toString().length === 2 ? number : '0'+number }:00</p>
+                                    </div>
+                                )
                             })}
                         </div>
                     </div>
