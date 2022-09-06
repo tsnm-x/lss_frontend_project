@@ -302,13 +302,13 @@ const PlayerRow = (props) => {
                           props.simulatorPlayer.summonerName ===
                           props.player.summonerName
                               ? "bg-blue"
-                              : "bg-[#181531]"
+                              : " bg-winOpacity "
                       } `
                     : `grid-cols-[145px_165px_145px_83px_105px] ${
                           props.simulatorPlayer.summonerName ===
                           props.player.summonerName
                               ? " bg-red"
-                              : "bg-[#241122]"
+                              : " bg-defeatOpacity "
                       } `
             }`}
             onClick={() => props.setSimulatorPlayer(props.player)}
