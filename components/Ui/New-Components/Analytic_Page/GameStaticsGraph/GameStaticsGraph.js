@@ -357,8 +357,37 @@ const GameStaticsGraph = (props) => {
                     </div>
                     {/* slider timeline */}
                     <div className=" card h-[57.6px] mt-[1px] ">
-                        <div className=" h-full card-inner relative flex justify-between px-[20px] ">
-                            {timeline.map((number, index) => {
+                        <div
+                            className={`h-full w-full card-inner relative grid `}
+                            style={{
+                                gridTemplateColumns: ` 0.5fr repeat(${
+                                    timeline[timeline.length - 1] / 3
+                                }, 1fr) 0.5fr`,
+                            }}
+                        >
+                            {timeline.map((cell, index) => {
+                                return (
+                                    <div
+                                        key={index}
+                                        className=" h-full  relative
+                                             "
+                                    >
+                                        <div
+                                            key={index}
+                                            className=" flex flex-col items-center w-[35px] h-[25px] absolute -right-[17.5px] "
+                                        >
+                                            <div className=" w-[1px] h-[3px] bg-gray_100 "></div>
+                                            <p className=" inter-bold-10 font-normal text-gray_100 ">
+                                                {cell.toString().length === 2
+                                                    ? cell
+                                                    : "0" + cell}
+                                                :00
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                            {/* {timeline.map((number, index) => {
                                 return (
                                     <div
                                         key={index}
@@ -373,7 +402,7 @@ const GameStaticsGraph = (props) => {
                                         </p>
                                     </div>
                                 );
-                            })}
+                            })} */}
                         </div>
                     </div>
                     {/* timeline / match result  */}
@@ -381,21 +410,19 @@ const GameStaticsGraph = (props) => {
                         <div className=" card-inner h-full relative ">
                             {/* background mask div  */}
                             <div
-                                className={`absolute top-0 left-0 h-full w-full grid  `}
+                                className={`absolute top-0 left-0 h-full w-full grid gap-x-[1px]  `}
                                 style={{
-                                    gridTemplateColumns: `repeat(${
-                                        timeline[timeline.length - 1] / 3 + 1
-                                    }, 1fr)`,
+                                    gridTemplateColumns: ` 0.5fr repeat(${
+                                        timeline[timeline.length - 1] / 3
+                                    }, 1fr) 0.5fr`,
                                 }}
                             >
                                 {timeline.map((cell, index) => {
                                     return (
                                         <div
                                             key={index}
-                                            className=" h-full even:bg-btnBg odd:bg-[#232124] text-white text-center
-                                             "
-                                        >
-                                        </div>
+                                            className=" h-full even:bg-[#232124] bg-[#242326] text-white text-center border-r border-[#1d1b1e]  "
+                                        ></div>
                                     );
                                 })}
                             </div>
