@@ -16,7 +16,7 @@ const OverviewReport = (props) => {
                 )}
             </div>
             {/* button  */}
-            <div className=" flex gap-x-[5px] ">
+            <div className=" flex gap-x-[10px] ">
                 <button
                     className=" bg-headBorder hover:bg-[rgba(227,227,242,0.3)] w-[103px] h-[32px] flex items-center justify-center rounded-5px  "
                     onClick={props.reportBtn}
@@ -33,7 +33,7 @@ const OverviewReport = (props) => {
                     <button
                         className={`px-4 pt-[6px] pb-[8px] rounded-[8px] font-sf-pro-text
                     font-bold  text-[14px] leading-5 capitalize
-                    bg-accent-color text-white `}
+                     text-white bg-btnBg `}
                         onClick={props.goHome}
                     >
                         Leave

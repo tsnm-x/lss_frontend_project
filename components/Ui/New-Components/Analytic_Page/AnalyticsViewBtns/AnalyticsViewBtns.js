@@ -76,12 +76,12 @@ const AnalyticsViewBtns = (props) => {
                             Leave
                         </button>
                     </Link>  */}
-                    {/* <ReportBtn
+                    <ReportBtn
                         leaveBtn={true}
                         goHome={goHome}
                         reportBtn={props.report}
                         listenTxt={false}
-                    /> */}
+                    />
                 </div>
                 {/* background image  */}
                 <div className=" w-[1036px] h-[72px] absolute right-0 top-0 z-10 ">
