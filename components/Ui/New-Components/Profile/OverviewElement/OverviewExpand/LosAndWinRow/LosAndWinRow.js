@@ -234,7 +234,7 @@ const LosAndWinRow = (props) => {
 
     return (
         <div
-            className=" bg-card-&-content-box h-10 flex justify-center w-[1340px] mx-auto
+            className=" bg-btnBg h-10 flex justify-center w-[1340px] mx-auto
                                 items-center mt-[3px]   
                                 "
         >

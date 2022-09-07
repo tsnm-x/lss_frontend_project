@@ -117,7 +117,7 @@ const DrakeBatches = (props) => {
     }, [props.dragonDataBlue, props.dragonDataRed]);
 
     return (
-        <div className=" w-full h-[40px] bg-card-&-content-box rounded-t-[10px] relative ">
+        <div className=" w-full h-[40px] bg-btnBg rounded-t-[10px] relative ">
             {/* center items  */}
             <div className=" relative">
                 {/* center element  */}

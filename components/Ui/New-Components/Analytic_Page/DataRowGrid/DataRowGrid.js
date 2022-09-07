@@ -94,7 +94,7 @@ const DataRowGrid = (props) => {
     return (
         <div className=" px-[18px] mt-[6px] ">
             {/* header row  */}
-            <div className=" grid grid-cols-2 bg-[#1b1425] py-2 rounded-[5px] gap-x-5 ">
+            <div className=" grid grid-cols-2 bg-[#201d20] py-2 rounded-[5px] gap-x-5 ">
                 <HeaderRow />
                 <HeaderRow reverce={true} />
             </div>
