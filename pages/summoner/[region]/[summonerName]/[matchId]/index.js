@@ -379,7 +379,7 @@ const MatchSimulator = ({ query }) => {
     }, [mainPlayer]);
     return (
         <>
-            <Header />
+            <Header mainPlayer={mainPlayer} profile={true} />
             {/* <ProfileIntro mainPlayer={mainPlayer} match={match} /> */}
             <AnalyticsViewBtns
                 btns={btns}
