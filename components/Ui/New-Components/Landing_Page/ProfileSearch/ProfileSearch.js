@@ -262,7 +262,7 @@ const ProfileSearch = (props) => {
                         {/* country select box  */}
                         <div
                             onClick={(event) => {
-                                event.preventDefault()
+                                event.stopPropagation()
                                 CountryListShowHideHandler()
                                 context.barHandler(!context.search);
                             }}

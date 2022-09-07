@@ -304,7 +304,6 @@ const SearchBar = (props) => {
                         </div>
                     )}
                     {/* country select box  */}
-                    {console.log(context.option.countryList)}
                     <div
                         onClick={(event) => {
                             event.stopPropagation()

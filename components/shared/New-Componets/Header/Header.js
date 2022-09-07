@@ -21,19 +21,21 @@ const Header = (props) => {
     });
 
     useEffect(() => {
-        if (landingContext.search) {
-            setShowOptions({
-                countryList: false,
-                largeCountryList: false,
-                languageList: false,
-            });
+        if (landingContext) {
+            if (landingContext.search) {
+                setShowOptions({
+                    countryList: false,
+                    largeCountryList: false,
+                    languageList: false,
+                });
+            }
         }
-    }, [landingContext.search]);
+    }, [landingContext]);
 
     const handler = (indicator) => {
         switch (indicator) {
             case "smc":
-                landingContext.barHandler(false);
+                landingContext?.barHandler(false);
                 setShowOptions((prev) => {
                     return {
                         countryList: !prev.countryList,
@@ -42,17 +44,8 @@ const Header = (props) => {
                     };
                 });
                 break;
-            // case "lgc":
-            //     setShowOptions((prev) => {
-            //         return {
-            //             countryList: false,
-            //             largeCountryList: !prev.largeCountryList,
-            //             languageList: false,
-            //         };
-            //     });
-            //     break;
             case "lan":
-                landingContext.barHandler(false);
+                landingContext?.barHandler(false);
                 setShowOptions((prev) => {
                     return {
                         countryList: false,
@@ -63,6 +56,21 @@ const Header = (props) => {
                 break;
         }
     };
+
+    useEffect(() => {
+        document.querySelector("body").onclick = () => {
+            if (landingContext) {
+                landingContext.barHandler(false);
+            }
+            setShowOptions((prev) => {
+                return {
+                    countryList: false,
+                    largeCountryList: false,
+                    languageList: false,
+                };
+            });
+        };
+    }, []);
 
     return (
         <header className=" h-[54px] border-b border-[#282728] relative  ">

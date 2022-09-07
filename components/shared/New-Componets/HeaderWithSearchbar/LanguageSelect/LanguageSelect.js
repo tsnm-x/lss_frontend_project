@@ -73,7 +73,7 @@ const LanguageSelect = (props) => {
             </div>
             {/* language list  */}
             {/* {showLangList && ( */}
-            {context.option.languageList && (
+            {context?.option?.languageList && (
                 <ul className="  absolute z-[55] left-0 top-[35px] w-[123px] pt-2 bg-headBorder rounded-[6px]  ">
                     {languageList.map((language, index) => {
                         return (

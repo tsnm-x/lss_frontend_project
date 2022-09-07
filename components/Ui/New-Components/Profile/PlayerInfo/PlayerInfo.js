@@ -17,7 +17,7 @@ const PlayerInfo = (props) => {
     }, [champion]);
 
     return (
-        <section className="relative h-[215px] ">
+        <section className="relative h-[215px] z-10 ">
             {/* background image mask  */}
             <div className={`${Classess.bgImgMask}`}></div>
             {/* content container  */}
