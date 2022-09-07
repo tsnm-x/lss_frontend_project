@@ -166,6 +166,7 @@ const GameStaticsGraph = (props) => {
     }, []);
 
     useEffect(() => {
+        // const calcStep = (ref.current?.offsetWidth - 40) / ref.current?.max;
         const calcStep = (ref.current?.offsetWidth - 40) / ref.current?.max;
         setStep(calcStep);
     }, [frames, framePointer]);
@@ -324,7 +325,33 @@ const GameStaticsGraph = (props) => {
                     <div className=" rounded-[3px] bg-btnBg h-[92px] "></div>
                 </div>
                 {/* slider graph  */}
-                <Slider duration={props?.match?.duration} />
+                <Slider
+                    duration={props?.match?.duration}
+                    type="range"
+                    id="range"
+                    // max={(frames?.length - 2).toString()}
+                    // max={(frames?.length - 2).toString()}
+                    value={framePointer}
+                    change={(e) => {
+                        setFramePointer(e.target.value);
+                        console.log(e.target.value, 'e target value ')
+                        props.frameChange(e.target.value);
+                    }}
+                    ref={ref}
+                />
+                {/* <input
+                    className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
+                    type="range"
+                    id="range"
+                    min="0"
+                    max={(frames?.length - 2).toString()}
+                    value={framePointer}
+                    onChange={(e) => {
+                        setFramePointer(e.target.value);
+                        props.frameChange(e.target.value);
+                    }}
+                    ref={ref}
+                /> */}
                 {/* show graph  */}
                 <div className=" w-[173px] h-[162px] rounded-[3px] bg-cardBg p-[6px] ">
                     <div className=" relative w-full h-full bg-btnBg rounded-[3px] ">
@@ -345,7 +372,7 @@ const GameStaticsGraph = (props) => {
                 >
                     <div className=" relative">
                         <div className="w-[1000px] relative ">
-                            <div
+                            {/* <div
                                 className={` w-full ${
                                     expand ? " opacity-[0.2]" : " opacity-[1]"
                                 }`}
@@ -409,12 +436,12 @@ const GameStaticsGraph = (props) => {
                                         </linearGradient>
                                     </defs>
                                 </svg>
-                            </div>
+                            </div> */}
 
                             <div
                                 className={`${Classess.sliderComp} px-[15px] flex items-center gap-x-[17px] absolute left-0 top-0 `}
                             >
-                                <div className=" flex items-center gap-x-[9px] ">
+                                {/* <div className=" flex items-center gap-x-[9px] ">
                                     <div className=" w-[16px] h-[16px] ">
                                         <svg
                                             fill="none"
@@ -439,10 +466,10 @@ const GameStaticsGraph = (props) => {
                                             {getDuration(props.match?.duration)}
                                         </h4>
                                     )}
-                                </div>
+                                </div> */}
 
                                 <div className=" w-full flex flex-col h-full ">
-                                    <div className=" w-full h-[25px] relative ">
+                                    {/* <div className=" w-full h-[25px] relative ">
                                         {winningTeamId &&
                                             blueIconsHandler(
                                                 frames[frames?.length - 2][
@@ -478,9 +505,9 @@ const GameStaticsGraph = (props) => {
                                                 ]?.riftHerald?.KillEvents,
                                                 "riftHerald"
                                             )}
-                                    </div>
+                                    </div> */}
 
-                                    <div
+                                    {/* <div
                                         className={`${Classess.sliderSlide} w-full relative h-[1px] `}
                                     >
                                         <div
@@ -567,7 +594,7 @@ const GameStaticsGraph = (props) => {
                                             </div>
                                             <div className=" w-[2px] h-[70px] bg-[#5D6182] absolute left-[18px] -top-[21px]"></div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* <div>
                                 <Slider />
                             </div> */}

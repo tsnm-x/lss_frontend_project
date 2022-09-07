@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiSkipBack, FiSkipForward, FiShare } from "react-icons/fi";
 import { AiOutlinePause } from "react-icons/ai";
+import Classess from "../GameStaticsGraph.module.css";
 
 const Slider = (props) => {
     const [playPauseNextBtns, setPlayPauseNextBtns] = useState([
@@ -36,8 +37,8 @@ const Slider = (props) => {
     }, [props.duration]);
 
     useEffect(() => {
-      console.log(timeline, 'your timeline ');
-    }, [timeline])
+        console.log(timeline, "your timeline ");
+    }, [timeline]);
 
     return (
         <div className=" w-[947px] ">
@@ -90,6 +91,31 @@ const Slider = (props) => {
                     })}
                 </div>
             </div>
+            {/* slider slide  */}
+            <div className=" px-[6px] relative z-40  ">
+                <div
+                    className={`h-full w-full card-inner relative grid `}
+                    style={{
+                        gridTemplateColumns: ` 0.5fr ${timeline.length-1}fr 0.5fr`,
+                    }}
+                >
+                    <div></div>
+                    <input
+                        className={`text-full-dark w-full ${Classess.sliderSlide} relative h-[1px]`}
+                        type={props.type}
+                        id={props.id}
+                        min="0"
+                        max={timeline[timeline.length-1]}
+                        // max={props.max}
+                        value={props.value}
+                        onChange={props.change}
+                        ref={props.ref}
+                    />
+                    <div></div>
+                </div>
+            </div>
+            {console.log(props.duration, 'duration ------------- ')}
+
             {/* timeline / match result  */}
             <div className=" card h-[70.6px] mt-[2px] ">
                 <div className=" card-inner h-full relative ">
