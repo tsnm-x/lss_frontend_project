@@ -371,6 +371,12 @@ const MatchSimulator = ({ query }) => {
         setReportPortal(!reportPortal);
     };
 
+    const [championId, setChampionId] = useState();
+    useEffect(() => {
+        if (mainPlayer) {
+            setChampionId(mainPlayer?.championId);
+        }
+    }, [mainPlayer]);
     return (
         <>
             <Header />
@@ -381,6 +387,7 @@ const MatchSimulator = ({ query }) => {
                 region={region}
                 summonerName={summonerName}
                 report={handleReport}
+                championId={championId}
             />
             <section className=" bg-headBorder h-[calc(100vh_-_129px)] relative ">
                 <div className=" w-[1536px] h-[456px] gap-x-[1px] bg-headBorder flex  mx-auto relative z-20 ">

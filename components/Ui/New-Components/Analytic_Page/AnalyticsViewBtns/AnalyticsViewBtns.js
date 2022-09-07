@@ -2,9 +2,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Classess from "./AnalyticsViewBtns.module.css";
 import Router, { useRouter } from "next/router";
-import ReportBtn from '../../Profile/OverviewChampionBtns/ReportBtn'
-import Image from 'next/image'
-import profileBackground from '../../../../../public/assets/new-images/simulation/profile-background.png'
+import ReportBtn from "../../Profile/OverviewChampionBtns/ReportBtn";
+import Image from "next/image";
 
 const AnalyticsViewBtns = (props) => {
     const btnClickHandler = (activeIndex) => {
@@ -31,7 +30,7 @@ const AnalyticsViewBtns = (props) => {
             <div className=" w-[1536px] h-[72px]  mx-auto rounded-tr-5px rounded-br-5px relative  ">
                 {/* indicator left  */}
                 {/* <div className={`${Classess.indicator}`}></div> */}
-                <div className=" w-full h-full flex justify-between items-center pl-[55px] absolute z-20 ">
+                <div className=" w-full h-full flex justify-between items-center pl-[55px] pr-[64px] absolute z-20 ">
                     {/* right side  */}
                     <div className="  flex items-center ">
                         {/* texts  */}
@@ -84,13 +83,14 @@ const AnalyticsViewBtns = (props) => {
                     />
                 </div>
                 {/* background image  */}
-                <div className=" w-[1036px] h-[72px] absolute right-0 top-0 z-10 ">
-                    <Image
-                        src={profileBackground}
-                        alt="background image"
-                        layout="fill"
-                    />
-                </div>
+                {props.championId && (
+                    <div
+                        className={`${Classess.background}`}
+                        style={{
+                            background: `linear-gradient(90deg, #161416 0%, rgba(0, 0, 0, 0) 100%),url('/assets/new-images/Profile/championBackgrounds/champId ${props.championId}.png')`,
+                        }}
+                    ></div>
+                )}
             </div>
         </section>
     );

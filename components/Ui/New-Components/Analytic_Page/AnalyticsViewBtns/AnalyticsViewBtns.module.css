@@ -8,5 +8,12 @@
     leading-5 capitalize; */
     @apply p-[12px_13px] flex items-center justify-center h-[42px] rounded-[7px] 
     font-inter font-bold text-[12px] leading-[20px]
-    capitalize bg-btnBg hover:bg-btnHoverBg  ;
+    capitalize bg-btnBg hover:bg-btnHoverBg;
+}
+
+.background {
+    @apply w-[1036px] h-[72px] absolute right-0 top-0 z-10;
+    /* background: linear-gradient(90deg, #161416 0%, rgba(0, 0, 0, 0) 100%),
+        url(Kayn_OriginalCentered.png); */
+    border-radius: 9px;
 }
