@@ -1,9 +1,8 @@
-import React from "react";
-import classes from "./Header.module.css";
+import React, {useState, useEffect} from "react";
 import SearchBar from "./SearchBar";
 import LanguageSelect from "../HeaderWithSearchbar/LanguageSelect/LanguageSelect";
 import Image from "next/image";
-import ProfileImg from "../../../../public/assets/now-playing.png";
+import TopHeaderContext from "../../../../Context/TopHeaderContext";
 // components
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
@@ -11,6 +10,51 @@ const Header = (props) => {
     const menuBtnHandler = () => {
         props.menuBtnClick();
     };
+
+    const [options, setShowOptions] = useState("rejoan");
+
+    const handler = (indicator) => {
+        switch (indicator) {
+            case "smc":
+                setShowOptions((prev) => {
+                    return {
+                        countryList: !prev.countryList,
+                        largeCountryList: false,
+                        languageList: false,
+                    };
+                });
+                break;
+            case "lgc":
+                setShowOptions((prev) => {
+                    return {
+                        countryList: false,
+                        largeCountryList: !prev.largeCountryList,
+                        languageList: false,
+                    };
+                });
+                break;
+            case "lan":
+                setShowOptions((prev) => {
+                    return {
+                        countryList: false,
+                        largeCountryList: false,
+                        languageList: !prev.languageList,
+                    };
+                });
+                break;
+            // default:
+            //     setShowOptions((prev) => {
+            //         return {
+            //             countryList: false,
+            //             largeCountryList: false,
+            //             languageList: false,
+            //         };
+            //     });
+            //     break;
+        }
+    }
+
+   
 
     return (
         <header className=" h-[54px] border-b border-[#282728] relative  ">
@@ -34,9 +78,13 @@ const Header = (props) => {
                 </div>
                 {/* right searchbar and language bar */}
                 <div className=" flex justify-between w-full pl-[15px] ">
-                    {/* search bar  */}
-                    <SearchBar />
-                    <LanguageSelect />
+                    <TopHeaderContext.Provider value={{
+                        option: options,
+                        handler: handler
+                    }}>
+                        <SearchBar />
+                        <LanguageSelect />
+                    </TopHeaderContext.Provider>
                 </div>
             </div>
             {props.profile ? (

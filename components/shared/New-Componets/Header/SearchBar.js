@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import classes from "./SearchBar.module.css";
 import { FiSearch } from "react-icons/fi";
 import useHttp from "../../../../hook/useHttp";
@@ -6,6 +6,7 @@ import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { profileAction } from "../../../../store/profile";
 import { HiChevronDown } from "react-icons/hi";
+import TopHeaderContext from "../../../../Context/TopHeaderContext";
 
 const SearchBar = (props) => {
     const [search, setSearch] = useState("");
@@ -218,6 +219,8 @@ const SearchBar = (props) => {
         );
     }
 
+    const context = useContext(TopHeaderContext);
+
     return (
         <>
             {/* small screen  */}
@@ -244,7 +247,7 @@ const SearchBar = (props) => {
                             onClick={(e) => searchHandler(e)}
                             className=" absolute left-3 "
                         >
-                            { hideSearch ? (
+                            {hideSearch ? (
                                 <div className=" flex gap-x-[2px] mt-[0px] ">
                                     {["", "", ""].map((item, index) => {
                                         return (
@@ -274,7 +277,8 @@ const SearchBar = (props) => {
                 {/* country list  */}
                 <div className=" relative ">
                     {/* country box list  */}
-                    {activeListDetails.showList && (
+                    {/* {activeListDetails.showList && ( */}
+                    {context.option.countryList && (
                         <div
                             className={` absolute left-0 top-[45px] bg-headBorder 
                                 flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] z-[100] rounded-[7px]`}
@@ -300,8 +304,13 @@ const SearchBar = (props) => {
                         </div>
                     )}
                     {/* country select box  */}
+                    {console.log(context.option.countryList)}
                     <div
-                        onClick={CountryListShowHideHandler}
+                        onClick={(event) => {
+                            event.stopPropagation()
+                            CountryListShowHideHandler();
+                            context.handler("smc");
+                        }}
                         className={` bg-headBorder hover:bg-btnHoverBg w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
                     >
                         <h4
@@ -310,7 +319,11 @@ const SearchBar = (props) => {
                             {activeListDetails.selectedItem?.name}
                         </h4>
                         <HiChevronDown
-                            className={`text-halfWhite text-[16px] transition-transform ${activeListDetails.showList ? " rotate-180 " : " rotate-0 "}`}
+                            className={`text-halfWhite text-[16px] transition-transform ${
+                                activeListDetails.showList
+                                    ? " rotate-180 "
+                                    : " rotate-0 "
+                            }`}
                         />
                     </div>
                 </div>

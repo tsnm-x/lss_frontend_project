@@ -24,6 +24,10 @@ import Footer from "../components/shared/New-Componets/Footer/Footer";
 import Portal from "../components/shared/New-Componets/Portal/Portal";
 import LeftNavigationPortal from "../components/Ui/New-Components/universal/LeftNavigationPortal/LeftNavigationPortal";
 import HorizontalAds from "../components/shared/New-Componets/HorizontalAds/HorizontalAds";
+
+
+
+
 export default function Home() {
     // const servers = [
     //     "BR",
@@ -97,7 +101,7 @@ export default function Home() {
     //     );
     // }
 
-    const [leftNav, setLeftNav] = useState(false);
+    
 
     return (
         <>
