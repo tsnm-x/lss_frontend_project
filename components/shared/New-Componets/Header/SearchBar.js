@@ -244,13 +244,13 @@ const SearchBar = (props) => {
                             onClick={(e) => searchHandler(e)}
                             className=" absolute left-3 "
                         >
-                            {hideSearch ? (
-                                <div className=" flex gap-x-[3px] mt-[6px] ">
+                            { hideSearch ? (
+                                <div className=" flex gap-x-[2px] mt-[0px] ">
                                     {["", "", ""].map((item, index) => {
                                         return (
                                             <div
                                                 key={index}
-                                                className={`w-[10px] h-5 ${classes.indicator}`}
+                                                className={`w-[4px] h-3 ${classes.indicator}`}
                                             ></div>
                                         );
                                     })}

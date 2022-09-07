@@ -271,7 +271,7 @@ const ProfileSearch = (props) => {
                         <input
                             disabled={hideSearch}
                             style={{ backgroundColor: "#242326" }}
-                            type="search"
+                            type="text"
                             onChange={searchInput}
                             value={search}
                             placeholder="Find your Summoner name..."
