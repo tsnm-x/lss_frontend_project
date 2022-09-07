@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import classes from "./ProfileSearch.module.css";
 import { FiSearch } from "react-icons/fi";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
@@ -7,7 +7,7 @@ import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { profileAction } from "../../../../../store/profile";
 import { HiChevronDown } from "react-icons/hi";
-
+import LandingPageContext from "../../../../../Context/LandingPageContext";
 
 const ProfileSearch = (props) => {
     const [search, setSearch] = useState("");
@@ -220,6 +220,9 @@ const ProfileSearch = (props) => {
         );
     }
 
+
+    const context = useContext(LandingPageContext);
+
     return (
         <>
             {/* small screen  */}
@@ -228,7 +231,8 @@ const ProfileSearch = (props) => {
                 <form action="/" className="w-full ">
                     <div className=" relative ">
                         {/* country box list  */}
-                        {activeListDetails.showList && (
+                        {/* {activeListDetails.showList && ( */}
+                        {context.search && (
                             <div
                                 className={` absolute left-0 top-[75px] bg-headBorder rounded-[7px] 
                                 flex flex-col items-center gap-y-[5px] w-[111px] p-[10px]`}
@@ -257,7 +261,11 @@ const ProfileSearch = (props) => {
                         )}
                         {/* country select box  */}
                         <div
-                            onClick={CountryListShowHideHandler}
+                            onClick={(event) => {
+                                event.preventDefault()
+                                CountryListShowHideHandler()
+                                context.barHandler(!context.search);
+                            }}
                             className={` absolute bg-red cursor-pointer w-[105px] h-[58px] rounded-5px flex justify-center items-center gap-x-2 top-[6px] left-[6px] `}
                         >
                             <h4
@@ -295,7 +303,6 @@ const ProfileSearch = (props) => {
                                 </div>
                             ) : (
                                 <FiSearch className=" text-red text-[20px] " />
-                                    
                             )}
                         </button>
                     </div>

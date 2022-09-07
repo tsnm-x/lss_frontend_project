@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SearchBar from "./SearchBar";
 import LanguageSelect from "../HeaderWithSearchbar/LanguageSelect/LanguageSelect";
 import Image from "next/image";
 import TopHeaderContext from "../../../../Context/TopHeaderContext";
+import LandingPageContext from "../../../../Context/LandingPageContext";
 // components
 import Logo from "../../../Ui/New-Components/universal/logo/Logo";
 
@@ -11,11 +12,28 @@ const Header = (props) => {
         props.menuBtnClick();
     };
 
-    const [options, setShowOptions] = useState("rejoan");
+    const landingContext = useContext(LandingPageContext);
+
+    const [options, setShowOptions] = useState({
+        countryList: false,
+        largeCountryList: false,
+        languageList: false,
+    });
+
+    useEffect(() => {
+        if (landingContext.search) {
+            setShowOptions({
+                countryList: false,
+                largeCountryList: false,
+                languageList: false,
+            });
+        }
+    }, [landingContext.search]);
 
     const handler = (indicator) => {
         switch (indicator) {
             case "smc":
+                landingContext.barHandler(false);
                 setShowOptions((prev) => {
                     return {
                         countryList: !prev.countryList,
@@ -24,16 +42,17 @@ const Header = (props) => {
                     };
                 });
                 break;
-            case "lgc":
-                setShowOptions((prev) => {
-                    return {
-                        countryList: false,
-                        largeCountryList: !prev.largeCountryList,
-                        languageList: false,
-                    };
-                });
-                break;
+            // case "lgc":
+            //     setShowOptions((prev) => {
+            //         return {
+            //             countryList: false,
+            //             largeCountryList: !prev.largeCountryList,
+            //             languageList: false,
+            //         };
+            //     });
+            //     break;
             case "lan":
+                landingContext.barHandler(false);
                 setShowOptions((prev) => {
                     return {
                         countryList: false,
@@ -42,19 +61,8 @@ const Header = (props) => {
                     };
                 });
                 break;
-            // default:
-            //     setShowOptions((prev) => {
-            //         return {
-            //             countryList: false,
-            //             largeCountryList: false,
-            //             languageList: false,
-            //         };
-            //     });
-            //     break;
         }
-    }
-
-   
+    };
 
     return (
         <header className=" h-[54px] border-b border-[#282728] relative  ">
@@ -78,10 +86,12 @@ const Header = (props) => {
                 </div>
                 {/* right searchbar and language bar */}
                 <div className=" flex justify-between w-full pl-[15px] ">
-                    <TopHeaderContext.Provider value={{
-                        option: options,
-                        handler: handler
-                    }}>
+                    <TopHeaderContext.Provider
+                        value={{
+                            option: options,
+                            handler: handler,
+                        }}
+                    >
                         <SearchBar />
                         <LanguageSelect />
                     </TopHeaderContext.Provider>
