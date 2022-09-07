@@ -26,7 +26,7 @@ const AnalyticsViewBtns = (props) => {
         });
     };
     return (
-        <section className=" bg-cardBg border-headBorder border-t-[2px] border-b ">
+        <section className=" bg-cardBg border-headBorder border-y-[2px] ">
             <div className=" w-[1536px] h-[72px]  mx-auto rounded-tr-5px rounded-br-5px relative  ">
                 {/* indicator left  */}
                 {/* <div className={`${Classess.indicator}`}></div> */}
