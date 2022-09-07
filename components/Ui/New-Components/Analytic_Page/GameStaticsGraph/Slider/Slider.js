@@ -2,8 +2,57 @@ import React, { useState, useEffect } from "react";
 import { FiSkipBack, FiSkipForward, FiShare } from "react-icons/fi";
 import { AiOutlinePause } from "react-icons/ai";
 import Classess from "../GameStaticsGraph.module.css";
+import Image from 'next/image'
+
+// green icon
+import greenBaron from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-baron-r.png";
+import greenTower from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/icon-tower-r.png";
+import greenVector from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/Vector.png";
+import greenVector2 from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/green-icon/Vector-1.png";
+import greenInhibitor from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/blue/round.png";
+// red icon
+import redTower from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/icon-tower-r.png";
+import redSquare from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/square.png";
+import redSoul from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/Soul.png";
+import redVector from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/Slider/red-icon/Vector.png";
+import redInhibitor from "../../../../../../public/assets/new-images/Profile/card/CardExpand/Icons/header/red/round-r.png";
+
+
+
+
 
 const Slider = (props) => {
+    const frames = props?.frames;
+    const [winningTeamId, setWinningTeamId] = useState("");
+    const [losingTeamId, setLosingTeamId] = useState("");
+
+    const getMinutes = (value) => {
+        const sec = value / 1000; // convert value to number if it's string
+        let hours = Math.floor(sec / 3600); // get hours
+        let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+
+        return minutes;
+    };
+
+    useEffect(() => {
+        if (frames) {
+            const lastFrame = frames[frames.length - 1];
+            if (lastFrame.teamId === 200) {
+                setLosingTeamId("blueTeam");
+                setWinningTeamId("redTeam");
+            } else {
+                setLosingTeamId("redTeam");
+                setWinningTeamId("blueTeam");
+            }
+        }
+    }, [frames]);
+
+
+
+
+
+
+
     const [playPauseNextBtns, setPlayPauseNextBtns] = useState([
         {
             icon: <FiSkipBack className=" text-white" size={16} />,
@@ -39,6 +88,92 @@ const Slider = (props) => {
     useEffect(() => {
         console.log(timeline, "your timeline ");
     }, [timeline]);
+
+    const blueIconsHandler = (arr, type) => {
+        return arr?.map((killedItem, index) => {
+            return (
+                <div
+                    key={index}
+                    style={{
+                        width: "14px",
+                        height: `14px`,
+                        position: "absolute",
+                        left: `${
+                            (getMinutes(killedItem?.timeStamp) /
+                                (frames?.length - 2)) *
+                            100
+                        }%`,
+                        top: `3px`,
+                    }}
+                >
+                    <Image
+                        src={blueIconsFinder(type)}
+                        alt="score icons"
+                        layout="fill"
+                    />
+                </div>
+            );
+        });
+    };
+
+    const blueIconsFinder = (killedItemType) => {
+        switch (killedItemType) {
+            case "Dragon":
+                return greenVector;
+            case "Baron":
+                return greenBaron;
+            case "Inhibitor":
+                return greenInhibitor;
+            case "Tower":
+                return greenTower;
+            case "riftHerald":
+                return greenVector;
+        }
+    };
+
+    const redIconsFinder = (killedItemType) => {
+        switch (killedItemType) {
+            case "Dragon":
+                return redVector;
+            case "Baron":
+                return redBaron;
+            case "Inhibitor":
+                return redInhibitor;
+            case "Tower":
+                return redTower;
+            case "riftHerald":
+                return redVector;
+        }
+    };
+
+    const redIconsHandler = (arr, type) => {
+        return arr?.map((killedItem, index) => {
+            return (
+                <div
+                    key={index}
+                    style={{
+                        width: "14px",
+                        height: `14px`,
+                        position: "absolute",
+                        left: `${
+                            (getMinutes(killedItem?.timeStamp) /
+                                (frames?.length - 2)) *
+                            100
+                        }%`,
+                        top: `3px`,
+                    }}
+                >
+                    <Image
+                        src={redIconsFinder(type)}
+                        alt="score icons"
+                        layout="fill"
+                    />
+                </div>
+            );
+        });
+    };
+
+
 
     return (
         <div className=" w-[947px] ">
@@ -96,7 +231,9 @@ const Slider = (props) => {
                 <div
                     className={`h-full w-full card-inner relative grid `}
                     style={{
-                        gridTemplateColumns: ` 0.5fr ${timeline.length-1}fr 0.5fr`,
+                        gridTemplateColumns: ` 0.5fr ${
+                            timeline.length - 1
+                        }fr 0.5fr`,
                     }}
                 >
                     <div></div>
@@ -105,7 +242,7 @@ const Slider = (props) => {
                         type={props.type}
                         id={props.id}
                         min="0"
-                        max={timeline[timeline.length-1]}
+                        max={timeline[timeline.length - 1]}
                         // max={props.max}
                         value={props.value}
                         onChange={props.change}
@@ -114,8 +251,6 @@ const Slider = (props) => {
                     <div></div>
                 </div>
             </div>
-            {console.log(props.duration, 'duration ------------- ')}
-
             {/* timeline / match result  */}
             <div className=" card h-[70.6px] mt-[2px] ">
                 <div className=" card-inner h-full relative ">
@@ -149,6 +284,74 @@ const Slider = (props) => {
                              rounded-[1.5px] absolute right-[15px] top-[21px] z-50 capitalize "
                     >
                         defeat
+                    </div>
+                    {/* icons  */}
+                    {console.log(props)}
+                    <div className=" absolute h-full w-full left-0 top-0 z-50">
+                        <div className=" w-full h-2/4 relative ">
+                            {winningTeamId &&
+                                blueIconsHandler(
+                                    frames[frames?.length - 2][winningTeamId]
+                                        ?.Dragon?.KillEvents,
+                                    "Dragon"
+                                )}
+                            {winningTeamId &&
+                                blueIconsHandler(
+                                    frames[frames?.length - 2][winningTeamId]
+                                        ?.Baron?.KillEvents,
+                                    "Baron"
+                                )}
+                            {winningTeamId &&
+                                blueIconsHandler(
+                                    frames[frames?.length - 2][winningTeamId]
+                                        ?.Inhibitor?.KillEvents,
+                                    "Inhibitor"
+                                )}
+                            {winningTeamId &&
+                                blueIconsHandler(
+                                    frames[frames?.length - 2][winningTeamId]
+                                        ?.Tower?.KillEvents,
+                                    "Tower"
+                                )}
+                            {winningTeamId &&
+                                blueIconsHandler(
+                                    frames[frames?.length - 2][winningTeamId]
+                                        ?.riftHerald?.KillEvents,
+                                    "riftHerald"
+                                )}
+                        </div>
+                        <div className=" w-full h-2/4 relative ">
+                            {losingTeamId &&
+                                redIconsHandler(
+                                    frames[frames?.length - 2][losingTeamId]
+                                        ?.Dragon?.KillEvents,
+                                    "Dragon"
+                                )}
+                            {losingTeamId &&
+                                redIconsHandler(
+                                    frames[frames?.length - 2][losingTeamId]
+                                        ?.Baron?.KillEvents,
+                                    "Baron"
+                                )}
+                            {losingTeamId &&
+                                redIconsHandler(
+                                    frames[frames?.length - 2][losingTeamId]
+                                        ?.Inhibitor?.KillEvents,
+                                    "Inhibitor"
+                                )}
+                            {losingTeamId &&
+                                redIconsHandler(
+                                    frames[frames?.length - 2][losingTeamId]
+                                        ?.Tower?.KillEvents,
+                                    "Tower"
+                                )}
+                            {losingTeamId &&
+                                redIconsHandler(
+                                    frames[frames?.length - 2][losingTeamId]
+                                        ?.riftHerald?.KillEvents,
+                                    "riftHerald"
+                                )}
+                        </div>
                     </div>
                 </div>
             </div>

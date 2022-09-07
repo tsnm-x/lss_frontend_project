@@ -338,6 +338,10 @@ const GameStaticsGraph = (props) => {
                         props.frameChange(e.target.value);
                     }}
                     ref={ref}
+                    winningTeamId={winningTeamId}
+                    losingTeamId={losingTeamId}
+                    frames={frames}
+
                 />
                 {/* <input
                     className={`text-full-dark w-[100%] ${Classess.sliderSlide} relative h-[1px]`}
@@ -371,8 +375,8 @@ const GameStaticsGraph = (props) => {
                     } [transition:height_0.4s]`}
                 >
                     <div className=" relative">
-                        <div className="w-[1000px] relative ">
-                            {/* <div
+                        {/* <div className="w-[1000px] relative ">
+                            <div
                                 className={` w-full ${
                                     expand ? " opacity-[0.2]" : " opacity-[1]"
                                 }`}
@@ -436,12 +440,12 @@ const GameStaticsGraph = (props) => {
                                         </linearGradient>
                                     </defs>
                                 </svg>
-                            </div> */}
+                            </div>
 
                             <div
                                 className={`${Classess.sliderComp} px-[15px] flex items-center gap-x-[17px] absolute left-0 top-0 `}
                             >
-                                {/* <div className=" flex items-center gap-x-[9px] ">
+                                <div className=" flex items-center gap-x-[9px] ">
                                     <div className=" w-[16px] h-[16px] ">
                                         <svg
                                             fill="none"
@@ -466,10 +470,10 @@ const GameStaticsGraph = (props) => {
                                             {getDuration(props.match?.duration)}
                                         </h4>
                                     )}
-                                </div> */}
+                                </div>
 
                                 <div className=" w-full flex flex-col h-full ">
-                                    {/* <div className=" w-full h-[25px] relative ">
+                                    <div className=" w-full h-[25px] relative ">
                                         {winningTeamId &&
                                             blueIconsHandler(
                                                 frames[frames?.length - 2][
@@ -505,9 +509,9 @@ const GameStaticsGraph = (props) => {
                                                 ]?.riftHerald?.KillEvents,
                                                 "riftHerald"
                                             )}
-                                    </div> */}
+                                    </div>
 
-                                    {/* <div
+                                    <div
                                         className={`${Classess.sliderSlide} w-full relative h-[1px] `}
                                     >
                                         <div
@@ -594,12 +598,9 @@ const GameStaticsGraph = (props) => {
                                             </div>
                                             <div className=" w-[2px] h-[70px] bg-[#5D6182] absolute left-[18px] -top-[21px]"></div>
                                         </div>
-                                    </div> */}
-                                    {/* <div>
-                                <Slider />
-                            </div> */}
-                                    {/* bottom icon bar */}
-                                    {/* <div className=" w-full h-[25px] relative ">
+                                    </div>
+                                    
+                                    <div className=" w-full h-[25px] relative ">
                                         {losingTeamId &&
                                             redIconsHandler(
                                                 frames[frames?.length - 2][
@@ -635,13 +636,13 @@ const GameStaticsGraph = (props) => {
                                                 ]?.riftHerald?.KillEvents,
                                                 "riftHerald"
                                             )}
-                                    </div> */}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* expand btn  */}
-                        {/* <div
+                        <div
                             onClick={expandHandler}
                             className=" w-[32px] h-[32px] bg-[#d55460] rounded-full flex justify-center items-center absolute -right-[76px] top-2 cursor-pointer "
                         >
@@ -652,9 +653,9 @@ const GameStaticsGraph = (props) => {
                                     layout="fill"
                                 />
                             </div>
-                        </div> */}
+                        </div>
                         {/* graph element  */}
-                        {/* {expand && (
+                        {expand && (
                             <GraphElement
                                 leftTeam={props?.leftTeam}
                                 rightTeam={props?.rightTeam}
@@ -664,7 +665,7 @@ const GameStaticsGraph = (props) => {
                                 selectedPlayerOne={props.simulatorPlayerRed}
                                 selectedPlayerTwo={props.simulatorPlayerBlue}
                             />
-                        )} */}
+                        )}
                     </div>
 
                     {/* background border  */}
