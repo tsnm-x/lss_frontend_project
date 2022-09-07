@@ -2,7 +2,9 @@ import React from "react";
 
 const SmallBtn = (props) => {
     const clickHandler = () => {
-        props.click();
+        if (props.click) {
+            props.click();
+        }
     };
     return (
         <button

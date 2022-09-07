@@ -99,7 +99,7 @@ export default function Home() {
     //     );
     // }
 
-	const [showSearchBar, setShowSearchBar] = useState(false);
+    const [showSearchBar, setShowSearchBar] = useState(false);
 
     const barHandler = (indicator) => {
         setShowSearchBar(indicator);
@@ -108,7 +108,7 @@ export default function Home() {
     // useEffect(() => {
     //     document.querySelector("body").onclick = (event) => {
     //         event.stopPropagation();
-		// 			setShowSearchBar(false);
+    // 			setShowSearchBar(false);
     //     };
     // });
 
@@ -119,7 +119,7 @@ export default function Home() {
                 <LandingPageContext.Provider
                     value={{
                         search: showSearchBar,
-							barHandler: barHandler,
+                        barHandler: barHandler,
                     }}
                 >
                     <Header />
