@@ -355,8 +355,8 @@ const LosAndWinRow = (props) => {
                         <IconAndCount
                             imgClassName=" w-[16.48px] h-[16.48px] mr-[12.84px] "
                             txt={`${
-                                lostTeam?.Inhibitor?.kills
-                                    ? lostTeam?.Inhibitor?.kills
+                                winnerTeam?.Inhibitor?.kills
+                                    ? winnerTeam?.Inhibitor?.kills
                                     : 0
                             }`}
                         />
@@ -365,8 +365,8 @@ const LosAndWinRow = (props) => {
                         <IconAndCount
                             imgClassName=" w-[12.07px] h-[16.09px] mr-[11.25px] "
                             txt={`${
-                                lostTeam?.Tower?.kills
-                                    ? lostTeam?.Tower?.kills
+                                winnerTeam?.Tower?.kills
+                                    ? winnerTeam?.Tower?.kills
                                     : 0
                             }`}
                             type="tower"
@@ -374,8 +374,8 @@ const LosAndWinRow = (props) => {
                         <IconAndCount
                             imgClassName=" w-[16.48px] h-[16.48px] mr-[12.27px] "
                             txt={`${
-                                lostTeam?.Inhibitor?.kills
-                                    ? lostTeam?.Inhibitor?.kills
+                                winnerTeam?.Inhibitor?.kills
+                                    ? winnerTeam?.Inhibitor?.kills
                                     : 0
                             }`}
                             type="circle"
@@ -385,39 +385,39 @@ const LosAndWinRow = (props) => {
                         <IconAndCount
                             imgClassName=" w-[17.27px] h-[17.27px] mr-[6.2px] "
                             txt={`${
-                                lostTeam?.Dragon?.kills
-                                    ? lostTeam?.Dragon?.kills
+                                winnerTeam?.Dragon?.kills
+                                    ? winnerTeam?.Dragon?.kills
                                     : 0
                             }`}
                             type="dragon"
-                            red={true}
+                            red={false}
                         />
                         <IconAndCount
                             imgClassName=" w-[17.28px] h-[17.27px] mr-[3.92px] "
                             txt={`${
-                                lostTeam?.Baron?.kills
-                                    ? lostTeam?.Baron?.kills
+                                winnerTeam?.Baron?.kills
+                                    ? winnerTeam?.Baron?.kills
                                     : 0
                             }`}
                             type="baron"
-                            red={true}
+                            red={false}
                         />
                         <IconAndCount
                             imgClassName=" w-[17.28px] h-[17.27px] mr-[3.92px] "
                             txt={`${
-                                lostTeam?.Baron?.kills
-                                    ? lostTeam?.Baron?.kills
+                                winnerTeam?.Baron?.kills
+                                    ? winnerTeam?.Baron?.kills
                                     : 0
                             }`}
                             type="baron"
-                            red={true}
+                            red={false}
                         />
                     </div>
                     <div className=" w-[127px] flex items-center justify-end ">
                         <IconAndCount
                             txt={`${
-                                (lostTeamStats?.totalGold / 1000).toFixed(1)
-                                    ? (lostTeamStats?.totalGold / 1000).toFixed(
+                                (winningTeamStats?.totalGold / 1000).toFixed(1)
+                                    ? (winningTeamStats?.totalGold / 1000).toFixed(
                                           1
                                       )
                                     : 0

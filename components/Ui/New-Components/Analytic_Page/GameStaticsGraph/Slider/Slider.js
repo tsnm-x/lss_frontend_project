@@ -72,7 +72,7 @@ const Slider = (props) => {
 
     const durationToArray = (time) => {
         const collector = [];
-        for (let a = 0; a <= time; a = a + 3) {
+        for (let a = 0; a <= time + 3; a = a + 3) {
             collector.push(a);
         }
         return collector;
