@@ -96,7 +96,7 @@ const RewardCard = (props) => {
 				{props.summonerSpellsId.map((spellId, index) => {
 					// console.log(selectSpell(spellId))
 					if (!spellId) {
-						return <div className=" w-[11px] h-[11px]"></div>;
+						return <div key={index} className=" w-[11px] h-[11px]"></div>;
 					}
 					return (
 						<div
