@@ -2,9 +2,9 @@ import React from "react";
 
 const SmallBtn = (props) => {
     const clickHandler = () => {
-        console.log("clicked");
-        console.log("btn active", props.active);
-        props.click();
+        if (props.click) {
+            props.click();
+        }
     };
     return (
         <button

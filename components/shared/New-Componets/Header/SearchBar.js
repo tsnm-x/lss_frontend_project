@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import classes from "./SearchBar.module.css";
 import { FiSearch } from "react-icons/fi";
 import useHttp from "../../../../hook/useHttp";
@@ -6,6 +6,7 @@ import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { profileAction } from "../../../../store/profile";
 import { HiChevronDown } from "react-icons/hi";
+import TopHeaderContext from "../../../../Context/TopHeaderContext";
 
 const SearchBar = (props) => {
     const [search, setSearch] = useState("");
@@ -218,6 +219,8 @@ const SearchBar = (props) => {
         );
     }
 
+    const context = useContext(TopHeaderContext);
+
     return (
         <>
             {/* small screen  */}
@@ -225,20 +228,32 @@ const SearchBar = (props) => {
                 {/* search form  */}
                 <form
                     action="/"
-                    className="w-[205px] h-[42px] rounded-[7px] bg-headBorder p-[10px] flex items-center "
+                    className="w-[205px] h-[42px] rounded-[7px] bg-headBorder hover:bg-btnHoverBg flex items-center "
                 >
-                    <div className=" flex items-center ">
+                    <div className=" flex items-center w-full h-full relative ">
+                        <input
+                            disabled={hideSearch}
+                            style={{ background: "transparent" }}
+                            type="text"
+                            onChange={searchInput}
+                            value={search}
+                            placeholder="Find Summoner name..."
+                            className=" w-full h-full rounded-[7px] 
+                            absolute bg-transparent pl-[36px] mazin-bold-12 font-[600]
+                         text-halfWhite focus-within:outline-none focus-within:border
+                          focus:placeholder:text-white  "
+                        />
                         <button
                             onClick={(e) => searchHandler(e)}
-                            className="  "
+                            className=" absolute left-3 "
                         >
                             {hideSearch ? (
-                                <div className=" flex gap-x-[3px] mt-[6px] ">
+                                <div className=" flex gap-x-[2px] mt-[0px] ">
                                     {["", "", ""].map((item, index) => {
                                         return (
                                             <div
                                                 key={index}
-                                                className={`w-[10px] h-5 ${classes.indicator}`}
+                                                className={`w-[4px] h-3 ${classes.indicator}`}
                                             ></div>
                                         );
                                     })}
@@ -248,7 +263,7 @@ const SearchBar = (props) => {
                             )}
                         </button>
                         {/* sumonner name box  */}
-                        <input
+                        {/* <input
                             disabled={hideSearch}
                             style={{ background: "transparent" }}
                             type="search"
@@ -256,15 +271,16 @@ const SearchBar = (props) => {
                             value={search}
                             placeholder="Find Summoner name..."
                             className={` mazin-bold-12 font-[600] ml-[10px] text-halfWhite focus-visible:outline-none `}
-                        />
+                        /> */}
                     </div>
                 </form>
                 {/* country list  */}
                 <div className=" relative ">
                     {/* country box list  */}
-                    {activeListDetails.showList && (
+                    {/* {activeListDetails.showList && ( */}
+                    {context.option.countryList && (
                         <div
-                            className={` absolute left-0 top-[45px] bg-headBorder
+                            className={` absolute left-0 top-[45px] bg-headBorder 
                                 flex flex-col items-center gap-y-[5px] w-[111px] p-[10px] z-[100] rounded-[7px]`}
                         >
                             {selectionNameList.map((country, index) => {
@@ -289,15 +305,25 @@ const SearchBar = (props) => {
                     )}
                     {/* country select box  */}
                     <div
-                        onClick={CountryListShowHideHandler}
-                        className={` bg-headBorder w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
+                        onClick={(event) => {
+                            event.stopPropagation()
+                            CountryListShowHideHandler();
+                            context.handler("smc");
+                        }}
+                        className={` bg-headBorder hover:bg-btnHoverBg w-[70px] h-[42px] cursor-pointer rounded-[7px] flex justify-center items-center pl-[10px] `}
                     >
                         <h4
                             className={` text-halfWhite mazin-bold-12 font-[600] uppercase mr-1 `}
                         >
                             {activeListDetails.selectedItem?.name}
                         </h4>
-                        <HiChevronDown className=" text-halfWhite text-[16px] " />
+                        <HiChevronDown
+                            className={`text-halfWhite text-[16px] transition-transform ${
+                                activeListDetails.showList
+                                    ? " rotate-180 "
+                                    : " rotate-0 "
+                            }`}
+                        />
                     </div>
                 </div>
             </div>

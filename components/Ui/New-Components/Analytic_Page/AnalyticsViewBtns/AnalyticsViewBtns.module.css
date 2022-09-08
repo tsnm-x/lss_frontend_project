@@ -1,7 +1,19 @@
 .indicator {
-  @apply w-[15px] bg-accent-color rounded-[2px] h-[80px];
+    @apply w-[15px] bg-accent-color rounded-[2px] h-[80px];
 }
 
 .btn {
-  @apply px-4 pt-[6px] pb-[8px] rounded-[8px] font-sf-pro-text font-bold  text-[14px] leading-5 capitalize
+    /* @apply px-4 pt-[6px] pb-[8px] rounded-[8px]
+   font-sf-pro-text font-bold  text-[14px]
+    leading-5 capitalize; */
+    @apply p-[12px_13px] flex items-center justify-center h-[42px] rounded-[7px] 
+    font-inter font-bold text-[12px] leading-[20px]
+    capitalize bg-btnBg hover:bg-btnHoverBg;
+}
+
+.background {
+    @apply w-[1036px] h-[72px] absolute right-0 top-0 z-10;
+    /* background: linear-gradient(90deg, #161416 0%, rgba(0, 0, 0, 0) 100%),
+        url(Kayn_OriginalCentered.png); */
+    border-radius: 9px;
 }

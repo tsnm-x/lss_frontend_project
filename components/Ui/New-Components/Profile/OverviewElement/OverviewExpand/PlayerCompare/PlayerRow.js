@@ -301,14 +301,14 @@ const PlayerRow = (props) => {
                     ? `grid-cols-[105px_118px_115px_165px_145px] ${
                           props.simulatorPlayer.summonerName ===
                           props.player.summonerName
-                              ? "bg-[#4d65ca]"
-                              : "bg-[#181531]"
+                              ? "bg-blue"
+                              : " bg-winOpacity "
                       } `
                     : `grid-cols-[145px_165px_145px_83px_105px] ${
                           props.simulatorPlayer.summonerName ===
                           props.player.summonerName
-                              ? " bg-[#ad4552]"
-                              : "bg-[#241122]"
+                              ? " bg-red"
+                              : " bg-defeatOpacity "
                       } `
             }`}
             onClick={() => props.setSimulatorPlayer(props.player)}
@@ -367,7 +367,7 @@ const PlayerRow = (props) => {
                     return (
                         <div
                             key={index}
-                            className=" bg-[#372534] w-[25px] h-[25px] rounded-[5px] overflow-hidden relative  "
+                            className={` w-[25px] h-[25px] rounded-[5px] overflow-hidden relative bg-[rgba(217,217,217,0.1)] `}
                         >
                             {renderedItems &&
                             renderedItems[index] &&
@@ -523,7 +523,7 @@ const PlayerRow = (props) => {
                             ></div>
                         )}
                         {/* batch  */}
-                        <div className=" flex justify-center absolute -bottom-1 left-0 w-full ">
+                        <div className=" flex justify-center absolute -bottom-[6px] left-0 w-full ">
                             <div className=" font-sf-pro-text text-[9px] leading-[11px] font-[500]  w-[15px] h-[15px] rounded-full border border-grayed-text flex justify-center items-center text-white bg-card-border ">
                                 {correctParticipant?.level}
                             </div>

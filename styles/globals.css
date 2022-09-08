@@ -270,6 +270,7 @@
     .mazin-bold-16 {
         @apply font-mazin font-bold text-base leading-5;
     }
+   
     .mazin-bold-14 {
         @apply font-mazin font-bold text-[14px] leading-[18px];
     }
@@ -281,6 +282,12 @@
     }
     .inter-bold-14 {
         @apply font-inter text-[14px] leading-[20px] font-bold;
+    }
+     .mazin-mid-15 {
+        @apply font-mazin font-[500] text-[15px] leading-[19px];
+    }
+    .inter-reg-12 {
+        @apply font-inter text-[12px] leading-[14.5px] font-normal;
     }
     .inter-bold-10 {
         @apply font-inter text-[10px] leading-[140%] font-bold;
@@ -330,5 +337,12 @@
     }
     .hover-dis p {
         @apply text-white;
+    }
+    .card {
+        @apply bg-cardBg rounded-[3px] p-[6px] w-full;
+    }
+
+    .card-inner {
+        @apply bg-btnBg w-full;
     }
 }

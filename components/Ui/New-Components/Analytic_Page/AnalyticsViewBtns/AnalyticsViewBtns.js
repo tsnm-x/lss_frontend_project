@@ -2,7 +2,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Classess from "./AnalyticsViewBtns.module.css";
 import Router, { useRouter } from "next/router";
-import ReportBtn from '../../Profile/OverviewChampionBtns/ReportBtn'
+import ReportBtn from "../../Profile/OverviewChampionBtns/ReportBtn";
+import Image from "next/image";
 
 const AnalyticsViewBtns = (props) => {
     const btnClickHandler = (activeIndex) => {
@@ -25,24 +26,24 @@ const AnalyticsViewBtns = (props) => {
         });
     };
     return (
-        <section>
-            <div className="container flex items-center bg-card-&-content-box max-w-[1340px] rounded-tr-5px rounded-br-5px  ">
+        <section className=" bg-cardBg border-headBorder border-y-[2px] ">
+            <div className=" w-[1536px] h-[72px]  mx-auto rounded-tr-5px rounded-br-5px relative  ">
                 {/* indicator left  */}
-                <div className={`${Classess.indicator}`}></div>
-                <div className=" flex justify-between items-center w-full pl-[30px] pr-[25px] py-5 ">
+                {/* <div className={`${Classess.indicator}`}></div> */}
+                <div className=" w-full h-full flex justify-between items-center pl-[55px] pr-[64px] absolute z-20 ">
                     {/* right side  */}
                     <div className="  flex items-center ">
                         {/* texts  */}
-                        <div className=" mr-[50px] ">
-                            <h3 className=" sf-bold-20 text-white ">
+                        <div className=" font-inter font-bold leading-[20px] mr-[52px] ">
+                            <h3 className=" text-white text-[20px] ">
                                 Post-Game Analytics
                             </h3>
-                            <p className=" sf-bold-10 text-grayed-text mb-1 ">
+                            <p className=" text-btnGrayTxt text-[10px] ">
                                 Dive deep and analyse your games
                             </p>
                         </div>
                         {/* buttons  */}
-                        <div className=" flex gap-x-[10px] ">
+                        <div className=" flex gap-x-[18px] ">
                             {props.btns.map((btn, index) => {
                                 return (
                                     <button
@@ -50,8 +51,8 @@ const AnalyticsViewBtns = (props) => {
                                         key={index}
                                         className={` ${Classess.btn} ${
                                             btn.active
-                                                ? " border border-white text-white "
-                                                : "border border-grayed-text text-grayed-text"
+                                                ? " border border-white text-white bg-btnBg "
+                                                : " bg-btnBg text-grayed-text"
                                         }  `}
                                     >
                                         {btn.txt}
@@ -81,6 +82,15 @@ const AnalyticsViewBtns = (props) => {
                         listenTxt={false}
                     />
                 </div>
+                {/* background image  */}
+                {props.championId && (
+                    <div
+                        className={`${Classess.background}`}
+                        style={{
+                            background: `linear-gradient(90deg, #161416 0%, rgba(0, 0, 0, 0) 100%),url('/assets/new-images/Profile/championBackgrounds/champId ${props.championId}.png')`,
+                        }}
+                    ></div>
+                )}
             </div>
         </section>
     );

@@ -15,7 +15,7 @@
 // import Router from "next/router";
 import MainWrapperGridBg from "../public/assets/new-images/landing-page/gradient-bg.png";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import classes from "../styles/index.module.css";
 import Header from "../components/shared/New-Componets/Header/Header";
 import Main from "../components/Ui/New-Components/Landing_Page/Main/Main";
@@ -24,6 +24,8 @@ import Footer from "../components/shared/New-Componets/Footer/Footer";
 import Portal from "../components/shared/New-Componets/Portal/Portal";
 import LeftNavigationPortal from "../components/Ui/New-Components/universal/LeftNavigationPortal/LeftNavigationPortal";
 import HorizontalAds from "../components/shared/New-Componets/HorizontalAds/HorizontalAds";
+import LandingPageContext from "../Context/LandingPageContext";
+
 export default function Home() {
     // const servers = [
     //     "BR",
@@ -97,19 +99,35 @@ export default function Home() {
     //     );
     // }
 
-    const [leftNav, setLeftNav] = useState(false);
+    const [showSearchBar, setShowSearchBar] = useState(false);
+
+    const barHandler = (indicator) => {
+        setShowSearchBar(indicator);
+    };
+
+    // useEffect(() => {
+    //     document.querySelector("body").onclick = (event) => {
+    //         event.stopPropagation();
+    // 			setShowSearchBar(false);
+    //     };
+    // });
 
     return (
         <>
             {/* content  */}
             <div className={`h-screen flex flex-col justify-between `}>
-                <Header />
-                {/* main section  */}
-                <Main className=" laptop:my-[0]  " />
+                <LandingPageContext.Provider
+                    value={{
+                        search: showSearchBar,
+                        barHandler: barHandler,
+                    }}
+                >
+                    <Header />
+                    {/* main section  */}
+                    <Main className=" laptop:my-[0]  " />
+                </LandingPageContext.Provider>
                 {/* footer section  */}
-                <Footer
-                    className=" laptop:mt-[0px] "
-                />
+                <Footer className=" laptop:mt-[0px] " />
             </div>
 
             {/* 
