@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import HoverDiscription from "../../../Hover/HoverDiscription";
+import { CgCheckO, CgCloseO } from "react-icons/cg";
 
 const Btns = () => {
     const [btns, setBtns] = useState([
@@ -153,14 +154,77 @@ const DataRow = (props) => {
     }, [props?.summonerName]);
 
     function RankCompGenerator(color, text) {
+        const matchElement =
+        rankSolo?.miniSeries?.progress &&
+        [...rankSolo?.miniSeries?.progress]?.map((match, index) => {
+            return (
+                <div
+                    key={index}
+                    className={` w-5 h-5 rounded-full bg-[#272131] `}
+                >
+                    {match === "W" ? (
+                        <CgCheckO
+                            className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full  `}
+                        />
+                    ) : match === "L" ? (
+                        <CgCloseO
+                            className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
+                        />
+                    ) : (
+                        <div
+                            className={` text-[20px] text-[#848CA3] bg-[#3e3847] rounded-full   `}
+                        ></div>
+                    )}
+                </div>
+            );
+        });
+
         let component = (
-            <h1
-                className={` capitalize font-sf-pro-text text-[12px] leading-[14.3px] cursor-pointer
-                text-[#858DA3]`}
-                style={{ color: color ? color : "#706A76" }}
-            >
-                {text ? text : `Level ${props?.summonerLevel}`}
-            </h1>
+            <>
+                <h1
+                    className={` capitalize font-sf-pro-text text-[12px] leading-[14.3px] cursor-pointer
+                    text-[#858DA3]`}
+                    style={{ color: color ? color : "#706A76" }}
+                >
+                    {text ? text : `Level ${props?.summonerLevel}`}
+                </h1>
+                {/* indicator  */}
+                <div
+                    className={` transform  opacity-0 scale-y-0 -rotate-90 left-[75px] group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 transition-all ease-in-out duration-200 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] w-[12px] h-[6px] bg-[#d9d9d9] border absolute  z-20  `}
+                ></div>
+                <div
+                    className={`
+                                                    w-auto flex border bg-[#241E2C] p-[8px_15px] absolute z-10
+                                                    no-repeat left-[84px] top-[0px] 
+                                                    transform  opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 mt-2 transition-all ease-in-out duration-200
+                                                    `}
+                >
+                    <div>
+                        <h3 className=" font-mazin font-bold text-[15px] leading-[19px]"
+                            style={{ color: color ? color : "#706A76" }}
+                        >
+                            {text ? text : `Level ${props?.summonerLevel}`}
+                        </h3>
+                        <h2 className=" font-sf-pro-text font-bold text-[18px] leading-[22px] uppercase text-white ">
+                            {rankSolo?.leaguePoints}lp
+                        </h2>
+                        <p className=" font-sf-pro-text font-[500] text-[11px] leading-[13.2px] text-white mt-[2px] ">
+                            <span className=" text-[#5D7CF6]">{rankSolo?.wins || rankSolo?.losses
+                                    ? (
+                                        (rankSolo?.wins /
+                                            (rankSolo?.wins + rankSolo?.losses)) *
+                                        100
+                                    )?.toFixed(2)
+                                    : 0}%</span> WR
+                        </p>
+                    </div>
+                    {rankSolo?.miniSeries && (
+                        <div className=" flex gap-x-[6px] justify-end mt-[18px]  ">
+                            {matchElement}
+                        </div>
+                    )}
+                </div>
+            </>
         );
         setRank(component);
     }
@@ -261,7 +325,7 @@ const DataRow = (props) => {
 
     useEffect(() => {
         const rank = `${rankSolo?.tier}`;
-        console.log(rank);
+        console.log(rankSolo);
         switch (rank) {
             case "CHALLENGER":
                 RankCompGenerator(
@@ -589,29 +653,6 @@ const DataRow = (props) => {
                     </h1>
                 </Link>
                 {Rank}
-                <>
-                    {/* indicator  */}
-                    <div
-                        className={` transform  opacity-0 scale-y-0 -rotate-90 left-[75px] group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 transition-all ease-in-out duration-200 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] w-[12px] h-[6px] bg-[#d9d9d9] border absolute  z-20  `}
-                    ></div>
-                    <div
-                        className={`
-                                                        w-[112px] border bg-[#241E2C] p-[8px_15px] absolute z-10
-                                                         no-repeat left-[84px] top-[0px] 
-                                                         transform  opacity-0 scale-y-0 group-hover:delay-1000 group-hover:opacity-100 group-hover:scale-y-100 mt-2 transition-all ease-in-out duration-200
-                                                          `}
-                    >
-                        <h3 className=" font-mazin font-bold text-[15px] leading-[19px] text-[#4DC7BE]">
-                            Platinum 4
-                        </h3>
-                        <h2 className=" font-sf-pro-text font-bold text-[18px] leading-[22px] uppercase text-white ">
-                            61lp
-                        </h2>
-                        <p className=" font-sf-pro-text font-[500] text-[11px] leading-[13.2px] text-white mt-[2px] ">
-                            <span className=" text-[#5D7CF6]">54.62%</span> WR
-                        </p>
-                    </div>
-                </>
             </div>
             {/* creep score  */}
             <div className=" flex flex-col justify-center ">
